@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "types": "graphql-codegen --config codegen.yml"
   },
   "private": true,
   "resolutions": {
@@ -35,6 +36,7 @@
     "@angular-devkit/build-angular": "~0.1001.0",
     "@angular/cli": "~10.1.0",
     "@angular/compiler-cli": "~10.1.0",
+    "@graphql-codegen/cli": "1.17.8",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
@@ -49,6 +51,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.0.2",
+    "@graphql-codegen/typescript": "^1.17.9"
   }
 }

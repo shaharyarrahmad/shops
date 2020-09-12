@@ -9,6 +9,9 @@ import { ProductDetailComponent } from './product/product-detail.component';
 import { CartHeaderComponent } from './cart/cart-header.component';
 import {VendureService} from './vendure/vendure.service';
 import { CartComponent } from './cart/cart.component';
+import {NumberInputComponent} from './number-input/number-input.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { CartComponent } from './cart/cart.component';
     EuroPipe,
     ProductDetailComponent,
     CartHeaderComponent,
-    CartComponent
+    CartComponent,
+    NumberInputComponent,
+    CustomerDetailsComponent,
+    ShippingComponent
   ],
   imports: [
     BrowserModule,

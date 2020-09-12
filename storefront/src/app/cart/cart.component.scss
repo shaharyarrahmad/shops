@@ -1,0 +1,21 @@
+@import '../../styles';
+
+.cart-details {
+  position: relative;
+  padding-left: 10px;
+}
+
+.cart-name {
+  margin-bottom: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-price {
+  color: darkgray;
+}
+
+.cart-price p {
+  margin-bottom: 0;
+}

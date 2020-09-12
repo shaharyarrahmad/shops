@@ -31,13 +31,35 @@ export const productQuery = gql`
     }
   }`;
 
-export const orderFields = `
+export const orderFields = gql`
+    id
+    code
+    state
+    active
+    total
+    shipping
+    shippingMethod {
       id
-      state
-      total
-      lines {
-        quantity
+      code
+    }
+    lines {
+      id
+      quantity
+      featuredAsset {
+        id
+        preview
       }
+      productVariant {
+        id
+        sku
+        name
+        priceWithTax
+        product {
+          id
+          name
+        }
+      }
+    }
 `;
 
 export const activeOrderQuery = gql`{
@@ -51,4 +73,43 @@ export const addItemToOrderMutation = gql`
     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity ) {
       ${orderFields}
     }
-}`;
+  }`;
+
+export const adjustOrderLineMutation = gql`
+  mutation adjustOrderLine($orderLineId: ID!, $quantity: Int){
+    adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
+      ${orderFields}
+    }
+  }`;
+
+export const setCustomerForOrderMutation = gql`
+  mutation setCustomerForOrder($input: CreateCustomerInput!){
+    setCustomerForOrder(input: $input) {
+      ${orderFields}
+    }
+  }`;
+
+export const setOrderShippingAddressMutation = gql`
+  mutation setOrderShippingAddress($input: CreateAddressInput!){
+    setOrderShippingAddress(input: $input) {
+      ${orderFields}
+    }
+  }`;
+
+export const setOrderShippingMethodMutation = gql`
+  mutation setOrderShippingMethod($shippingMethodId: ID!){
+    setOrderShippingMethod(shippingMethodId: $shippingMethodId) {
+      ${orderFields}
+    }
+  }`;
+
+export const eligibleShippingMethodsQuery = gql`
+  {
+    eligibleShippingMethods {
+      id
+      price
+      priceWithTax
+      description
+      metadata
+    }
+  }`;

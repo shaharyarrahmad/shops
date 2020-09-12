@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {VendureService} from '../vendure/vendure.service';
-import {Product} from './product';
+import {ExtendedProduct} from '../vendure/types/extended-product';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +9,7 @@ import {Product} from './product';
 })
 export class ProductsOverviewComponent implements OnInit {
 
-  products: Product[]
+  products: ExtendedProduct[];
 
   constructor(private vendureService: VendureService) {
   }

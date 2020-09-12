@@ -1,12 +1,28 @@
+{{ order?.state }}
+
 <div class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x cart-bar">
   <div class="cell">
-    <a class="button" (click)="goBack()"><</a>
+    <a class="button {{ isCheckout ? 'hollow' : '' }}" (click)="goBack()"><</a>
   </div>
-  <div class="cell text-right">
 
+  <div *ngIf="!isCheckout && !hideCart" class="cell text-right">
     <span class="badge alert cart-badge">{{ nrOfItems }}</span>
     <a class="button" routerLink="cart">
       <i class="fi-shopping-cart"></i>
     </a>
+  </div>
+
+  <div *ngIf="isCheckout" class="cell text-right">
+    <a class="button" routerLink="customer-details">
+      BESTELLEN
+    </a>
+  </div>
+</div>
+<div *ngIf="progress" class="grid-x grid-padding-x">
+  <div class="cell small-12">
+    <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0" aria-valuetext="50 percent"
+         aria-valuemax="100">
+      <div class="progress-meter" style="width: {{progress}}%"></div>
+    </div>
   </div>
 </div>

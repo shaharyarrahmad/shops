@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VendureService} from '../vendure/vendure.service';
-import {Product, Variant} from './product';
 import {ActivatedRoute} from '@angular/router';
-import {CartHeaderComponent} from '../cart/cart-header.component';
+import {ExtendedProduct} from '../vendure/types/extended-product';
+import {ProductVariant} from '../../generated/graphql';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,8 +12,8 @@ import {CartHeaderComponent} from '../cart/cart-header.component';
 export class ProductDetailComponent implements OnInit {
 
   id: string;
-  product: Product;
-  variant: Variant;
+  product: ExtendedProduct;
+  variant: ProductVariant;
 
   constructor(private route: ActivatedRoute, private vendureService: VendureService) {
     this.id = this.route.snapshot.params.id;
@@ -30,7 +30,7 @@ export class ProductDetailComponent implements OnInit {
 
   async buy(): Promise<void> {
     // TODO: feedback about failure or not
-    await this.vendureService.addToCart(this.variant.id, 1);
+    await this.vendureService.addProduct(this.variant.id, 1);
   }
 
 }

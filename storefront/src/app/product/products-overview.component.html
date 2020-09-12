@@ -8,7 +8,7 @@
           <img src="{{ product.assets[0]?.preview }}" alt="{{ product.name }}">
         </div>
         <div class="product-overview-description">
-          <p class="product-overview-price">{{ product.lowestPriceIncVAT | euro}}</p>
+          <p class="product-overview-price">{{ product.defaultPrice | euro}}</p>
           <p>{{ product.name }}</p>
         </div>
       </a>
