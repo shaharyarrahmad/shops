@@ -74,6 +74,10 @@ $button-background: $body-font-color;
   outline: none !important;
 }
 
+label {
+  color: $body-font-color;
+}
+
 .cta {
   background-color: #07BEB8;
 }
@@ -105,4 +109,8 @@ $button-background: $body-font-color;
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.small-font {
+  font-size: 0.8rem;
 }

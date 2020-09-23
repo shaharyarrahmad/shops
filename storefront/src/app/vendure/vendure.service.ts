@@ -2,10 +2,13 @@ import {GraphQLClient} from 'graphql-request';
 import {
   activeOrderQuery,
   addItemToOrderMutation,
-  adjustOrderLineMutation, eligibleShippingMethodsQuery,
+  adjustOrderLineMutation,
+  eligibleShippingMethodsQuery, nextOrderStatesQuery,
   productQuery,
   productsQuery,
-  setCustomerForOrderMutation, setOrderShippingAddressMutation, setOrderShippingMethodMutation
+  setCustomerForOrderMutation,
+  setOrderShippingAddressMutation,
+  setOrderShippingMethodMutation, transitionOrderToStateMutation
 } from './graphql.queries';
 import {environment} from '../../environments/environment';
 import {Globals} from '../constants';
@@ -37,14 +40,15 @@ export class VendureService extends GraphQLClient {
   }
 
   async addProduct(productVariantId: string, quantity: number): Promise<Order> {
-    const {addItemToOrder} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
-    this.activeOrder$.next(addItemToOrder);
-    return addItemToOrder;
+    let {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
+    console.log('shipping', order.shippingMethod);
+    if (!order?.shippingMethod) {
+      order = await this.setDefaultShipping();
+    }
+    this.activeOrder$.next(order);
+    return order;
   }
 
-  /**
-   * Gets minimal activeOrder
-   */
   async getOrder(): Promise<Order> {
     const {activeOrder} = await this.request(activeOrderQuery);
     this.activeOrder$.next(activeOrder);
@@ -75,15 +79,26 @@ export class VendureService extends GraphQLClient {
   }
 
   async setOrderShippingMethod(shippingMethodId: string): Promise<Order> {
-    const {setOrderShippingMethod} = await this.request(setOrderShippingMethodMutation, shippingMethodId);
+    const {setOrderShippingMethod} = await this.request(setOrderShippingMethodMutation, {shippingMethodId});
     this.activeOrder$.next(setOrderShippingMethod);
     return setOrderShippingMethod;
   }
 
   async setDefaultShipping(): Promise<Order> {
     const methods = await this.getEligibleShippingMethods();
-    const defaultMethod = methods.find(m => m.description?.indexOf('Normal') > -2);
+    const defaultMethod = methods.find(m => m.description?.indexOf('Normal') > -1 || m.description?.indexOf('Default') > -1);
     return this.setOrderShippingMethod(defaultMethod.id);
+  }
+
+  async transitionOrderToState(state: string): Promise<Order> {
+    const {transitionOrderToState} = await this.request(transitionOrderToStateMutation, {state});
+    this.activeOrder$.next(transitionOrderToState);
+    return transitionOrderToState;
+  }
+
+  async getNextOrderStates(): Promise<string> {
+    const {nextOrderStates} = await this.request(nextOrderStatesQuery);
+    return nextOrderStates;
   }
 
   /**

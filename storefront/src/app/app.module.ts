@@ -12,6 +12,8 @@ import { CartComponent } from './cart/cart.component';
 import {NumberInputComponent} from './number-input/number-input.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { ShippingComponent } from './shipping/shipping.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +25,14 @@ import { ShippingComponent } from './shipping/shipping.component';
     CartComponent,
     NumberInputComponent,
     CustomerDetailsComponent,
-    ShippingComponent
+    ShippingComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [VendureService],
   bootstrap: [AppComponent]

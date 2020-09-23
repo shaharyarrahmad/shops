@@ -37,7 +37,23 @@ export const orderFields = gql`
     state
     active
     total
+    subTotal
     shipping
+    customer {
+      id
+      firstName
+      lastName
+      phoneNumber
+      emailAddress
+    }
+    shippingAddress {
+      company
+      streetLine1
+      streetLine2
+      city
+      postalCode
+      country
+    }
     shippingMethod {
       id
       code
@@ -103,6 +119,13 @@ export const setOrderShippingMethodMutation = gql`
     }
   }`;
 
+export const transitionOrderToStateMutation = gql`
+  mutation transitionOrderToState($state: String!){
+    transitionOrderToState(state: $state) {
+      ${orderFields}
+    }
+  }`;
+
 export const eligibleShippingMethodsQuery = gql`
   {
     eligibleShippingMethods {
@@ -112,4 +135,9 @@ export const eligibleShippingMethodsQuery = gql`
       description
       metadata
     }
+  }`;
+
+export const nextOrderStatesQuery = gql`
+  {
+    nextOrderStates
   }`;

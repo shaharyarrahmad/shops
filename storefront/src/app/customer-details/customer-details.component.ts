@@ -1,43 +1,91 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {CreateAddressInput, CreateCustomerInput} from '../../generated/graphql';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {VendureService} from '../vendure/vendure.service';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Subscription} from 'rxjs';
+import {Country} from '../vendure/types/country';
+import {CreateAddressInput, CreateCustomerInput} from '../../generated/graphql';
 
 @Component({
   selector: 'app-customer-details',
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.scss']
 })
-export class CustomerDetailsComponent implements OnInit {
+export class CustomerDetailsComponent implements OnInit, OnDestroy {
 
-  constructor(private vendureService: VendureService, private router: Router) { }
+  customerForm: FormGroup;
+  orderSubscription: Subscription;
 
-  async submit(event): Promise<void> {
-    event.preventDefault();
-    const customer: CreateCustomerInput = {
-      emailAddress: event.target.email.value,
-      firstName: event.target.firstname.value,
-      lastName: event.target.lastname.value,
-      phoneNumber: event.target.phonenumber.value,
-    };
-    const address: CreateAddressInput = {
-      company: event.target.company.value,
-      fullName: `${customer.firstName} ${customer.lastName}`,
-      defaultBillingAddress: true,
-      defaultShippingAddress: true,
-      city: event.target.city.value,
-      phoneNumber: customer.phoneNumber,
-      countryCode: event.target.country.value,
-      streetLine1: event.target.street.value,
-      streetLine2: event.target.housenr.value,
-      postalCode: event.target.postalcode.value,
-    };
-    await this.vendureService.setCustomerForOrder(customer);
-    await this.vendureService.setOrderShippingAddress(address);
-    await this.router.navigateByUrl('shipping');
+  constructor(private vendureService: VendureService, private router: Router, private formBuilder: FormBuilder) {
+    this.customerForm = this.formBuilder.group({
+      company: '',
+      firstname: '',
+      lastname: '',
+      phonenumber: '',
+      email: '',
+      street: '',
+      housenr: '',
+      city: '',
+      postalcode: '',
+      country: '',
+    });
   }
 
   ngOnInit(): void {
+    this.orderSubscription = this.vendureService.activeOrder$.subscribe(order => {
+      this.customerForm.patchValue({
+        company: order?.shippingAddress?.company,
+        firstname: order?.customer?.firstName,
+        lastname: order?.customer?.lastName,
+        phonenumber: order?.customer?.phoneNumber,
+        email: order?.customer?.emailAddress,
+        street: order?.shippingAddress?.streetLine1,
+        housenr: order?.shippingAddress?.streetLine2,
+        city: order?.shippingAddress?.city,
+        postalcode: order?.shippingAddress?.postalCode,
+      });
+      console.log(order?.shippingAddress?.country);
+      if (order?.shippingAddress?.country) {
+        this.customerForm.controls.country.setValue(Country[order?.shippingAddress?.country]);
+      } else {
+        this.customerForm.controls.country.setValue('NL');
+      }
+    });
+  }
+
+  async submit(event): Promise<void> {
+    event.preventDefault();
+    if (this.customerForm.invalid) {
+      return this.customerForm.markAllAsTouched();
+    }
+    const raw = this.customerForm.getRawValue();
+    const customer: CreateCustomerInput = {
+      emailAddress: raw.email,
+      firstName: raw.firstname,
+      lastName: raw.lastname,
+      phoneNumber: raw.phonenumber,
+    };
+    const address: CreateAddressInput = {
+      company: raw.company,
+      fullName: `${customer.firstName} ${customer.lastName}`,
+      defaultBillingAddress: true,
+      defaultShippingAddress: true,
+      city: raw.city,
+      phoneNumber: customer.phoneNumber,
+      countryCode: raw.country,
+      streetLine1: raw.street,
+      streetLine2: raw.housenr,
+      postalCode: raw.postalcode,
+    };
+    await Promise.all([
+      this.vendureService.setCustomerForOrder(customer),
+      this.vendureService.setOrderShippingAddress(address),
+    ]);
+    await this.router.navigateByUrl('shipping');
+  }
+
+  ngOnDestroy(): void {
+    this.orderSubscription.unsubscribe();
   }
 
 }

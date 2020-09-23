@@ -1,65 +1,65 @@
-<form (submit)="submit($event)" #customerDetailsForm>
+<form (submit)="submit($event)" [formGroup]="customerForm">
   <h1 style="margin-bottom: 20px;"> Jouw gegevens</h1>
   <div class="grid-x grid-padding-x">
     <div class="cell small-6 ">
       <label>Bedrijfsnaam
-        <input type="text" name="company">
+        <input type="text" name="company" formControlName="company">
       </label>
     </div>
   </div>
   <div class="grid-x grid-padding-x">
     <div class="cell small-6 ">
       <label>Voornaam*
-        <input type="text" name="firstname" required>
+        <input type="text" name="firstname" formControlName="firstname" required/>
       </label>
     </div>
     <div class="cell small-6">
       <label>Achternaam*
-        <input type="text" name="lastname" required>
+        <input type="text" name="lastname" formControlName="lastname" required>
       </label>
     </div>
   </div>
   <div class="grid-x grid-padding-x">
     <div class="cell small-6 ">
       <label>Telefoonnummer
-        <input type="tel" name="phonenumber">
+        <input type="tel" name="phonenumber" formControlName="phonenumber">
       </label>
     </div>
     <div class="cell small-6">
       <label>Email*
-        <input type="email" name="email" required>
+        <input type="email" name="email" formControlName="email" required>
       </label>
     </div>
   </div>
   <div class="grid-x grid-padding-x">
     <div class="cell small-8">
       <label>Straat*
-        <input type="text" name="street" required>
+        <input type="text" name="street" formControlName="street" required>
       </label>
     </div>
     <div class="cell small-4">
       <label>Huisnr*
-        <input type="text" name="housenr" required>
+        <input type="text" name="housenr" formControlName="housenr" required>
       </label>
     </div>
   </div>
   <div class="grid-x grid-padding-x">
     <div class="cell small-8">
       <label>Plaats*
-        <input type="text" name="city" required>
+        <input type="text" name="city" formControlName="city" required>
       </label>
     </div>
     <div class="cell small-4">
       <label>Postcode*
-        <input type="text" name="postalcode" required>
+        <input type="text" name="postalcode" formControlName="postalcode" required>
       </label>
     </div>
   </div>
   <div class="grid-x grid-padding-x">
     <div class="cell small-6">
       <label>Land
-        <select name="country">
-          <option value="NL">Nederland</option>
+        <select name="country" formControlName="country">
+          <option value="NL" selected>Nederland</option>
           <option value="DE">Duitsland</option>
           <option value="BE">België</option>
         </select>
