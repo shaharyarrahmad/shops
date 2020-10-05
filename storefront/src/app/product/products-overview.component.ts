@@ -18,4 +18,12 @@ export class ProductsOverviewComponent implements OnInit {
     this.products = await this.vendureService.getProducts();
   }
 
+  load(img: any, imgSrc: string): void {
+    if (img.loaded) {
+      return;
+    }
+    img.src = imgSrc;
+    img.loaded = true;
+  }
+
 }

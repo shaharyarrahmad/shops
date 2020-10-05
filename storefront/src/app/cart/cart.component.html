@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div *ngFor="let line of order?.lines" class="grid-x small-font" style="padding-top: 20px;">
+<div *ngFor="let line of order?.lines; let i = index" class="grid-x small-font {{ (i % 2 === 0) ? 'accent-row' : ''}}" style="padding: 10px;">
   <div class="cell small-4 medium-3 large-2">
     <div class="product-thumbnail">
       <img src="{{ line.productVariant?.featuredAsset?.preview || line.featuredAsset?.preview }}" alt="{{ line.productVariant?.name }}">

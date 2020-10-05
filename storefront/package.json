@@ -24,6 +24,7 @@
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",
+    "@mollie/api-client": "^3.2.4",
     "foundation-sites": "^6.6.3",
     "graphql": "^15.3.0",
     "graphql-request": "^3.0.0",

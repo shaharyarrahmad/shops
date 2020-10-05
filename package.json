@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd vendure && npm start\" \"cd storefront && ng serve\""
+    "start": "concurrently \"cd vendure && npm run serve\" \"cd storefront && npm run start\""
   },
   "license": "MIT",
   "devDependencies": {

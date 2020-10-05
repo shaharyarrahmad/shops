@@ -1,7 +1,7 @@
 import {GraphQLClient} from 'graphql-request';
 import {
   activeOrderQuery,
-  addItemToOrderMutation,
+  addItemToOrderMutation, addPaymentToOrderMutation,
   adjustOrderLineMutation,
   eligibleShippingMethodsQuery, nextOrderStatesQuery,
   productQuery,
@@ -14,7 +14,7 @@ import {environment} from '../../environments/environment';
 import {Globals} from '../constants';
 import {Injectable} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
-import {CreateAddressInput, CreateCustomerInput, Order, Product, ShippingMethodQuote} from '../../generated/graphql';
+import {CreateAddressInput, CreateCustomerInput, Order, PaymentInput, Product, ShippingMethodQuote} from '../../generated/graphql';
 import {ExtendedProduct} from './types/extended-product';
 
 @Injectable({
@@ -41,7 +41,6 @@ export class VendureService extends GraphQLClient {
 
   async addProduct(productVariantId: string, quantity: number): Promise<Order> {
     let {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
-    console.log('shipping', order.shippingMethod);
     if (!order?.shippingMethod) {
       order = await this.setDefaultShipping();
     }
@@ -94,6 +93,13 @@ export class VendureService extends GraphQLClient {
     const {transitionOrderToState} = await this.request(transitionOrderToStateMutation, {state});
     this.activeOrder$.next(transitionOrderToState);
     return transitionOrderToState;
+  }
+
+  async addPaymentToOrder(input: PaymentInput): Promise<Order> {
+    input.metadata.channel = Globals.channelId;
+    const {addPaymentToOrder} = await this.request(addPaymentToOrderMutation, {input});
+    this.activeOrder$.next(addPaymentToOrder);
+    return addPaymentToOrder;
   }
 
   async getNextOrderStates(): Promise<string> {

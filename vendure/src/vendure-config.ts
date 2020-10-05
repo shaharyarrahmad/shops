@@ -1,13 +1,9 @@
-import {
-    examplePaymentHandler,
-    DefaultJobQueuePlugin,
-    DefaultSearchPlugin,
-    VendureConfig,
-} from '@vendure/core'; 
-import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
-import { AssetServerPlugin } from '@vendure/asset-server-plugin';
-import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
+import {DefaultJobQueuePlugin, DefaultSearchPlugin, VendureConfig,} from '@vendure/core';
+import {defaultEmailHandlers, EmailPlugin} from '@vendure/email-plugin';
+import {AssetServerPlugin} from '@vendure/asset-server-plugin';
+import {AdminUiPlugin} from '@vendure/admin-ui-plugin';
 import path from 'path';
+import {MolliePlugin} from './mollie-payment/mollie-plugin';
 
 export const config: VendureConfig = {
     workerOptions: {
@@ -37,17 +33,21 @@ export const config: VendureConfig = {
         },
     },
     dbConnectionOptions: {
-        type: 'sqlite',
-        synchronize: false, // not working with SQLite/SQL.js, see https://github.com/typeorm/typeorm/issues/2576
+        type: 'mysql',
+        synchronize: false,
         logging: false,
-        database: path.join(__dirname, '../vendure.sqlite'),
+        username: process.env.DATABASE_USER,
+        password: process.env.DATABASE_PASSWORD,
+        host: process.env.DATABASE_HOST,
+        database: process.env.DATABASE_NAME,
         migrations: [path.join(__dirname, '../migrations/*.ts')],
     },
     paymentOptions: {
-        paymentMethodHandlers: [examplePaymentHandler],
+        paymentMethodHandlers: [],
     },
     customFields: {},
     plugins: [
+        MolliePlugin,
         AssetServerPlugin.init({
             route: 'assets',
             assetUploadDir: path.join(__dirname, '../static/assets'),
@@ -69,6 +69,6 @@ export const config: VendureConfig = {
                 changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
             },
         }),
-        AdminUiPlugin.init({ port: 3002 }),
+        AdminUiPlugin.init({port: 3002}),
     ],
 };

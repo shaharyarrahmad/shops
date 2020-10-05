@@ -12,19 +12,25 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   order: Order;
   orderSubscription: Subscription;
+  error: string;
 
   constructor(private vendureService: VendureService) {
   }
 
   async ngOnInit(): Promise<void> {
-    this.orderSubscription = this.vendureService.activeOrder$.subscribe(order => this.order = order);
+    this.orderSubscription = this.vendureService.activeOrder$.subscribe(o => this.order = o);
     const states = await this.vendureService.getNextOrderStates();
     if (states?.indexOf('ArrangingPayment') > -1) {
-      console.log(states);
       await this.vendureService.transitionOrderToState('ArrangingPayment');
     }
-    await this.vendureService.transitionOrderToState('PaymentSettled');
-    console.log(await this.vendureService.getNextOrderStates());
+    const order = await this.vendureService.addPaymentToOrder({method: 'mollie-payment-handler', metadata: {}});
+    const latestPayment = order.payments?.[order.payments.length - 1];
+    if (latestPayment?.metadata?.redirectLink) {
+      window.location.href = latestPayment.metadata.redirectLink;
+    } else {
+      this.error = latestPayment.errorMessage;
+      console.error('Error creating payment', this.error);
+    }
   }
 
   ngOnDestroy(): void {

@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   vendureEndpoint: 'http://localhost:3000/shop-api'
-  // vendureEndpoint: 'https://fe87ee2a081c.ngrok.io/shop-api'
 };
 
 /*

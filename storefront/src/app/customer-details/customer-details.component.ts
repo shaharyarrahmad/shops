@@ -34,7 +34,7 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.orderSubscription = this.vendureService.activeOrder$.subscribe(order => {
       this.customerForm.patchValue({
-        company: order?.shippingAddress?.company,
+        company: order?.shippingAddress?.company || '', // Errors when company is null
         firstname: order?.customer?.firstName,
         lastname: order?.customer?.lastName,
         phonenumber: order?.customer?.phoneNumber,
@@ -44,7 +44,6 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
         city: order?.shippingAddress?.city,
         postalcode: order?.shippingAddress?.postalCode,
       });
-      console.log(order?.shippingAddress?.country);
       if (order?.shippingAddress?.country) {
         this.customerForm.controls.country.setValue(Country[order?.shippingAddress?.country]);
       } else {

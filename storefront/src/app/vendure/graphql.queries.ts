@@ -76,6 +76,12 @@ export const orderFields = gql`
         }
       }
     }
+     payments {
+      id
+      state
+      errorMessage
+      metadata
+    }
 `;
 
 export const activeOrderQuery = gql`{
@@ -122,6 +128,13 @@ export const setOrderShippingMethodMutation = gql`
 export const transitionOrderToStateMutation = gql`
   mutation transitionOrderToState($state: String!){
     transitionOrderToState(state: $state) {
+      ${orderFields}
+    }
+  }`;
+
+export const addPaymentToOrderMutation = gql`
+  mutation addPaymentToOrder($input: PaymentInput!){
+    addPaymentToOrder(input: $input) {
       ${orderFields}
     }
   }`;
