@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "types": "graphql-codegen --config codegen.yml"
+    "generate-types": "graphql-codegen --config codegen.yml"
   },
   "private": true,
   "resolutions": {

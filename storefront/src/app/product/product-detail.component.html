@@ -10,7 +10,7 @@
       <h1>{{ product?.name }}</h1>
       <h3>{{ variant?.priceWithTax | euro }} </h3>
 
-      <a class="button" data-toggle="addedToCartModal" (click)="buy()" style="width: 100%; margin-top: 10px;" >BUY</a>
+      <a class="button" data-toggle="addedToCartModal" (click)="buy()" style="width: 100%; margin-top: 10px;" >KOOP</a>
         <select *ngIf="product?.variants?.length > 1" #variant (change)="selectVariant(variant.value)">
           <option *ngFor="let variant of product?.variants" value="{{ variant.id }}">
             {{ variant.name }}

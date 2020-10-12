@@ -3,7 +3,7 @@ import {
   activeOrderQuery,
   addItemToOrderMutation, addPaymentToOrderMutation,
   adjustOrderLineMutation,
-  eligibleShippingMethodsQuery, nextOrderStatesQuery,
+  eligibleShippingMethodsQuery, nextOrderStatesQuery, orderByCodeQuery,
   productQuery,
   productsQuery,
   setCustomerForOrderMutation,
@@ -26,7 +26,7 @@ export class VendureService extends GraphQLClient {
 
   constructor() {
     super(environment.vendureEndpoint, {headers: {'vendure-token': Globals.channelId}, credentials: 'include'});
-    this.getOrder().then(order => this.activeOrder$.next(order));
+    this.getActiveOrder().then(order => this.activeOrder$.next(order));
   }
 
   async getProducts(): Promise<ExtendedProduct[]> {
@@ -48,10 +48,17 @@ export class VendureService extends GraphQLClient {
     return order;
   }
 
-  async getOrder(): Promise<Order> {
+  async getActiveOrder(): Promise<Order> {
     const {activeOrder} = await this.request(activeOrderQuery);
+    console.log(activeOrder);
     this.activeOrder$.next(activeOrder);
     return activeOrder;
+  }
+
+  async getOrderByCode(code: string): Promise<Order> {
+    const {orderByCode} = await this.request(orderByCodeQuery, {code});
+    this.activeOrder$.next(orderByCode);
+    return orderByCode;
   }
 
   async adjustOrderLine(orderLineId: string, quantity: number): Promise<Order> {

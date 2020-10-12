@@ -23,10 +23,9 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                     orderCode: order.code
                 },
                 description: `Bestelling ${order.code}`,
-                redirectUrl: `${process.env.STOREFRONT_HOST}/https://localhost:4200/order/123456`,
+                redirectUrl: `${process.env.STOREFRONT_HOST}/order/${order.code}`,
                 webhookUrl: `${process.env.VENDURE_HOST}/payments/mollie/${metadata.channel}`
             });
-            console.log(payment);
             return {
                 amount: order.total,
                 transactionId: payment.id,

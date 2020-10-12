@@ -14,6 +14,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 import { ShippingComponent } from './shipping/shipping.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PaymentComponent } from './payment/payment.component';
     CustomerDetailsComponent,
     ShippingComponent,
     PaymentComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,

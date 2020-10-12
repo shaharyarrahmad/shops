@@ -20,9 +20,8 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
   orderSubscription: Subscription;
   progress = 0;
 
-
-  constructor(private vendureService: VendureService, private location: Location, private router: Router) {}
-
+  constructor(private vendureService: VendureService, private location: Location, private router: Router) {
+  }
 
   async ngOnInit(): Promise<void> {
     this.orderSubscription = this.vendureService.activeOrder$.subscribe(o => {
@@ -44,7 +43,7 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
   }
 
   setNrOfItems(order: Order): void {
-    if (order) {
+    if (order && order.lines.length > 0) {
       this.nrOfItems = order.lines
         .map(l => l.quantity)
         .reduce((quantity1, quantity2) => quantity1 + quantity2);

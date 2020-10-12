@@ -1,37 +1,42 @@
 import {gql} from 'graphql-request';
 
-export const productFields = `
-   id
-   name
-   assets {
-     preview
-   }
-   description
-   variants {
-     id
-     name
-     priceWithTax
-     productId
-   }
+export const productFields = gql`
+  fragment productFields on Product {
+    id
+    name
+    assets {
+      preview
+    }
+    description
+    variants {
+      id
+      name
+      priceWithTax
+      productId
+    }
+  }
 `;
 
 export const productsQuery = gql`
+  ${productFields}
   {
     products {
       items {
-        ${productFields}
+        ...productFields
       }
     }
   }`;
 
 export const productQuery = gql`
+  ${productFields}
   query product($id: ID) {
     product(id: $id) {
-      ${productFields}
+      ...productFields
     }
   }`;
 
 export const orderFields = gql`
+  fragment orderFields on Order {
     id
     code
     state
@@ -76,38 +81,71 @@ export const orderFields = gql`
         }
       }
     }
-     payments {
+    payments {
       id
       state
       errorMessage
       metadata
     }
+  }
 `;
 
-export const activeOrderQuery = gql`{
-  activeOrder {
-    ${orderFields}
+export const activeOrderQuery = gql`
+  ${orderFields}
+  query activeOrder {
+    activeOrder {
+      ...orderFields
+    }
   }
-}`;
+`;
+
+export const orderByCodeQuery = gql`
+  ${orderFields}
+  query orderByCode($code: String!){
+    orderByCode(code: $code) {
+      ...orderFields
+    }
+  }`;
 
 export const addItemToOrderMutation = gql`
+  ${orderFields}
   mutation additemToOrder($productVariantId: ID!, $quantity: Int!){
     addItemToOrder(productVariantId: $productVariantId, quantity: $quantity ) {
-      ${orderFields}
+      ... on Order {
+        ...orderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
     }
   }`;
 
 export const adjustOrderLineMutation = gql`
+  ${orderFields}
   mutation adjustOrderLine($orderLineId: ID!, $quantity: Int){
     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
-      ${orderFields}
+      ... on Order {
+        ...orderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
     }
   }`;
 
 export const setCustomerForOrderMutation = gql`
+  ${orderFields}
   mutation setCustomerForOrder($input: CreateCustomerInput!){
     setCustomerForOrder(input: $input) {
-      ${orderFields}
+      ... on Order {
+        ...orderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
     }
   }`;
 
@@ -119,23 +157,38 @@ export const setOrderShippingAddressMutation = gql`
   }`;
 
 export const setOrderShippingMethodMutation = gql`
+  ${orderFields}
   mutation setOrderShippingMethod($shippingMethodId: ID!){
     setOrderShippingMethod(shippingMethodId: $shippingMethodId) {
-      ${orderFields}
+      ... on Order {
+        ...orderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
     }
   }`;
 
 export const transitionOrderToStateMutation = gql`
+  ${orderFields}
   mutation transitionOrderToState($state: String!){
     transitionOrderToState(state: $state) {
-      ${orderFields}
+      ... on Order {
+        ...orderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
     }
   }`;
 
 export const addPaymentToOrderMutation = gql`
+  ${orderFields}
   mutation addPaymentToOrder($input: PaymentInput!){
     addPaymentToOrder(input: $input) {
-      ${orderFields}
+      ...orderFields
     }
   }`;
 
