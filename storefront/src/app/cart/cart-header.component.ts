@@ -29,15 +29,16 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
       this.order = o;
     });
     this.router.events.subscribe(event => {
-      if ((event as NavigationStart).url) {
+      const url = (event as NavigationStart).url;
+      if (url) {
         this.progress = 0;
-        if ((event as NavigationStart).url?.indexOf('/customer-details') > -1) {
+        if (url?.indexOf('/customer-details') > -1) {
           this.progress = 33;
-        } else if ((event as NavigationStart).url?.indexOf('/shipping') > -1) {
+        } else if (url?.indexOf('/shipping') > -1) {
           this.progress = 66;
         }
-        this.isCheckout = (event as NavigationStart).url?.indexOf('/cart') > -1;
-        this.hideCart = (event as NavigationStart).url?.indexOf('/customer-details') > -1 || (event as NavigationStart).url?.indexOf('/shipping') > -1;
+        this.isCheckout = url?.indexOf('/cart') > -1;
+        this.hideCart = url?.indexOf('/customer-details') > -1 || url?.indexOf('/shipping') > -1 || url?.indexOf('/order') > -1;
       }
     });
   }

@@ -15,19 +15,19 @@
     <p>Subtotaal: </p>
   </div>
   <div class="cell">
-    <p> {{ order?.subTotal | euro }}</p>
+    <p> {{ order?.subTotal | euro: 'leaveZeros' }}</p>
   </div>
   <div class="cell">
     <p>Verzendkosten: </p>
   </div>
   <div class="cell">
-    <p> {{ order?.shipping | euro }}</p>
+    <p> {{ order?.shippingWithTax | euro: 'leaveZeros' }}</p>
   </div>
   <div class="cell">
     <p>Totaal: </p>
   </div>
   <div class="cell">
-    <strong> {{ order?.total | euro }}</strong>
+    <strong> {{ order?.total | euro: 'leaveZeros' }}</strong>
   </div>
   <div class="cell"></div>
   <div class="cell">

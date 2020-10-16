@@ -14,7 +14,15 @@ import {environment} from '../../environments/environment';
 import {Globals} from '../constants';
 import {Injectable} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
-import {CreateAddressInput, CreateCustomerInput, Order, PaymentInput, Product, ShippingMethodQuote} from '../../generated/graphql';
+import {
+  CreateAddressInput,
+  CreateCustomerInput,
+  ErrorResult,
+  Order,
+  PaymentInput,
+  Product,
+  ShippingMethodQuote
+} from '../../generated/graphql';
 import {ExtendedProduct} from './types/extended-product';
 
 @Injectable({
@@ -41,6 +49,7 @@ export class VendureService extends GraphQLClient {
 
   async addProduct(productVariantId: string, quantity: number): Promise<Order> {
     let {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
+    this.validateResult(order);
     if (!order?.shippingMethod) {
       order = await this.setDefaultShipping();
     }
@@ -50,7 +59,6 @@ export class VendureService extends GraphQLClient {
 
   async getActiveOrder(): Promise<Order> {
     const {activeOrder} = await this.request(activeOrderQuery);
-    console.log(activeOrder);
     this.activeOrder$.next(activeOrder);
     return activeOrder;
   }
@@ -63,12 +71,14 @@ export class VendureService extends GraphQLClient {
 
   async adjustOrderLine(orderLineId: string, quantity: number): Promise<Order> {
     const {adjustOrderLine} = await this.request(adjustOrderLineMutation, {orderLineId, quantity});
+    this.validateResult(adjustOrderLine);
     this.activeOrder$.next(adjustOrderLine);
     return adjustOrderLine;
   }
 
   async setCustomerForOrder(input: CreateCustomerInput): Promise<Order> {
     const {setCustomerForOrder} = await this.request(setCustomerForOrderMutation, {input});
+    this.validateResult(setCustomerForOrder);
     this.activeOrder$.next(setCustomerForOrder);
     return setCustomerForOrder;
   }
@@ -86,6 +96,7 @@ export class VendureService extends GraphQLClient {
 
   async setOrderShippingMethod(shippingMethodId: string): Promise<Order> {
     const {setOrderShippingMethod} = await this.request(setOrderShippingMethodMutation, {shippingMethodId});
+    this.validateResult(setOrderShippingMethod);
     this.activeOrder$.next(setOrderShippingMethod);
     return setOrderShippingMethod;
   }
@@ -98,6 +109,7 @@ export class VendureService extends GraphQLClient {
 
   async transitionOrderToState(state: string): Promise<Order> {
     const {transitionOrderToState} = await this.request(transitionOrderToStateMutation, {state});
+    this.validateResult(transitionOrderToState);
     this.activeOrder$.next(transitionOrderToState);
     return transitionOrderToState;
   }
@@ -105,6 +117,7 @@ export class VendureService extends GraphQLClient {
   async addPaymentToOrder(input: PaymentInput): Promise<Order> {
     input.metadata.channel = Globals.channelId;
     const {addPaymentToOrder} = await this.request(addPaymentToOrderMutation, {input});
+    this.validateResult(addPaymentToOrder);
     this.activeOrder$.next(addPaymentToOrder);
     return addPaymentToOrder;
   }
@@ -123,6 +136,15 @@ export class VendureService extends GraphQLClient {
       ...product,
       defaultPrice
     };
+  }
+
+  /**
+   * Throws the error if one exists in result
+   */
+  private validateResult(order: Order | ErrorResult): void {
+    if ((order as ErrorResult).errorCode) {
+      throw Error((order as ErrorResult).message);
+    }
   }
 
 }

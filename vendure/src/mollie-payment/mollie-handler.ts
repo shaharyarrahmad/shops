@@ -31,7 +31,9 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                 transactionId: payment.id,
                 state: 'Authorized' as const,
                 metadata: {
-                    redirectLink: payment.getPaymentUrl()
+                    public: {
+                        redirectLink: payment.getPaymentUrl(),
+                    }
                 },
             };
         } catch (err) {

@@ -28,7 +28,7 @@ $button-background: $body-font-color;
 @include foundation-progress-bar;
 //@include foundation-slider;
 //@include foundation-switch;
-//@include foundation-table;
+@include foundation-table;
 
 // Basic components
 @include foundation-badge;

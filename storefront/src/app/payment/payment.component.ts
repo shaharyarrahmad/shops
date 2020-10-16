@@ -23,10 +23,13 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (states?.indexOf('ArrangingPayment') > -1) {
       await this.vendureService.transitionOrderToState('ArrangingPayment');
     }
-    const order = await this.vendureService.addPaymentToOrder({method: 'mollie-payment-handler', metadata: {}});
-    const latestPayment = order.payments?.[order.payments.length - 1];
-    if (latestPayment?.metadata?.redirectLink) {
-      window.location.href = latestPayment.metadata.redirectLink;
+    const order: Order = await this.vendureService.addPaymentToOrder({method: 'mollie-payment-handler', metadata: {}}).catch(e => {
+      this.error = e.message;
+      console.error(e);
+    }) as Order;
+    const latestPayment = order?.payments?.[order?.payments.length - 1];
+    if (latestPayment?.metadata?.public?.redirectLink) {
+      window.location.href = latestPayment.metadata.public.redirectLink;
     } else {
       this.error = latestPayment.errorMessage;
       console.error('Error creating payment', this.error);

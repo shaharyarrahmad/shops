@@ -15,6 +15,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   orderSubscription: Subscription;
   pollingCount: number;
   code: string;
+  error: string;
 
   constructor(private vendureService: VendureService, private route: ActivatedRoute) {
     this.code = this.route.snapshot.params.code;
@@ -25,8 +26,14 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderSubscription = this.vendureService.activeOrder$.subscribe(o => {
       this.order = o;
       if (o?.state !== 'PaymentSettled') {
-        setTimeout(() => this.vendureService.getOrderByCode(this.code), 1000);
+        if (this.pollingCount > 10) {
+          this.error = 'Er is iets misgegaan, neem contact met ons op.';
+        }
+        setTimeout(() => this.vendureService.getOrderByCode(this.code).catch((e) => {
+          this.error = e.message;
+        }), 1000);
         this.pollingCount++;
+        console.log(`Polling for payment status ${this.pollingCount}`);
       }
     });
   }

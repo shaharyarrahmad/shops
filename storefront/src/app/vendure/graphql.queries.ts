@@ -43,7 +43,7 @@ export const orderFields = gql`
     active
     total
     subTotal
-    shipping
+    shippingWithTax
     customer {
       id
       firstName
@@ -66,6 +66,7 @@ export const orderFields = gql`
     lines {
       id
       quantity
+      totalPrice
       featuredAsset {
         id
         preview
@@ -150,9 +151,10 @@ export const setCustomerForOrderMutation = gql`
   }`;
 
 export const setOrderShippingAddressMutation = gql`
+  ${orderFields}
   mutation setOrderShippingAddress($input: CreateAddressInput!){
     setOrderShippingAddress(input: $input) {
-      ${orderFields}
+      ...orderFields
     }
   }`;
 
@@ -188,7 +190,13 @@ export const addPaymentToOrderMutation = gql`
   ${orderFields}
   mutation addPaymentToOrder($input: PaymentInput!){
     addPaymentToOrder(input: $input) {
-      ...orderFields
+      ... on Order {
+        ...orderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
     }
   }`;
 
