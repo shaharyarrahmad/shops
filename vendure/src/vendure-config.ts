@@ -4,6 +4,7 @@ import {AssetServerPlugin} from '@vendure/asset-server-plugin';
 import {AdminUiPlugin} from '@vendure/admin-ui-plugin';
 import path from 'path';
 import {MolliePlugin} from './mollie-payment/mollie-plugin';
+import {GoogleStorageStrategy} from './google-storage-assets/google-storage-strategy';
 
 export const config: VendureConfig = {
     workerOptions: {
@@ -49,8 +50,9 @@ export const config: VendureConfig = {
     plugins: [
         MolliePlugin,
         AssetServerPlugin.init({
+            storageStrategyFactory: () => new GoogleStorageStrategy('pinelab-shops-assets'),
             route: 'assets',
-            assetUploadDir: path.join(__dirname, '../static/assets'),
+            assetUploadDir: '/tmp/vendure/assets',
             port: 3001,
         }),
         DefaultJobQueuePlugin,

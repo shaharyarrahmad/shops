@@ -1,39 +1,73 @@
-import {AssetStorageStrategy, Injector} from '@vendure/core';
+import {AssetStorageStrategy} from '@vendure/core';
 import {Storage} from '@google-cloud/storage';
-import {Readable, Stream} from 'stream';
-
+import {Request} from 'express';
+import {Stream} from 'stream';
+import * as tmp from 'tmp';
+import * as fs from 'fs';
 
 export class GoogleStorageStrategy implements AssetStorageStrategy {
 
-    bucketName = 'pinelab-shops-assets';
     storage: Storage;
-    urlPrefix = 'https://storage.googleapis.com/';
+    urlPrefix = 'https://storage.googleapis.com';
 
-    constructor() {
+    constructor(public bucketName: string) {
         this.storage = new Storage();
     }
 
-    deleteFile(identifier: string): Promise<void> {
-        return Promise.resolve(undefined);
+    toAbsoluteUrl(request: Request, identifier: string): string {
+        if ((request as any).vendureRequestContext?._apiType === 'admin') { // go via assetServer if admin
+            return `${request.protocol}://${request.get('host')}/assets/${identifier}`;
+        }
+        return `${this.urlPrefix}/${this.bucketName}/${identifier}`;
     }
 
-    fileExists(fileName: string): Promise<boolean> {
-        return Promise.resolve(false);
+    async deleteFile(identifier: string): Promise<void> {
+        await this.storage.bucket(this.bucketName).file(identifier).delete();
     }
 
-    readFileToBuffer(identifier: string): Promise<Buffer> {
-        return Promise.resolve(undefined);
+    async fileExists(fileName: string): Promise<boolean> {
+        const [exists] = await this.storage.bucket(this.bucketName).file(fileName).exists();
+        return exists;
     }
 
-    readFileToStream(identifier: string): Promise<Stream> {
-        return Promise.resolve(undefined);
+    async readFileToBuffer(identifier: string): Promise<Buffer> {
+        if (identifier?.startsWith('/')) {
+            identifier = identifier.replace('/', '');
+        }
+        const tmpFile = tmp.fileSync();
+        await this.storage.bucket(this.bucketName).file(identifier).download({destination: tmpFile.name});
+        return fs.readFileSync(tmpFile.name);
+    }
+
+    async readFileToStream(identifier: string): Promise<Stream> {
+        if (identifier?.startsWith('/')) {
+            identifier = identifier.replace('/', '');
+        }
+        return this.storage.bucket(this.bucketName).file(identifier).createReadStream();
     }
 
     async writeFileFromBuffer(fileName: string, data: Buffer): Promise<string> {
-        await this.storage.bucket(this.bucketName).upload(fileName, {})
+        const tmpFile = tmp.fileSync();
+        fs.writeFileSync(tmpFile.name, data);
+        await this.storage.bucket(this.bucketName).upload(tmpFile.name, {
+            destination: fileName
+        });
+        return fileName;
     }
 
-    writeFileFromStream(fileName: string, data: Stream): Promise<string> {
-        return Promise.resolve('');
+    async writeFileFromStream(fileName: string, data: Stream): Promise<string> {
+        const blob = this.storage.bucket(this.bucketName).file(fileName);
+        const uploadStream = blob.createWriteStream()
+        await Promise.all([this.streamToPromise(data.pipe(uploadStream)), this.streamToPromise(uploadStream)]);
+        return fileName;
+    }
+
+    streamToPromise(stream: Stream): Promise<void> {
+        return new Promise(function (resolve, reject) {
+            stream.on('end', resolve);
+            stream.on('finish', resolve);
+            stream.on('close', resolve);
+            stream.on('error', reject);
+        })
     }
 }
