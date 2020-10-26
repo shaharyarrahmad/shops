@@ -32,6 +32,7 @@ export const config: VendureConfig = {
             identifier: 'admin',
             password: 'admin',
         },
+        tokenMethod: 'bearer',
     },
     dbConnectionOptions: {
         type: 'mysql',

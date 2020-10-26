@@ -24,16 +24,21 @@ import {
   ShippingMethodQuote
 } from '../../generated/graphql';
 import {ExtendedProduct} from './types/extended-product';
+import {Variables} from 'graphql-request/dist/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VendureService extends GraphQLClient {
+export class VendureService {
 
+  static tokenName = 'vendure-auth-token';
+  client: GraphQLClient;
   activeOrder$ = new ReplaySubject<Order>(1);
 
   constructor() {
-    super(environment.vendureEndpoint, {headers: {'vendure-token': Globals.channelId}, credentials: 'include'});
+    this.client = new GraphQLClient(environment.vendureEndpoint, {
+      headers: {'vendure-token': Globals.channelId},
+    });
     this.getActiveOrder().then(order => this.activeOrder$.next(order));
   }
 
@@ -101,10 +106,12 @@ export class VendureService extends GraphQLClient {
     return setOrderShippingMethod;
   }
 
-  async setDefaultShipping(): Promise<Order> {
+  async setDefaultShipping(): Promise<void> {
     const methods = await this.getEligibleShippingMethods();
     const defaultMethod = methods.find(m => m.description?.indexOf('Normal') > -1 || m.description?.indexOf('Default') > -1);
-    return this.setOrderShippingMethod(defaultMethod.id);
+    if (defaultMethod) {
+      await this.setOrderShippingMethod(defaultMethod.id);
+    }
   }
 
   async transitionOrderToState(state: string): Promise<Order> {
@@ -125,6 +132,23 @@ export class VendureService extends GraphQLClient {
   async getNextOrderStates(): Promise<string> {
     const {nextOrderStates} = await this.request(nextOrderStatesQuery);
     return nextOrderStates;
+  }
+
+  async request<T = any, V = Variables>(document: string, variables?: V): Promise<T> {
+    let token = window.localStorage.getItem(VendureService.tokenName);
+    if (token) {
+      this.client.setHeader('Authorization', `Bearer ${token}`);
+    }
+    const {data, headers, errors} = await this.client.rawRequest(document, variables);
+    if (errors) {
+      throw errors;
+    }
+    token = headers.get(VendureService.tokenName);
+    if (token) {
+      console.log(`New token:`, token);
+      window.localStorage.setItem(VendureService.tokenName, token);
+    }
+    return data;
   }
 
   /**

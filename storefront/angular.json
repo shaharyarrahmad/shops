@@ -103,6 +103,9 @@
           "configurations": {
             "production": {
               "browserTarget": "storefront:build:production"
+            },
+            "test": {
+              "browserTarget": "storefront:build:test"
             }
           }
         },
