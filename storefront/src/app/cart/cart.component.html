@@ -50,7 +50,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="order?.lines?.length === 0">
+<div *ngIf="!loading && !order?.lines?.length">
   <div class="grid-x small-up-1grid-padding-x text-center small-font">
     <div class="cell">
       <p>Je hebt nog niks in je winkelmand...</p>

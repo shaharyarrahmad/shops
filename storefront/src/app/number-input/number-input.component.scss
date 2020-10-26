@@ -1,4 +1,4 @@
-@import '../../styles';
+@import '../../variables';
 
 $input-number-size: 60px;
 $input-number-height: 30px;
@@ -37,7 +37,6 @@ $input-number-height: 30px;
   .input-number-increment {
     border: 1px solid $body-font-color;
     user-select: none;
-    border-radius: $global-radius;
   }
 
   .input-number-decrement,

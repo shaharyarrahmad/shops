@@ -27,7 +27,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.order = o;
       if (o?.state !== 'PaymentSettled') {
         if (this.pollingCount > 10) {
-          this.error = 'Er is iets misgegaan, neem contact met ons op.';
+          return this.error = 'Er is iets misgegaan, neem contact met ons op.';
         }
         setTimeout(() => this.vendureService.getOrderByCode(this.code).catch((e) => {
           this.error = e.message;

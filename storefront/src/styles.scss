@@ -1,13 +1,15 @@
 @import './node_modules/foundation-sites/scss/foundation';
 
 /* Overall style */
-$header-font-family: 'Roboto mono', monospace;
+/*$header-font-family: 'Roboto mono', monospace;
 $header-font-weight: 400;
 $header-color:  #343434;
 $body-font-family: Roboto,Helvetica,Arial,sans-serif;
 $body-font-color: #343434;
 $button-background-hover: #343434;
-$button-background: $body-font-color;
+$button-background: $body-font-color;*/
+
+@import 'variables';
 
 
 // Global styles

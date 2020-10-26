@@ -11,7 +11,7 @@ export const config: VendureConfig = {
         runInMainProcess: true,
     },
     apiOptions: {
-        port: 3000,
+        port: process.env.PORT as unknown as number || 3000,
         adminApiPath: 'admin-api',
         adminApiPlayground: {
             settings: {
