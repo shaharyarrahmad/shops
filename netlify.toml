@@ -2,3 +2,6 @@
 base = "storefront"
 publish = "dist/storefront"
 command = "ng build --prod=true"
+
+[context.branch-deploy]
+command = "ng build --configuration=test"
