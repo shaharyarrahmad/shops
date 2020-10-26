@@ -1,0 +1,4 @@
+[build]
+    base    = "storefront"
+    publish = "storefront/dist/storefront"
+    command = "ng build --prod=true"
