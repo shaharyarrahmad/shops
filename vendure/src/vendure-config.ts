@@ -30,13 +30,13 @@ export const config: VendureConfig = {
     authOptions: {
         superadminCredentials: {
             identifier: 'admin',
-            password: 'admin',
+            password: process.env.SUPERADMIN_PASS as string
         },
         tokenMethod: 'bearer',
     },
     dbConnectionOptions: {
         type: 'mysql',
-        synchronize: false,
+        synchronize: true,
         logging: false,
         username: process.env.DATABASE_USER,
         password: process.env.DATABASE_PASSWORD,
