@@ -53,12 +53,10 @@ export class VendureService {
   }
 
   async addProduct(productVariantId: string, quantity: number): Promise<Order> {
-    let {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
+    const {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
     this.validateResult(order);
-    if (!order?.shippingMethod) {
-      order = await this.setDefaultShipping();
-    }
     this.activeOrder$.next(order);
+    await this.setLowestShippingMethod();
     return order;
   }
 
@@ -106,11 +104,19 @@ export class VendureService {
     return setOrderShippingMethod;
   }
 
-  async setDefaultShipping(): Promise<void> {
+  /**
+   * Find and set lowest shipping method for this order
+   */
+  async setLowestShippingMethod(): Promise<void> {
     const methods = await this.getEligibleShippingMethods();
-    const defaultMethod = methods.find(m => m.description?.indexOf('Normal') > -1 || m.description?.indexOf('Default') > -1);
+    const [defaultMethod] = methods
+      // .filter(m => m.priceWithTax !== 0)
+      .sort((a, b) =>  a.priceWithTax - b.priceWithTax);
+    console.log(defaultMethod);
     if (defaultMethod) {
       await this.setOrderShippingMethod(defaultMethod.id);
+    } else {
+      console.error(`No default shipping found`);
     }
   }
 

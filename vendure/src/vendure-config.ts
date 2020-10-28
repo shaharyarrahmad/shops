@@ -36,7 +36,7 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'mysql',
-        synchronize: true,
+        synchronize: false,
         logging: false,
         username: process.env.DATABASE_USER,
         password: process.env.DATABASE_PASSWORD,

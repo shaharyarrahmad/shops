@@ -13,6 +13,10 @@ export const productFields = gql`
       name
       priceWithTax
       productId
+      featuredAsset {
+        id
+        preview
+      }
     }
   }
 `;
