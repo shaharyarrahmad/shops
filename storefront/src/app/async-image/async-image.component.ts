@@ -20,7 +20,8 @@ export class AsyncImageComponent implements OnChanges{
   }
 
   load(): void {
-    if (!this.src || this.img.nativeElement.loaded) {
+    // If not ready or already loaded
+    if (!this.src || !this.img || this.img.nativeElement.loaded) {
       return;
     }
     this.img.nativeElement.src = this.src;
