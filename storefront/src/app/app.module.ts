@@ -5,16 +5,17 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ProductsOverviewComponent} from './product/products-overview.component';
 import {EuroPipe} from '../lib/euro.pipe';
-import { ProductDetailComponent } from './product/product-detail.component';
-import { CartHeaderComponent } from './cart/cart-header.component';
+import {ProductDetailComponent} from './product/product-detail.component';
+import {CartHeaderComponent} from './cart/cart-header.component';
 import {VendureService} from './vendure/vendure.service';
-import { CartComponent } from './cart/cart.component';
+import {CartComponent} from './cart/cart.component';
 import {NumberInputComponent} from './number-input/number-input.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-import { ShippingComponent } from './shipping/shipping.component';
+import {CustomerDetailsComponent} from './customer-details/customer-details.component';
+import {ShippingComponent} from './shipping/shipping.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { PaymentComponent } from './payment/payment.component';
-import { OrderComponent } from './order/order.component';
+import {PaymentComponent} from './payment/payment.component';
+import {OrderComponent} from './order/order.component';
+import {AsyncImageComponent} from "./async-image/async-image.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { OrderComponent } from './order/order.component';
     ShippingComponent,
     PaymentComponent,
     OrderComponent,
+    AsyncImageComponent
   ],
   imports: [
     BrowserModule,
