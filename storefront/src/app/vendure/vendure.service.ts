@@ -151,7 +151,6 @@ export class VendureService {
     }
     token = headers.get(VendureService.tokenName);
     if (token) {
-      console.log(`New token:`, token);
       window.localStorage.setItem(VendureService.tokenName, token);
     }
     return data;
