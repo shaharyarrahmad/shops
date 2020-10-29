@@ -5,3 +5,8 @@ command = "ng build --prod=true"
 
 [context.branch-deploy]
 command = "ng build --configuration=test"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"

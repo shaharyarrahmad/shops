@@ -5,7 +5,8 @@
     <div *ngFor="let product of products;" class="cell">
       <a routerLink="product/{{ product.id }}">
         <div class="product-thumbnail">
-          <img src="/assets/placeholder.png" (load)="load($event.target, product.assets[0]?.preview)" alt="{{ product.name }}">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk8AEAAFIATgDK/mEAAAAASUVORK5CYII="
+               (load)="load($event.target, product.assets[0]?.preview)" alt="{{ product.name }}">
         </div>
         <div class="product-overview-description">
           <p class="product-overview-price">{{ product.defaultPrice | euro}}</p>
