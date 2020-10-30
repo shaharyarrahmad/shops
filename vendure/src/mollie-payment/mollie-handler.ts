@@ -8,7 +8,14 @@ export const molliePaymentHandler = new PaymentMethodHandler({
         languageCode: LanguageCode.en,
         value: 'Mollie payment',
     }],
-    args: {channelKeys: {type: 'string', list: true}},
+    args: {
+        channelKeys: {
+            type: 'string', list: true, description: [{
+                languageCode: LanguageCode.en,
+                value: 'Use this format: CHANNELTOKEN=MOLLIEKEY,REDIRECT_URL',
+            }]
+        }
+    },
 
     /** This is called when the `addPaymentToOrder` mutation is executed */
     createPayment: async (order, args, metadata): Promise<CreatePaymentResult> => {
