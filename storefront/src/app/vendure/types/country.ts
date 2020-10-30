@@ -1,5 +1,5 @@
 export enum Country {
-'Netherlands'= 'NL',
-'Belgium'= 'BE',
-'Germany'= 'DE',
+'Nederland'= 'nl',
+'België'= 'be',
+'Duitsland'= 'de',
 }

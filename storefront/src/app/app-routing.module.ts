@@ -10,12 +10,43 @@ import {OrderComponent} from './order/order.component';
 
 const routes: Routes = [
   {path: '', component: ProductsOverviewComponent},
-  {path: 'product/:id', component: ProductDetailComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'customer-details', component: CustomerDetailsComponent},
-  {path: 'shipping', component: ShippingComponent},
-  {path: 'payment', component: PaymentComponent},
-  {path: 'order/:code', component: OrderComponent},
+  {
+    path: 'product/:id', component: ProductDetailComponent,
+    data: {previous: '/'}
+  },
+  {
+    path: 'cart', component: CartComponent, data: {
+      previous: '/',
+      hideCart: true,
+      showNext: true
+    }
+  },
+  {
+    path: 'customer-details', component: CustomerDetailsComponent,
+    data: {
+      progress: 33,
+      previous: 'cart',
+      hideCart: true,
+    }
+  },
+  {
+    path: 'shipping', component: ShippingComponent, data: {
+      progress: 66,
+      previous: 'customer-details',
+      hideCart: true,
+    }
+  },
+  {
+    path: 'payment', component: PaymentComponent, data: {
+      progress: 90,
+      previous: 'shipping',
+      hideCart: true
+    }
+  },
+  {path: 'order/:code', component: OrderComponent, data: {
+      previous: '/',
+      hideCart: true
+    }},
 ];
 
 @NgModule({

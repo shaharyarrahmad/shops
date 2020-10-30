@@ -47,7 +47,7 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
       if (order?.shippingAddress?.country) {
         this.customerForm.controls.country.setValue(Country[order?.shippingAddress?.country]);
       } else {
-        this.customerForm.controls.country.setValue('NL');
+        this.customerForm.controls.country.setValue('nl');
       }
     });
   }

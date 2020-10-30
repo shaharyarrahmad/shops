@@ -112,7 +112,6 @@ export class VendureService {
     const [defaultMethod] = methods
       // .filter(m => m.priceWithTax !== 0)
       .sort((a, b) =>  a.priceWithTax - b.priceWithTax);
-    console.log(defaultMethod);
     if (defaultMethod) {
       await this.setOrderShippingMethod(defaultMethod.id);
     } else {
