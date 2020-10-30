@@ -3,7 +3,7 @@
   <div class="grid-x grid-padding-x small-up-2 medium-up-4 large-up-4">
 
     <div *ngFor="let product of products;" class="cell">
-      <a routerLink="product/{{ product.id }}">
+      <a routerLink="/product/{{ product.id }}">
         <div class="product-thumbnail">
           <app-async-image [src]="product.assets[0]?.preview" [alt]="product.name"></app-async-image>
         </div>

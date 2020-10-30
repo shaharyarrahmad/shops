@@ -5,12 +5,12 @@
 
   <div *ngIf="!isCheckout && !hideCart" class="cell text-right">
     <span class="badge alert cart-badge">{{ nrOfItems }}</span>
-    <a class="button" routerLink="cart">
+    <a class="button" routerLink="/cart">
       <i class="fi-shopping-cart"></i>
     </a>
   </div>
   <div *ngIf="isCheckout && nrOfItems" class="cell text-right">
-    <a class="button" routerLink="customer-details">
+    <a class="button" routerLink="/customer-details">
       BESTELLEN
     </a>
   </div>
