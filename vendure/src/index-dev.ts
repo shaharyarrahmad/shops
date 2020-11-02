@@ -1,5 +1,5 @@
-require('dotenv').config({ path: '.env.test' });
-// require('dotenv').config();
+// require('dotenv').config({ path: '.env.test' });
+require('dotenv').config();
 import {bootstrap} from '@vendure/core';
 import {config} from './vendure-config';
 import localtunnel from 'localtunnel';
