@@ -1,6 +1,7 @@
 import {CreatePaymentResult, PaymentMethodHandler, SettlePaymentResult} from '@vendure/core';
 import {LanguageCode} from '@vendure/common/lib/generated-types';
-import {MollieChannel} from './mollie-channel';
+import {MollieHelper} from './mollie-helper';
+import createMollieClient from "@mollie/api-client";
 
 export const molliePaymentHandler = new PaymentMethodHandler({
     code: 'mollie-payment-handler',
@@ -20,7 +21,8 @@ export const molliePaymentHandler = new PaymentMethodHandler({
     /** This is called when the `addPaymentToOrder` mutation is executed */
     createPayment: async (order, args, metadata): Promise<CreatePaymentResult> => {
         try {
-            const mollieClient = MollieChannel.getClient(args.channelKeys, metadata.channel);
+            const {apiKey, host} = MollieHelper.getConfig(args.channelKeys, metadata.channel);
+            const mollieClient = createMollieClient({apiKey});
             const payment = await mollieClient.payments.create({
                 amount: {
                     value: `${(order.total / 100).toFixed(2)}`,
@@ -30,7 +32,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                     orderCode: order.code
                 },
                 description: `Bestelling ${order.code}`,
-                redirectUrl: `${process.env.STOREFRONT_HOST}/order/${order.code}`,
+                redirectUrl: `${host}/order/${order.code}`,
                 webhookUrl: `${process.env.VENDURE_HOST}/payments/mollie/${metadata.channel}`
             });
             return {

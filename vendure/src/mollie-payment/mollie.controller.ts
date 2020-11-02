@@ -1,8 +1,8 @@
 import {Body, Controller, Param, Post} from '@nestjs/common';
 import {ChannelService, LanguageCode, OrderService, Payment, RequestContext} from '@vendure/core';
-import {MollieChannel} from './mollie-channel';
+import {MollieHelper} from './mollie-helper';
 import {Connection} from 'typeorm';
-import {PaymentStatus} from '@mollie/api-client';
+import createMollieClient, {PaymentStatus} from '@mollie/api-client';
 import {PaymentStateMachine} from '@vendure/core/dist/service/helpers/payment-state-machine/payment-state-machine';
 
 @Controller('payments')
@@ -14,7 +14,8 @@ export class MollieController {
     async webhook(@Param('channelToken') channelToken: string, @Body() body: any): Promise<void> {
         const ctx = await this.createContext(channelToken)
         console.log(`Received payment for ${channelToken}`);
-        const client = await MollieChannel.getClientAsync(channelToken, this.connection);
+        const {apiKey} = await MollieHelper.getConfigAsync(channelToken, this.connection);
+        const client = createMollieClient({apiKey});
         const molliePayment = await client.payments.get(body.id);
         console.log(`Payment for channel ${channelToken}, orderCode ${molliePayment.metadata.orderCode} has status ${molliePayment.status}`);
         // find payment in DB by id

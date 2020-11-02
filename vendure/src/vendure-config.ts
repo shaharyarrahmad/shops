@@ -14,16 +14,16 @@ export const config: VendureConfig = {
         port: process.env.PORT as unknown as number || 3000,
         adminApiPath: 'admin-api',
         adminApiPlayground: {
-            settings: {
+/*            settings: {
                 'request.credentials': 'include',
-            } as any,
+            } as any,*/
         },// turn this off for production
         adminApiDebug: true, // turn this off for production
         shopApiPath: 'shop-api',
         shopApiPlayground: {
-            settings: {
+/*            settings: {
                 'request.credentials': 'include',
-            } as any,
+            } as any,*/
         },// turn this off for production
         shopApiDebug: true,// turn this off for production
     },

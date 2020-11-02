@@ -1,4 +1,5 @@
-require('dotenv').config();
+require('dotenv').config({ path: '.env.test' });
+// require('dotenv').config();
 import {bootstrap} from '@vendure/core';
 import {config} from './vendure-config';
 import localtunnel from 'localtunnel';
@@ -6,7 +7,6 @@ import localtunnel from 'localtunnel';
 /**
  * Dev env settings
  */
-process.env.STOREFRONT_HOST = 'http://localhost:4200';
 (async () => {
     const tunnel = await localtunnel({port: 3000});
     // the assigned public url for your tunnel
@@ -17,8 +17,9 @@ process.env.STOREFRONT_HOST = 'http://localhost:4200';
     });
 })();
 
-bootstrap(config).catch(err => {
-    // tslint:disable-next-line:no-console
-    console.log(err);
-});
+bootstrap(config)
+    .then(() => {
+        console.log(`\x1b[46mUsing database ${process.env.DATABASE_NAME} \x1b[0m`);
+    })
+    .catch(err => console.error(err));
 
