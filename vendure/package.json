@@ -7,6 +7,8 @@
     "run:worker": "npx ts-node ./src/index-worker.ts",
     "start": "npm run run:server",
     "serve": "nodemon -e ts  --exec \"npx ts-node ./src/index-dev.ts\"",
+    "serve:prod": "export SHOP_ENV=.env && npm run serve",
+    "serve:test": "export SHOP_ENV=.env.test && npm run serve",
     "build": "npx tsc",
     "migration:generate": "npx ts-node migration generate",
     "migration:run": "npx ts-node migration run",

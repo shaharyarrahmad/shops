@@ -1,8 +1,9 @@
-// require('dotenv').config({ path: '.env.test' });
-require('dotenv').config();
+ require('dotenv').config({ path: process.env.SHOP_ENV });
 import {bootstrap} from '@vendure/core';
 import {config} from './vendure-config';
 import localtunnel from 'localtunnel';
+
+
 
 /**
  * Dev env settings
