@@ -22,5 +22,7 @@ jobs:
           project_id: pinelab-shops
           service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
           export_default_credentials: true
-      - name: Deploy to CloudRun
-        run: ./build.sh && deploy-prod.sh
+      - name: Build Docker container
+        run: ./build.sh
+      - name: Deploy
+        run: ./deploy-prod.sh
