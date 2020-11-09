@@ -25,7 +25,7 @@ jobs:
       - name: Build Docker container
         run: ./build.sh
       - name: Set env vars
-        run: 'echo "$SECRET_VARS" > .env'
+        run: 'echo "$SECRET_VARS" > .env.test'
         env:
           SECRET_VARS: ${{secrets.ENV_TEST}}
       - name: Deploy
