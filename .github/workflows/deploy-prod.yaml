@@ -1,8 +1,8 @@
-name: Deploy Vendure Test
+name: Deploy Vendure production
 on:
   push:
     branches:
-      - develop*
+      - master*
 
 jobs:
   deploy:
@@ -22,7 +22,5 @@ jobs:
           project_id: pinelab-shops
           service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
           export_default_credentials: true
-      - name: Build Docker container
-        run: ./build.sh
-      - name: Deploy
-        run: ./deploy-test.sh
+      - name: Deploy to CloudRun
+        run: ./build.sh && deploy-prod.sh
