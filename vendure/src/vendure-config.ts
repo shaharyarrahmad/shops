@@ -59,17 +59,28 @@ export const config: VendureConfig = {
         DefaultJobQueuePlugin,
         DefaultSearchPlugin,
         EmailPlugin.init({
-            devMode: true,
-            outputPath: path.join(__dirname, '../static/email/test-emails'),
-            mailboxPort: 3003,
+            // devMode: true,
+            transport: {
+                type: 'smtp',
+                host: 'smtp.mailgun.org',
+                port: 587,
+                logging: true,
+                debug: true,
+                auth: {
+                    user: 'XXXXXXXXXXXXXXXXXXXXXXX',
+                    pass: 'YYYYYYYYYYYYYYYYYYYYYYYYYY',
+                }
+            },
+            // outputPath: path.join(__dirname, '../static/email/test-emails'),
+            // mailboxPort: 3003,
             handlers: defaultEmailHandlers,
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
                 // The following variables will change depending on your storefront implementation
-                fromAddress: '"Pinelab.studio" <noreply@pinelab.studio>',
-                verifyEmailAddressUrl: 'http://localhost:8080/verify',
-                passwordResetUrl: 'http://localhost:8080/password-reset',
-                changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
+                fromAddress: '"Martijn van Pinelab" <noreply@pinelab.studio>',
+                // verifyEmailAddressUrl: 'http://localhost:8080/verify',
+                // passwordResetUrl: 'http://localhost:8080/password-reset',
+                // changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
             },
         }),
         AdminUiPlugin.init({port: 3002}),
