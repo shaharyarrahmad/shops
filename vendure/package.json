@@ -12,9 +12,7 @@
     "build": "npx tsc",
     "migration:generate": "npx ts-node migration generate",
     "migration:run": "npx ts-node migration run",
-    "migration:revert": "npx ts-node migration revert",
-    "deploy:test": "./build.sh && deploy-test.sh",
-    "deploy:prod": "./build.sh && deploy-prod.sh"
+    "migration:revert": "npx ts-node migration revert"
   },
   "resolutions": {
     "tslib": "1.11.2"
