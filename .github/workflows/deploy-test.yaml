@@ -19,4 +19,7 @@ jobs:
           service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
           export_default_credentials: true
       - name: Deploy to CloudRun
-        run: ./build.sh && deploy-test.sh
+        run: |-
+          docker build -t eu.gcr.io/pinelab-shops/vendure .
+          gcloud auth configure-docker -q
+          docker push eu.gcr.io/pinelab-shops/vendure
