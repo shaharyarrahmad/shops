@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to CloudRun (test-api)
+    name: Deploy to CloudRun (test and prod)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -28,5 +28,11 @@ jobs:
         run: 'echo "$SECRET_VARS" > .env'
         env:
           SECRET_VARS: ${{secrets.ENV_PROD}}
-      - name: Deploy
+      - name: Deploy prod
         run: ./deploy-prod.sh
+      - name: Set env vars
+        run: 'echo "$SECRET_VARS" > .env.test'
+        env:
+          SECRET_VARS: ${{secrets.ENV_TEST}}
+      - name: Deploy test
+        run: ./deploy-test.sh

@@ -68,7 +68,7 @@ export class VendureService {
 
   async getOrderByCode(code: string): Promise<Order> {
     const {orderByCode} = await this.request(orderByCodeQuery, {code});
-    this.activeOrder$.next(orderByCode);
+    // this.activeOrder$.next(orderByCode); Don't push to active order, becaus it aint active
     return orderByCode;
   }
 

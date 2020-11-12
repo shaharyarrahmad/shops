@@ -2,29 +2,28 @@ import {EmailEventHandler, EmailEventListener} from "@vendure/email-plugin";
 import {OrderService, OrderStateTransitionEvent} from "@vendure/core";
 import {mockOrderStateTransitionEvent} from "@vendure/email-plugin/lib/src/mock-events";
 import {TaxCalculation} from "../tax/tax-calculation";
+import {channelConfig} from "../channel-config/channel-config";
 
 export const orderConfirmationHandler = new EmailEventListener('order-confirmation')
     .on(OrderStateTransitionEvent)
     .filter(event => event.toState === 'PaymentSettled' && !!event.order.customer)
     // .setRecipient(event => event.order.customer!.emailAddress)
-    .setRecipient(event => `${event.order.customer!.emailAddress},{{ shopOwner}}`)
-/*    .loadData(async ({ event, injector}) => {
-        const orderService = injector.get(OrderService);
-        return {somedata: 'extra'};
-    })*/
-    // TODO: add productName to email
+    .loadData(async ({ event, injector}) => {
+        const config = channelConfig.find(c => c.channelToken === event.ctx.channel.token);
+        return {config};
+    })
+    .setRecipient(event => `${event.order.customer!.emailAddress},${event.data.config?.supportEmail}`)
     .setFrom(`{{ fromAddress }}`)
     .setSubject(`Bedankt voor je bestelling met nummer {{ order.code }}`)
     .setTemplateVars(event => {
+        console.log('CONFIG', event.data.config);
         const summary = TaxCalculation.getTaxSummary(event.order);
         return {
             order: event.order,
             summary,
-            shopOwner: 'marcdefotograaf@gmail.com'
-
+            ...(event.data.config ? event.data.config : {})
         };
-    })
-    .setMockEvent(mockOrderStateTransitionEvent);
+    });
 
 export const shopsMailHandlers: Array<EmailEventHandler<any, any>> = [
     orderConfirmationHandler

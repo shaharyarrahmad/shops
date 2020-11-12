@@ -66,8 +66,8 @@ export const config: VendureConfig = {
                 host: 'smtp.zoho.eu',
                 port: 587,
                 secure: false,
-                logging: false,
-                debug: false,
+                logging: true,
+                debug: true,
                 auth: {
                     user: 'noreply@pinelab.studio',
                     pass: process.env.ZOHO_PASS as string,

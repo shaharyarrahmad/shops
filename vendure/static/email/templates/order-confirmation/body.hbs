@@ -1,23 +1,23 @@
 <mjml>
     <mj-head>
         <mj-attributes>
-            <mj-all font-family="Arial, Verdana" color="#343434" />
+            <mj-all font-family="Arial, Verdana" color="#343434"/>
         </mj-attributes>
     </mj-head>
     <mj-body>
         <mj-section>
             <mj-column>
-                <mj-image src="https://shop.marcdefotograaf.nl/marcdefotograaf.png" ></mj-image>
+                <mj-image src="{{ logoUrl }}"></mj-image>
                 <mj-divider border-color="#343434"></mj-divider>
 
-                <mj-text>Bedankt voor je bestelling bij Marc de Fotograaf!</mj-text>
+                <mj-text>Bedankt voor je bestelling bij {{ channelName }}!</mj-text>
 
             </mj-column>
         </mj-section>
 
         <mj-section>
             <mj-column>
-                <mj-text font-weight="800" padding-bottom="0px">Dit heb je besteld: </mj-text>
+                <mj-text font-weight="800" padding-bottom="0px">Dit heb je besteld:</mj-text>
 
                 <mj-table cellpadding="6px">
                     {{#each order.lines }}
@@ -26,33 +26,37 @@
                                 {{ productVariant.name }}
                             </td>
                             <td>{{ quantity }} x</td>
-                            <td>€ {{ formatMoney totalPrice }}</td>
+                            <td align="right">€ {{ formatMoney totalPrice }}</td>
                         </tr>
                     {{/each}}
 
+                    <tr></tr>
+                </mj-table>
+                <mj-table cellpadding="6px">
+
                     <tr>
-                        <td colspan="2">{{ order.shippingMethod.description }}</td>
-                        <td>€ {{ formatMoney order.shipping }}</td>
+                        <td>Verzendkosten</td>
+                        <td align="right">€ {{ formatMoney order.shipping }}</td>
                     </tr>
 
                     <tr>
-                        <td colspan="2"><strong>Totaal Excl.</strong></td>
-                        <td><strong>€ {{ formatMoney summary.totalExVAT }}</strong></td>
+                        <td>Totaal Excl.</td>
+                        <td align="right">€ {{ formatMoney summary.totalExVAT }}</td>
                     </tr>
                     {{#each summary.taxTotal}}
                         <tr>
-                            <td colspan="2">Totaal {{ @key }}% BTW</td>
-                            <td>€ {{ formatMoney this }}</td>
+                            <td>{{ @key }}% BTW</td>
+                            <td align="right">€ {{ formatMoney this }}</td>
                         </tr>
                     {{/each}}
 
                     <tr>
-                        <td colspan="2"><strong>Totaal BTW betaald</strong></td>
-                        <td><strong>€ {{ formatMoney summary.totalVAT }}</strong></td>
+                        <td>Totaal BTW</td>
+                        <td align="right">€ {{ formatMoney summary.totalVAT }}</td>
                     </tr>
                     <tr>
-                        <td colspan="2"><strong>Totaal Incl.</strong></td>
-                        <td><strong>€ {{ formatMoney summary.totalIncVAT }}</strong></td>
+                        <td><strong>Totaal Incl.</strong></td>
+                        <td align="right"><strong>€ {{ formatMoney summary.totalIncVAT }}</strong></td>
                     </tr>
 
                 </mj-table>
@@ -64,10 +68,14 @@
             <mj-column>
                 <mj-text font-weight="800" padding-bottom="0px">Bezorgadres</mj-text>
                 {{#with order.shippingAddress }}
-                        {{#if company}}<mj-text padding-bottom="0px">{{ company }}</mj-text>{{/if}}
-                        {{#if streetLine1}}<mj-text padding-bottom="0px">{{ streetLine1 }} {{ streetLine2 }}</mj-text>{{/if}}
-                        {{#if postalCode}}<mj-text padding-bottom="0px">{{ postalCode }}, {{ city }}</mj-text>{{/if}}
-                        {{#if country}}<mj-text>{{ country }}</mj-text>{{/if}}
+                    {{#if company}}
+                        <mj-text padding-bottom="0px">{{ company }}</mj-text>{{/if}}
+                    {{#if streetLine1}}
+                        <mj-text padding-bottom="0px">{{ streetLine1 }} {{ streetLine2 }}</mj-text>{{/if}}
+                    {{#if postalCode}}
+                        <mj-text padding-bottom="0px">{{ postalCode }}, {{ city }}</mj-text>{{/if}}
+                    {{#if country}}
+                        <mj-text>{{ country }}</mj-text>{{/if}}
                 {{/with}}
             </mj-column>
             <mj-column>
@@ -80,7 +88,7 @@
         <mj-section>
             <mj-column>
                 <mj-divider border-color="#343434"></mj-divider>
-                <mj-text>Vragen of opmerkingen? Neem contact op via info@marcdefotograaf.nl</mj-text>
+                <mj-text>Vragen of opmerkingen? Neem contact op via {{ supportEmail }}</mj-text>
             </mj-column>
         </mj-section>
 
