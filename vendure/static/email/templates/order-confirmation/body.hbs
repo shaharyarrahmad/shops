@@ -22,10 +22,10 @@
                 <mj-table cellpadding="6px">
                     {{#each order.lines }}
                         <tr padding-bottom="0px">
-                            <td>
-                                {{ productVariant.name }}
-                            </td>
                             <td>{{ quantity }} x</td>
+                            <td>
+                                {{ productVariant.sku }} {{ productVariant.name }}
+                            </td>
                             <td align="right">€ {{ formatMoney totalPrice }}</td>
                         </tr>
                     {{/each}}
