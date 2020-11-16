@@ -2,7 +2,7 @@ import {GraphQLClient} from 'graphql-request';
 import {
   activeOrderQuery,
   addItemToOrderMutation, addPaymentToOrderMutation,
-  adjustOrderLineMutation,
+  adjustOrderLineMutation, collectionsQuery,
   eligibleShippingMethodsQuery, nextOrderStatesQuery, orderByCodeQuery,
   productQuery,
   productsQuery,
@@ -15,6 +15,7 @@ import {Globals} from '../constants';
 import {Injectable} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
 import {
+  Collection,
   CreateAddressInput,
   CreateCustomerInput,
   ErrorResult,
@@ -137,6 +138,11 @@ export class VendureService {
   async getNextOrderStates(): Promise<string> {
     const {nextOrderStates} = await this.request(nextOrderStatesQuery);
     return nextOrderStates;
+  }
+
+  async getCollections(): Promise<Collection[]> {
+    const {collections: {items}} = await this.request(collectionsQuery);
+    return items;
   }
 
   async request<T = any, V = Variables>(document: string, variables?: V): Promise<T> {

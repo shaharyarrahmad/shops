@@ -1,5 +1,12 @@
 <section id="products">
 
+  <div class="grid-x grid-padding-x small-up-6">
+
+    <div *ngFor="let collection of collections;" class="cell text-center auto">
+      <a class="button tiny hollow" href="#">{{collection.name}}</a>
+    </div>
+  </div>
+
   <div class="grid-x grid-padding-x small-up-2 medium-up-4 large-up-4">
 
     <div *ngFor="let product of products;" class="cell">

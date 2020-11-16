@@ -227,3 +227,14 @@ export const nextOrderStatesQuery = gql`
   {
     nextOrderStates
   }`;
+
+export const collectionsQuery = gql`
+  {
+    collections {
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
