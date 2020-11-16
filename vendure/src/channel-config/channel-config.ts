@@ -8,7 +8,7 @@ export interface ChannelConfig {
 
 export const channelConfig: ChannelConfig[] = [
     {
-        channelName: 'de Pinelab demo shop',
+        channelName: 'de Pinelab Demo Shop',
         channelToken: 'demo',
         logoUrl: 'https://shop.marcdefotograaf.nl/marcdefotograaf.png',
         supportEmail: 'martijn@pinelab.studio'

@@ -14,7 +14,7 @@ export const orderConfirmationHandler = new EmailEventListener('order-confirmati
     })
     .setRecipient(event => `${event.order.customer!.emailAddress},${event.data.config?.supportEmail}`)
     .setFrom(`{{ fromAddress }}`)
-    .setSubject(`Bedankt voor je bestelling met nummer {{ order.code }}`)
+    .setSubject(`Bedankt voor je bestelling bij {{ channelName }} met nr. {{ order.code }}`)
     .setTemplateVars(event => {
         console.log('CONFIG', event.data.config);
         const summary = TaxCalculation.getTaxSummary(event.order);

@@ -79,7 +79,7 @@ export const config: VendureConfig = {
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
                 // The following variables will change depending on your storefront implementation
-                fromAddress: '"Pinelab.studio" <noreply@pinelab.studio>',
+                fromAddress: '"Webshop" <noreply@pinelab.studio>',
                 // verifyEmailAddressUrl: 'http://localhost:8080/verify',
                 // passwordResetUrl: 'http://localhost:8080/password-reset',
                 // changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
