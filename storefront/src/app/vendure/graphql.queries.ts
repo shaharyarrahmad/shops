@@ -7,12 +7,20 @@ export const productFields = gql`
     assets {
       preview
     }
+    featuredAsset {
+      id
+      preview
+    }
     description
     variants {
       id
       name
       priceWithTax
       productId
+      assets {
+        id
+        preview
+      }
       featuredAsset {
         id
         preview

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {VendureService} from '../vendure/vendure.service';
 import {ActivatedRoute} from '@angular/router';
 import {ExtendedProduct} from '../vendure/types/extended-product';
-import {ProductVariant} from '../../generated/graphql';
+import {Asset, ProductVariant} from '../../generated/graphql';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,6 +14,8 @@ export class ProductDetailComponent implements OnInit {
   id: string;
   product: ExtendedProduct;
   variant: ProductVariant;
+  assets: Asset[];
+  asset: Asset;
 
   constructor(private route: ActivatedRoute, private vendureService: VendureService) {
     this.id = this.route.snapshot.params.id;
@@ -22,10 +24,26 @@ export class ProductDetailComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.product = await this.vendureService.getProduct(this.id);
     this.variant = this.product.variants[0];
+    this.setAssets();
+
   }
 
   selectVariant(variantId: string): void {
     this.variant = this.product.variants.find(v => v.id === variantId);
+    this.setAssets();
+  }
+
+  setAssets(): void {
+    if (this.variant.assets?.length > 1) {
+      this.assets = this.variant.assets?.slice(0, 5);
+    } else {
+      this.assets = this.product.assets?.slice(0, 5);
+    }
+    this.setCurrentAsset();
+  }
+
+  setCurrentAsset(asset?: Asset): void {
+    this.asset = asset || this.variant?.featuredAsset || this.product?.featuredAsset;
   }
 
   async buy(): Promise<void> {

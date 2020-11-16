@@ -8,5 +8,18 @@
 
 .product-description {
   font-family: Roboto,Helvetica,Arial,sans-serif;
+}
 
+.asset {
+  padding: 6px 6px 0 0;
+}
+
+.asset:hover {
+  opacity: 0.3;
+}
+
+@media (hover: none) {
+  .asset:hover {
+    opacity: inherit;
+  }
 }
