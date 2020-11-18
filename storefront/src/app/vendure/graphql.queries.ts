@@ -234,7 +234,24 @@ export const collectionsQuery = gql`
       items {
         id
         name
+        slug
       }
     }
   }
 `;
+
+export const collectionQuery = gql`
+  ${productFields}
+  query collection($slug: String) {
+    collection(slug: $slug) {
+      id
+      name
+      productVariants {
+        items {
+          product {
+            ...productFields
+          }
+        }
+      }
+    }
+  }`;

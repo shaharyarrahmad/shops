@@ -1,14 +1,20 @@
 import {GraphQLClient} from 'graphql-request';
 import {
   activeOrderQuery,
-  addItemToOrderMutation, addPaymentToOrderMutation,
-  adjustOrderLineMutation, collectionsQuery,
-  eligibleShippingMethodsQuery, nextOrderStatesQuery, orderByCodeQuery,
+  addItemToOrderMutation,
+  addPaymentToOrderMutation,
+  adjustOrderLineMutation,
+  collectionQuery,
+  collectionsQuery,
+  eligibleShippingMethodsQuery,
+  nextOrderStatesQuery,
+  orderByCodeQuery,
   productQuery,
   productsQuery,
   setCustomerForOrderMutation,
   setOrderShippingAddressMutation,
-  setOrderShippingMethodMutation, transitionOrderToStateMutation
+  setOrderShippingMethodMutation,
+  transitionOrderToStateMutation
 } from './graphql.queries';
 import {environment} from '../../environments/environment';
 import {Globals} from '../constants';
@@ -22,6 +28,7 @@ import {
   Order,
   PaymentInput,
   Product,
+  ProductVariant,
   ShippingMethodQuote
 } from '../../generated/graphql';
 import {ExtendedProduct} from './types/extended-product';
@@ -112,7 +119,7 @@ export class VendureService {
     const methods = await this.getEligibleShippingMethods();
     const [defaultMethod] = methods
       // .filter(m => m.priceWithTax !== 0)
-      .sort((a, b) =>  a.priceWithTax - b.priceWithTax);
+      .sort((a, b) => a.priceWithTax - b.priceWithTax);
     if (defaultMethod) {
       await this.setOrderShippingMethod(defaultMethod.id);
     } else {
@@ -143,6 +150,12 @@ export class VendureService {
   async getCollections(): Promise<Collection[]> {
     const {collections: {items}} = await this.request(collectionsQuery);
     return items;
+  }
+
+  async getProductsForCollection(slug: string): Promise<ExtendedProduct[]> {
+    const {collection}: {collection: Collection} = await this.request(collectionQuery, {slug});
+    const products = collection?.productVariants?.items?.map(variant => (variant as ProductVariant).product);
+    return products.map(p => this.setLowestPrice(p));
   }
 
   async request<T = any, V = Variables>(document: string, variables?: V): Promise<T> {
