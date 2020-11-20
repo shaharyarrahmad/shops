@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {Globals} from './constants';
+import {Router, RoutesRecognized} from '@angular/router';
 
 /**
  * Jquery var
@@ -15,8 +16,13 @@ export class AppComponent implements OnInit {
   static channelId: string;
   title = 'storefront';
 
-  constructor(el: ElementRef) {
+  constructor(el: ElementRef, private router: Router) {
     Globals.channelId = el.nativeElement.getAttribute('channelId');
+    this.router.events.subscribe((data) => {
+      if (data instanceof RoutesRecognized) {
+        console.log(data.url, Globals.channelId);
+      }
+    });
   }
 
   ngOnInit(): void {

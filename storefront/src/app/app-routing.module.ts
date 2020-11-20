@@ -10,7 +10,6 @@ import {OrderComponent} from './order/order.component';
 
 const routes: Routes = [
   {path: '', component: ProductsOverviewComponent},
-  {path: ':category', component: ProductsOverviewComponent},
   {
     path: 'product/:id', component: ProductDetailComponent,
     data: {previous: '/'}
@@ -44,10 +43,13 @@ const routes: Routes = [
       hideCart: true
     }
   },
-  {path: 'order/:code', component: OrderComponent, data: {
+  {
+    path: 'order/:code', component: OrderComponent, data: {
       previous: '/',
       hideCart: true
-    }},
+    }
+  },
+  {path: ':collection', component: ProductsOverviewComponent, data: {previous: '/'}},
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ export const productFields = gql`
   fragment productFields on Product {
     id
     name
+    slug
     assets {
       preview
     }
@@ -246,6 +247,8 @@ export const collectionQuery = gql`
     collection(slug: $slug) {
       id
       name
+      slug
+      description
       productVariants {
         items {
           product {

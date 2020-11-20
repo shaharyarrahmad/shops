@@ -152,10 +152,14 @@ export class VendureService {
     return items;
   }
 
-  async getProductsForCollection(slug: string): Promise<ExtendedProduct[]> {
-    const {collection}: {collection: Collection} = await this.request(collectionQuery, {slug});
+  /**
+   * Gets description and products for given Collection
+   */
+  async getProductsForCollection(slug: string): Promise<[ExtendedProduct[], Collection]> {
+    const {collection}: { collection: Collection } = await this.request(collectionQuery, {slug});
     const products = collection?.productVariants?.items?.map(variant => (variant as ProductVariant).product);
-    return products.map(p => this.setLowestPrice(p));
+    const deduplicated = this.deduplicate(products?.map(p => this.setLowestPrice(p)) || []);
+    return [deduplicated, collection];
   }
 
   async request<T = any, V = Variables>(document: string, variables?: V): Promise<T> {
@@ -172,6 +176,17 @@ export class VendureService {
       window.localStorage.setItem(VendureService.tokenName, token);
     }
     return data;
+  }
+
+  deduplicate(products: ExtendedProduct[]): ExtendedProduct[] {
+    const uniq = [];
+    return products.filter((prod) => {
+      if (uniq.indexOf(prod.slug) === -1) {
+        uniq.push(prod.slug);
+        return true;
+      }
+      return false;
+    });
   }
 
   /**

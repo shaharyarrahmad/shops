@@ -13,23 +13,24 @@ export class ProductsOverviewComponent implements OnInit {
 
   products: ExtendedProduct[];
   collections: Collection[];
-  category: string;
+  collectionName: string;
+  collection: Collection;
 
   constructor(private vendureService: VendureService, private route: ActivatedRoute) {
-    this.category = this.route.snapshot.params.category;
+    this.collectionName = this.route.snapshot.params.category ;
   }
 
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(params => {
-      this.category = params.get('category');
+      this.collectionName = params.get('collection');
       this.loadProducts();
     });
     // await this.loadProducts();
   }
 
   async loadProducts(): Promise<void> {
-    if (this.category) {
-      this.products = await this.vendureService.getProductsForCollection(this.category);
+    if (this.collectionName) {
+      [this.products, this.collection] = await this.vendureService.getProductsForCollection(this.collectionName);
     } else {
       [this.products, this.collections] = await Promise.all([
         this.vendureService.getProducts(),

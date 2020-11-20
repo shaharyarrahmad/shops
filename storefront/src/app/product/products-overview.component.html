@@ -1,10 +1,13 @@
 <section id="products">
 
-  <div class="grid-x grid-padding-x">
-
+  <div *ngIf="collections || collectionName" class="grid-x grid-padding-x">
     <div class="cell text-center">
 
-      <a *ngFor="let collection of collections;" class="button tiny hollow" style="margin-right: 2px; margin-left: 2px;" routerLink="/{{collection.slug}}">{{collection.name}}</a>
+        <h1 *ngIf="collectionName">{{ collectionName | capitalize }}</h1>
+        <div style="margin-bottom: 20px;" *ngIf="collection?.description" [innerHTML]="collection.description"></div>
+
+      <a *ngFor="let collection of collections;" class="button tiny hollow" style="margin-right: 2px; margin-left: 2px;"
+         routerLink="/{{collection.slug}}">{{collection.name}}</a>
 
     </div>
   </div>
