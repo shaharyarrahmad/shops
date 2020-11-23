@@ -12,7 +12,7 @@ export class TaxCalculation {
                 name: `${line.productVariant.sku} ${line.productVariant.name}`,
                 orderCode: order.code,
                 quantity: line.quantity,
-                unitPriceIncVAT: line.unitPrice,
+                unitPriceIncVAT: line.unitPriceWithTax,
                 taxRate: line.productVariant?.taxRateApplied?.value || 0,
                 exVAT: line.totalPrice - line.lineTax,
                 incVAT: line.totalPrice,

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {Input, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -15,13 +15,15 @@ import {ShippingComponent} from './shipping/shipping.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PaymentComponent} from './payment/payment.component';
 import {OrderComponent} from './order/order.component';
-import {AsyncImageComponent} from "./async-image/async-image.component";
+import {AsyncImageComponent} from './async-image/async-image.component';
+import {CapitalizePipe} from '../lib/capitalize.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsOverviewComponent,
     EuroPipe,
+    CapitalizePipe,
     ProductDetailComponent,
     CartHeaderComponent,
     CartComponent,

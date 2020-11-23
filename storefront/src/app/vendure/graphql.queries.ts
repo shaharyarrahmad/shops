@@ -4,7 +4,12 @@ export const productFields = gql`
   fragment productFields on Product {
     id
     name
+    slug
     assets {
+      preview
+    }
+    featuredAsset {
+      id
       preview
     }
     description
@@ -13,6 +18,10 @@ export const productFields = gql`
       name
       priceWithTax
       productId
+      assets {
+        id
+        preview
+      }
       featuredAsset {
         id
         preview
@@ -33,8 +42,8 @@ export const productsQuery = gql`
 
 export const productQuery = gql`
   ${productFields}
-  query product($id: ID) {
-    product(id: $id) {
+  query product($slug: String) {
+    product(slug: $slug) {
       ...productFields
     }
   }`;
@@ -218,4 +227,34 @@ export const eligibleShippingMethodsQuery = gql`
 export const nextOrderStatesQuery = gql`
   {
     nextOrderStates
+  }`;
+
+export const collectionsQuery = gql`
+  {
+    collections {
+      items {
+        id
+        name
+        slug
+      }
+    }
+  }
+`;
+
+export const collectionQuery = gql`
+  ${productFields}
+  query collection($slug: String) {
+    collection(slug: $slug) {
+      id
+      name
+      slug
+      description
+      productVariants {
+        items {
+          product {
+            ...productFields
+          }
+        }
+      }
+    }
   }`;

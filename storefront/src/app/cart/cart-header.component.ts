@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {VendureService} from '../vendure/vendure.service';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {Router, RoutesRecognized} from '@angular/router';
 import {Order} from '../../generated/graphql';
 import {Subscription} from 'rxjs';
-import {filter, map, switchMap} from 'rxjs/operators';
+import {getCollectionFromStorage} from '../collection/collection.helper';
 
 
 @Component({
@@ -25,7 +25,7 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
   constructor(private vendureService: VendureService,
               private location: Location,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  ) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -33,33 +33,19 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
       this.setNrOfItems(o);
       this.order = o;
     });
-
-    this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        map(() => this.activatedRoute),
-        map(route => route.firstChild),
-        switchMap(route => route.data))
-      .subscribe(data => {
-        this.previous = data.previous;
-        this.progress = data.progress;
-        this.hideCart = data.hideCart;
-        this.showNext = data.showNext;
-      });
-
-    /*    this.router.events.subscribe(event => {
-          const url = (event as NavigationStart).url;
-          if (url) {
-            this.progress = 0;
-            if (url?.indexOf('/customer-details') > -1) {
-              this.progress = 33;
-            } else if (url?.indexOf('/shipping') > -1) {
-              this.progress = 66;
-            }
-            this.isCheckout = url?.indexOf('/cart') > -1;
-            this.hideCart = url?.indexOf('/customer-details') > -1 || url?.indexOf('/shipping') > -1 || url?.indexOf('/order') > -1;
-          }
-        });*/
+    this.router.events.subscribe((data) => {
+      if (data instanceof RoutesRecognized) {
+        this.previous = data.state.root.firstChild?.data.previous;
+        this.progress = data.state.root.firstChild?.data.progress;
+        this.hideCart = data.state.root.firstChild?.data.hideCart;
+        this.showNext = data.state.root.firstChild?.data.showNext;
+        // If collection is in storage, go to collection, unless we are already there
+        const collectionUrl = `/${getCollectionFromStorage() || ''}`;
+        if (this.previous === '/' && !data.url.endsWith(collectionUrl)) {
+          this.previous = collectionUrl;
+        }
+      }
+    });
   }
 
   setNrOfItems(order: Order): void {

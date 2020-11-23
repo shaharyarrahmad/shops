@@ -1,26 +1,34 @@
 import {GraphQLClient} from 'graphql-request';
 import {
   activeOrderQuery,
-  addItemToOrderMutation, addPaymentToOrderMutation,
+  addItemToOrderMutation,
+  addPaymentToOrderMutation,
   adjustOrderLineMutation,
-  eligibleShippingMethodsQuery, nextOrderStatesQuery, orderByCodeQuery,
+  collectionQuery,
+  collectionsQuery,
+  eligibleShippingMethodsQuery,
+  nextOrderStatesQuery,
+  orderByCodeQuery,
   productQuery,
   productsQuery,
   setCustomerForOrderMutation,
   setOrderShippingAddressMutation,
-  setOrderShippingMethodMutation, transitionOrderToStateMutation
+  setOrderShippingMethodMutation,
+  transitionOrderToStateMutation
 } from './graphql.queries';
 import {environment} from '../../environments/environment';
 import {Globals} from '../constants';
 import {Injectable} from '@angular/core';
 import {ReplaySubject} from 'rxjs';
 import {
+  Collection,
   CreateAddressInput,
   CreateCustomerInput,
   ErrorResult,
   Order,
   PaymentInput,
   Product,
+  ProductVariant,
   ShippingMethodQuote
 } from '../../generated/graphql';
 import {ExtendedProduct} from './types/extended-product';
@@ -47,8 +55,8 @@ export class VendureService {
     return products?.items.map((p) => this.setLowestPrice(p));
   }
 
-  async getProduct(id: string): Promise<ExtendedProduct> {
-    const {product} = await this.request(productQuery, {id});
+  async getProduct(slug: string): Promise<ExtendedProduct> {
+    const {product} = await this.request(productQuery, {slug});
     return this.setLowestPrice(product);
   }
 
@@ -111,7 +119,7 @@ export class VendureService {
     const methods = await this.getEligibleShippingMethods();
     const [defaultMethod] = methods
       // .filter(m => m.priceWithTax !== 0)
-      .sort((a, b) =>  a.priceWithTax - b.priceWithTax);
+      .sort((a, b) => a.priceWithTax - b.priceWithTax);
     if (defaultMethod) {
       await this.setOrderShippingMethod(defaultMethod.id);
     } else {
@@ -139,6 +147,21 @@ export class VendureService {
     return nextOrderStates;
   }
 
+  async getCollections(): Promise<Collection[]> {
+    const {collections: {items}} = await this.request(collectionsQuery);
+    return items;
+  }
+
+  /**
+   * Gets description and products for given Collection
+   */
+  async getProductsForCollection(slug: string): Promise<[ExtendedProduct[], Collection]> {
+    const {collection}: { collection: Collection } = await this.request(collectionQuery, {slug});
+    const products = collection?.productVariants?.items?.map(variant => (variant as ProductVariant).product);
+    const deduplicated = this.deduplicate(products?.map(p => this.setLowestPrice(p)) || []);
+    return [deduplicated, collection];
+  }
+
   async request<T = any, V = Variables>(document: string, variables?: V): Promise<T> {
     let token = window.localStorage.getItem(VendureService.tokenName);
     if (token) {
@@ -153,6 +176,17 @@ export class VendureService {
       window.localStorage.setItem(VendureService.tokenName, token);
     }
     return data;
+  }
+
+  deduplicate(products: ExtendedProduct[]): ExtendedProduct[] {
+    const uniq = [];
+    return products.filter((prod) => {
+      if (uniq.indexOf(prod.slug) === -1) {
+        uniq.push(prod.slug);
+        return true;
+      }
+      return false;
+    });
   }
 
   /**
