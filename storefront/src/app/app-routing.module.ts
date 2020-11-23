@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: '', component: ProductsOverviewComponent},
   {
     path: 'product/:slug', component: ProductDetailComponent,
-    data: {previous: '/'}
+    data: {previous: `/`}
   },
   {
     path: 'cart', component: CartComponent, data: {

@@ -18,11 +18,6 @@ export class AppComponent implements OnInit {
 
   constructor(el: ElementRef, private router: Router) {
     Globals.channelId = el.nativeElement.getAttribute('channelId');
-    this.router.events.subscribe((data) => {
-      if (data instanceof RoutesRecognized) {
-        console.log(data.url, Globals.channelId);
-      }
-    });
   }
 
   ngOnInit(): void {

@@ -3,6 +3,7 @@ import {VendureService} from '../vendure/vendure.service';
 import {ExtendedProduct} from '../vendure/types/extended-product';
 import {Collection, ProductVariant} from '../../generated/graphql';
 import {ActivatedRoute} from '@angular/router';
+import {setCollectionInStorage} from '../collection/collection.helper';
 
 @Component({
   selector: 'app-products',
@@ -17,15 +18,15 @@ export class ProductsOverviewComponent implements OnInit {
   collection: Collection;
 
   constructor(private vendureService: VendureService, private route: ActivatedRoute) {
-    this.collectionName = this.route.snapshot.params.category ;
+    this.collectionName = this.route.snapshot.params.category;
   }
 
   async ngOnInit(): Promise<void> {
     this.route.paramMap.subscribe(params => {
       this.collectionName = params.get('collection');
+      setCollectionInStorage(this.collectionName);
       this.loadProducts();
     });
-    // await this.loadProducts();
   }
 
   async loadProducts(): Promise<void> {

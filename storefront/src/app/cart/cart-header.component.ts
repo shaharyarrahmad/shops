@@ -4,6 +4,7 @@ import {VendureService} from '../vendure/vendure.service';
 import {Router, RoutesRecognized} from '@angular/router';
 import {Order} from '../../generated/graphql';
 import {Subscription} from 'rxjs';
+import {getCollectionFromStorage} from '../collection/collection.helper';
 
 
 @Component({
@@ -32,29 +33,19 @@ export class CartHeaderComponent implements OnInit, OnDestroy {
       this.setNrOfItems(o);
       this.order = o;
     });
-
     this.router.events.subscribe((data) => {
       if (data instanceof RoutesRecognized) {
         this.previous = data.state.root.firstChild?.data.previous;
         this.progress = data.state.root.firstChild?.data.progress;
         this.hideCart = data.state.root.firstChild?.data.hideCart;
         this.showNext = data.state.root.firstChild?.data.showNext;
+        // If collection is in storage, go to collection, unless we are already there
+        const collectionUrl = `/${getCollectionFromStorage() || ''}`;
+        if (this.previous === '/' && !data.url.endsWith(collectionUrl)) {
+          this.previous = collectionUrl;
+        }
       }
     });
-
-    /*    this.router.events
-          .pipe(
-            filter(event => event instanceof NavigationEnd),
-            map(() => this.activatedRoute),
-            map(route => route.firstChild),
-            switchMap(route => route.data))
-          .subscribe(data => {
-            console.log('data1', data.previous);
-            this.previous = data.previous;
-            this.progress = data.progress;
-            this.hideCart = data.hideCart;
-            this.showNext = data.showNext;
-          });*/
   }
 
   setNrOfItems(order: Order): void {
