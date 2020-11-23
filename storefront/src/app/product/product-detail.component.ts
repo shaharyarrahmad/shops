@@ -11,18 +11,18 @@ import {Asset, ProductVariant} from '../../generated/graphql';
 })
 export class ProductDetailComponent implements OnInit {
 
-  id: string;
+  slug: string;
   product: ExtendedProduct;
   variant: ProductVariant;
   assets: Asset[];
   asset: Asset;
 
   constructor(private route: ActivatedRoute, private vendureService: VendureService) {
-    this.id = this.route.snapshot.params.id;
+    this.slug = this.route.snapshot.params.slug;
   }
 
   async ngOnInit(): Promise<void> {
-    this.product = await this.vendureService.getProduct(this.id);
+    this.product = await this.vendureService.getProduct(this.slug);
     this.variant = this.product.variants[0];
     this.setAssets();
 

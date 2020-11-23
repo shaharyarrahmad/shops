@@ -55,8 +55,8 @@ export class VendureService {
     return products?.items.map((p) => this.setLowestPrice(p));
   }
 
-  async getProduct(id: string): Promise<ExtendedProduct> {
-    const {product} = await this.request(productQuery, {id});
+  async getProduct(slug: string): Promise<ExtendedProduct> {
+    const {product} = await this.request(productQuery, {slug});
     return this.setLowestPrice(product);
   }
 

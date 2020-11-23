@@ -42,8 +42,8 @@ export const productsQuery = gql`
 
 export const productQuery = gql`
   ${productFields}
-  query product($id: ID) {
-    product(id: $id) {
+  query product($slug: String) {
+    product(slug: $slug) {
       ...productFields
     }
   }`;

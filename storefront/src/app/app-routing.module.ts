@@ -11,7 +11,7 @@ import {OrderComponent} from './order/order.component';
 const routes: Routes = [
   {path: '', component: ProductsOverviewComponent},
   {
-    path: 'product/:id', component: ProductDetailComponent,
+    path: 'product/:slug', component: ProductDetailComponent,
     data: {previous: '/'}
   },
   {
