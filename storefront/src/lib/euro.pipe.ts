@@ -11,7 +11,6 @@ export class EuroPipe implements PipeTransform {
     if (!value) {
       value = 0;
     }
-    (value / 100).toFixed(2);
     const currencyString = `€${(value / 100).toFixed(2).replace('.', ',')}`;
     if (currencyString.endsWith('00') && !format) {
       return currencyString.replace(new RegExp( '00$'), '-');

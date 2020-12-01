@@ -326,6 +326,12 @@ export type MutationResetPasswordArgs = {
 
 
 
+export enum GlobalFlag {
+  True = 'TRUE',
+  False = 'FALSE',
+  Inherit = 'INHERIT'
+}
+
 export enum AdjustmentType {
   Tax = 'TAX',
   Promotion = 'PROMOTION',
@@ -380,6 +386,72 @@ export enum DeletionResult {
   NotDeleted = 'NOT_DELETED'
 }
 
+/**
+ * @description
+ * Permissions for administrators and customers. Used to control access to
+ * GraphQL resolvers via the {@link Allow} decorator.
+ * 
+ * @docsCategory common
+ */
+export enum Permission {
+  /** Authenticated means simply that the user is logged in */
+  Authenticated = 'Authenticated',
+  /** SuperAdmin has unrestricted access to all operations */
+  SuperAdmin = 'SuperAdmin',
+  /** Owner means the user owns this entity, e.g. a Customer's own Order */
+  Owner = 'Owner',
+  /** Public means any unauthenticated user may perform the operation */
+  Public = 'Public',
+  /** Grants permission to create Catalog */
+  CreateCatalog = 'CreateCatalog',
+  /** Grants permission to read Catalog */
+  ReadCatalog = 'ReadCatalog',
+  /** Grants permission to update Catalog */
+  UpdateCatalog = 'UpdateCatalog',
+  /** Grants permission to delete Catalog */
+  DeleteCatalog = 'DeleteCatalog',
+  /** Grants permission to create Customer */
+  CreateCustomer = 'CreateCustomer',
+  /** Grants permission to read Customer */
+  ReadCustomer = 'ReadCustomer',
+  /** Grants permission to update Customer */
+  UpdateCustomer = 'UpdateCustomer',
+  /** Grants permission to delete Customer */
+  DeleteCustomer = 'DeleteCustomer',
+  /** Grants permission to create Administrator */
+  CreateAdministrator = 'CreateAdministrator',
+  /** Grants permission to read Administrator */
+  ReadAdministrator = 'ReadAdministrator',
+  /** Grants permission to update Administrator */
+  UpdateAdministrator = 'UpdateAdministrator',
+  /** Grants permission to delete Administrator */
+  DeleteAdministrator = 'DeleteAdministrator',
+  /** Grants permission to create Order */
+  CreateOrder = 'CreateOrder',
+  /** Grants permission to read Order */
+  ReadOrder = 'ReadOrder',
+  /** Grants permission to update Order */
+  UpdateOrder = 'UpdateOrder',
+  /** Grants permission to delete Order */
+  DeleteOrder = 'DeleteOrder',
+  /** Grants permission to create Promotion */
+  CreatePromotion = 'CreatePromotion',
+  /** Grants permission to read Promotion */
+  ReadPromotion = 'ReadPromotion',
+  /** Grants permission to update Promotion */
+  UpdatePromotion = 'UpdatePromotion',
+  /** Grants permission to delete Promotion */
+  DeletePromotion = 'DeletePromotion',
+  /** Grants permission to create Settings */
+  CreateSettings = 'CreateSettings',
+  /** Grants permission to read Settings */
+  ReadSettings = 'ReadSettings',
+  /** Grants permission to update Settings */
+  UpdateSettings = 'UpdateSettings',
+  /** Grants permission to delete Settings */
+  DeleteSettings = 'DeleteSettings'
+}
+
 export type DeletionResponse = {
   __typename?: 'DeletionResponse';
   result: DeletionResult;
@@ -419,6 +491,8 @@ export enum ErrorCode {
   OrderModificationError = 'ORDER_MODIFICATION_ERROR',
   OrderLimitError = 'ORDER_LIMIT_ERROR',
   NegativeQuantityError = 'NEGATIVE_QUANTITY_ERROR',
+  InsufficientStockError = 'INSUFFICIENT_STOCK_ERROR',
+  IneligibleShippingMethodError = 'INELIGIBLE_SHIPPING_METHOD_ERROR',
   OrderPaymentStateError = 'ORDER_PAYMENT_STATE_ERROR',
   PaymentFailedError = 'PAYMENT_FAILED_ERROR',
   PaymentDeclinedError = 'PAYMENT_DECLINED_ERROR',
@@ -433,7 +507,8 @@ export enum ErrorCode {
   IdentifierChangeTokenInvalidError = 'IDENTIFIER_CHANGE_TOKEN_INVALID_ERROR',
   IdentifierChangeTokenExpiredError = 'IDENTIFIER_CHANGE_TOKEN_EXPIRED_ERROR',
   PasswordResetTokenInvalidError = 'PASSWORD_RESET_TOKEN_INVALID_ERROR',
-  PasswordResetTokenExpiredError = 'PASSWORD_RESET_TOKEN_EXPIRED_ERROR'
+  PasswordResetTokenExpiredError = 'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
+  NotVerifiedError = 'NOT_VERIFIED_ERROR'
 }
 
 export type ErrorResult = {
@@ -444,6 +519,8 @@ export type ErrorResult = {
 export type StringOperators = {
   eq?: Maybe<Scalars['String']>;
   contains?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Scalars['String']>>;
+  regex?: Maybe<Scalars['String']>;
 };
 
 export type BooleanOperators = {
@@ -556,6 +633,7 @@ export type InvalidCredentialsError = ErrorResult & {
   __typename?: 'InvalidCredentialsError';
   errorCode: ErrorCode;
   message: Scalars['String'];
+  authenticationError: Scalars['String'];
 };
 
 /** Returned if there is an error in transitioning the Order state */
@@ -1332,49 +1410,6 @@ export enum LanguageCode {
   Zu = 'zu'
 }
 
-/**
- * "
- * @description
- * Permissions for administrators and customers. Used to control access to
- * GraphQL resolvers via the {@link Allow} decorator.
- * 
- * @docsCategory common
- */
-export enum Permission {
-  /**  The Authenticated role means simply that the user is logged in  */
-  Authenticated = 'Authenticated',
-  /**  SuperAdmin can perform the most sensitive tasks */
-  SuperAdmin = 'SuperAdmin',
-  /**  Owner means the user owns this entity, e.g. a Customer's own Order */
-  Owner = 'Owner',
-  /**  Public means any unauthenticated user may perform the operation  */
-  Public = 'Public',
-  CreateCatalog = 'CreateCatalog',
-  ReadCatalog = 'ReadCatalog',
-  UpdateCatalog = 'UpdateCatalog',
-  DeleteCatalog = 'DeleteCatalog',
-  CreateCustomer = 'CreateCustomer',
-  ReadCustomer = 'ReadCustomer',
-  UpdateCustomer = 'UpdateCustomer',
-  DeleteCustomer = 'DeleteCustomer',
-  CreateAdministrator = 'CreateAdministrator',
-  ReadAdministrator = 'ReadAdministrator',
-  UpdateAdministrator = 'UpdateAdministrator',
-  DeleteAdministrator = 'DeleteAdministrator',
-  CreateOrder = 'CreateOrder',
-  ReadOrder = 'ReadOrder',
-  UpdateOrder = 'UpdateOrder',
-  DeleteOrder = 'DeleteOrder',
-  CreatePromotion = 'CreatePromotion',
-  ReadPromotion = 'ReadPromotion',
-  UpdatePromotion = 'UpdatePromotion',
-  DeletePromotion = 'DeletePromotion',
-  CreateSettings = 'CreateSettings',
-  ReadSettings = 'ReadSettings',
-  UpdateSettings = 'UpdateSettings',
-  DeleteSettings = 'DeleteSettings'
-}
-
 export type RegisterCustomerInput = {
   emailAddress: Scalars['String'];
   title?: Maybe<Scalars['String']>;
@@ -1422,6 +1457,22 @@ export type OrderLimitError = ErrorResult & {
 /** Retured when attemting to set a negative OrderLine quantity. */
 export type NegativeQuantityError = ErrorResult & {
   __typename?: 'NegativeQuantityError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+};
+
+/** Returned when attempting to add more items to the Order than are available */
+export type InsufficientStockError = ErrorResult & {
+  __typename?: 'InsufficientStockError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+  quantityAvailable: Scalars['Int'];
+  order: Order;
+};
+
+/** Returned when attempting to set a ShippingMethod for which the order is not eligible */
+export type IneligibleShippingMethodError = ErrorResult & {
+  __typename?: 'IneligibleShippingMethodError';
   errorCode: ErrorCode;
   message: Scalars['String'];
 };
@@ -1555,11 +1606,21 @@ export type PasswordResetTokenExpiredError = ErrorResult & {
   message: Scalars['String'];
 };
 
-export type UpdateOrderItemsResult = Order | OrderModificationError | OrderLimitError | NegativeQuantityError;
+/**
+ * Returned if `authOptions.requireVerification` is set to `true` (which is the default)
+ * and an unverified user attempts to authenticate.
+ */
+export type NotVerifiedError = ErrorResult & {
+  __typename?: 'NotVerifiedError';
+  errorCode: ErrorCode;
+  message: Scalars['String'];
+};
+
+export type UpdateOrderItemsResult = Order | OrderModificationError | OrderLimitError | NegativeQuantityError | InsufficientStockError;
 
 export type RemoveOrderItemsResult = Order | OrderModificationError;
 
-export type SetOrderShippingMethodResult = Order | OrderModificationError;
+export type SetOrderShippingMethodResult = Order | OrderModificationError | IneligibleShippingMethodError;
 
 export type ApplyCouponCodeResult = Order | CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError;
 
@@ -1585,9 +1646,9 @@ export type RequestPasswordResetResult = Success | NativeAuthStrategyError;
 
 export type ResetPasswordResult = CurrentUser | PasswordResetTokenInvalidError | PasswordResetTokenExpiredError | NativeAuthStrategyError;
 
-export type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NativeAuthStrategyError;
+export type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NotVerifiedError | NativeAuthStrategyError;
 
-export type AuthenticationResult = CurrentUser | InvalidCredentialsError;
+export type AuthenticationResult = CurrentUser | InvalidCredentialsError | NotVerifiedError;
 
 export type Address = Node & {
   __typename?: 'Address';
@@ -1869,6 +1930,7 @@ export type GlobalSettings = {
   updatedAt: Scalars['DateTime'];
   availableLanguages: Array<LanguageCode>;
   trackInventory: Scalars['Boolean'];
+  outOfStockThreshold: Scalars['Int'];
   serverConfig: ServerConfig;
   customFields?: Maybe<Scalars['JSON']>;
 };
@@ -1879,10 +1941,18 @@ export type OrderProcessState = {
   to: Array<Scalars['String']>;
 };
 
+export type PermissionDefinition = {
+  __typename?: 'PermissionDefinition';
+  name: Scalars['String'];
+  description: Scalars['String'];
+  assignable: Scalars['Boolean'];
+};
+
 export type ServerConfig = {
   __typename?: 'ServerConfig';
   orderProcess: Array<OrderProcessState>;
   permittedAssetTypes: Array<Scalars['String']>;
+  permissions: Array<PermissionDefinition>;
   customFieldConfig: CustomFields;
 };
 
@@ -1941,6 +2011,11 @@ export type Order = Node & {
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  /**
+   * The date & time that the Order was placed, i.e. the Customer
+   * completed the checkout and the Order is no longer "active"
+   */
+  orderPlacedAt?: Maybe<Scalars['DateTime']>;
   /** A unique code for the Order */
   code: Scalars['String'];
   state: Scalars['String'];
@@ -1967,6 +2042,7 @@ export type Order = Node & {
   shippingMethod?: Maybe<ShippingMethod>;
   totalBeforeTax: Scalars['Int'];
   total: Scalars['Int'];
+  taxSummary: Array<OrderTaxSummary>;
   history: HistoryEntryList;
   customFields?: Maybe<Scalars['JSON']>;
 };
@@ -1974,6 +2050,20 @@ export type Order = Node & {
 
 export type OrderHistoryArgs = {
   options?: Maybe<HistoryEntryListOptions>;
+};
+
+/**
+ * A summary of the taxes being applied to this order, grouped
+ * by taxRate.
+ */
+export type OrderTaxSummary = {
+  __typename?: 'OrderTaxSummary';
+  /** The taxRate as a percentage */
+  taxRate: Scalars['Float'];
+  /** The total net price or OrderItems to which this taxRate applies */
+  taxBase: Scalars['Int'];
+  /** The total tax being applied to the Order at this taxRate */
+  taxTotal: Scalars['Int'];
 };
 
 export type OrderAddress = {
@@ -2001,6 +2091,7 @@ export type ShippingMethodQuote = {
   id: Scalars['ID'];
   price: Scalars['Int'];
   priceWithTax: Scalars['Int'];
+  name: Scalars['String'];
   description: Scalars['String'];
   metadata?: Maybe<Scalars['JSON']>;
 };
@@ -2011,8 +2102,11 @@ export type OrderItem = Node & {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   cancelled: Scalars['Boolean'];
+  /** The price of a single unit, excluding tax */
   unitPrice: Scalars['Int'];
+  /** The price of a single unit, including tax */
   unitPriceWithTax: Scalars['Int'];
+  /** @deprecated `unitPrice` is now always without tax */
   unitPriceIncludesTax: Scalars['Boolean'];
   taxRate: Scalars['Float'];
   adjustments: Array<Adjustment>;
@@ -2031,7 +2125,15 @@ export type OrderLine = Node & {
   unitPriceWithTax: Scalars['Int'];
   quantity: Scalars['Int'];
   items: Array<OrderItem>;
+  /** @deprecated Use `linePriceWithTax` instead */
   totalPrice: Scalars['Int'];
+  taxRate: Scalars['Float'];
+  /** The total price of the line excluding tax */
+  linePrice: Scalars['Int'];
+  /** The total tax on this line */
+  lineTax: Scalars['Int'];
+  /** The total price of the line including tax */
+  linePriceWithTax: Scalars['Int'];
   adjustments: Array<Adjustment>;
   order: Order;
   customFields?: Maybe<Scalars['JSON']>;
@@ -2078,6 +2180,7 @@ export type Fulfillment = Node & {
   state: Scalars['String'];
   method: Scalars['String'];
   trackingCode?: Maybe<Scalars['String']>;
+  customFields?: Maybe<Scalars['JSON']>;
 };
 
 export type PaymentMethod = Node & {
@@ -2320,10 +2423,22 @@ export type ShippingMethod = Node & {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   code: Scalars['String'];
+  name: Scalars['String'];
   description: Scalars['String'];
   checker: ConfigurableOperation;
   calculator: ConfigurableOperation;
+  translations: Array<ShippingMethodTranslation>;
   customFields?: Maybe<Scalars['JSON']>;
+};
+
+export type ShippingMethodTranslation = {
+  __typename?: 'ShippingMethodTranslation';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  languageCode: LanguageCode;
+  name: Scalars['String'];
+  description: Scalars['String'];
 };
 
 export type ShippingMethodList = PaginatedList & {
@@ -2334,6 +2449,8 @@ export type ShippingMethodList = PaginatedList & {
 
 export enum StockMovementType {
   Adjustment = 'ADJUSTMENT',
+  Allocation = 'ALLOCATION',
+  Release = 'RELEASE',
   Sale = 'SALE',
   Cancellation = 'CANCELLATION',
   Return = 'RETURN'
@@ -2358,6 +2475,17 @@ export type StockAdjustment = Node & StockMovement & {
   quantity: Scalars['Int'];
 };
 
+export type Allocation = Node & StockMovement & {
+  __typename?: 'Allocation';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  productVariant: ProductVariant;
+  type: StockMovementType;
+  quantity: Scalars['Int'];
+  orderLine: OrderLine;
+};
+
 export type Sale = Node & StockMovement & {
   __typename?: 'Sale';
   id: Scalars['ID'];
@@ -2366,7 +2494,7 @@ export type Sale = Node & StockMovement & {
   productVariant: ProductVariant;
   type: StockMovementType;
   quantity: Scalars['Int'];
-  orderLine: OrderLine;
+  orderItem: OrderItem;
 };
 
 export type Cancellation = Node & StockMovement & {
@@ -2391,7 +2519,18 @@ export type Return = Node & StockMovement & {
   orderItem: OrderItem;
 };
 
-export type StockMovementItem = StockAdjustment | Sale | Cancellation | Return;
+export type Release = Node & StockMovement & {
+  __typename?: 'Release';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  productVariant: ProductVariant;
+  type: StockMovementType;
+  quantity: Scalars['Int'];
+  orderItem: OrderItem;
+};
+
+export type StockMovementItem = StockAdjustment | Allocation | Sale | Cancellation | Return | Release;
 
 export type StockMovementList = {
   __typename?: 'StockMovementList';
@@ -2583,6 +2722,7 @@ export type CustomerSortParameter = {
 export type OrderFilterParameter = {
   createdAt?: Maybe<DateOperators>;
   updatedAt?: Maybe<DateOperators>;
+  orderPlacedAt?: Maybe<DateOperators>;
   code?: Maybe<StringOperators>;
   state?: Maybe<StringOperators>;
   active?: Maybe<BooleanOperators>;
@@ -2600,6 +2740,7 @@ export type OrderSortParameter = {
   id?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   updatedAt?: Maybe<SortOrder>;
+  orderPlacedAt?: Maybe<SortOrder>;
   code?: Maybe<SortOrder>;
   state?: Maybe<SortOrder>;
   totalQuantity?: Maybe<SortOrder>;
@@ -2635,6 +2776,7 @@ export type CustomFields = {
   Customer: Array<CustomFieldConfig>;
   Facet: Array<CustomFieldConfig>;
   FacetValue: Array<CustomFieldConfig>;
+  Fulfillment: Array<CustomFieldConfig>;
   GlobalSettings: Array<CustomFieldConfig>;
   Order: Array<CustomFieldConfig>;
   OrderLine: Array<CustomFieldConfig>;

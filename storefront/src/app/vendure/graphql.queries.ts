@@ -75,6 +75,7 @@ export const orderFields = gql`
     shippingMethod {
       id
       code
+      name
     }
     lines {
       id
@@ -219,7 +220,7 @@ export const eligibleShippingMethodsQuery = gql`
       id
       price
       priceWithTax
-      description
+      name
       metadata
     }
   }`;

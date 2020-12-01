@@ -7,6 +7,7 @@ export class TaxCalculation {
      * Get taxSummary per one or multiple orders
      */
     static getTaxSummary(order: Order): TaxSummary {
+        console.log(JSON.stringify(order.taxSummary));
         const summaryLines: ProductTaxSummaryLine[] = order.lines?.map(line =>
             ({
                 name: `${line.productVariant.sku} ${line.productVariant.name}`,
@@ -46,6 +47,18 @@ export class TaxCalculation {
             taxTotal[line.taxRate] = total;
         });
         taxTotal[shipping.taxRate] += shipping.VAT;
+        console.log(order.totalBeforeTax)
+        console.log('shipping', order.shipping)
+        console.log('shipping with', order.shippingWithTax)
+        console.log('')
+        console.log({
+            products: summaryLines,
+            shipping: [shipping],
+            taxTotal,
+            totalIncVAT: this.round(totalIncVAT),
+            totalExVAT: this.round(totalExVAT),
+            totalVAT: this.round(totalVAT)
+        })
         return {
             products: summaryLines,
             shipping: [shipping],

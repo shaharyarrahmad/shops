@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {VendureService} from '../vendure/vendure.service';
-import {Order} from '../../generated/graphql';
+import {ErrorResult, Order} from '../../generated/graphql';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -23,15 +23,15 @@ export class PaymentComponent implements OnInit, OnDestroy {
     if (states?.indexOf('ArrangingPayment') > -1) {
       await this.vendureService.transitionOrderToState('ArrangingPayment');
     }
-    const order: Order = await this.vendureService.addPaymentToOrder({method: 'mollie-payment-handler', metadata: {}}).catch(e => {
+    const order = await this.vendureService.addPaymentToOrder({method: 'mollie-payment-handler', metadata: {}}).catch(e => {
       this.error = e.message;
       console.error(e);
-    }) as Order;
-    const latestPayment = order?.payments?.[order?.payments.length - 1];
+    });
+    const latestPayment = (order as Order)?.payments?.[(order as Order)?.payments.length - 1];
     if (latestPayment?.metadata?.public?.redirectLink) {
       window.location.href = latestPayment.metadata.public.redirectLink;
     } else {
-      this.error = latestPayment.errorMessage;
+      this.error = (order as ErrorResult).errorCode;
       console.error('Error creating payment', this.error);
     }
   }

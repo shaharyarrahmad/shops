@@ -19,7 +19,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
     },
 
     /** This is called when the `addPaymentToOrder` mutation is executed */
-    createPayment: async (order, args, metadata): Promise<CreatePaymentResult> => {
+    createPayment: async (ctx, order, args, metadata): Promise<CreatePaymentResult> => {
         try {
             const {apiKey, host} = MollieHelper.getConfig(args.channelKeys, metadata.channel);
             const mollieClient = createMollieClient({apiKey});

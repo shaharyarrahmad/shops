@@ -134,7 +134,7 @@ export class VendureService {
     return transitionOrderToState;
   }
 
-  async addPaymentToOrder(input: PaymentInput): Promise<Order> {
+  async addPaymentToOrder(input: PaymentInput): Promise<Order | ErrorResult> {
     input.metadata.channel = Globals.channelId;
     const {addPaymentToOrder} = await this.request(addPaymentToOrderMutation, {input});
     this.validateResult(addPaymentToOrder);
