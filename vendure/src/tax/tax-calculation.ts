@@ -7,26 +7,25 @@ export class TaxCalculation {
      * Get taxSummary per one or multiple orders
      */
     static getTaxSummary(order: Order): TaxSummary {
-        console.log(JSON.stringify(order.taxSummary));
         const summaryLines: ProductTaxSummaryLine[] = order.lines?.map(line =>
             ({
                 name: `${line.productVariant.sku} ${line.productVariant.name}`,
                 orderCode: order.code,
                 quantity: line.quantity,
                 unitPriceIncVAT: line.unitPriceWithTax,
-                taxRate: line.productVariant?.taxRateApplied?.value || 0,
-                exVAT: line.totalPrice - line.lineTax,
-                incVAT: line.totalPrice,
+                taxRate: line.taxRate,
+                exVAT: line.linePrice,
+                incVAT: line.linePriceWithTax,
                 VAT: line.lineTax
             })
         );
-        let totalIncVAT = summaryLines.map(line => line.incVAT).reduce((line1, line2) => line1 + line2);
-        let totalExVAT = summaryLines.map(line => line.exVAT).reduce((line1, line2) => line1 + line2);
-        let totalVAT = summaryLines.map(line => line.VAT).reduce((line1, line2) => line1 + line2);
+        let totalIncVAT = order.total
+        let totalExVAT = order.subTotalBeforeTax; // this excludes shipping
+        let totalVAT = order.taxSummary.map(summary => summary.taxTotal).reduce((a, b) => a + b); // total taxes without shippingTax
         // Calculate shipping
-        const maxTax = Math.max(...summaryLines.map(line => line.taxRate));
+        const maxTax = Math.max(...order.taxSummary.map(summary => summary.taxRate));
         const taxMultiplier = maxTax / 100 + 1; // I.E. 21% = 1.21
-        const shippingExVAT = order.shipping / taxMultiplier;
+        const shippingExVAT = order.shipping / taxMultiplier; // Shipping in DB should always be including tax
         const shipping: ShippingTaxSummaryLine = {
             name: `Shipping ${maxTax}% ${order.code}`,
             orderCode: order.code,
@@ -36,29 +35,13 @@ export class TaxCalculation {
             VAT: this.round(order.shipping - shippingExVAT)
         };
         // Calculate totals inc shipping
-        totalIncVAT += shipping.incVAT;
+        // totalIncVAT += shipping.incVAT;
         totalExVAT += shipping.exVAT;
         totalVAT += shipping.VAT;
         // Calculate total taxes spend
         const taxTotal: TaxTotal = {};
-        summaryLines.forEach(line => {
-            let total = taxTotal[line.taxRate] || 0;
-            total += line.VAT;
-            taxTotal[line.taxRate] = total;
-        });
+        order.taxSummary.map(summary => taxTotal[summary.taxRate] = summary.taxTotal);
         taxTotal[shipping.taxRate] += shipping.VAT;
-        console.log(order.totalBeforeTax)
-        console.log('shipping', order.shipping)
-        console.log('shipping with', order.shippingWithTax)
-        console.log('')
-        console.log({
-            products: summaryLines,
-            shipping: [shipping],
-            taxTotal,
-            totalIncVAT: this.round(totalIncVAT),
-            totalExVAT: this.round(totalExVAT),
-            totalVAT: this.round(totalVAT)
-        })
         return {
             products: summaryLines,
             shipping: [shipping],
