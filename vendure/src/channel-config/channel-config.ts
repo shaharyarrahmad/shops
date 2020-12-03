@@ -21,6 +21,6 @@ export const channelConfig: ChannelConfig[] = [
         channelName: 'Ben de Boef',
         channelToken: 'bendeboef',
         logoUrl: 'https://pinelab-demo-shop.netlify.app/bendeboeflogo.png',
-        supportEmail: 'info@bendeboef.nl'
+        supportEmail: 'martijn@pinelab.studio'
     }
 ]

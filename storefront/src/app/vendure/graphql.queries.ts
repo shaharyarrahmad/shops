@@ -18,6 +18,7 @@ export const productFields = gql`
       name
       priceWithTax
       productId
+      available
       assets {
         id
         preview

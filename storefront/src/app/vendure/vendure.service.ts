@@ -52,12 +52,12 @@ export class VendureService {
 
   async getProducts(): Promise<ExtendedProduct[]> {
     const {products} = await this.request(productsQuery);
-    return products?.items.map((p) => this.setLowestPrice(p));
+    return products?.items.map((p) => this.setCalculatedFields(p));
   }
 
   async getProduct(slug: string): Promise<ExtendedProduct> {
     const {product} = await this.request(productQuery, {slug});
-    return this.setLowestPrice(product);
+    return this.setCalculatedFields(product);
   }
 
   async addProduct(productVariantId: string, quantity: number): Promise<Order> {
@@ -158,7 +158,7 @@ export class VendureService {
   async getProductsForCollection(slug: string): Promise<[ExtendedProduct[], Collection]> {
     const {collection}: { collection: Collection } = await this.request(collectionQuery, {slug});
     const products = collection?.productVariants?.items?.map(variant => (variant as ProductVariant).product);
-    const deduplicated = this.deduplicate(products?.map(p => this.setLowestPrice(p)) || []);
+    const deduplicated = this.deduplicate(products?.map(p => this.setCalculatedFields(p)) || []);
     return [deduplicated, collection];
   }
 
@@ -190,13 +190,15 @@ export class VendureService {
   }
 
   /**
-   * Set lowest price based on lowest price of variants
+   * Set lowest price based on lowest price of variants and set soldout if all are sold out
    */
-  private setLowestPrice(product: Product): ExtendedProduct {
+  private setCalculatedFields(product: Product): ExtendedProduct {
     const defaultPrice = Math.min(...product.variants.map(v => v.priceWithTax));
+    const available = product.variants.find(v => v.available > 0);
     return {
       ...product,
-      defaultPrice
+      defaultPrice,
+      soldOut: !available
     };
   }
 

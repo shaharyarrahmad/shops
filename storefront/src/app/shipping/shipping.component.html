@@ -4,8 +4,11 @@
 
   <fieldset class="cell small-12">
     <div *ngFor="let method of methods;">
-      <input type="radio" name="shippingMethod" value="{{ method.id }}" id="{{ method.id }}" (change)="select($event.target.value)" [checked]="order?.shippingMethod?.id === method.id" ><label
-      for="{{ method.id }}" class="small-font"> {{ method.name }}  ({{ method.priceWithTax | euro}}) </label>
+
+      <label  for="{{ method.id }}" class="small-font">
+        <input type="radio" name="shippingMethod" value="{{ method.id }}" id="{{ method.id }}" (change)="select($event.target.value)" [checked]="order?.shippingMethod?.id === method.id" >
+        {{ method.name }}  ({{ method.priceWithTax | euro}})
+      </label>
     </div>
   </fieldset>
 

@@ -2367,6 +2367,7 @@ export type ProductVariant = Node & {
   options: Array<ProductOption>;
   facetValues: Array<FacetValue>;
   translations: Array<ProductVariantTranslation>;
+  available?: Maybe<Scalars['Int']>;
   customFields?: Maybe<Scalars['JSON']>;
 };
 
@@ -2685,6 +2686,7 @@ export type ProductVariantFilterParameter = {
   currencyCode?: Maybe<StringOperators>;
   priceIncludesTax?: Maybe<BooleanOperators>;
   priceWithTax?: Maybe<NumberOperators>;
+  available?: Maybe<NumberOperators>;
 };
 
 export type ProductVariantSortParameter = {
@@ -2696,6 +2698,7 @@ export type ProductVariantSortParameter = {
   name?: Maybe<SortOrder>;
   price?: Maybe<SortOrder>;
   priceWithTax?: Maybe<SortOrder>;
+  available?: Maybe<SortOrder>;
 };
 
 export type CustomerFilterParameter = {

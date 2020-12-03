@@ -20,8 +20,9 @@
           <app-async-image [src]="product.assets[0]?.preview" [alt]="product.name"></app-async-image>
         </div>
         <div class="product-overview-description">
-          <p class="product-overview-price">{{ product.defaultPrice | euro}}</p>
-          <p>{{ product.name }}</p>
+          <p *ngIf="product.soldOut" class="product-overview-price">SOLD OUT</p>
+          <p *ngIf="!product.soldOut" class="product-overview-price">{{ product.defaultPrice | euro}}</p>
+          <p class="{{ product.soldOut ? 'sold-out' : ''}}">{{ product.name }}</p>
         </div>
       </a>
     </div>

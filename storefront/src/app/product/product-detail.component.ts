@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   variant: ProductVariant;
   assets: Asset[];
   asset: Asset;
+  soldOut = false;
 
   constructor(private route: ActivatedRoute, private vendureService: VendureService) {
     this.slug = this.route.snapshot.params.slug;
@@ -23,13 +24,14 @@ export class ProductDetailComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.product = await this.vendureService.getProduct(this.slug);
-    this.variant = this.product.variants[0];
+    this.selectVariant(this.product.variants[0].id);
     this.setAssets();
 
   }
 
   selectVariant(variantId: string): void {
     this.variant = this.product.variants.find(v => v.id === variantId);
+    this.soldOut = this.variant.available <= 0;
     this.setAssets();
   }
 
