@@ -17,5 +17,10 @@ export const channelConfig: ChannelConfig[] = [
         channelToken: 'marcdefotograaf9283',
         logoUrl: 'https://shop.marcdefotograaf.nl/marcdefotograaf.png',
         supportEmail: 'info@marcdefotograaf.nl'
+    },{
+        channelName: 'Ben de Boef',
+        channelToken: 'bendeboef',
+        logoUrl: 'https://pinelab-demo-shop.netlify.app/bendeboeflogo.png',
+        supportEmail: 'info@bendeboef.nl'
     }
 ]

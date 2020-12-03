@@ -6,8 +6,13 @@ import path from 'path';
 import {MolliePlugin} from './mollie-payment/mollie-plugin';
 import {GoogleStorageStrategy} from './google-storage-assets/google-storage-strategy';
 import {shopsMailHandlers} from "./email/email.handlers";
+import {PublicStockPlugin} from './public-stock/public-stock.plugin';
+import {CustomStockAllocationStrategy} from './stock-allocation/custom-stock-allocation.strategy';
 
 export const config: VendureConfig = {
+    orderOptions: {
+      stockAllocationStrategy: new CustomStockAllocationStrategy()
+    },
     workerOptions: {
         runInMainProcess: true,
     },
@@ -50,6 +55,7 @@ export const config: VendureConfig = {
     },
     customFields: {},
     plugins: [
+        PublicStockPlugin,
         MolliePlugin,
         AssetServerPlugin.init({
             storageStrategyFactory: () => new GoogleStorageStrategy('pinelab-shops-assets'),
