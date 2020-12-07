@@ -10,7 +10,7 @@ Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 1. Export tax summary over given period 
 1. Monthly email with metrics to Shop owners
 
-## :scroll: Releases
+## :scroll: Release notes
 
 ### Nov 15 2020
 1. Added Collections in storefront for grouping products
