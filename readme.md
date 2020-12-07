@@ -14,7 +14,7 @@ Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
 ### Dec 7 2020
 1. SOLD OUT for products that are out of stock
-1. Upgrade to Vendure 0.17.1 
+1. Upgrade to Vendure 0.17.1    
 ![Sold out](docs/sold-out.jpeg)
 
 ### Nov 15 2020
