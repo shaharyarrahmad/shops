@@ -12,11 +12,16 @@ Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
 ## :scroll: Release notes
 
+### Dec 7 2020
+1. SOLD OUT for products that are out of stock
+1. Upgrade to Vendure 0.17.1 
+![Sold out](docs/sold-out.jpeg)
+
 ### Nov 15 2020
 1. Added Collections in storefront for grouping products
 1. Added support for up to 5 images per product variant   
 ![Collections](docs/collections.jpeg)
-![Collections](docs/multiple-images.jpeg)
+![Multiple images](docs/multiple-images.jpeg)
 
 ### Nov 1 2020
 First shop live! :rocket:
