@@ -6,7 +6,7 @@ An example can be found in `demo-shop/index.html`
 
 Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
-## :round_pushpin: Roadmap for januari 2021
+## :round_pushpin: Roadmap for january 2021
 1. Export tax summary over given period 
 1. Monthly email with metrics to Shop owners
 
