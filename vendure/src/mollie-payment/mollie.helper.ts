@@ -1,5 +1,5 @@
 import createMollieClient, {MollieClient} from '@mollie/api-client';
-import {molliePaymentHandler} from './mollie-handler';
+import {molliePaymentHandler} from './mollie.handler';
 import {PaymentMethod} from '@vendure/core';
 import {Connection} from 'typeorm';
 

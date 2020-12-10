@@ -12,7 +12,8 @@
     "build": "npx tsc",
     "migration:generate": "npx ts-node migration generate",
     "migration:run": "npx ts-node migration run",
-    "migration:revert": "npx ts-node migration revert"
+    "migration:revert": "npx ts-node migration revert",
+    "test": "export SHOP_ENV=.env.test && "
   },
   "resolutions": {
     "tslib": "1.11.2"

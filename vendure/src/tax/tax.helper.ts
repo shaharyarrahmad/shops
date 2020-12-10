@@ -1,7 +1,7 @@
 import {ShippingTaxSummaryLine, TaxSummary, ProductTaxSummaryLine, TaxTotal} from "./tax-summary";
 import {Order} from "@vendure/core";
 
-export class TaxCalculation {
+export class TaxHelper {
 
     /**
      * Get taxSummary per one or multiple orders

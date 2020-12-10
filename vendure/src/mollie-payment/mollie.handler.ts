@@ -1,6 +1,6 @@
 import {CreatePaymentResult, PaymentMethodHandler, SettlePaymentResult} from '@vendure/core';
 import {LanguageCode} from '@vendure/common/lib/generated-types';
-import {MollieHelper} from './mollie-helper';
+import {MollieHelper} from './mollie.helper';
 import createMollieClient from "@mollie/api-client";
 
 export const molliePaymentHandler = new PaymentMethodHandler({

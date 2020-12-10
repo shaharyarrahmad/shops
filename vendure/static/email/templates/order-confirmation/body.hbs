@@ -38,10 +38,9 @@
                         <td>Verzendkosten</td>
                         <td align="right">€ {{ formatMoney order.shipping }}</td>
                     </tr>
-
                     <tr>
-                        <td>Totaal Excl.</td>
-                        <td align="right">€ {{ formatMoney summary.totalExVAT }}</td>
+                        <td><strong>Totaal Incl.</strong></td>
+                        <td align="right"><strong>€ {{ formatMoney summary.totalIncVAT }}</strong></td>
                     </tr>
                     {{#each summary.taxTotal}}
                         <tr>
@@ -53,10 +52,6 @@
                     <tr>
                         <td>Totaal BTW</td>
                         <td align="right">€ {{ formatMoney summary.totalVAT }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Totaal Incl.</strong></td>
-                        <td align="right"><strong>€ {{ formatMoney summary.totalIncVAT }}</strong></td>
                     </tr>
 
                 </mj-table>

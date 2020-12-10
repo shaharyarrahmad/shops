@@ -1,6 +1,6 @@
 import {PluginCommonModule, RuntimeVendureConfig, VendurePlugin} from '@vendure/core';
 import {MollieController} from './mollie.controller';
-import {molliePaymentHandler} from './mollie-handler';
+import {molliePaymentHandler} from './mollie.handler';
 
 @VendurePlugin({
     imports: [PluginCommonModule],

@@ -1,6 +1,6 @@
 import {Body, Controller, Param, Post} from '@nestjs/common';
 import {ChannelService, LanguageCode, OrderService, Payment, RequestContext} from '@vendure/core';
-import {MollieHelper} from './mollie-helper';
+import {MollieHelper} from './mollie.helper';
 import {Connection} from 'typeorm';
 import createMollieClient, {PaymentStatus} from '@mollie/api-client';
 import {PaymentStateMachine} from '@vendure/core/dist/service/helpers/payment-state-machine/payment-state-machine';
