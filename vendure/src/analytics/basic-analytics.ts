@@ -1,13 +1,16 @@
 export interface BasicAnalytics {
+    shopOwnerName: string;
     month: string;
-    mostSoldProducts: AnalyticsProduct[];
-    aov: number;
-    abandonmentRate: number;
+    totalRevenue: number;
+    bestSoldProducts: AnalyticsProduct[];
+    averageOrderValue: number;
+    cartAbandonmentRate: number;
     newCustomers: number;
     recurringCustomers: number;
 }
 
 export interface AnalyticsProduct {
     name: string;
-    price: number;
+    totalRevenue: number;
+    timesSold: number;
 }
