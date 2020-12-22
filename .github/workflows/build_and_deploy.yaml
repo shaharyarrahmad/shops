@@ -1,4 +1,4 @@
-name: Deploy Vendure production
+name: Deploy Index production
 on:
   push:
     branches:

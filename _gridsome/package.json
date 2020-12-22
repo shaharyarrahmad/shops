@@ -7,6 +7,12 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "gridsome": "^0.7.0"
+    "@gridsome/source-graphql": "^0.1.0",
+    "graphql-request": "^3.4.0",
+    "gridsome": "^0.7.0",
+    "shared-components": "file:../shared-components"
+  },
+  "devDependencies": {
+    "graphql-tag": "^2.11.0"
   }
 }
