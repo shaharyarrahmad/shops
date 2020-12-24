@@ -8,7 +8,7 @@ module.exports = {
   siteName: 'Gridsome',
   configureWebpack: {
     resolve: {
-      symlinks:false //npm link
+      symlinks: false //npm link
     },
   },
   plugins: [

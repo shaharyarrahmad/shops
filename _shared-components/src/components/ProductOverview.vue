@@ -1,0 +1,73 @@
+<template>
+  <section id="products">
+
+    <div v-if="$context.collections || $context.collectionName" class="grid-x grid-padding-x">
+      <div class="cell text-center">
+
+        <h1 v-if="$context.collectionName">{{ $context.collectionName }}</h1>
+        <div style="margin-bottom: 20px;" v-if="$context.collection && $context.collection.description">
+          {{ $context.collection.description }}
+        </div>
+
+        <g-link v-for="collection in $context.collections"
+                class="button tiny hollow" style="margin-right: 2px; margin-left: 2px;"
+                v-bind:key="collection.id"
+                :to="`/${collection.slug}/`">{{ collection.name }}
+        </g-link>
+      </div>
+    </div>
+
+    <div class="grid-x grid-padding-x small-up-2 medium-up-4 large-up-4">
+
+      <div
+          v-for="product in $context.products"
+          v-bind:key="product.id"
+          class="cell">
+        <g-link :to="`/product/${product.slug}/`">
+          <div class="product-thumbnail">
+            <AsyncImage :src="product.assets[0].preview" :alt="product.name"></AsyncImage>
+          </div>
+          <div class="product-overview-description">
+            <p v-if="product.soldOut" class="product-overview-price">SOLD OUT</p>
+            <p class="product-overview-price">{{ product.defaultPrice | euro}}</p>
+            <p>{{ product.name }}</p>
+          </div>
+        </g-link>
+
+<!--        <a routerLink="/product/{{ product.slug }}">
+          <div class="product-thumbnail">
+            <app-async-image [src]="product.assets[0]?.preview" [alt]="product.name"></app-async-image>
+          </div>
+          <div class="product-overview-description">
+            <p *ngIf="product.soldOut" class="product-overview-price">SOLD OUT</p>
+            <p *ngIf="!product.soldOut" class="product-overview-price">{{ product.defaultPrice | euro }}</p>
+            <p class="{{ product.soldOut ? 'sold-out' : ''}}">{{ product.name }}</p>
+          </div>
+        </a>
+      >-->
+      </div>
+      <div v-if="$context.products && $context.products.length === 0" class="small-12">
+        Hier zijn nog geen producten helaas...
+      </div>
+
+    </div>
+
+  </section>
+
+
+</template>
+
+<script>
+import Vendure from '../vendure';
+import AsyncImage from './AsyncImage';
+
+export default {
+  components: {
+    AsyncImage
+  },
+  async mounted() {
+    const ding = await Vendure.getProductStock();
+    console.log(`client side`, ding);
+  }
+}
+</script>

@@ -1,4 +1,4 @@
-const {configure} = require('./src/shared/server');
+const config = require('shared-components/config');
 // Server API makes it possible to hook into various parts of Gridsome
 // on server-side and add custom data to the GraphQL data layer.
 // Learn more: https://gridsome.org/docs/server-api/
@@ -12,6 +12,6 @@ module.exports = async function (api) {
     })
 
     api.createPages(async ({createPage, graphql}) => {
-        await configure.createPages(createPage, graphql);
+        await config.createPages(createPage, graphql);
     })
 }

@@ -1,0 +1,16 @@
+{
+  "name": "shared-components",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "copy": "cp node_modules/foundation-sites/dist/js/foundation.min.js .",
+    "sass": "node-sass src/styles.scss -o . --output-style compressed",
+    "build": "npm run copy && npm run sass"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "foundation-sites": "^6.6.3",
+    "node-sass": "^5.0.0"
+  }
+}

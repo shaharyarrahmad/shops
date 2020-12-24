@@ -31,7 +31,7 @@ const productFields = gql`
     }
 `;
 
-const getProducts = gql`{
+const productsQuery = gql`{
     Vendure {
         products {
             items
@@ -40,22 +40,22 @@ const getProducts = gql`{
     }
 }`;
 
-const getStockForProducts = gql`{
-    Vendure {
-        products {
-            items {
-                slug
-                variants {
+const collectionsQuery = gql`
+    {
+        Vendure {
+            collections {
+                items {
                     id
-                    available
-                    priceWithTax
+                    name
+                    slug
                 }
             }
         }
     }
-}`;
+`;
 
 module.exports = {
-    getProducts,
-    productFields
+    productsQuery,
+    productFields,
+    collectionsQuery
 };
