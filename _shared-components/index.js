@@ -3,7 +3,6 @@ import AsyncImage from './src/components/AsyncImage';
 import Product from './src/components/Product.vue';
 import ProductOverview from './src/components/ProductOverview.vue';
 import styles from './styles.css';
-import foundation from './foundation.min';
 
 export {
     Vendure,
@@ -11,5 +10,4 @@ export {
     Product,
     ProductOverview,
     styles,
-    foundation
 }

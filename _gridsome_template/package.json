@@ -11,8 +11,7 @@
     "gridsome": "*",
     "@gridsome/source-graphql": "*",
     "graphql-request": "*",
-    "graphql-tag": "*",
-    "jquery": "*"
+    "graphql-tag": "*"
   },
   "devDependencies": {}
 }
