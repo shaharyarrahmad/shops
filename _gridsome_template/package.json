@@ -7,9 +7,13 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "shared-components": "file:../_shared-components",
-    "gridsome": "*",
-    "@gridsome/source-graphql": "*"
+    "shared-components": "file:../_shared-components"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.3.0",
+    "gridsome": "*",
+    "@gridsome/source-graphql": "*",
+    "graphql-request": "*",
+    "graphql-tag": "*"
+  }
 }
