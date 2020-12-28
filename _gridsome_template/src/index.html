@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ${htmlAttrs}>
+<head>
+    ${head}
+</head>
+<body ${bodyAttrs}>
+${app}
+${scripts}
+<script defer src="/foundation.min.js"></script>
+<script defer src="/jquery.min.js"></script>
+<script>
+    window.onload = function () {
+        $(document).foundation();
+    }
+</script>
+</body>
+</html>

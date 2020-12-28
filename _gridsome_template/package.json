@@ -7,13 +7,12 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
+    "@fontsource/roboto-mono": "^4.0.1",
     "shared-components": "file:../_shared-components"
   },
   "devDependencies": {
     "webpack-bundle-analyzer": "^4.3.0",
     "gridsome": "*",
-    "@gridsome/source-graphql": "*",
-    "graphql-request": "*",
-    "graphql-tag": "*"
+    "@gridsome/source-graphql": "*"
   }
 }

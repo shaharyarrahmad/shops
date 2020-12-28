@@ -1,5 +1,4 @@
-const {productsQuery} = require('./src/server.queries');
-const {collectionsQuery} = require('./src/server.queries');
+const {productsQuery, collectionsQuery} = require('./src/server.queries');
 const Vendure = require('./src/vendure');
 
 /**

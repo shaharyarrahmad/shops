@@ -1,5 +1,4 @@
 const {GraphQLClient} = require('graphql-request');
-const {print} = require('graphql/language/printer');
 const {getStockForProducts} = require('./client.queries');
 
 module.exports = {
@@ -19,7 +18,7 @@ module.exports = {
         if (token) {
             this.client.setHeader('Authorization', `Bearer ${token}`);
         }
-        const {data, headers, errors} = await this.client.rawRequest(print(document), variables);
+        const {data, headers, errors} = await this.client.rawRequest(document, variables);
         if (errors) {
             throw errors;
         }

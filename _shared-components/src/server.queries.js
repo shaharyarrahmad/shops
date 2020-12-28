@@ -1,6 +1,4 @@
-const gql = require('graphql-tag');
-
-const productFields = gql`
+const productFields = `
     {
         id
         name
@@ -31,7 +29,7 @@ const productFields = gql`
     }
 `;
 
-const productsQuery = gql`{
+const productsQuery = `{
     Vendure {
         products {
             items
@@ -40,7 +38,7 @@ const productsQuery = gql`{
     }
 }`;
 
-const collectionsQuery = gql`
+const collectionsQuery = `
     {
         Vendure {
             collections {

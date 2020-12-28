@@ -1,6 +1,4 @@
-const gql = require('graphql-tag');
-
-const getStockForProducts = gql`{
+const getStockForProducts = `{
     products {
         items {
             slug
