@@ -9,9 +9,7 @@
   "dependencies": {
     "shared-components": "file:../_shared-components",
     "gridsome": "*",
-    "@gridsome/source-graphql": "*",
-    "graphql-request": "*",
-    "graphql-tag": "*"
+    "@gridsome/source-graphql": "*"
   },
   "devDependencies": {}
 }
