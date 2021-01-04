@@ -1,5 +1,7 @@
 <template>
-  <ProductOverview/>
+  <Layout>
+    <ProductOverview/>
+  </Layout>
 </template>
 
 <script>

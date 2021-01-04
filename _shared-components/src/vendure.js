@@ -1,18 +1,31 @@
 const {GraphQLClient} = require('graphql-request');
-const {getStockForProducts} = require('./client.queries');
+const {getStockForProductsQuery, getProductQuery, addItemToOrderMutation} = require('./client.queries');
 
-module.exports = {
-
+const Vendure = {
     client: new GraphQLClient(process.env.GRIDSOME_VENDURE_API, {
         headers: {'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN},
     }),
 
-    getProductStock: async function () {
-        const {products} = await this.request(getStockForProducts);
+    async getStockForProducts() {
+        const {products} = await this.request(getStockForProductsQuery);
         return products.items.map((p) => this.setCalculatedFields(p));
     },
 
-    request: async function (document, variables) {
+    async getProduct(slug) {
+        const {product} = await this.request(getProductQuery, {slug});
+        return this.setCalculatedFields(product);
+    },
+
+    async addProductToCart(productVariantId, quantity) {
+        const {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
+        this.validateResult(order);
+        this.activeOrder$.next(order);
+        await this.setLowestShippingMethod();
+        return order;
+    },
+
+
+    async request(document, variables) {
         const tokenName = 'vendure-auth-token';
         let token = window.localStorage.getItem(tokenName);
         if (token) {
@@ -40,15 +53,9 @@ module.exports = {
             defaultPrice,
             soldOut: !available
         };
-    },
-    /**
-     * Set lowest price based on lowest price of variants
-     */
-    setDefaultPrice: function (product) {
-        const defaultPrice = Math.min(...product.variants.map(v => v.priceWithTax));
-        return {
-            ...product,
-            defaultPrice,
-        };
     }
+}
+
+module.exports = {
+    Vendure
 }

@@ -7,12 +7,22 @@
 <script>
 export default {
   props: ['src', 'alt'],
-  async mounted() {
-    // If not ready or already loaded
-    if (!this.src || !this.$refs?.img?.src || !this.$refs.img.src === this.src) {
-      return;
+  watch: {
+    src: function () {
+      this.load();
     }
-    this.$refs.img.src = this.src;
+  },
+  methods: {
+    load() {
+      // If not ready or already loaded
+      if (!this.src || !this.$refs?.img?.src || this.$refs.img.src === this.src) {
+        return;
+      }
+      this.$refs.img.src = this.src;
+    }
+  },
+  async mounted() {
+    this.load();
   }
 }
 </script>

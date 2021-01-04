@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <Layout>
     <Product/>
-    <p>onder product</p>
-  </div>
+  </Layout>
 </template>
 <script>
 import {Product} from 'shared-components';

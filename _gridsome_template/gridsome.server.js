@@ -12,14 +12,18 @@ module.exports = async function (api) {
         // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     })
 
+/*    api.createPages(async ({createPage, graphql}) => {
+        await config.createPages(createPage, graphql);
+    })*/
+
     api.createPages(async ({createPage, graphql}) => {
         await config.createPages(createPage, graphql);
     })
 
-    api.chainWebpack(config => {
+/*    api.chainWebpack(config => {
         config
             .plugin('BundleAnalyzerPlugin')
             .use(BundleAnalyzerPlugin, [{analyzerMode: 'static'}])
-    })
+    })*/
 
 }

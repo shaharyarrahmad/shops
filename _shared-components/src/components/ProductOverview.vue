@@ -29,22 +29,11 @@
           </div>
           <div class="product-overview-description">
             <p v-if="product.soldOut" class="product-overview-price">SOLD OUT</p>
-            <p class="product-overview-price">{{ product.defaultPrice | euro}}</p>
-            <p>{{ product.name }}</p>
+            <p v-if="!product.soldOut" class="product-overview-price">{{ product.defaultPrice | euro }}</p>
+            <p :class="product.soldOut ? 'sold-out' : ''">{{ product.name }}</p>
           </div>
         </g-link>
 
-<!--        <a routerLink="/product/{{ product.slug }}">
-          <div class="product-thumbnail">
-            <app-async-image [src]="product.assets[0]?.preview" [alt]="product.name"></app-async-image>
-          </div>
-          <div class="product-overview-description">
-            <p *ngIf="product.soldOut" class="product-overview-price">SOLD OUT</p>
-            <p *ngIf="!product.soldOut" class="product-overview-price">{{ product.defaultPrice | euro }}</p>
-            <p class="{{ product.soldOut ? 'sold-out' : ''}}">{{ product.name }}</p>
-          </div>
-        </a>
-      >-->
       </div>
       <div v-if="$context.products && $context.products.length === 0" class="small-12">
         Hier zijn nog geen producten helaas...
@@ -53,12 +42,10 @@
     </div>
 
   </section>
-
-
 </template>
 
 <script>
-import Vendure from '../vendure';
+import {Vendure} from '../vendure';
 import AsyncImage from './AsyncImage';
 
 export default {
@@ -66,8 +53,14 @@ export default {
     AsyncImage
   },
   async mounted() {
-    const ding = await Vendure.getProductStock();
-    console.log(`client side`, ding);
+    const products = await Vendure.getStockForProducts();
+    // Rehydrate products.soldOut
+    this.$context.products.forEach(p => {
+      const hydratedProd = products.find(hp => hp.id === p.id);
+      if (hydratedProd) {
+        p.soldOut = hydratedProd.soldOut
+      }
+    });
   }
 }
 </script>

@@ -1,5 +1,6 @@
+const {cart} = require('./src/cart');
 const {productsQuery, collectionsQuery} = require('./src/server.queries');
-const Vendure = require('./src/vendure');
+const {Vendure} = require('./src/vendure');
 
 /**
  * Used by gridsome.server.config.js. Populates the context with data needed for static sites
@@ -14,7 +15,7 @@ module.exports = {
             graphql(collectionsQuery)
         ]);
 
-        products = products.map(p => Vendure.setDefaultPrice(p));
+        products = products.map(p => Vendure.setCalculatedFields(p));
 
         // product detail
         products.forEach((product) => {
@@ -40,7 +41,7 @@ module.exports = {
     /**
      * Configure global Vue stuff
      */
-    configureVue: function (Vue) {
+    configureVue: function (Vue, isClient) {
         Vue.filter('euro', function (value, format) {
             if (!value) {
                 value = 0;
@@ -50,6 +51,9 @@ module.exports = {
                 return currencyString.replace(new RegExp('00$'), '-');
             }
             return currencyString;
-        })
+        });
+        if (isClient) {
+            Vue.prototype.$cart = cart;
+        }
     }
 }

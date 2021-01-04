@@ -1,25 +1,12 @@
 <template>
-  <div class="layout">
-    <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-      </nav>
-    </header>
-    <slot/>
+  <div class="grid-x grid-padding-x">
+    <div class="cell show-for-large large-3"></div>
+    <div class="cell small-12 large-6">
+      <slot/>
+    </div>
+    <div class="cell show-for-large large-3"></div>
   </div>
 </template>
-
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-}
-</static-query>
 
 <style>
 </style>
