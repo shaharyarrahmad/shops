@@ -55,8 +55,8 @@ export const orderFields = gql`
     code
     state
     active
-    total
-    subTotal
+    totalWithTax
+    subTotalWithTax
     shippingWithTax
     customer {
       id
@@ -73,15 +73,17 @@ export const orderFields = gql`
       postalCode
       country
     }
-    shippingMethod {
-      id
-      code
-      name
+    shippingLines {
+      shippingMethod {
+        id
+        code
+        name
+      }
     }
     lines {
       id
       quantity
-      totalPrice
+      linePriceWithTax
       featuredAsset {
         id
         preview
@@ -139,7 +141,7 @@ export const addItemToOrderMutation = gql`
 
 export const adjustOrderLineMutation = gql`
   ${orderFields}
-  mutation adjustOrderLine($orderLineId: ID!, $quantity: Int){
+  mutation adjustOrderLine($orderLineId: ID!, $quantity: Int!){
     adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
       ... on Order {
         ...orderFields
@@ -169,7 +171,13 @@ export const setOrderShippingAddressMutation = gql`
   ${orderFields}
   mutation setOrderShippingAddress($input: CreateAddressInput!){
     setOrderShippingAddress(input: $input) {
-      ...orderFields
+      ... on Order {
+        ...orderFields
+      }
+      ... on NoActiveOrderError {
+        errorCode
+        message
+      }
     }
   }`;
 

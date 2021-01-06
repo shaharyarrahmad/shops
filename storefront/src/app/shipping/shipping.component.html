@@ -6,7 +6,7 @@
     <div *ngFor="let method of methods;">
 
       <label  for="{{ method.id }}" class="small-font">
-        <input type="radio" name="shippingMethod" value="{{ method.id }}" id="{{ method.id }}" (change)="select($event.target.value)" [checked]="order?.shippingMethod?.id === method.id" >
+        <input type="radio" name="shippingMethod" value="{{ method.id }}" id="{{ method.id }}" (change)="select($event.target.value)" [checked]="order?.shippingLines[0].shippingMethod?.id === method.id" >
         {{ method.name }}  ({{ method.priceWithTax | euro}})
       </label>
     </div>
@@ -18,7 +18,7 @@
     <p>Subtotaal: </p>
   </div>
   <div class="cell">
-    <p> {{ order?.subTotal | euro: 'leaveZeros' }}</p>
+    <p> {{ order?.subTotalWithTax | euro: 'leaveZeros' }}</p>
   </div>
   <div class="cell">
     <p>Verzendkosten: </p>
@@ -30,7 +30,7 @@
     <p>Totaal: </p>
   </div>
   <div class="cell">
-    <strong> {{ order?.total | euro: 'leaveZeros' }}</strong>
+    <strong> {{ order?.totalWithTax | euro: 'leaveZeros' }}</strong>
   </div>
   <div class="cell"></div>
   <div class="cell">

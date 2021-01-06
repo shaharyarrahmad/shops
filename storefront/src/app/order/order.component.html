@@ -30,7 +30,7 @@
         <td>{{ line.productVariant?.product?.name }}</td>
         <!--<td>{{ line.productVariant?.priceWithTax | euro }}</td>-->
         <td>{{ line.quantity }}</td>
-        <td>{{ line.totalPrice | euro }}</td>
+        <td>{{ line.linePriceWithTax | euro }}</td>
       </tr>
       <tr>
         <td>&nbsp;</td>
@@ -47,7 +47,7 @@
         <td>Totaal:</td>
         <td></td>
         <!--<td></td>-->
-        <td>{{ order?.total | euro }}</td>
+        <td>{{ order?.totalWithTax | euro }}</td>
       </tr>
       </tbody>
     </table>
