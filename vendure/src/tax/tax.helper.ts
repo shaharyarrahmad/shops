@@ -19,8 +19,8 @@ export class TaxHelper {
                 VAT: line.lineTax
             })
         );
-        let totalIncVAT = order.total
-        let totalExVAT = order.subTotalBeforeTax; // this excludes shipping
+        let totalIncVAT = order.totalWithTax
+        let totalExVAT = order.subTotal; // this excludes shipping
         let totalVAT = order.taxSummary.map(summary => summary.taxTotal).reduce((a, b) => a + b); // total taxes without shippingTax
         // Calculate shipping
         const maxTax = Math.max(...order.taxSummary.map(summary => summary.taxRate));
