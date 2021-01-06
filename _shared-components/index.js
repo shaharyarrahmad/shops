@@ -3,6 +3,7 @@ import AsyncImage from './src/components/AsyncImage';
 import Product from './src/components/Product.vue';
 import ProductOverview from './src/components/ProductOverview.vue';
 import HeaderCart from './src/components/HeaderCart.vue';
+import Cart from './src/components/Cart.vue';
 import styles from './styles.css';
 
 export {
@@ -11,5 +12,6 @@ export {
     Product,
     ProductOverview,
     HeaderCart,
+    Cart,
     styles,
 }

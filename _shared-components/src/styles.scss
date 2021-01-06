@@ -18,7 +18,7 @@ $button-background: $body-font-color;
 // @include foundation-grid;
 // @include foundation-flex-grid;
 
-// Generic components
+// Generic pages
 @include foundation-button;
 //@include foundation-button-group;
 //@include foundation-close-button;
@@ -28,7 +28,7 @@ $button-background: $body-font-color;
 //@include foundation-switch;
 @include foundation-table;
 
-// Basic components
+// Basic pages
 @include foundation-badge;
 //@include foundation-breadcrumbs;
 //@include foundation-callout;
@@ -53,7 +53,7 @@ $button-background: $body-font-color;
 //@include foundation-drilldown-menu;
 //@include foundation-dropdown-menu;
 
-// Layout components
+// Layout pages
 @include foundation-off-canvas;
 @include foundation-reveal;
 // @include foundation-sticky;
