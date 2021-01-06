@@ -25,7 +25,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
             const mollieClient = createMollieClient({apiKey});
             const payment = await mollieClient.payments.create({
                 amount: {
-                    value: `${(order.total / 100).toFixed(2)}`,
+                    value: `${(order.totalWithTax / 100).toFixed(2)}`,
                     currency: 'EUR',
                 },
                 metadata: {
@@ -36,7 +36,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                 webhookUrl: `${process.env.VENDURE_HOST}/payments/mollie/${metadata.channel}`
             });
             return {
-                amount: order.total,
+                amount: order.totalWithTax,
                 transactionId: payment.id,
                 state: 'Authorized' as const,
                 metadata: {
@@ -47,7 +47,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
             };
         } catch (err) {
             return {
-                amount: order.total,
+                amount: order.totalWithTax,
                 state: 'Declined' as const,
                 metadata: {
                     errorMessage: err.message,

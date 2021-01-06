@@ -16,7 +16,8 @@ export const channelConfig: ChannelConfig[] = [
         channelName: 'Marc de Fotograaf',
         channelToken: 'marcdefotograaf9283',
         logoUrl: 'https://shop.marcdefotograaf.nl/marcdefotograaf.png',
-        supportEmail: 'info@marcdefotograaf.nl'
+        // supportEmail: 'info@marcdefotograaf.nl'
+        supportEmail: 'martijn@pinelab.studio'
     },{
         channelName: 'Ben de Boef',
         channelToken: 'bendeboef',
