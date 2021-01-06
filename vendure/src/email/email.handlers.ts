@@ -1,6 +1,5 @@
 import {EmailEventHandler, EmailEventListener} from "@vendure/email-plugin";
-import {OrderService, OrderStateTransitionEvent} from "@vendure/core";
-import {mockOrderStateTransitionEvent} from "@vendure/email-plugin/lib/src/mock-events";
+import {OrderStateTransitionEvent} from "@vendure/core";
 import {TaxCalculation} from "../tax/tax-calculation";
 import {channelConfig} from "../channel-config/channel-config";
 
@@ -8,7 +7,8 @@ export const orderConfirmationHandler = new EmailEventListener('order-confirmati
     .on(OrderStateTransitionEvent)
     .filter(event => event.toState === 'PaymentSettled' && !!event.order.customer)
     // .setRecipient(event => event.order.customer!.emailAddress)
-    .loadData(async ({ event, injector}) => {
+    .loadData(async ({event, injector}) => {
+        console.error('KOMTIE HIEEER');
         const config = channelConfig.find(c => c.channelToken === event.ctx.channel.token);
         return {config};
     })

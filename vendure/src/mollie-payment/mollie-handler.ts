@@ -19,13 +19,13 @@ export const molliePaymentHandler = new PaymentMethodHandler({
     },
 
     /** This is called when the `addPaymentToOrder` mutation is executed */
-    createPayment: async (ctx, order, args, metadata): Promise<CreatePaymentResult> => {
+    createPayment: async (ctx, order,amount,  args, metadata): Promise<CreatePaymentResult> => {
         try {
             const {apiKey, host} = MollieHelper.getConfig(args.channelKeys, metadata.channel);
             const mollieClient = createMollieClient({apiKey});
             const payment = await mollieClient.payments.create({
                 amount: {
-                    value: `${(order.total / 100).toFixed(2)}`,
+                    value: `${(order.totalWithTax / 100).toFixed(2)}`,
                     currency: 'EUR',
                 },
                 metadata: {
@@ -36,7 +36,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                 webhookUrl: `${process.env.VENDURE_HOST}/payments/mollie/${metadata.channel}`
             });
             return {
-                amount: order.total,
+                amount: order.totalWithTax,
                 transactionId: payment.id,
                 state: 'Authorized' as const,
                 metadata: {
@@ -47,7 +47,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
             };
         } catch (err) {
             return {
-                amount: order.total,
+                amount: order.totalWithTax,
                 state: 'Declined' as const,
                 metadata: {
                     errorMessage: err.message,

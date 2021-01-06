@@ -11,7 +11,6 @@ import {ActivatedRoute} from '@angular/router';
 export class OrderComponent implements OnInit {
 
   order: Order;
-  pollingCount: number;
   code: string;
   error: string;
 
@@ -20,21 +19,25 @@ export class OrderComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.pollingCount = 0;
-    this.order = await this.vendureService.getOrderByCode(this.code);
-    if (this.order?.state !== 'PaymentSettled') {
-      if (this.pollingCount > 10) {
-        this.error = 'Er is iets misgegaan, neem contact met ons op.';
+    let pollingCount = 0;
+    try {
+      while (this.order?.state !== 'PaymentSettled') {
+        if (pollingCount > 10) {
+          this.error = 'Er is iets misgegaan, neem contact met ons op.';
+          break;
+        }
+        this.order = await this.vendureService.getOrderByCode(this.code);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        pollingCount++;
+        console.log(`Polling for payment status ${pollingCount}`);
       }
-      setTimeout(() => this.vendureService.getOrderByCode(this.code)
-        .then(o => this.order = o)
-        .catch((e) => {
-        this.error = e.message;
-      }), 1000);
-      this.pollingCount++;
-      console.log(`Polling for payment status ${this.pollingCount}`);
+    } catch (e) {
+      this.error = e.message;
     }
+
   }
+
+
 
 /*  ngOnDestroy(): void {
     this.orderSubscription.unsubscribe();
