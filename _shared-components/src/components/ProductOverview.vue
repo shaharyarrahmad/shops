@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import {Vendure} from '../vendure';
 import AsyncImage from './AsyncImage';
 
 export default {
@@ -53,7 +52,7 @@ export default {
     AsyncImage
   },
   async mounted() {
-    const products = await Vendure.getStockForProducts();
+    const products = await this.$vendure.getStockForProducts();
     // Rehydrate products.soldOut
     this.$context.products.forEach(p => {
       const hydratedProd = products.find(hp => hp.id === p.id);

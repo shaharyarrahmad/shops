@@ -1,29 +1,68 @@
 const {GraphQLClient} = require('graphql-request');
-const {getStockForProductsQuery, getProductQuery, addItemToOrderMutation} = require('./client.queries');
+const {getStockForProductsQuery, eligibleShippingMethodsQuery, getProductQuery, addItemToOrderMutation, getActiveOrderQuery, setOrderShippingMethodMutation} = require('./client.queries');
 
-const Vendure = {
-    client: new GraphQLClient(process.env.GRIDSOME_VENDURE_API, {
-        headers: {'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN},
-    }),
+class Vendure {
+
+    constructor(store) {
+        this.client = new GraphQLClient(process.env.GRIDSOME_VENDURE_API, {
+            headers: {'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN},
+        });
+        this.$store = store;
+        this.getActiveOrder().then(order => this.$store.activeOrder = order);
+    }
 
     async getStockForProducts() {
         const {products} = await this.request(getStockForProductsQuery);
-        return products.items.map((p) => this.setCalculatedFields(p));
-    },
+        return products.items.map((p) => setCalculatedFields(p));
+    }
 
     async getProduct(slug) {
         const {product} = await this.request(getProductQuery, {slug});
-        return this.setCalculatedFields(product);
-    },
+        return setCalculatedFields(product);
+    }
 
     async addProductToCart(productVariantId, quantity) {
         const {addItemToOrder: order} = await this.request(addItemToOrderMutation, {productVariantId, quantity});
         this.validateResult(order);
-        this.activeOrder$.next(order);
+        this.$store.activeOrder = order;
         await this.setLowestShippingMethod();
         return order;
-    },
+    }
 
+    async setLowestShippingMethod() {
+        const methods = await this.getEligibleShippingMethods();
+        const [defaultMethod] = methods
+            .sort((a, b) => a.priceWithTax - b.priceWithTax);
+        if (defaultMethod) {
+            await this.setOrderShippingMethod(defaultMethod.id);
+        } else {
+            console.error(`No default shipping found`);
+        }
+    }
+
+    async getEligibleShippingMethods() {
+        const {eligibleShippingMethods} = await this.request(eligibleShippingMethodsQuery);
+        return eligibleShippingMethods;
+    }
+
+    async setOrderShippingMethod(shippingMethodId) {
+        const {setOrderShippingMethod} = await this.request(setOrderShippingMethodMutation, {shippingMethodId});
+        this.validateResult(setOrderShippingMethod);
+        this.$store.activeOrder = setOrderShippingMethod;
+        return setOrderShippingMethod;
+    }
+
+    async getActiveOrder() {
+        const {activeOrder} = await this.request(getActiveOrderQuery);
+        this.$store.activeOrder = activeOrder;
+        return activeOrder;
+    }
+
+    validateResult(order) {
+        if ((order).errorCode) {
+            throw Error(order.message);
+        }
+    }
 
     async request(document, variables) {
         const tokenName = 'vendure-auth-token';
@@ -40,22 +79,24 @@ const Vendure = {
             window.localStorage.setItem(tokenName, token);
         }
         return data;
-    },
-
-    /**
-     * Set lowest price based on lowest price of variants and set soldout if all are sold out
-     */
-    setCalculatedFields: function (product) {
-        const defaultPrice = Math.min(...product.variants.map(v => v.priceWithTax));
-        const available = product.variants.find(v => v.available > 0);
-        return {
-            ...product,
-            defaultPrice,
-            soldOut: !available
-        };
     }
+
+}
+
+/**
+ * Set lowest price based on lowest price of variants and set soldout if all are sold out
+ */
+function setCalculatedFields(product) {
+    const defaultPrice = Math.min(...product.variants.map(v => v.priceWithTax));
+    const available = product.variants.find(v => v.available > 0);
+    return {
+        ...product,
+        defaultPrice,
+        soldOut: !available
+    };
 }
 
 module.exports = {
-    Vendure
+    Vendure,
+    setCalculatedFields
 }

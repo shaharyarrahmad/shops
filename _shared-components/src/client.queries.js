@@ -6,8 +6,8 @@ const orderFields = `
     code
     state
     active
-    total
-    subTotal
+    totalWithTax
+    subTotalWithTax
     shippingWithTax
     customer {
       id
@@ -24,15 +24,17 @@ const orderFields = `
       postalCode
       country
     }
-    shippingMethod {
-      id
-      code
-      name
+    shippingLines {
+      shippingMethod {
+        id
+        code
+        name
+      }
     }
     lines {
       id
       quantity
-      totalPrice
+      linePriceWithTax
       featuredAsset {
         id
         preview
@@ -87,8 +89,39 @@ const addItemToOrderMutation = `
         }
     }`;
 
+const getActiveOrderQuery = `
+    query activeOrder {
+        activeOrder ${orderFields}
+    }
+`;
+
+const eligibleShippingMethodsQuery =`
+    {
+        eligibleShippingMethods {
+            id
+            price
+            priceWithTax
+            name
+            metadata
+        }
+    }`;
+
+const setOrderShippingMethodMutation = `
+    mutation setOrderShippingMethod($shippingMethodId: ID!){
+        setOrderShippingMethod(shippingMethodId: $shippingMethodId) {
+            ... on Order ${orderFields}
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+        }
+    }`;
+
 module.exports = {
     getStockForProductsQuery,
     getProductQuery,
-    addItemToOrderMutation
+    addItemToOrderMutation,
+    getActiveOrderQuery,
+    eligibleShippingMethodsQuery,
+    setOrderShippingMethodMutation
 };

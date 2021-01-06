@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import {Vendure} from '../vendure';
 
 export default {
   props: ['variant'],
@@ -41,8 +40,8 @@ export default {
       if (this.soldOut) {
         return;
       }
-      this.$cart.setActiveOrder({dingen: 'dinges'})
-      // Vendure.addProductToCart(this.variant.id, 1);
+      // this.$store.activeOrder = {dingen: 'dinges'}
+      this.$vendure.addProductToCart(this.variant.id, 1);
     },
     isSoldOut(variant) {
       this.soldOut = variant?.available <= 0;

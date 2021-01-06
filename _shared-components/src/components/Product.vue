@@ -1,14 +1,9 @@
 <template>
   <section id="product">
 
-
-    <HeaderCart></HeaderCart>
-
     <div class="grid-x small-up-1 medium-up-2 large-up-2 grid-padding-x grid-padding-y">
-
       <div class="cell">
         <AsyncImage :src="asset.preview" :alt="$context.product.name"></AsyncImage>
-
         <div v-if="assets && assets.length > 1" class="grid-x small-up-5" style="margin-right: -6px;">
           <div class="cell asset" v-for="asset of assets">
             <div class="product-thumbnail" v-on:click="selectAsset(asset)">
@@ -41,7 +36,6 @@
 import AsyncImage from './AsyncImage';
 import BuyButton from './BuyButton';
 import HeaderCart from './HeaderCart';
-import {Vendure} from '../vendure';
 
 export default {
   components: {
@@ -94,7 +88,7 @@ export default {
     this.load();
   },
   async mounted() {
-    this.$context.product = await Vendure.getProduct(this.$context.product.slug);
+    this.$context.product = await this.$vendure.getProduct(this.$context.product.slug);
     this.load();
   }
 }
