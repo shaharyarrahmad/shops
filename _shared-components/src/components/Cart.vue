@@ -6,11 +6,11 @@
           <p>Totaal: </p>
         </div>
         <div class="cell">
-          <strong> {{ $store.activeOrder.totalWithTax | euro }}</strong>
+          <strong> {{ activeOrder.totalWithTax | euro }}</strong>
         </div>
       </div>
 
-      <div v-for="line order?.lines; let i = index" class="grid-x small-font {{ (i % 2 === 0) ? 'accent-row' : ''}}"
+<!--      <div v-for="line order?.lines; let i = index" class="grid-x small-font {{ (i % 2 === 0) ? 'accent-row' : ''}}"
            style="padding: 10px;">
         <div class="cell small-4 medium-3 large-2">
           <div class="product-thumbnail">
@@ -23,7 +23,7 @@
           <span class="cart-price">{{ line.productVariant?.priceWithTax | euro}}</span>
           <app-number-input [value]="line.quantity" (numberChange)="updateQuantity(line.id, $event)"></app-number-input>
         </div>
-      </div>
+      </div>-->
 
       <!--
 
@@ -75,9 +75,12 @@ export default {
     }
   },
   computed: {
+    activeOrder() {
+      return this.$store?.activeOrder || {}
+    },
     orderLines() {
-      return this.$store.activeOrder?.lines?.length;
-    }
+      return this.activeOrder?.lines?.length;
+    },
   },
   async mounted() {
     this.$context.hideCartIcon = true;

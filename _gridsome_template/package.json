@@ -8,12 +8,11 @@
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "graphql-request": "*",
-    "shared-components": "file:../_shared-components"
-  },
-  "devDependencies": {
-    "webpack-bundle-analyzer": "^4.3.0",
+    "shared-components": "file:../_shared-components",
     "gridsome": "*",
     "@gridsome/source-graphql": "*"
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.3.0"
   }
 }

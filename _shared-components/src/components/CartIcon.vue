@@ -25,8 +25,7 @@
 export default {
   computed: {
     nrOfItems() {
-      return this.$store
-              .activeOrder?.lines?.map(l => l.quantity)
+      return this.$store?.activeOrder?.lines?.map(l => l.quantity)
               .reduce((quantity1, quantity2) => quantity1 + quantity2)
           || 0;
     }

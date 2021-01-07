@@ -44,7 +44,7 @@ export default {
       return this.$route?.fullPath?.indexOf('/cart/') > -1;
     },
     showOrderButton() {
-      return this.$store.activeOrder?.lines?.length > 0
+      return this.$store?.activeOrder?.lines?.length > 0
           && (this.$route?.fullPath?.indexOf('/cart/') > -1);
     },
     progress() {
