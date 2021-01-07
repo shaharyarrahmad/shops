@@ -1,5 +1,13 @@
 const {GraphQLClient} = require('graphql-request');
-const {getStockForProductsQuery, eligibleShippingMethodsQuery, getProductQuery, addItemToOrderMutation, getActiveOrderQuery, setOrderShippingMethodMutation} = require('./client.queries');
+const {
+    getStockForProductsQuery,
+    adjustOrderLineMutation,
+    eligibleShippingMethodsQuery,
+    getProductQuery,
+    addItemToOrderMutation,
+    getActiveOrderQuery,
+    setOrderShippingMethodMutation
+} = require('./client.queries');
 
 class Vendure {
 
@@ -58,6 +66,13 @@ class Vendure {
         return activeOrder;
     }
 
+    async adjustOrderLine(orderLineId, quantity) {
+        const {adjustOrderLine: activeOrder} = await this.request(adjustOrderLineMutation, {orderLineId, quantity});
+        this.validateResult(activeOrder);
+        this.$store.activeOrder = activeOrder;
+        return activeOrder;
+    }
+
     validateResult(order) {
         if ((order).errorCode) {
             throw Error(order.message);
@@ -96,7 +111,22 @@ function setCalculatedFields(product) {
     };
 }
 
+/**
+ * Remove duplicate products from given list of products
+ */
+function deduplicate(products) {
+    const uniq = [];
+    return products.filter((prod) => {
+        if (uniq.indexOf(prod.slug) === -1) {
+            uniq.push(prod.slug);
+            return true;
+        }
+        return false;
+    });
+}
+
 module.exports = {
     Vendure,
-    setCalculatedFields
+    setCalculatedFields,
+    deduplicate
 }

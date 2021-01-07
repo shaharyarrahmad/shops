@@ -1,4 +1,4 @@
-const {setCalculatedFields, Vendure} = require('./src/vendure');
+const {setCalculatedFields, deduplicate, Vendure} = require('./src/vendure');
 const {productsQuery, collectionsQuery} = require('./src/server.queries');
 
 /**
@@ -16,10 +16,10 @@ module.exports = {
 
         products = products.map(p => setCalculatedFields(p));
 
-        // product detail
+        // Product detail
         products.forEach((product) => {
             createPageFn({
-                path: `/product/${product.slug}`,
+                path: `/product/${product.slug}/`,
                 component: './src/templates/Product.vue',
                 context: {
                     product,
@@ -28,7 +28,7 @@ module.exports = {
             })
         });
 
-        // product overview
+        // Product overview
         createPageFn({
             path: `/`,
             component: './src/templates/Index.vue',
@@ -37,6 +37,23 @@ module.exports = {
                 collections
             }
         });
+
+        // Collections
+        collections.forEach(collection => {
+            let productsPerCollection = collection.productVariants.items.map(variant => variant.product);
+            productsPerCollection = deduplicate(productsPerCollection);
+            productsPerCollection = productsPerCollection.map(p => setCalculatedFields(p));
+            delete collection.productVariants; // We don't need this in __initial_state__, saves some Kb data
+            createPageFn({
+                path: `/${collection.slug}/`,
+                component: './src/templates/Index.vue',
+                context: {
+                    products: productsPerCollection,
+                    collection,
+                }
+            });
+        });
+
     },
     /**
      * Configure global Vue stuff

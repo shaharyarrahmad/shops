@@ -5,6 +5,7 @@ import ProductOverview from './src/components/ProductOverview.vue';
 import CartIcon from './src/components/CartIcon.vue';
 import Cart from './src/components/Cart.vue';
 import NavBar from './src/components/NavBar.vue';
+import CustomerDetails from './src/components/CustomerDetails.vue';
 import styles from './styles.css';
 
 export {
@@ -15,5 +16,6 @@ export {
     CartIcon,
     Cart,
     NavBar,
+    CustomerDetails,
     styles,
 }

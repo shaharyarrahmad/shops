@@ -46,6 +46,12 @@ const collectionsQuery = `
                     id
                     name
                     slug
+                    description
+                    productVariants {
+                        items {
+                          product ${productFields}
+                        }
+                      }
                 }
             }
         }

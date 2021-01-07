@@ -95,7 +95,7 @@ const getActiveOrderQuery = `
     }
 `;
 
-const eligibleShippingMethodsQuery =`
+const eligibleShippingMethodsQuery = `
     {
         eligibleShippingMethods {
             id
@@ -117,11 +117,24 @@ const setOrderShippingMethodMutation = `
         }
     }`;
 
+const adjustOrderLineMutation = `
+    mutation adjustOrderLine($orderLineId: ID!, $quantity: Int!){
+        adjustOrderLine(orderLineId: $orderLineId, quantity: $quantity) {
+            ... on Order ${orderFields}
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+        }
+    }`;
+
+
 module.exports = {
     getStockForProductsQuery,
     getProductQuery,
     addItemToOrderMutation,
     getActiveOrderQuery,
     eligibleShippingMethodsQuery,
-    setOrderShippingMethodMutation
+    setOrderShippingMethodMutation,
+    adjustOrderLineMutation
 };

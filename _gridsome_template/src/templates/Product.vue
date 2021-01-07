@@ -9,6 +9,8 @@ import {Product} from 'shared-components';
 export default {
   components: {
     Product
+  },
+  mounted() {
   }
 }
 </script>

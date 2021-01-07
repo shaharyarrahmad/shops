@@ -17,12 +17,12 @@
       </div>
     </div>
 
-    <div v-if="progress" class="grid-x grid-padding-x">
+    <div v-if="$context.checkoutProgress" class="grid-x grid-padding-x">
       <div class="cell small-12">
         <div class="progress" role="progressbar" tabindex="0" aria-valuenow="50" aria-valuemin="0"
-             :aria-valuetext="progress"
+             :aria-valuetext="$context.checkoutProgress"
              aria-valuemax="100">
-          <div class="progress-meter" :style="`width: ${progress}%;`"></div>
+          <div class="progress-meter" :style="`width: ${$context.checkoutProgress}%;`"></div>
         </div>
       </div>
     </div>
@@ -41,21 +41,12 @@ export default {
       return this.$context.previousPage;
     },
     hideCartIcon() {
-      return this.$route?.fullPath?.indexOf('/cart/') > -1;
+      return this.$context.hideCartIcon;
     },
     showOrderButton() {
       return this.$store?.activeOrder?.lines?.length > 0
           && (this.$route?.fullPath?.indexOf('/cart/') > -1);
-    },
-    progress() {
-      if (this.$route?.fullPath?.indexOf('/customer-details/') > -1) {
-        return 33;
-      } else if (this.$route?.fullPath?.indexOf('/shipping/') > -1) {
-        return 66;
-      } else if (this.$route?.fullPath?.indexOf('/payment/') > -1) {
-        return 66;
-      }
-    },
+    }
   },
   async mounted() {
   }

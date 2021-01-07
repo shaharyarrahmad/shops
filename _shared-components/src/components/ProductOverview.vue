@@ -1,19 +1,24 @@
 <template>
   <section id="products">
 
+    <!-- Show available collections -->
     <div v-if="$context.collections || $context.collectionName" class="grid-x grid-padding-x">
       <div class="cell text-center">
-
-        <h1 v-if="$context.collectionName">{{ $context.collectionName }}</h1>
-        <div style="margin-bottom: 20px;" v-if="$context.collection && $context.collection.description">
-          {{ $context.collection.description }}
-        </div>
-
         <g-link v-for="collection in $context.collections"
                 class="button tiny hollow" style="margin-right: 2px; margin-left: 2px;"
                 v-bind:key="collection.id"
                 :to="`/${collection.slug}/`">{{ collection.name }}
         </g-link>
+      </div>
+    </div>
+
+    <!-- Single collection header-->
+    <div v-if="$context.collection" class="grid-x grid-padding-x">
+      <div class="cell text-center">
+        <h1>{{ $context.collection.name }}</h1>
+        <div style="margin-bottom: 20px;font-size: .7rem;" v-if="$context.collection.description"
+             v-html="$context.collection.description">
+        </div>
       </div>
     </div>
 
@@ -50,6 +55,11 @@ import AsyncImage from './AsyncImage';
 export default {
   components: {
     AsyncImage
+  },
+  computed: {
+    collectionName() {
+      this.$context.collection?.name
+    }
   },
   async mounted() {
     const products = await this.$vendure.getStockForProducts();

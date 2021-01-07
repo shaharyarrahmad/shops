@@ -10,51 +10,49 @@
         </div>
       </div>
 
-<!--      <div v-for="line order?.lines; let i = index" class="grid-x small-font {{ (i % 2 === 0) ? 'accent-row' : ''}}"
+      <div v-for="(line, i) in activeOrder.lines" class="grid-x small-font"
+           :class="i % 2 === 0 ? 'accent-row' : ''"
            style="padding: 10px;">
         <div class="cell small-4 medium-3 large-2">
           <div class="product-thumbnail">
-            <img src="{{ line.productVariant?.featuredAsset?.preview || line.featuredAsset?.preview }}" alt="{{ line.productVariant?.name }}">
+            <img :src="line.featuredAsset.preview" :alt="line.productVariant.name">
           </div>
         </div>
         <div class="cell small-8 medium-9 large-10 text-right cart-details">
-          <p class="cart-name">{{ line.productVariant?.product?.name }} </p>
-          <span *ngIf="line.productVariant?.name !== line.productVariant?.product?.name"> {{ line.productVariant?.name }}&nbsp;</span>
-          <span class="cart-price">{{ line.productVariant?.priceWithTax | euro}}</span>
-          <app-number-input [value]="line.quantity" (numberChange)="updateQuantity(line.id, $event)"></app-number-input>
+          <p class="cart-name">{{ line.productVariant.product.name }} </p>
+          <span v-if="line.productVariant.name !== line.productVariant.product.name"> {{ line.productVariant.name }}&nbsp;</span>
+          <span class="cart-price">{{ line.productVariant.priceWithTax | euro}}</span>
+          <NumberInput :value="line.quantity" v-on:numberChange="updateQuantity(line.id, $event)"/>
         </div>
-      </div>-->
+      </div>
 
-      <!--
+      <div class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font" style="padding-top: 40px;">
+        <div class="cell">
+          <p>Subtotaal: </p>
+        </div>
+        <div class="cell">
+          <p> {{ activeOrder.subTotalWithTax | euro }}</p>
+        </div>
+        <div class="cell">
+          <p>Verzendkosten: </p>
+        </div>
+        <div class="cell">
+          <p> {{ activeOrder.shippingWithTax | euro }}</p>
+        </div>
+        <div class="cell">
+          <p>Totaal: </p>
+        </div>
+        <div class="cell">
+          <strong> {{ activeOrder.totalWithTax | euro }}</strong>
+        </div>
+        <div class="cell"></div>
+        <div class="cell">
+          <g-link class="button" to="/customer-details/">
+            BESTEL
+          </g-link>
+        </div>
+      </div>
 
-
-          <div class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font" style="padding-top: 40px;">
-            <div class="cell">
-              <p>Subtotaal: </p>
-            </div>
-            <div class="cell">
-              <p> {{ order?.subTotalWithTax | euro: 'leaveZeros' }}</p>
-            </div>
-            <div class="cell">
-              <p>Verzendkosten: </p>
-            </div>
-            <div class="cell">
-              <p> {{ order?.shippingWithTax | euro: 'leaveZeros' }}</p>
-            </div>
-            <div class="cell">
-              <p>Totaal: </p>
-            </div>
-            <div class="cell">
-              <strong> {{ order?.totalWithTax | euro: 'leaveZeros' }}</strong>
-            </div>
-            <div class="cell"></div>
-            <div class="cell">
-              <a class="button" routerLink="/customer-details">
-                BESTEL
-              </a>
-            </div>
-          </div>
-        -->
     </div>
     <div v-if="emptyBasket">
       <div class="grid-x small-up-1grid-padding-x text-center small-font">
@@ -67,11 +65,19 @@
   </div>
 </template>
 <script>
+import NumberInput from './NumberInput';
 export default {
+  components: {
+    NumberInput
+  },
   data() {
     return {
-      loading: true,
-      emptyBasket: false
+     //  emptyBasket: false
+    }
+  },
+  methods: {
+    updateQuantity(lineId, q) {
+      this.$vendure.adjustOrderLine(lineId, q);
     }
   },
   computed: {
@@ -81,12 +87,11 @@ export default {
     orderLines() {
       return this.activeOrder?.lines?.length;
     },
-  },
-  async mounted() {
-    this.$context.hideCartIcon = true;
-    await this.$vendure.getActiveOrder();
-    this.emptyBasket = !this.orderLines; // set after loading to prevent glitch
-  }
+    emptyBasket() {
+      // Only return true if we have an activeOrder, but it has no lines
+      return !!(this.$store?.activeOrder && !this.orderLines);
 
+    }
+  }
 }
 </script>
