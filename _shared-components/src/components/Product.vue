@@ -3,7 +3,7 @@
 
     <div class="grid-x small-up-1 medium-up-2 large-up-2 grid-padding-x grid-padding-y">
       <div class="cell">
-        <AsyncImage :src="asset.preview" :alt="$context.product.name"></AsyncImage>
+        <AsyncImage :src="asset.preview" :alt="$context.product.name" style="width: 100%;"></AsyncImage>
         <div v-if="assets && assets.length > 1" class="grid-x small-up-5" style="margin-right: -6px;">
           <div class="cell asset" v-for="asset of assets">
             <div class="product-thumbnail" v-on:click="selectAsset(asset)">
