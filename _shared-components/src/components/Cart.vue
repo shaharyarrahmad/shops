@@ -9,21 +9,24 @@
           <strong> {{ $store.activeOrder.totalWithTax | euro }}</strong>
         </div>
       </div>
-      <!--
-          <div *ngFor="let line of order?.lines; let i = index" class="grid-x small-font {{ (i % 2 === 0) ? 'accent-row' : ''}}"
-               style="padding: 10px;">
-            <div class="cell small-4 medium-3 large-2">
-              <div class="product-thumbnail">
-                <img src="{{ line.productVariant?.featuredAsset?.preview || line.featuredAsset?.preview }}" alt="{{ line.productVariant?.name }}">
-              </div>
-            </div>
-            <div class="cell small-8 medium-9 large-10 text-right cart-details">
-              <p class="cart-name">{{ line.productVariant?.product?.name }} </p>
-              <span *ngIf="line.productVariant?.name !== line.productVariant?.product?.name"> {{ line.productVariant?.name }}&nbsp;</span>
-              <span class="cart-price">{{ line.productVariant?.priceWithTax | euro}}</span>
-              <app-number-input [value]="line.quantity" (numberChange)="updateQuantity(line.id, $event)"></app-number-input>
-            </div>
+
+      <div v-for="line order?.lines; let i = index" class="grid-x small-font {{ (i % 2 === 0) ? 'accent-row' : ''}}"
+           style="padding: 10px;">
+        <div class="cell small-4 medium-3 large-2">
+          <div class="product-thumbnail">
+            <img src="{{ line.productVariant?.featuredAsset?.preview || line.featuredAsset?.preview }}" alt="{{ line.productVariant?.name }}">
           </div>
+        </div>
+        <div class="cell small-8 medium-9 large-10 text-right cart-details">
+          <p class="cart-name">{{ line.productVariant?.product?.name }} </p>
+          <span *ngIf="line.productVariant?.name !== line.productVariant?.product?.name"> {{ line.productVariant?.name }}&nbsp;</span>
+          <span class="cart-price">{{ line.productVariant?.priceWithTax | euro}}</span>
+          <app-number-input [value]="line.quantity" (numberChange)="updateQuantity(line.id, $event)"></app-number-input>
+        </div>
+      </div>
+
+      <!--
+
 
           <div class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font" style="padding-top: 40px;">
             <div class="cell">
@@ -53,7 +56,7 @@
           </div>
         -->
     </div>
-    <div v-if="!loading && !orderLines">
+    <div v-if="emptyBasket">
       <div class="grid-x small-up-1grid-padding-x text-center small-font">
         <div class="cell">
           <p>Je hebt nog niks in je winkelmand...</p>
@@ -67,14 +70,20 @@
 export default {
   data() {
     return {
-      loading: true
+      loading: true,
+      emptyBasket: false
     }
   },
   computed: {
     orderLines() {
-      return this.$store.activeOrder?.lines?.length
+      return this.$store.activeOrder?.lines?.length;
     }
-
+  },
+  async mounted() {
+    this.$context.hideCartIcon = true;
+    await this.$vendure.getActiveOrder();
+    this.emptyBasket = !this.orderLines; // set after loading to prevent glitch
   }
+
 }
 </script>

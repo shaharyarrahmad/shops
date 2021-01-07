@@ -35,7 +35,7 @@
 <script>
 import AsyncImage from './AsyncImage';
 import BuyButton from './BuyButton';
-import HeaderCart from './HeaderCart';
+import HeaderCart from './CartIcon';
 
 export default {
   components: {
