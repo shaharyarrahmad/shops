@@ -22,7 +22,7 @@ export default {
     }
   },
   async mounted() {
-    // this.load();
+    this.load();
   }
 }
 </script>
