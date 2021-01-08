@@ -1,3 +1,4 @@
+
 const {GraphQLClient} = require('graphql-request');
 const {
     getStockForProductsQuery,
@@ -6,7 +7,10 @@ const {
     getProductQuery,
     addItemToOrderMutation,
     getActiveOrderQuery,
-    setOrderShippingMethodMutation
+    setOrderShippingMethodMutation,
+    setCustomerForOrderMutation,
+    setOrderShippingAddressMutation,
+    nextOrderStatesQuery
 } = require('./client.queries');
 
 class Vendure {
@@ -71,6 +75,24 @@ class Vendure {
         this.validateResult(activeOrder);
         this.$store.activeOrder = activeOrder;
         return activeOrder;
+    }
+
+    async setCustomerForOrder(input) {
+        const {setCustomerForOrder: order} = await this.request(setCustomerForOrderMutation, {input});
+        this.validateResult(order);
+        this.$store.activeOrder = order;
+        return order;
+    }
+
+    async setOrderShippingAddress(input) {
+        const {setOrderShippingAddress: order} = await this.request(setOrderShippingAddressMutation, {input});
+        this.$store.activeOrder = order;
+        return order;
+    }
+
+    async getNextOrderStates() {
+        const {nextOrderStates} = await this.request(nextOrderStatesQuery);
+        return nextOrderStates;
     }
 
     validateResult(order) {

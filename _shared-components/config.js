@@ -31,7 +31,7 @@ module.exports = {
         // Product overview
         createPageFn({
             path: `/`,
-            component: './src/templates/Index.vue',
+            component: './src/templates/ProductOverview.vue',
             context: {
                 products,
                 collections
@@ -46,10 +46,11 @@ module.exports = {
             delete collection.productVariants; // We don't need this in __initial_state__, saves some Kb data
             createPageFn({
                 path: `/${collection.slug}/`,
-                component: './src/templates/Index.vue',
+                component: './src/templates/ProductOverview.vue',
                 context: {
                     products: productsPerCollection,
                     collection,
+                    previousPage: '/'
                 }
             });
         });

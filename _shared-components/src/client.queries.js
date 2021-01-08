@@ -128,6 +128,32 @@ const adjustOrderLineMutation = `
         }
     }`;
 
+const setCustomerForOrderMutation = `
+    mutation setCustomerForOrder($input: CreateCustomerInput!){
+        setCustomerForOrder(input: $input) {
+            ... on Order ${orderFields}
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+        }
+    }`;
+
+const setOrderShippingAddressMutation = `
+    mutation setOrderShippingAddress($input: CreateAddressInput!){
+        setOrderShippingAddress(input: $input) {
+            ... on Order  ${orderFields}
+            ... on NoActiveOrderError {
+                errorCode
+                message
+            }
+        }
+    }`;
+
+const nextOrderStatesQuery = `
+    {
+        nextOrderStates
+    }`;
 
 module.exports = {
     getStockForProductsQuery,
@@ -136,5 +162,8 @@ module.exports = {
     getActiveOrderQuery,
     eligibleShippingMethodsQuery,
     setOrderShippingMethodMutation,
-    adjustOrderLineMutation
+    adjustOrderLineMutation,
+    setCustomerForOrderMutation,
+    setOrderShippingAddressMutation,
+    nextOrderStatesQuery
 };

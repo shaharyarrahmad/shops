@@ -80,7 +80,7 @@ export default {
     load() { // Load variant, assets and selectedAsset
       const variant = this.$context.product.variants.find(v => v.available > 0) || this.$context.product.variants[0];
       this.selectVariant(variant.id);
-      this.asset = this.getDefaultAsset(this.$context.product);
+      this.asset = this.selectedVariant.featuredAsset || this.getDefaultAsset(this.$context.product)
       this.assets = this.getAssets(this.selectedVariant);
     },
   },
