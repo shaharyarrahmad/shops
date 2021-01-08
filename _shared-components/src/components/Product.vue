@@ -43,7 +43,7 @@ export default {
     BuyButton,
     HeaderCart
   },
-  data: function () {
+  data() {
     return {
       asset: {},
       assets: {},
