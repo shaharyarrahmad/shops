@@ -11,7 +11,7 @@ export default {
     Order
   },
   created () {
-    this.$context.previousPage = '/'
+    this.$context.previousPage = '/';
     this.$context.hideCartIcon = true;
   }
 }
