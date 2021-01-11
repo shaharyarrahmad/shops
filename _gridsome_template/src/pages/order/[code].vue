@@ -3,7 +3,6 @@
     <Order/>
   </Layout>
 </template>
-
 <script>
 import {Order} from 'shared-components';
 

@@ -12,7 +12,7 @@ export default {
     Payment
   },
   created () {
-    this.$context.previousPage = '/shipping/'
+    this.$context.previousPage = '/shipping/';
     this.$context.checkoutProgress = 95;
     this.$context.hideCartIcon = true;
   }
