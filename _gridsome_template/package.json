@@ -1,7 +1,9 @@
 {
   "name": "my-gridsome-site",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "dev": ""
+  },
   "resolutions": {
     "graphql": "^14.7.0"
   },

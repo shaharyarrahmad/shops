@@ -2,7 +2,10 @@
 <html ${htmlAttrs}>
 <head>
     ${head}
-    <link href="/icons/foundation-icons.css" media="screen" rel="stylesheet">
+
+    <link rel="preload" href="/icons/foundation-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/icons/foundation-icons.css"></noscript>
+
     <link href="/favicon.png" rel="icon">
 </head>
 <body ${bodyAttrs}>
