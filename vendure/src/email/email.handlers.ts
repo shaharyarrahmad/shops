@@ -1,22 +1,21 @@
 import {EmailEventHandler, EmailEventListener} from "@vendure/email-plugin";
 import {OrderStateTransitionEvent} from "@vendure/core";
-import {TaxCalculation} from "../tax/tax-calculation";
-import {channelConfig} from "../channel-config/channel-config";
+import {TaxHelper} from "../tax/tax.helper";
+import {ChannelConfigService} from '../channel-config/channel-config.service';
 
 export const orderConfirmationHandler = new EmailEventListener('order-confirmation')
     .on(OrderStateTransitionEvent)
     .filter(event => event.toState === 'PaymentSettled' && !!event.order.customer)
     // .setRecipient(event => event.order.customer!.emailAddress)
     .loadData(async ({event, injector}) => {
-        console.error('KOMTIE HIEEER');
-        const config = channelConfig.find(c => c.channelToken === event.ctx.channel.token);
+        const config = await injector.get(ChannelConfigService).getConfig(event.ctx.channel.token);
         return {config};
     })
     .setRecipient(event => `${event.order.customer!.emailAddress},${event.data.config?.supportEmail}`)
     .setFrom(`{{ fromAddress }}`)
     .setSubject(`Bedankt voor je bestelling bij {{ channelName }} met nr. {{ order.code }}`)
     .setTemplateVars(event => {
-        const summary = TaxCalculation.getTaxSummary(event.order);
+        const summary = TaxHelper.getTaxSummary(event.order);
         return {
             order: event.order,
             summary,
