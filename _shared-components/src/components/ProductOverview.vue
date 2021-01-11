@@ -56,11 +56,6 @@ export default {
   components: {
     AsyncImage
   },
-  computed: {
-    collectionName() {
-      this.$context.collection?.name
-    }
-  },
   async mounted() {
     const products = await this.$vendure.getStockForProducts();
     // Rehydrate products.soldOut
