@@ -47,7 +47,7 @@
 
   </section>
 </template>
-<style>
+<style scoped>
 a {
   color: inherit;
 }
