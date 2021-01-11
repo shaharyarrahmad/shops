@@ -38,7 +38,6 @@
             <p :class="product.soldOut ? 'sold-out' : ''">{{ product.name }}</p>
           </div>
         </g-link>
-
       </div>
       <div v-if="$context.products && $context.products.length === 0" class="small-12">
         Hier zijn nog geen producten helaas...
