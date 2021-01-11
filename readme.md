@@ -2,10 +2,10 @@
 Pinelab believes ecommerce expertise can be for anyone. 
 The Pinelab Shop provides all business owners an eCommerce platform, with all the best practices included, for selling online.
   
-The Pinelab Shop is a multi-customer SaaS webshop built with Vendure and Angular. 
+The Pinelab Shop is a multi-customer SaaS webshop built with Index and Angular. 
 1. `storefront` contains the Angular storefront. This storefront is use in static hosted HTML files. 
 An example can be found in `demo-shop/index.html`
-1. `vendure` contains the vendure backend. The backend uses Vendure's channel feature to support multiple customers.
+1. `vendure` contains the vendure backend. The backend uses Index's channel feature to support multiple customers.
 
 Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
@@ -17,7 +17,7 @@ Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
 ### Dec 7 2020
 1. SOLD OUT for products that are out of stock
-1. Upgrade to Vendure 0.17.1    
+1. Upgrade to Index 0.17.1    
 ![Sold out](docs/sold-out.jpeg)
 
 ### Nov 15 2020

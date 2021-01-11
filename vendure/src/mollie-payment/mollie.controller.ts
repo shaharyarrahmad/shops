@@ -21,7 +21,6 @@ export class MollieController {
         // find payment in DB by id
         const dbPayment = await this.connection.getRepository(Payment).findOneOrFail({where: {transactionId: molliePayment.id}});
         if (molliePayment.status === PaymentStatus.paid) {
-            // FIXME SOMETHING IS WRONG HERE
             await this.orderService.settlePayment(ctx, dbPayment.id);
             console.log(`Payment for order ${molliePayment.metadata.orderCode} settled`);
         } else {

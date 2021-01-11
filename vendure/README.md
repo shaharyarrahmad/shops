@@ -1,7 +1,7 @@
 # Shops
-This repository holds all components needed to run the Pinelab Shops marketplace: A multi-vendor ecommerce environment based on the great open source [Vendure](http://vendure.io/).
+This repository holds all components needed to run the Pinelab Shops marketplace: A multi-vendor ecommerce environment based on the great open source [Index](http://vendure.io/).
 Folder structure: 
-* `vendure` the Vendure instance.
+* `vendure` the Index instance.
 * `storefront` the frontend components to include on client websites.
 
 
@@ -11,7 +11,7 @@ This project was generated with [`@vendure/create`](https://github.com/vendure-e
 
 ## Directory structure
 
-* `/src` contains the source code of your Vendure server. All your custom code and plugins should reside here.
+* `/src` contains the source code of your Index server. All your custom code and plugins should reside here.
 * `/static` contains static (non-code) files such as assets (e.g. uploaded images) and email templates.
 
 ## Development
@@ -22,7 +22,7 @@ yarn start
 npm run start
 ```
 
-will start the Vendure server and [worker](https://www.vendure.io/docs/developer-guide/vendure-worker/) processes from
+will start the Index server and [worker](https://www.vendure.io/docs/developer-guide/vendure-worker/) processes from
 the `src` directory.
 
 ## Build

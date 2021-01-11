@@ -49,3 +49,10 @@ testem.log
 Thumbs.db
 .env
 .env.test
+
+
+*.log
+.cache
+src/.temp
+node_modules
+.env.*
