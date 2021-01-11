@@ -7,6 +7,8 @@ import Cart from './src/components/Cart.vue';
 import NavBar from './src/components/NavBar.vue';
 import CustomerDetails from './src/components/CustomerDetails.vue';
 import Shipping from './src/components/Shipping.vue';
+import Payment from './src/components/Payment.vue';
+import Order from './src/components/Order.vue';
 import styles from './styles.css';
 
 export {
@@ -19,5 +21,7 @@ export {
     NavBar,
     CustomerDetails,
     Shipping,
+    Payment,
+    Order,
     styles,
 }

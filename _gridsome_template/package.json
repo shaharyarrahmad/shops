@@ -2,7 +2,7 @@
   "name": "my-gridsome-site",
   "private": true,
   "scripts": {
-    "dev": "yarn gridsome develop && nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'"
+    "dev": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
   },
   "resolutions": {
     "graphql": "^14.7.0"

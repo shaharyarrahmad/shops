@@ -155,6 +155,33 @@ const nextOrderStatesQuery = `
         nextOrderStates
     }`;
 
+const transitionOrderToStateMutation = `
+    mutation transitionOrderToState($state: String!){
+        transitionOrderToState(state: $state) {
+            ... on Order ${orderFields}
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+        }
+    }`;
+
+const addPaymentToOrderMutation = `
+    mutation addPaymentToOrder($input: PaymentInput!){
+        addPaymentToOrder(input: $input) {
+            ... on Order ${orderFields}
+            ... on ErrorResult {
+                errorCode
+                message
+            }
+        }
+    }`;
+
+const orderByCodeQuery = `
+    query orderByCode($code: String!){
+        orderByCode(code: $code) ${orderFields}
+    }`;
+
 module.exports = {
     getStockForProductsQuery,
     getProductQuery,
@@ -165,5 +192,8 @@ module.exports = {
     adjustOrderLineMutation,
     setCustomerForOrderMutation,
     setOrderShippingAddressMutation,
-    nextOrderStatesQuery
+    nextOrderStatesQuery,
+    transitionOrderToStateMutation,
+    addPaymentToOrderMutation,
+    orderByCodeQuery
 };

@@ -1,4 +1,3 @@
-
 const {GraphQLClient} = require('graphql-request');
 const {
     getStockForProductsQuery,
@@ -10,9 +9,16 @@ const {
     setOrderShippingMethodMutation,
     setCustomerForOrderMutation,
     setOrderShippingAddressMutation,
-    nextOrderStatesQuery
+    nextOrderStatesQuery,
+    addPaymentToOrderMutation,
+    transitionOrderToStateMutation,
+    orderByCodeQuery
 } = require('./client.queries');
 
+/**
+ * Class responsible for all communication with Vendure API
+ * and keeping track of activeOrder in Vue global store
+ */
 class Vendure {
 
     constructor(store) {
@@ -93,6 +99,26 @@ class Vendure {
     async getNextOrderStates() {
         const {nextOrderStates} = await this.request(nextOrderStatesQuery);
         return nextOrderStates;
+    }
+
+    async transitionOrderToState(state) {
+        const {transitionOrderToState} = await this.request(transitionOrderToStateMutation, {state});
+        this.validateResult(transitionOrderToState);
+        this.$store.activeOrder = transitionOrderToState;
+        return transitionOrderToState;
+    }
+
+    async addPaymentToOrder(input) {
+        input.metadata.channel = process.env.GRIDSOME_VENDURE_TOKEN;
+        const {addPaymentToOrder} = await this.request(addPaymentToOrderMutation, {input});
+        this.validateResult(addPaymentToOrder);
+        this.$store.activeOrder = addPaymentToOrder;
+        return addPaymentToOrder;
+    }
+
+    async getOrderByCode(code) {
+        const {orderByCode} = await this.request(orderByCodeQuery, {code});
+        return orderByCode;
     }
 
     validateResult(order) {
