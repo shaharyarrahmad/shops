@@ -11,7 +11,8 @@
     "shared-components": "file:../_shared-components",
     "gridsome": "*",
     "@gridsome/source-graphql": "*",
-    "graphql-request": "3.4.0"
+    "graphql-request": "3.4.0",
+    "graphql": "^15.4.0"
   },
   "devDependencies": {
     "webpack-bundle-analyzer": "^4.3.0"
