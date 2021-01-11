@@ -1,16 +1,17 @@
 {
   "name": "my-gridsome-site",
   "private": true,
-  "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore"
+  "scripts": {},
+  "resolutions": {
+    "graphql": "^14.7.0"
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "shared-components": "file:../_shared-components",
+    "@gridsome/source-graphql": "*",
+    "graphql": "^14.7.0",
+    "graphql-request": "3.4.0",
     "gridsome": "*",
-    "@gridsome/source-graphql": "*"
+    "shared-components": "file:../_shared-components"
   },
   "devDependencies": {
     "webpack-bundle-analyzer": "^4.3.0"

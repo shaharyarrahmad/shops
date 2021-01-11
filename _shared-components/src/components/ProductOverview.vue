@@ -57,6 +57,7 @@ export default {
     AsyncImage
   },
   async mounted() {
+    console.log('DOE DN ');
     const products = await this.$vendure.getStockForProducts();
     // Rehydrate products.soldOut
     this.$context.products.forEach(p => {

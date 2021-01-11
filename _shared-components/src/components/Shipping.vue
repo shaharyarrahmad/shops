@@ -58,10 +58,10 @@ export default {
   },
   computed: {
     selectedMethod(){
-      return this.$store.activeOrder?.shippingLines?.[0]?.shippingMethod || {};
+      return this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod || {};
     },
     activeOrder() {
-      return this.$store.activeOrder || {};
+      return this.$store?.activeOrder || {};
     }
   },
   methods: {

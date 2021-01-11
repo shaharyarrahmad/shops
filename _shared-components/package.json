@@ -11,11 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "foundation-sites": "^6.6.3",
-    "jquery": "^3.5.1",
-    "graphql-request": "3.4.0"
-  },
-  "peerDependencies": {
-    "graphql": "15.x"
+    "jquery": "^3.5.1"
   },
   "devDependencies": {
     "node-sass": "^5.0.0"
