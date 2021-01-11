@@ -39,7 +39,7 @@
           </div>
         </g-link>
 
-      </div>
+      </div> && yarn gridsome develop
       <div v-if="$context.products && $context.products.length === 0" class="small-12">
         Hier zijn nog geen producten helaas...
       </div>
@@ -57,6 +57,7 @@ export default {
     AsyncImage
   },
   async mounted() {
+    console.log('tesst 555');
     const products = await this.$vendure.getStockForProducts();
     // Rehydrate products.soldOut
     this.$context.products.forEach(p => {
