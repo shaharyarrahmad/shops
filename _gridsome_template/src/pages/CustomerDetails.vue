@@ -3,7 +3,6 @@
     <CustomerDetails/>
   </Layout>
 </template>
-
 <script>
 import {CustomerDetails} from 'shared-components';
 
