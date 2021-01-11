@@ -11,6 +11,7 @@
     "shared-components": "file:../_shared-components",
     "gridsome": "*",
     "@gridsome/source-graphql": "*",
+    "graphql": "^15.4.0",
     "graphql-request": "3.4.0"
   },
   "devDependencies": {
