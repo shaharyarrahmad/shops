@@ -31,7 +31,7 @@ jobs:
       - name: Deploy prod
         run: ./deploy-prod.sh
       - name: Set env vars
-        run: 'echo "$SECRET_VARS" > .env.local'
+        run: 'echo "$SECRET_VARS" > .env'
         env:
           SECRET_VARS: ${{secrets.ENV_TEST}}
       - name: Deploy test
