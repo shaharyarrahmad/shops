@@ -24,5 +24,5 @@ Add admin-ui:
         }),
 ```
 This will add a formfield for updating the webhook for the current channel under `Settings`:"
-![Webhook admin UI](../docs/webhook-admin-ui.jpeg)
+![Webhook admin UI](../../../docs/webhook-admin-ui.jpeg)
 For more information about using pre-compiled admin UI in production: https://www.vendure.io/docs/plugins/extending-the-admin-ui/ 
