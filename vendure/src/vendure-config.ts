@@ -1,5 +1,4 @@
 import {
-    CollectionModificationEvent,
     DefaultJobQueuePlugin,
     DefaultSearchPlugin,
     ProductEvent,
@@ -19,7 +18,6 @@ import {CustomStockAllocationStrategy} from './stock-allocation/custom-stock-all
 import {ChannelConfigPlugin} from './channel-config/channel-config.plugin';
 import {AnalyticsPlugin} from './analytics/analytics.plugin';
 import {WebhookPlugin} from './webhook/webhook.plugin';
-import {compileUiExtensions} from '@vendure/ui-devkit/compiler';
 
 export const config: VendureConfig = {
     orderOptions: {
@@ -31,18 +29,10 @@ export const config: VendureConfig = {
     apiOptions: {
         port: process.env.PORT as unknown as number || 3000,
         adminApiPath: 'admin-api',
-        adminApiPlayground: {
-            /*            settings: {
-                            'request.credentials': 'include',
-                        } as any,*/
-        },// turn this off for production
+        adminApiPlayground: {},// turn this off for production
         adminApiDebug: false, // turn this off for production
         shopApiPath: 'shop-api',
-        shopApiPlayground: {
-            /*            settings: {
-                            'request.credentials': 'include',
-                        } as any,*/
-        },// turn this off for production
+        shopApiPlayground: {},// turn this off for production
         shopApiDebug: false,// turn this off for production
     },
     authOptions: {
@@ -67,7 +57,10 @@ export const config: VendureConfig = {
     },
     customFields: {},
     plugins: [
-        WebhookPlugin.init({httpMethod: 'POST', events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]}),
+        WebhookPlugin.init({
+            httpMethod: 'POST',
+            events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]
+        }),
         PublicStockPlugin,
         MolliePlugin,
         ChannelConfigPlugin,
@@ -81,7 +74,6 @@ export const config: VendureConfig = {
         DefaultJobQueuePlugin,
         DefaultSearchPlugin,
         EmailPlugin.init({
-            // devMode: true,
             transport: {
                 type: 'smtp',
                 host: 'smtp.zoho.eu',
@@ -94,21 +86,27 @@ export const config: VendureConfig = {
                     pass: process.env.ZOHO_PASS as string,
                 }
             },
-            // outputPath: path.join(__dirname, '../static/email/test-emails'),
-            // mailboxPort: 3003,
             handlers: shopsMailHandlers,
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
                 fromAddress: '"Webshop" <noreply@pinelab.studio>',
             },
         }),
+        /*      // Uncomment this if need to recompile Admin UI
+                AdminUiPlugin.init({
+                    port: 3002,
+                    app: compileUiExtensions({
+                        devMode: true,
+                        outputPath: path.join(__dirname, '__admin-ui'),
+                        extensions: [WebhookPlugin.ui]
+                    }),
+                }),*/
+        // Production ready, precompiled admin UI
         AdminUiPlugin.init({
             port: 3002,
-            app: compileUiExtensions({
-                devMode: true,
-                outputPath: path.join(__dirname, '__admin-ui'),
-                extensions: [WebhookPlugin.ui]
-            }),
+            app: {
+                path: path.join(__dirname, '__admin-ui/dist')
+            },
         }),
     ],
 };
