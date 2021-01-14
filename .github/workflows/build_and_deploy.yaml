@@ -1,4 +1,4 @@
-name: Deploy Index production
+name: Deploy Vendure API to prod and dev
 on:
   push:
     branches:
