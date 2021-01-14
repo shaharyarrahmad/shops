@@ -1,4 +1,12 @@
-import {DefaultJobQueuePlugin, DefaultSearchPlugin, VendureConfig,} from '@vendure/core';
+import {
+    CollectionModificationEvent,
+    DefaultJobQueuePlugin,
+    DefaultSearchPlugin,
+    ProductEvent,
+    ProductVariantChannelEvent,
+    ProductVariantEvent,
+    VendureConfig,
+} from '@vendure/core';
 import {EmailPlugin} from '@vendure/email-plugin';
 import {AssetServerPlugin} from '@vendure/asset-server-plugin';
 import {AdminUiPlugin} from '@vendure/admin-ui-plugin';
@@ -10,10 +18,12 @@ import {PublicStockPlugin} from './public-stock/public-stock.plugin';
 import {CustomStockAllocationStrategy} from './stock-allocation/custom-stock-allocation.strategy';
 import {ChannelConfigPlugin} from './channel-config/channel-config.plugin';
 import {AnalyticsPlugin} from './analytics/analytics.plugin';
+import {WebhookPlugin} from './webhook/webhook.plugin';
+import {compileUiExtensions} from '@vendure/ui-devkit/compiler';
 
 export const config: VendureConfig = {
     orderOptions: {
-      stockAllocationStrategy: new CustomStockAllocationStrategy()
+        stockAllocationStrategy: new CustomStockAllocationStrategy()
     },
     workerOptions: {
         runInMainProcess: true,
@@ -26,14 +36,14 @@ export const config: VendureConfig = {
                             'request.credentials': 'include',
                         } as any,*/
         },// turn this off for production
-        adminApiDebug: true, // turn this off for production
+        adminApiDebug: false, // turn this off for production
         shopApiPath: 'shop-api',
         shopApiPlayground: {
             /*            settings: {
                             'request.credentials': 'include',
                         } as any,*/
         },// turn this off for production
-        shopApiDebug: true,// turn this off for production
+        shopApiDebug: false,// turn this off for production
     },
     authOptions: {
         superadminCredentials: {
@@ -57,6 +67,7 @@ export const config: VendureConfig = {
     },
     customFields: {},
     plugins: [
+        WebhookPlugin.init({httpMethod: 'POST', events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]}),
         PublicStockPlugin,
         MolliePlugin,
         ChannelConfigPlugin,
@@ -88,13 +99,16 @@ export const config: VendureConfig = {
             handlers: shopsMailHandlers,
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
-                // The following variables will change depending on your storefront implementation
                 fromAddress: '"Webshop" <noreply@pinelab.studio>',
-                // verifyEmailAddressUrl: 'http://localhost:8080/verify',
-                // passwordResetUrl: 'http://localhost:8080/password-reset',
-                // changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
             },
         }),
-        AdminUiPlugin.init({port: 3002}),
+        AdminUiPlugin.init({
+            port: 3002,
+            app: compileUiExtensions({
+                devMode: true,
+                outputPath: path.join(__dirname, '__admin-ui'),
+                extensions: [WebhookPlugin.ui]
+            }),
+        }),
     ],
 };

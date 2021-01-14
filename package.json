@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd vendure && yarn serve:test\" \"sleep 20s && cd _gridsome_template && yarn dev:local\""
+    "start": "concurrently \"cd vendure && yarn serve:test\" \"sleep 20s && cd _gridsome_template && yarn serve:local\""
   },
   "license": "MIT",
   "devDependencies": {

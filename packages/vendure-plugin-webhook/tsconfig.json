@@ -1,22 +1,10 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "noLib": false,
-    "skipLibCheck": true,
-    "lib": ["es2017", "esnext.asynciterable"],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2017",
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "sourceMap": true,
-    "newLine": "LF",
     "declaration": true,
-    "outDir": "./lib"
+    "outDir": "dist"
   },
-  "files": [
-    "./index.ts"
+  "include": [
+    "src/"
   ]
 }

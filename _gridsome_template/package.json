@@ -2,8 +2,8 @@
   "name": "my-gridsome-site",
   "private": true,
   "scripts": {
-    "dev:local": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
-    "dev:test": "yarn concurrently \"export NODE_ENV=test && yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
+    "serve:local": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
+    "serve:test": "yarn concurrently \"export NODE_ENV=test && yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
   },
   "resolutions": {
     "graphql": "^14.7.0"

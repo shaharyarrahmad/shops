@@ -41,18 +41,24 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+**/dist/
 
 **/vendure.sqlite
 
 # System Files
 .DS_Store
 Thumbs.db
-.env
-.env.test
-
 
 *.log
 .cache
 src/.temp
 node_modules
+.env
 .env.*
+/vendure/src/__admin-ui/node_modules/
+/vendure/src/__admin-ui/src/
+/vendure/src/__admin-ui/static-assets/
+/vendure/src/__admin-ui/angular.json
+/vendure/src/__admin-ui/package.json
+/vendure/src/__admin-ui/README.md
+/vendure/src/__admin-ui/tsconfig.json

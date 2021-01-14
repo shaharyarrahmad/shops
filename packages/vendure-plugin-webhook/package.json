@@ -1,31 +1,17 @@
 {
-  "name": "vendure-plugin-template",
+  "name": "vendure-plugin-webhook",
   "version": "0.0.1",
-  "description": "A Vendure plugin template",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib/**/*"
-  ],
-  "author": "Michael Bromley <michael@michaelbromley.co.uk>",
+  "description": "Call webhooks on configured events from Vendure",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Martijn van de Brug <martijn@pinelab.studio>",
   "license": "MIT",
   "private": false,
   "scripts": {
     "watch": "concurrently -n tsc,gulp \"tsc --watch\" \"gulp watch\"",
-    "build": "rimraf lib && tsc && gulp build",
-    "test": "yarn test:e2e",
-    "test:e2e": "jest --config src/e2e/config/jest-config.js",
+    "build": "rimraf dist && tsc && gulp build",
+    "test": "jest --config src/e2e/config/jest-config.js",
     "lint:fix": "eslint ./src/**/*.ts --fix",
-    "dev:run": "docker-compose -f dev-server/docker-compose.yml up",
-    "dev:stop": "docker-compose -f dev-server/docker-compose.yml down",
-    "dev:restart": "docker-compose -f dev-server/docker-compose.yml restart server",
-    "dev:build": "docker-compose -f dev-server/docker-compose.yml build",
-    "dev:rebuild": "yarn dev:stop && yarn dev:build && yarn dev:populate",
-    "dev:db:start": "docker-compose -f dev-server/docker-compose.yml up -d database",
-    "dev:db:stop": "docker-compose -f dev-server/docker-compose.yml stop database",
-    "dev:populate": "yarn dev:db:start && ts-node ./dev-server/populate.ts && yarn dev:db:stop",
-    "dev:run:server": "ts-node ./dev-server/index.ts",
-    "dev:run:worker": "ts-node ./dev-server/index-worker.ts",
     "dev:generate-types": "graphql-codegen --config ./codegen.json"
   },
   "devDependencies": {

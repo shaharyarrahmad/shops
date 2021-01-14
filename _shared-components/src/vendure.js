@@ -16,7 +16,7 @@ const {
 } = require('./client.queries');
 
 /**
- * Class responsible for all communication with Vendure API
+ * Class responsible for all communication with Vendure api
  * and keeping track of activeOrder in Vue global store
  */
 class Vendure {
