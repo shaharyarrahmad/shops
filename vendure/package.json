@@ -9,7 +9,7 @@
     "serve": "nodemon -e ts  --ignore './src/__admin-ui/' --exec \"yarn ts-node ./src/index-dev.ts\"",
     "serve:prod": "export SHOP_ENV=.env && yarn run serve",
     "serve:test": "export SHOP_ENV=.env.test && yarn run serve",
-    "copy": "yarn copyfiles -u 1 src/__admin-ui/dist/** dist",
+    "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",
     "build": "yarn tsc && yarn copy",
     "migration:generate": "yarn ts-node migration generate",
     "migration:run": "yarn ts-node migration run",
