@@ -30,7 +30,7 @@
           class="cell">
         <g-link :to="`/product/${product.slug}/`">
           <div class="product-thumbnail">
-            <AsyncImage :src="product.assets[0].preview" :alt="product.name"></AsyncImage>
+            <AsyncImage :src="getAsset(product)" :alt="product.name"></AsyncImage>
           </div>
           <div class="product-overview-description">
             <p v-if="product.soldOut" class="product-overview-price">SOLD OUT</p>
@@ -58,6 +58,11 @@ import AsyncImage from './AsyncImage';
 export default {
   components: {
     AsyncImage
+  },
+  methods: {
+    getAsset(product) {
+      return product.featuredAsset?.preview
+    }
   },
   async mounted() {
     const products = await this.$vendure.getStockForProducts();

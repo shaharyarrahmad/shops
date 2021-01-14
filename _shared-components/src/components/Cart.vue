@@ -15,7 +15,7 @@
            style="padding: 10px;">
         <div class="cell small-4 medium-3 large-2">
           <div class="product-thumbnail">
-            <img :src="line.featuredAsset.preview" :alt="line.productVariant.name">
+            <img :src="getPreview(line.featuredAsset)" :alt="line.productVariant.name">
           </div>
         </div>
         <div class="cell small-8 medium-9 large-10 text-right cart-details">
@@ -70,12 +70,10 @@ export default {
   components: {
     NumberInput
   },
-  data() {
-    return {
-     //  emptyBasket: false
-    }
-  },
   methods: {
+    getPreview(asset) {
+      return asset?.preview
+    },
     updateQuantity(lineId, q) {
       this.$vendure.adjustOrderLine(lineId, q);
     }
