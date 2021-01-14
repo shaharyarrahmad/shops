@@ -1,5 +1,5 @@
 # Vendure Webhook plugin
-Triggers a webhook per channel based on configured events. 
+Triggers a channel aware webhook based on configured events. 
 Events are specified in `vendure-config` and webhooks are configured in the database via the admin UI.
 
 ## Database entity
