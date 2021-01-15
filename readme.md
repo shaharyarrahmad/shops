@@ -9,11 +9,16 @@ An example can be found in `demo-shop/index.html`
 
 Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
-## :round_pushpin: Roadmap for january 2021
+## :round_pushpin: Roadmap for Februari 2021
 1. Export tax summary over given period 
-1. Monthly email with metrics to Shop owners
 
 ## :scroll: Release notes
+
+### Jan 2021
+1. Using Gridsome for static storefront
+1. Upgraded to 0.18.1
+1. Added a webhook plugin to trigger Gridsome builds on configured events  
+![Webhook](docs/webhook-admin-ui.jpeg)
 
 ### Dec 7 2020
 1. SOLD OUT for products that are out of stock
