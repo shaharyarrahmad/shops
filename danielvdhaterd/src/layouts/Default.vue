@@ -30,7 +30,7 @@ export default {
       {
         key: 'description',
         name: 'description',
-        content: 'Artist Daniël van de Haterd. Art adventures. Art adventures. Abstract artist with a graffiti background.'
+        content: 'Artist Daniël van de Haterd. Art adventures. Abstract artist with a graffiti background.'
       }
     ],
   },

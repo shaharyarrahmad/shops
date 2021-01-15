@@ -5,7 +5,8 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
+  siteName: 'Daniël van de Haterd',
+  siteDescription: 'Artist Daniël van de Haterd. Art adventures. Abstract artist with a graffiti background.',
   configureWebpack: {
     resolve: {
       symlinks: false //npm link
