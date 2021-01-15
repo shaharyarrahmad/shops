@@ -82,17 +82,17 @@ export default {
   data() {
     return {
       customer: {
-        emailAddress: '',
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
+        emailAddress: undefined,
+        firstName: undefined,
+        lastName: undefined,
+        phoneNumber: undefined,
       },
       address: {
-        company: '',
-        city: '',
-        streetLine1: '',
-        streetLine2: '',
-        postalCode: '',
+        company: undefined,
+        city: undefined,
+        streetLine1: undefined,
+        streetLine2: undefined,
+        postalCode: undefined,
         countryCode: 'nl'
       }
     }

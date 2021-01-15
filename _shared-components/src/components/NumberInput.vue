@@ -14,7 +14,6 @@ export default {
   props: ['value'],
   watch: { // Watch for changes for parent to stay in sync
     value(newValue, oldValue) {
-      console.log('Value updated', newValue);
       this.number = newValue;
     }
   },
