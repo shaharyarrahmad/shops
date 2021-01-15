@@ -1,0 +1,23 @@
+{
+  "name": "my-gridsome-site",
+  "private": true,
+  "scripts": {
+    "serve:test": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
+  },
+  "resolutions": {
+    "graphql": "^14.7.0"
+  },
+  "dependencies": {
+    "@fontsource/roboto-mono": "^4.0.1",
+    "@gridsome/source-graphql": "*",
+    "graphql": "^14.7.0",
+    "graphql-request": "3.4.0",
+    "gridsome": "*",
+    "shared-components": "file:../_shared-components"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.7",
+    "webpack-bundle-analyzer": "^4.3.0"
+  }
+}

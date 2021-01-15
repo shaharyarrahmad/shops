@@ -58,4 +58,5 @@ node_modules
 
 /vendure/src/__admin-ui/*
 !/vendure/src/__admin-ui/dist/
-/_gridsome_template/.cache/
+/*/.cache/
+/*/src/.temp/
