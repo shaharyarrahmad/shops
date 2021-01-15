@@ -15,8 +15,8 @@ export class MollieHelper {
         if (!channelKeys || channelKeys.length === 0) {
             throw Error(`No channelKeys configured!`);
         }
-        let config!: MollieConfig;
-        const found = channelKeys.find(channelKey => {
+        let config: MollieConfig | undefined;
+        channelKeys.find(channelKey => {
             const [ch, configString] = channelKey.split('=');
             if (channel === ch) {
                 const [apiKey, host] = configString.split(',');
@@ -24,7 +24,7 @@ export class MollieHelper {
                 return true;
             }
         });
-        if (!found) {
+        if (!config) {
             throw Error(`No config found for channel ${channel}. Set apikey and redirectHost in admin UI.`)
         }
         return config;
