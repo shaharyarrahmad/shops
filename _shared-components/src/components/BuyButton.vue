@@ -49,7 +49,13 @@ export default {
   },
   async mounted() {
     this.isSoldOut(this.variant);
-    $(document).foundation(); // reload foundation for modal
+    if (process.env.isCLient) {
+      document.onreadystatechange = () => {
+        window.onload = function () {
+          $(document).foundation();
+        }
+      }
+    }
   }
 }
 </script>

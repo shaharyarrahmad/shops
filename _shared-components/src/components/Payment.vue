@@ -1,7 +1,9 @@
 <template>
   <div>
     <p>Je wordt doorgestuurd naar het betaal platform...</p>
-    <p v-if="error" v-html="error"></p>
+    <ClientOnly>
+      <p v-if="error" v-html="error"></p>
+    </ClientOnly>
   </div>
 </template>
 <script>

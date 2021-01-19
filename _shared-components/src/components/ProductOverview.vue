@@ -33,8 +33,10 @@
             <AsyncImage :src="getAsset(product)" :alt="product.name"></AsyncImage>
           </div>
           <div class="product-overview-description">
-            <p v-if="product.soldOut" class="product-overview-price">SOLD OUT</p>
-            <p v-if="!product.soldOut" class="product-overview-price">{{ product.defaultPrice | euro }}</p>
+            <ClientOnly>
+              <p v-if="product.soldOut" class="product-overview-price">SOLD OUT</p>
+              <p v-if="!product.soldOut" class="product-overview-price">{{ product.defaultPrice | euro }}</p>
+            </ClientOnly>
             <p :class="product.soldOut ? 'sold-out' : ''">{{ product.name }}</p>
           </div>
         </g-link>
