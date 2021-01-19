@@ -65,14 +65,14 @@ export default {
     }
   },
   async mounted() {
-    const products = await this.$vendure.getStockForProducts();
+/*    const products = await this.$vendure.getStockForProducts();
     // Rehydrate products.soldOut
     this.$context.products.forEach(p => {
       const hydratedProd = products.find(hp => hp.id === p.id);
       if (hydratedProd) {
         p.soldOut = hydratedProd.soldOut
       }
-    });
+    });*/
   }
 }
 </script>
