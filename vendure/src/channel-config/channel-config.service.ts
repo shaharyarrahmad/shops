@@ -23,6 +23,11 @@ export class ChannelConfigService {
             channelToken: 'bendeboef',
             logoUrl: 'https://pinelab-demo-shop.netlify.app/bendeboeflogo.png',
             supportEmail: 'martijn@pinelab.studio'
+        }, {
+            channelName: 'Daniel van de Haterd',
+            channelToken: 'danielvdhaterd',
+            logoUrl: 'https://dvandehaterd.nl/logo.png',
+            supportEmail: 'daniel@dertienhoog.nl'
         }
     ]
 
