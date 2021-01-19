@@ -2,7 +2,8 @@
   "name": "my-gridsome-site",
   "private": true,
   "scripts": {
-    "serve:test": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
+    "serve:test": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
+    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\""
   },
   "resolutions": {
     "graphql": "^14.7.0"
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "http-server": "^0.12.3",
     "nodemon": "^2.0.7",
     "webpack-bundle-analyzer": "^4.3.0"
   }

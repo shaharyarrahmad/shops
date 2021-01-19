@@ -15,6 +15,7 @@ module.exports = {
         ]);
 
         products = products.map(p => setCalculatedFields(p));
+        products.map(p => p.soldOut = false); // For rendering nothing is soldOut
 
         // Product detail
         products.forEach((product) => {
