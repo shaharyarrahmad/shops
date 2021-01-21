@@ -5,7 +5,7 @@ const {productsQuery, collectionsQuery} = require('./src/server.queries');
  * Used by gridsome.server.config.js. Populates the context with data needed for static sites
  */
 module.exports = {
-    createPages: async (createPageFn, graphql) => {
+    createPages: async (createPageFn, graphql, sortFn) => {
         let [
             {data: {Vendure: {products: {items: products}}}},
             {data: {Vendure: {collections: {items: collections}}}}
@@ -16,6 +16,10 @@ module.exports = {
 
         products = products.map(p => setCalculatedFields(p));
         products.map(p => p.soldOut = false); // For rendering nothing is soldOut
+
+        if (sortFn) {
+            products.sort(sortFn);
+        }
 
         // Product detail
         products.forEach((product) => {

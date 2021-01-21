@@ -19,7 +19,7 @@ module.exports = async function (api) {
     });
 
     api.createPages(async ({createPage, graphql}) => {
-        await config.createPages(createPage, graphql);
+        await config.createPages(createPage, graphql, (a,b) => -1);
     })
 
     /*    api.chainWebpack(config => {
