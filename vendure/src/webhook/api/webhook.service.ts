@@ -18,8 +18,14 @@ export class WebhookService implements OnModuleInit {
         return this.connection.getRepository(WebhookPerChannelEntity).findOne({channelId});
     }
 
-    async saveWebhook(webhookUrl: string, channelId: string): Promise<WebhookPerChannelEntity> {
-        return this.connection.getRepository(WebhookPerChannelEntity).save({channelId, url: webhookUrl});
+    async saveWebhook(webhookUrl: string, channelId: string): Promise<WebhookPerChannelEntity | undefined> {
+        const existing = await this.connection.getRepository(WebhookPerChannelEntity).findOne({channelId});
+        if (existing) {
+            await this.connection.getRepository(WebhookPerChannelEntity).update({id: existing.id}, {channelId, url: webhookUrl});
+        } else {
+            await this.connection.getRepository(WebhookPerChannelEntity).save({channelId, url: webhookUrl});
+        }
+        return this.getWebhook(channelId);
     }
 
     /**

@@ -2186,10 +2186,10 @@
     rxjs "^6.6.3"
     typeorm "0.2.28"
 
-"@vendure/email-plugin@0.18.1":
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/@vendure/email-plugin/-/email-plugin-0.18.1.tgz#68bd83f3bfbc91da0d526d24559b6eacf71e6643"
-  integrity sha512-0TRW0fHZrUsEFWDC4kRxBQnJqYCUF+m+6rafFicL8Jyx/7/UCtLzU7wPdrF2dOe1NpKFYfrgpWIhmkS/7PwMGA==
+"@vendure/email-plugin@0.18.2":
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/@vendure/email-plugin/-/email-plugin-0.18.2.tgz#8aa4c9ef4f1ff6426a9017c4cb43046dc5bc60f7"
+  integrity sha512-HW58RXYQOOsg3+HjefCRxgybMftrUE91l4txCgffy3tHFhZVb2Rlsinjv4TUxonXGFDIs+Mt+leT17iWOJ6KkA==
   dependencies:
     dateformat "^3.0.3"
     express "^4.17.1"

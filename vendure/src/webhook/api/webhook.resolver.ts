@@ -21,9 +21,9 @@ export class WebhookResolver {
 
     @Mutation()
     @Allow(Permission.UpdateSettings)
-    async updateWebhook(@Ctx() ctx: RequestContext, @Args('url') url: string): Promise<string> {
+    async updateWebhook(@Ctx() ctx: RequestContext, @Args('url') url: string): Promise<string | undefined> {
         const webhook = await this.webhookService.saveWebhook(url, ctx.channelId as string);
-        return webhook.url;
+        return webhook?.url;
     }
 
 }
