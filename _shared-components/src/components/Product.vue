@@ -7,7 +7,7 @@
         <div v-if="assets && assets.length > 1" class="grid-x small-up-5" style="margin-right: -6px;">
           <div class="cell asset" v-for="asset of assets">
             <div class="product-thumbnail" v-on:click="selectAsset(asset)">
-              <AsyncImage :src="getPreview(asset)" :alt="asset.name"></AsyncImage>
+              <AsyncImage :src="getPreview(asset)" :alt="$context.product.name"></AsyncImage>
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
             {{ variant.name }}
           </option>
         </select>
-        <p v-html="$context.product.description" class="product-description"></p>
+        <div v-html="$context.product.description" class="product-description"></div>
       </div>
 
     </div>
@@ -37,12 +37,21 @@
 import AsyncImage from './AsyncImage';
 import BuyButton from './BuyButton';
 import HeaderCart from './CartIcon';
+import {getRawText} from '../helpers';
 
 export default {
   components: {
     AsyncImage,
     BuyButton,
     HeaderCart
+  },
+  metaInfo() {
+    return {
+      title: this.$context.product.name,
+      meta: [
+        {name: 'description', content: getRawText(this.$context.product?.description)}
+      ]
+    }
   },
   data() {
     return {
