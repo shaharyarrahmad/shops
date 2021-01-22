@@ -82,6 +82,9 @@ export default {
       this.$vendure.adjustOrderLine(lineId, q);
     }
   },
+  async mounted() {
+    await this.$vendure.getActiveOrder();
+  },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder || {}
