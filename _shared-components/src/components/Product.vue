@@ -19,7 +19,7 @@
         <ClientOnly>
           <BuyButton ref="buyButton" :variant="this.selectedVariant"></BuyButton>
         </ClientOnly>
-        <select v-if="$context.product.variants.length > 1" v-on:change="selectVariant($event.target.value)">
+        <select v-if="$context.product.variants.length > 1" v-on:change="selectVariant($event.target.value)" aria-label="Selectable editions">
           <option v-for="variant of $context.product.variants" :value="variant.id"
                   :selected="selectedVariant.id === variant.id">
             {{ variant.name }}

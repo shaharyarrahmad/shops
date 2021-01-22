@@ -1,7 +1,7 @@
 <template>
   <div>
     <span class="badge alert cart-badge">{{ nrOfItems }}</span>
-    <g-link class="button" to="/cart/">
+    <g-link class="button" to="/cart/" aria-label="Shopping cart">
       <i class="fi-shopping-cart"></i>
     </g-link>
   </div>
