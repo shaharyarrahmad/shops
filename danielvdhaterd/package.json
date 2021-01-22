@@ -2,7 +2,7 @@
   "name": "my-gridsome-site",
   "private": true,
   "scripts": {
-    "serve:test": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
+    "serve": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\""
   },
   "resolutions": {
