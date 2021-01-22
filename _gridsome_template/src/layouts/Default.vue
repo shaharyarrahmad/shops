@@ -27,8 +27,12 @@ export default {
   components: {
     NavBar
   },
-  meta: [
-    {name: 'description', content: "Pinelab.studio demo webshop. Probeer het uit!"}
-  ]
+  metaInfo() {
+    return {
+      meta: [
+        {name: 'description', content: "Pinelab.studio demo webshop. Probeer het uit!"}
+      ]
+    }
+  },
 }
 </script>

@@ -37,7 +37,7 @@
 import AsyncImage from './AsyncImage';
 import BuyButton from './BuyButton';
 import HeaderCart from './CartIcon';
-import {getRawText} from '../helpers';
+import {getMetaInfo} from '../seo-helpers';
 
 export default {
   components: {
@@ -46,12 +46,7 @@ export default {
     HeaderCart
   },
   metaInfo() {
-    return {
-      title: this.$context.product.name,
-      meta: [
-        {name: 'description', content: getRawText(this.$context.product?.description)}
-      ]
-    }
+    return getMetaInfo(this.$context.product);
   },
   data() {
     return {

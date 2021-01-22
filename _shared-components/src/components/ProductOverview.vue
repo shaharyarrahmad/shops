@@ -1,5 +1,5 @@
 <template>
-  <section id="products">
+  <section v-else id="products">
 
     <!-- Show available collections -->
     <div v-if="$context.collections || $context.collectionName" class="grid-x grid-padding-x">
