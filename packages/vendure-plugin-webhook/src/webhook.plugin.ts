@@ -24,19 +24,6 @@ import {WebhookService} from './api/webhook.service';
 export class WebhookPlugin {
 
     static options: WebhookPluginOptions;
-    static ui: AdminUiExtension = {
-        extensionPath: path.join(__dirname, 'ui'),
-        ngModules: [{
-            type: 'lazy',
-            route: 'webhook',
-            ngModuleFileName: 'webhook.module.ts',
-            ngModuleName: 'WebhookModule',
-        }, {
-            type: 'shared',
-            ngModuleFileName: 'webhook-nav.module.ts',
-            ngModuleName: 'WebhookNavModule',
-        }]
-    };
 
     static init(options: WebhookPluginOptions): typeof WebhookPlugin {
         this.options = options;
