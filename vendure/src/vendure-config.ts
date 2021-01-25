@@ -17,7 +17,8 @@ import {PublicStockPlugin} from './public-stock/public-stock.plugin';
 import {CustomStockAllocationStrategy} from './stock-allocation/custom-stock-allocation.strategy';
 import {ChannelConfigPlugin} from './channel-config/channel-config.plugin';
 import {AnalyticsPlugin} from './analytics/analytics.plugin';
-import {WebhookPlugin} from './webhook/webhook.plugin';
+//import {WebhookPlugin} from './webhook/webhook.plugin';
+import {WebhookPlugin} from 'vendure-plugin-webhook';
 
 export const config: VendureConfig = {
     orderOptions: {

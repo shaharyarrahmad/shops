@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna build"
+    "bootstrap": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna run build"
   },
   "license": "MIT",
   "devDependencies": {
