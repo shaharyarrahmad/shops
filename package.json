@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd vendure && yarn serve:test\" \"sleep 20s && cd _gridsome_template && yarn serve:local\""
+    "start": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna build"
   },
   "license": "MIT",
   "devDependencies": {
-    "concurrently": "^5.3.0",
     "lerna": "^3.22.1"
   }
 }
