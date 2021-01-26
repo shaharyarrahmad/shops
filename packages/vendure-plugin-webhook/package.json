@@ -2,17 +2,17 @@
   "name": "vendure-plugin-webhook",
   "version": "0.18.2",
   "description": "Call webhooks on configured events from Vendure",
+  "author": "Martijn van de Brug <martijn@pinelab.studio>",
+  "homepage": "https://pinelab.studio",
+  "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/vendure-plugin-webhook",
+  "license": "MIT",
+  "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "README.md",
-    "webhook-admin-ui.jpeg"
+    "README.md"
   ],
-  "author": "Martijn van de Brug <martijn@pinelab.studio>",
-  "repository": "https://github.com/martijnvdbrug/shops",
-  "license": "MIT",
-  "private": false,
   "scripts": {
     "build": "rimraf dist && tsc && copyfiles -u 1 'src/ui/**/*' dist/"
   },
