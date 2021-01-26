@@ -18,7 +18,7 @@ Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 1. Using Gridsome for static storefront
 1. Upgraded to 0.18.1
 1. Added a webhook plugin to trigger Gridsome builds on configured events  
-![Webhook](docs/webhook-admin-ui.jpeg)
+![Webhook](packages/vendure-plugin-webhook/webhook-admin-ui.jpeg)
 
 ### Dec 7 2020
 1. SOLD OUT for products that are out of stock

@@ -13,16 +13,29 @@ Configure events:
         WebhookPlugin.init({httpMethod: 'POST', events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]})
     ]
 ```
-Add admin-ui:
+Add this script to src and this script **with ts-node** to compile the admin UI:
+```js
+import {compileUiExtensions} from '@vendure/ui-devkit/compiler';
+import * as path from 'path';
+import {webhookAdminUi} from 'vendure-plugin-webhook';
+
+compileUiExtensions({
+    outputPath: path.join(__dirname, '__admin-ui'),
+    extensions: [webhookAdminUi]
+}).compile?.().then(() => {
+    process.exit(0);
+});
+```
+Then, in your vendure-config.ts add
 ```js
         AdminUiPlugin.init({
-            app: compileUiExtensions({
-                devMode: true,
-                outputPath: path.join(__dirname, '__admin-ui'),
-                extensions: [WebhookPlugin.ui]
-            }),
+            port: 3002,
+            app: {
+                path: path.join(__dirname, '__admin-ui/dist')
+            },
         }),
 ```
+
 This will add a formfield for updating the webhook for the current channel under `Settings`:"
-![Webhook admin UI](../../../docs/webhook-admin-ui.jpeg)
+![Webhook admin UI](webhook-admin-ui.jpeg)
 For more information about using pre-compiled admin UI in production: https://www.vendure.io/docs/plugins/extending-the-admin-ui/ 
