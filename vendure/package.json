@@ -1,6 +1,6 @@
 {
   "name": "shops",
-  "version": "0.18.2",
+  "version": "0.18.3",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -35,7 +35,7 @@
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
     "typescript": "4.0.3",
-    "vendure-plugin-webhook": "^0.18.2"
+    "vendure-plugin-webhook": "^0.18.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
