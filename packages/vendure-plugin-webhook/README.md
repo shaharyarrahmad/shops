@@ -2,18 +2,24 @@
 Triggers a channel aware webhook based on configured events. 
 Events are specified in `vendure-config` and webhooks are configured in the database via the admin UI.
 
+1. `yarn add vendure-plugin-webhook`
+
 ## Database entity
 The plugin adds an entity `WebhookPerChannelEntity` to your database.
 Don't forget to run a migration OR `synchronize: true` if you like living on the edge.
 
-## Vendure config
-Configure events:
+## vendure-config.ts
+Configure which events should trigger a webhook call in `vendure-config.ts`. HttpMethod can be POST (empty body) or GET.
 ```js
+import {WebhookPlugin} from 'vendure-plugin-webhook';
+
     plugins: [
         WebhookPlugin.init({httpMethod: 'POST', events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]})
     ]
 ```
-Add this script to src and this script **with ts-node** to compile the admin UI:
+
+## Compile admin UI
+Run this script once to compile the admin UI. **Run with ts-node** to compile the admin UI:
 ```js
 import {compileUiExtensions} from '@vendure/ui-devkit/compiler';
 import * as path from 'path';
@@ -26,7 +32,7 @@ compileUiExtensions({
     process.exit(0);
 });
 ```
-Then, in your vendure-config.ts add
+Then, in your `vendure-config.ts` add
 ```js
         AdminUiPlugin.init({
             port: 3002,
@@ -36,6 +42,6 @@ Then, in your vendure-config.ts add
         }),
 ```
 
-This will add a formfield for updating the webhook for the current channel under `Settings`:"
-![Webhook admin UI](webhook-admin-ui.jpeg)
+This will add a formfield for updating the webhook for the current channel under `Settings`:"   
+![Webhook admin UI](webhook-admin-ui.jpeg)   
 For more information about using pre-compiled admin UI in production: https://www.vendure.io/docs/plugins/extending-the-admin-ui/ 

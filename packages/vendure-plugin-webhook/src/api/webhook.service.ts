@@ -60,7 +60,7 @@ export class WebhookService implements OnModuleInit {
             return;
         }
         await fetch(webhookPerChannel.url!, {
-            method: 'POST',
+            method: WebhookPlugin.options.httpMethod,
         });
     }
 
