@@ -8,5 +8,5 @@ import '@fontsource/roboto-mono'
 export default function (Vue, {router, head, isClient}) {
     // Set default layout as a global component
     Vue.component('Layout', Layout)
-    config.configureVue(Vue, isClient);
+    config.configureVue(Vue, {router, head, isClient});
 }

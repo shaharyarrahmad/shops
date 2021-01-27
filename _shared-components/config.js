@@ -64,7 +64,18 @@ module.exports = {
     /**
      * Configure global Vue stuff
      */
-    configureVue: function (Vue, isClient) {
+    configureVue: function (Vue, {router, head, isClient}) {
+
+        // DNS prefetch for images from storage
+        head.link.push({
+            rel: 'dns-prefetch',
+            href: '//storage.googleapis.com'
+        });
+        head.link.push({
+            rel: 'preconnect',
+            href: 'https://storage.googleapis.com'
+        });
+
         // Add euro filter for global use
         Vue.filter('euro', function (value, format) {
             if (!value) {
