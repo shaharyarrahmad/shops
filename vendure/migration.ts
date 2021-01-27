@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.SHOP_ENV || '.env.local' });
+require('dotenv').config({ path: process.env.SHOP_ENV || '.env.test' });
 
 import { generateMigration, revertLastMigration, runMigrations } from '@vendure/core';
 import program from 'commander';

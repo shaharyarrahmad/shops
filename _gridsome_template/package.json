@@ -4,7 +4,7 @@
   "scripts": {
     "serve": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\"",
-    "serve:local": "yarn concurrently \"export NODE_ENV=local yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
+    "serve:local": "yarn concurrently \"export NODE_ENV=local && sleep 15s && yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
   },
   "resolutions": {
     "graphql": "^14.7.0"
