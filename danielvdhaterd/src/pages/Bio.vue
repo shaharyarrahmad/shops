@@ -3,7 +3,7 @@
     <div>
       <h3>Over Daniël van de Haterd</h3>
       <p>Je loopt geregeld zijn street art tegen het lijf rondom Amersfoort.
-        Daniël van de Haterd werkt al ruim 15 jaar als graffiti kunstenaar onder de naam <a href="www.dertienhoog.nl"
+        Daniël van de Haterd werkt al ruim 15 jaar als graffiti kunstenaar onder de naam <a href="https://www.dertienhoog.nl"
                                                                                             target="_blank">13HOOG</a>
         voor particulieren, bedrijven, overheid en festivals zoals: Defqon, Into The Woods en Qbase.</p>
       <p>
