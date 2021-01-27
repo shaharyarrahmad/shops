@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "yarn concurrently \"cd vendure && yarn serve:test\" \"cd _gridsome_template && yarn gridsome develop\"",
+    "serve:local": "yarn concurrently \"export NODE_ENV=local yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
     "bootstrap": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna run build"
   },
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "concurrently": "^5.3.0"
   },
   "workspaces": {
     "packages": [
