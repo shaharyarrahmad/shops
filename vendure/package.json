@@ -6,7 +6,7 @@
     "start": "node ./dist/index",
     "debug:test": "yarn build && export SHOP_ENV=.env.test && node --inspect ./dist/index-dev",
     "serve2": "nodemon -e ts  --ignore './src/__admin-ui/' --exec \"yarn ts-node ./src/index-dev.ts\"",
-    "serve": "nodemon -e ts --exec \"yarn build && node ./dist/index-dev\"",
+    "serve": "nodemon -e ts --watch '../packages/' --watch './src/' --exec \"yarn build && node ./dist/index-dev\"",
     "serve:prod": "export SHOP_ENV=.env && yarn serve",
     "serve:test": "export SHOP_ENV=.env.test && yarn serve",
     "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",

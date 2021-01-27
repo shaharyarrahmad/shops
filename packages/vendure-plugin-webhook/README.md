@@ -14,9 +14,16 @@ Configure which events should trigger a webhook call in `vendure-config.ts`. Htt
 import {WebhookPlugin} from 'vendure-plugin-webhook';
 
     plugins: [
-        WebhookPlugin.init({httpMethod: 'POST', events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]})
+                WebhookPlugin.init({
+                    httpMethod: 'POST',
+                    delay: 3000, // Optional if you want to wait for more events
+                    events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]
+                }),
     ]
 ```
+The `delay` is optional. Some actions/updates trigger mutliple events, resulting in multiple calls to your webhook.
+If you want to prevent this, you can set the `delay`, the plugin will then wait X seconds for more events, 
+before calling your webhook.
 
 ## Compile admin UI
 Run this script once to compile the admin UI. **Run with ts-node** to compile the admin UI:

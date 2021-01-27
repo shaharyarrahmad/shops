@@ -14,4 +14,9 @@ export interface WebhookPluginOptions {
      * Do an empty POST or a GET request
      */
     httpMethod: 'GET' | 'POST';
+    /**
+     * Wait for more events for the same channel before calling webhook
+     * Delay is in ms
+     */
+    delay?: number;
 }

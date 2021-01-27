@@ -59,6 +59,7 @@ export const config: VendureConfig = {
     plugins: [
         WebhookPlugin.init({
             httpMethod: 'POST',
+            delay: 3000,
             events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]
         }),
         PublicStockPlugin,
