@@ -13,11 +13,11 @@ import path from 'path';
 import {MolliePlugin} from './mollie-payment/mollie.plugin';
 import {GoogleStorageStrategy} from 'vendure-plugin-google-storage-assets';
 import {shopsMailHandlers} from "./email/email.handlers";
-import {PublicStockPlugin} from './public-stock/public-stock.plugin';
 import {CustomStockAllocationStrategy} from './stock-allocation/custom-stock-allocation.strategy';
 import {ChannelConfigPlugin} from './channel-config/channel-config.plugin';
 import {AnalyticsPlugin} from './analytics/analytics.plugin';
 import {WebhookPlugin} from 'vendure-plugin-webhook';
+import {PublicStockPlugin} from 'vendure-plugin-public-stock';
 
 export const config: VendureConfig = {
     orderOptions: {
@@ -93,15 +93,6 @@ export const config: VendureConfig = {
                 fromAddress: '"Webshop" <noreply@pinelab.studio>',
             },
         }),
-        /*      // Uncomment this if need to recompile Admin UI
-                AdminUiPlugin.init({
-                    port: 3002,
-                    app: compileUiExtensions({
-                        devMode: true,
-                        outputPath: path.join(__dirname, '__admin-ui'),
-                        extensions: [WebhookPlugin.ui]
-                    }),
-                }),*/
         // Production ready, precompiled admin UI
         AdminUiPlugin.init({
             port: 3002,
