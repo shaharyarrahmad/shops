@@ -34,7 +34,7 @@ function getMetaInfo(product) {
             json: {
                 '@context': "http://schema.org",
                 '@type': "Product",
-                'name': "GIULIO VESPRINI - RESIST",
+                'name': product.name,
                 'image': image,
                 'description': seoDescription,
                 'offers': {
