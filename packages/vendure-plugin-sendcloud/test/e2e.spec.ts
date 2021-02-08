@@ -1,23 +1,16 @@
 /* tslint:disable:no-non-null-assertion */
-import {
-    createTestEnvironment,
-    E2E_DEFAULT_CHANNEL_TOKEN,
-    registerInitializer,
-    SqljsInitializer,
-    testConfig
-} from '@vendure/testing';
 import gql from 'graphql-tag';
+import {initialData} from '../../test/initialData';
+import {createTestEnvironment, registerInitializer, SqljsInitializer, testConfig} from '@vendure/testing';
 import {DefaultLogger, LogLevel} from '@vendure/core';
-import * as path from 'path';
-import {GoogleStorageStrategy} from '../src/google-storage-strategy';
-import {initialData} from '../../dev-server/script/initialData';
+import {SendcloudPlugin} from '../src';
 
 describe('ChannelAware Assets', () => {
 
-    testConfig.logger = new DefaultLogger({ level: LogLevel.Debug });
+    testConfig.logger = new DefaultLogger({level: LogLevel.Debug});
     registerInitializer('sqljs', new SqljsInitializer('__data__'));
-    testConfig.plugins.push(GoogleStorageStrategy);
-    const { server, adminClient, shopClient } = createTestEnvironment(testConfig);
+    testConfig.plugins.push(SendcloudPlugin);
+    const {server, adminClient, shopClient} = createTestEnvironment(testConfig);
 
     beforeAll(async () => {
         await server.init({
@@ -34,7 +27,6 @@ describe('ChannelAware Assets', () => {
         const ding = await shopClient.query(gql`{ products { items { id } }}`);
         console.log(ding);
         expect(ding).toBeDefined();
-
     });
 
 });
