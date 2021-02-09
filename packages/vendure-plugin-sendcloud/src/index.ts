@@ -1,1 +1,1 @@
-export * from './sendcloud-plugin';
+export * from './sendcloud.plugin';
