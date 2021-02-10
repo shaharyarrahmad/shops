@@ -19,6 +19,7 @@ export class SendcloudService {
     }
 
     async syncToSendloud(order: Order): Promise<void> {
+        console.log(JSON.stringify(order));
         const parcel = await this.client.createParcel({
             "name": "Rob van den Heuvel",
             "company_name": "Sendcloud",

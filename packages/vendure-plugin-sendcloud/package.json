@@ -19,6 +19,7 @@
     "test": "jest --preset=\"ts-jest\""
   },
   "dependencies": {
+    "clone-buffer": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

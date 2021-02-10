@@ -5,6 +5,7 @@ import crypto from 'crypto';
 
 export class SendcloudClient {
 
+    static signatureHeader = 'sendcloud-signature';
     endpoint = 'https://panel.sendcloud.sc/api/v2';
     headers: { [key: string]: string };
 
