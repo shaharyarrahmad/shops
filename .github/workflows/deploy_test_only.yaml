@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to CloudRun (test and prod)
+    name: Deploy to CloudRun
     runs-on: ubuntu-latest
     defaults:
       run:
