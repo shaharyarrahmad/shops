@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import {Response} from 'node-fetch';
 import {ParcelInput} from './types/sendcloud-api-input.types';
 import {Parcel} from './types/sendcloud-api-response.types';
 import crypto from 'crypto';
@@ -18,12 +19,11 @@ export class SendcloudClient {
 
     async createParcel(parcelInput: ParcelInput): Promise<Parcel> {
         const body = {parcel: parcelInput};
-        const res = await fetch(`${this.endpoint}/parcels`, {
-            method: 'POST',
-            headers: this.headers,
-            body: JSON.stringify(body)
-        });
-        const json = await res.json();
+        const res = await this.fetch('parcels', body)
+        if (!res.ok) {
+            throw Error(res.statusText);
+        }
+        const json = await res.json()
         console.log(`Created parcel in SendCloud with id ${85517502} for order ${parcelInput.order_number}`);
         return json.parcel;
     }
@@ -35,5 +35,18 @@ export class SendcloudClient {
         const hash = crypto.createHmac("sha256", this.secret).update(body).digest("hex");
         console.log(`${hash} === ${signature}`);
         return hash === signature;
+    }
+
+    async fetch(path: string, body: any): Promise<Response> {
+        const res = await fetch(`${this.endpoint}/${path}`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+            const json = await res.json();
+            throw Error(`${res.statusText}: ${json.error?.message}`);
+        }
+        return res;
     }
 }

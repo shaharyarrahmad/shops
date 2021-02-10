@@ -1,28 +1,16 @@
-import {
-    addPaymentToOrder,
-    alwaysSettleHandler,
-    proceedToArrangingPayment,
-    settlePayment
-} from '../../test/test-order-utils';
-
 require('dotenv').config();
-import gql from 'graphql-tag';
+import {proceedToArrangingPayment, settlePayment} from '../../test/test-order-utils';
 import {initialData} from '../../test/initialData';
 import {createTestEnvironment, registerInitializer, SqljsInitializer, testConfig} from '@vendure/testing';
 import {DefaultLogger, LogLevel} from '@vendure/core';
-import {SendcloudPlugin} from '../src';
 import {ADD_ITEM_TO_ORDER, GET_CUSTOMER_LIST} from '../../test/shared-queries';
+import {devConfig} from './dev-config';
 
 describe('ChannelAware Assets', () => {
 
     testConfig.logger = new DefaultLogger({level: LogLevel.Debug});
     registerInitializer('sqljs', new SqljsInitializer('__data__'));
-    testConfig.plugins.push(SendcloudPlugin.init({
-        publicKey: process.env.SENDCLOUD_API_PUBLIC!,
-        secret: process.env.SENDCLOUD_API_SECRET!
-    }));
-    testConfig.paymentOptions.paymentMethodHandlers.push(alwaysSettleHandler);
-    const {server, adminClient, shopClient} = createTestEnvironment(testConfig);
+    const {server, adminClient, shopClient} = createTestEnvironment(devConfig);
 
     beforeAll(async () => {
         await server.init({
@@ -40,8 +28,8 @@ describe('ChannelAware Assets', () => {
             },
         );
         const customers = result.customers.items;
-        await shopClient.asUserWithCredentials(customers[0].emailAddress, 'test');
-    }, 5000);
+        await shopClient.asUserWithCredentials(customers[1].emailAddress, 'test');
+    }, 7000);
 
     afterAll(async () => {
         await server.destroy();

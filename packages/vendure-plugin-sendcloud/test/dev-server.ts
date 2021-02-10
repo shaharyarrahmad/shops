@@ -1,34 +1,21 @@
-import {alwaysSettleHandler} from '../../test/test-order-utils';
-
 require('dotenv').config();
-import {createTestEnvironment, registerInitializer, SqljsInitializer, testConfig} from '@vendure/testing';
-import {DefaultLogger, DefaultSearchPlugin, LogLevel, mergeConfig} from '@vendure/core';
-import {SendcloudPlugin} from '../src';
+import {createTestEnvironment, registerInitializer, SqljsInitializer} from '@vendure/testing';
+import {DefaultSearchPlugin, mergeConfig} from '@vendure/core';
 import {initialData} from '../../test/initialData';
 import {AdminUiPlugin} from '@vendure/admin-ui-plugin';
+import {devConfig} from './dev-config';
 
 (async () => {
     registerInitializer('sqljs', new SqljsInitializer('__data__'));
-    const devConfig = mergeConfig(testConfig, {
-        logger: new DefaultLogger({level: LogLevel.Debug}),
-        paymentOptions: {
-            paymentMethodHandlers: [alwaysSettleHandler]
-        },
-        dbConnectionOptions: {
-            synchronize: true
-        },
+    const config = mergeConfig(devConfig, {
         plugins: [
             DefaultSearchPlugin,
             AdminUiPlugin.init({
                 port: 3002,
             }),
-            SendcloudPlugin.init({
-                publicKey: process.env.SENDCLOUD_API_PUBLIC!,
-                secret: process.env.SENDCLOUD_API_SECRET!
-            })
         ]
     });
-    const {server} = createTestEnvironment(devConfig);
+    const {server} = createTestEnvironment(config);
     await server.init({
         initialData,
         productsCsvPath: '../test/products-import.csv',
