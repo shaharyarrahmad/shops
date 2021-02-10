@@ -1,5 +1,5 @@
 #!/bin/bash
-export ENV_VARS=$(paste -sd, .env.test)
+export ENV_VARS=$(paste -sd, .env)
 gcloud run deploy shops-test \
             --quiet \
             --image "eu.gcr.io/pinelab-shops/vendure:latest" \
