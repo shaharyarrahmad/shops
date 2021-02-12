@@ -21,11 +21,11 @@
     "@google-cloud/storage": "^5.3.0"
   },
   "devDependencies": {
-    "@vendure/admin-ui": "0.18.3",
-    "@vendure/admin-ui-plugin": "0.18.3",
-    "@vendure/asset-server-plugin": "0.18.3",
-    "@vendure/core": "0.18.3",
-    "@vendure/ui-devkit": "0.18.3"
+    "@vendure/admin-ui": "0.18.4",
+    "@vendure/admin-ui-plugin": "0.18.4",
+    "@vendure/asset-server-plugin": "0.18.4",
+    "@vendure/core": "0.18.4",
+    "@vendure/ui-devkit": "0.18.4"
   },
   "gitHead": "88aecbf0daacf71b110791fc6fcc6dc478670d5a"
 }
