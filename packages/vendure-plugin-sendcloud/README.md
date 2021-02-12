@@ -8,7 +8,7 @@ In the admin api, it returns the relative url, because the Admin UI needs resizi
 ## Installation
 1. `yarn add vendure-plugin-google-storage-assets`
 1. Create a bucket which is publicly available in Google Cloud.
-1. Add to your `dev-config.ts` 
+1. Add to your `sendcloud.dev-config.ts` 
 ```js
         AssetServerPlugin.init({
             storageStrategyFactory: () => new GoogleStorageStrategy('your-bucket-name'),

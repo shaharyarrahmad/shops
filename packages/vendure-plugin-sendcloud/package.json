@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc",
-    "serve": "ts-node test/dev-server.ts",
-    "test": "jest --preset=\"ts-jest\""
+    "serve": "ts-node test/sendcloud.dev-server.ts",
+    "test": "jest --runInBand --preset=\"ts-jest\""
   },
   "dependencies": {
     "clone-buffer": "^1.0.0"

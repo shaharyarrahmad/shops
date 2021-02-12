@@ -133,6 +133,16 @@ export const TRANSITION_TO_STATE = gql`
     ${ORDER_FRAGMENT}
 `;
 
+export const GET_ORDER = gql `
+    ${ORDER_FRAGMENT}
+    query GetOrder($id: ID!) {
+        order(id: $id) {
+            ...OrderFields
+        }
+    }
+
+`;
+
 export const ADD_PAYMENT = gql`
     mutation AddPaymentToOrder($input: PaymentInput!) {
         addPaymentToOrder(input: $input) {

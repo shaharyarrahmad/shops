@@ -1,9 +1,10 @@
 import {DefaultLogger, LogLevel, mergeConfig} from '@vendure/core';
 import {testConfig} from '@vendure/testing';
-import {alwaysSettleHandler} from '../../test/test-order-utils';
+import {alwaysSettleHandler} from '../../test/test-vendure-utils';
 import {SendcloudPlugin} from '../src';
 
-export const devConfig = mergeConfig(testConfig, {
+require('dotenv').config();
+export const sendcloudDevConfig = mergeConfig(testConfig, {
     logger: new DefaultLogger({level: LogLevel.Debug}),
     paymentOptions: {
         paymentMethodHandlers: [alwaysSettleHandler]

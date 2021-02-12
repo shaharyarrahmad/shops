@@ -1,4 +1,4 @@
-import {PluginCommonModule, VendurePlugin} from '@vendure/core';
+import {DefaultLogger, Logger, PluginCommonModule, VendurePlugin} from '@vendure/core';
 import {INestApplication} from '@nestjs/common';
 import {SendcloudService} from './sendcloud.service';
 import {SendcloudOptions} from './types/sendcloud-options';
@@ -15,6 +15,7 @@ const cloneBuffer = require('clone-buffer');
 export class SendcloudPlugin {
 
     static options: SendcloudOptions;
+    static context = 'SendcloudPlugin';
 
     static init(options: SendcloudOptions): typeof SendcloudPlugin {
         this.options = options;

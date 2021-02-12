@@ -25,6 +25,7 @@ export interface Parcel {
     collo_count:           number;
     awb_tracking_number:   null;
     box_number:            null;
+    order_number?:         string;
 }
 
 export interface AddressDivided {
@@ -54,4 +55,10 @@ export interface Shipment {
 export interface Status {
     id:      number;
     message: string;
+}
+
+export interface IncomingWebhookBody {
+    action:    'parcel_status_changed' | string;
+    timestamp: number;
+    parcel?:    Parcel;
 }

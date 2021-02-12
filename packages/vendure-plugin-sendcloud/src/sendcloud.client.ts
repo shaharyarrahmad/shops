@@ -3,6 +3,8 @@ import {Response} from 'node-fetch';
 import {ParcelInput} from './types/sendcloud-api-input.types';
 import {Parcel} from './types/sendcloud-api-response.types';
 import crypto from 'crypto';
+import {Logger} from '@vendure/core';
+import {SendcloudPlugin} from './sendcloud.plugin';
 
 export class SendcloudClient {
 
@@ -24,16 +26,18 @@ export class SendcloudClient {
             throw Error(res.statusText);
         }
         const json = await res.json()
-        console.log(`Created parcel in SendCloud with id ${85517502} for order ${parcelInput.order_number}`);
+        Logger.info(`Created parcel in SendCloud with id ${85517502} for order ${parcelInput.order_number}`, SendcloudPlugin.context);
         return json.parcel;
     }
 
     /**
      * Verifies if the incoming webhook si actually from SendCloud
      */
-    isValidWebhook(body: string, signature: string,): boolean {
+    isValidWebhook(body: string, signature: string): boolean {
+        if (!body || !signature) {
+            return false;
+        }
         const hash = crypto.createHmac("sha256", this.secret).update(body).digest("hex");
-        console.log(`${hash} === ${signature}`);
         return hash === signature;
     }
 
