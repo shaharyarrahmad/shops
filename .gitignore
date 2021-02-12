@@ -60,3 +60,4 @@ node_modules
 !/vendure/src/__admin-ui/dist/
 /*/.cache/
 /*/src/.temp/
+/**/__data__/
