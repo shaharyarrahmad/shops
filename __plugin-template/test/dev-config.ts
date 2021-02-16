@@ -4,7 +4,7 @@ import {alwaysSettleHandler} from '../../test/test-vendure-utils';
 import {SendcloudPlugin} from '../src';
 
 require('dotenv').config();
-export const sendcloudDevConfig = mergeConfig(testConfig, {
+export const devConfig = mergeConfig(testConfig, {
     logger: new DefaultLogger({level: LogLevel.Debug}),
     paymentOptions: {
         paymentMethodHandlers: [alwaysSettleHandler]
