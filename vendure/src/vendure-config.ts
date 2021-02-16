@@ -4,6 +4,7 @@ import {
     ProductEvent,
     ProductVariantChannelEvent,
     ProductVariantEvent,
+    CollectionModificationEvent,
     VendureConfig,
 } from '@vendure/core';
 import {EmailPlugin} from '@vendure/email-plugin';
@@ -60,7 +61,7 @@ export const config: VendureConfig = {
         WebhookPlugin.init({
             httpMethod: 'POST',
             delay: 3000,
-            events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent]
+            events: [ProductEvent, ProductVariantChannelEvent, ProductVariantEvent, CollectionModificationEvent]
         }),
         PublicStockPlugin,
         MolliePlugin,
