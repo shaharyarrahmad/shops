@@ -60,4 +60,5 @@ node_modules
 !/vendure/src/__admin-ui/dist/
 /*/.cache/
 /*/src/.temp/
-/**/__data__/
+__data__/
+/packages/vendure-plugin-simple-cms/test/__admin-ui/

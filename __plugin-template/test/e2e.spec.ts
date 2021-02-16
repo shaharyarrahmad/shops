@@ -17,7 +17,7 @@ describe('ChannelAware Assets', () => {
     testConfig.logger = new DefaultLogger({ level: LogLevel.Debug });
     registerInitializer('sqljs', new SqljsInitializer('__data__'));
     testConfig.plugins.push(GoogleStorageStrategy);
-    const { server, adminClient, shopClient } = createTestEnvironment(testConfig);
+    const { server, adminClient, shopClient } = createTestEnvironment(devConfig);
 
     beforeAll(async () => {
         await server.init({

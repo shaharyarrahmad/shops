@@ -10,7 +10,7 @@ import crypto from "crypto";
 
 require('dotenv').config();
 
-describe('ChannelAware Assets', () => {
+describe('Sendcloud integration', () => {
 
     testConfig.logger = new DefaultLogger({level: LogLevel.Debug});
     registerInitializer('sqljs', new SqljsInitializer('__data__'));
