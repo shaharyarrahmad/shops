@@ -49,6 +49,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
                 },
             };
         } catch (err) {
+            console.error(err);
             return {
                 amount: order.totalWithTax,
                 state: 'Declined' as const,
