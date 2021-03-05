@@ -13,11 +13,12 @@ export default {
       if (this.$store?.activeOrder?.lines?.length === 0) {
         return 0;
       }
-      return this.$store?.activeOrder?.lines
-              ?.map(l => l.quantity)
-              ?.reduce((quantity1, quantity2) => quantity1 + quantity2)
-          || 0;
-    }
+      return (
+        this.$store?.activeOrder?.lines
+          ?.map((l) => l.quantity)
+          ?.reduce((quantity1, quantity2) => quantity1 + quantity2) || 0
+      );
+    },
   },
-}
+};
 </script>

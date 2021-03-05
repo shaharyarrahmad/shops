@@ -1,19 +1,19 @@
 <template>
   <Layout>
-    <CustomerDetails/>
+    <CustomerDetails />
   </Layout>
 </template>
 <script>
-import {CustomerDetails} from 'shared-components';
+import { CustomerDetails } from 'shared-components';
 
 export default {
   components: {
-    CustomerDetails
+    CustomerDetails,
   },
-  created () {
-    this.$context.previousPage = '/cart/'
+  created() {
+    this.$context.previousPage = '/cart/';
     this.$context.checkoutProgress = 33;
     this.$context.hideCartIcon = true;
-  }
-}
+  },
+};
 </script>

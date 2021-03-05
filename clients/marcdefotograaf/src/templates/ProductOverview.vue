@@ -1,15 +1,15 @@
 <template>
   <Layout>
-    <ProductOverview/>
+    <ProductOverview />
   </Layout>
 </template>
 
 <script>
-import {ProductOverview} from 'shared-components';
+import { ProductOverview } from 'shared-components';
 
 export default {
   components: {
-    ProductOverview
-  }
-}
+    ProductOverview,
+  },
+};
 </script>

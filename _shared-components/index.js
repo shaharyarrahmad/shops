@@ -1,4 +1,4 @@
-import {Vendure} from './src/vendure';
+import { Vendure } from './src/vendure';
 import AsyncImage from './src/components/AsyncImage';
 import Product from './src/components/Product.vue';
 import ProductOverview from './src/components/ProductOverview.vue';
@@ -12,16 +12,16 @@ import Order from './src/components/Order.vue';
 import styles from './styles.css';
 
 export {
-    Vendure,
-    AsyncImage,
-    Product,
-    ProductOverview,
-    CartIcon,
-    Cart,
-    NavBar,
-    CustomerDetails,
-    Shipping,
-    Payment,
-    Order,
-    styles,
-}
+  Vendure,
+  AsyncImage,
+  Product,
+  ProductOverview,
+  CartIcon,
+  Cart,
+  NavBar,
+  CustomerDetails,
+  Shipping,
+  Payment,
+  Order,
+  styles,
+};

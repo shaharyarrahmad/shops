@@ -63,7 +63,7 @@ const collectionsQuery = `
 `;
 
 module.exports = {
-    productsQuery,
-    productFields,
-    collectionsQuery
+  productsQuery,
+  productFields,
+  collectionsQuery,
 };

@@ -1,29 +1,35 @@
 require('dotenv').config({ path: process.env.SHOP_ENV || '.env.test' });
 
-import { generateMigration, revertLastMigration, runMigrations } from '@vendure/core';
+import {
+  generateMigration,
+  revertLastMigration,
+  runMigrations,
+} from '@vendure/core';
 import program from 'commander';
 
 import { config } from './src/vendure-config';
 
-program
-    .command('generate <name>')
-    .description('Generate a new migration file with the given name')
-    .action(name => {
-        return generateMigration(config, { name, outputDir: './migrations' });
-    });
+console.log(`MIGRATION FOR ${process.env.DATABASE_NAME}`);
 
 program
-    .command('run')
-    .description('Run all pending migrations')
-    .action(() => {
-        return runMigrations(config);
-    });
+  .command('generate <name>')
+  .description('Generate a new migration file with the given name')
+  .action((name) => {
+    return generateMigration(config, { name, outputDir: './migrations' });
+  });
 
 program
-    .command('revert')
-    .description('Revert the last applied migration')
-    .action(() => {
-        return revertLastMigration(config);
-    });
+  .command('run')
+  .description('Run all pending migrations')
+  .action(() => {
+    return runMigrations(config);
+  });
+
+program
+  .command('revert')
+  .description('Revert the last applied migration')
+  .action(() => {
+    return revertLastMigration(config);
+  });
 
 program.parse(process.argv);

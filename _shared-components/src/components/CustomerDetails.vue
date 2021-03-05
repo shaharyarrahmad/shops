@@ -1,64 +1,104 @@
 <template>
   <form v-on:submit.prevent="submit()">
-    <h1> Jouw gegevens</h1>
+    <h1>Jouw gegevens</h1>
     <div class="grid-x grid-padding-x">
-      <div class="cell small-6 ">
-        <label>Bedrijfsnaam
-          <input type="text" name="company" v-model="address.company">
+      <div class="cell small-6">
+        <label
+          >Bedrijfsnaam
+          <input type="text" name="company" v-model="address.company" />
         </label>
       </div>
     </div>
     <div class="grid-x grid-padding-x">
-      <div class="cell small-6 ">
-        <label>Voornaam*
-          <input type="text" name="firstname" required v-model="customer.firstName"/>
+      <div class="cell small-6">
+        <label
+          >Voornaam*
+          <input
+            type="text"
+            name="firstname"
+            required
+            v-model="customer.firstName"
+          />
         </label>
       </div>
       <div class="cell small-6">
-        <label>Achternaam*
-          <input type="text" name="lastname" required v-model="customer.lastName">
+        <label
+          >Achternaam*
+          <input
+            type="text"
+            name="lastname"
+            required
+            v-model="customer.lastName"
+          />
         </label>
       </div>
     </div>
     <div class="grid-x grid-padding-x">
-      <div class="cell small-6 ">
-        <label>Telefoonnummer
-          <input type="tel" name="phoneNumber" v-model="customer.phoneNumber">
+      <div class="cell small-6">
+        <label
+          >Telefoonnummer
+          <input type="tel" name="phoneNumber" v-model="customer.phoneNumber" />
         </label>
       </div>
       <div class="cell small-6">
-        <label>Email*
-          <input type="email" name="email" required v-model="customer.emailAddress">
+        <label
+          >Email*
+          <input
+            type="email"
+            name="email"
+            required
+            v-model="customer.emailAddress"
+          />
         </label>
       </div>
     </div>
     <div class="grid-x grid-padding-x">
       <div class="cell small-8">
-        <label>Straat*
-          <input type="text" name="street" required v-model="address.streetLine1">
+        <label
+          >Straat*
+          <input
+            type="text"
+            name="street"
+            required
+            v-model="address.streetLine1"
+          />
         </label>
       </div>
       <div class="cell small-4">
-        <label>Huisnr*
-          <input type="text" name="housenr" required  v-model="address.streetLine2">
+        <label
+          >Huisnr*
+          <input
+            type="text"
+            name="housenr"
+            required
+            v-model="address.streetLine2"
+          />
         </label>
       </div>
     </div>
     <div class="grid-x grid-padding-x">
       <div class="cell small-8">
-        <label>Plaats*
-          <input type="text" name="city" required  v-model="address.city">
+        <label
+          >Plaats*
+          <input type="text" name="city" required v-model="address.city" />
         </label>
       </div>
       <div class="cell small-4">
-        <label>Postcode*
-          <input type="text" name="postalcode" required  v-model="address.postalCode">
+        <label
+          >Postcode*
+          <input
+            type="text"
+            name="postalcode"
+            required
+            v-model="address.postalCode"
+          />
         </label>
       </div>
     </div>
     <div class="grid-x grid-padding-x">
       <div class="cell small-6">
-        <label>Land
+        <label
+          >Land
           <select name="country" v-model="address.countryCode">
             <option value="nl" selected>Nederland</option>
             <option value="de">Duitsland</option>
@@ -69,15 +109,12 @@
     </div>
     <div class="grid-x grid-padding-x">
       <div class="cell small-12 text-right">
-        <input type="submit" class="button" value="BESTEL">
+        <input type="submit" class="button" value="BESTEL" />
       </div>
     </div>
   </form>
-
 </template>
 <script>
-
-
 export default {
   data() {
     return {
@@ -93,9 +130,9 @@ export default {
         streetLine1: undefined,
         streetLine2: undefined,
         postalCode: undefined,
-        countryCode: 'nl'
-      }
-    }
+        countryCode: 'nl',
+      },
+    };
   },
   methods: {
     async submit() {
@@ -107,10 +144,10 @@ export default {
         phoneNumber: this.customer.phoneNumber,
       };
       await Promise.all([
-          this.$vendure.setCustomerForOrder(this.customer),
-          this.$vendure.setOrderShippingAddress(address)
+        this.$vendure.setCustomerForOrder(this.customer),
+        this.$vendure.setOrderShippingAddress(address),
       ]);
-      this.$router.push('/shipping/')
+      this.$router.push('/shipping/');
     },
     getCountryCode(country) {
       switch (country) {
@@ -123,7 +160,7 @@ export default {
         default:
           return 'nl';
       }
-    }
+    },
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -139,8 +176,10 @@ export default {
     this.address.city = activeOrder?.shippingAddress?.city;
     this.address.postalCode = activeOrder?.shippingAddress?.postalCode;
     if (activeOrder?.shippingAddress?.country) {
-      this.address.countryCode = this.getCountryCode(activeOrder?.shippingAddress?.country);
+      this.address.countryCode = this.getCountryCode(
+        activeOrder?.shippingAddress?.country
+      );
     }
-  }
-}
+  },
+};
 </script>
