@@ -2,8 +2,8 @@
   <ClientOnly>
     <div>
       <g-link to="/">Terug naar de winkel</g-link>
-      <br>
-      <br>
+      <br />
+      <br />
       <div v-if="!order && !error">
         <h1>Even geduld...</h1>
         <p>Je betaling wordt verwerkt</p>
@@ -19,40 +19,39 @@
         <p>Dit heb je besteld:</p>
 
         <div class="table-scroll">
-          <table class="unstriped hover" style="font-size: 0.7rem;">
+          <table class="unstriped hover" style="font-size: 0.7rem">
             <thead>
-            <tr>
-              <th>Product</th>
-              <th>Aantal</th>
-              <th>Totaal</th>
-            </tr>
+              <tr>
+                <th>Product</th>
+                <th>Aantal</th>
+                <th>Totaal</th>
+              </tr>
             </thead>
             <tbody>
-            <tr v-for="line in order.lines">
-              <td>{{ line.productVariant.product.name }}</td>
-              <td>{{ line.quantity }}</td>
-              <td>{{ line.linePriceWithTax | euro }}</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>Verzendkosten:</td>
-              <td></td>
-              <td>{{ order.shippingWithTax | euro }}</td>
-            </tr>
-            <tr>
-              <td>Totaal:</td>
-              <td></td>
-              <td>{{ order.totalWithTax | euro }}</td>
-            </tr>
+              <tr v-for="line in order.lines">
+                <td>{{ line.productVariant.product.name }}</td>
+                <td>{{ line.quantity }}</td>
+                <td>{{ line.linePriceWithTax | euro }}</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>Verzendkosten:</td>
+                <td></td>
+                <td>{{ order.shippingWithTax | euro }}</td>
+              </tr>
+              <tr>
+                <td>Totaal:</td>
+                <td></td>
+                <td>{{ order.totalWithTax | euro }}</td>
+              </tr>
             </tbody>
           </table>
           <p>Je ontvangt een bevestiging in de mail.</p>
         </div>
-
       </div>
     </div>
   </ClientOnly>
@@ -70,11 +69,11 @@ export default {
   data() {
     return {
       order: undefined,
-      error: undefined
-    }
+      error: undefined,
+    };
   },
   async mounted() {
-    const {code} = this.$route.params
+    const { code } = this.$route.params;
     let pollingCount = 0;
     try {
       while (this.order?.state !== 'PaymentSettled') {
@@ -83,7 +82,7 @@ export default {
           break;
         }
         this.order = await this.$vendure.getOrderByCode(code);
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         pollingCount++;
         console.log(`Polling for payment status ${pollingCount}`);
       }
@@ -91,6 +90,6 @@ export default {
       console.log(e);
       this.error = e.message;
     }
-  }
-}
+  },
+};
 </script>

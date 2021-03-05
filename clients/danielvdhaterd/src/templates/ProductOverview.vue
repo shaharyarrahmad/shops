@@ -2,12 +2,13 @@
   <Layout>
     <div class="bio">
       <h3>Over Daniël van de Haterd</h3>
-      <p>Je loopt geregeld zijn street art tegen het lijf rondom Amersfoort.
+      <p>
+        Je loopt geregeld zijn street art tegen het lijf rondom Amersfoort.
         Daniël van de Haterd werkt al ruim 15 jaar als graffiti kunstenaar...
         <g-link to="/bio/">Lees meer</g-link>
       </p>
     </div>
-    <ProductOverview/>
+    <ProductOverview />
   </Layout>
 </template>
 <style>
@@ -17,11 +18,11 @@
 }
 </style>
 <script>
-import {ProductOverview} from 'shared-components';
+import { ProductOverview } from 'shared-components';
 
 export default {
   components: {
-    ProductOverview
-  }
-}
+    ProductOverview,
+  },
+};
 </script>

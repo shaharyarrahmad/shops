@@ -1,18 +1,18 @@
 <template>
   <Layout>
-    <Order/>
+    <Order />
   </Layout>
 </template>
 <script>
-import {Order} from 'shared-components';
+import { Order } from 'shared-components';
 
 export default {
   components: {
-    Order
+    Order,
   },
-  created () {
+  created() {
     this.$context.previousPage = '/';
     this.$context.hideCartIcon = true;
-  }
-}
+  },
+};
 </script>

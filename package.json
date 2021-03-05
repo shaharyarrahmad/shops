@@ -6,9 +6,8 @@
     "start": "yarn concurrently \"cd vendure && yarn serve:test\" \"cd _gridsome_template && sleep 15s && yarn serve:local\"",
     "serve:local": "yarn concurrently \"export NODE_ENV=local yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
     "bootstrap": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna run build",
-    "prettier:check": "prettier --check \"./**/*.{ts,tsx,js,vue}\"",
-    "prettier:write": "prettier --write \"./**/*.{ts,tsx,js,vue}\""
-
+    "prettier:check": "prettier --check --single-quote \"./**/*.{ts,tsx,js,vue}\"",
+    "prettier:write": "prettier --write --single-quote \"./**/*.{ts,tsx,js,vue}\""
   },
   "license": "MIT",
   "devDependencies": {

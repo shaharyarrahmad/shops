@@ -1,4 +1,4 @@
-const {productFields} = require('./server.queries');
+const { productFields } = require('./server.queries');
 
 const orderFields = `
 {
@@ -184,17 +184,17 @@ const orderByCodeQuery = `
     }`;
 
 module.exports = {
-    getStockForProductsQuery,
-    getProductQuery,
-    addItemToOrderMutation,
-    getActiveOrderQuery,
-    eligibleShippingMethodsQuery,
-    setOrderShippingMethodMutation,
-    adjustOrderLineMutation,
-    setCustomerForOrderMutation,
-    setOrderShippingAddressMutation,
-    nextOrderStatesQuery,
-    transitionOrderToStateMutation,
-    addPaymentToOrderMutation,
-    orderByCodeQuery
+  getStockForProductsQuery,
+  getProductQuery,
+  addItemToOrderMutation,
+  getActiveOrderQuery,
+  eligibleShippingMethodsQuery,
+  setOrderShippingMethodMutation,
+  adjustOrderLineMutation,
+  setCustomerForOrderMutation,
+  setOrderShippingAddressMutation,
+  nextOrderStatesQuery,
+  transitionOrderToStateMutation,
+  addPaymentToOrderMutation,
+  orderByCodeQuery,
 };

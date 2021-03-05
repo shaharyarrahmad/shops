@@ -6,10 +6,11 @@
 
 module.exports = {
   siteName: 'Daniël van de Haterd',
-  siteDescription: 'Artist Daniël van de Haterd. Art adventures. Abstract artist with a graffiti background.',
+  siteDescription:
+    'Artist Daniël van de Haterd. Art adventures. Abstract artist with a graffiti background.',
   configureWebpack: {
     resolve: {
-      symlinks: false //npm link
+      symlinks: false, //npm link
     },
   },
   plugins: [
@@ -24,4 +25,4 @@ module.exports = {
       },
     },
   ],
-}
+};

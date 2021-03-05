@@ -1,20 +1,20 @@
 <template>
   <Layout>
-    <Payment/>
+    <Payment />
   </Layout>
 </template>
 
 <script>
-import {Payment} from 'shared-components';
+import { Payment } from 'shared-components';
 
 export default {
   components: {
-    Payment
+    Payment,
   },
-  created () {
+  created() {
     this.$context.previousPage = '/shipping/';
     this.$context.checkoutProgress = 95;
     this.$context.hideCartIcon = true;
-  }
-}
+  },
+};
 </script>

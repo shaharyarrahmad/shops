@@ -7,25 +7,23 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer/lib/BundleAnalyzer
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = async function (api) {
+  api.afterBuild(({ redirects }) => {
+    console.log('------ Create the following redirects in static/_redirects!');
+    for (const rule of redirects) {
+      console.log(`${rule.from} ${rule.to}`);
+      // rule.from   - The dynamic path
+      // rule.to     - The HTML file path
+      // rule.status - 200 if rewrite rule
+    }
+  });
 
-    api.afterBuild(({redirects}) => {
-        console.log('------ Create the following redirects in static/_redirects!');
-        for (const rule of redirects) {
-            console.log(`${rule.from} ${rule.to}`);
-            // rule.from   - The dynamic path
-            // rule.to     - The HTML file path
-            // rule.status - 200 if rewrite rule
-        }
-    });
+  api.createPages(async ({ createPage, graphql }) => {
+    await config.createPages(createPage, graphql, (a, b) => -1);
+  });
 
-    api.createPages(async ({createPage, graphql}) => {
-        await config.createPages(createPage, graphql, (a,b) => -1);
-    })
-
-    /*    api.chainWebpack(config => {
+  /*    api.chainWebpack(config => {
             config
                 .plugin('BundleAnalyzerPlugin')
                 .use(BundleAnalyzerPlugin, [{analyzerMode: 'static'}])
         })*/
-
-}
+};

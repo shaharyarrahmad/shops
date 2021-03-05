@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm';
-import {VendureEntity, DeepPartial, VendureEvent} from '@vendure/core';
+import { VendureEntity, DeepPartial, VendureEvent } from '@vendure/core';
 
 /**
  * Here we define a new database entity. Passing this in to the plugin's `entities` array
@@ -8,14 +8,13 @@ import {VendureEntity, DeepPartial, VendureEvent} from '@vendure/core';
  */
 @Entity()
 export class WebhookPerChannelEntity extends VendureEntity {
-    constructor(input?: DeepPartial<WebhookPerChannelEntity>) {
-        super(input);
-    }
+  constructor(input?: DeepPartial<WebhookPerChannelEntity>) {
+    super(input);
+  }
 
-    @Column({ unique: true })
-    channelId!: string;
+  @Column({ unique: true })
+  channelId!: string;
 
-    @Column()
-    url!: string;
-
+  @Column()
+  url!: string;
 }

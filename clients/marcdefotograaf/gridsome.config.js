@@ -8,7 +8,7 @@ module.exports = {
   siteName: 'Marc de Fotograaf',
   configureWebpack: {
     resolve: {
-      symlinks: false //npm link
+      symlinks: false, //npm link
     },
   },
   plugins: [
@@ -23,4 +23,4 @@ module.exports = {
       },
     },
   ],
-}
+};
