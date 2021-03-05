@@ -10,4 +10,6 @@ import {molliePaymentHandler} from './mollie.handler';
         return config;
     },
 })
-export class MolliePlugin {}
+export class MolliePlugin {
+    static context = 'MolliePlugin';
+}

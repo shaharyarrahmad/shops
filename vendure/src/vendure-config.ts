@@ -13,13 +13,12 @@ import {AdminUiPlugin} from '@vendure/admin-ui-plugin';
 import path from 'path';
 import {MolliePlugin} from './mollie-payment/mollie.plugin';
 import {GoogleStorageStrategy} from 'vendure-plugin-google-storage-assets';
-import {shopsMailHandlers} from "./email/email.handlers";
 import {CustomStockAllocationStrategy} from './stock-allocation/custom-stock-allocation.strategy';
 import {ChannelConfigPlugin} from './channel-config/channel-config.plugin';
-import {AnalyticsPlugin} from './analytics/analytics.plugin';
 import {WebhookPlugin} from 'vendure-plugin-webhook';
 import {PublicStockPlugin} from 'vendure-plugin-public-stock';
 import {GoogleStoragePlugin} from 'vendure-plugin-google-storage-assets/dist/google-storage-plugin';
+import {channelAwareEmailHandlers} from './channel-config/channel-aware-email.handlers';
 
 export const config: VendureConfig = {
     orderOptions: {
@@ -67,7 +66,6 @@ export const config: VendureConfig = {
         PublicStockPlugin,
         MolliePlugin,
         ChannelConfigPlugin,
-        AnalyticsPlugin,
         GoogleStoragePlugin,
         AssetServerPlugin.init({
             storageStrategyFactory: () => new GoogleStorageStrategy({
@@ -85,14 +83,14 @@ export const config: VendureConfig = {
                 host: 'smtp.zoho.eu',
                 port: 587,
                 secure: false,
-                logging: true,
-                debug: true,
+                logging: false,
+                debug: false,
                 auth: {
                     user: 'noreply@pinelab.studio',
                     pass: process.env.ZOHO_PASS as string,
                 }
             },
-            handlers: shopsMailHandlers,
+            handlers: channelAwareEmailHandlers,
             templatePath: path.join(__dirname, '../static/email/templates'),
             globalTemplateVars: {
                 fromAddress: '"Webshop" <noreply@pinelab.studio>',

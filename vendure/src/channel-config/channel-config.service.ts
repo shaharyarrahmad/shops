@@ -1,5 +1,7 @@
 import {Injectable} from '@nestjs/common';
-import {ChannelConfig} from './channel-config';
+import {ID, TransactionalConnection} from '@vendure/core';
+import {ChannelConfigEntity} from './channel-config.entity';
+import {Repository} from 'typeorm';
 
 /**
  * In our multi-tenant environment, we need some additional config per channel.
@@ -7,35 +9,22 @@ import {ChannelConfig} from './channel-config';
 @Injectable()
 export class ChannelConfigService {
 
-    private channelConfig: ChannelConfig[] = [
-        {
-            channelName: 'de Pinelab Demo Shop',
-            channelToken: 'demo',
-            logoUrl: 'https://shop.marcdefotograaf.nl/marcdefotograaf.png',
-            supportEmail: 'martijn@pinelab.studio'
-        }, {
-            channelName: 'Marc de Fotograaf',
-            channelToken: 'marcdefotograaf9283',
-            logoUrl: 'https://shop.marcdefotograaf.nl/marcdefotograaf.png',
-            supportEmail: 'info@marcdefotograaf.nl'
-        }, {
-            channelName: 'Ben de Boef',
-            channelToken: 'bendeboef',
-            logoUrl: 'https://pinelab-demo-shop.netlify.app/bendeboeflogo.png',
-            supportEmail: 'martijn@pinelab.studio'
-        }, {
-            channelName: 'Daniel van de Haterd',
-            channelToken: 'danielvdhaterd',
-            logoUrl: 'https://dvandehaterd.nl/logo.png',
-            supportEmail: 'daniel@dertienhoog.nl'
-        }
-    ]
+    readonly repo: Repository<ChannelConfigEntity>
 
-    async getConfig(channelToken: string): Promise<ChannelConfig> {
-        const config = this.channelConfig.find(c => c.channelToken === channelToken);
+    constructor(private connection: TransactionalConnection) {
+        this.repo = this.connection.getRepository(ChannelConfigEntity);
+    }
+
+    async get(channelId: string | ID): Promise<ChannelConfigEntity> {
+        const config = await this.repo.findOne({channelId: channelId as string});
         if (!config) {
-            throw Error(`No config found for channel ${channelToken}`);
+            throw Error(`No ChannelConfig found for channelId ${channelId}`);
         }
         return config;
     }
+
+    async create(config: Partial<ChannelConfigEntity>): Promise<ChannelConfigEntity> {
+        return this.repo.save(config);
+    }
+
 }

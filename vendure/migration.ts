@@ -5,6 +5,8 @@ import program from 'commander';
 
 import { config } from './src/vendure-config';
 
+console.log(`MIGRATION FOR ${process.env.DATABASE_NAME}`);
+
 program
     .command('generate <name>')
     .description('Generate a new migration file with the given name')
