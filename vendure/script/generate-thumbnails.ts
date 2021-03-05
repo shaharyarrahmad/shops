@@ -1,7 +1,7 @@
 import {GoogleStorageStrategy} from 'vendure-plugin-google-storage-assets';
 import * as tmp from 'tmp';
 
-const bucket = 'pinelab-shops-test-assets';
+const bucket = 'pinelab-shops-assets';
 (async () => {
 
     const strat = new GoogleStorageStrategy({
