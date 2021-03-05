@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div v-if="emptyBasket">
+      <div v-if="!orderLines">
         <div class="grid-x small-up-1grid-padding-x text-center small-font">
           <div class="cell">
             <p>Je hebt nog niks in je winkelmand...</p>
@@ -112,11 +112,7 @@ export default {
     },
     orderLines() {
       return this.activeOrder?.lines?.length;
-    },
-    emptyBasket() {
-      // Only return true if we have an activeOrder, but it has no lines
-      return !!(this.$store?.activeOrder && !this.orderLines);
-    },
+    }
   },
 };
 </script>
