@@ -6,6 +6,6 @@ gcloud run deploy shops-api \
             --region "europe-west1" \
             --platform "managed" \
             --allow-unauthenticated \
-            --memory=1G \
+            --memory=2G \
             --project=pinelab-shops \
             --set-env-vars=$ENV_VARS
