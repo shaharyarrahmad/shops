@@ -11,11 +11,18 @@ In the admin api, it returns the relative url, because the Admin UI needs resizi
 1. Add to your `sendcloud.dev-config.ts` 
 ```js
         AssetServerPlugin.init({
-            storageStrategyFactory: () => new GoogleStorageStrategy('your-bucket-name'),
+            storageStrategyFactory: () => new GoogleStorageStrategy({
+                bucketname: 'your-bucket-name',
+                thumbnails: {
+                    width: 400,
+                    height: 400,
+                }                   
+            }),
             route: 'assets',
             assetUploadDir: '/tmp/vendure/assets',
             port: 3001,
-        })
+        }),
+        GoogleStoragePlugin, // Append asset.thumbnail to shop-api and admin-api
 ```
 
 ## Local development

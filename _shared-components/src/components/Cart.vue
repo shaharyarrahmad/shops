@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     getPreview(asset) {
-      return asset?.preview
+      return asset?.thumbnail
     },
     updateQuantity(lineId, q) {
       this.$vendure.adjustOrderLine(lineId, q);

@@ -38,6 +38,7 @@ const orderFields = `
       featuredAsset {
         id
         preview
+        thumbnail
       }
       productVariant {
         id

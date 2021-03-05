@@ -3,8 +3,7 @@
   "private": true,
   "scripts": {
     "serve": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
-    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\"",
-    "serve:local": "yarn concurrently \"export NODE_ENV=local && yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\""
+    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\""
   },
   "resolutions": {
     "graphql": "^14.7.0"
@@ -15,7 +14,8 @@
     "graphql": "^14.7.0",
     "graphql-request": "3.4.0",
     "gridsome": "*",
-    "shared-components": "file:../_shared-components"
+    "rollbar": "^2.21.0",
+    "shared-components": "file:../../_shared-components"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

@@ -19,6 +19,7 @@ import {ChannelConfigPlugin} from './channel-config/channel-config.plugin';
 import {AnalyticsPlugin} from './analytics/analytics.plugin';
 import {WebhookPlugin} from 'vendure-plugin-webhook';
 import {PublicStockPlugin} from 'vendure-plugin-public-stock';
+import {GoogleStoragePlugin} from 'vendure-plugin-google-storage-assets/dist/google-storage-plugin';
 
 export const config: VendureConfig = {
     orderOptions: {
@@ -67,8 +68,11 @@ export const config: VendureConfig = {
         MolliePlugin,
         ChannelConfigPlugin,
         AnalyticsPlugin,
+        GoogleStoragePlugin,
         AssetServerPlugin.init({
-            storageStrategyFactory: () => new GoogleStorageStrategy('pinelab-shops-assets'),
+            storageStrategyFactory: () => new GoogleStorageStrategy({
+                bucketName: process.env.BUCKET!
+            }),
             route: 'assets',
             assetUploadDir: '/tmp/vendure/assets',
             port: 3001,

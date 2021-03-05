@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     getAsset(product) {
-      return product.featuredAsset?.preview
+      return product.featuredAsset?.thumbnail
     }
   },
   async mounted() {

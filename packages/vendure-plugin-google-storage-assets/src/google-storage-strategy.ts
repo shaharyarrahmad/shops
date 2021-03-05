@@ -4,19 +4,29 @@ import {Request} from 'express';
 import {Stream} from 'stream';
 import * as tmp from 'tmp';
 import * as fs from 'fs';
+import {GoogleStorageConfig} from './google-storage-config';
+import sharp from 'sharp';
 
 export class GoogleStorageStrategy implements AssetStorageStrategy {
 
     storage: Storage;
     urlPrefix = 'https://storage.googleapis.com';
+    bucketName: string;
 
-    constructor(public bucketName: string) {
+    constructor(private config: GoogleStorageConfig) {
+        this.bucketName = config.bucketName;
+        if (!config.thumbnails) {
+            config.thumbnails = {
+                height: 300,
+                width: 300
+            };
+        }
         this.storage = new Storage();
     }
 
-    toAbsoluteUrl(request: Request, identifier: string): string {
-        if ((request as any).vendureRequestContext?._apiType === 'admin') { // go via assetServer if admin
-            return `${request.protocol}://${request.get('host')}/assets/${identifier}`;
+    toAbsoluteUrl(request: Request | undefined, identifier: string): string {
+        if ((request as any)?.vendureRequestContext?._apiType === 'admin') { // go via assetServer if admin
+            return `${request!.protocol}://${request!.get('host')}/assets/${identifier}`;
         }
         return `${this.urlPrefix}/${this.bucketName}/${identifier}`;
     }
@@ -52,6 +62,9 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
         await this.storage.bucket(this.bucketName).upload(tmpFile.name, {
             destination: fileName
         });
+        if (fileName.startsWith('preview/')) {
+            await this.writeThumbnail(fileName, tmpFile.name);
+        }
         return fileName;
     }
 
@@ -70,4 +83,21 @@ export class GoogleStorageStrategy implements AssetStorageStrategy {
             stream.on('error', reject);
         })
     }
+
+    /**
+     * Transforms local file to thumbnail (jpg) and uploads to Storage
+     */
+    async writeThumbnail(fileName: string, localFilePath: string): Promise<void> {
+        const tmpFile = tmp.fileSync({postfix: '.jpg'});
+        await sharp(localFilePath)
+            .resize({
+                width: this.config.thumbnails!.width,
+                height: this.config.thumbnails!.height
+            })
+            .toFile(tmpFile.name);
+        await this.storage.bucket(this.bucketName).upload(tmpFile.name, {
+            destination: `${fileName}_thumbnail.jpg`
+        });
+    }
+
 }

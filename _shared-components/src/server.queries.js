@@ -5,10 +5,12 @@ const productFields = `
         slug
         assets {
             preview
+            thumbnail
         }
         featuredAsset {
             id
             preview
+            thumbnail
         }
         description
         variants {
@@ -20,10 +22,12 @@ const productFields = `
             assets {
                 id
                 preview
+                thumbnail
             }
             featuredAsset {
                 id
                 preview
+                thumbnail
             }
         }
     }

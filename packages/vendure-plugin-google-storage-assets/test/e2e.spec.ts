@@ -1,23 +1,28 @@
-/* tslint:disable:no-non-null-assertion */
-import {
-    createTestEnvironment,
-    E2E_DEFAULT_CHANNEL_TOKEN,
-    registerInitializer,
-    SqljsInitializer,
-    testConfig
-} from '@vendure/testing';
+import {createTestEnvironment, registerInitializer, SqljsInitializer, testConfig} from '@vendure/testing';
 import gql from 'graphql-tag';
 import {DefaultLogger, LogLevel} from '@vendure/core';
-import * as path from 'path';
 import {GoogleStorageStrategy} from '../src/google-storage-strategy';
-import {initialData} from '../../dev-server/script/initialData';
+import {initialData} from '../../test/initialData';
+import {AssetServerPlugin} from '@vendure/asset-server-plugin';
+import path from "path";
+import {GoogleStoragePlugin} from '../src/google-storage-plugin';
 
 describe('ChannelAware Assets', () => {
 
-    testConfig.logger = new DefaultLogger({ level: LogLevel.Debug });
+    testConfig.logger = new DefaultLogger({level: LogLevel.Debug});
     registerInitializer('sqljs', new SqljsInitializer('__data__'));
-    testConfig.plugins.push(GoogleStorageStrategy);
-    const { server, adminClient, shopClient } = createTestEnvironment(testConfig);
+    testConfig.plugins.push(AssetServerPlugin.init({
+        storageStrategyFactory: () => new GoogleStorageStrategy({
+            bucketName: 'pinelab-shops-test-assets'
+        }),
+        route: 'assets',
+        assetUploadDir: '/tmp/vendure/assets',
+        port: 3001,
+    }));
+    testConfig.plugins.push(GoogleStoragePlugin);
+    const {server, adminClient, shopClient} = createTestEnvironment(testConfig);
+
+    let createdAssetId: string;
 
     beforeAll(async () => {
         await server.init({
@@ -30,11 +35,48 @@ describe('ChannelAware Assets', () => {
         await server.destroy();
     });
 
-    it('Test', async () => {
-        const ding = await shopClient.query(gql`{ products { items { id } }}`);
-        console.log(ding);
-        expect(ding).toBeDefined();
-
+    it('Upload asset', async () => {
+        await adminClient.asSuperAdmin();
+        const filesToUpload = [
+            path.join(__dirname, 'tech.jpeg'),
+        ];
+        const {createAssets} = await adminClient.fileUploadMutation({
+            mutation: CREATE_ASSETS,
+            filePaths: filesToUpload,
+            mapVariables: filePaths => ({
+                input: filePaths.map(p => ({file: null})),
+            }),
+        });
+        console.log(createAssets)
+        createdAssetId = createAssets[0].id;
+        expect(createAssets.length).toBe(1);
+        expect(createAssets[0].thumbnail.endsWith('_thumbnail.jpg')).toBe(true);
     });
 
 });
+
+export const CREATE_ASSETS = gql`
+    mutation createAssets($input: [CreateAssetInput!]!) {
+        createAssets(input: $input) {
+            ... on Asset {
+                id
+                name
+                fileSize
+                mimeType
+                type
+                preview
+                source
+                thumbnail
+                focalPoint {
+                    x
+                    y
+                }
+            }
+            ... on MimeTypeError {
+                message
+                fileName
+                mimeType
+            }
+        }
+    }
+`;

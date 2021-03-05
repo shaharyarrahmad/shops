@@ -8,6 +8,8 @@ const config = require('shared-components/config');
 
 module.exports = async function (api) {
 
+    console.log(`Using API ${process.env.GRIDSOME_VENDURE_API}`);
+
     api.afterBuild(({redirects}) => {
         console.log('------ Create the following redirects in static/_redirects!');
         for (const rule of redirects) {
