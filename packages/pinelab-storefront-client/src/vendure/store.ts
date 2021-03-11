@@ -1,4 +1,4 @@
-import {Order} from '../generated/graphql';
+import {Order} from '../';
 
 export class Store {
     activeOrder: Order | undefined;

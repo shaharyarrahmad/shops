@@ -1,5 +1,4 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-dist
 
 # compiled output
 /dist
@@ -43,7 +42,7 @@ testem.log
 /typings
 **/dist/
 
-**/vendure.sqlite
+*.sqlite
 
 # System Files
 .DS_Store
@@ -51,14 +50,13 @@ Thumbs.db
 
 *.log
 .cache
-src/.temp
 node_modules
 .env
 .env.*
+.temp
 
 /vendure/src/__admin-ui/*
 !/vendure/src/__admin-ui/dist/
-/*/.cache/
-/*/src/.temp/
 __data__/
-/packages/vendure-plugin-simple-cms/test/__admin-ui/
+vendure/migrations/
+vendure/static/email/test-emails/
