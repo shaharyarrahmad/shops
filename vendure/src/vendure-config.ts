@@ -17,15 +17,12 @@ import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-a
 import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { PublicStockPlugin } from 'vendure-plugin-public-stock';
-import { GoogleStoragePlugin } from 'vendure-plugin-google-storage-assets/dist/google-storage-plugin';
+import { GoogleStoragePlugin } from 'vendure-plugin-google-storage-assets';
 import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.handlers';
 
 export const config: VendureConfig = {
   orderOptions: {
     stockAllocationStrategy: new CustomStockAllocationStrategy(),
-  },
-  workerOptions: {
-    runInMainProcess: true,
   },
   apiOptions: {
     port: ((process.env.PORT as unknown) as number) || 3000,

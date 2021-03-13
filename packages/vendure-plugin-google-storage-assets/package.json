@@ -7,8 +7,8 @@
   "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/vendure-plugin-google-storage-assets",
   "license": "MIT",
   "private": false,
-  "main": "dist/google-storage-strategy.js",
-  "types": "dist/google-storage-strategy.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "README.md"

@@ -27,4 +27,20 @@ export class WebhookPlugin {
     this.options = options;
     return WebhookPlugin;
   }
+  static ui: AdminUiExtension = {
+    extensionPath: path.join(__dirname, 'ui'),
+    ngModules: [
+      {
+        type: 'lazy',
+        route: 'webhook',
+        ngModuleFileName: 'webhook.module.ts',
+        ngModuleName: 'WebhookModule',
+      },
+      {
+        type: 'shared',
+        ngModuleFileName: 'webhook-nav.module.ts',
+        ngModuleName: 'WebhookNavModule',
+      },
+    ],
+  };
 }

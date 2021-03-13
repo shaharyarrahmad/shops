@@ -33,4 +33,5 @@ export const initialData: InitialData = {
       ],
     },
   ],
+  paymentMethods: [],
 };

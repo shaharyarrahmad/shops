@@ -12,7 +12,8 @@ import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import path from 'path';
 import { GoogleStoragePlugin } from '../src/google-storage-plugin';
 
-describe('ChannelAware Assets', () => {
+describe('Google Storage assets', () => {
+
   testConfig.logger = new DefaultLogger({ level: LogLevel.Debug });
   registerInitializer('sqljs', new SqljsInitializer('__data__'));
   testConfig.plugins.push(
@@ -23,7 +24,6 @@ describe('ChannelAware Assets', () => {
         }),
       route: 'assets',
       assetUploadDir: '/tmp/vendure/assets',
-      port: 3001,
     })
   );
   testConfig.plugins.push(GoogleStoragePlugin);

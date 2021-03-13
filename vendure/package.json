@@ -37,7 +37,6 @@
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
     "vendure-plugin-google-storage-assets": "^0.19.0",
-    "vendure-plugin-public-stock": "^0.19.0",
     "vendure-plugin-webhook": "^0.19.0"
   },
   "devDependencies": {

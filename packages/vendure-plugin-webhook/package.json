@@ -14,7 +14,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc && copyfiles -u 1 'src/ui/**/*' dist/"
+    "build": "rimraf dist && tsc && copyfiles -u 1 'src/ui/**/*' dist/",
+    "serve": "ts-node test/dev-server.ts"
   },
   "devDependencies": {
     "@vendure/admin-ui": "1.0.0-beta.3",

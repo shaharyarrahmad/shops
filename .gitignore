@@ -62,3 +62,5 @@ node_modules
 /*/src/.temp/
 __data__/
 /packages/vendure-plugin-simple-cms/test/__admin-ui/
+/packages/pinelab-storefront-client/src/.temp/
+/packages/vendure-plugin-webhook/test/__admin-ui/

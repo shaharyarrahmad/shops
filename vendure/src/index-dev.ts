@@ -1,5 +1,5 @@
 require('dotenv').config({ path: process.env.SHOP_ENV });
-import { bootstrap, Logger } from '@vendure/core';
+import { bootstrap, JobQueueService, Logger } from '@vendure/core';
 import { config } from './vendure-config';
 import localtunnel from 'localtunnel';
 
@@ -17,7 +17,10 @@ import localtunnel from 'localtunnel';
 })();
 
 bootstrap(config)
-  .then(() => {
-    Logger.info(`\x1b[46mUsing database ${process.env.DATABASE_NAME} \x1b[0m`);
-  })
-  .catch((err) => console.error(err));
+    .then(async app => {
+      await app.get(JobQueueService).start()
+      Logger.info(`\x1b[46mUsing database ${process.env.DATABASE_NAME} \x1b[0m`);
+    })
+    .catch((err) => {
+      Logger.error(err);
+    });
