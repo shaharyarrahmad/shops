@@ -2462,7 +2462,7 @@
     semver "^7.3.4"
     tar "^6.1.0"
 
-"@mollie/api-client@^3.2.4":
+"@mollie/api-client@^3.2.4", "@mollie/api-client@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@mollie/api-client/-/api-client-3.4.0.tgz#8037d91249d3f05d4039acf33881cfd68c1d1720"
   integrity sha512-UE4hczsFKYqlddLfVTjkedNdUq291pcLwRAllICOAx7MZ6mBx6OEg86OhUnw4EbrZho2THW4VNl9MXOaBFBdkw==
@@ -10094,7 +10094,7 @@ loader-utils@^1.1.0, loader-utils@^1.2.3, loader-utils@^1.4.0:
     emojis-list "^3.0.0"
     json5 "^1.0.1"
 
-localtunnel@^2.0.0:
+localtunnel@^2.0.0, localtunnel@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/localtunnel/-/localtunnel-2.0.1.tgz#8f7c593f3005647f7675e6e69af9bf746571a631"
   integrity sha512-LiaI5wZdz0xFkIQpXbNI62ZnNn8IMsVhwxHmhA+h4vj8R9JG/07bQHWwQlyy7b95/5fVOCHJfIHv+a5XnkvaJA==
@@ -15343,7 +15343,7 @@ ts-morph@^9.0.0:
     "@ts-morph/common" "~0.7.0"
     code-block-writer "^10.1.1"
 
-ts-node@^9.0.0:
+ts-node@^9.0.0, ts-node@^9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.1.1.tgz#51a9a450a3e959401bda5f004a72d54b936d376d"
   integrity sha512-hPlt7ZACERQGf03M253ytLY3dHbGNGrAq9qIHWUY9XHYl1z7wYngSr3OQ5xmui8o2AaxsONxIzjafLUiWBo1Fg==
@@ -15830,11 +15830,6 @@ vendors@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.4.tgz#e2b800a53e7a29b93506c3cf41100d16c4c4ad8e"
   integrity sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==
-
-vendure-plugin-public-stock@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-public-stock/-/vendure-plugin-public-stock-0.19.0.tgz#f0126c604af5678a6e5d94be0f570213225f2661"
-  integrity sha512-CxfpEAoBPagsdHiwl4CCzKnU/FDvMGbGrO4Ku3gOqCZwHe44QF/CTizS3ZMn37tfoVgw9K+2n05dn3Jt49A3cA==
 
 verror@1.10.0:
   version "1.10.0"

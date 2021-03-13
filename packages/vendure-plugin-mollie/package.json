@@ -1,0 +1,32 @@
+{
+  "name": "vendure-plugin-mollie",
+  "version": "0.19.0",
+  "description": "Vendure plugin for integration with the Mollie payment platform",
+  "author": "Martijn van de Brug <martijn@pinelab.studio>",
+  "homepage": "https://pinelab.studio",
+  "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "serve": "yarn ts-node ./test/dev-server",
+    "test": "jest --preset=\"ts-jest\""
+  },
+  "dependencies": {
+    "@mollie/api-client": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vendure/admin-ui": "1.0.0-beta.3",
+    "@vendure/admin-ui-plugin": "1.0.0-beta.3",
+    "@vendure/asset-server-plugin": "1.0.0-beta.3",
+    "@vendure/core": "1.0.0-beta.3",
+    "@vendure/ui-devkit": "1.0.0-beta.3",
+    "ts-node": "^9.1.1"
+  }
+}

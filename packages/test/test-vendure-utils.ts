@@ -61,11 +61,12 @@ export async function proceedToArrangingPayment(
 
 export async function addPaymentToOrder(
   shopClient: SimpleGraphQLClient,
-  handler: PaymentMethodHandler
+  handler: PaymentMethodHandler,
+  methodCode?: string
 ): Promise<Order> {
   const result = await shopClient.query(ADD_PAYMENT, {
     input: {
-      method: handler.code,
+      method: methodCode || handler.code,
       metadata: {
         baz: 'quux',
       },

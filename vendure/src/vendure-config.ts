@@ -16,7 +16,6 @@ import { GoogleStorageStrategy } from 'vendure-plugin-google-storage-assets';
 import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-allocation.strategy';
 import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
-import { PublicStockPlugin } from 'vendure-plugin-public-stock';
 import { GoogleStoragePlugin } from 'vendure-plugin-google-storage-assets';
 import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.handlers';
 
@@ -65,7 +64,6 @@ export const config: VendureConfig = {
         CollectionModificationEvent,
       ],
     }),
-    PublicStockPlugin,
     MolliePlugin,
     ChannelConfigPlugin,
     GoogleStoragePlugin,
@@ -76,7 +74,6 @@ export const config: VendureConfig = {
         }),
       route: 'assets',
       assetUploadDir: '/tmp/vendure/assets',
-      port: 3001,
     }),
     DefaultJobQueuePlugin,
     DefaultSearchPlugin,
@@ -101,6 +98,7 @@ export const config: VendureConfig = {
     }),
     // Production ready, precompiled admin UI
     AdminUiPlugin.init({
+      route: 'admin',
       port: 3002,
       app: {
         path: path.join(__dirname, '__admin-ui/dist'),
