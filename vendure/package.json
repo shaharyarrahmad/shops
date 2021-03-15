@@ -8,6 +8,7 @@
     "serve": "nodemon -e ts --watch '../packages/' --watch './src/' --exec \"yarn build && node ./dist/index-dev\"",
     "serve:prod": "export SHOP_ENV=.env && yarn serve",
     "serve:test": "export SHOP_ENV=.env.test && yarn serve",
+    "serve:copy": "export SHOP_ENV=.env.copy && yarn serve",
     "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",
     "build": "yarn tsc && yarn copy",
     "migration:generate:test": "export SHOP_ENV=.env.test && yarn ts-node migration generate",

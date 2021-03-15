@@ -35,8 +35,8 @@ import * as path from 'path';
         port: 3002,
         app: compileUiExtensions({
             outputPath: path.join(__dirname, '__admin-ui'),
-            extensions: [],
-            devMode: true
+            extensions: [WebhookPlugin.ui],
+            devMode: true,
         }),
     }));
     testConfig.apiOptions.shopApiPlayground = {};

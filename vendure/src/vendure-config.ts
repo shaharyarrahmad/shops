@@ -11,13 +11,13 @@ import { EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
-import { MolliePlugin } from './mollie-payment/mollie.plugin';
 import { GoogleStorageStrategy } from 'vendure-plugin-google-storage-assets';
 import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-allocation.strategy';
 import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { GoogleStoragePlugin } from 'vendure-plugin-google-storage-assets';
 import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.handlers';
+import {MolliePlugin} from 'vendure-plugin-mollie';
 
 export const config: VendureConfig = {
   orderOptions: {
