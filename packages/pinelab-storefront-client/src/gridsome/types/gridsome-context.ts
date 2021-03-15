@@ -1,11 +1,10 @@
 import Vue from 'vue';
-import {VendureClient} from '../../vendure/vendure.client';
-import {ExtendedProduct} from './extended-product';
+import {Product, VendureClient} from '../../';
 
 export class GridsomeContext extends Vue{
     $context!: {
-        product?: ExtendedProduct
-        products?: ExtendedProduct[]
+        product?: Product
+        products?: Product[]
     };
     $vendure!: VendureClient
 }

@@ -1,7 +1,7 @@
 import {Store} from './store';
 import {GraphQLClient} from 'graphql-request';
-import {Order} from '..';
 import {GET_ACTIVE_ORDER, GET_PRODUCT_STOCK} from './vendure.queries';
+import { Order } from '../';
 
 export class VendureClient {
 
@@ -22,7 +22,7 @@ export class VendureClient {
 
     async getStockForProducts() {
         const { products } = await this.request(GET_PRODUCT_STOCK);
-        return products.items.map((p) => setCalculatedFields(p));
+        return products;
     }
 
     async request(document: string, variables?: any) {

@@ -1,6 +1,6 @@
-import Vue from 'vue'
 import Component from 'vue-class-component'
-import {GridsomeContext, Product} from '../';
+import {GridsomeContext} from '../';
+import {Product} from '../';
 
 // Define a super class component
 @Component
@@ -11,28 +11,9 @@ export class ProductsMixin extends GridsomeContext {
         this.$context!.products?.forEach((p) => {
             const hydratedProd = products.find((hp: Product) => hp.id === p.id);
             if (hydratedProd) {
-                p.soldOut = hydratedProd.soldOut;
+               // p.soldOut = hydratedProd.soldOut;
+                console.log(`TODO: set stockleven for ${p.name}`);
             }
         });
     }
 }
-
-
-
-/*
-export const productMixin = {
-    data() {
-      return {
-          products: [] as Product[]
-      }
-    },
-    mounted() {
-
-        (this as any).products = (this as any).$context!.products?.map((p: Product) => ({
-            ...p,
-            name: 'Martijn test'
-        }));
-    }
-};
-
-*/

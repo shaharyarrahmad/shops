@@ -70,18 +70,17 @@ a {
 }
 </style>
 <script lang="ts">
-import AsyncImage from './AsyncImage';
+import AsyncImage from './AsyncImage.vue';
 
 @Component
 export class ProductOverview {
   components: {
     AsyncImage,
-  }
-
+  },
   methods: {
     getAsset(product) {
       return product.featuredAsset?.thumbnail;
-    },
-  },
+    }
+  }
 };
 </script>
