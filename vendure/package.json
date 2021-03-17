@@ -21,9 +21,6 @@
     "migration:run:prod": "export SHOP_ENV=.env && yarn ts-node migration run",
     "migration:revert:prod": "export SHOP_ENV=.env && yarn ts-node migration revert"
   },
-  "resolutions": {
-    "tslib": "1.11.2"
-  },
   "dependencies": {
     "@mollie/api-client": "^3.2.4",
     "@types/localtunnel": "^2.0.0",

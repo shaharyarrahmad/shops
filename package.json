@@ -24,5 +24,11 @@
     "nohoist": [
       "**/@vendure/ui-devkit"
     ]
+  },
+  "resolutions": {
+    "tslib": "1.11.2",
+    "@angular/cli": "11.2.4",
+    "@angular/compiler-cli": "11.2.4",
+    "@angular/compiler": "11.2.4"
   }
 }
