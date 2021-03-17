@@ -18,7 +18,7 @@ const productFields = `
             name
             priceWithTax
             productId
-            available
+            stockLevel
             assets {
                 id
                 preview

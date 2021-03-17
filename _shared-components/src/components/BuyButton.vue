@@ -66,7 +66,7 @@ export default {
       this.$vendure.addProductToCart(this.variant.id, 1);
     },
     isSoldOut(variant) {
-      this.soldOut = variant?.available <= 0;
+      this.soldOut = variant?.stockLevel === 'OUT_OF_STOCK';
     },
   },
   async mounted() {

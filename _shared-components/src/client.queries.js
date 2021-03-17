@@ -67,7 +67,7 @@ const getStockForProductsQuery = `{
             slug
             variants {
                 id
-                available
+                stockLevel
                 priceWithTax
             }
         }

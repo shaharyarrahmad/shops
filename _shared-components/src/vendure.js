@@ -180,7 +180,7 @@ class Vendure {
  */
 function setCalculatedFields(product) {
   const defaultPrice = Math.min(...product.variants.map((v) => v.priceWithTax));
-  const available = product.variants.find((v) => v.available > 0);
+  const available = product.variants.find((v) => v.stockLevel !== 'OUT_OF_STOCK');
   return {
     ...product,
     defaultPrice,
