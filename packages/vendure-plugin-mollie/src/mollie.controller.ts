@@ -32,7 +32,6 @@ export class MollieController {
         const ctx = await this.createContext(channelToken);
         Logger.info(`Received payment for ${channelToken}`, MolliePlugin.context);
         const {paymentMethod} = await this.paymentMethodService.getMethodAndOperations(ctx, `mollie-payment-${channelToken}`);
-        Logger.error(JSON.stringify(paymentMethod.handler.args), MolliePlugin.context);
         const apiKey = paymentMethod.handler.args.find(a => a.name === 'apiKey')?.value;
         if (!apiKey) {
             throw Error(`No apiKey found for mollie-payment for channel ${channelToken}`);

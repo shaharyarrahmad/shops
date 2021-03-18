@@ -21,8 +21,6 @@ import {channelAwareEmailHandlers} from './channel-config/channel-aware-email.ha
 import {MolliePlugin} from 'vendure-plugin-mollie';
 
 export const config: VendureConfig = {
-    // FIXME
-    logger: new DefaultLogger({level: LogLevel.Debug }),
     orderOptions: {
         stockAllocationStrategy: new CustomStockAllocationStrategy(),
     },
@@ -87,7 +85,7 @@ export const config: VendureConfig = {
                 port: 587,
                 secure: false,
                 logging: false,
-                debug: true,
+                debug: false,
                 auth: {
                     user: 'noreply@pinelab.studio',
                     pass: process.env.ZOHO_PASS as string,
