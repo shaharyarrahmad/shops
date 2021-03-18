@@ -1,11 +1,12 @@
 import {
-  CreatePaymentResult, Logger,
+  CreatePaymentResult,
+  Logger,
   PaymentMethodHandler,
   SettlePaymentResult,
 } from '@vendure/core';
 import { LanguageCode } from '@vendure/common/lib/generated-types';
 import createMollieClient from '@mollie/api-client';
-import {MolliePlugin} from './mollie.plugin';
+import { MolliePlugin } from './mollie.plugin';
 
 export const molliePaymentHandler = new PaymentMethodHandler({
   code: 'mollie-payment-handler',
@@ -33,7 +34,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
     metadata
   ): Promise<CreatePaymentResult> => {
     try {
-      let {apiKey, redirectUrl} = args;
+      let { apiKey, redirectUrl } = args;
       if (redirectUrl && !redirectUrl.endsWith('/')) {
         redirectUrl = `${redirectUrl}/`; // append slash if
       }

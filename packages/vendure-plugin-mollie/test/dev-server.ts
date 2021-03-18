@@ -1,4 +1,4 @@
-import {devConfig} from './dev-config';
+import { devConfig } from './dev-config';
 
 require('dotenv').config();
 import {
@@ -19,14 +19,16 @@ import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
     initialData: {
       ...initialData,
       paymentMethods: [
-        {name: 'mollie-payment',
+        {
+          name: 'mollie-payment',
           handler: {
-          code: 'mollie-payment-handler',
+            code: 'mollie-payment-handler',
             arguments: [
-                {name: 'apiKey', value: process.env.apiKey!},
-                {name: 'redirectUrl', value: process.env.redirectUrl!},
-           ]
-        }}
+              { name: 'apiKey', value: process.env.apiKey! },
+              { name: 'redirectUrl', value: process.env.redirectUrl! },
+            ],
+          },
+        },
       ],
     },
     productsCsvPath: '../test/products-import.csv',
