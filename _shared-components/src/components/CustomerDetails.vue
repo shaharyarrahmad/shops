@@ -4,31 +4,31 @@
     <div class="grid-x grid-padding-x">
       <div class="cell small-6">
         <label
-        >Bedrijfsnaam
-          <input type="text" name="company" v-model="address.company"/>
+          >Bedrijfsnaam
+          <input type="text" name="company" v-model="address.company" />
         </label>
       </div>
     </div>
     <div class="grid-x grid-padding-x">
       <div class="cell small-6">
         <label
-        >Voornaam*
+          >Voornaam*
           <input
-              type="text"
-              name="firstname"
-              required
-              v-model="customer.firstName"
+            type="text"
+            name="firstname"
+            required
+            v-model="customer.firstName"
           />
         </label>
       </div>
       <div class="cell small-6">
         <label
-        >Achternaam*
+          >Achternaam*
           <input
-              type="text"
-              name="lastname"
-              required
-              v-model="customer.lastName"
+            type="text"
+            name="lastname"
+            required
+            v-model="customer.lastName"
           />
         </label>
       </div>
@@ -36,42 +36,18 @@
     <div class="grid-x grid-padding-x">
       <div class="cell small-6">
         <label
-        >Telefoonnummer
-          <input type="tel" name="phoneNumber" v-model="customer.phoneNumber"/>
+          >Telefoonnummer
+          <input type="tel" name="phoneNumber" v-model="customer.phoneNumber" />
         </label>
       </div>
       <div class="cell small-6">
         <label
-        >Email*
+          >Email*
           <input
-              type="email"
-              name="email"
-              required
-              v-model="customer.emailAddress"
-          />
-        </label>
-      </div>
-    </div>
-    <div class="grid-x grid-padding-x">
-      <div class="cell small-8">
-        <label
-        >Straat*
-          <input
-              type="text"
-              name="street"
-              required
-              v-model="address.streetLine1"
-          />
-        </label>
-      </div>
-      <div class="cell small-4">
-        <label
-        >Huisnr*
-          <input
-              type="text"
-              name="housenr"
-              required
-              v-model="address.streetLine2"
+            type="email"
+            name="email"
+            required
+            v-model="customer.emailAddress"
           />
         </label>
       </div>
@@ -79,18 +55,42 @@
     <div class="grid-x grid-padding-x">
       <div class="cell small-8">
         <label
-        >Plaats*
-          <input type="text" name="city" required v-model="address.city"/>
+          >Straat*
+          <input
+            type="text"
+            name="street"
+            required
+            v-model="address.streetLine1"
+          />
         </label>
       </div>
       <div class="cell small-4">
         <label
-        >Postcode*
+          >Huisnr*
           <input
-              type="text"
-              name="postalcode"
-              required
-              v-model="address.postalCode"
+            type="text"
+            name="housenr"
+            required
+            v-model="address.streetLine2"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="grid-x grid-padding-x">
+      <div class="cell small-8">
+        <label
+          >Plaats*
+          <input type="text" name="city" required v-model="address.city" />
+        </label>
+      </div>
+      <div class="cell small-4">
+        <label
+          >Postcode*
+          <input
+            type="text"
+            name="postalcode"
+            required
+            v-model="address.postalCode"
           />
         </label>
       </div>
@@ -98,7 +98,7 @@
     <div class="grid-x grid-padding-x">
       <div class="cell small-6">
         <label
-        >Land
+          >Land
           <select name="country" v-model="address.countryCode">
             <option value="nl" selected>Nederland</option>
             <option value="de">Duitsland</option>
@@ -109,7 +109,7 @@
     </div>
     <div class="grid-x grid-padding-x">
       <div class="cell small-12 text-right">
-        <input type="submit" class="button" value="BESTEL"/>
+        <input type="submit" class="button" value="BESTEL" />
       </div>
     </div>
   </form>
@@ -175,7 +175,7 @@ export default {
     this.address.postalCode = activeOrder?.shippingAddress?.postalCode;
     if (activeOrder?.shippingAddress?.country) {
       this.address.countryCode = this.getCountryCode(
-          activeOrder?.shippingAddress?.country
+        activeOrder?.shippingAddress?.country
       );
     }
   },

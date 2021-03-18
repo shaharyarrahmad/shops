@@ -82,7 +82,7 @@ export default {
           break;
         }
         this.order = await this.$vendure.getOrderByCode(code);
-        console.log(this.order?.state)
+        console.log(this.order?.state);
         await new Promise((resolve) => setTimeout(resolve, 1000));
         pollingCount++;
         console.log(`Polling for payment status ${pollingCount}`);

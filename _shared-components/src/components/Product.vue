@@ -113,8 +113,9 @@ export default {
     load() {
       // Load variant, assets and selectedAsset
       const variant =
-        this.$context.product.variants.find((v) => v.stockLevel !== 'OUT_OF_STOCK') ||
-        this.$context.product.variants[0];
+        this.$context.product.variants.find(
+          (v) => v.stockLevel !== 'OUT_OF_STOCK'
+        ) || this.$context.product.variants[0];
       this.selectVariant(variant.id);
       this.asset =
         this.selectedVariant.featuredAsset ||

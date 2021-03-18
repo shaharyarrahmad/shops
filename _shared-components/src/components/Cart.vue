@@ -112,7 +112,7 @@ export default {
     },
     orderLines() {
       return this.activeOrder?.lines?.length;
-    }
+    },
   },
 };
 </script>
