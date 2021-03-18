@@ -25,16 +25,15 @@
     "sharp": "*"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.20",
     "@types/sharp": "^0.27.1",
-    "@vendure/admin-ui": "1.0.0-beta.3",
-    "@vendure/admin-ui-plugin": "1.0.0-beta.3",
-    "@vendure/asset-server-plugin": "1.0.0-beta.3",
-    "@vendure/core": "1.0.0-beta.3",
-    "@vendure/testing": "1.0.0-beta.3",
-    "@vendure/ui-devkit": "1.0.0-beta.3",
+    "@vendure/admin-ui": "1.0.0-beta.4",
+    "@vendure/admin-ui-plugin": "1.0.0-beta.4",
+    "@vendure/asset-server-plugin": "1.0.0-beta.4",
+    "@vendure/core": "1.0.0-beta.4",
+    "@vendure/testing": "1.0.0-beta.4",
+    "@vendure/ui-devkit": "1.0.0-beta.4",
     "sharp": "^0.27.2",
-    "ts-jest": "^26.5.3"
+    "ts-jest": "^26.5.4"
   },
   "gitHead": "88aecbf0daacf71b110791fc6fcc6dc478670d5a"
 }

@@ -19,10 +19,7 @@ export default {
       if (states?.indexOf('ArrangingPayment') > -1) {
         await this.$vendure.transitionOrderToState('ArrangingPayment');
       }
-      const order = await this.$vendure.addPaymentToOrder({
-        method: 'mollie-payment-handler',
-        metadata: {},
-      });
+      const order = await this.$vendure.addPaymentToOrder({method: `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`, metadata: {}});
       const latestPayment = order?.payments?.[order?.payments.length - 1];
       if (latestPayment?.metadata?.public?.redirectLink) {
         window.location.href = latestPayment.metadata.public.redirectLink;

@@ -133,7 +133,6 @@ class Vendure {
   }
 
   async addPaymentToOrder(input) {
-    input.metadata.channel = process.env.GRIDSOME_VENDURE_TOKEN;
     const { addPaymentToOrder } = await this.request(
       addPaymentToOrderMutation,
       { input }

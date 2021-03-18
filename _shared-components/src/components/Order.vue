@@ -4,17 +4,13 @@
       <g-link to="/">Terug naar de winkel</g-link>
       <br />
       <br />
-      <div v-if="!order && !error">
-        <h1>Even geduld...</h1>
-        <p>Je betaling wordt verwerkt</p>
-      </div>
 
       <div v-if="error">
         <h1>Er is iets misgegaan</h1>
         <p class="error">{{ error }}</p>
       </div>
 
-      <div v-if="order && !error">
+      <div v-if="order && order.state === 'PaymentSettled' && !error">
         <h1>Bedankt!</h1>
         <p>Dit heb je besteld:</p>
 
@@ -53,6 +49,10 @@
           <p>Je ontvangt een bevestiging in de mail.</p>
         </div>
       </div>
+      <div v-else-if="!error">
+        <h1>Even geduld...</h1>
+        <p>Je betaling wordt verwerkt</p>
+      </div>
     </div>
   </ClientOnly>
 </template>
@@ -82,6 +82,7 @@ export default {
           break;
         }
         this.order = await this.$vendure.getOrderByCode(code);
+        console.log(this.order?.state)
         await new Promise((resolve) => setTimeout(resolve, 1000));
         pollingCount++;
         console.log(`Polling for payment status ${pollingCount}`);

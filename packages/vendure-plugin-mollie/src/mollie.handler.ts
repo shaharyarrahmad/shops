@@ -48,7 +48,7 @@ export const molliePaymentHandler = new PaymentMethodHandler({
         },
         description: `Bestelling ${order.code}`,
         redirectUrl: `${redirectUrl}order/${order.code}`,
-        webhookUrl: `${process.env.VENDURE_HOST}/payments/mollie/${ctx.channel.token}`,
+        webhookUrl: `${MolliePlugin.host}/payments/mollie/${ctx.channel.token}`,
       });
       return {
         amount: order.totalWithTax,

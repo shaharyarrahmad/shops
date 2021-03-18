@@ -1,5 +1,5 @@
 {
-  "name": "my-gridsome-site",
+  "name": "marcdefotograaf",
   "private": true,
   "scripts": {
     "serve": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../_shared-components/' --exec 'yarn upgrade shared-components'\"",
@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "@gridsome/source-graphql": "*",
     "graphql": "^14.7.0",
     "graphql-request": "3.4.0",
-    "gridsome": "*",
     "rollbar": "^2.21.0",
     "shared-components": "file:../../_shared-components"
   },
   "devDependencies": {
+    "gridsome": "^0.7.23",
+    "@gridsome/source-graphql": "^0.1.0",
     "concurrently": "^5.3.0",
     "http-server": "^0.12.3",
     "nodemon": "^2.0.7",
