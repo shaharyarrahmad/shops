@@ -1,6 +1,5 @@
-import {devConfig} from './dev-config';
-
 require('dotenv').config();
+import {devConfig} from './dev-config';
 import {
   createTestEnvironment,
   registerInitializer,
@@ -14,6 +13,7 @@ import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
   registerInitializer('sqljs', new SqljsInitializer('__data__'));
   devConfig.plugins.push(DefaultSearchPlugin);
   devConfig.plugins.push(AdminUiPlugin.init({ port: 3002, route: 'admin' }));
+
   const { server } = createTestEnvironment(devConfig);
   await server.init({
     initialData: {
