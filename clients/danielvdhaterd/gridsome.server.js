@@ -7,6 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer/lib/BundleAnalyzer
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = async function (api) {
+  console.log(`\x1b[46mUsing API ${process.env.GRIDSOME_VENDURE_API}\x1b[0m`);
   api.afterBuild(({ redirects }) => {
     console.log('------ Create the following redirects in static/_redirects!');
     for (const rule of redirects) {

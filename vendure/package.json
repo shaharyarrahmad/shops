@@ -1,6 +1,6 @@
 {
   "name": "shops",
-  "version": "0.19.0",
+  "version": "0.20.2",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -8,37 +8,41 @@
     "serve": "nodemon -e ts --watch '../packages/' --watch './src/' --exec \"yarn build && node ./dist/index-dev\"",
     "serve:prod": "export SHOP_ENV=.env && yarn serve",
     "serve:test": "export SHOP_ENV=.env.test && yarn serve",
+    "serve:copy": "export SHOP_ENV=.env.copy && yarn serve",
+    "script:prod": "export SHOP_ENV=.env && yarn ts-node",
+    "script:test": "export SHOP_ENV=.env.test && yarn ts-node",
+    "script:copy": "export SHOP_ENV=.env.copy && yarn ts-node",
     "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",
     "build": "yarn tsc && yarn copy",
-    "migration:generate": "yarn ts-node migration generate",
-    "migration:run": "yarn ts-node migration run",
-    "migration:revert": "yarn ts-node migration revert",
-    "test": "export SHOP_ENV=.env.test && ",
-    "prod": "export SHOP_ENV=.env && "
-  },
-  "resolutions": {
-    "tslib": "1.11.2"
+    "migration:generate:test": "export SHOP_ENV=.env.test && yarn ts-node migration generate",
+    "migration:run:test": "export SHOP_ENV=.env.test && yarn ts-node migration run",
+    "migration:revert:test": "export SHOP_ENV=.env.test && yarn ts-node migration revert",
+    "migration:generate:copy": "export SHOP_ENV=.env.copy && yarn ts-node migration generate",
+    "migration:run:copy": "export SHOP_ENV=.env.copy && yarn ts-node migration run",
+    "migration:revert:copy": "export SHOP_ENV=.env.copy && yarn ts-node migration revert",
+    "migration:generate:prod": "export SHOP_ENV=.env && yarn ts-node migration generate",
+    "migration:run:prod": "export SHOP_ENV=.env && yarn ts-node migration run",
+    "migration:revert:prod": "export SHOP_ENV=.env && yarn ts-node migration revert"
   },
   "dependencies": {
-    "@mollie/api-client": "^3.2.4",
     "@types/localtunnel": "^2.0.0",
     "@types/tmp": "^0.2.0",
-    "@vendure/admin-ui-plugin": "0.18.5",
-    "@vendure/asset-server-plugin": "0.18.5",
-    "@vendure/core": "0.18.5",
-    "@vendure/email-plugin": "0.18.5",
-    "@vendure/ui-devkit": "0.18.5",
+    "@vendure/admin-ui-plugin": "1.0.0-beta.4",
+    "@vendure/asset-server-plugin": "1.0.0-beta.4",
+    "@vendure/core": "1.0.0-beta.4",
+    "@vendure/email-plugin": "1.0.0-beta.4",
+    "@vendure/ui-devkit": "1.0.0-beta.4",
     "copyfiles": "^2.4.1",
     "localtunnel": "^2.0.0",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
-    "vendure-plugin-google-storage-assets": "^0.19.0",
-    "vendure-plugin-public-stock": "^0.19.0",
-    "vendure-plugin-webhook": "^0.19.0"
+    "vendure-plugin-google-storage-assets": "^0.20.0",
+    "vendure-plugin-mollie": "^0.20.2",
+    "vendure-plugin-webhook": "^0.20.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
-    "typescript": "4.0.3"
+    "typescript": "4.2.3"
   }
 }

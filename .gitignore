@@ -51,6 +51,7 @@ Thumbs.db
 *.log
 .cache
 node_modules
+dist
 .env
 .env.*
 .temp
@@ -60,3 +61,5 @@ node_modules
 __data__/
 vendure/migrations/
 vendure/static/email/test-emails/
+/packages/vendure-plugin-simple-cms/test/__admin-ui/
+/packages/vendure-plugin-webhook/test/__admin-ui/

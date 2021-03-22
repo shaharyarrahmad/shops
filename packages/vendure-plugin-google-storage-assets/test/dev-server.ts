@@ -22,13 +22,12 @@ import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
         }),
       route: 'assets',
       assetUploadDir: '/tmp/vendure/assets',
-      port: 3001,
     })
   );
   testConfig.plugins.push(GoogleStoragePlugin);
 
   testConfig.plugins.push(DefaultSearchPlugin);
-  testConfig.plugins.push(AdminUiPlugin.init({ port: 3002 }));
+  testConfig.plugins.push(AdminUiPlugin.init({ route: 'admin', port: 3002 }));
   testConfig.apiOptions.shopApiPlayground = {};
   testConfig.apiOptions.adminApiPlayground = {};
   const { server } = createTestEnvironment(testConfig);

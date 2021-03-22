@@ -20,11 +20,11 @@
   "dependencies": {
   },
   "devDependencies": {
-    "@vendure/admin-ui": "0.18.5",
-    "@vendure/admin-ui-plugin": "0.18.5",
-    "@vendure/asset-server-plugin": "0.18.5",
-    "@vendure/core": "0.18.5",
-    "@vendure/ui-devkit": "0.18.5",
+    "@vendure/admin-ui": "1.0.0-beta.3",
+    "@vendure/admin-ui-plugin": "1.0.0-beta.3",
+    "@vendure/asset-server-plugin": "1.0.0-beta.3",
+    "@vendure/core": "1.0.0-beta.3",
+    "@vendure/ui-devkit": "1.0.0-beta.3",
     "ts-node": "^9.1.1"
   }
 }
