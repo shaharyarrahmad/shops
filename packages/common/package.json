@@ -1,6 +1,6 @@
 {
   "name": "pinelab-common",
-  "version": "0.19.0",
+  "version": "0.20.3",
   "description": "Pinelab common package: shared logic and types for backend and frontend",
   "author": "Martijn van de Brug <martijn@pinelab.studio>",
   "homepage": "https://pinelab.studio",
@@ -24,7 +24,5 @@
     "nodemon": "^2.0.7",
     "ts-loader": "^8.0.17",
     "typescript": "^4.2.3"
-  },
-  "dependencies": {
   }
 }
