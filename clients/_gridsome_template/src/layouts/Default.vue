@@ -30,6 +30,6 @@ import { NavBar } from 'pinelab-storefront-client/ministore';
 export default {
   components: {
     NavBar,
-  }
+  },
 };
 </script>

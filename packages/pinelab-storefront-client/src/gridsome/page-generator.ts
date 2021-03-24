@@ -1,16 +1,21 @@
-import { DetailPage, Page, StaticPages } from "../";
-import { Collection, CollectionList, Product, ProductList, ProductVariant } from "../../../common";
-import { GET_COLLECTIONS, GET_PRODUCTS } from "./gridsome.queries";
-import { deduplicate, setCalculatedFields } from "../";
-import { PageConfig } from "./types/page-config";
-import { CalculatedProduct } from "../vendure/calculated-product";
+import { DetailPage, Page, StaticPages } from '../';
+import {
+  Collection,
+  CollectionList,
+  Product,
+  ProductList,
+  ProductVariant,
+} from '../../../common';
+import { GET_COLLECTIONS, GET_PRODUCTS } from './gridsome.queries';
+import { deduplicate, setCalculatedFields } from '../';
+import { PageConfig } from './types/page-config';
+import { CalculatedProduct } from '../vendure/calculated-product';
 
 /**
  * Generates Gridsome pages based on given PageMap
  */
 export class PageGenerator {
-  constructor(private config: PageConfig) {
-  }
+  constructor(private config: PageConfig) {}
 
   /**
    * Generates static html pages for given PageMap templates
@@ -33,14 +38,18 @@ export class PageGenerator {
    *    $context.products: {@link CalculatedProduct[]}
    *    $context.collections: {@link Collection[]}
    */
-  createProductOverview(page: Page, products: CalculatedProduct[], collections: Collection[]): void {
+  createProductOverview(
+    page: Page,
+    products: CalculatedProduct[],
+    collections: Collection[]
+  ): void {
     this.config.createPageFn({
       path: page.slug,
       component: page.template,
       context: {
         products,
-        collections
-      }
+        collections,
+      },
     });
   }
 
@@ -51,14 +60,16 @@ export class PageGenerator {
    */
   createProductDetails(page: DetailPage, products: CalculatedProduct[]): void {
     products.forEach((product) => {
-      const path = page.slugPrefix ? `${page.slugPrefix}/${product.slug}/` : `/${product.slug}/`;
+      const path = page.slugPrefix
+        ? `${page.slugPrefix}/${product.slug}/`
+        : `/${product.slug}/`;
       this.config.createPageFn({
         path,
         component: page.template,
         context: {
           product,
-          previousPage: "/"
-        }
+          previousPage: '/',
+        },
       });
     });
   }
@@ -70,7 +81,10 @@ export class PageGenerator {
    *
    *    $context.previousPage = '/'
    */
-  createCollectionDetails(page: DetailPage, collectionList: CollectionList): void {
+  createCollectionDetails(
+    page: DetailPage,
+    collectionList: CollectionList
+  ): void {
     collectionList.items.forEach((collection: Collection) => {
       let productsPerCollection: Product[] = collection.productVariants.items.map(
         (variant: ProductVariant) => variant.product
@@ -80,15 +94,17 @@ export class PageGenerator {
         setCalculatedFields(p)
       );
       collection.productVariants.items = []; // We don't need this in __initial_state__, saves some Kb data
-      const path = page.slugPrefix ? `${page.slugPrefix}/${collection.slug}/` : `/${collection.slug}/`;
+      const path = page.slugPrefix
+        ? `${page.slugPrefix}/${collection.slug}/`
+        : `/${collection.slug}/`;
       this.config.createPageFn({
         path,
         component: page.template,
         context: {
           collection,
           products: productsPerCollection,
-          previousPage: "/"
-        }
+          previousPage: '/',
+        },
       });
     });
   }
@@ -103,21 +119,21 @@ export class PageGenerator {
     let [
       {
         data: {
-          Vendure: { products }
-        }
+          Vendure: { products },
+        },
       },
       {
         data: {
-          Vendure: { collections }
-        }
-      }
+          Vendure: { collections },
+        },
+      },
     ] = await Promise.all([
       this.config.graphqlFn(GET_PRODUCTS),
-      this.config.graphqlFn(GET_COLLECTIONS)
+      this.config.graphqlFn(GET_COLLECTIONS),
     ]);
     return {
       productList: products,
-      collectionList: collections
+      collectionList: collections,
     };
   }
 }

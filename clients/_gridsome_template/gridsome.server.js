@@ -4,7 +4,7 @@ module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const generator = new PageGenerator({
       graphqlFn: graphql,
-      createPageFn: createPage
+      createPageFn: createPage,
     });
 
     await generator.createStaticPages({

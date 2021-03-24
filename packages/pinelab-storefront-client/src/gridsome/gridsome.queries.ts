@@ -1,38 +1,38 @@
 import { gql } from 'graphql-request';
 
 export const PRODUCT_FIELDS = gql`
-    fragment ProductFields on Vendure_Product {
-        id
-        name
-        slug
-        assets {
-            preview
-            thumbnail
-        }
-        featuredAsset {
-            id
-            preview
-            thumbnail
-        }
-        description
-        variants {
-            id
-            name
-            priceWithTax
-            productId
-            stockLevel
-            assets {
-                id
-                preview
-                thumbnail
-            }
-            featuredAsset {
-                id
-                preview
-                thumbnail
-            }
-        }
+  fragment ProductFields on Vendure_Product {
+    id
+    name
+    slug
+    assets {
+      preview
+      thumbnail
     }
+    featuredAsset {
+      id
+      preview
+      thumbnail
+    }
+    description
+    variants {
+      id
+      name
+      priceWithTax
+      productId
+      stockLevel
+      assets {
+        id
+        preview
+        thumbnail
+      }
+      featuredAsset {
+        id
+        preview
+        thumbnail
+      }
+    }
+  }
 `;
 
 export const GET_PRODUCTS = gql`
