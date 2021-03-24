@@ -25,21 +25,11 @@
   </div>
 </template>
 <script>
-import { NavBar } from 'shared-components';
+import { NavBar } from 'pinelab-storefront-client/ministore';
 
 export default {
   components: {
     NavBar,
-  },
-  metaInfo() {
-    return {
-      meta: [
-        {
-          name: 'description',
-          content: 'Pinelab.studio demo webshop. Probeer het uit!',
-        },
-      ],
-    };
-  },
+  }
 };
 </script>

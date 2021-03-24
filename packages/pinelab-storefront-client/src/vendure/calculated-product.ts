@@ -1,6 +1,6 @@
 import { Product } from '../../../common';
 
 export interface CalculatedProduct extends Product {
-  lowesPrice: number;
+  lowestPrice: number;
   soldOut: boolean;
 }

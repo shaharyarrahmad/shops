@@ -11,7 +11,7 @@ export function setCalculatedFields(product: Product): CalculatedProduct {
   );
   return {
     ...product,
-    lowesPrice,
+    lowestPrice: lowesPrice,
     soldOut: !available,
   };
 }

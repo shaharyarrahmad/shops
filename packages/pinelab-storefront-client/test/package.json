@@ -5,6 +5,7 @@
     "serve": "yarn gridsome develop"
   },
   "dependencies": {
+    "@fontsource/roboto-mono": "^4.0.1",
     "pinelab-storefront-client": "file:../dist"
   },
   "devDependencies": {

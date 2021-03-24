@@ -7,15 +7,20 @@ export interface StaticPages {
   /**
    * Available data: {@link PageGenerator#createProductDetails}
    */
-  productDetail: Page;
+  productDetail: DetailPage;
 
   /**
-   * Available data: {@link PageGenerator#createProductDetails}
+   * Available data: {@link PageGenerator#createCollectionDetails}
    */
-  collection: Page;
+  collectionDetail: DetailPage;
 }
 
 export interface Page {
   slug: string;
+  template: string;
+}
+
+export interface DetailPage {
+  slugPrefix?: string;
   template: string;
 }

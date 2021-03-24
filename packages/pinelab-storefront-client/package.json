@@ -1,10 +1,10 @@
 {
   "name": "pinelab-storefront-client",
   "version": "0.19.0",
-  "description": "Vendure client for Vue + Gridsome server-side generation",
+  "description": "Generates static html pages with Gridsome and suplied Vue components",
   "author": "Martijn van de Brug <martijn@pinelab.studio>",
   "homepage": "https://pinelab.studio",
-  "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/vendure-plugin-webhook",
+  "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/",
   "license": "MIT",
   "private": false,
   "main": "dist/index.js",

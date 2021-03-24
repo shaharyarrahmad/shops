@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { ProductOverview } from 'shared-components';
+import { ProductOverview } from 'pinelab-storefront-client/ministore';
 
 export default {
   components: {
     ProductOverview,
-  },
+  }
 };
 </script>

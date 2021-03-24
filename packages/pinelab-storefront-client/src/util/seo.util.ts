@@ -44,7 +44,7 @@ export function getMetaInfo(product?: CalculatedProduct): MetaInfo | undefined {
           description: seoDescription,
           offers: {
             '@type': 'Offer',
-            price: product.lowesPrice / 100,
+            price: product.lowestPrice / 100,
             priceCurrency: 'EUR',
           },
         },

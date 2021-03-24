@@ -10,15 +10,15 @@ module.exports = async function (api) {
     await generator.createStaticPages({
       home: {
         slug: '/',
-        template: 'src/templates/ProductOverview.vue',
+        template: 'src/templates/ProductsTemplate.vue',
       },
       productDetail: {
-        slug: '/product/',
-        template: 'src/templates/Product.vue',
+        slugPrefix: '/product/',
+        template: 'src/templates/ProductTemplate.vue',
       },
-      collection: {
-        slug: '/',
-        template: 'src/templates/ProductOverview.vue',
+      collectionDetail: {
+        slugPrefix: '/',
+        template: 'src/templates/ProductsTemplate.vue',
       },
     });
   });
