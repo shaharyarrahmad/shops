@@ -9,7 +9,6 @@
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
-    "gridsome": "^0.7.23",
-    "gridsome-plugin-typescript": "^0.4.0"
+    "gridsome": "^0.7.23"
   }
 }

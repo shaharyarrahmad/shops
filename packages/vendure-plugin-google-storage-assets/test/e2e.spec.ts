@@ -13,7 +13,6 @@ import path from 'path';
 import { GoogleStoragePlugin } from '../src/google-storage-plugin';
 
 describe('Google Storage assets', () => {
-
   testConfig.logger = new DefaultLogger({ level: LogLevel.Debug });
   registerInitializer('sqljs', new SqljsInitializer('__data__'));
   testConfig.plugins.push(

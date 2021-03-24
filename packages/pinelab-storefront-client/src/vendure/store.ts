@@ -1,5 +1,5 @@
-import {Order} from '../';
+import { Order } from '../../../common';
 
 export class Store {
-    activeOrder: Order | undefined;
+  activeOrder: Order | undefined;
 }

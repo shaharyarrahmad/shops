@@ -48,7 +48,7 @@
                 SOLD OUT
               </p>
               <p v-if="!product.soldOut" class="product-overview-price">
-                {{ product.defaultPrice | euro }}
+                {{ product.lowestPrice | euro }}
               </p>
             </ClientOnly>
             <p :class="product.soldOut ? 'sold-out' : ''">{{ product.name }}</p>
@@ -69,18 +69,27 @@ a {
   color: inherit;
 }
 </style>
-<script lang="ts">
-import AsyncImage from './AsyncImage.vue';
+<script>
+import AsyncImage from './AsyncImage';
 
-@Component
-export class ProductOverview {
+export default {
   components: {
     AsyncImage,
   },
   methods: {
     getAsset(product) {
       return product.featuredAsset?.thumbnail;
-    }
-  }
+    },
+  },
+  async mounted() {
+    const products = await this.$vendure.getStockForProducts();
+    // Rehydrate products.soldOut
+    this.$context.products.forEach((p) => {
+      const hydratedProd = products.find((hp) => hp.id === p.id);
+      if (hydratedProd) {
+        p.soldOut = hydratedProd.soldOut;
+      }
+    });
+  },
 };
 </script>

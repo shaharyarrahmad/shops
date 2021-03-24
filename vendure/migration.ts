@@ -8,7 +8,9 @@ import {
 import program from 'commander';
 import { config } from './src/vendure-config';
 
-console.log(`\x1b[46mMIGRATINg FOR DATABASE ${process.env.DATABASE_NAME} \x1b[0m`);
+console.log(
+  `\x1b[46mMIGRATINg FOR DATABASE ${process.env.DATABASE_NAME} \x1b[0m`
+);
 
 program
   .command('generate <name>')
