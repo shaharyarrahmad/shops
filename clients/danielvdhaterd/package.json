@@ -2,8 +2,8 @@
   "name": "danielvdhaterd",
   "private": true,
   "scripts": {
-    "serve": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../../_shared-components/' --exec 'yarn upgrade shared-components'\"",
-    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\""
+    "serve": "yarn gridsome develop",
+    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
   },
   "resolutions": {
     "graphql": "^14.7.0"

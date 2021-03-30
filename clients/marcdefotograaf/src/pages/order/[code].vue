@@ -4,7 +4,7 @@
   </Layout>
 </template>
 <script>
-import { Order } from 'shared-components';
+import { Order } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {
