@@ -6,7 +6,7 @@
     "bootstrap": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna run build",
     "prettier:check": "prettier --check --single-quote \"./**/*.{ts,tsx,js,vue}\"",
     "prettier:write": "prettier --write --single-quote \"./**/*.{ts,tsx,js,vue}\"",
-    "upgrade-vendure": "yarn upgrade-interactive --latest",
+    "upgrade-packages": "yarn upgrade-interactive --latest",
     "generate-types": "cd packages/common && yarn generate"
   },
   "license": "MIT",
