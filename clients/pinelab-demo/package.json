@@ -2,8 +2,7 @@
   "name": "pinelab-demo",
   "private": true,
   "scripts": {
-    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '../../_shared-components/' --exec 'yarn upgrade shared-components && yarn gridsome build && yarn http-server ./dist/'\"",
-    "serve:local": "yarn concurrently \"yarn gridsome develop\" \"nodemon --ext js,vue --watch '../../_shared-components/' --exec 'yarn upgrade shared-components'\""
+    "serve:static": "yarn gridsome develop"
   },
   "resolutions": {
     "graphql": "^14.7.0"

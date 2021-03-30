@@ -1,8 +1,7 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 //const BundleAnalyzerPlugin = require('webpack-bundle-analyzer/lib/BundleAnalyzerPlugin');
 
-module.exports = async function(api) {
-
+module.exports = async function (api) {
   console.log(`\x1b[46mUsing API ${process.env.GRIDSOME_VENDURE_API}\x1b[0m`);
   api.afterBuild(({ redirects }) => {
     console.log('------ Create the following redirects in static/_redirects!');
@@ -13,7 +12,6 @@ module.exports = async function(api) {
       // rule.status - 200 if rewrite rule
     }
   });
-
 
   /*    api.chainWebpack(config => {
             config
@@ -31,8 +29,8 @@ module.exports = async function(api) {
       component: './src/templates/ProductsTemplate.vue',
       context: {
         products: data.products,
-        collections: data.collections
-      }
+        collections: data.collections,
+      },
     });
 
     // ----------------- ProductDetail ---------------------
@@ -42,8 +40,8 @@ module.exports = async function(api) {
         component: './src/templates/ProductTemplate.vue',
         context: {
           product,
-          previousPage: '/'
-        }
+          previousPage: '/',
+        },
       });
     });
 
@@ -55,8 +53,8 @@ module.exports = async function(api) {
         context: {
           products: collectionMap.products,
           collection: collectionMap.collection,
-          previousPage: '/'
-        }
+          previousPage: '/',
+        },
       });
     });
   });
