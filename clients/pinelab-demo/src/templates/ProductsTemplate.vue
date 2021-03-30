@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { ProductOverview } from 'pinelab-storefront-client/ministore';
+import { ProductOverview } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {

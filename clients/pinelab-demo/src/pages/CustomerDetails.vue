@@ -4,7 +4,7 @@
   </Layout>
 </template>
 <script>
-import { CustomerDetails } from 'pinelab-storefront-client/ministore';
+import { CustomerDetails } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {

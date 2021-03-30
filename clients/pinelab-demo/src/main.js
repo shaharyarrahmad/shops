@@ -1,5 +1,5 @@
 import Layout from '~/layouts/Default.vue';
-import 'pinelab-storefront-client/static/styles.css';
+import 'pinelab-storefront-client/lib/ministore/styles.css';
 import { configureVue } from 'pinelab-storefront-client';
 import '@fontsource/roboto-mono';
 
