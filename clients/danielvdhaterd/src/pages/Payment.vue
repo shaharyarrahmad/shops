@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Payment } from 'shared-components';
+import { Payment } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {

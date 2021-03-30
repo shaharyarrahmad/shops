@@ -18,7 +18,7 @@
 }
 </style>
 <script>
-import { ProductOverview } from 'shared-components';
+import { ProductOverview } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {
