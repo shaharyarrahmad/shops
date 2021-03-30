@@ -1,25 +1,43 @@
-const { PageGenerator } = require('pinelab-storefront-client');
+const { GridsomeService } = require('pinelab-storefront-client');
 
-module.exports = async function (api) {
+module.exports = function (api) {
   api.createPages(async ({ createPage, graphql }) => {
-    const generator = new PageGenerator({
-      graphqlFn: graphql,
-      createPageFn: createPage,
+    const gridsome = new GridsomeService(graphql);
+    const data = await gridsome.getShopData();
+
+    // ----------------- ProductOverview ---------------------
+    createPage({
+      path: '/',
+      component: './src/templates/ProductsTemplate.vue',
+      context: {
+        products: data.products,
+        collections: data.collections,
+      },
     });
 
-    await generator.createStaticPages({
-      home: {
-        slug: '/',
-        template: 'src/templates/ProductsTemplate.vue',
-      },
-      productDetail: {
-        slugPrefix: '/product/',
-        template: 'src/templates/ProductTemplate.vue',
-      },
-      collectionDetail: {
-        slugPrefix: '/',
-        template: 'src/templates/ProductsTemplate.vue',
-      },
+    // ----------------- ProductDetail ---------------------
+    data.products.forEach((product) => {
+      createPage({
+        path: `/product/${product.slug}/`,
+        component: './src/templates/ProductTemplate.vue',
+        context: {
+          product,
+          previousPage: '/',
+        },
+      });
+    });
+
+    // ----------------- Collection pages ---------------------
+    data.productsPerCollection.forEach((collectionMap) => {
+      createPage({
+        path: `/${collectionMap.collection.slug}/`,
+        component: './src/templates/ProductsTemplate.vue',
+        context: {
+          products: collectionMap.products,
+          collection: collectionMap.collection,
+          previousPage: '/',
+        },
+      });
     });
   });
 };

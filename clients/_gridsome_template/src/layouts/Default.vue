@@ -25,7 +25,7 @@
   </div>
 </template>
 <script>
-import { NavBar } from 'pinelab-storefront-client/ministore';
+import { NavBar } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {
