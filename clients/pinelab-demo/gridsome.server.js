@@ -1,7 +1,6 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 
 module.exports = function (api) {
-
   console.log(`\x1b[46mUsing API ${process.env.GRIDSOME_VENDURE_API}\x1b[0m`);
 
   api.createPages(async ({ createPage, graphql }) => {
