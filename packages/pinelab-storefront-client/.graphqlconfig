@@ -1,0 +1,12 @@
+{
+  "name": "Pinelab Shops Vendure schema",
+  "schemaPath": "schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://api.pinelab.studio/shop-api",
+        "introspect": true
+      }
+    }
+  }
+}

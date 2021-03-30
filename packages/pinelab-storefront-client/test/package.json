@@ -1,0 +1,15 @@
+{
+  "name": "pinelab-storefront-client-test",
+  "private": true,
+  "scripts": {
+    "serve": "yarn gridsome develop"
+  },
+  "dependencies": {
+    "@fontsource/roboto-mono": "^4.0.1",
+    "pinelab-storefront-client": "file:.."
+  },
+  "devDependencies": {
+    "@gridsome/source-graphql": "^0.1.0",
+    "gridsome": "^0.7.23"
+  }
+}

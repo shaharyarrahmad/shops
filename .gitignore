@@ -1,66 +1,38 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-dist
-
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
-
-# dependencies
-node_modules/
-
-# profiling files
-chrome-profiler-events*.json
-speed-measure-plugin*.json
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
 *.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-**/dist/
-
-**/vendure.sqlite
-
-# System Files
-.DS_Store
-Thumbs.db
-
 *.log
+*.sqlite
+*.sublime-workspace
+.DS_Store
+.c9/
 .cache
-src/.temp
-node_modules
+.classpath
 .env
 .env.*
-
-/vendure/src/__admin-ui/*
+.history
+.idea
+.project
+.sass-cache
+.settings/
+.temp
+.vscode
+Thumbs.db
+__admin-ui
+__data__
+bazel-out
+chrome-profiler-events*.json
+connect.lock
+coverage
+dist
+libpeerconnection.log
+node_modules
+out-tsc
+speed-measure-plugin*.json
+tmp
+typings
+vendure/static/email/test-emails/
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
 !/vendure/src/__admin-ui/dist/
-/*/.cache/
-/*/src/.temp/
-__data__/
-/packages/vendure-plugin-simple-cms/test/__admin-ui/
-/packages/pinelab-storefront-client/src/.temp/
-/packages/vendure-plugin-webhook/test/__admin-ui/
+lib/
