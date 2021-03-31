@@ -2,9 +2,7 @@
   <Layout>
     <div class="bio">
       <h1>{{  global.aboutTitle }}</h1>
-      <p>
-        {{ global.aboutIntro }} <br>
-        <g-link to="/bio/">Lees meer</g-link>
+      <p v-html="global.aboutText">
       </p>
     </div>
     <ProductOverview />

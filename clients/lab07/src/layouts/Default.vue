@@ -21,13 +21,13 @@
           <br>
           <br>
           <div style="color: gray; font-size: 0.7rem; font-family: 'Roboto mono', monospace;" class="text-center">
-<!--            <a href="https://www.instagram.com/" target="_blank">
+            <a :href="global.instagram" target="_blank">
               <i class="fi-social-instagram" style="font-size: 1rem;"></i>
-            </a>-->
+            </a>
             • {{ global.name }}
             • KVK {{ global.kvk }}
             • {{ global.email }}
-            • <a href="/voorwaarden.pdf">Voorwaarden</a>
+            • <a href="/privacy.pdf">privacy</a>
             • <a href="https://pinelab.studio/" target="_blank">Made with ❤ by pinelab</a></div>
         </div>
       </div>

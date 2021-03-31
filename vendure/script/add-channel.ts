@@ -6,9 +6,9 @@ import { config } from '../src/vendure-config';
 (async () => {
   const app = await bootstrap(config);
   await app.get(ChannelConfigService).create({
-    channelId: '3',
-    channelName: 'de Pinelab Demo Shop',
-    logoUrl: 'https://pinelab-gridsome.netlify.app/logo.png',
+    channelId: '4',
+    channelName: 'LAB07',
+    logoUrl: 'http://localhost:8080/logo.svg',
     supportEmail: 'martijn@pinelab.studio',
   });
 
