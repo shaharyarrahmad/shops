@@ -2,14 +2,18 @@
   "name": "pinelab-storefront-client-test",
   "private": true,
   "scripts": {
-    "serve": "yarn gridsome develop"
+    "serve": "yarn gridsome develop",
+    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "pinelab-storefront-client": "file:.."
+    "pinelab-storefront-client": "0.21.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
-    "gridsome": "^0.7.23"
+    "concurrently": "^6.0.0",
+    "gridsome": "^0.7.23",
+    "http-server": "^0.12.3",
+    "nodemon": "^2.0.7"
   }
 }
