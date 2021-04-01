@@ -8,9 +8,7 @@
 </template>
 
 <script>
-import SfProductCard from "../../storefrontUI/components/components/organisms/SfProductCard/SfProductCard";
-
 export default {
-  components: {SfProductCard},
+  components: {},
 };
 </script>

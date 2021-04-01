@@ -22,7 +22,7 @@
       "vendure/"
     ],
     "nohoist": [
-      "**/@vendure/ui-devkit",
+      "**/@vendure/ui-devkit"
     ]
   }
 }
