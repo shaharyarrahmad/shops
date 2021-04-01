@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "pinelab-storefront-client": "file:../"
+    "pinelab-storefront-client": "file:.."
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",

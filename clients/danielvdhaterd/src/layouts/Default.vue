@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import { NavBar } from 'shared-components';
+import { NavBar } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   metaInfo: {

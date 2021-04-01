@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Shipping } from 'pinelab-storefront-client/ministore';
+import { Shipping } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {

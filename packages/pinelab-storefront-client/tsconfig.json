@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "target": "ES5",
     "esModuleInterop": true
   },

@@ -1,21 +1,21 @@
 {
   "name": "pinelab-storefront-client",
-  "version": "0.20.4",
+  "version": "0.21.0",
   "description": "Generates static html pages with Gridsome and suplied Vue components",
   "author": "Martijn van de Brug <martijn@pinelab.studio>",
   "homepage": "https://pinelab.studio",
   "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/",
   "license": "MIT",
   "private": false,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "dist",
+    "lib",
     "README.md"
   ],
   "scripts": {
-    "build": "rm -rf dist && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/static/*' dist",
-    "scss": "node-sass src/scss/styles.scss -o src/static --output-style compressed",
+    "build": "rm -rf lib && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/static/*' lib",
+    "scss": "node-sass src/scss/styles.scss -o src/ministore --output-style compressed",
     "serve": "nodemon --verbose --ext js,ts --watch src --watch test --ignore test/src/.temp --ignore test/.cache --exec 'yarn build && yarn serve:gridsome'",
     "serve:gridsome": "cd test && yarn upgrade pinelab-storefront-client && yarn gridsome develop"
   },

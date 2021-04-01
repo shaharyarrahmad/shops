@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Cart } from 'shared-components';
+import { Cart } from 'pinelab-storefront-client/lib/ministore';
 export default {
   components: {
     Cart,

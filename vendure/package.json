@@ -1,6 +1,6 @@
 {
   "name": "shops",
-  "version": "0.20.3",
+  "version": "0.21.0",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -27,18 +27,18 @@
   "dependencies": {
     "@types/localtunnel": "^2.0.0",
     "@types/tmp": "^0.2.0",
-    "@vendure/admin-ui-plugin": "1.0.0-beta.4",
-    "@vendure/asset-server-plugin": "1.0.0-beta.4",
-    "@vendure/core": "1.0.0-beta.4",
-    "@vendure/email-plugin": "1.0.0-beta.4",
-    "@vendure/ui-devkit": "1.0.0-beta.4",
+    "@vendure/admin-ui-plugin": "1.0.0-beta.5",
+    "@vendure/asset-server-plugin": "1.0.0-beta.5",
+    "@vendure/core": "1.0.0-beta.5",
+    "@vendure/email-plugin": "1.0.0-beta.5",
+    "@vendure/ui-devkit": "1.0.0-beta.5",
     "copyfiles": "^2.4.1",
     "localtunnel": "^2.0.0",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
-    "vendure-plugin-google-storage-assets": "^0.20.3",
-    "vendure-plugin-mollie": "^0.20.3",
-    "vendure-plugin-webhook": "^0.20.3"
+    "vendure-plugin-google-storage-assets": "^0.21.0",
+    "vendure-plugin-mollie": "^0.21.0",
+    "vendure-plugin-webhook": "^0.21.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
