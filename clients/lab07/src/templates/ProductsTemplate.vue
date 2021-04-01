@@ -1,9 +1,8 @@
 <template>
   <Layout>
     <div class="bio">
-      <h1>{{  global.aboutTitle }}</h1>
-      <p v-html="global.aboutText">
-      </p>
+      <h1>{{ global.aboutTitle }}</h1>
+      <p v-html="global.aboutText"></p>
     </div>
     <ProductOverview />
   </Layout>
@@ -17,7 +16,7 @@ export default {
   components: {
     ProductOverview,
   },
-  data: () => ({global})
+  data: () => ({ global }),
 };
 </script>
 <style>

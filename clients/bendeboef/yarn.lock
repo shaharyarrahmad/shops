@@ -1005,7 +1005,7 @@
   resolved "https://registry.yarnpkg.com/@storefront-ui/shared/-/shared-0.10.4.tgz#f0579e807e43486f45d3b9942b0cb96ce1fe8f7e"
   integrity sha512-luFwpkawD5dnFT9hg40MvX1aZYFXlt1RThcAvpsZjNkxlR4+uGY+9IzFibGE3dOz+zBUvy8RVOT07JKlt4AR0g==
 
-"@storefront-ui/vue@^0.10.4":
+"@storefront-ui/vue@0.10.4":
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/@storefront-ui/vue/-/vue-0.10.4.tgz#9550c059948ab03e1b09d4de13d8ec8deced7011"
   integrity sha512-OUR1vxUB++G/ToFxNCyphGCUI5TbWT7yJ0+9feQI9Wg71yiRSCsDkDO765KpcyFGhrqchgi3R/YobOt+8dCwiA==
@@ -4178,6 +4178,11 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
+fse@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/fse/-/fse-4.0.1.tgz#9e1db80203933cbe59ed75507f35adf2689ce1e9"
+  integrity sha512-5XLUrweQvJxSJKhBe3XjimHSJ2EUhYOG+K2tLQy8I9kp78Fa3CgUXqxAZWxE9+fsvnI5GVkHl4NDqbf1tSb93Q==
+
 fsevents@^1.2.7:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.13.tgz#f325cb0455592428bcf11b383370ef70e3bfcc38"
@@ -6977,10 +6982,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@^0.20.3:
-  version "0.20.4"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.20.4.tgz#019c72c8d2bd91912d4131685a802670813035f3"
-  integrity sha512-p9wHYHgKlSi/4iUQvKxGINSw6eGRbUGkZRVHNFqpvMGrx2/Kw/8jM37BEIhFJkytIIOinDUzmiN96Zp1BKAXHQ==
+pinelab-storefront-client@0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.21.0.tgz#d35eb5f2f7121fadaf1b1e7d9632e7d778fea33a"
+  integrity sha512-3kC/9migj1yht27vPIQrPHEFkXxISBcnplC+IVg851VB0IeyiDenW84j42LuV529ysu+mwfdwT33El8hlpgvJw==
   dependencies:
     graphql "15.3.0"
     graphql-request "^3.4.0"
