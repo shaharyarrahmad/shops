@@ -9,6 +9,7 @@
     "graphql": "^14.7.0"
   },
   "dependencies": {
+    "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.5",
     "pinelab-storefront-client": "0.21.0"
   },

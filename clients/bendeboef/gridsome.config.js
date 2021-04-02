@@ -5,7 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Pinelab.studio',
+  siteName: 'Ben de Boef Tattoo\'s',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link

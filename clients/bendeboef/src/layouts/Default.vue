@@ -5,31 +5,54 @@
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img
             src="/bendeboef-logo.svg"
-            alt="Lightweight UI components for Vue.js based on Bulma"
+            alt="Ben de Boef Tattoo logo"
+            style="padding-right: 30px;"
           >
         </b-navbar-item>
       </template>
       <template #start>
-        <b-navbar-item href="#">
-          Home
+        <g-link v-for="link of global.links"
+                :to="link.url"
+                :key="link.url"
+                class="navbar-item"
+        >
+          {{ link.name }}
+        </g-link>
+      </template>
+      <template #end>
+        <b-navbar-item tag="div">
+          <div class="buttons">
+            <b-tooltip label="€35,15"
+                       position="is-bottom">
+              <b-button type="is-primary"
+                        icon-left="shopping"
+                        tag="router-link"
+                        to="/cart/"
+              >
+                0
+              </b-button>
+            </b-tooltip>
+          </div>
         </b-navbar-item>
-        <b-navbar-item href="#">
-          Documentation
-        </b-navbar-item>
-        <b-navbar-dropdown label="Info">
-          <b-navbar-item href="#">
-            About
-          </b-navbar-item>
-          <b-navbar-item href="#">
-            Contact
-          </b-navbar-item>
-        </b-navbar-dropdown>
       </template>
     </b-navbar>
 
+    <b-icon
+      pack="far"
+      icon="air-conditioner"
+      size="is-small">
+
+    </b-icon>
     <slot />
   </div>
 </template>
 <script>
-export default {};
+import global from "@/data/global.json";
+
+export default {
+  data: () => ({
+    global
+  })
+
+};
 </script>

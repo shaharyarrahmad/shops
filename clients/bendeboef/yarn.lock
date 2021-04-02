@@ -859,6 +859,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@fontsource/work-sans@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/work-sans/-/work-sans-4.2.2.tgz#f125f018a6b1baa5092901de3a0ef95f58fcefe4"
+  integrity sha512-fFm8a1TbE+qDnRNsf4R6Z/yZP2f3mbj54zSoWUMIWVkgTHM0RfpcOTqoIp7Aj5jon6na0Oynlq5yXvMA5p3pKA==
+
 "@gridsome/cli@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@gridsome/cli/-/cli-0.3.4.tgz#42fa7a4368a80bd04ec497c93cae5a66b041fe22"
