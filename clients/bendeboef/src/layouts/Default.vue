@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar>
+    <b-navbar fixed-top>
       <template #brand>
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
           <img
@@ -29,7 +29,7 @@
                         tag="router-link"
                         to="/cart/"
               >
-                0
+                1
               </b-button>
             </b-tooltip>
           </div>
@@ -37,13 +37,85 @@
       </template>
     </b-navbar>
 
-    <b-icon
-      pack="far"
-      icon="air-conditioner"
-      size="is-small">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    </b-icon>
     <slot />
+
+    <b-navbar fixed-bottom>
+      <template #burger>
+        <b-navbar-item tag="div" class="burger">
+          <div class="buttons">
+            <b-tooltip label="€35,15"
+                       position="is-bottom">
+              <b-button type="is-primary"
+                        icon-left="shopping"
+                        tag="router-link"
+                        to="/cart/"
+              >
+                1
+              </b-button>
+            </b-tooltip>
+          </div>
+        </b-navbar-item>
+      </template>
+    </b-navbar>
+
   </div>
 </template>
 <script>

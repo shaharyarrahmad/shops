@@ -24,5 +24,8 @@
     "nohoist": [
       "**/@vendure/ui-devkit"
     ]
+  },
+  "resolutions": {
+    "typescript": "4.1.5"
   }
 }
