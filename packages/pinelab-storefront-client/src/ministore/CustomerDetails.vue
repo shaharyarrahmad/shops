@@ -116,6 +116,7 @@
 </template>
 <script>
 export default {
+  mixins: [require('./empty-basket-validator')],
   data() {
     return {
       customer: {
