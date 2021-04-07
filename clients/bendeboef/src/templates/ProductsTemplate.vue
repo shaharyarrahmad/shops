@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div v-for="product of $context.products">
-    <!--  <p>{{product.name}}</p>-->
+      <!--  <p>{{product.name}}</p>-->
     </div>
   </Layout>
 </template>
@@ -11,6 +11,6 @@ export default {
   components: {},
   mounted() {
     console.log(this);
-  }
+  },
 };
 </script>

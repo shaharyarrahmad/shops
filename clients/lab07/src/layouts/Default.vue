@@ -30,13 +30,9 @@
           <slot />
           <br />
           <br />
+          <br />
           <div
-            style="
-              color: gray;
-              font-size: 0.7rem;
-              font-family: 'Roboto mono', monospace;
-            "
-            class="text-center"
+            class="text-center footer-text"
           >
             <a :href="global.instagram" target="_blank">
               <i class="fi-social-instagram" style="font-size: 1rem"></i>
@@ -64,3 +60,10 @@ export default {
   data: () => ({ global }),
 };
 </script>
+<style>
+.footer-text {
+  color: gray;
+  font-size: 0.7rem;
+  font-family: 'Roboto mono', monospace;
+}
+</style>

@@ -1,25 +1,24 @@
-require("dotenv").config({ path: process.env.SHOP_ENV });
-import { bootstrap, JobQueueService, Logger } from "@vendure/core";
-import localtunnel from "localtunnel";
+require('dotenv').config({ path: process.env.SHOP_ENV });
+import { bootstrap, JobQueueService, Logger } from '@vendure/core';
+import localtunnel from 'localtunnel';
 
 /**
  * Dev env settings
  */
 (async () => {
   try {
-
     const tunnel = await localtunnel({ port: 3000 });
     // the assigned public url for your tunnel
     process.env.VENDURE_HOST = tunnel.url;
     Logger.info(`Localtunnel set up on ${tunnel.url}`);
-    tunnel.on("close", () => {
+    tunnel.on('close', () => {
       Logger.error(`'tunnel closed`);
     });
   } catch (e) {
     Logger.error(e);
   }
 
-  const { config } = require("./vendure-config");
+  const { config } = require('./vendure-config');
   bootstrap(config)
     .then(async (app) => {
       await app.get(JobQueueService).start();
@@ -30,5 +29,4 @@ import localtunnel from "localtunnel";
     .catch((err) => {
       Logger.error(err);
     });
-})
-();
+})();
