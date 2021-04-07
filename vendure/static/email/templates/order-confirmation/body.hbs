@@ -70,6 +70,8 @@
             <mj-column>
                 <mj-text font-weight="800" padding-bottom="0px">Bezorgadres</mj-text>
                 {{#with order.shippingAddress }}
+                    {{#if fullName}}
+                      <mj-text padding-bottom="0px">{{ fullName }}</mj-text>{{/if}}
                     {{#if company}}
                         <mj-text padding-bottom="0px">{{ company }}</mj-text>{{/if}}
                     {{#if streetLine1}}
