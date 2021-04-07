@@ -6797,10 +6797,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.21.0.tgz#d35eb5f2f7121fadaf1b1e7d9632e7d778fea33a"
-  integrity sha512-3kC/9migj1yht27vPIQrPHEFkXxISBcnplC+IVg851VB0IeyiDenW84j42LuV529ysu+mwfdwT33El8hlpgvJw==
+pinelab-storefront-client@0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.22.0.tgz#8db2bcbf2de44bd72d5730be8f4e4c2db495477b"
+  integrity sha512-djiEsqcOH9l3VZj0zUizckYjapI7u17U2QxDvP8l9rojAPoQz2CflGxnqbjt/VRK1PjnRBXsSjaU6kbs87uU9g==
   dependencies:
     graphql "15.3.0"
     graphql-request "^3.4.0"
