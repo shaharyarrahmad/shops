@@ -29,10 +29,11 @@ out-tsc
 speed-measure-plugin*.json
 tmp
 typings
-vendure/__admin-ui/*
+/vendure/src/__admin-ui/
 vendure/static/email/test-emails/
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !/vendure/src/__admin-ui/dist/
+
