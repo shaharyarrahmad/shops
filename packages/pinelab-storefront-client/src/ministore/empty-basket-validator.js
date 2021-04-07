@@ -1,7 +1,8 @@
 module.exports = {
   async mounted() {
     this.$vendure.getActiveOrder().then((order) => {
-      if (!order?.lines?.length) {
+      const hasLines = order && order.lines && order.lines && order.lines.length;
+      if (!hasLines) {
         this.$router.push('/');
       }
     });
