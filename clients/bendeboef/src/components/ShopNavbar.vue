@@ -69,6 +69,14 @@ export default {
       type: String,
       default: "shopping"
     },
+    itemAddedText: {
+      type: String,
+      default: "added"
+    },
+    itemAddedActionText: {
+      type: String,
+      default: "Checkout now"
+    },
     logo: {
       type: String,
       required: true
@@ -76,6 +84,24 @@ export default {
     logoAlt: {
       type: String,
       required: true
+    }
+  },
+  mounted() {
+    this.$emitter.on('productAdded', this.showAddedBar);
+  },
+  beforeDestroy() {
+    this.$emitter.off('productAdded', this.showAddedBar);
+  },
+  methods: {
+    showAddedBar(event) {
+      this.$buefy.snackbar.open({
+        message: `${event.quantity} ${this.itemAddedText}`,
+        position: 'is-top-right',
+        actionText: this.itemAddedActionText,
+        onAction: () => {
+          this.$router.push(this.cartLink);
+        }
+      });
     }
   }
 };

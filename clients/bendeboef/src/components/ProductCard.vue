@@ -41,19 +41,13 @@ export default {
         this.isLoading = true;
         const variantId = this.product.variants[0].id;
         await this.$vendure.addProductToCart(variantId, 1);
-        this.$buefy.snackbar.open({
-          // duration: 3000,
-          message: 'Added item to cart',
-          position: 'is-top-right',
-          actionText: 'Checkout now',
-          queue: false,
-          onAction: () => {
-            console.log('doen dan')
-            this.$router.push('/cart/');
-          }
-        })
+        this.$emitter.emit('productAdded', { variantId, quantity: 1 });
       } catch (e) {
         console.error(e);
+        this.$buefy.toast.open({
+          message: `Error: ${e?.message}`,
+          type: 'is-danger'
+        })
       }
       this.isLoading = false;
     }
