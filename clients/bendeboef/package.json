@@ -1,16 +1,14 @@
 {
   "name": "my-gridsome-site",
   "private": true,
+  "version": "0.22.2",
   "scripts": {
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src' --exec '&& yarn gridsome build && yarn http-server ./dist/'\""
-  },
-  "resolutions": {
-    "graphql": "^14.7.0"
   },
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.5",
-    "pinelab-storefront-client": "0.22.1"
+    "pinelab-storefront-client": "0.22.2"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",

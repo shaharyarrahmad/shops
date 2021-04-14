@@ -3,9 +3,8 @@
     <ShopNavBar
       logo="/img/bendeboef-logo.svg"
       logo-alt="Ben de Boef logo"
-      cart-items="2"
       cart-link="/cart/"
-      cart-price="€35,15"
+      :activeOrder="$store.activeOrder"
     >
       <g-link
         v-for="link of data.links"
@@ -17,12 +16,16 @@
       </g-link>
     </ShopNavBar>
 
-    <slot />
+    <slot name="hero" />
+
+    <div class="container is-widescreen section">
+      <slot name="content" />
+    </div>
 
   </div>
 </template>
 <script>
-import ShopNavBar from '../components/ShopNavbar'
+import ShopNavBar from "../components/ShopNavbar";
 
 export default {
   components: {
@@ -30,6 +33,6 @@ export default {
   },
   data: () => ({
     data: require(`../data/${process.env.GRIDSOME_SITE}.json`)
-  }),
+  })
 };
 </script>

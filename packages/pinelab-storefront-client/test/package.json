@@ -2,7 +2,7 @@
   "name": "pinelab-storefront-client-test",
   "private": true,
   "scripts": {
-    "serve": "yarn gridsome develop"
+    "serve": "rimraf node_modules && yarn && yarn gridsome develop"
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
-    "gridsome": "^0.7.23"
+    "gridsome": "^0.7.23",
+    "webpack-bundle-analyzer": "^4.4.1",
+    "rimraf": "^3.0.2"
   }
 }

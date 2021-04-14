@@ -17,7 +17,7 @@
     "build": "rm -rf lib && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/static/*' lib",
     "scss": "node-sass src/scss/styles.scss -o src/ministore --output-style compressed",
     "serve": "nodemon --verbose --ext js,ts --watch src --watch test --ignore test/src/.temp --ignore test/.cache --exec 'yarn build && yarn serve:gridsome'",
-    "serve:gridsome": "cd test && yarn upgrade pinelab-storefront-client && yarn gridsome develop"
+    "serve:gridsome": "cd test && yarn serve"
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "graphql": "15.3.0",
-    "graphql-request": "^3.4.0"
+    "graphql-request": "^3.4.0",
+    "mitt": "^2.1.0"
   },
   "resolutions": {
     "graphql": "15.3.0"
