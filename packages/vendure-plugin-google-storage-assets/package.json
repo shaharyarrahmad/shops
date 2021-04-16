@@ -19,21 +19,21 @@
     "serve": "ts-node test/dev-server.ts"
   },
   "dependencies": {
-    "@google-cloud/storage": "^5.3.0"
+    "@google-cloud/storage": "^5.8.3"
   },
   "peerDependencies": {
     "sharp": "*"
   },
   "devDependencies": {
-    "@types/sharp": "^0.27.1",
-    "@vendure/admin-ui": "1.0.0-beta.5",
-    "@vendure/admin-ui-plugin": "1.0.0-beta.5",
-    "@vendure/asset-server-plugin": "1.0.0-beta.5",
-    "@vendure/core": "1.0.0-beta.5",
-    "@vendure/testing": "1.0.0-beta.5",
-    "@vendure/ui-devkit": "1.0.0-beta.5",
-    "sharp": "^0.27.2",
-    "ts-jest": "^26.5.4"
+    "@types/sharp": "^0.28.0",
+    "@vendure/admin-ui": "1.0.0-beta.9",
+    "@vendure/admin-ui-plugin": "1.0.0-beta.9",
+    "@vendure/asset-server-plugin": "1.0.0-beta.8",
+    "@vendure/core": "1.0.0-beta.8",
+    "@vendure/testing": "1.0.0-beta.8",
+    "@vendure/ui-devkit": "1.0.0-beta.9",
+    "sharp": "^0.28.1",
+    "ts-jest": "^26.5.5"
   },
   "gitHead": "88aecbf0daacf71b110791fc6fcc6dc478670d5a"
 }
