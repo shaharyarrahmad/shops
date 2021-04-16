@@ -1,31 +1,9 @@
 <template>
-  <b-navbar fixed-top class="shop-bar">
-    <template #brand>
-      <b-navbar-item tag="div" class="is-hidden-desktop">
-        <g-link :to="cartLink" class="button is-primary">
-            <span class="icon is-small">
-              <i :class="`mdi mdi-${ cartIcon }`"></i>
-            </span>
-          <span>
-          {{ nrOfItems }}
-            </span>
-        </g-link>
-      </b-navbar-item>
-
-      <b-navbar-item tag="a" :to="{ path: '/' }">
-        <img
-          :src="logo"
-          :alt="logoAlt"
-          class="shop-logo"
-        />
-      </b-navbar-item>
-    </template>
-    <template #start>
-      <slot />
-    </template>
-    <template #end>
-      <b-navbar-item tag="div" class="is-hidden-touch">
-        <b-tooltip :label="price" position="is-bottom">
+  <div>
+    <br>
+    <b-navbar class="shop-bar is-fixed-top">
+      <template #brand>
+        <b-navbar-item tag="div" class="is-hidden-desktop">
           <g-link :to="cartLink" class="button is-primary">
             <span class="icon is-small">
               <i :class="`mdi mdi-${ cartIcon }`"></i>
@@ -34,10 +12,35 @@
           {{ nrOfItems }}
             </span>
           </g-link>
-        </b-tooltip>
-      </b-navbar-item>
-    </template>
-  </b-navbar>
+        </b-navbar-item>
+
+        <b-navbar-item href="/">
+          <img
+            :src="logo"
+            :alt="logoAlt"
+            class="shop-logo"
+          />
+        </b-navbar-item>
+      </template>
+      <template #start>
+        <slot />
+      </template>
+      <template #end>
+        <b-navbar-item tag="div" class="is-hidden-touch">
+          <b-tooltip :label="price" position="is-bottom">
+            <g-link :to="cartLink" class="button is-primary">
+            <span class="icon is-small">
+              <i :class="`mdi mdi-${ cartIcon }`"></i>
+            </span>
+              <span>
+          {{ nrOfItems }}
+            </span>
+            </g-link>
+          </b-tooltip>
+        </b-navbar-item>
+      </template>
+    </b-navbar>
+  </div>
 </template>
 <script>
 
@@ -87,16 +90,16 @@ export default {
     }
   },
   mounted() {
-    this.$emitter.on('productAdded', this.showAddedBar);
+    this.$emitter.on("productAdded", this.showAddedBar);
   },
   beforeDestroy() {
-    this.$emitter.off('productAdded', this.showAddedBar);
+    this.$emitter.off("productAdded", this.showAddedBar);
   },
   methods: {
     showAddedBar(event) {
       this.$buefy.snackbar.open({
         message: `${event.quantity} ${this.itemAddedText}`,
-        position: 'is-top-right',
+        position: "is-top-right",
         actionText: this.itemAddedActionText,
         onAction: () => {
           this.$router.push(this.cartLink);

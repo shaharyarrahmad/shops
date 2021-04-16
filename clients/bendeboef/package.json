@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.23.0",
   "scripts": {
-    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src' --exec '&& yarn gridsome build && yarn http-server ./dist/'\""
+    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch './src' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
   },
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",

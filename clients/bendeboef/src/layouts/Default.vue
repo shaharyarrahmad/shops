@@ -4,7 +4,7 @@
       logo="/img/bendeboef-logo.svg"
       logo-alt="Ben de Boef logo"
       cart-link="/cart/"
-      :activeOrder="$store.activeOrder"
+      :activeOrder="activeOrder"
     >
       <g-link
         v-for="link of data.links"
@@ -19,6 +19,18 @@
     <slot name="hero" />
 
     <div class="container is-widescreen section">
+
+      <section id="breadcrumb">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li v-for="(url, name) of $context.breadcrumb" :key="url">
+              <g-link :to="url">{{ name }}</g-link>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <br>
+
       <slot name="content" />
     </div>
 
@@ -31,8 +43,17 @@ export default {
   components: {
     ShopNavBar
   },
-  data: () => ({
-    data: require(`../data/${process.env.GRIDSOME_SITE}.json`)
-  })
+  computed: {
+    activeOrder(){
+      return this.$store?.activeOrder;
+    }
+  },
+  mounted() {
+  },
+  data() {
+    return {
+      data: require(`../data/${process.env.GRIDSOME_SITE}.json`)
+    }
+  }
 };
 </script>
