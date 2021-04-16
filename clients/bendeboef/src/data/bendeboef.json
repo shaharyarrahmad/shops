@@ -1,0 +1,30 @@
+{
+  "title": "Ben de Boef",
+  "subTitle": "Amsterdam based tattoo artist",
+  "bioTitle": "About Ben",
+  "bio": "Ben opened his own tattooshop 'Tattoo Parlour Het Ruyterhuis' in 2011 in Amsterdam. Ben moved to the heart of the Jordaan in 2013 and continued under the name Ben de Boef Tattoos. In 2016, he teamed up with world-renowned tattoo artist Yoji Harada † of the American television show Miami Ink. Around 2018 Ben started tattooing at \"Schiffmacher en Veldhoen\" for 2 years. <br><br> These days Ben is tattooing at <a href=\"https://sildeijselectrictattooing.nl/\" target=\"_balnk\"> Sil Deijs in Nunspeet</a> and has his own private studio in Hoofddorp.",
+  "ctas":  [
+    {
+      "text": "Checkout Ben's tattoos",
+      "link": "/tattoos/"
+    },
+    {
+      "text": "Buy some stuff",
+      "link": "/shop/"
+    }
+  ],
+  "links": [
+    {
+      "name": "Shop",
+      "url": "/shop/"
+    },
+    {
+      "name": "Tattoos",
+      "url": "/tattoos/"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact/"
+    }
+  ]
+}

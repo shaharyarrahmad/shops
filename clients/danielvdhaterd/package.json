@@ -12,7 +12,7 @@
     "@fontsource/roboto-mono": "^4.0.1",
     "graphql": "^14.7.0",
     "graphql-request": "3.4.0",
-    "pinelab-storefront-client": "0.22.1"
+    "pinelab-storefront-client": "0.23.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",

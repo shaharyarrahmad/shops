@@ -1,129 +1,59 @@
 <template>
   <div>
-    <b-navbar fixed-top>
-      <template #brand>
-        <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img
-            src="/bendeboef-logo.svg"
-            alt="Ben de Boef Tattoo logo"
-            style="padding-right: 30px"
-          />
-        </b-navbar-item>
-      </template>
-      <template #start>
-        <g-link
-          v-for="link of global.links"
-          :to="link.url"
-          :key="link.url"
-          class="navbar-item"
-        >
-          {{ link.name }}
-        </g-link>
-      </template>
-      <template #end>
-        <b-navbar-item tag="div">
-          <div class="buttons">
-            <b-tooltip label="€35,15" position="is-bottom">
-              <b-button
-                type="is-primary"
-                icon-left="shopping"
-                tag="router-link"
-                to="/cart/"
-              >
-                1
-              </b-button>
-            </b-tooltip>
-          </div>
-        </b-navbar-item>
-      </template>
-    </b-navbar>
+    <ShopNavBar
+      logo="/img/bendeboef-logo.svg"
+      logo-alt="Ben de Boef logo"
+      cart-link="/cart/"
+      :activeOrder="activeOrder"
+    >
+      <g-link
+        v-for="link of data.links"
+        :to="link.url"
+        :key="link.url"
+        class="navbar-item"
+      >
+        {{ link.name }}
+      </g-link>
+    </ShopNavBar>
 
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+    <slot name="hero" />
 
-    <slot />
+    <div class="container is-widescreen section">
 
-    <b-navbar fixed-bottom>
-      <template #burger>
-        <b-navbar-item tag="div" class="burger">
-          <div class="buttons">
-            <b-tooltip label="€35,15" position="is-bottom">
-              <b-button
-                type="is-primary"
-                icon-left="shopping"
-                tag="router-link"
-                to="/cart/"
-              >
-                1
-              </b-button>
-            </b-tooltip>
-          </div>
-        </b-navbar-item>
-      </template>
-    </b-navbar>
+      <section id="breadcrumb">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li v-for="(url, name) of $context.breadcrumb" :key="url">
+              <g-link :to="url">{{ name }}</g-link>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <br>
+
+      <slot name="content" />
+    </div>
+
   </div>
 </template>
 <script>
-import global from '@/data/global.json';
+import ShopNavBar from "../components/ShopNavbar";
 
 export default {
-  data: () => ({
-    global,
-  }),
+  components: {
+    ShopNavBar
+  },
+  computed: {
+    activeOrder(){
+      return this.$store?.activeOrder;
+    }
+  },
+  mounted() {
+  },
+  data() {
+    return {
+      data: require(`../data/${process.env.GRIDSOME_SITE}.json`)
+    }
+  }
 };
 </script>

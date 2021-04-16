@@ -1,6 +1,7 @@
 import { VendureClient } from '..';
 import { VueConstructor } from 'vue';
 import { Store } from '../vendure/store';
+import mitt from 'mitt';
 
 /**
  * Sets google storage prefetch and global Vue stuff like filters and store
@@ -37,5 +38,7 @@ export function configureVue(
     });
     Vue.prototype.$vendure = new VendureClient(store);
     Vue.prototype.$store = store;
+    Vue.prototype.$emitter = mitt();
+
   }
 }
