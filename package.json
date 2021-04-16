@@ -19,9 +19,8 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "vendure/",
-      "clients/bendeboef",
-      "clients/pinelab-demo"
+      "clients/*",
+      "vendure/"
     ],
     "nohoist": [
       "**/@vendure/ui-devkit",
