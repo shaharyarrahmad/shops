@@ -6,7 +6,8 @@ import localtunnel from 'localtunnel';
  * Dev env settings
  */
 (async () => {
-  try {
+
+/*  try {
     const tunnel = await localtunnel({ port: 3000 });
     // the assigned public url for your tunnel
     process.env.VENDURE_HOST = tunnel.url;
@@ -16,7 +17,7 @@ import localtunnel from 'localtunnel';
     });
   } catch (e) {
     Logger.error(e);
-  }
+  }*/
 
   const { config } = require('./vendure-config');
   bootstrap(config)
