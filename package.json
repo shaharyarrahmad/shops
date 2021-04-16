@@ -20,7 +20,8 @@
     "packages": [
       "packages/*",
       "vendure/",
-      "clients/bendeboef"
+      "clients/bendeboef",
+      "clients/pinelab-demo"
     ],
     "nohoist": [
       "**/@vendure/ui-devkit",
