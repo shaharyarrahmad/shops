@@ -1,6 +1,6 @@
 {
   "name": "shops",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -36,9 +36,9 @@
     "localtunnel": "^2.0.0",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
-    "vendure-plugin-google-storage-assets": "^0.23.0",
-    "vendure-plugin-mollie": "^0.23.0",
-    "vendure-plugin-webhook": "^0.23.0"
+    "vendure-plugin-google-storage-assets": "^0.24.0",
+    "vendure-plugin-mollie": "^0.24.0",
+    "vendure-plugin-webhook": "^0.24.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
