@@ -35,7 +35,7 @@
         •
         Ben de Boef Tattoo's
         •
-        <a href="https://pinelab.studio/" target="_blank">Made with ❤ by pinelab</a>
+        <a href="https://pinelab.studio/" target="_blank">Made with ❤ by Pinelab</a>
       </div>
     </footer>
 
@@ -69,6 +69,9 @@ export default {
 </script>
 <style>
 .footer a {
+  color: white;
+}
+.footer a:hover {
   color: white;
 }
 </style>
