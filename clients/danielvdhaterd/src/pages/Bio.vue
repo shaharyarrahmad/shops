@@ -40,6 +40,7 @@
       <br>
       <hr>
       <br>
+
       <h3>About Daniël van de Haterd</h3>
       <p>
         You regularly bump into his street art around Amersfoort, the Netherlands.
