@@ -100,6 +100,7 @@ export default {
       this.$buefy.snackbar.open({
         message: `${event.quantity} ${this.itemAddedText}`,
         position: "is-top-right",
+        type: "is-light",
         actionText: this.itemAddedActionText,
         onAction: () => {
           this.$router.push(this.cartLink);

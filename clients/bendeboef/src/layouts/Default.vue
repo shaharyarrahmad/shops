@@ -20,19 +20,24 @@
 
     <div class="container is-widescreen section">
 
-      <section id="breadcrumb">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-          <ul>
-            <li v-for="(url, name) of $context.breadcrumb" :key="url">
-              <g-link :to="url">{{ name }}</g-link>
-            </li>
-          </ul>
-        </nav>
-      </section>
+      <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
+
       <br>
 
       <slot name="content" />
     </div>
+
+    <footer v-if="showFooter" class="footer">
+      <div class="content has-text-centered is-dark">
+        <a :href="data.instagram" target="_blank">
+          <b-icon icon="instagram"></b-icon>
+        </a>
+        •
+        Ben de Boef Tattoo's
+        •
+        <a href="https://pinelab.studio/" target="_blank">Made with ❤ by pinelab</a>
+      </div>
+    </footer>
 
   </div>
 </template>
@@ -40,11 +45,16 @@
 import ShopNavBar from "../components/ShopNavbar";
 
 export default {
+  props: {
+    showFooter: {
+      default: true
+    }
+  },
   components: {
     ShopNavBar
   },
   computed: {
-    activeOrder(){
+    activeOrder() {
       return this.$store?.activeOrder;
     }
   },
@@ -53,7 +63,12 @@ export default {
   data() {
     return {
       data: require(`../data/${process.env.GRIDSOME_SITE}.json`)
-    }
+    };
   }
 };
 </script>
+<style>
+.footer a {
+  color: white;
+}
+</style>
