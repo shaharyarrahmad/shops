@@ -1,6 +1,7 @@
 {
   "name": "danielvdhaterd",
   "private": true,
+  "version": "0.1.0",
   "scripts": {
     "serve": "yarn gridsome develop",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
+    "@gridsome/cli": "^0.3.4",
     "concurrently": "^5.3.0",
     "gridsome": "^0.7.23",
     "http-server": "^0.12.3",

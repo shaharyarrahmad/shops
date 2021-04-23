@@ -24,8 +24,7 @@
     ],
     "nohoist": [
       "**/@vendure/ui-devkit",
-      "**/gridsome",
-      "gridsome"
+      "clients/*"
     ]
   },
   "resolutions": {
