@@ -1666,6 +1666,11 @@
     ts-node "^9"
     tslib "^2"
 
+"@fontsource/roboto-mono@^4.0.1":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.2.2.tgz#deb736753e9680e94a11d6e162badf8636310942"
+  integrity sha512-qBEDhPHwN0m6VXSS1EGSAkmKT3gqfQZJyynSkSDQZNPRLeDVq7CTcmJWhjIqAFgVqJ4PNfMUIEl9+bqeBtlvhQ==
+
 "@fontsource/work-sans@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@fontsource/work-sans/-/work-sans-4.2.2.tgz#f125f018a6b1baa5092901de3a0ef95f58fcefe4"
@@ -9895,7 +9900,7 @@ graphql-playground-middleware-express@^1.7.12:
   dependencies:
     graphql-playground-html "^1.6.29"
 
-graphql-request@^3.3.0, graphql-request@^3.4.0:
+graphql-request@3.4.0, graphql-request@^3.3.0, graphql-request@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.4.0.tgz#3a400cd5511eb3c064b1873afb059196bbea9c2b"
   integrity sha512-acrTzidSlwAj8wBNO7Q/UQHS8T+z5qRGquCQRv9J1InwR01BBWV9ObnoE+JS5nCCEj8wSGS0yrDXVDoRiKZuOg==
@@ -15091,6 +15096,15 @@ pify@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-5.0.0.tgz#1f5eca3f5e87ebec28cc6d54a0e4aaf00acc127f"
   integrity sha512-eW/gHNMlxdSP6dmG6uJip6FXN0EQBwm2clYYd8Wul42Cwu/DK8HEftzsapcNdYe2MfLiIwZqsDk2RDEsTE79hA==
+
+pinelab-storefront-client@0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.23.0.tgz#a63a4f0dbad421ab76fd4a5e195b833f67e4f2ba"
+  integrity sha512-/3MgwxmP0JGiy7n0PIcFxNu/lIuoLt50w9XY6GVtO68PB/N22u6+0xyhMsdVMSlT1UGx4BolKAwbbE9suBn2sA==
+  dependencies:
+    graphql "15.3.0"
+    graphql-request "^3.4.0"
+    mitt "^2.1.0"
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
