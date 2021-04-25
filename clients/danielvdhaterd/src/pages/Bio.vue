@@ -20,7 +20,7 @@
         atelier.
       </p>
 
-      <a href="https://www.instagram.com/dvandehaterd/" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/dvandehaterd/" target="_blank">Instagram</a><br>
       <a href="https://www.linkedin.com/in/dani%C3%ABl-van-de-haterd-1834b73/" target="_blank">LinkedIn</a>
 
       <h5>Exposities</h5>
