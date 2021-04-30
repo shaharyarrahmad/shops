@@ -2,7 +2,6 @@
   "name": "pinelab-storefront-client-test",
   "private": true,
   "scripts": {
-    "serve": "yarn gridsome develop"
   },
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",

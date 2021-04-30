@@ -1,6 +1,7 @@
 <template>
   <Layout #content>
     <CheckoutSteps
+      previousPage="/cart/"
     />
   </Layout>
 </template>

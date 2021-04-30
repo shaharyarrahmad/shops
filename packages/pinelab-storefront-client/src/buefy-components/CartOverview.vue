@@ -32,13 +32,16 @@
             <p>{{ line.linePriceWithTax | euro }}</p>
           </td>
           <td class="has-text-right" style="padding-right: 0;">
-            <b-button type="is-primary is-small"
+            <b-button type="is-outlined is-small"
                       @click="remove(line.id)"
                       icon-right="close" />
           </td>
         </tr>
         </tbody>
       </table>
+      <div class="has-text-right">
+        <g-link :to="linkToCheckout" class="button is-primary">{{ checkoutButtonText }}</g-link>
+      </div>
     </div>
     <div v-else v-html="emptyCartText"></div>
   </div>
@@ -52,7 +55,7 @@ export default {
     },
     checkoutButtonText: {
       type: String,
-      required: true
+      default: 'Order now'
     },
     linkToCheckout: {
       type: String,
