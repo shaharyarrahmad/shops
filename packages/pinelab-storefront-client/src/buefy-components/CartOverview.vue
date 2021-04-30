@@ -34,7 +34,7 @@
           <td class="has-text-right" style="padding-right: 0;">
             <b-button type="is-primary is-small"
                       @click="remove(line.id)"
-                      icon-right="delete" />
+                      icon-right="close" />
           </td>
         </tr>
         </tbody>

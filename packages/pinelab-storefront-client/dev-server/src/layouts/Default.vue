@@ -42,7 +42,8 @@
   </div>
 </template>
 <script>
-import ShopNavBar from "../components/ShopNavbar";
+import ShopNavBar from '../../../lib/buefy-components/ShopNavbar';
+import Breadcrumb from '../../../lib/buefy-components/Breadcrumb';
 
 export default {
   props: {
@@ -51,7 +52,8 @@ export default {
     }
   },
   components: {
-    ShopNavBar
+    ShopNavBar,
+    Breadcrumb
   },
   computed: {
     activeOrder() {

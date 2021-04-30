@@ -8,6 +8,10 @@
   </Layout>
 </template>
 <script>
+import CartOverview from '../../../lib/buefy-components/CartOverview';
 export default {
+  components: {
+    CartOverview
+  }
 };
 </script>
