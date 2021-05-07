@@ -2,10 +2,10 @@
   <div>
     <div v-if="lines.length > 0">
       <div class="has-text-right">
-        <g-link :to="linkToCheckout" class="button is-primary">{{ checkoutButtonText }}</g-link>
+        <g-link :to="linkToCheckout" class="button is-primary">{{ checkoutButtonLabel }}</g-link>
       </div>
       <br>
-      <p class="has-text-right"><strong>{{ totalText }}:</strong> {{ activeOrder.totalWithTax | euro }}</p>
+      <p class="has-text-right"><strong>{{ totalLabel }}:</strong> {{ activeOrder.totalWithTax | euro }}</p>
       <br>
       <table class="table order-table is-fullwidth is-striped">
         <tbody>
@@ -40,20 +40,20 @@
         </tbody>
       </table>
       <div class="has-text-right">
-        <g-link :to="linkToCheckout" class="button is-primary">{{ checkoutButtonText }}</g-link>
+        <g-link :to="linkToCheckout" class="button is-primary">{{ checkoutButtonLabel }}</g-link>
       </div>
     </div>
-    <div v-else v-html="emptyCartText"></div>
+    <div v-else v-html="emptyCartLabel"></div>
   </div>
 </template>
 <script>
 
 export default {
   props: {
-    emptyCartText: {
+    emptyCartLabel: {
       required: true
     },
-    checkoutButtonText: {
+    checkoutButtonLabel: {
       type: String,
       default: 'Order now'
     },
@@ -61,7 +61,7 @@ export default {
       type: String,
       required: true
     },
-    totalText: {
+    totalLabel: {
       type: String,
       default: 'Total'
     }

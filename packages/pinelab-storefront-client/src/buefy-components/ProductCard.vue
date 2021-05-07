@@ -10,11 +10,11 @@
               type="is-primary is-fullwidth"
               :loading="isLoading"
               v-on:click="buy()"
-    >{{ buyText }}
+    >{{ buyLabel }}
     </b-button>
     <g-link v-else
             :to="product.slug" class="button is-primary is-fullwidth">
-      {{ buyText }}
+      {{ buyLabel }}
     </g-link>
   </div>
 
@@ -22,7 +22,7 @@
 <script>
 export default {
   props: {
-    buyText: {
+    buyLabel: {
       type: String,
       required: true
     },

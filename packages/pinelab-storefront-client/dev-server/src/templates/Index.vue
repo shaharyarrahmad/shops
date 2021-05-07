@@ -44,7 +44,7 @@
           >
             <ProductCard
               :product="product"
-              buy-text="Add to cart"
+              buy-label="Add to cart"
             />
 
           </div>

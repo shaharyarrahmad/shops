@@ -1,7 +1,7 @@
 <template>
   <Layout #content>
     <CartOverview
-      empty-cart-text="No items in cart yet"
+      empty-cart-label="No items in cart yet"
       link-to-checkout="/checkout/"
     />
   </Layout>
