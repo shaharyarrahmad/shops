@@ -15,5 +15,6 @@
     "gridsome": "^0.7.23",
     "http-server": "^0.12.3",
     "nodemon": "^2.0.7"
-  }
+  },
+  "version": "0.25.0"
 }
