@@ -1,5 +1,5 @@
 {
-  "name": "pinelab-storefront-client-test",
+  "name": "lab07",
   "private": true,
   "scripts": {
     "serve": "yarn gridsome develop",
