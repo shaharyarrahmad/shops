@@ -1,6 +1,10 @@
 {
   "npmClient": "yarn",
   "useWorkspaces": false,
-  "version": "0.25.0",
-  "packages": ["packages/*", "clients/*", "vendure"]
+  "version": "0.26.0",
+  "packages": [
+    "packages/*",
+    "clients/*",
+    "vendure"
+  ]
 }
