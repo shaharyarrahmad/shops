@@ -17,8 +17,7 @@
     "build": "rm -rf lib && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
     "dev-build": "yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
     "scss": "node-sass src/scss/styles.scss -o src/ministore --output-style compressed",
-    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
-    "serve": "concurrently \"yarn watch\" \"cd dev-server && yarn gridsome develop\""
+    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'"
   },
   "devDependencies": {
     "@types/debounce": "^1.2.0",

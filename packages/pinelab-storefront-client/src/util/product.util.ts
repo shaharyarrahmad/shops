@@ -1,5 +1,6 @@
 import { Product } from '../../../common';
 import { CalculatedProduct } from '../vendure/calculated-product';
+import { VendureClient } from '../vendure/vendure.client';
 
 /**
  * Set lowest price based on lowest price of variants and set soldout if all are sold out
@@ -27,5 +28,19 @@ export function deduplicate(products: Product[]): Product[] {
       return true;
     }
     return false;
+  });
+}
+
+/**
+ * Hydrate products on client side.
+ * For now this only updates product.soldOut
+ */
+export async function hydrate(products: CalculatedProduct[], vendure: VendureClient): Promise<void> {
+  const updatedProducts = await vendure.getStockForProducts();
+  products.forEach((p) => {
+    const hydratedProd = updatedProducts.find((updatedProduct) => updatedProduct.id === p.id);
+    if (hydratedProd) {
+      p.soldOut = hydratedProd.soldOut;
+    }
   });
 }
