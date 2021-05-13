@@ -27,6 +27,7 @@
     "@vendure/asset-server-plugin": "1.0.0-beta.8",
     "@vendure/core": "1.0.0-beta.8",
     "@vendure/ui-devkit": "1.0.0-beta.9",
+    "copyfiles": "^2.4.1",
     "ts-node": "^9.1.1"
   }
 }
