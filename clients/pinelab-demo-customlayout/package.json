@@ -2,7 +2,7 @@
   "name": "pinelab-customlayout",
   "private": true,
   "scripts": {
-    "serve:static":"TODO"
+    "serve:static": "TODO"
   },
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",
@@ -13,6 +13,7 @@
     "@gridsome/source-graphql": "^0.1.0",
     "gridsome": "^0.7.23",
     "rimraf": "^3.0.2",
+    "sass": "^1.32.13",
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
