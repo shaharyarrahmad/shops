@@ -2082,62 +2082,14 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.2.tgz#808c9fa7e4517274ed555fa158f2de4b4f468e71"
   integrity sha512-HrCIVMLjE1MOozVoD86622S7aunluLb2PJdPfb3nYiEtohm8mIB/vyv0Fd37AdeMFrTUQXEunw78YloMA3Qilg==
 
-"@vendure/admin-ui-plugin@1.0.0-beta.9":
-  version "1.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@vendure/admin-ui-plugin/-/admin-ui-plugin-1.0.0-beta.9.tgz#96702e93d836bfa6c369e74d34db0566e74a3f35"
-  integrity sha512-XbFTtsDogQEZq/Vg09lPCjbmo9xFG466KiKgVH7wzwj+LBcZz0JAYxVjkohcjuuj5hwwpGpD3IJWo7ZB624y6g==
+"@vendure/admin-ui-plugin@1.0.0-rc.0":
+  version "1.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@vendure/admin-ui-plugin/-/admin-ui-plugin-1.0.0-rc.0.tgz#a3f1bec50d979321e4c8728aab1925cae1ad7405"
+  integrity sha512-99TgOfw6XKHtN+9RpCNA1Re+Rc646bEnGlEJVz/eQV6PZm/s4HzMGr3EV+ADzHc65Ry7DFBgft0YCx366zxCtQ==
   dependencies:
     fs-extra "^9.0.1"
 
-"@vendure/admin-ui@1.0.0-beta.9":
-  version "1.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@vendure/admin-ui/-/admin-ui-1.0.0-beta.9.tgz#bdfba7922e193f1f3cdd26ac498d32a4819df925"
-  integrity sha512-RwXWbmNW7Wpf+h+mdUW3nlT7yN+vL04+zQCclQ2blOAZoN2SnQZ9FP2JGHOh1sz4ZJnMwEC5E3KLrGdMi2b8Sw==
-  dependencies:
-    "@angular/animations" "11.2.5"
-    "@angular/cdk" "11.2.4"
-    "@angular/common" "11.2.5"
-    "@angular/core" "11.2.5"
-    "@angular/forms" "11.2.5"
-    "@angular/language-service" "11.2.5"
-    "@angular/platform-browser" "11.2.5"
-    "@angular/platform-browser-dynamic" "11.2.5"
-    "@angular/router" "11.2.5"
-    "@apollo/client" "^3.3.11"
-    "@biesbjerg/ngx-translate-extract-marker" "^1.0.0"
-    "@cds/core" "^5.0.0"
-    "@clr/angular" "^5.0.2"
-    "@clr/core" "^4.0.12"
-    "@clr/icons" "^5.0.2"
-    "@clr/ui" "^5.0.2"
-    "@ng-select/ng-select" "^6.1.0"
-    "@ngx-translate/core" "^13.0.0"
-    "@ngx-translate/http-loader" "^6.0.0"
-    "@vendure/common" "^1.0.0-beta.8"
-    "@webcomponents/custom-elements" "^1.4.3"
-    apollo-angular "^2.4.0"
-    apollo-upload-client "^14.1.3"
-    core-js "^3.9.1"
-    dayjs "^1.10.4"
-    graphql "15.5.0"
-    messageformat "2.3.0"
-    ngx-pagination "^5.0.0"
-    ngx-translate-messageformat-compiler "^4.8.0"
-    prosemirror-commands "^1.1.7"
-    prosemirror-dropcursor "^1.3.3"
-    prosemirror-gapcursor "^1.1.5"
-    prosemirror-history "^1.1.3"
-    prosemirror-inputrules "^1.1.3"
-    prosemirror-keymap "^1.1.4"
-    prosemirror-menu "^1.1.4"
-    prosemirror-schema-basic "^1.1.2"
-    prosemirror-schema-list "^1.1.4"
-    prosemirror-state "^1.3.4"
-    rxjs "^6.6.6"
-    tslib "^2.1.0"
-    zone.js "~0.11.4"
-
-"@vendure/admin-ui@^1.0.0-beta.9":
+"@vendure/admin-ui@1.0.0-beta.11", "@vendure/admin-ui@^1.0.0-beta.11":
   version "1.0.0-beta.11"
   resolved "https://registry.yarnpkg.com/@vendure/admin-ui/-/admin-ui-1.0.0-beta.11.tgz#e78428d4243150f04156ccdc82e72f7af3760d36"
   integrity sha512-eKzl8agXzjkzLS8Sk0Wn1lNjW097QMj/5Sk3foTVJLo5uV6e7w9u1X3Qu12UTrJzwhsTh+wmCobXB+VxxxmdOw==
@@ -2185,24 +2137,24 @@
     tslib "^2.1.0"
     zone.js "~0.11.4"
 
-"@vendure/asset-server-plugin@1.0.0-beta.8":
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@vendure/asset-server-plugin/-/asset-server-plugin-1.0.0-beta.8.tgz#f15df4084d25198f3b2a90f9986601b1a919d2c1"
-  integrity sha512-kkQTuKvsDxTBpBUt3Pp7nYzFgEZxMlEhW9E0L2IkkvQl/I+dqNdNGp5GiEZvo8gORvOuy6Xra0SGd6bLb0BaNQ==
+"@vendure/asset-server-plugin@1.0.0-rc.0":
+  version "1.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@vendure/asset-server-plugin/-/asset-server-plugin-1.0.0-rc.0.tgz#0e91ad203ade268840c940877d0d8714bea4420f"
+  integrity sha512-ahWPdplNntaEd8fHQDdWH4k4FRAuIPvSU8XZa6BQXYr8i62AgOAN77svXcu8PBDnAw5Hk6IueIKeBivhgOIBCQ==
   dependencies:
     file-type "^16.2.0"
     fs-extra "^9.1.0"
     sharp "0.28.0"
 
-"@vendure/common@^1.0.0-beta.11", "@vendure/common@^1.0.0-beta.8":
+"@vendure/common@^1.0.0-beta.11":
   version "1.0.0-beta.11"
   resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.0.0-beta.11.tgz#1348cfade0219e59829de252053a62981485da3b"
   integrity sha512-corVE7Hph3v4s67ZO9PlEKZEVsiEbpF2qO8FgG1TZYI1A3xkIGnYcK4XAXPZV4fME8BfS7g2DIqbGq18Hmqorg==
 
-"@vendure/core@1.0.0-beta.8":
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@vendure/core/-/core-1.0.0-beta.8.tgz#e56f9568dfbbfca33f3dacbd3d894b8cd16d1eb6"
-  integrity sha512-3PxDmUIl8p0WdTrIN5+1/q8z68qcBK3qB0avU+7lTEZLN/e9crk8VMBED66yD8hA9GaBEKiVJ5JFfl2FwZrNpg==
+"@vendure/core@1.0.0-rc.0":
+  version "1.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@vendure/core/-/core-1.0.0-rc.0.tgz#12e7ffe3d8a0346a7309d823383206c89986dce6"
+  integrity sha512-RF1g4k6Cu4baimI+8+38n6Z8VqjygMzCa5bKUrbc9kQGHgESxc4PkEUY6SO6zlkxgRZskrB0d8FTgXXriJfTFg==
   dependencies:
     "@graphql-tools/stitch" "^6.2.4"
     "@nestjs/common" "7.6.13"
@@ -2213,7 +2165,7 @@
     "@nestjs/testing" "7.6.13"
     "@nestjs/typeorm" "7.1.5"
     "@types/fs-extra" "^9.0.1"
-    "@vendure/common" "^1.0.0-beta.8"
+    "@vendure/common" "^1.0.0-beta.11"
     apollo-server-express "2.21.0"
     bcrypt "^5.0.0"
     body-parser "^1.19.0"
@@ -2242,17 +2194,17 @@
     rxjs "^6.6.3"
     typeorm "0.2.31"
 
-"@vendure/ui-devkit@1.0.0-beta.9":
-  version "1.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@vendure/ui-devkit/-/ui-devkit-1.0.0-beta.9.tgz#cc31c0bacf87ac31ef2816ad1816e59269c493e2"
-  integrity sha512-JX1djBNmBzNPD/TEzd2gyaIaOwam8+p4l0C4NIYhv1XlageQUYeEAwvLvXU5z3jWfiueQGHo4lRa28PvJ9E+7g==
+"@vendure/ui-devkit@1.0.0-rc.0":
+  version "1.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@vendure/ui-devkit/-/ui-devkit-1.0.0-rc.0.tgz#5be918873023de43a16214dbb2f0de55ae213e22"
+  integrity sha512-4BbXNXKvOIv8FzvmuRCkhjQ2qn9f4GGVnfJWnZSl/CXdl+x2+oCsQjIq0f8uParaha/gYSlU2N0DKbTInyGurg==
   dependencies:
     "@angular-devkit/build-angular" "0.1102.4"
     "@angular/cli" "11.2.4"
     "@angular/compiler" "11.2.5"
     "@angular/compiler-cli" "11.2.5"
-    "@vendure/admin-ui" "^1.0.0-beta.9"
-    "@vendure/common" "^1.0.0-beta.8"
+    "@vendure/admin-ui" "^1.0.0-beta.11"
+    "@vendure/common" "^1.0.0-beta.11"
     chalk "^4.1.0"
     chokidar "^3.5.1"
     fs-extra "^9.1.0"

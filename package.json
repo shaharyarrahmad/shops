@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn && yarn lerna clean -y && yarn lerna bootstrap && yarn lerna run build",
+    "bootstrap": "yarn && yarn lerna exec yarn && yarn lerna run build",
     "prettier:check": "prettier --check --single-quote \"./**/*.{ts,tsx,js,vue}\"",
     "prettier:write": "prettier --write --single-quote \"./**/*.{ts,tsx,js,vue}\"",
-    "upgrade-packages": "yarn upgrade-interactive --latest",
     "generate-types": "cd packages/common && yarn generate"
   },
   "license": "MIT",
