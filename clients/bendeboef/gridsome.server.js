@@ -10,6 +10,7 @@ module.exports = async function(api) {
     const Home = '/';
     const Shop = '/shop/';
     const Cart = '/cart/';
+    const Checkout = '/checkout';
 
     // ----------------- ProductOverview ---------------------
     createPage({
@@ -29,6 +30,14 @@ module.exports = async function(api) {
       component: './src/templates/Cart.vue',
       context: {
         breadcrumb
+      }
+    });
+
+    // ----------------- checkout ---------------------
+    createPage({
+      path: '/checkout/',
+      component: './src/templates/Checkout.vue',
+      context: {
       }
     });
 

@@ -2,6 +2,7 @@ import { VendureClient } from '..';
 import { VueConstructor } from 'vue';
 import { Store } from '../vendure/store';
 import mitt from 'mitt';
+import { debounce } from 'debounce';
 
 /**
  * Sets google storage prefetch and global Vue stuff like filters and store
@@ -31,6 +32,13 @@ export function configureVue(
     }
     return currencyString;
   });
+  // Add debounce as global
+  Vue.mixin({
+    methods: {
+      debounce
+    }
+  });
+
   // Set global store and vendure service
   if (isClient) {
     const store = Vue.observable<Store>({
@@ -39,6 +47,5 @@ export function configureVue(
     Vue.prototype.$vendure = new VendureClient(store);
     Vue.prototype.$store = store;
     Vue.prototype.$emitter = mitt();
-
   }
 }

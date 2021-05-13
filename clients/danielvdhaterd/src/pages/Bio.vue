@@ -20,8 +20,9 @@
         atelier.
       </p>
 
-      <a href="https://www.instagram.com/dvandehaterd/" target="_blank">Instagram</a>
-      <a href="https://www.linkedin.com/in/dani%C3%ABl-van-de-haterd-1834b73/" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/dvandehaterd/" target="_blank">Instagram</a><br>
+      <a href="https://www.linkedin.com/in/dani%C3%ABl-van-de-haterd-1834b73/" target="_blank">LinkedIn</a><br>
+      <br>
 
       <h5>Exposities</h5>
       <ul>
@@ -40,6 +41,7 @@
       <br>
       <hr>
       <br>
+
       <h3>About Daniël van de Haterd</h3>
       <p>
         You regularly bump into his street art around Amersfoort, the Netherlands.

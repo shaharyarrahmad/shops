@@ -1,6 +1,6 @@
 {
   "name": "pinelab-storefront-client",
-  "version": "0.24.0",
+  "version": "0.25.0",
   "description": "Generates static html pages with Gridsome and suplied Vue components",
   "author": "Martijn van de Brug <martijn@pinelab.studio>",
   "homepage": "https://pinelab.studio",
@@ -14,21 +14,24 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rm -rf lib && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/static/*' lib",
+    "build": "rm -rf lib && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
+    "dev-build": "yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
     "scss": "node-sass src/scss/styles.scss -o src/ministore --output-style compressed",
-    "serve": "nodemon --verbose --ext js,ts --watch src --watch test --ignore test/src/.temp --ignore test/.cache --exec 'yarn build && yarn serve:gridsome'",
-    "serve:gridsome": "cd test && yarn serve"
+    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
+    "serve": "concurrently \"yarn watch\" \"cd dev-server && yarn gridsome develop\""
   },
   "devDependencies": {
+    "@types/debounce": "^1.2.0",
+    "concurrently": "^6.0.2",
     "copyfiles": "^2.4.1",
     "foundation-sites": "^6.6.3",
-    "gridsome-plugin-typescript": "^0.4.0",
     "node-sass": "^5.0.0",
     "nodemon": "^2.0.7",
     "typescript": "^4.2.3",
     "vue": "^2.6.12"
   },
   "dependencies": {
+    "debounce": "^1.2.1",
     "graphql": "15.3.0",
     "graphql-request": "^3.4.0",
     "mitt": "^2.1.0"
