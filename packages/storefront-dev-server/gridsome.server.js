@@ -23,13 +23,23 @@ module.exports = async function(api) {
       }
     });
 
+    // ----------------- Shop ---------------------
+    createPage({
+      path: '/shop/',
+      component: './src/templates/Shop.vue',
+      context: {
+        products,
+        collections,
+        breadcrumb: { Home, Shop }
+      }
+    });
+
     // ----------------- Cart ---------------------
-    const breadcrumb = { Home, Shop, Cart };
     createPage({
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        breadcrumb
+        breadcrumb: { Home, Shop, Cart }
       }
     });
 

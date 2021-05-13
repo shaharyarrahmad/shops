@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container" :class="product.soldOut ? 'soldout' : ''">
+    <g-link :to="product.slug">
     <AsyncImage :src="product.featuredAsset.thumbnail"
                 :alt="product.name"
                 style="width: 100%;" />
+    </g-link>
     <p>{{ product.name }}</p>
     <p class="mb-2"><strong>{{ product.lowestPrice | euro }}</strong></p>
 
@@ -10,11 +12,11 @@
               type="is-primary is-fullwidth"
               :loading="isLoading"
               v-on:click="buy()"
-    >{{ buyLabel }}
+    >{{ product.soldOut ? soldoutLabel : buyLabel }}
     </b-button>
     <g-link v-else
             :to="product.slug" class="button is-primary is-fullwidth">
-      {{ buyLabel }}
+      {{ product.soldOut ? soldoutLabel : buyLabel }}
     </g-link>
   </div>
 
@@ -29,13 +31,17 @@ export default {
     product: {
       type: Object,
       required: true
-    }
+    },
+    soldoutLabel: { default: 'Sold out' }
   },
   data() {
-    return {isLoading: false}
+    return { isLoading: false };
   },
   methods: {
     async buy() {
+      if (this.product.soldOut) {
+        return;
+      }
       try {
         this.isLoading = true;
         const variantId = this.product.variants[0].id;
@@ -46,7 +52,7 @@ export default {
         this.$buefy.toast.open({
           message: `Error: ${e?.message}`,
           type: 'is-danger'
-        })
+        });
       }
       this.isLoading = false;
     }
@@ -56,5 +62,9 @@ export default {
 <style>
 .product-card-image {
   width: 100%;
+}
+
+.soldout {
+  text-decoration: line-through;
 }
 </style>

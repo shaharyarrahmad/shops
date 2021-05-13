@@ -1,11 +1,15 @@
 {
   "name": "pinelab-storefront-client-dev",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "serve": "yarn link-there && yarn link-here && concurrently \"cd ../pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
+    "link-here": "yarn link pinelab-storefront-client",
+    "link-there": "cd ../pinelab-storefront-client && yarn link"
+  },
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.7",
-    "pinelab-storefront-client": "file:../pinelab-storefront-client"
+    "concurrently": "^6.1.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
