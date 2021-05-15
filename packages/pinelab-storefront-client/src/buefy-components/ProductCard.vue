@@ -1,10 +1,10 @@
 <template>
   <div class="container" :class="product.soldOut ? 'soldout' : ''">
     <g-link :to="product.slug">
-      <AsyncImage
+      <b-image
         :src="product.featuredAsset.thumbnail"
         :alt="product.name"
-        style="width: 100%"
+        ratio="1by1"
       />
     </g-link>
     <p>{{ product.name }}</p>
