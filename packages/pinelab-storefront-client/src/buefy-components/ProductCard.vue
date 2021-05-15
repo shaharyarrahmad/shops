@@ -1,38 +1,41 @@
 <template>
   <div class="container" :class="product.soldOut ? 'soldout' : ''">
     <g-link :to="product.slug">
-    <AsyncImage :src="product.featuredAsset.thumbnail"
-                :alt="product.name"
-                style="width: 100%;" />
+      <AsyncImage
+        :src="product.featuredAsset.thumbnail"
+        :alt="product.name"
+        style="width: 100%"
+      />
     </g-link>
     <p>{{ product.name }}</p>
-    <p class="mb-2"><strong>{{ product.lowestPrice | euro }}</strong></p>
+    <p class="mb-2">
+      <strong>{{ product.lowestPrice | euro }}</strong>
+    </p>
 
-    <b-button v-if="product.optionGroups.length === 0"
-              type="is-primary is-fullwidth"
-              :loading="isLoading"
-              v-on:click="buy()"
-    >{{ product.soldOut ? soldoutLabel : buyLabel }}
+    <b-button
+      v-if="product.optionGroups.length === 0"
+      type="is-primary is-fullwidth"
+      :loading="isLoading"
+      v-on:click="buy()"
+      >{{ product.soldOut ? soldoutLabel : buyLabel }}
     </b-button>
-    <g-link v-else
-            :to="product.slug" class="button is-primary is-fullwidth">
+    <g-link v-else :to="product.slug" class="button is-primary is-fullwidth">
       {{ product.soldOut ? soldoutLabel : buyLabel }}
     </g-link>
   </div>
-
 </template>
 <script>
 export default {
   props: {
     buyLabel: {
       type: String,
-      required: true
+      required: true,
     },
     product: {
       type: Object,
-      required: true
+      required: true,
     },
-    soldoutLabel: { default: 'Sold out' }
+    soldoutLabel: { default: 'Sold out' },
   },
   data() {
     return { isLoading: false };
@@ -51,12 +54,12 @@ export default {
         console.error(e);
         this.$buefy.toast.open({
           message: `Error: ${e?.message}`,
-          type: 'is-danger'
+          type: 'is-danger',
         });
       }
       this.isLoading = false;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

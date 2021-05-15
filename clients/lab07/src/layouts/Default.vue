@@ -31,9 +31,7 @@
           <br />
           <br />
           <br />
-          <div
-            class="text-center footer-text"
-          >
+          <div class="text-center footer-text">
             <a :href="global.instagram" target="_blank">
               <i class="fi-social-instagram" style="font-size: 1rem"></i>
             </a>

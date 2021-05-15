@@ -18,11 +18,10 @@
 
     <slot name="hero" />
 
-    <div class="container is-widescreen section" style="min-height: 90vh;">
-
+    <div class="container is-widescreen section" style="min-height: 90vh">
       <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
 
-      <br>
+      <br />
 
       <slot name="content" />
     </div>
@@ -32,39 +31,37 @@
         <a :href="data.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
-        •
-        Ben de Boef Tattoo's
-        •
-        <a href="https://pinelab.studio/" target="_blank">Made with ❤ by Pinelab</a>
+        • Ben de Boef Tattoo's •
+        <a href="https://pinelab.studio/" target="_blank"
+          >Made with ❤ by Pinelab</a
+        >
       </div>
     </footer>
-
   </div>
 </template>
 <script>
-import ShopNavBar from "../components/ShopNavbar";
+import ShopNavBar from '../components/ShopNavbar';
 
 export default {
   props: {
     showFooter: {
-      default: true
-    }
+      default: true,
+    },
   },
   components: {
-    ShopNavBar
+    ShopNavBar,
   },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder;
-    }
+    },
   },
-  mounted() {
-  },
+  mounted() {},
   data() {
     return {
-      data: require(`../data/${process.env.GRIDSOME_SITE}.json`)
+      data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
     };
-  }
+  },
 };
 </script>
 <style>

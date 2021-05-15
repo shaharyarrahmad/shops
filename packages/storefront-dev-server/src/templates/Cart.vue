@@ -10,7 +10,7 @@
 import CartOverview from 'pinelab-storefront-client/lib/buefy-components/CartOverview';
 export default {
   components: {
-    CartOverview
-  }
+    CartOverview,
+  },
 };
 </script>

@@ -1,23 +1,28 @@
 <template>
-  <b-numberinput size="is-small" v-on:input="updateQuantity()" v-model="newValue" :loading="loading">
+  <b-numberinput
+    size="is-small"
+    v-on:input="updateQuantity()"
+    v-model="newValue"
+    :loading="loading"
+  >
   </b-numberinput>
 </template>
 <script>
-import { debounce } from "debounce";
+import { debounce } from 'debounce';
 
 export default {
   props: {
     value: { required: true },
-    lineId: { required: true }
+    lineId: { required: true },
   },
   data() {
     return {
       newValue: this.value,
-      loading: false
+      loading: false,
     };
   },
   created() {
-    this.updateQuantity = debounce(this.updateQuantity, 500)
+    this.updateQuantity = debounce(this.updateQuantity, 500);
   },
   methods: {
     async updateQuantity() {
@@ -29,7 +34,7 @@ export default {
         console.error(e);
       }
       this.loading = false;
-    }
-  }
+    },
+  },
 };
 </script>

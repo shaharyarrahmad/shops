@@ -1,6 +1,6 @@
 <template>
   <Layout #content>
-    <OrderConfirmation/>
+    <OrderConfirmation />
   </Layout>
 </template>
 <script>
@@ -8,7 +8,7 @@ import OrderConfirmation from 'pinelab-storefront-client/lib/buefy-components/Or
 
 export default {
   components: {
-    OrderConfirmation
-  }
+    OrderConfirmation,
+  },
 };
 </script>

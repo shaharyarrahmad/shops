@@ -35,8 +35,8 @@ export function configureVue(
   // Add debounce as global
   Vue.mixin({
     methods: {
-      debounce
-    }
+      debounce,
+    },
   });
 
   // Set global store and vendure service

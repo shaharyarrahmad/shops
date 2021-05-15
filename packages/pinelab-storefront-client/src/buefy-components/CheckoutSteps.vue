@@ -6,21 +6,29 @@
       :rounded="true"
       :has-navigation="false"
       label-position="bottom"
-      mobile-mode="compact">
-
+      mobile-mode="compact"
+    >
       <!--- CUSTOMER DETAILS -------------------------------------->
-      <b-step-item step="1" :label="customerDetailsLabel" icon="account" :clickable="false">
-        <br>
+      <b-step-item
+        step="1"
+        :label="customerDetailsLabel"
+        icon="account"
+        :clickable="false"
+      >
+        <br />
         <form v-on:submit="setCustomerDetails($event)">
-
           <div class="columns">
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="companyLabel" type="text" v-model="address.company" />
+                  <b-input
+                    :placeholder="companyLabel"
+                    type="text"
+                    v-model="address.company"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-office-building"></i>
-                </span>
+                    <i class="mdi mdi-office-building"></i>
+                  </span>
                 </p>
               </div>
             </div>
@@ -29,20 +37,30 @@
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${firstnameLabel}*`" type="text" required v-model="customer.firstName" />
+                  <b-input
+                    :placeholder="`${firstnameLabel}*`"
+                    type="text"
+                    required
+                    v-model="customer.firstName"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-account"></i>
-                </span>
+                    <i class="mdi mdi-account"></i>
+                  </span>
                 </p>
               </div>
             </div>
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${lastnameLabel}*`" type="text" required v-model="customer.lastName" />
+                  <b-input
+                    :placeholder="`${lastnameLabel}*`"
+                    type="text"
+                    required
+                    v-model="customer.lastName"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-account"></i>
-                </span>
+                    <i class="mdi mdi-account"></i>
+                  </span>
                 </p>
               </div>
             </div>
@@ -51,20 +69,29 @@
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="phoneLabel" type="text" v-model="customer.phoneNumber" />
+                  <b-input
+                    :placeholder="phoneLabel"
+                    type="text"
+                    v-model="customer.phoneNumber"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-cellphone-basic"></i>
-                </span>
+                    <i class="mdi mdi-cellphone-basic"></i>
+                  </span>
                 </p>
               </div>
             </div>
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${emailLabel}*`" type="text" required v-model="customer.emailAddress" />
+                  <b-input
+                    :placeholder="`${emailLabel}*`"
+                    type="text"
+                    required
+                    v-model="customer.emailAddress"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-email"></i>
-                </span>
+                    <i class="mdi mdi-email"></i>
+                  </span>
                 </p>
               </div>
             </div>
@@ -73,20 +100,30 @@
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${postalCodeLabel}*`" type="text" required v-model="address.postalCode" />
+                  <b-input
+                    :placeholder="`${postalCodeLabel}*`"
+                    type="text"
+                    required
+                    v-model="address.postalCode"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-mailbox"></i>
-                </span>
+                    <i class="mdi mdi-mailbox"></i>
+                  </span>
                 </p>
               </div>
             </div>
             <div class="column is-narrow">
               <div class="field is-small-field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${houseNumberLabel}*`" type="text" required v-model="address.streetLine2" />
+                  <b-input
+                    :placeholder="`${houseNumberLabel}*`"
+                    type="text"
+                    required
+                    v-model="address.streetLine2"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-home"></i>
-                </span>
+                    <i class="mdi mdi-home"></i>
+                  </span>
                 </p>
               </div>
             </div>
@@ -95,65 +132,93 @@
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${streetLabel}*`" type="text" required v-model="address.streetLine1" />
+                  <b-input
+                    :placeholder="`${streetLabel}*`"
+                    type="text"
+                    required
+                    v-model="address.streetLine1"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-home"></i>
-                </span>
+                    <i class="mdi mdi-home"></i>
+                  </span>
                 </p>
               </div>
             </div>
             <div class="column">
               <div class="field">
                 <p class="control is-expanded has-icons-left">
-                  <b-input :placeholder="`${cityLabel}*`" type="text" required v-model="address.city" />
+                  <b-input
+                    :placeholder="`${cityLabel}*`"
+                    type="text"
+                    required
+                    v-model="address.city"
+                  />
                   <span class="icon is-small is-left">
-                  <i class="mdi mdi-city"></i>
-                </span>
+                    <i class="mdi mdi-city"></i>
+                  </span>
                 </p>
               </div>
             </div>
           </div>
 
           <b-field>
-            <b-select :placeholder="countryLabel" name="country" icon="earth" v-model="address.countryCode">
+            <b-select
+              :placeholder="countryLabel"
+              name="country"
+              icon="earth"
+              v-model="address.countryCode"
+            >
               <option value="nl" selected>Nederland</option>
               <option value="de">Duitsland</option>
               <option value="be">België</option>
             </b-select>
           </b-field>
 
-
           <div class="columns is-mobile">
             <div class="column">
               <a @click="goBack()" class="button is-outlined"><</a>
             </div>
             <div class="column has-text-right">
-              <button type="submit" class="button is-primary" :disabled="loadingShipping"> {{ shippingLabel }} >
+              <button
+                type="submit"
+                class="button is-primary"
+                :disabled="loadingShipping"
+              >
+                {{ shippingLabel }} >
               </button>
             </div>
           </div>
         </form>
-
       </b-step-item>
 
       <!--- SHIPPING -------------------------------------->
-      <b-step-item step="2" :label="shippingLabel" icon="truck" :clickable="false">
-        <br>
+      <b-step-item
+        step="2"
+        :label="shippingLabel"
+        icon="truck"
+        :clickable="false"
+      >
+        <br />
         <div class="columns">
           <div class="column is-half is-offset-one-quarter">
             <section>
               <b-field v-for="method of shippingMethods" :key="method.id">
-                <b-radio :native-value="method.id"
-                         v-model="selectedShippingMethod"
-                         v-on:input="setShippingMethod(method.id)">
+                <b-radio
+                  :native-value="method.id"
+                  v-model="selectedShippingMethod"
+                  v-on:input="setShippingMethod(method.id)"
+                >
                   {{ method.name }} ({{ method.priceWithTax | euro }})
                 </b-radio>
               </b-field>
             </section>
-            <br>
+            <br />
 
-            <p>{{ totalLabel }}: <strong>{{ activeOrder.totalWithTax | euro }}</strong></p>
-            <br>
+            <p>
+              {{ totalLabel }}:
+              <strong>{{ activeOrder.totalWithTax | euro }}</strong>
+            </p>
+            <br />
             <div class="columns is-mobile">
               <div class="column">
                 <a @click="goBack()" class="button is-outlined"><</a>
@@ -173,21 +238,30 @@
         </div>
       </b-step-item>
 
-
       <!--- PAYMENT -------------------------------------->
-      <b-step-item step="3" :label="paymentLabel" icon="currency-eur" :clickable="false" disabled>
+      <b-step-item
+        step="3"
+        :label="paymentLabel"
+        icon="currency-eur"
+        :clickable="false"
+        disabled
+      >
         You're not supposed to be here...
-       </b-step-item>
-
-      <!--- Order -------------------------------------->
-      <b-step-item step="4" :label="succesLabel" icon="check" :clickable="false" disabled>
       </b-step-item>
 
+      <!--- Order -------------------------------------->
+      <b-step-item
+        step="4"
+        :label="succesLabel"
+        icon="check"
+        :clickable="false"
+        disabled
+      >
+      </b-step-item>
     </b-steps>
   </section>
 </template>
 <script>
-
 export default {
   props: {
     previousPage: { required: true },
@@ -205,12 +279,12 @@ export default {
     houseNumberLabel: { default: 'HouseNr' },
     countryLabel: { default: 'Country' },
     totalLabel: { default: 'Total' },
-    succesLabel: { default: 'Success!' }
+    succesLabel: { default: 'Success!' },
   },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder || {};
-    }
+    },
   },
   data() {
     return {
@@ -221,7 +295,7 @@ export default {
         emailAddress: undefined,
         firstName: undefined,
         lastName: undefined,
-        phoneNumber: undefined
+        phoneNumber: undefined,
       },
       address: {
         company: undefined,
@@ -229,10 +303,10 @@ export default {
         streetLine1: undefined,
         streetLine2: undefined,
         postalCode: undefined,
-        countryCode: 'nl'
+        countryCode: 'nl',
       },
       shippingMethods: [],
-      selectedShippingMethod: undefined
+      selectedShippingMethod: undefined,
     };
   },
   methods: {
@@ -244,7 +318,7 @@ export default {
         fullName: `${this.customer.firstName} ${this.customer.lastName}`,
         defaultBillingAddress: true,
         defaultShippingAddress: true,
-        phoneNumber: this.customer.phoneNumber
+        phoneNumber: this.customer.phoneNumber,
       };
       try {
         await this.$vendure.setCustomerForOrder(this.customer);
@@ -267,7 +341,7 @@ export default {
         }
         const order = await this.$vendure.addPaymentToOrder({
           method: `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`,
-          metadata: {}
+          metadata: {},
         });
         const latestPayment = order?.payments?.[order?.payments.length - 1];
         if (latestPayment?.metadata?.public?.redirectLink) {
@@ -288,7 +362,7 @@ export default {
       this.$buefy.toast.open({
         message: `Something went wrong...`,
         position: 'is-bottom',
-        type: 'is-danger'
+        type: 'is-danger',
       });
     },
     getCountryCode(country) {
@@ -312,7 +386,7 @@ export default {
     async setShippingMethod(methodId) {
       console.log('shippingg', methodId);
       await this.$vendure.setOrderShippingMethod(methodId);
-    }
+    },
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -337,7 +411,7 @@ export default {
     }
     this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     this.selectedShippingMethod = this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
-  }
+  },
 };
 </script>
 <style>

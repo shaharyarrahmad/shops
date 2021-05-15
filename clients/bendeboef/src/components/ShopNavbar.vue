@@ -1,25 +1,21 @@
 <template>
   <div>
-    <br>
+    <br />
     <b-navbar class="shop-bar is-fixed-top">
       <template #brand>
         <b-navbar-item tag="div" class="is-hidden-desktop">
           <g-link :to="cartLink" class="button is-primary">
             <span class="icon is-small">
-              <i :class="`mdi mdi-${ cartIcon }`"></i>
+              <i :class="`mdi mdi-${cartIcon}`"></i>
             </span>
             <span>
-          {{ nrOfItems }}
+              {{ nrOfItems }}
             </span>
           </g-link>
         </b-navbar-item>
 
         <b-navbar-item href="/">
-          <img
-            :src="logo"
-            :alt="logoAlt"
-            class="shop-logo"
-          />
+          <img :src="logo" :alt="logoAlt" class="shop-logo" />
         </b-navbar-item>
       </template>
       <template #start>
@@ -29,12 +25,12 @@
         <b-navbar-item tag="div" class="is-hidden-touch">
           <b-tooltip :label="price" position="is-bottom">
             <g-link :to="cartLink" class="button is-primary">
-            <span class="icon is-small">
-              <i :class="`mdi mdi-${ cartIcon }`"></i>
-            </span>
+              <span class="icon is-small">
+                <i :class="`mdi mdi-${cartIcon}`"></i>
+              </span>
               <span>
-          {{ nrOfItems }}
-            </span>
+                {{ nrOfItems }}
+              </span>
             </g-link>
           </b-tooltip>
         </b-navbar-item>
@@ -43,7 +39,6 @@
   </div>
 </template>
 <script>
-
 export default {
   computed: {
     nrOfItems() {
@@ -58,56 +53,56 @@ export default {
     },
     price() {
       return this.$root.$options.filters.euro(this.activeOrder?.totalWithTax);
-    }
+    },
   },
   props: {
     activeOrder: {
-      required: true
+      required: true,
     },
     cartLink: {
       type: String,
-      required: true
+      required: true,
     },
     cartIcon: {
       type: String,
-      default: "shopping"
+      default: 'shopping',
     },
     itemAddedText: {
       type: String,
-      default: "added"
+      default: 'added',
     },
     itemAddedActionText: {
       type: String,
-      default: "Checkout now"
+      default: 'Checkout now',
     },
     logo: {
       type: String,
-      required: true
+      required: true,
     },
     logoAlt: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   mounted() {
-    this.$emitter.on("productAdded", this.showAddedBar);
+    this.$emitter.on('productAdded', this.showAddedBar);
   },
   beforeDestroy() {
-    this.$emitter.off("productAdded", this.showAddedBar);
+    this.$emitter.off('productAdded', this.showAddedBar);
   },
   methods: {
     showAddedBar(event) {
       this.$buefy.snackbar.open({
         message: `${event.quantity} ${this.itemAddedText}`,
-        position: "is-top-right",
-        type: "is-light",
+        position: 'is-top-right',
+        type: 'is-light',
         actionText: this.itemAddedActionText,
         onAction: () => {
           this.$router.push(this.cartLink);
-        }
+        },
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <ProductFilter :collections="$context.collections"/>
+      <ProductFilter :collections="$context.collections" />
     </template>
   </Layout>
 </template>
@@ -10,8 +10,7 @@ import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/Produc
 
 export default {
   components: {
-    ProductFilter
-  }
-
+    ProductFilter,
+  },
 };
 </script>

@@ -1,7 +1,11 @@
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -63,38 +67,31 @@ export type Query = {
   search: SearchResponse;
 };
 
-
 export type QueryCollectionsArgs = {
   options?: Maybe<CollectionListOptions>;
 };
-
 
 export type QueryCollectionArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryOrderArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryOrderByCodeArgs = {
   code: Scalars['String'];
 };
-
 
 export type QueryProductArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryProductsArgs = {
   options?: Maybe<ProductListOptions>;
 };
-
 
 export type QuerySearchArgs = {
   input: SearchInput;
@@ -188,68 +185,55 @@ export type Mutation = {
   resetPassword: ResetPasswordResult;
 };
 
-
 export type MutationAddItemToOrderArgs = {
   productVariantId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
-
 export type MutationRemoveOrderLineArgs = {
   orderLineId: Scalars['ID'];
 };
-
 
 export type MutationAdjustOrderLineArgs = {
   orderLineId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
-
 export type MutationApplyCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
-
 
 export type MutationRemoveCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
 
-
 export type MutationTransitionOrderToStateArgs = {
   state: Scalars['String'];
 };
-
 
 export type MutationSetOrderShippingAddressArgs = {
   input: CreateAddressInput;
 };
 
-
 export type MutationSetOrderBillingAddressArgs = {
   input: CreateAddressInput;
 };
-
 
 export type MutationSetOrderCustomFieldsArgs = {
   input: UpdateOrderInput;
 };
 
-
 export type MutationSetOrderShippingMethodArgs = {
   shippingMethodId: Scalars['ID'];
 };
-
 
 export type MutationAddPaymentToOrderArgs = {
   input: PaymentInput;
 };
 
-
 export type MutationSetCustomerForOrderArgs = {
   input: CreateCustomerInput;
 };
-
 
 export type MutationLoginArgs = {
   username: Scalars['String'];
@@ -257,70 +241,57 @@ export type MutationLoginArgs = {
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
-
 export type MutationAuthenticateArgs = {
   input: AuthenticationInput;
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
-
 export type MutationRegisterCustomerAccountArgs = {
   input: RegisterCustomerInput;
 };
-
 
 export type MutationRefreshCustomerVerificationArgs = {
   emailAddress: Scalars['String'];
 };
 
-
 export type MutationUpdateCustomerArgs = {
   input: UpdateCustomerInput;
 };
-
 
 export type MutationCreateCustomerAddressArgs = {
   input: CreateAddressInput;
 };
 
-
 export type MutationUpdateCustomerAddressArgs = {
   input: UpdateAddressInput;
 };
 
-
 export type MutationDeleteCustomerAddressArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationVerifyCustomerAccountArgs = {
   token: Scalars['String'];
   password?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationUpdateCustomerPasswordArgs = {
   currentPassword: Scalars['String'];
   newPassword: Scalars['String'];
 };
-
 
 export type MutationRequestUpdateCustomerEmailAddressArgs = {
   password: Scalars['String'];
   newEmailAddress: Scalars['String'];
 };
 
-
 export type MutationUpdateCustomerEmailAddressArgs = {
   token: Scalars['String'];
 };
 
-
 export type MutationRequestPasswordResetArgs = {
   emailAddress: Scalars['String'];
 };
-
 
 export type MutationResetPasswordArgs = {
   token: Scalars['String'];
@@ -379,7 +350,7 @@ export type AssetList = PaginatedList & {
 export enum AssetType {
   Image = 'IMAGE',
   Video = 'VIDEO',
-  Binary = 'BINARY'
+  Binary = 'BINARY',
 }
 
 export type CurrentUser = {
@@ -433,7 +404,6 @@ export type Collection = Node & {
   customFields?: Maybe<Scalars['JSON']>;
 };
 
-
 export type CollectionProductVariantsArgs = {
   options?: Maybe<ProductVariantListOptions>;
 };
@@ -471,19 +441,19 @@ export type ProductVariantList = PaginatedList & {
 export enum GlobalFlag {
   True = 'TRUE',
   False = 'FALSE',
-  Inherit = 'INHERIT'
+  Inherit = 'INHERIT',
 }
 
 export enum AdjustmentType {
   Promotion = 'PROMOTION',
-  DistributedOrderPromotion = 'DISTRIBUTED_ORDER_PROMOTION'
+  DistributedOrderPromotion = 'DISTRIBUTED_ORDER_PROMOTION',
 }
 
 export enum DeletionResult {
   /** The entity was successfully deleted */
   Deleted = 'DELETED',
   /** Deletion did not take place, reason given in message */
-  NotDeleted = 'NOT_DELETED'
+  NotDeleted = 'NOT_DELETED',
 }
 
 /**
@@ -549,12 +519,12 @@ export enum Permission {
   /** Grants permission to update Settings */
   UpdateSettings = 'UpdateSettings',
   /** Grants permission to delete Settings */
-  DeleteSettings = 'DeleteSettings'
+  DeleteSettings = 'DeleteSettings',
 }
 
 export enum SortOrder {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export enum ErrorCode {
@@ -585,12 +555,12 @@ export enum ErrorCode {
   PasswordResetTokenInvalidError = 'PASSWORD_RESET_TOKEN_INVALID_ERROR',
   PasswordResetTokenExpiredError = 'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
   NotVerifiedError = 'NOT_VERIFIED_ERROR',
-  NoActiveOrderError = 'NO_ACTIVE_ORDER_ERROR'
+  NoActiveOrderError = 'NO_ACTIVE_ORDER_ERROR',
 }
 
 export enum LogicalOperator {
   And = 'AND',
-  Or = 'OR'
+  Or = 'OR',
 }
 
 /** Retured when attempting an operation that relies on the NativeAuthStrategy, if that strategy is not configured. */
@@ -648,9 +618,6 @@ export type InsufficientStockError = ErrorResult & {
   quantityAvailable: Scalars['Int'];
   order: Order;
 };
-
-
-
 
 export type PaginatedList = {
   items: Array<Node>;
@@ -1198,7 +1165,7 @@ export enum CurrencyCode {
   /** Zambian kwacha */
   Zmw = 'ZMW',
   /** Zimbabwean dollar */
-  Zwl = 'ZWL'
+  Zwl = 'ZWL',
 }
 
 export type CustomField = {
@@ -1320,7 +1287,14 @@ export type LocalizedString = {
   value: Scalars['String'];
 };
 
-export type CustomFieldConfig = StringCustomFieldConfig | LocaleStringCustomFieldConfig | IntCustomFieldConfig | FloatCustomFieldConfig | BooleanCustomFieldConfig | DateTimeCustomFieldConfig | RelationCustomFieldConfig;
+export type CustomFieldConfig =
+  | StringCustomFieldConfig
+  | LocaleStringCustomFieldConfig
+  | IntCustomFieldConfig
+  | FloatCustomFieldConfig
+  | BooleanCustomFieldConfig
+  | DateTimeCustomFieldConfig
+  | RelationCustomFieldConfig;
 
 export type CustomerGroup = Node & {
   __typename?: 'CustomerGroup';
@@ -1330,7 +1304,6 @@ export type CustomerGroup = Node & {
   name: Scalars['String'];
   customers: CustomerList;
 };
-
 
 export type CustomerGroupCustomersArgs = {
   options?: Maybe<CustomerListOptions>;
@@ -1351,7 +1324,6 @@ export type Customer = Node & {
   user?: Maybe<User>;
   customFields?: Maybe<Scalars['JSON']>;
 };
-
 
 export type CustomerOrdersArgs = {
   options?: Maybe<OrderListOptions>;
@@ -1446,7 +1418,7 @@ export enum HistoryEntryType {
   OrderNote = 'ORDER_NOTE',
   OrderCouponApplied = 'ORDER_COUPON_APPLIED',
   OrderCouponRemoved = 'ORDER_COUPON_REMOVED',
-  OrderModified = 'ORDER_MODIFIED'
+  OrderModified = 'ORDER_MODIFIED',
 }
 
 export type HistoryEntryList = PaginatedList & {
@@ -1778,7 +1750,7 @@ export enum LanguageCode {
   /** Yoruba */
   Yo = 'yo',
   /** Zulu */
-  Zu = 'zu'
+  Zu = 'zu',
 }
 
 export type Order = Node & {
@@ -1842,7 +1814,6 @@ export type Order = Node & {
   history: HistoryEntryList;
   customFields?: Maybe<Scalars['JSON']>;
 };
-
 
 export type OrderHistoryArgs = {
   options?: Maybe<HistoryEntryListOptions>;
@@ -2593,39 +2564,96 @@ export type PaymentInput = {
   metadata: Scalars['JSON'];
 };
 
-export type UpdateOrderItemsResult = Order | OrderModificationError | OrderLimitError | NegativeQuantityError | InsufficientStockError;
+export type UpdateOrderItemsResult =
+  | Order
+  | OrderModificationError
+  | OrderLimitError
+  | NegativeQuantityError
+  | InsufficientStockError;
 
 export type RemoveOrderItemsResult = Order | OrderModificationError;
 
-export type SetOrderShippingMethodResult = Order | OrderModificationError | IneligibleShippingMethodError | NoActiveOrderError;
+export type SetOrderShippingMethodResult =
+  | Order
+  | OrderModificationError
+  | IneligibleShippingMethodError
+  | NoActiveOrderError;
 
-export type ApplyCouponCodeResult = Order | CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError;
+export type ApplyCouponCodeResult =
+  | Order
+  | CouponCodeExpiredError
+  | CouponCodeInvalidError
+  | CouponCodeLimitError;
 
-export type AddPaymentToOrderResult = Order | OrderPaymentStateError | IneligiblePaymentMethodError | PaymentFailedError | PaymentDeclinedError | OrderStateTransitionError | NoActiveOrderError;
+export type AddPaymentToOrderResult =
+  | Order
+  | OrderPaymentStateError
+  | IneligiblePaymentMethodError
+  | PaymentFailedError
+  | PaymentDeclinedError
+  | OrderStateTransitionError
+  | NoActiveOrderError;
 
 export type TransitionOrderToStateResult = Order | OrderStateTransitionError;
 
-export type SetCustomerForOrderResult = Order | AlreadyLoggedInError | EmailAddressConflictError | NoActiveOrderError;
+export type SetCustomerForOrderResult =
+  | Order
+  | AlreadyLoggedInError
+  | EmailAddressConflictError
+  | NoActiveOrderError;
 
-export type RegisterCustomerAccountResult = Success | MissingPasswordError | NativeAuthStrategyError;
+export type RegisterCustomerAccountResult =
+  | Success
+  | MissingPasswordError
+  | NativeAuthStrategyError;
 
-export type RefreshCustomerVerificationResult = Success | NativeAuthStrategyError;
+export type RefreshCustomerVerificationResult =
+  | Success
+  | NativeAuthStrategyError;
 
-export type VerifyCustomerAccountResult = CurrentUser | VerificationTokenInvalidError | VerificationTokenExpiredError | MissingPasswordError | PasswordAlreadySetError | NativeAuthStrategyError;
+export type VerifyCustomerAccountResult =
+  | CurrentUser
+  | VerificationTokenInvalidError
+  | VerificationTokenExpiredError
+  | MissingPasswordError
+  | PasswordAlreadySetError
+  | NativeAuthStrategyError;
 
-export type UpdateCustomerPasswordResult = Success | InvalidCredentialsError | NativeAuthStrategyError;
+export type UpdateCustomerPasswordResult =
+  | Success
+  | InvalidCredentialsError
+  | NativeAuthStrategyError;
 
-export type RequestUpdateCustomerEmailAddressResult = Success | InvalidCredentialsError | EmailAddressConflictError | NativeAuthStrategyError;
+export type RequestUpdateCustomerEmailAddressResult =
+  | Success
+  | InvalidCredentialsError
+  | EmailAddressConflictError
+  | NativeAuthStrategyError;
 
-export type UpdateCustomerEmailAddressResult = Success | IdentifierChangeTokenInvalidError | IdentifierChangeTokenExpiredError | NativeAuthStrategyError;
+export type UpdateCustomerEmailAddressResult =
+  | Success
+  | IdentifierChangeTokenInvalidError
+  | IdentifierChangeTokenExpiredError
+  | NativeAuthStrategyError;
 
 export type RequestPasswordResetResult = Success | NativeAuthStrategyError;
 
-export type ResetPasswordResult = CurrentUser | PasswordResetTokenInvalidError | PasswordResetTokenExpiredError | NativeAuthStrategyError;
+export type ResetPasswordResult =
+  | CurrentUser
+  | PasswordResetTokenInvalidError
+  | PasswordResetTokenExpiredError
+  | NativeAuthStrategyError;
 
-export type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NotVerifiedError | NativeAuthStrategyError;
+export type NativeAuthenticationResult =
+  | CurrentUser
+  | InvalidCredentialsError
+  | NotVerifiedError
+  | NativeAuthStrategyError;
 
-export type AuthenticationResult = CurrentUser | InvalidCredentialsError | NotVerifiedError;
+export type AuthenticationResult =
+  | CurrentUser
+  | InvalidCredentialsError
+  | NotVerifiedError;
 
 export type ActiveOrderResult = Order | NoActiveOrderError;
 

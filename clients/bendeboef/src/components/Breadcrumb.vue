@@ -14,13 +14,13 @@ export default {
   props: {
     crumbs: {
       required: true,
-      type: Object
-    }
+      type: Object,
+    },
   },
   methods: {
     isLast(i) {
-      return i === Object.keys(this.crumbs).length - 1 ? "is-active" : "";
-    }
-  }
+      return i === Object.keys(this.crumbs).length - 1 ? 'is-active' : '';
+    },
+  },
 };
 </script>

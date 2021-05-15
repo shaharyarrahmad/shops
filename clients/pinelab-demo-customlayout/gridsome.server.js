@@ -1,18 +1,21 @@
 const { GridsomeService } = require('pinelab-storefront-client');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
 
-module.exports = async function(api) {
+module.exports = async function (api) {
 
-/*  api.chainWebpack(config => {
+    api.chainWebpack(config => {
     config
       .plugin('BundleAnalyzerPlugin')
       .use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
-  });*/
+  });
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const { products, collections } = await gridsome.getShopData();
-    const featuredProducts = products.filter(p => p.facetValues.find(value => value.code === 'featured'));
+    const featuredProducts = products.filter((p) =>
+      p.facetValues.find((value) => value.code === 'featured')
+    );
 
     // Breadcrumb pages
     const Home = '/';
@@ -27,8 +30,8 @@ module.exports = async function(api) {
       context: {
         products,
         collections,
-        featuredProducts
-      }
+        featuredProducts,
+      },
     });
 
     // ----------------- Cart ---------------------
@@ -37,22 +40,21 @@ module.exports = async function(api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        breadcrumb
-      }
+        breadcrumb,
+      },
     });
 
     // ----------------- checkout ---------------------
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {}
+      context: {},
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
-      component: './src/templates/Order.vue'
+      component: './src/templates/Order.vue',
     });
-
   });
 };

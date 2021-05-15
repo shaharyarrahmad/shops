@@ -1,11 +1,12 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 
-module.exports = async function(api) {
-
+module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const { products, collections } = await gridsome.getShopData();
-    const featuredProducts = products.filter(p => p.facetValues.find(value => value.code === 'featured'));
+    const featuredProducts = products.filter((p) =>
+      p.facetValues.find((value) => value.code === 'featured')
+    );
 
     // Breadcrumb pages
     const Home = '/';
@@ -20,8 +21,8 @@ module.exports = async function(api) {
       context: {
         products,
         collections,
-        featuredProducts
-      }
+        featuredProducts,
+      },
     });
 
     // ----------------- Shop ---------------------
@@ -31,8 +32,8 @@ module.exports = async function(api) {
       context: {
         products,
         collections,
-        breadcrumb: { Home, Shop }
-      }
+        breadcrumb: { Home, Shop },
+      },
     });
 
     // ----------------- Cart ---------------------
@@ -40,22 +41,21 @@ module.exports = async function(api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        breadcrumb: { Home, Shop, Cart }
-      }
+        breadcrumb: { Home, Shop, Cart },
+      },
     });
 
     // ----------------- checkout ---------------------
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {}
+      context: {},
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
-      component: './src/templates/Order.vue'
+      component: './src/templates/Order.vue',
     });
-
   });
 };

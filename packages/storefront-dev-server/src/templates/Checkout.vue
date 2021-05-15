@@ -1,8 +1,6 @@
 <template>
   <Layout #content>
-    <CheckoutSteps
-      previousPage="/cart/"
-    />
+    <CheckoutSteps previousPage="/cart/" />
   </Layout>
 </template>
 <script>
@@ -10,7 +8,7 @@ import CheckoutSteps from 'pinelab-storefront-client/lib/buefy-components/Checko
 
 export default {
   components: {
-    CheckoutSteps
-  }
+    CheckoutSteps,
+  },
 };
 </script>

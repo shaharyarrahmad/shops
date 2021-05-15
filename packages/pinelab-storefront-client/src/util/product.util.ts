@@ -35,10 +35,15 @@ export function deduplicate(products: Product[]): Product[] {
  * Hydrate products on client side.
  * For now this only updates product.soldOut
  */
-export async function hydrate(products: CalculatedProduct[], vendure: VendureClient): Promise<CalculatedProduct[]> {
+export async function hydrate(
+  products: CalculatedProduct[],
+  vendure: VendureClient
+): Promise<CalculatedProduct[]> {
   const updatedProducts = await vendure.getStockForProducts();
   return products.map((p) => {
-    const hydratedProd = updatedProducts.find((updatedProduct) => updatedProduct.id === p.id);
+    const hydratedProd = updatedProducts.find(
+      (updatedProduct) => updatedProduct.id === p.id
+    );
     if (hydratedProd) {
       p.soldOut = hydratedProd.soldOut;
     }
