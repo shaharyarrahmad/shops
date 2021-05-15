@@ -73,7 +73,6 @@ export default {
   async mounted() {
     await this.$vendure.getActiveOrder();
     this.$context.featuredProducts = await hydrate(this.$context.featuredProducts, this.$vendure);
-    console.log(this.$context.featuredProducts)
   }
 };
 </script>
