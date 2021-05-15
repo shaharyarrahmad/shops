@@ -54,6 +54,7 @@
 
 <script>
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
+import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
@@ -64,6 +65,10 @@ export default {
   }),
   async mounted() {
     await this.$vendure.getActiveOrder();
+    this.$context.featuredProducts = await hydrate(
+      this.$context.featuredProducts,
+      this.$vendure
+    );
   },
 };
 </script>
