@@ -1,7 +1,7 @@
 {
   "name": "lab07",
   "private": true,
-  "version": "0.26.0",
+  "version": "0.27.0",
   "scripts": {
     "serve": "yarn gridsome develop",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch './src' --exec 'yarn gridsome build && yarn http-server ./dist/'\""

@@ -18,5 +18,6 @@
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
-  }
+  },
+  "version": "0.27.0"
 }
