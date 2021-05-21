@@ -7,7 +7,7 @@
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.7",
-    "pinelab-storefront-client": "^0.27.0"
+    "pinelab-storefront-client": "^0.28.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
@@ -17,7 +17,7 @@
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
-  "version": "0.27.0",
+  "version": "0.28.0",
   "resolutions": {
     "graphql": "^14.7.0"
   }
