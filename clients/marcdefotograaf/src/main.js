@@ -2,7 +2,7 @@
 // The Client api can be used here. Learn more: gridsome.org/docs/client-api
 import Layout from '~/layouts/Default.vue';
 import 'pinelab-storefront-client/lib/ministore/styles.css';
-import '@fontsource/roboto-mono';
+// import '@fontsource/roboto-mono';
 import Rollbar from 'rollbar';
 import { configureVue } from 'pinelab-storefront-client';
 

@@ -902,11 +902,6 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
-"@fontsource/roboto-mono@^4.0.1":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.3.0.tgz#b443c6cd8b44a37ad4582279771f70e4042d8438"
-  integrity sha512-Driw0cYOvwUONOaWV6PxgUrqjcfsAvp2HxV94wmBZQAYhVQEPRBGbOa01fGX/ZjOsLok4xx94C/dH2pYh933YQ==
-
 "@gridsome/cli@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@gridsome/cli/-/cli-0.3.4.tgz#42fa7a4368a80bd04ec497c93cae5a66b041fe22"
