@@ -33,6 +33,29 @@ module.exports = async function(api) {
       }
     });
 
+    // ----------------- Shop ---------------------
+    createPage({
+      path: '/shop/',
+      component: './src/templates/Shop.vue',
+      context: {
+        products,
+        collections,
+        breadcrumb: { Home, Shop }
+      }
+    });
+
+    // ----------------- ProductDetail ---------------------
+    products.forEach(product => {
+      createPage({
+        path: `/shop/product/${product.slug}`,
+        component: './src/templates/Product.vue',
+        context: {
+          product,
+          breadcrumb: { Home, Shop, [product.name]: product.slug }
+        }
+      });
+    });
+
     // ----------------- Cart ---------------------
     const breadcrumb = { Home, Shop, Cart };
     createPage({
