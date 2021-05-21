@@ -28,11 +28,6 @@ export default {
       required: true
     }
   },
-  watch: {
-    variant() {
-      this.selectedAsset = undefined
-    },
-  },
   data() {
     return { selectedAsset: undefined };
   },
@@ -41,6 +36,8 @@ export default {
       return this.selectedAsset || this.variant?.featuredAsset || this.product?.featuredAsset;
     },
     assets() {
+      console.log('variant', this.variant)
+      console.log('product', this.product)
       return this.variant?.assets || this.product?.assets;
     }
   },

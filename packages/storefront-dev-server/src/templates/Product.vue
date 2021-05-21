@@ -1,8 +1,7 @@
 <template>
   <Layout #content>
     <br>
-    <h1 class="title mb-0">{{ $context.product.name }} </h1>
-    <h5 class="has-text-grey is-size-5 mb-2">({{ variantName }})</h5>
+    <h1 class="title">{{ $context.product.name }} </h1>
     <div class="columns">
       <div class="column">
         <ProductImages :product="$context.product"
@@ -10,7 +9,10 @@
         />
       </div>
       <div class="column">
+        <h5 class="has-text-grey is-size-5">{{ variantName }}</h5>
+        <h5 class="is-size-5 mb-4">{{ variantPrice | euro}}</h5>
         <VariantSelector :product="$context.product" v-on:select="variant = $event" />
+        <br>
         <p v-html="$context.product.description"></p>
       </div>
     </div>
@@ -25,23 +27,21 @@ export default {
     ProductImages,
     VariantSelector
   },
-  methods: {
-    select(event) {
-      console.log(event);
-    },
-    getVariantName() {
-      return this.variant?.name;
-    }
-  },
   computed: {
     variantName() {
-      return this.variant?.name || this.$context?.product.variants[0].name;
+      return this.variant?.name;
     },
+    variantPrice() {
+      return this.variant?.priceWithTax;
+    }
   },
   data() {
     return {
       variant: this.$context?.product.variants[0]
-    }
+    };
+  },
+  mounted() {
+    this.variant = this.$context?.product.variants[0];
   }
 };
 </script>
