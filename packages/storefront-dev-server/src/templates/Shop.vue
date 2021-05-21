@@ -16,7 +16,9 @@
           v-for="product of $context.products"
           :key="product.slug"
         >
-          <ProductCard :product="product" buy-label="Add to cart" />
+          <ProductCard :product="product"
+                       buy-label="Add to cart"
+                       product-url-prefix="/shop/product/"/>
         </div>
       </div>
 

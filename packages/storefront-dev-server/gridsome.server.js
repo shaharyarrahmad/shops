@@ -14,7 +14,7 @@ module.exports = async function(api) {
     const Cart = '/cart/';
     const Checkout = '/checkout/';
 
-    // ----------------- ProductOverview ---------------------
+    // ----------------- Index ---------------------
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
@@ -34,6 +34,18 @@ module.exports = async function(api) {
         collections,
         breadcrumb: { Home, Shop }
       }
+    });
+
+    // ----------------- ProductDetail ---------------------
+    products.forEach(product => {
+      createPage({
+        path: `/shop/product/${product.slug}`,
+        component: './src/templates/Product.vue',
+        context: {
+          product,
+          breadcrumb: { Home, Shop, [product.name]: product.slug }
+        }
+      });
     });
 
     // ----------------- Collections ---------------------

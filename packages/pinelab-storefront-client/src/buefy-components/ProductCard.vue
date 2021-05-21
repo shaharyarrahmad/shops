@@ -1,6 +1,6 @@
 <template>
   <div class="container" :class="product.soldOut ? 'soldout' : ''">
-    <g-link :to="product.slug">
+    <g-link :to="`${productUrlPrefix}/${product.slug}`">
       <b-image
         :src="product.featuredAsset.thumbnail"
         :alt="product.name"
@@ -17,9 +17,9 @@
       type="is-primary is-fullwidth"
       :loading="isLoading"
       v-on:click="buy()"
-      >{{ product.soldOut ? soldoutLabel : buyLabel }}
+    >{{ product.soldOut ? soldoutLabel : buyLabel }}
     </b-button>
-    <g-link v-else :to="product.slug" class="button is-primary is-fullwidth">
+    <g-link v-else :to="`${productUrlPrefix}/${product.slug}`" class="button is-primary is-fullwidth">
       {{ product.soldOut ? soldoutLabel : buyLabel }}
     </g-link>
   </div>
@@ -29,13 +29,14 @@ export default {
   props: {
     buyLabel: {
       type: String,
-      required: true,
+      required: true
     },
     product: {
       type: Object,
-      required: true,
+      required: true
     },
-    soldoutLabel: { default: 'Sold out' },
+    productUrlPrefix: String,
+    soldoutLabel: { default: 'Sold out' }
   },
   data() {
     return { isLoading: false };
@@ -54,12 +55,12 @@ export default {
         console.error(e);
         this.$buefy.toast.open({
           message: `Error: ${e?.message}`,
-          type: 'is-danger',
+          type: 'is-danger'
         });
       }
       this.isLoading = false;
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

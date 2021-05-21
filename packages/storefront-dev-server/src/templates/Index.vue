@@ -43,7 +43,9 @@
             v-for="product of $context.featuredProducts.slice(0, 4)"
             :key="product.slug"
           >
-            <ProductCard :product="product" buy-label="Add to cart" />
+            <ProductCard :product="product"
+                         buy-label="Add to cart"
+                         product-url-prefix="/shop/product/"/>
           </div>
         </div>
         <hr />
