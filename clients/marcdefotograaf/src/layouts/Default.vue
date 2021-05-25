@@ -6,7 +6,7 @@
       <div class="cell show-for-large large-3"></div>
       <div class="cell small-12 large-6 text-center">
         <!--<a href="https://marcdefotograaf.nl" style="padding-left: 20px; font-size: 0.7rem;">Bekijk hier Marc's portfolio</a>-->
-        <img src="/marc_logo_square.png" style="width: 42px;" />
+        <a href="https://marcdefotograaf.nl" ><img src="/marc_logo_square.png" style="width: 42px;" /></a>
       </div>
       <div class="cell show-for-large large-3"></div>
     </div>
