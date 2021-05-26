@@ -22,21 +22,15 @@ export default {
   },
   data() {
     return {
-      optionGroups: {},
-      variant: {}
+      optionGroups: {}
     };
   },
   methods: {
     select() {
-      this.variant = this.product.variants.find(v => !!v.options.every(o => o.id === this.optionGroups[o.groupId]));
-      if (this.variant) {
-        this.$emit('select', this.variant);
+      const variant = this.product.variants.find(v => !!v.options.every(o => o.id === this.optionGroups[o.groupId]));
+      if (variant) {
+        this.$emit('select', variant);
       }
-    }
-  },
-  watch: {
-    product() {
-      this.variant = this.product?.variants[0];
     }
   }
 };

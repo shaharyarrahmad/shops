@@ -9,9 +9,9 @@
         />
       </div>
       <div class="column">
-        <h5 class="has-text-grey is-size-5">{{ variantName }}</h5>
-        <h5 class="is-size-5 mb-4">{{ variantPrice | euro}}</h5>
-        <VariantSelector :product="$context.product" v-on:select="variant = $event" />
+        <h5 class="has-text-grey is-size-5">{{ variant.name }}</h5>
+        <h5 class="is-size-5 mb-4">{{ variant.priceWithTax | euro}}</h5>
+        <VariantSelector :product="$context.product" v-on:select="selectedVariant = $event" />
         <br>
         <p v-html="$context.product.description"></p>
       </div>
@@ -28,20 +28,14 @@ export default {
     VariantSelector
   },
   computed: {
-    variantName() {
-      return this.variant?.name;
+    variant() {
+      return this.selectedVariant || this.$context?.product.variants[0] || {};
     },
-    variantPrice() {
-      return this.variant?.priceWithTax;
-    }
   },
   data() {
     return {
-      variant: this.$context?.product.variants[0]
+      selectedVariant: undefined
     };
-  },
-  mounted() {
-    this.variant = this.$context?.product.variants[0];
   }
 };
 </script>

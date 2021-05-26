@@ -1,9 +1,12 @@
 <template>
   <div>
-    <b-image
-      :src="getPreview(asset)"
-      :alt="product.name"
-    />
+    <div @click="showImageModal = true">
+      <b-image
+        :src="getPreview(asset)"
+        :alt="product.name"
+        class="is-clickable"
+      />
+    </div>
     <div class="columns mt-2 is-5 is-mobile">
       <div class="column is-one-fifth" v-for="asset of assets">
         <div @click="selectedAsset = asset">
@@ -16,6 +19,12 @@
         </div>
       </div>
     </div>
+
+    <b-modal v-model="showImageModal">
+      <p class="image">
+        <img :src="getPreview(asset)">
+      </p>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -28,16 +37,22 @@ export default {
       required: true
     }
   },
+  watch: {
+    variant() {
+      this.selectedAsset = undefined;
+    }
+  },
   data() {
-    return { selectedAsset: undefined };
+    return {
+      selectedAsset: undefined,
+      showImageModal: false
+    };
   },
   computed: {
     asset() {
       return this.selectedAsset || this.variant?.featuredAsset || this.product?.featuredAsset;
     },
     assets() {
-      console.log('variant', this.variant)
-      console.log('product', this.product)
       return this.variant?.assets || this.product?.assets;
     }
   },
