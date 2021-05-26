@@ -1,6 +1,6 @@
 {
   "name": "shops-vendure-backend",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -36,9 +36,9 @@
     "localtunnel": "^2.0.0",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
-    "vendure-plugin-google-storage-assets": "^0.28.0",
-    "vendure-plugin-mollie": "^0.28.0",
-    "vendure-plugin-webhook": "^0.28.0"
+    "vendure-plugin-google-storage-assets": "^0.29.0",
+    "vendure-plugin-mollie": "^0.29.0",
+    "vendure-plugin-webhook": "^0.29.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
