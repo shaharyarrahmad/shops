@@ -3,6 +3,7 @@
     <div v-for="group of product.optionGroups">
       <b-field>
         <b-select :placeholder="`${group.name}...`" v-on:input="select()"
+                  expanded
                   v-model="optionGroups[group.id]">
           <option
             v-for="option of group.options"

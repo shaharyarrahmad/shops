@@ -1,5 +1,5 @@
 <template>
-  <div class="container" :class="product.soldOut ? 'soldout' : ''">
+  <div class="container product-card-container" :class="product.soldOut ? 'soldout' : ''">
     <g-link :to="`${productUrlPrefix}/${product.slug}`">
       <b-image
         :src="product.featuredAsset.thumbnail"
@@ -14,17 +14,18 @@
 
     <b-button
       v-if="product.optionGroups.length === 0"
-      type="is-primary is-fullwidth"
+      class="is-primary is-fullwidth product-card-button"
       :loading="isLoading"
       v-on:click="buy()"
     >{{ product.soldOut ? soldoutLabel : buyLabel }}
     </b-button>
-    <g-link v-else :to="`${productUrlPrefix}/${product.slug}`" class="button is-primary is-fullwidth">
+    <g-link v-else :to="`${productUrlPrefix}/${product.slug}`" class="button is-primary is-fullwidth product-card-button">
       {{ product.soldOut ? soldoutLabel : buyLabel }}
     </g-link>
   </div>
 </template>
 <script>
+
 export default {
   props: {
     buyLabel: {
@@ -36,7 +37,7 @@ export default {
       required: true
     },
     productUrlPrefix: String,
-    soldoutLabel: { default: 'Sold out' }
+    soldoutLabel: { default: 'Sold out' },
   },
   data() {
     return { isLoading: false };
@@ -53,10 +54,7 @@ export default {
         this.$emitter.emit('productAdded', { variantId, quantity: 1 });
       } catch (e) {
         console.error(e);
-        this.$buefy.toast.open({
-          message: `Error: ${e?.message}`,
-          type: 'is-danger'
-        });
+        this.$emitter.emit('error', e);
       }
       this.isLoading = false;
     }
@@ -64,11 +62,16 @@ export default {
 };
 </script>
 <style>
-.product-card-image {
-  width: 100%;
-}
-
 .soldout {
   text-decoration: line-through;
+}
+.product-card-button {
+  margin-top: auto;
+}
+.product-card-container {
+  height: 100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
 }
 </style>

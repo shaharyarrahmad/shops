@@ -3,11 +3,13 @@ const { GridsomeService } = require('pinelab-storefront-client');
 
 module.exports = async function(api) {
 
-/*  api.chainWebpack(config => {
+/*
+  api.chainWebpack(config => {
     config
       .plugin('BundleAnalyzerPlugin')
       .use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
-  });*/
+  });
+*/
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);

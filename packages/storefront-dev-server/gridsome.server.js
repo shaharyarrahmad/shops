@@ -1,6 +1,7 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 
 module.exports = async function(api) {
+
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const { products, collections, productsPerCollection } = await gridsome.getShopData();

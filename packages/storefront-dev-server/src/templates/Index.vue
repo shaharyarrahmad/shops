@@ -67,7 +67,7 @@ export default {
   }),
   async mounted() {
     await this.$vendure.getActiveOrder();
-    this.$context.featuredProducts = await hydrate(
+    await hydrate(
       this.$context.featuredProducts,
       this.$vendure
     );

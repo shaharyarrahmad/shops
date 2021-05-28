@@ -1,8 +1,9 @@
 {
-  "name": "pinelab-storefront-client-dev",
+  "name": "storefront-dev-server",
   "private": true,
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
+    "static": "yarn link-there && yarn link-here && yarn gridsome build && yarn http-server ./dist/",
     "link-here": "yarn link pinelab-storefront-client",
     "link-there": "cd ../pinelab-storefront-client && yarn link"
   },
@@ -14,6 +15,7 @@
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
     "gridsome": "0.7.23",
+    "http-server": "^0.12.3",
     "rimraf": "^3.0.2",
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1",

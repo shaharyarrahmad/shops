@@ -2,7 +2,7 @@
   "name": "pinelab-customlayout",
   "private": true,
   "scripts": {
-    "serve:static": "TODO"
+    "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
   },
   "dependencies": {
     "@fontsource/work-sans": "^4.2.2",
@@ -11,7 +11,10 @@
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
+    "concurrently": "^6.2.0",
     "gridsome": "^0.7.23",
+    "http-server": "^0.12.3",
+    "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1",
