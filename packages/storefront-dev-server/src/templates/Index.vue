@@ -43,9 +43,11 @@
             v-for="product of $context.featuredProducts.slice(0, 4)"
             :key="product.slug"
           >
-            <ProductCard :product="product"
-                         buy-label="Add to cart"
-                         product-url-prefix="/shop/product/"/>
+            <ProductCard
+              :product="product"
+              buy-label="Add to cart"
+              product-url-prefix="/shop/product/"
+            />
           </div>
         </div>
         <hr />
@@ -67,10 +69,7 @@ export default {
   }),
   async mounted() {
     await this.$vendure.getActiveOrder();
-    await hydrate(
-      this.$context.featuredProducts,
-      this.$vendure
-    );
+    await hydrate(this.$context.featuredProducts, this.$vendure);
   },
 };
 </script>

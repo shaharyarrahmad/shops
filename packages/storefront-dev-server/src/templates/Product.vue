@@ -1,25 +1,26 @@
 <template>
   <Layout #content>
-    <br>
-    <h1 class="title">{{ $context.product.name }} </h1>
+    <br />
+    <h1 class="title">{{ $context.product.name }}</h1>
     <div class="columns">
       <div class="column">
-        <ProductImages :product="$context.product"
-                       :variant="variant"
-        />
+        <ProductImages :product="$context.product" :variant="variant" />
       </div>
       <div class="column">
         <h5 class="has-text-grey is-size-5">{{ variant.name }}</h5>
         <h5 class="is-size-5 mb-4">{{ variant.priceWithTax | euro }}</h5>
-        <VariantSelector :product="$context.product" v-on:select="selectedVariant = $event"/>
-        <br>
+        <VariantSelector
+          :product="$context.product"
+          v-on:select="selectedVariant = $event"
+        />
+        <br />
         <b-button
           class="is-primary is-fullwidth"
           :loading="isLoading"
           v-on:click="buy()"
-        >{{ isSoldOut ? 'Sold out' : 'Buy' }}
+          >{{ isSoldOut ? 'Sold out' : 'Buy' }}
         </b-button>
-        <br>
+        <br />
         <p v-html="$context.product.description"></p>
       </div>
     </div>
@@ -33,7 +34,7 @@ import { hydrate, buy, isOutOfStock } from 'pinelab-storefront-client';
 export default {
   components: {
     ProductImages,
-    VariantSelector
+    VariantSelector,
   },
   computed: {
     variant() {
@@ -41,19 +42,16 @@ export default {
     },
     isSoldOut() {
       return isOutOfStock(this.variant);
-    }
+    },
   },
   data() {
     return {
       selectedVariant: undefined,
-      isLoading: false
+      isLoading: false,
     };
   },
   async mounted() {
-    await hydrate(
-      this.$context.product,
-      this.$vendure
-    );
+    await hydrate(this.$context.product, this.$vendure);
   },
   methods: {
     async buy() {
@@ -63,7 +61,7 @@ export default {
         emitter: this.$emitter,
       });
       this.isLoading = false;
-    }
-  }
+    },
+  },
 };
 </script>

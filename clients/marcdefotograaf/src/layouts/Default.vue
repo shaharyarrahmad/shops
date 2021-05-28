@@ -1,12 +1,17 @@
 <template>
   <!--  <div style="font-family: 'Roboto mono', monospace">-->
-  <div style="font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important; ">
-
+  <div
+    style="font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important"
+  >
     <div class="grid-x grid-padding-x">
       <div class="cell show-for-large large-3"></div>
       <div class="cell small-12 large-6 text-center">
         <!--<a href="https://marcdefotograaf.nl" style="padding-left: 20px; font-size: 0.7rem;">Bekijk hier Marc's portfolio</a>-->
-        <a href="https://marcdefotograaf.nl" ><img src="/marc_logo_square.png" style="width: 42px; position: absolute;" /></a>
+        <a href="https://marcdefotograaf.nl"
+          ><img
+            src="/marc_logo_square.png"
+            style="width: 42px; position: absolute"
+        /></a>
       </div>
       <div class="cell show-for-large large-3"></div>
     </div>
@@ -40,22 +45,24 @@ import { NavBar } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {
-    NavBar
+    NavBar,
   },
   metaInfo() {
     return {
       meta: [
         {
           name: 'description',
-          content: 'Webshop van Marc de Fotograaf uit Leeuwarden.'
-        }
-      ]
+          content: 'Webshop van Marc de Fotograaf uit Leeuwarden.',
+        },
+      ],
     };
-  }
+  },
 };
 </script>
 <style>
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important;
 }
 h1 {

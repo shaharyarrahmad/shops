@@ -2,13 +2,17 @@
   <div v-if="product.optionGroups.length > 0">
     <div v-for="group of product.optionGroups">
       <b-field>
-        <b-select :placeholder="`${group.name}...`" v-on:input="select()"
-                  expanded
-                  v-model="optionGroups[group.id]">
+        <b-select
+          :placeholder="`${group.name}...`"
+          v-on:input="select()"
+          expanded
+          v-model="optionGroups[group.id]"
+        >
           <option
             v-for="option of group.options"
             :value="option.id"
-            :key="option.id">
+            :key="option.id"
+          >
             {{ option.name }}
           </option>
         </b-select>
@@ -19,20 +23,22 @@
 <script>
 export default {
   props: {
-    product: { required: true }
+    product: { required: true },
   },
   data() {
     return {
-      optionGroups: {}
+      optionGroups: {},
     };
   },
   methods: {
     select() {
-      const variant = this.product.variants.find(v => !!v.options.every(o => o.id === this.optionGroups[o.groupId]));
+      const variant = this.product.variants.find(
+        (v) => !!v.options.every((o) => o.id === this.optionGroups[o.groupId])
+      );
       if (variant) {
         this.$emit('select', variant);
       }
-    }
-  }
+    },
+  },
 };
 </script>

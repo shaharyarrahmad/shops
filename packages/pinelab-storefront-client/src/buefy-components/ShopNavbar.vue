@@ -107,9 +107,9 @@ export default {
     showError(e) {
       this.$buefy.toast.open({
         message: `Error: ${e?.message}`,
-        type: 'is-danger'
+        type: 'is-danger',
       });
-    }
+    },
   },
 };
 </script>

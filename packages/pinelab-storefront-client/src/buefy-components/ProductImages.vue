@@ -22,7 +22,7 @@
 
     <b-modal v-model="showImageModal">
       <p class="image">
-        <img :src="getPreview(asset)">
+        <img :src="getPreview(asset)" />
       </p>
     </b-modal>
   </div>
@@ -31,30 +31,34 @@
 export default {
   props: {
     product: {
-      required: true
+      required: true,
     },
     variant: {
-      required: true
-    }
+      required: true,
+    },
   },
   watch: {
     variant() {
       this.selectedAsset = undefined;
-    }
+    },
   },
   data() {
     return {
       selectedAsset: undefined,
-      showImageModal: false
+      showImageModal: false,
     };
   },
   computed: {
     asset() {
-      return this.selectedAsset || this.variant?.featuredAsset || this.product?.featuredAsset;
+      return (
+        this.selectedAsset ||
+        this.variant?.featuredAsset ||
+        this.product?.featuredAsset
+      );
     },
     assets() {
       return this.variant?.assets || this.product?.assets;
-    }
+    },
   },
   methods: {
     getPreview(asset) {
@@ -62,7 +66,7 @@ export default {
     },
     getThumbnail(asset) {
       return asset?.thumbnail;
-    }
-  }
+    },
+  },
 };
 </script>

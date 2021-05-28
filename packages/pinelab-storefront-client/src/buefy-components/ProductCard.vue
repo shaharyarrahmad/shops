@@ -1,5 +1,8 @@
 <template>
-  <div class="container product-card-container" :class="product.soldOut ? 'soldout' : ''">
+  <div
+    class="container product-card-container"
+    :class="product.soldOut ? 'soldout' : ''"
+  >
     <g-link :to="`${productUrlPrefix}/${product.slug}`">
       <b-image
         :src="product.featuredAsset.thumbnail"
@@ -17,24 +20,27 @@
       class="is-primary is-fullwidth product-card-button"
       :loading="isLoading"
       v-on:click="buy()"
-    >{{ product.soldOut ? soldoutLabel : buyLabel }}
+      >{{ product.soldOut ? soldoutLabel : buyLabel }}
     </b-button>
-    <g-link v-else :to="`${productUrlPrefix}/${product.slug}`" class="button is-primary is-fullwidth product-card-button">
+    <g-link
+      v-else
+      :to="`${productUrlPrefix}/${product.slug}`"
+      class="button is-primary is-fullwidth product-card-button"
+    >
       {{ product.soldOut ? soldoutLabel : buyLabel }}
     </g-link>
   </div>
 </template>
 <script>
-
 export default {
   props: {
     buyLabel: {
       type: String,
-      required: true
+      required: true,
     },
     product: {
       type: Object,
-      required: true
+      required: true,
     },
     productUrlPrefix: String,
     soldoutLabel: { default: 'Sold out' },
@@ -57,8 +63,8 @@ export default {
         this.$emitter.emit('error', e);
       }
       this.isLoading = false;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
@@ -70,8 +76,8 @@ export default {
 }
 .product-card-container {
   height: 100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>

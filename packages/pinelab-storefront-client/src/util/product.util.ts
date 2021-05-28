@@ -8,13 +8,11 @@ import { Emitter } from 'mitt';
  */
 export function setCalculatedFields(product: Product): CalculatedProduct {
   const lowesPrice = Math.min(...product.variants.map((v) => v.priceWithTax));
-  const available = product.variants.find(
-    (v) => !isOutOfStock(v)
-  );
+  const available = product.variants.find((v) => !isOutOfStock(v));
   return {
     ...product,
     lowestPrice: lowesPrice,
-    soldOut: !available
+    soldOut: !available,
   };
 }
 
@@ -66,7 +64,10 @@ export function isOutOfStock(variant: ProductVariant): boolean {
 /**
  * Adds product to cart. Emitts error if something fails, never throws error
  */
-export async function buy(variant: ProductVariant, ctx: { vendure: VendureClient, emitter: Emitter}): Promise<void> {
+export async function buy(
+  variant: ProductVariant,
+  ctx: { vendure: VendureClient; emitter: Emitter }
+): Promise<void> {
   try {
     await ctx.vendure.addProductToCart(variant.id, 1);
     ctx.emitter.emit('productAdded', { variantId: variant.id, quantity: 1 });
