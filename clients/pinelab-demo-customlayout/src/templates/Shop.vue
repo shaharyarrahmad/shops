@@ -16,7 +16,7 @@
 
       <div class="columns is-multiline is-mobile">
         <div
-          class="column is-3 is-half-mobile mb-4"
+          class="column is-half-mobile is-one-quarter-tablet mb-4"
           v-for="product of $context.products"
           :key="product.slug"
         >
@@ -33,11 +33,15 @@
 <script>
 import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/ProductFilter';
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
+import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
     ProductFilter,
     ProductCard,
+  },
+  async mounted() {
+    await hydrate(this.$context.featuredProducts, this.$vendure);
   },
 };
 </script>
