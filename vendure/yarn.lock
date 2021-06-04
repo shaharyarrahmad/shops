@@ -12064,24 +12064,24 @@ vendors@^1.0.0:
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.4.tgz#e2b800a53e7a29b93506c3cf41100d16c4c4ad8e"
   integrity sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==
 
-vendure-plugin-google-storage-assets@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-0.26.0.tgz#72e731d683066bc8d9d862a356211db3f60d8c79"
-  integrity sha512-vKuYz6VKoaxU42apGTprsSM/39U/lry+R1hWrIwQNF/8vOFnI2ndlfeShJEq0UzfWy77W4lStC2ipn7lGAsuzw==
+vendure-plugin-google-storage-assets@^0.30.0:
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-0.30.0.tgz#7224e5345c4f3cb980e87f0e667b18597ca6893a"
+  integrity sha512-myqdtBsrUjJrF6xLPGmS07LGopUO6dvqbPERCitazFNFmUfqNFYe6V4KPGeZf8Vu/6zRFVeYpWsL4evKetmJ/w==
   dependencies:
     "@google-cloud/storage" "^5.8.3"
 
-vendure-plugin-mollie@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-mollie/-/vendure-plugin-mollie-0.26.0.tgz#a6b4b92a6f3b669eff095294ca4884e72de4f273"
-  integrity sha512-3fVlOlCoORH2wj+geAerPy5HjhF2hlFQ28JLTtuwA2GtBCmBjtINfhbTNeYYhihPES6kpcVhFKuz+B6ivtHyfA==
+vendure-plugin-mollie@^0.30.0:
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-mollie/-/vendure-plugin-mollie-0.30.0.tgz#96bdc6092a22f8e9e8fba612afff7d80c0cbb534"
+  integrity sha512-NwKWmLUyYMFNqDfDca7kzL50UdruFllXWNjBJosI20AL+pIUf4eaqYg+g2/Agi8960e4muG4alF10wJo0sHP9A==
   dependencies:
     "@mollie/api-client" "^3.5.0"
 
-vendure-plugin-webhook@^0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-0.26.0.tgz#1c6880f2ceec562395defd29d560e05d9c316612"
-  integrity sha512-BH4rMYGxqQpf+XT5YPQQ5nOLs7EkmGWwu4Qmhzb421P3aeTjrMJsZ6nhrPMiMQpt60oBvtYEkarNImbuEgyPLw==
+vendure-plugin-webhook@^0.30.0:
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-0.30.0.tgz#3b71209e2e135c2c32f0cbb00f82b2a2297b35fb"
+  integrity sha512-3mrmWUgDYKgy3SMji4eTzu4GCApkFlRe1fzkTJ/nQnvnz/RrtUd4VOXMV4lsHelcrLGfUd2GihSTTfONz8coMA==
 
 verror@1.10.0:
   version "1.10.0"
