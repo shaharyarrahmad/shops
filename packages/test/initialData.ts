@@ -1,8 +1,6 @@
-import { LanguageCode } from '@vendure/common/lib/generated-types';
-import { InitialData } from '@vendure/core/dist/data-import/index';
 
-export const initialData: InitialData = {
-  defaultLanguage: LanguageCode.en,
+export const initialData = {
+  defaultLanguage: 'en',
   defaultZone: 'Europe',
   taxRates: [
     { name: 'Standard Tax', percentage: 20 },
