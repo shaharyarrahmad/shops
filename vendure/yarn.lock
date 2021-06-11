@@ -12064,6 +12064,11 @@ vendors@^1.0.0:
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.4.tgz#e2b800a53e7a29b93506c3cf41100d16c4c4ad8e"
   integrity sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==
 
+vendure-plugin-dutch-postalcode@^0.31.1:
+  version "0.31.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-0.31.1.tgz#010a5717b427f3b4811e94dcdb8477f5b36db545"
+  integrity sha512-66FkhivptF/GXQvW3u73Gf5AdhzWWwWK/wKr8JV9msJ1uLMT/1C8VXG8Yc9kSBlEF2zB2SDPST3GQ0z2HBBXew==
+
 vendure-plugin-google-storage-assets@^0.30.0:
   version "0.30.0"
   resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-0.30.0.tgz#7224e5345c4f3cb980e87f0e667b18597ca6893a"

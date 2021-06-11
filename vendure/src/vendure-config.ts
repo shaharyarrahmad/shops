@@ -22,6 +22,7 @@ import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.handlers';
 import { MolliePlugin } from 'vendure-plugin-mollie';
+import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 
 export const config: VendureConfig = {
   orderOptions: {
@@ -58,6 +59,7 @@ export const config: VendureConfig = {
   },
   customFields: {},
   plugins: [
+    DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY as string),
     WebhookPlugin.init({
       httpMethod: 'POST',
       delay: 3000,
