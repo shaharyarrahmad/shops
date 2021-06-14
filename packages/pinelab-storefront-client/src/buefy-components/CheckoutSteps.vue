@@ -105,6 +105,7 @@
                     type="text"
                     required
                     v-model="address.postalCode"
+                    v-on:input="getAddress()"
                   />
                   <span class="icon is-small is-left">
                     <i class="mdi mdi-mailbox"></i>
@@ -120,6 +121,7 @@
                     type="text"
                     required
                     v-model="address.streetLine2"
+                    v-on:input="getAddress()"
                   />
                   <span class="icon is-small is-left">
                     <i class="mdi mdi-home"></i>
@@ -262,6 +264,8 @@
   </section>
 </template>
 <script>
+import { debounce } from 'debounce';
+
 export default {
   props: {
     previousPage: { required: true },
@@ -387,6 +391,19 @@ export default {
       console.log('shippingg', methodId);
       await this.$vendure.setOrderShippingMethod(methodId);
     },
+    async getAddress() {
+      if (this.address?.postalCode?.length < 6 || !this.address?.streetLine2) {
+        return;
+      }
+      const address = await this.$vendure.getAddress({
+        postalCode: this.address.postalCode,
+        houseNumber: this.address.streetLine2
+      });
+      if (address && address.street) {
+        this.address.streetLine1 = address.street;
+        this.address.city = address.city;
+      }
+    }
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -412,6 +429,9 @@ export default {
     this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     this.selectedShippingMethod = this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
   },
+  created() {
+    this.getAddress = debounce(this.getAddress, 500);
+  }
 };
 </script>
 <style>
