@@ -4,7 +4,8 @@ import {
   ADD_ITEM_TO_ORDER,
   ADD_PAYMENT_TO_ORDER,
   ADJUST_ORDERLINE,
-  GET_ACTIVE_ORDER, GET_DUTCH_ADDRESS,
+  GET_ACTIVE_ORDER,
+  GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
   GET_NEXT_ORDERSTATES,
   GET_ORDER_BY_CODE,
@@ -13,16 +14,18 @@ import {
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
-  TRANSITION_ORDER_TO_STATE
+  TRANSITION_ORDER_TO_STATE,
 } from './vendure.queries';
 import {
   CreateAddressInput,
-  CreateCustomerInput, DutchAddressLookupResult, DutchPostalCodeInput,
+  CreateCustomerInput,
+  DutchAddressLookupResult,
+  DutchPostalCodeInput,
   ErrorResult,
   Order,
   PaymentInput,
   Product,
-  ShippingMethodQuote
+  ShippingMethodQuote,
 } from '../../../common';
 import { CalculatedProduct } from './calculated-product';
 import { setCalculatedFields } from '../util/product.util';
@@ -161,8 +164,12 @@ export class VendureClient {
     return orderByCode;
   }
 
-  async getAddress(input: DutchPostalCodeInput): Promise<DutchAddressLookupResult | undefined> {
-    const { dutchAddressLookup } = await this.request(GET_DUTCH_ADDRESS, { input });
+  async getAddress(
+    input: DutchPostalCodeInput
+  ): Promise<DutchAddressLookupResult | undefined> {
+    const { dutchAddressLookup } = await this.request(GET_DUTCH_ADDRESS, {
+      input,
+    });
     return dutchAddressLookup;
   }
 
