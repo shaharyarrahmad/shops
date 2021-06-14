@@ -397,13 +397,13 @@ export default {
       }
       const address = await this.$vendure.getAddress({
         postalCode: this.address.postalCode,
-        houseNumber: this.address.streetLine2
+        houseNumber: this.address.streetLine2,
       });
       if (address && address.street) {
         this.address.streetLine1 = address.street;
         this.address.city = address.city;
       }
-    }
+    },
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -431,7 +431,7 @@ export default {
   },
   created() {
     this.getAddress = debounce(this.getAddress, 500);
-  }
+  },
 };
 </script>
 <style>
