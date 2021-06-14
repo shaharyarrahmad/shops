@@ -1,7 +1,11 @@
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -19,7 +23,14 @@ export type Scalars = {
 
 export type ActiveOrderResult = Order | NoActiveOrderError;
 
-export type AddPaymentToOrderResult = Order | OrderPaymentStateError | IneligiblePaymentMethodError | PaymentFailedError | PaymentDeclinedError | OrderStateTransitionError | NoActiveOrderError;
+export type AddPaymentToOrderResult =
+  | Order
+  | OrderPaymentStateError
+  | IneligiblePaymentMethodError
+  | PaymentFailedError
+  | PaymentDeclinedError
+  | OrderStateTransitionError
+  | NoActiveOrderError;
 
 export type Address = Node & {
   __typename?: 'Address';
@@ -50,7 +61,7 @@ export type Adjustment = {
 
 export enum AdjustmentType {
   Promotion = 'PROMOTION',
-  DistributedOrderPromotion = 'DISTRIBUTED_ORDER_PROMOTION'
+  DistributedOrderPromotion = 'DISTRIBUTED_ORDER_PROMOTION',
 }
 
 /** Retured when attemting to set the Customer for an Order when already logged in. */
@@ -60,7 +71,11 @@ export type AlreadyLoggedInError = ErrorResult & {
   message: Scalars['String'];
 };
 
-export type ApplyCouponCodeResult = Order | CouponCodeExpiredError | CouponCodeInvalidError | CouponCodeLimitError;
+export type ApplyCouponCodeResult =
+  | Order
+  | CouponCodeExpiredError
+  | CouponCodeInvalidError
+  | CouponCodeLimitError;
 
 export type Asset = Node & {
   __typename?: 'Asset';
@@ -89,7 +104,7 @@ export type AssetList = PaginatedList & {
 export enum AssetType {
   Image = 'IMAGE',
   Video = 'VIDEO',
-  Binary = 'BINARY'
+  Binary = 'BINARY',
 }
 
 export type AuthenticationInput = {
@@ -104,7 +119,10 @@ export type AuthenticationMethod = Node & {
   strategy: Scalars['String'];
 };
 
-export type AuthenticationResult = CurrentUser | InvalidCredentialsError | NotVerifiedError;
+export type AuthenticationResult =
+  | CurrentUser
+  | InvalidCredentialsError
+  | NotVerifiedError;
 
 export type BooleanCustomFieldConfig = CustomField & {
   __typename?: 'BooleanCustomFieldConfig';
@@ -156,7 +174,6 @@ export type Collection = Node & {
   productVariants: ProductVariantList;
   customFields?: Maybe<Scalars['JSON']>;
 };
-
 
 export type CollectionProductVariantsArgs = {
   options?: Maybe<ProductVariantListOptions>;
@@ -657,7 +674,7 @@ export enum CurrencyCode {
   /** Zambian kwacha */
   Zmw = 'ZMW',
   /** Zimbabwean dollar */
-  Zwl = 'ZWL'
+  Zwl = 'ZWL',
 }
 
 export type CurrentUser = {
@@ -685,7 +702,14 @@ export type CustomField = {
   internal?: Maybe<Scalars['Boolean']>;
 };
 
-export type CustomFieldConfig = StringCustomFieldConfig | LocaleStringCustomFieldConfig | IntCustomFieldConfig | FloatCustomFieldConfig | BooleanCustomFieldConfig | DateTimeCustomFieldConfig | RelationCustomFieldConfig;
+export type CustomFieldConfig =
+  | StringCustomFieldConfig
+  | LocaleStringCustomFieldConfig
+  | IntCustomFieldConfig
+  | FloatCustomFieldConfig
+  | BooleanCustomFieldConfig
+  | DateTimeCustomFieldConfig
+  | RelationCustomFieldConfig;
 
 export type Customer = Node & {
   __typename?: 'Customer';
@@ -702,7 +726,6 @@ export type Customer = Node & {
   user?: Maybe<User>;
   customFields?: Maybe<Scalars['JSON']>;
 };
-
 
 export type CustomerOrdersArgs = {
   options?: Maybe<OrderListOptions>;
@@ -726,7 +749,6 @@ export type CustomerGroup = Node & {
   name: Scalars['String'];
   customers: CustomerList;
 };
-
 
 export type CustomerGroupCustomersArgs = {
   options?: Maybe<CustomerListOptions>;
@@ -768,7 +790,6 @@ export type DateRange = {
   end: Scalars['DateTime'];
 };
 
-
 /**
  * Expects the same validation formats as the `<input type="datetime-local">` HTML element.
  * See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local#Additional_attributes
@@ -797,7 +818,7 @@ export enum DeletionResult {
   /** The entity was successfully deleted */
   Deleted = 'DELETED',
   /** Deletion did not take place, reason given in message */
-  NotDeleted = 'NOT_DELETED'
+  NotDeleted = 'NOT_DELETED',
 }
 
 export type Discount = {
@@ -861,7 +882,7 @@ export enum ErrorCode {
   PasswordResetTokenInvalidError = 'PASSWORD_RESET_TOKEN_INVALID_ERROR',
   PasswordResetTokenExpiredError = 'PASSWORD_RESET_TOKEN_EXPIRED_ERROR',
   NotVerifiedError = 'NOT_VERIFIED_ERROR',
-  NoActiveOrderError = 'NO_ACTIVE_ORDER_ERROR'
+  NoActiveOrderError = 'NO_ACTIVE_ORDER_ERROR',
 }
 
 export type ErrorResult = {
@@ -971,7 +992,7 @@ export type Fulfillment = Node & {
 export enum GlobalFlag {
   True = 'TRUE',
   False = 'FALSE',
-  Inherit = 'INHERIT'
+  Inherit = 'INHERIT',
 }
 
 export type HistoryEntry = Node & {
@@ -1032,7 +1053,7 @@ export enum HistoryEntryType {
   OrderNote = 'ORDER_NOTE',
   OrderCouponApplied = 'ORDER_COUPON_APPLIED',
   OrderCouponRemoved = 'ORDER_COUPON_REMOVED',
-  OrderModified = 'ORDER_MODIFIED'
+  OrderModified = 'ORDER_MODIFIED',
 }
 
 /**
@@ -1100,7 +1121,6 @@ export type InvalidCredentialsError = ErrorResult & {
   message: Scalars['String'];
   authenticationError: Scalars['String'];
 };
-
 
 /**
  * @description
@@ -1425,7 +1445,7 @@ export enum LanguageCode {
   /** Yoruba */
   Yo = 'yo',
   /** Zulu */
-  Zu = 'zu'
+  Zu = 'zu',
 }
 
 export type LocaleStringCustomFieldConfig = CustomField & {
@@ -1449,7 +1469,7 @@ export type LocalizedString = {
 
 export enum LogicalOperator {
   And = 'AND',
-  Or = 'OR'
+  Or = 'OR',
 }
 
 /** Retured when attemting to register or verify a customer account without a password, when one is required. */
@@ -1547,68 +1567,55 @@ export type Mutation = {
   resetPassword: ResetPasswordResult;
 };
 
-
 export type MutationAddItemToOrderArgs = {
   productVariantId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
-
 export type MutationRemoveOrderLineArgs = {
   orderLineId: Scalars['ID'];
 };
-
 
 export type MutationAdjustOrderLineArgs = {
   orderLineId: Scalars['ID'];
   quantity: Scalars['Int'];
 };
 
-
 export type MutationApplyCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
-
 
 export type MutationRemoveCouponCodeArgs = {
   couponCode: Scalars['String'];
 };
 
-
 export type MutationTransitionOrderToStateArgs = {
   state: Scalars['String'];
 };
-
 
 export type MutationSetOrderShippingAddressArgs = {
   input: CreateAddressInput;
 };
 
-
 export type MutationSetOrderBillingAddressArgs = {
   input: CreateAddressInput;
 };
-
 
 export type MutationSetOrderCustomFieldsArgs = {
   input: UpdateOrderInput;
 };
 
-
 export type MutationSetOrderShippingMethodArgs = {
   shippingMethodId: Scalars['ID'];
 };
-
 
 export type MutationAddPaymentToOrderArgs = {
   input: PaymentInput;
 };
 
-
 export type MutationSetCustomerForOrderArgs = {
   input: CreateCustomerInput;
 };
-
 
 export type MutationLoginArgs = {
   username: Scalars['String'];
@@ -1616,70 +1623,57 @@ export type MutationLoginArgs = {
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
-
 export type MutationAuthenticateArgs = {
   input: AuthenticationInput;
   rememberMe?: Maybe<Scalars['Boolean']>;
 };
 
-
 export type MutationRegisterCustomerAccountArgs = {
   input: RegisterCustomerInput;
 };
-
 
 export type MutationRefreshCustomerVerificationArgs = {
   emailAddress: Scalars['String'];
 };
 
-
 export type MutationUpdateCustomerArgs = {
   input: UpdateCustomerInput;
 };
-
 
 export type MutationCreateCustomerAddressArgs = {
   input: CreateAddressInput;
 };
 
-
 export type MutationUpdateCustomerAddressArgs = {
   input: UpdateAddressInput;
 };
 
-
 export type MutationDeleteCustomerAddressArgs = {
   id: Scalars['ID'];
 };
-
 
 export type MutationVerifyCustomerAccountArgs = {
   token: Scalars['String'];
   password?: Maybe<Scalars['String']>;
 };
 
-
 export type MutationUpdateCustomerPasswordArgs = {
   currentPassword: Scalars['String'];
   newPassword: Scalars['String'];
 };
-
 
 export type MutationRequestUpdateCustomerEmailAddressArgs = {
   password: Scalars['String'];
   newEmailAddress: Scalars['String'];
 };
 
-
 export type MutationUpdateCustomerEmailAddressArgs = {
   token: Scalars['String'];
 };
 
-
 export type MutationRequestPasswordResetArgs = {
   emailAddress: Scalars['String'];
 };
-
 
 export type MutationResetPasswordArgs = {
   token: Scalars['String'];
@@ -1698,7 +1692,11 @@ export type NativeAuthStrategyError = ErrorResult & {
   message: Scalars['String'];
 };
 
-export type NativeAuthenticationResult = CurrentUser | InvalidCredentialsError | NotVerifiedError | NativeAuthStrategyError;
+export type NativeAuthenticationResult =
+  | CurrentUser
+  | InvalidCredentialsError
+  | NotVerifiedError
+  | NativeAuthStrategyError;
 
 /** Retured when attemting to set a negative OrderLine quantity. */
 export type NegativeQuantityError = ErrorResult & {
@@ -1806,7 +1804,6 @@ export type Order = Node & {
   history: HistoryEntryList;
   customFields?: Maybe<Scalars['JSON']>;
 };
-
 
 export type OrderHistoryArgs = {
   options?: Maybe<HistoryEntryListOptions>;
@@ -2286,7 +2283,7 @@ export enum Permission {
   /** Grants permission to update Zone */
   UpdateZone = 'UpdateZone',
   /** Grants permission to delete Zone */
-  DeleteZone = 'DeleteZone'
+  DeleteZone = 'DeleteZone',
 }
 
 /** The price range where the result has more than one price */
@@ -2543,49 +2540,43 @@ export type Query = {
   dutchAddressLookup?: Maybe<DutchAddressLookupResult>;
 };
 
-
 export type QueryCollectionsArgs = {
   options?: Maybe<CollectionListOptions>;
 };
-
 
 export type QueryCollectionArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryOrderArgs = {
   id: Scalars['ID'];
 };
 
-
 export type QueryOrderByCodeArgs = {
   code: Scalars['String'];
 };
-
 
 export type QueryProductArgs = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
 };
 
-
 export type QueryProductsArgs = {
   options?: Maybe<ProductListOptions>;
 };
-
 
 export type QuerySearchArgs = {
   input: SearchInput;
 };
 
-
 export type QueryDutchAddressLookupArgs = {
   input: DutchPostalCodeInput;
 };
 
-export type RefreshCustomerVerificationResult = Success | NativeAuthStrategyError;
+export type RefreshCustomerVerificationResult =
+  | Success
+  | NativeAuthStrategyError;
 
 export type Refund = Node & {
   __typename?: 'Refund';
@@ -2605,7 +2596,10 @@ export type Refund = Node & {
   metadata?: Maybe<Scalars['JSON']>;
 };
 
-export type RegisterCustomerAccountResult = Success | MissingPasswordError | NativeAuthStrategyError;
+export type RegisterCustomerAccountResult =
+  | Success
+  | MissingPasswordError
+  | NativeAuthStrategyError;
 
 export type RegisterCustomerInput = {
   emailAddress: Scalars['String'];
@@ -2633,9 +2627,17 @@ export type RemoveOrderItemsResult = Order | OrderModificationError;
 
 export type RequestPasswordResetResult = Success | NativeAuthStrategyError;
 
-export type RequestUpdateCustomerEmailAddressResult = Success | InvalidCredentialsError | EmailAddressConflictError | NativeAuthStrategyError;
+export type RequestUpdateCustomerEmailAddressResult =
+  | Success
+  | InvalidCredentialsError
+  | EmailAddressConflictError
+  | NativeAuthStrategyError;
 
-export type ResetPasswordResult = CurrentUser | PasswordResetTokenInvalidError | PasswordResetTokenExpiredError | NativeAuthStrategyError;
+export type ResetPasswordResult =
+  | CurrentUser
+  | PasswordResetTokenInvalidError
+  | PasswordResetTokenExpiredError
+  | NativeAuthStrategyError;
 
 export type Role = Node & {
   __typename?: 'Role';
@@ -2720,9 +2722,17 @@ export type SearchResultSortParameter = {
   price?: Maybe<SortOrder>;
 };
 
-export type SetCustomerForOrderResult = Order | AlreadyLoggedInError | EmailAddressConflictError | NoActiveOrderError;
+export type SetCustomerForOrderResult =
+  | Order
+  | AlreadyLoggedInError
+  | EmailAddressConflictError
+  | NoActiveOrderError;
 
-export type SetOrderShippingMethodResult = Order | OrderModificationError | IneligibleShippingMethodError | NoActiveOrderError;
+export type SetOrderShippingMethodResult =
+  | Order
+  | OrderModificationError
+  | IneligibleShippingMethodError
+  | NoActiveOrderError;
 
 export type ShippingLine = {
   __typename?: 'ShippingLine';
@@ -2785,7 +2795,7 @@ export type SinglePrice = {
 
 export enum SortOrder {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type StringCustomFieldConfig = CustomField & {
@@ -2903,7 +2913,11 @@ export type UpdateAddressInput = {
   customFields?: Maybe<Scalars['JSON']>;
 };
 
-export type UpdateCustomerEmailAddressResult = Success | IdentifierChangeTokenInvalidError | IdentifierChangeTokenExpiredError | NativeAuthStrategyError;
+export type UpdateCustomerEmailAddressResult =
+  | Success
+  | IdentifierChangeTokenInvalidError
+  | IdentifierChangeTokenExpiredError
+  | NativeAuthStrategyError;
 
 export type UpdateCustomerInput = {
   title?: Maybe<Scalars['String']>;
@@ -2913,14 +2927,21 @@ export type UpdateCustomerInput = {
   customFields?: Maybe<Scalars['JSON']>;
 };
 
-export type UpdateCustomerPasswordResult = Success | InvalidCredentialsError | NativeAuthStrategyError;
+export type UpdateCustomerPasswordResult =
+  | Success
+  | InvalidCredentialsError
+  | NativeAuthStrategyError;
 
 export type UpdateOrderInput = {
   customFields?: Maybe<Scalars['JSON']>;
 };
 
-export type UpdateOrderItemsResult = Order | OrderModificationError | OrderLimitError | NegativeQuantityError | InsufficientStockError;
-
+export type UpdateOrderItemsResult =
+  | Order
+  | OrderModificationError
+  | OrderLimitError
+  | NegativeQuantityError
+  | InsufficientStockError;
 
 export type User = Node & {
   __typename?: 'User';
@@ -2955,7 +2976,13 @@ export type VerificationTokenInvalidError = ErrorResult & {
   message: Scalars['String'];
 };
 
-export type VerifyCustomerAccountResult = CurrentUser | VerificationTokenInvalidError | VerificationTokenExpiredError | MissingPasswordError | PasswordAlreadySetError | NativeAuthStrategyError;
+export type VerifyCustomerAccountResult =
+  | CurrentUser
+  | VerificationTokenInvalidError
+  | VerificationTokenExpiredError
+  | MissingPasswordError
+  | PasswordAlreadySetError
+  | NativeAuthStrategyError;
 
 export type Zone = Node & {
   __typename?: 'Zone';
