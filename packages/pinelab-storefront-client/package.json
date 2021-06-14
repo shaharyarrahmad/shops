@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/debounce": "^1.2.0",
+    "@types/node": "^15.12.2",
     "concurrently": "^6.0.2",
     "copyfiles": "^2.4.1",
     "foundation-sites": "^6.6.3",

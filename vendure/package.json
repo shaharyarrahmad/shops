@@ -1,6 +1,6 @@
 {
   "name": "shops-vendure-backend",
-  "version": "0.30.0",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -27,19 +27,19 @@
   "dependencies": {
     "@types/localtunnel": "^2.0.0",
     "@types/tmp": "^0.2.0",
-    "@vendure/admin-ui-plugin": "1.0.0-rc.0",
-    "@vendure/asset-server-plugin": "1.0.0-rc.0",
-    "@vendure/core": "1.0.0-rc.0",
-    "@vendure/email-plugin": "1.0.0-rc.0",
-    "@vendure/ui-devkit": "1.0.0-rc.0",
+    "@vendure/admin-ui-plugin": "1.0.2",
+    "@vendure/asset-server-plugin": "1.0.2",
+    "@vendure/core": "1.0.2",
+    "@vendure/email-plugin": "1.0.2",
+    "@vendure/ui-devkit": "1.0.2",
     "copyfiles": "^2.4.1",
     "localtunnel": "^2.0.0",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
-    "vendure-plugin-dutch-postalcode": "^0.31.1",
-    "vendure-plugin-google-storage-assets": "^0.30.0",
-    "vendure-plugin-mollie": "^0.30.0",
-    "vendure-plugin-webhook": "^0.30.0"
+    "vendure-plugin-dutch-postalcode": "1.0.0",
+    "vendure-plugin-google-storage-assets": "1.0.0",
+    "vendure-plugin-mollie": "1.0.0",
+    "vendure-plugin-webhook": "1.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",

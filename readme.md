@@ -13,10 +13,19 @@ An example can be found in `demo-shop/index.html`
 
 Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
-## :round_pushpin: Roadmap for Februari 2021
-1. Export tax summary over given period 
-
 ## :scroll: Release notes
+
+### May 2021
+1. Moved Vendure plugins to `https://github.com/martijnvdbrug/pinelab-vendure-plugins`
+1. Upgraded to `Vendure 1.0.2`
+
+### May 2021
+1. Created Buefy storefront components, for more flexible webshop building.
+1. Upgraded to `Vendure RC1`
+
+### Apr 2021
+1. Moved frontend stuff to `pinelab-storefront-client`
+1. Upgraded to `Vendure beta5`
 
 ### Jan 2021
 1. Using Gridsome for static storefront

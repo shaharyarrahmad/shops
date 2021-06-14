@@ -345,7 +345,7 @@ export default {
         });
         const latestPayment = order?.payments?.[order?.payments.length - 1];
         if (latestPayment?.metadata?.public?.redirectLink) {
-          await this.$router.push(latestPayment.metadata.public.redirectLink);
+          window.location.replace(latestPayment.metadata.public.redirectLink);
         } else {
           throw Error(
             `No redirect link found in order response for order ${order?.code}`
