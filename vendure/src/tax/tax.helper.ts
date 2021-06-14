@@ -46,9 +46,11 @@ export class TaxHelper {
     totalVAT += shipping.VAT;
     // Calculate total taxes spend
     const taxTotal: TaxTotal = {};
-    order.taxSummary.map(
-      (summary) => (taxTotal[summary.taxRate] = summary.taxTotal)
-    );
+    order.taxSummary.forEach((summary) => {
+      if (summary.taxRate > 0) {
+        taxTotal[summary.taxRate] = summary.taxTotal;
+      }
+    });
     taxTotal[shipping.taxRate] += shipping.VAT;
     return {
       products: summaryLines,
