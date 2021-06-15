@@ -60,7 +60,7 @@ export const config: VendureConfig = {
     jobQueueStrategy: new PubSubJobQueueStrategy({
       projectId: "pinelab-shops",
       concurrency: 20,
-      queueSuffix: process.env.QUEUE_SUFFIX || "",
+      queueSuffix: process.env.QUEUE_SUFFIX,
     }),
   },
   paymentOptions: {

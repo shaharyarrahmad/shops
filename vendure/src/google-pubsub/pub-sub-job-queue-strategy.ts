@@ -65,7 +65,10 @@ export class PubSubJobQueueStrategy implements JobQueueStrategy {
   }
 
   private async getOrCreateTopic(queueName: string): Promise<Topic> {
-    const topic = this.pubSubClient.topic(queueName);
+    const topicName = this.options.queueSuffix
+      ? `${queueName}-${this.options.queueSuffix}`
+      : `${queueName}`;
+    const topic = this.pubSubClient.topic(topicName);
     const [exists] = await topic.exists();
     if (!exists) {
       await topic.create();
@@ -80,7 +83,9 @@ export class PubSubJobQueueStrategy implements JobQueueStrategy {
   private async getOrCreateSubscription(
     queueName: string
   ): Promise<Subscription> {
-    const subscriptionName = `${queueName}-subscription`;
+    const subscriptionName = this.options.queueSuffix
+      ? `${queueName}-${this.options.queueSuffix}-subscription`
+      : `${queueName}-subscription`;
     const subscription = this.pubSubClient
       .topic(queueName)
       .subscription(subscriptionName);
