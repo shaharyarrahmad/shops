@@ -20,6 +20,7 @@ module.exports = {
       street: 'input[placeholder="Street*"]',
       city: 'input[placeholder="City*"]',
       selectNl: 'select[name="country"] option[value=nl]',
+      selectDe: 'select[name="country"] option[value=de]',
       submit: 'button[type="submit"]',
     };
     browser
@@ -31,6 +32,7 @@ module.exports = {
       .waitForElementVisible(orderNowButton)
       .click(orderNowButton)
       .waitForElementVisible(customerForm.firstname)
+      .pause(500)
       .setValue(customerForm.firstname, "Martinho")
       .setValue(customerForm.lastname, "Bruggio")
       .setValue(customerForm.phone, "06 123456788")
@@ -39,8 +41,11 @@ module.exports = {
       .setValue(customerForm.houseNr, "159")
       .pause(3000)
       .assert.value(customerForm.city, "Amsterdam")
-      .assert.value(customerForm.street, "Ijdok")
+      .assert.value(customerForm.street, "IJdok")
+      .click(customerForm.selectDe)
+      .pause(1000)
       .click(customerForm.selectNl)
+      .pause(1000)
       .click(customerForm.submit)
       .pause(5000)
       .end();
