@@ -19,6 +19,8 @@ module.exports = {
       houseNr: 'input[placeholder="HouseNr*"]',
       street: 'input[placeholder="Street*"]',
       city: 'input[placeholder="City*"]',
+      selectNl: 'select[name="country"] option[value=nl]',
+      submit: 'button[type="submit"]',
     };
     browser
       .url("https://pinelab-customlayout.netlify.app/")
@@ -33,11 +35,13 @@ module.exports = {
       .setValue(customerForm.lastname, "Bruggio")
       .setValue(customerForm.phone, "06 123456788")
       .setValue(customerForm.email, "martijn@pinelab.studio")
-      .setValue(customerForm.postalCode, "8923 CP")
-      .setValue(customerForm.houseNr, "33")
+      .setValue(customerForm.postalCode, "1013 MM")
+      .setValue(customerForm.houseNr, "159")
       .pause(3000)
-      .assert.value(customerForm.city, "Leeuwarden")
-      .assert.value(customerForm.street, "Verzetsstraat")
+      .assert.value(customerForm.city, "Amsterdam")
+      .assert.value(customerForm.street, "Ijdok")
+      .click(customerForm.selectNl)
+      .click(customerForm.submit)
       .pause(5000)
       .end();
   },
