@@ -1,11 +1,14 @@
 module.exports = {
   beforeEach: function (browser, done) {
-    browser.resizeWindow(414, 736, done);
+    browser.resizeWindow(414, 1200, done);
   },
 
   "Pinelab shop - order": function (browser) {
-    const buyButton =
-      "#featured-products > div > div:nth-child(2) > div > button";
+    const menu = 'a[aria-label="menu"]';
+    const shop = 'a[href="/shop/"]';
+    const theJaunt = 'img[alt="The Jaunt"]';
+    const edition = 'select option[value="16"]';
+    const buyButton = 'button[type="button"]';
     const checkoutSnackbar =
       "body > div.notices.is-top > div > div.action.is-light > button";
     const orderNowButton =
@@ -19,13 +22,23 @@ module.exports = {
       houseNr: 'input[placeholder="HouseNr*"]',
       street: 'input[placeholder="Street*"]',
       city: 'input[placeholder="City*"]',
-      selectNl: 'select[name="country"] option[value=nl]',
-      selectDe: 'select[name="country"] option[value=de]',
       submit: 'button[type="submit"]',
     };
+    const ideal = 'button[value="ideal"]';
+    const ing = 'button[value="ideal_INGBNL2A"]';
+    const paid = 'input[value="paid"]';
+    const continueBtn = 'button[class="button form__button"]';
+    const success = 'table[class="table is-fullwidth"]';
     browser
       .url("https://pinelab-customlayout.netlify.app/")
-      .waitForElementVisible(buyButton)
+      .waitForElementVisible(menu)
+      .click(menu)
+      .waitForElementVisible(shop)
+      .click(shop)
+      .waitForElementVisible(theJaunt)
+      .click(theJaunt)
+      .waitForElementVisible(edition)
+      .click(edition)
       .click(buyButton)
       .waitForElementVisible(checkoutSnackbar)
       .click(checkoutSnackbar)
@@ -39,14 +52,20 @@ module.exports = {
       .setValue(customerForm.email, "martijn@pinelab.studio")
       .setValue(customerForm.postalCode, "1013 MM")
       .setValue(customerForm.houseNr, "159")
-      .pause(3000)
+      .pause(2000)
       .assert.value(customerForm.city, "Amsterdam")
       .assert.value(customerForm.street, "IJdok")
-      .click(customerForm.selectDe)
-      .pause(1000)
-      .click(customerForm.selectNl)
-      .pause(1000)
       .click(customerForm.submit)
+      .pause(1000)
+      .click('button[type="button"]')
+      .waitForElementVisible(ideal)
+      .click(ideal)
+      .waitForElementVisible(ing)
+      .click(ing)
+      .waitForElementVisible(paid)
+      .click(paid)
+      .click(continueBtn)
+      .waitForElementVisible(success)
       .pause(5000)
       .end();
   },

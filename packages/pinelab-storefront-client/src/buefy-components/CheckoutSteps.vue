@@ -391,7 +391,6 @@ export default {
       this.activeStep -= 1;
     },
     async setShippingMethod(methodId) {
-      console.log("shippingg", methodId);
       await this.$vendure.setOrderShippingMethod(methodId);
     },
     async getAddress() {
