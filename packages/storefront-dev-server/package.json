@@ -8,6 +8,7 @@
     "link-there": "cd ../pinelab-storefront-client && yarn link"
   },
   "dependencies": {
+    "@fontsource/montserrat": "^4.4.5",
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.7",
     "concurrently": "^6.1.0"

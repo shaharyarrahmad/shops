@@ -1,8 +1,8 @@
 <template>
   <div>
     <ShopNavBar
-      logo="/img/bendeboef-logo.svg"
-      logo-alt="Ben de Boef logo"
+      logo="/img/logo.png"
+      logo-alt="Super A"
       cart-link="/cart/"
       :activeOrder="activeOrder"
     >
@@ -31,17 +31,15 @@
         <a :href="data.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
-        • Ben de Boef Tattoo's •
-        <a href="https://pinelab.studio/" target="_blank"
-          >Made with ❤ by Pinelab</a
-        >
+        • Super A •
+        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
       </div>
     </footer>
   </div>
 </template>
 <script>
-import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
-import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import ShopNavBar from "pinelab-storefront-client/lib/buefy-components/ShopNavbar";
+import Breadcrumb from "pinelab-storefront-client/lib/buefy-components/Breadcrumb";
 
 export default {
   props: {

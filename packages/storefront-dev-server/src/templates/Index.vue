@@ -1,14 +1,14 @@
 <template>
   <Layout>
     <template #hero>
-      <section class="hero is-primary is-halfheight hero-background">
+      <section class="hero is-primary is-fullheight hero-background">
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container has-text-centered">
-            <p class="title">
+            <p class="title has-text-black">
               {{ data.title }}
             </p>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               {{ data.subTitle }}
             </p>
           </div>
@@ -36,7 +36,7 @@
       </section>
 
       <section id="featured-products">
-        <h1 class="title">Latest Products</h1>
+        <h1 class="title">New in shop</h1>
         <div class="columns is-multiline is-mobile">
           <div
             class="column is-half-mobile mb-4"
@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
-import { hydrate } from 'pinelab-storefront-client';
+import ProductCard from "pinelab-storefront-client/lib/buefy-components/ProductCard";
+import { hydrate } from "pinelab-storefront-client";
 
 export default {
   components: {
@@ -75,7 +75,7 @@ export default {
 </script>
 <style>
 .hero-background {
-  background-image: url('/img/ben-de-boef-tattoo.jpeg');
+  background-image: url("/img/hero.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
