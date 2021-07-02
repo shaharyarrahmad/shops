@@ -2,7 +2,6 @@ import { Message, PubSub, Subscription, Topic } from "@google-cloud/pubsub";
 import { JobState } from "@vendure/common/lib/generated-types";
 import { Job, JobData, JobQueueStrategy, Logger } from "@vendure/core";
 
-// TODO: SUFFIX implementation important!
 export class PubSubJobQueueStrategy implements JobQueueStrategy {
   static loggerCtx = "PubsubJobQueue";
   private pubSubClient: PubSub;
