@@ -5,6 +5,7 @@
       logo-alt="Super A"
       cart-link="/cart/"
       :activeOrder="activeOrder"
+      cartIcon="cart"
     >
       <g-link
         v-for="link of data.links"

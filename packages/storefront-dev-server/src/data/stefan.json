@@ -1,12 +1,12 @@
 {
   "title": "Super A",
   "subTitle": "Stefan Thelen/ Super A 1981 Goes, The Netherlands",
-  "bioTitle": "About Stefan",
-  "bio": "Stefan Thelen’s anti-superhero identity Super A is a Dutch artist who uses traditional painting technique and a knack for design to create compositions that manipulate familiar iconography into mind-bending and inquisitive pieces. His alter-ego, Super A is the filter with which the life and observations of Stefan Thelen are distilled down and turn into inspiration. All of his work evolves out of personal experiences or thoughts that grow into concepts which tightrope between fiction and nonfiction. Super A is a mystery that leans on the art doing most of the talking for Stefan Thelen, taking the viewer into a wonderland walking down a yellow brick road in which Thelen’s figurative and modern surrealist compositions are providing playful puzzles to decipher.",
+  "bioTitle": "Super A - Stefan Thelen",
+  "bio": "Stefan Thelen’s anti-superhero identity Super A is a Dutch artist who uses traditional painting technique and a knack for design to create compositions that manipulate familiar iconography into mind-bending and inquisitive pieces. ",
   "ctas": [
     {
       "text": "Checkout my projects",
-      "link": "/tattoos/"
+      "link": "/projects/"
     },
     {
       "text": "Get to the shoppa",
@@ -20,11 +20,11 @@
     },
     {
       "name": "Portfolio",
-      "url": "/tattoos/"
+      "url": "/portfolio/"
     },
     {
       "name": "Bio",
-      "url": "/tattoos/"
+      "url": "/bio/"
     },
     {
       "name": "Contact",

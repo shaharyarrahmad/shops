@@ -21,6 +21,9 @@ $custom-shades: null !default;
 $family-sans-serif: "Montserrat";
 $family-primary: "Montserrat";
 
+$control-radius: 0;
+$control-radius-small: 0;
+
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
   (
