@@ -6,8 +6,8 @@ import {
   ProductEvent,
   ProductVariantChannelEvent,
   ProductVariantEvent,
-  VendureConfig,
-} from "@vendure/core";
+  VendureConfig, VendureLogger
+} from '@vendure/core';
 import { EmailPlugin } from "@vendure/email-plugin";
 import { AssetServerPlugin } from "@vendure/asset-server-plugin";
 import { AdminUiPlugin } from "@vendure/admin-ui-plugin";
@@ -23,9 +23,25 @@ import { channelAwareEmailHandlers } from "./channel-config/channel-aware-email.
 import { MolliePlugin } from "vendure-plugin-mollie";
 import { DutchPostalCodePlugin } from "vendure-plugin-dutch-postalcode";
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
+import winston from 'winston';
+
+
+let logger: VendureLogger;
+if (process.env.K_SERVICE) { // This means we are in CloudRun
+  const {LoggingWinston} = require('@google-cloud/logging-winston');
+  const loggingWinston = new LoggingWinston();
+  logger = winston.createLogger({
+    level: 'info',
+    transports: [
+      loggingWinston,
+    ],
+  });
+} else {
+  logger = new DefaultLogger({ level: LogLevel.Debug })
+}
 
 export const config: VendureConfig = {
-  logger: new DefaultLogger({ level: LogLevel.Debug }),
+  logger,
   orderOptions: {
     stockAllocationStrategy: new CustomStockAllocationStrategy(),
   },
