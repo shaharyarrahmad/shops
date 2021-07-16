@@ -25,6 +25,7 @@
     "migration:revert:prod": "export SHOP_ENV=.env && yarn ts-node migration revert"
   },
   "dependencies": {
+    "@google-cloud/logging-winston": "^4.1.0",
     "@google-cloud/pubsub": "^2.13.0",
     "@types/localtunnel": "^2.0.0",
     "@types/tmp": "^0.2.0",
@@ -38,10 +39,11 @@
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
     "vendure-plugin-dutch-postalcode": "1.1.5",
+    "vendure-plugin-google-cloud-tasks": "1.1.5",
     "vendure-plugin-google-storage-assets": "1.1.5",
     "vendure-plugin-mollie": "1.1.5",
     "vendure-plugin-webhook": "1.1.5",
-    "vendure-plugin-google-cloud-tasks": "1.1.5"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.4",
