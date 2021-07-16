@@ -8,8 +8,11 @@ export class CloudLogger implements VendureLogger {
   constructor() {
     const loggingBunyan = new LoggingBunyan();
     this.log = bunyan.createLogger({
-      name: 'vendure22',
-      streams: [loggingBunyan.stream('info')],
+      name: 'vendure',
+      streams: [
+        loggingBunyan.stream('info'),
+        { stream: process.stdout, level: 'info' },
+      ],
     });
   }
 
