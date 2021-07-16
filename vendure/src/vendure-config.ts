@@ -1,6 +1,5 @@
 import {
   CollectionModificationEvent,
-  DefaultJobQueuePlugin,
   DefaultLogger,
   DefaultSearchPlugin,
   LogLevel,
@@ -23,7 +22,7 @@ import { WebhookPlugin } from "vendure-plugin-webhook";
 import { channelAwareEmailHandlers } from "./channel-config/channel-aware-email.handlers";
 import { MolliePlugin } from "vendure-plugin-mollie";
 import { DutchPostalCodePlugin } from "vendure-plugin-dutch-postalcode";
-import { PubSubJobQueueStrategy } from "./google-pubsub/pub-sub-job-queue-strategy";
+import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 
 export const config: VendureConfig = {
   logger: new DefaultLogger({ level: LogLevel.Debug }),
@@ -56,18 +55,18 @@ export const config: VendureConfig = {
     database: process.env.DATABASE_NAME,
     migrations: [path.join(__dirname, "../migrations/*.ts")],
   },
-  jobQueueOptions: {
-    jobQueueStrategy: new PubSubJobQueueStrategy({
-      projectId: "pinelab-shops",
-      concurrency: 20,
-      queueSuffix: process.env.QUEUE_SUFFIX,
-    }),
-  },
   paymentOptions: {
     paymentMethodHandlers: [],
   },
   customFields: {},
   plugins: [
+    CloudTasksPlugin.init({
+      taskHandlerHost: process.env.VENDURE_HOST!,
+      projectId: process.env.GOOGLE_PROJECT_ID!,
+      location: 'europe-west1',
+      authSecret: process.env.CLOUD_TASKS_SECRET!,
+      queueSuffix: process.env.QUEUE_SUFFIX,
+    }),
     DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY as string),
     WebhookPlugin.init({
       httpMethod: "POST",
