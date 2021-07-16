@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.SHOP_ENV });
+require('dotenv').config({ path: process.env.LOCAL_ENV });
 import { ChannelConfigService } from '../src/channel-config/channel-config.service';
 import { bootstrap } from '@vendure/core';
 import { config } from '../src/vendure-config';

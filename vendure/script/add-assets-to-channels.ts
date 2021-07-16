@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.SHOP_ENV });
+require('dotenv').config({ path: process.env.LOCAL_ENV });
 import { bootstrap, ChannelService, RequestContext } from '@vendure/core';
 import { config } from '../src/vendure-config';
 import { QueryRunner, getConnection } from 'typeorm';

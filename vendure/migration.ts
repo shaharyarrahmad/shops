@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.SHOP_ENV || '.env.test' });
+require('dotenv').config({ path: process.env.LOCAL_ENV || '.env.test' });
 
 import {
   generateMigration,
