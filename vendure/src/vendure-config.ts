@@ -33,7 +33,7 @@ if (process.env.K_SERVICE) {
   const loggingWinston = new LoggingWinston();
   logger = winston.createLogger({
     level: "info",
-    transports: [loggingWinston],
+    transports: [new winston.transports.Console(), loggingWinston],
   });
 } else {
   logger = new DefaultLogger({ level: LogLevel.Debug });
