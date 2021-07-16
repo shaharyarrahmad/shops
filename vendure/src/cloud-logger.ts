@@ -3,7 +3,7 @@ import bunyan from 'bunyan';
 import { VendureLogger } from '@vendure/core';
 
 export class CloudLogger implements VendureLogger {
-  private log: bunyan;
+  private log;
 
   constructor() {
     const loggingBunyan = new LoggingBunyan();
