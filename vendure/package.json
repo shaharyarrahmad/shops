@@ -25,27 +25,25 @@
     "migration:revert:prod": "export SHOP_ENV=.env && yarn ts-node migration revert"
   },
   "dependencies": {
-    "@google-cloud/logging-winston": "^4.1.0",
-    "@google-cloud/pubsub": "^2.13.0",
-    "@types/localtunnel": "^2.0.0",
+    "@google-cloud/logging-bunyan": "^3.1.0",
     "@types/tmp": "^0.2.0",
     "@vendure/admin-ui-plugin": "1.1.0",
     "@vendure/asset-server-plugin": "1.1.0",
     "@vendure/core": "1.1.0",
     "@vendure/email-plugin": "1.1.0",
     "@vendure/ui-devkit": "1.1.0",
+    "bunyan": "^1.8.15",
     "copyfiles": "^2.4.1",
-    "localtunnel": "^2.0.0",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
     "vendure-plugin-dutch-postalcode": "1.1.5",
     "vendure-plugin-google-cloud-tasks": "1.1.5",
     "vendure-plugin-google-storage-assets": "1.1.5",
     "vendure-plugin-mollie": "1.1.5",
-    "vendure-plugin-webhook": "1.1.5",
-    "winston": "^3.3.3"
+    "vendure-plugin-webhook": "1.1.5"
   },
   "devDependencies": {
+    "@types/bunyan": "^1.8.7",
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
     "typescript": "4.1.5"

@@ -24,12 +24,12 @@ import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.
 import { MolliePlugin } from 'vendure-plugin-mollie';
 import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
-import { cloudLogger } from './logger';
+import { CloudLogger } from './cloud-logger';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
   // This means we are in CloudRun
-  logger = cloudLogger;
+  logger = new CloudLogger();
 } else {
   logger = new DefaultLogger({ level: LogLevel.Debug });
 }
