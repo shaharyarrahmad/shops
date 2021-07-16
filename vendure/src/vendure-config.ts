@@ -25,7 +25,6 @@ import { DutchPostalCodePlugin } from "vendure-plugin-dutch-postalcode";
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import winston from 'winston';
 
-
 let logger: VendureLogger;
 if (process.env.K_SERVICE) { // This means we are in CloudRun
   const {LoggingWinston} = require('@google-cloud/logging-winston');
