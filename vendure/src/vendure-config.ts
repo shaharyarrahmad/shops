@@ -24,17 +24,15 @@ import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.
 import { MolliePlugin } from 'vendure-plugin-mollie';
 import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
-import { CloudLogger } from './cloud-logger';
+import { cloudLogger } from './logger';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
   // This means we are in CloudRun
-  logger = new CloudLogger();
+  logger = cloudLogger;
 } else {
   logger = new DefaultLogger({ level: LogLevel.Debug });
 }
-
-logger.error(`This should be an error`);
 
 export const config: VendureConfig = {
   logger,
@@ -77,7 +75,7 @@ export const config: VendureConfig = {
       projectId: process.env.GOOGLE_PROJECT_ID!,
       location: 'europe-west1',
       authSecret: process.env.CLOUD_TASKS_SECRET!,
-      queueSuffix: process.env.QUEUE_SUFFIX,
+      queueSuffix: process.env.SHOP_ENV,
     }),
     DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY as string),
     WebhookPlugin.init({
