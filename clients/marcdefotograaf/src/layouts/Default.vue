@@ -6,7 +6,11 @@
     <div class="grid-x grid-padding-x">
       <div class="cell show-for-large large-3"></div>
       <div class="cell small-12 large-6 text-center">
-        <a href="https://shop.marcdefotograaf.nl" ><img src="/marc_logo_square.png" style="width: 42px; position: absolute;" /></a>
+        <a href="https://shop.marcdefotograaf.nl"
+          ><img
+            src="/marc_logo_square.png"
+            style="width: 42px; position: absolute"
+        /></a>
       </div>
       <div class="cell show-for-large large-3"></div>
     </div>
@@ -36,7 +40,7 @@
   </div>
 </template>
 <script>
-import { NavBar } from 'pinelab-storefront-client/lib/ministore';
+import { NavBar } from "pinelab-storefront-client/lib/ministore";
 
 export default {
   components: {
@@ -46,8 +50,8 @@ export default {
     return {
       meta: [
         {
-          name: 'description',
-          content: 'Webshop van Marc de Fotograaf uit Leeuwarden.',
+          name: "description",
+          content: "Webshop van Marc de Fotograaf uit Leeuwarden.",
         },
       ],
     };
@@ -58,13 +62,13 @@ export default {
 h1,
 h2,
 h3 {
-  font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important;
+  font-family: "Helvetica", "Nimbus", "Arial", sans-serif !important;
 }
 h1 {
   text-decoration: underline;
 }
 .product-description {
-  font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important;
+  font-family: "Helvetica", "Nimbus", "Arial", sans-serif !important;
 }
 .container {
   margin-top: 0 !important;

@@ -6,8 +6,9 @@ import {
   ProductEvent,
   ProductVariantChannelEvent,
   ProductVariantEvent,
-  VendureConfig, VendureLogger
-} from '@vendure/core';
+  VendureConfig,
+  VendureLogger,
+} from "@vendure/core";
 import { EmailPlugin } from "@vendure/email-plugin";
 import { AssetServerPlugin } from "@vendure/asset-server-plugin";
 import { AdminUiPlugin } from "@vendure/admin-ui-plugin";
@@ -22,21 +23,20 @@ import { WebhookPlugin } from "vendure-plugin-webhook";
 import { channelAwareEmailHandlers } from "./channel-config/channel-aware-email.handlers";
 import { MolliePlugin } from "vendure-plugin-mollie";
 import { DutchPostalCodePlugin } from "vendure-plugin-dutch-postalcode";
-import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
-import winston from 'winston';
+import { CloudTasksPlugin } from "vendure-plugin-google-cloud-tasks";
+import winston from "winston";
 
 let logger: VendureLogger;
-if (process.env.K_SERVICE) { // This means we are in CloudRun
-  const {LoggingWinston} = require('@google-cloud/logging-winston');
+if (process.env.K_SERVICE) {
+  // This means we are in CloudRun
+  const { LoggingWinston } = require("@google-cloud/logging-winston");
   const loggingWinston = new LoggingWinston();
   logger = winston.createLogger({
-    level: 'info',
-    transports: [
-      loggingWinston,
-    ],
+    level: "info",
+    transports: [loggingWinston],
   });
 } else {
-  logger = new DefaultLogger({ level: LogLevel.Debug })
+  logger = new DefaultLogger({ level: LogLevel.Debug });
 }
 
 export const config: VendureConfig = {
@@ -78,7 +78,7 @@ export const config: VendureConfig = {
     CloudTasksPlugin.init({
       taskHandlerHost: process.env.VENDURE_HOST!,
       projectId: process.env.GOOGLE_PROJECT_ID!,
-      location: 'europe-west1',
+      location: "europe-west1",
       authSecret: process.env.CLOUD_TASKS_SECRET!,
       queueSuffix: process.env.QUEUE_SUFFIX,
     }),
