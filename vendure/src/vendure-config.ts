@@ -39,6 +39,8 @@ if (process.env.K_SERVICE) {
   logger = new DefaultLogger({ level: LogLevel.Debug });
 }
 
+logger.error(`This should be an error`);
+
 export const config: VendureConfig = {
   logger,
   orderOptions: {
