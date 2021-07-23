@@ -26,12 +26,12 @@
   },
   "dependencies": {
     "@google-cloud/logging-winston": "^4.1.0",
-    "@types/tmp": "^0.2.0",
-    "@vendure/admin-ui-plugin": "1.1.0",
-    "@vendure/asset-server-plugin": "1.1.0",
-    "@vendure/core": "1.1.0",
-    "@vendure/email-plugin": "1.1.0",
-    "@vendure/ui-devkit": "1.1.0",
+    "@types/tmp": "^0.2.1",
+    "@vendure/admin-ui-plugin": "1.1.2",
+    "@vendure/asset-server-plugin": "1.1.2",
+    "@vendure/core": "1.1.2",
+    "@vendure/email-plugin": "1.1.2",
+    "@vendure/ui-devkit": "1.1.2",
     "copyfiles": "^2.4.1",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
@@ -43,8 +43,8 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
-    "ts-node": "^9.0.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.1.0",
     "typescript": "4.1.5"
   }
 }
