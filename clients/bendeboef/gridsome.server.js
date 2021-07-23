@@ -20,6 +20,7 @@ module.exports = async function (api) {
       path: '/shop/',
       component: './src/templates/Shop.vue',
       context: {
+        data,
         products,
         collections,
         breadcrumb: { Home, Shop },
@@ -32,6 +33,7 @@ module.exports = async function (api) {
         path: `/shop/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
+          data,
           product,
           breadcrumb: { Home, Shop, [product.name]: product.slug },
         },
@@ -56,6 +58,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
+        data,
         breadcrumb,
       },
     });
@@ -64,20 +67,23 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {},
+      context: {
+        data
+      },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
+      context: {data}
     });
 
     // ----------------- static pages ---------------------
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {},
+      context: {data},
     });
 
   });
