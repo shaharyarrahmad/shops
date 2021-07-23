@@ -1,12 +1,16 @@
 <template>
   <Layout #content>
     <CartOverview
-      empty-cart-text="No items in cart yet"
+      empty-cart-label="No items in cart yet"
       link-to-checkout="/checkout/"
-      checkout-button-text="Order now"
     />
   </Layout>
 </template>
 <script>
-export default {};
+import CartOverview from 'pinelab-storefront-client/lib/buefy-components/CartOverview';
+export default {
+  components: {
+    CartOverview,
+  },
+};
 </script>

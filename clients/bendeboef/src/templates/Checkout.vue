@@ -1,8 +1,14 @@
 <template>
   <Layout #content>
-    <CheckoutSteps />
+    <CheckoutSteps previousPage="/cart/" />
   </Layout>
 </template>
 <script>
-export default {};
+import CheckoutSteps from 'pinelab-storefront-client/lib/buefy-components/CheckoutSteps';
+
+export default {
+  components: {
+    CheckoutSteps,
+  },
+};
 </script>

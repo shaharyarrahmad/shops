@@ -64,9 +64,6 @@ export default {
   components: {
     ProductCard,
   },
-  data: () => ({
-    data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
-  }),
   async mounted() {
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.featuredProducts, this.$vendure);

@@ -17,6 +17,7 @@
     "gridsome": "^0.7.23",
     "http-server": "^0.12.3",
     "nodemon": "^2.0.7",
+    "sass": "1.32.13",
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.3.0"
   }

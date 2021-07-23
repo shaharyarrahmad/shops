@@ -59,11 +59,6 @@ export default {
     },
   },
   mounted() {},
-  data() {
-    return {
-      data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
-    };
-  },
 };
 </script>
 <style>
