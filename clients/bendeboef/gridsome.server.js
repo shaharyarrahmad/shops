@@ -13,7 +13,9 @@ module.exports = async function (api) {
     const Home = '/';
     const Shop = '/shop/';
     const Cart = '/cart/';
-    const Checkout = '/checkout';
+    const Checkout = '/checkout/';
+    const Tattoos = '/tattoos/';
+    const Contact = '/contact/';
 
     // ----------------- Shop ---------------------
     createPage({
@@ -29,6 +31,7 @@ module.exports = async function (api) {
 
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
+      console.log(product)
       createPage({
         path: `/shop/product/${product.slug}`,
         component: './src/templates/Product.vue',
@@ -53,13 +56,12 @@ module.exports = async function (api) {
     });
 
     // ----------------- Cart ---------------------
-    const breadcrumb = { Home, Shop, Cart };
     createPage({
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
         data,
-        breadcrumb,
+        breadcrumb: { Home, Shop, Cart },
       },
     });
 
@@ -81,9 +83,21 @@ module.exports = async function (api) {
 
     // ----------------- static pages ---------------------
     createPage({
-      path: '/checkout/',
-      component: './src/templates/Checkout.vue',
-      context: {data},
+      path: '/tattoos/',
+      component: './src/templates/Tattoos.vue',
+      context: {
+        data,
+        breadcrumb: { Home, Tattoos},
+      },
+    });
+
+    createPage({
+      path: '/contact/',
+      component: './src/templates/Contact.vue',
+      context: {
+        data,
+        breadcrumb: { Home, Contact},
+      },
     });
 
   });
