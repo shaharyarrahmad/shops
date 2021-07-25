@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import ShopNavBar from '../components/ShopNavbar';
+import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
 
 export default {
   props: {

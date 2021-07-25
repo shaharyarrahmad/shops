@@ -1,24 +1,52 @@
-import Buefy from 'buefy';
 import 'buefy/dist/buefy.css';
+import {
+  Button,
+  Checkbox,
+  Dropdown,
+  Field,
+  Icon,
+  Image,
+  Input,
+  Loading,
+  Menu,
+  Modal,
+  Navbar,
+  Numberinput,
+  Radio,
+  Select,
+  Snackbar,
+  Steps,
+  Table,
+  Tooltip,
+} from 'buefy';
 import Layout from '~/layouts/Default.vue';
 import { configureVue } from 'pinelab-storefront-client';
 import '~/theme.scss';
 import '@fontsource/work-sans';
-import ProductCard from './components/ProductCard';
-import AsyncImage from './components/AsyncImage';
-import CartOverview from './components/CartOverview';
-import QuantityInput from './components/QuantityInput';
-import Breadcrumb from './components/Breadcrumb';
-import CheckoutSteps from './components/CheckoutSteps';
+import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 
 export default function (Vue, { router, head, isClient }) {
-  Vue.use(Buefy);
-  Vue.component('Layout', Layout);
-  Vue.component('ProductCard', ProductCard);
-  Vue.component('AsyncImage', AsyncImage);
-  Vue.component('CartOverview', CartOverview);
+  [
+    Button,
+    Checkbox,
+    Dropdown,
+    Field,
+    Icon,
+    Image,
+    Input,
+    Loading,
+    Menu,
+    Modal,
+    Navbar,
+    Numberinput,
+    Radio,
+    Select,
+    Snackbar,
+    Steps,
+    Table,
+    Tooltip,
+  ].forEach((component) => Vue.use(component));
   Vue.component('QuantityInput', QuantityInput);
-  Vue.component('Breadcrumb', Breadcrumb);
-  Vue.component('CheckoutSteps', CheckoutSteps);
+  Vue.component('Layout', Layout);
   configureVue(Vue, { router, head, isClient });
 }

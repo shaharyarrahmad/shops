@@ -31,7 +31,6 @@ module.exports = async function (api) {
 
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
-      console.log(product)
       createPage({
         path: `/shop/product/${product.slug}`,
         component: './src/templates/Product.vue',

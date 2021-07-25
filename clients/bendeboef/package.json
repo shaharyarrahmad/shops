@@ -9,7 +9,7 @@
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.5",
     "debounce": "^1.2.1",
-    "pinelab-storefront-client": "^0.31.0"
+    "pinelab-storefront-client": "0.31.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
