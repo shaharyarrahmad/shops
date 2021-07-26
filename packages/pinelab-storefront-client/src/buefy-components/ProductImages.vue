@@ -57,7 +57,7 @@ export default {
       );
     },
     assets() {
-      return this.variant?.assets || this.product?.assets;
+      return this.variant?.assets?.[0] || this.product?.assets;
     },
   },
   methods: {
