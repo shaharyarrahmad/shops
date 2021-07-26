@@ -69,7 +69,7 @@ module.exports = async function (api) {
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
       context: {
-        data
+        data,
       },
     });
 
@@ -77,7 +77,7 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: {data}
+      context: { data },
     });
 
     // ----------------- static pages ---------------------
@@ -86,7 +86,7 @@ module.exports = async function (api) {
       component: './src/templates/Tattoos.vue',
       context: {
         data,
-        breadcrumb: { Home, Tattoos},
+        breadcrumb: { Home, Tattoos },
       },
     });
 
@@ -95,9 +95,8 @@ module.exports = async function (api) {
       component: './src/templates/Contact.vue',
       context: {
         data,
-        breadcrumb: { Home, Contact},
+        breadcrumb: { Home, Contact },
       },
     });
-
   });
 };

@@ -43,7 +43,11 @@
             v-for="product of $context.featuredProducts.slice(0, 4)"
             :key="product.slug"
           >
-            <ProductCard :product="product" buy-label="Add to cart" product-url-prefix="/shop/product/" />
+            <ProductCard
+              :product="product"
+              buy-label="Add to cart"
+              product-url-prefix="/shop/product/"
+            />
           </div>
         </div>
         <hr />
@@ -57,11 +61,11 @@ import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductC
 
 export default {
   components: {
-    ProductCard
+    ProductCard,
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
-  }
+  },
 };
 </script>
 <style>

@@ -3,16 +3,16 @@ module.exports = {
     browser.resizeWindow(414, 1200, done);
   },
 
-  "Pinelab shop - order": function (browser) {
+  'Pinelab shop - order': function (browser) {
     const menu = 'a[aria-label="menu"]';
     const shop = 'a[href="/shop/"]';
     const theJaunt = 'img[alt="The Jaunt"]';
     const edition = 'select option[value="16"]';
     const buyButton = 'button[type="button"]';
     const checkoutSnackbar =
-      "body > div.notices.is-top > div > div.action.is-light > button";
+      'body > div.notices.is-top > div > div.action.is-light > button';
     const orderNowButton =
-      "#app > div.container.is-widescreen.section > div > div > div:nth-child(6) > a";
+      '#app > div.container.is-widescreen.section > div > div > div:nth-child(6) > a';
     const customerForm = {
       firstname: 'input[placeholder="Firstname*"]',
       lastname: 'input[placeholder="Lastname*"]',
@@ -30,7 +30,7 @@ module.exports = {
     const continueBtn = 'button[class="button form__button"]';
     const success = 'table[class="table is-fullwidth"]';
     browser
-      .url("https://pinelab-customlayout.netlify.app/")
+      .url('https://pinelab-customlayout.netlify.app/')
       .waitForElementVisible(menu)
       .click(menu)
       .waitForElementVisible(shop)
@@ -46,15 +46,15 @@ module.exports = {
       .click(orderNowButton)
       .waitForElementVisible(customerForm.firstname)
       .pause(500)
-      .setValue(customerForm.firstname, "Martinho")
-      .setValue(customerForm.lastname, "Bruggio")
-      .setValue(customerForm.phone, "06 123456788")
-      .setValue(customerForm.email, "martijn@pinelab.studio")
-      .setValue(customerForm.postalCode, "1013 MM")
-      .setValue(customerForm.houseNr, "159")
+      .setValue(customerForm.firstname, 'Martinho')
+      .setValue(customerForm.lastname, 'Bruggio')
+      .setValue(customerForm.phone, '06 123456788')
+      .setValue(customerForm.email, 'martijn@pinelab.studio')
+      .setValue(customerForm.postalCode, '1013 MM')
+      .setValue(customerForm.houseNr, '159')
       .pause(2000)
-      .assert.value(customerForm.city, "Amsterdam")
-      .assert.value(customerForm.street, "IJdok")
+      .assert.value(customerForm.city, 'Amsterdam')
+      .assert.value(customerForm.street, 'IJdok')
       .click(customerForm.submit)
       .pause(1000)
       .click('button[type="button"]')

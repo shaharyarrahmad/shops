@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import { NavBar } from "pinelab-storefront-client/lib/ministore";
+import { NavBar } from 'pinelab-storefront-client/lib/ministore';
 
 export default {
   components: {
@@ -50,8 +50,8 @@ export default {
     return {
       meta: [
         {
-          name: "description",
-          content: "Webshop van Marc de Fotograaf uit Leeuwarden.",
+          name: 'description',
+          content: 'Webshop van Marc de Fotograaf uit Leeuwarden.',
         },
       ],
     };
@@ -62,13 +62,13 @@ export default {
 h1,
 h2,
 h3 {
-  font-family: "Helvetica", "Nimbus", "Arial", sans-serif !important;
+  font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important;
 }
 h1 {
   text-decoration: underline;
 }
 .product-description {
-  font-family: "Helvetica", "Nimbus", "Arial", sans-serif !important;
+  font-family: 'Helvetica', 'Nimbus', 'Arial', sans-serif !important;
 }
 .container {
   margin-top: 0 !important;

@@ -264,26 +264,26 @@
   </section>
 </template>
 <script>
-import { debounce } from "debounce";
+import { debounce } from 'debounce';
 
 export default {
   props: {
     previousPage: { required: true },
-    customerDetailsLabel: { default: "Customer details" },
-    shippingLabel: { default: "Shipping" },
-    paymentLabel: { default: "Payment" },
-    companyLabel: { default: "Company" },
-    firstnameLabel: { default: "Firstname" },
-    lastnameLabel: { default: "Lastname" },
-    phoneLabel: { default: "Phonenumber" },
-    emailLabel: { default: "Emailaddress" },
-    cityLabel: { default: "City" },
-    postalCodeLabel: { default: "Postalcode" },
-    streetLabel: { default: "Street" },
-    houseNumberLabel: { default: "HouseNr" },
-    countryLabel: { default: "Country" },
-    totalLabel: { default: "Total" },
-    succesLabel: { default: "Success!" },
+    customerDetailsLabel: { default: 'Customer details' },
+    shippingLabel: { default: 'Shipping' },
+    paymentLabel: { default: 'Payment' },
+    companyLabel: { default: 'Company' },
+    firstnameLabel: { default: 'Firstname' },
+    lastnameLabel: { default: 'Lastname' },
+    phoneLabel: { default: 'Phonenumber' },
+    emailLabel: { default: 'Emailaddress' },
+    cityLabel: { default: 'City' },
+    postalCodeLabel: { default: 'Postalcode' },
+    streetLabel: { default: 'Street' },
+    houseNumberLabel: { default: 'HouseNr' },
+    countryLabel: { default: 'Country' },
+    totalLabel: { default: 'Total' },
+    succesLabel: { default: 'Success!' },
   },
   computed: {
     activeOrder() {
@@ -307,7 +307,7 @@ export default {
         streetLine1: undefined,
         streetLine2: undefined,
         postalCode: undefined,
-        countryCode: "nl",
+        countryCode: 'nl',
       },
       shippingMethods: [],
       selectedShippingMethod: undefined,
@@ -343,8 +343,8 @@ export default {
       this.loadingPayment = true;
       try {
         const states = await this.$vendure.getNextOrderStates();
-        if (states?.indexOf("ArrangingPayment") > -1) {
-          await this.$vendure.transitionOrderToState("ArrangingPayment");
+        if (states?.indexOf('ArrangingPayment') > -1) {
+          await this.$vendure.transitionOrderToState('ArrangingPayment');
         }
         const order = await this.$vendure.addPaymentToOrder({
           method: `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`,
@@ -368,20 +368,20 @@ export default {
     showError() {
       this.$buefy.toast.open({
         message: `Something went wrong...`,
-        position: "is-bottom",
-        type: "is-danger",
+        position: 'is-bottom',
+        type: 'is-danger',
       });
     },
     getCountryCode(country) {
       switch (country) {
-        case "Nederland":
-          return "nl";
-        case "België":
-          return "be";
-        case "Duitsland":
-          return "de";
+        case 'Nederland':
+          return 'nl';
+        case 'België':
+          return 'be';
+        case 'Duitsland':
+          return 'de';
         default:
-          return "nl";
+          return 'nl';
       }
     },
     goBack() {
@@ -410,7 +410,7 @@ export default {
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
     if (!this.$store.activeOrder) {
-      await this.$router.push("/");
+      await this.$router.push('/');
     }
     // Set Customer, if already set on order
     this.customer.firstName = activeOrder?.customer?.firstName;
