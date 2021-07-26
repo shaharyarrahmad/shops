@@ -6853,10 +6853,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@^0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.31.0.tgz#1c702e8de7d43fd3c6a8c086b3cd9efaba1ad827"
-  integrity sha512-9YKmuh79E9sl4bPiDbw+jFNPM/ua0FuiPzvtaCqTTsdrEEQlTDtFDx9A67cfRhsGRYlOAMgRICQMcKBM6T6eLA==
+pinelab-storefront-client@0.31.1:
+  version "0.31.1"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.31.1.tgz#3bc1b98bf829b049ce499b6276fde198b570439b"
+  integrity sha512-qCwEYI9fm0PNy9VW3KC1EMiQkUhXY8F/yBqZhLwNvGr00b/hzXbZl4h5XIHszFDH4z28IpJd7oQkjOPMtOOULg==
   dependencies:
     debounce "^1.2.1"
     graphql "15.3.0"
