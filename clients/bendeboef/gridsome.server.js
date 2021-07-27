@@ -32,7 +32,7 @@ module.exports = async function (api) {
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
       createPage({
-        path: `/shop/product/${product.slug}`,
+        path: `/shop/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
           data,

@@ -23,7 +23,7 @@
           <ProductCard
             :product="product"
             buy-label="Add to cart"
-            product-url-prefix="/shop/product/"
+            product-url-prefix="/shop/"
           />
         </div>
       </div>

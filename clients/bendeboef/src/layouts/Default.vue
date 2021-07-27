@@ -32,15 +32,14 @@
           <b-icon icon="instagram"></b-icon>
         </a>
         • Ben de Boef Tattoo's •
-        <a href="https://pinelab.studio/" target="_blank"
-          >Made with ❤ by Pinelab</a
-        >
+        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
       </div>
     </footer>
   </div>
 </template>
 <script>
 import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
+import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
 
 export default {
   props: {
@@ -50,6 +49,7 @@ export default {
   },
   components: {
     ShopNavBar,
+    Breadcrumb,
   },
   computed: {
     activeOrder() {
