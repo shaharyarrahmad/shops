@@ -4,14 +4,17 @@
       <ProductFilter
         :collections="$context.collections"
         no-collection-url="/shop/"
-        :selected-collection="$context.selectedCollection"
+        :selected-collection="$context.collection"
       />
 
       <br />
-      <div
-        v-if="$context.selectedCollection"
-        v-html="$context.selectedCollection.description"
-      ></div>
+      <div v-if="$context.collection">
+        <h1 class="is-size-1">{{ $context.collection.name }}</h1>
+        <p
+          v-if="$context.collection.description"
+          v-html="$context.collection.description"
+        ></p>
+      </div>
       <br />
 
       <div class="columns is-multiline is-mobile">
@@ -41,7 +44,8 @@ export default {
     ProductCard,
   },
   async mounted() {
-    await hydrate(this.$context.featuredProducts, this.$vendure);
+    const dingen = await hydrate(this.$context.products, this.$vendure);
+    console.log('dinge', dingen);
   },
 };
 </script>

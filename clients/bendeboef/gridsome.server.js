@@ -4,7 +4,15 @@ const data = require('./content-data.json');
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, collections } = await gridsome.getShopData();
+    const {
+      products,
+      collections,
+      productsPerCollection,
+    } = await gridsome.getShopData();
+
+    // Static pages should never have soldOut products, this is updated when mounted()
+    products.forEach((p) => (p.soldOut = false));
+
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
     );
@@ -28,6 +36,23 @@ module.exports = async function (api) {
         breadcrumb: { Home, Shop },
       },
     });
+
+    // ----------------- Collections ---------------------
+    productsPerCollection.forEach(
+      ({ products: productsPerCollection, collection }) => {
+        createPage({
+          path: `/shop/${collection.slug}`,
+          component: './src/templates/Shop.vue',
+          context: {
+            data,
+            products: productsPerCollection,
+            collection,
+            collections,
+            breadcrumb: { Home, Shop, [collection.name]: collection.slug },
+          },
+        });
+      }
+    );
 
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
