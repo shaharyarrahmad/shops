@@ -18,6 +18,7 @@
         <b-button
           class="is-primary is-fullwidth"
           :loading="isLoading"
+          :disabled="isSoldOut"
           v-on:click="buy()"
           >{{ isSoldOut ? 'Sold out' : 'Buy' }}
         </b-button>

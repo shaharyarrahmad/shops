@@ -44,8 +44,7 @@ export default {
     ProductCard,
   },
   async mounted() {
-    const dingen = await hydrate(this.$context.products, this.$vendure);
-    console.log('dinge', dingen);
+    await hydrate(this.$context.products, this.$vendure);
   },
 };
 </script>

@@ -36,4 +36,4 @@ vendure/static/email/test-emails/
 !.vscode/settings.json
 !.vscode/tasks.json
 !/vendure/src/__admin-ui/dist/
-
+/packages/e2e/tests_output/
