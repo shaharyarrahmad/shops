@@ -56,12 +56,6 @@ export default {
       return this.$store?.activeOrder;
     },
   },
-  mounted() {
-    if (process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
-      require('outfront').default();
-      console.log('OutfrontJS mobile logging enabled');
-    }
-  },
 };
 </script>
 <style>

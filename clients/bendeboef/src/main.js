@@ -26,6 +26,10 @@ import '@fontsource/work-sans';
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 
 export default function (Vue, { router, head, isClient }) {
+  if (process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
+    require('outfront').default();
+    console.log('OutfrontJS mobile logging enabled');
+  }
   [
     Button,
     Checkbox,
