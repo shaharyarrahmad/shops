@@ -6549,6 +6549,11 @@ os-filter-obj@^2.0.0:
   dependencies:
     arch "^2.1.0"
 
+outfront@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/outfront/-/outfront-1.1.1.tgz#ed599d899fdd5c8cded93e4c19a70bd3a9349dd2"
+  integrity sha512-3zqwYndsfXtDkfjJ7sIY52XSlIOQM2iY5oneWGnwnI2R4LDAQVdNJgf97iD3VzpY8ZSXfryuwdHlbONDjQNxdw==
+
 ow@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/ow/-/ow-0.8.0.tgz#d360d779c996f4132941a596c87f86ce8e812e62"
@@ -6853,10 +6858,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@0.31.1:
-  version "0.31.1"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.31.1.tgz#3bc1b98bf829b049ce499b6276fde198b570439b"
-  integrity sha512-qCwEYI9fm0PNy9VW3KC1EMiQkUhXY8F/yBqZhLwNvGr00b/hzXbZl4h5XIHszFDH4z28IpJd7oQkjOPMtOOULg==
+pinelab-storefront-client@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.32.2.tgz#d3a4fc25d15d7eb4acce3a0119c0b1986cca3ce5"
+  integrity sha512-Y3lcRVwWjQHZQSrPySAE5UJIhN5yEh5UZiQdsdW4DegcBiQj5HGpLUHcNV14DPjtkZkMhSc12g7/23GDXJ9LbA==
   dependencies:
     debounce "^1.2.1"
     graphql "15.3.0"
