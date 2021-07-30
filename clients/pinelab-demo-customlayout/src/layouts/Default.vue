@@ -1,18 +1,18 @@
 <template>
   <div>
     <ShopNavBar
-      logo="/img/bendeboef-logo.svg"
-      logo-alt="Ben de Boef logo"
+      logo="/img/pinelab_logo.png"
+      logo-alt="Pinelab logo"
       cart-link="/cart/"
       :activeOrder="activeOrder"
     >
       <g-link
-        v-for="link of data.links"
-        :to="link.url"
-        :key="link.url"
+        v-for="collection of $context.collections"
+        :to="collection.slug"
+        :key="collection.slug"
         class="navbar-item"
       >
-        {{ link.name }}
+        {{ collection.name }}
       </g-link>
     </ShopNavBar>
 
@@ -28,13 +28,8 @@
 
     <footer v-if="showFooter" class="footer">
       <div class="content has-text-centered is-dark">
-        <a :href="data.instagram" target="_blank">
-          <b-icon icon="instagram"></b-icon>
-        </a>
-        • Ben de Boef Tattoo's •
-        <a href="https://pinelab.studio/" target="_blank"
-          >Made with ❤ by Pinelab</a
-        >
+        Demo shop •
+        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
       </div>
     </footer>
   </div>
@@ -58,13 +53,13 @@ export default {
       return this.$store?.activeOrder;
     },
   },
-  mounted() {},
 };
 </script>
 <style>
 .footer a {
   color: white;
 }
+
 .footer a:hover {
   color: white;
 }

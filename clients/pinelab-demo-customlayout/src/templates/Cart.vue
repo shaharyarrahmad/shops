@@ -1,7 +1,7 @@
 <template>
   <Layout #content>
     <CartOverview
-      empty-cart-label="No items in cart yet"
+      empty-cart-label="Je hebt nog geen producten in je winkelmand..."
       link-to-checkout="/checkout/"
     />
   </Layout>
