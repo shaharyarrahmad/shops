@@ -22,7 +22,7 @@ import {
   CreateAddressInput,
   CreateCustomerInput,
   DutchAddressLookupResult,
-  DutchPostalCodeInput,
+  DutchPostalCodeInput, ErrorCode,
   ErrorResult,
   Order,
   PaymentInput,
@@ -34,6 +34,7 @@ import { setCalculatedFields } from '../util/product.util';
 
 export class VendureClient {
   client: GraphQLClient;
+  tokenName = 'vendure-auth-token';
 
   constructor(private store: Store) {
     this.client = new GraphQLClient(process.env.GRIDSOME_VENDURE_API!, {
@@ -194,6 +195,9 @@ export class VendureClient {
 
   validateResult<T extends ErrorResult>(result: T): void {
     if (result && result.errorCode) {
+      if (result.errorCode === ErrorCode.OrderModificationError) {
+        window.localStorage.removeItem(this.tokenName); // remove unusbale 'stuck' orders
+      }
       throw Error(
         `${this.store.activeOrder?.code} - ${result.errorCode} - ${result.message}`
       );
@@ -201,8 +205,7 @@ export class VendureClient {
   }
 
   async request(document: string, variables?: any): Promise<any> {
-    const tokenName = 'vendure-auth-token';
-    let token = window.localStorage.getItem(tokenName);
+    let token = window.localStorage.getItem(this.tokenName);
     if (token) {
       this.client.setHeader('Authorization', `Bearer ${token}`);
     }
@@ -213,9 +216,9 @@ export class VendureClient {
     if (errors) {
       throw errors;
     }
-    token = headers.get(tokenName);
+    token = headers.get(this.tokenName);
     if (token) {
-      window.localStorage.setItem(tokenName, token);
+      window.localStorage.setItem(this.tokenName, token);
     }
     return data;
   }
