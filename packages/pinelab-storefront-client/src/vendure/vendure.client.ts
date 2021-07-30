@@ -4,6 +4,7 @@ import {
   ADD_ITEM_TO_ORDER,
   ADD_PAYMENT_TO_ORDER,
   ADJUST_ORDERLINE,
+  APPLY_COUPON_CODE,
   GET_ACTIVE_ORDER,
   GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
@@ -11,6 +12,7 @@ import {
   GET_ORDER_BY_CODE,
   GET_PRICE_AND_STOCKLEVEL,
   GET_PRODUCT,
+  REMOVE_COUPON_CODE,
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
@@ -123,12 +125,12 @@ export class VendureClient {
   }
 
   async setOrderShippingAddress(input: CreateAddressInput): Promise<Order> {
-    if (!input.company || input.company.length === 0) {
+    /*    if (!input.company || input.company.length === 0) {
       input.company = '-'; // Dirty fix
     }
     if (!input.phoneNumber || input.phoneNumber.length === 0) {
       input.phoneNumber = '-'; // Dirty fix
-    }
+    }*/
     const {
       setOrderShippingAddress: order,
     } = await this.request(SET_ORDERSHIPPINGADDRESS, { input });
@@ -171,6 +173,23 @@ export class VendureClient {
       input,
     });
     return dutchAddressLookup;
+  }
+
+  async applyCouponCode(couponCode: string): Promise<Order> {
+    const { applyCouponCode: order } = await this.request(APPLY_COUPON_CODE, {
+      couponCode,
+    });
+    this.validateResult(order);
+    this.store.activeOrder = order;
+    return order;
+  }
+
+  async removeCouponCode(couponCode: string): Promise<Order> {
+    const { removeCouponCode: order } = await this.request(REMOVE_COUPON_CODE, {
+      couponCode,
+    });
+    this.store.activeOrder = order;
+    return order;
   }
 
   validateResult<T extends ErrorResult>(result: T): void {

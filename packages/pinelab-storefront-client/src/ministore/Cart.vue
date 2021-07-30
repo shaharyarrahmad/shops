@@ -2,6 +2,31 @@
   <ClientOnly>
     <div>
       <div v-if="orderLines > 0">
+        <div class="grid-x grid-padding-x text-right small-font">
+          <div class="cell small-6"></div>
+          <div class="cell small-6">
+            <label>
+              Coupon
+              <input
+                type="text"
+                name="couponCode"
+                :class="{ 'is-invalid-input': isInvalidCoupon }"
+                style="margin-bottom: 0"
+                v-on:input="applyCouponCode()"
+                v-model="couponCode"
+              />
+              <span
+                v-if="activeOrder.discounts"
+                v-for="discount of activeOrder.discounts"
+                class="success"
+              >
+                {{ discount.description }}
+              </span>
+            </label>
+          </div>
+        </div>
+        <br />
+
         <div
           class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font"
         >
@@ -50,6 +75,17 @@
           class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font"
           style="padding-top: 40px"
         >
+          <template
+            v-if="activeOrder.discounts"
+            v-for="discount of activeOrder.discounts"
+          >
+            <div class="cell">
+              <p class="success">{{ discount.description }}</p>
+            </div>
+            <div class="cell success">
+              <p>{{ discount.amountWithTax | euro }}</p>
+            </div>
+          </template>
           <div class="cell">
             <p>Subtotaal:</p>
           </div>
@@ -70,7 +106,7 @@
           </div>
           <div class="cell"></div>
           <div class="cell">
-            <g-link class="button" to="/customer-details/"> BESTEL </g-link>
+            <g-link class="button" to="/customer-details/"> BESTEL</g-link>
           </div>
         </div>
       </div>
@@ -90,10 +126,17 @@
 </template>
 <script>
 import NumberInput from './NumberInput';
+import { debounce } from 'debounce';
 
 export default {
   components: {
     NumberInput,
+  },
+  data() {
+    return {
+      isInvalidCoupon: false,
+      couponCode: undefined,
+    };
   },
   methods: {
     getPreview(asset) {
@@ -102,6 +145,21 @@ export default {
     updateQuantity(lineId, q) {
       this.$vendure.adjustOrderLine(lineId, q);
     },
+    async applyCouponCode() {
+      try {
+        await this.$vendure.applyCouponCode(this.couponCode);
+        this.isInvalidCoupon = false;
+      } catch (error) {
+        console.warn(error);
+        this.isInvalidCoupon = true;
+        this.activeOrder.couponCodes.forEach((code) =>
+          this.$vendure.removeCouponCode(code)
+        );
+      }
+    },
+  },
+  created() {
+    this.applyCouponCode = debounce(this.applyCouponCode, 1000);
   },
   async mounted() {
     await this.$vendure.getActiveOrder();

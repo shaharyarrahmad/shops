@@ -26,7 +26,12 @@ export function configureVue(
     if (!value) {
       value = 0;
     }
-    const currencyString = `€${(value / 100).toFixed(2).replace('.', ',')}`;
+    const currencyString =
+      value < 0
+        ? `- €${Math.abs(value / 100)
+            .toFixed(2)
+            .replace('.', ',')}`
+        : `€${(value / 100).toFixed(2).replace('.', ',')}`;
     if (currencyString.endsWith('00') && !format) {
       return currencyString.replace(new RegExp('00$'), '-');
     }

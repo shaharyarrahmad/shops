@@ -9,7 +9,7 @@
         <a href="https://shop.marcdefotograaf.nl"
           ><img
             src="/marc_logo_square.png"
-            style="width: 42px; position: absolute"
+            style="width: 42px; position: absolute; margin-left: -21px"
         /></a>
       </div>
       <div class="cell show-for-large large-3"></div>
