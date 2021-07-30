@@ -1,6 +1,6 @@
 {
   "name": "marcdefotograaf",
-  "version": "0.32.0",
+  "version": "0.33.0",
   "private": true,
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
