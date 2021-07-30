@@ -3,7 +3,7 @@
     <template v-for="collection of collections">
       <g-link
         v-if="isSelected(collection)"
-        :to="`${noCollectionUrl}`"
+        :to="`${noCollectionUrl.length > 0 ? noCollectionUrl : '/'}`"
         :key="collection.id"
         class="button is-primary mr-2"
       >

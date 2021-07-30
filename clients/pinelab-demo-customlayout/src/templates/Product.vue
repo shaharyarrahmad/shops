@@ -19,6 +19,7 @@
           class="is-primary is-fullwidth"
           :loading="isLoading"
           :disabled="isSoldOut"
+          aria-label="In winkelmand"
           v-on:click="buy()"
           >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
         </b-button>

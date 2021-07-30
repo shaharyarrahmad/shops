@@ -3,7 +3,7 @@
     class="container product-card-container"
     :class="product.soldOut ? 'soldout' : ''"
   >
-    <g-link :to="`${productUrlPrefix}/${product.slug}`">
+    <g-link :to="`${productUrlPrefix}/${product.slug}`" :aria-label="`${buyLabel} ${product.name}`">
       <b-image
         :src="product.featuredAsset.thumbnail"
         :alt="product.name"
