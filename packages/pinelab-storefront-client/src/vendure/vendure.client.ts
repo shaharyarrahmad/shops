@@ -16,7 +16,7 @@ import {
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
-  TRANSITION_ORDER_TO_STATE,
+  TRANSITION_ORDER_TO_STATE
 } from './vendure.queries';
 import {
   CreateAddressInput,
@@ -27,7 +27,7 @@ import {
   Order,
   PaymentInput,
   Product,
-  ShippingMethodQuote,
+  ShippingMethodQuote
 } from '../../../common';
 import { CalculatedProduct } from './calculated-product';
 import { setCalculatedFields } from '../util/product.util';
@@ -125,12 +125,12 @@ export class VendureClient {
   }
 
   async setOrderShippingAddress(input: CreateAddressInput): Promise<Order> {
-    /*    if (!input.company || input.company.length === 0) {
+    if (!input.company || input.company.length === 0) {
       input.company = '-'; // Dirty fix
     }
     if (!input.phoneNumber || input.phoneNumber.length === 0) {
       input.phoneNumber = '-'; // Dirty fix
-    }*/
+    }
     const {
       setOrderShippingAddress: order,
     } = await this.request(SET_ORDERSHIPPINGADDRESS, { input });
