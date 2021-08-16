@@ -11,12 +11,14 @@
         <h5 class="is-size-5 mb-4">{{ variant.priceWithTax | euro }}</h5>
         <VariantSelector
           :product="$context.product"
+          :variant="variant"
           v-on:select="selectedVariant = $event"
         />
         <br />
         <b-button
           class="is-primary is-fullwidth"
           :loading="isLoading"
+          :disabled="isSoldOut"
           v-on:click="buy()"
           >{{ isSoldOut ? 'Sold out' : 'Buy' }}
         </b-button>
@@ -29,7 +31,7 @@
 <script>
 import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';
 import VariantSelector from 'pinelab-storefront-client/lib/buefy-components/VariantSelector';
-import { hydrate, buy, isOutOfStock } from 'pinelab-storefront-client';
+import { buy, hydrate, isOutOfStock } from 'pinelab-storefront-client';
 
 export default {
   components: {
@@ -38,7 +40,11 @@ export default {
   },
   computed: {
     variant() {
-      return this.selectedVariant || this.$context?.product.variants[0] || {};
+      return (
+        this.selectedVariant ||
+        this.$context?.product.variants.find((v) => !isOutOfStock(v)) ||
+        this.$context?.product.variants[0]
+      );
     },
     isSoldOut() {
       return isOutOfStock(this.variant);

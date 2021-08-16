@@ -52,23 +52,6 @@ module.exports = async function (api) {
       });
     });
 
-    // ----------------- Collections ---------------------
-    const collectionPrefix = 'product-category';
-    productsPerCollection.forEach((productCollection) => {
-      const collectionSlug = `/${collectionPrefix}/${productCollection.collection.slug}`;
-      const collectionName = productCollection.collection.name;
-      createPage({
-        path: `/${collectionPrefix}/${productCollection.collection.slug}`,
-        component: './src/templates/Shop.vue',
-        context: {
-          products: productCollection.products,
-          collections,
-          selectedCollection: productCollection.collection,
-          breadcrumb: { Home, Shop, [collectionName]: collectionSlug },
-        },
-      });
-    });
-
     // ----------------- Cart ---------------------
     createPage({
       path: '/cart/',
