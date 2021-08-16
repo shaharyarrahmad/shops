@@ -4,10 +4,11 @@
       <!--      https://gist.github.com/leodrummond/bc3fbb44919a1e2d796ff2e4742514d0-->
       <section class="hero is-halfheight">
         <div class="hero">
-          <video id="bgvid" playsinline autoplay muted loop>
-            <!--            <source src="/img/logo.mp4" type="video/mp4">-->
-            <source :src="videoUrl" type="video/mp4" />
-          </video>
+          <ClientOnly>
+            <video id="bgvid" playsinline autoplay muted loop>
+              <source :src="videoUrl" type="video/mp4" />
+            </video>
+          </ClientOnly>
         </div>
       </section>
 
@@ -72,18 +73,18 @@ import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
-    ProductCard,
+    ProductCard
   },
   data: () => ({
     data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
     videoUrl: undefined,
-    videos: ['/img/s.mp4', '/img/logo.mp4', '/img/spiral.mp4'],
+    videos: ['/img/s.mp4', '/img/logo.mp4', '/img/spiral.mp4']
   }),
   async mounted() {
     this.videoUrl = this.videos[Math.floor(Math.random() * this.videos.length)]; // Random video
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.featuredProducts, this.$vendure);
-  },
+  }
 };
 </script>
 <style>
