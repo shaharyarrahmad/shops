@@ -1,4 +1,4 @@
-// import Buefy from 'buefy';
+import 'buefy/dist/buefy.css';
 import {
   Button,
   Checkbox,
@@ -20,12 +20,16 @@ import {
   Tooltip,
 } from 'buefy';
 import Layout from '~/layouts/Default.vue';
-import '~/theme.scss';
-import '@fontsource/work-sans';
 import { configureVue } from 'pinelab-storefront-client';
+import '~/theme.scss';
+import "@fontsource/roboto-mono"
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 
 export default function (Vue, { router, head, isClient }) {
+  if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
+    require('outfront').default();
+    console.log('OutfrontJS mobile logging enabled');
+  }
   [
     Button,
     Checkbox,

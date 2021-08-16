@@ -8,7 +8,11 @@
       />
     </div>
     <div class="columns mt-2 is-5 is-mobile">
-      <div class="column is-one-fifth" v-for="asset of assets">
+      <div
+        class="column is-one-fifth"
+        v-if="assets.length > 1"
+        v-for="asset of assets"
+      >
         <div @click="selectedAsset = asset">
           <b-image
             :src="getThumbnail(asset)"
@@ -57,7 +61,7 @@ export default {
       );
     },
     assets() {
-      return this.variant?.assets || this.product?.assets;
+      return this.variant?.assets?.length > 0 ? this.variant?.assets : this.product?.assets || [];
     },
   },
   methods: {

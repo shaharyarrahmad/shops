@@ -3,7 +3,7 @@
     <template v-for="collection of collections">
       <g-link
         v-if="isSelected(collection)"
-        :to="noCollectionUrl"
+        :to="`${noCollectionUrl.length > 0 ? noCollectionUrl : '/'}`"
         :key="collection.id"
         class="button is-primary mr-2"
       >
@@ -12,7 +12,7 @@
       </g-link>
       <g-link
         v-else
-        :to="`/${collectionPrefix}/${collection.slug}/`"
+        :to="`${noCollectionUrl}/${collection.slug}/`"
         :key="collection.id"
         class="button is-outlined mr-2"
       >
@@ -28,7 +28,6 @@ export default {
       required: true,
       type: Array,
     },
-    collectionPrefix: { default: 'product-category' },
     selectedCollection: { type: Object },
     noCollectionUrl: {
       required: true,

@@ -34,6 +34,16 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
               </tr>
+              <template
+                v-if="order.discounts"
+                v-for="discount of order.discounts"
+              >
+                <tr>
+                  <td>{{ discount.description }}</td>
+                  <td></td>
+                  <td>{{ discount.amountWithTax | euro }}</td>
+                </tr>
+              </template>
               <tr>
                 <td>Verzendkosten:</td>
                 <td></td>

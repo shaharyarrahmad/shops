@@ -3029,6 +3029,11 @@ de-indent@^1.0.2:
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
   integrity sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0=
 
+debounce@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
+  integrity sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
+
 debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -6826,11 +6831,12 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@0.24.0:
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.24.0.tgz#624cf73613fec64aee1a9b76f3a58ce187269111"
-  integrity sha512-xhbRnctYsTs9BFY4N2PFWv+oLbohxAPheGvnZR7/eq5EEdpm3+O6q/K6U/K+4CXi++1ALk4IPRV83Jna+uN+YQ==
+pinelab-storefront-client@0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.33.0.tgz#4b0b4da9c80ab54df928932fb3bbee9ec102bd56"
+  integrity sha512-a4rf8x+/kOscuo26T2py/dlu2MN3AWwz2BHcmxz3vBYz3WFfalBg/L8jtqKVpW3pZ3ffmfjTKUcbwFic9v2ypg==
   dependencies:
+    debounce "^1.2.1"
     graphql "15.3.0"
     graphql-request "^3.4.0"
     mitt "^2.1.0"

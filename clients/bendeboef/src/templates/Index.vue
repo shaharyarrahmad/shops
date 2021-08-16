@@ -6,10 +6,10 @@
         <div class="hero-body">
           <div class="container has-text-centered">
             <p class="title">
-              {{ data.title }}
+              {{ $context.data.title }}
             </p>
             <p class="subtitle">
-              {{ data.subTitle }}
+              {{ $context.data.subTitle }}
             </p>
           </div>
         </div>
@@ -20,11 +20,11 @@
 
     <template #content>
       <section id="bio">
-        <h1 class="title">{{ data.bioTitle }}</h1>
-        <p v-html="data.bio"></p>
+        <h1 class="title">{{ $context.data.bioTitle }}</h1>
+        <p v-html="$context.data.bio"></p>
         <br />
         <g-link
-          v-for="cta of data.ctas"
+          v-for="cta of $context.data.ctas"
           :key="cta.link"
           class="button mr-4 mb-4"
           :to="cta.link"
@@ -43,7 +43,11 @@
             v-for="product of $context.featuredProducts.slice(0, 4)"
             :key="product.slug"
           >
-            <ProductCard :product="product" buy-text="Add to cart" />
+            <ProductCard
+              :product="product"
+              buy-label="Add to cart"
+              product-url-prefix="/shop/"
+            />
           </div>
         </div>
         <hr />
@@ -53,13 +57,17 @@
 </template>
 
 <script>
+import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
+import { hydrate } from 'pinelab-storefront-client';
+
 export default {
-  data: () => ({
-    data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
-  }),
+  components: {
+    ProductCard
+  },
   async mounted() {
     await this.$vendure.getActiveOrder();
-  },
+    await hydrate(this.$context.products, this.$vendure);
+  }
 };
 </script>
 <style>

@@ -2,8 +2,8 @@
 
 $header-font-family: 'Roboto mono', monospace;
 $header-font-weight: 400;
-$header-color:  #343434;
-$body-font-family: Roboto,Helvetica,Arial,sans-serif;
+$header-color: #343434;
+$body-font-family: Roboto, Helvetica, Arial, sans-serif;
 $body-font-color: #343434;
 $button-background-hover: #343434;
 $button-background: $body-font-color;
@@ -76,7 +76,11 @@ label {
 }
 
 .cta {
-  background-color: #07BEB8;
+  background-color: #07beb8;
+}
+
+.success {
+  color: #07beb8;
 }
 
 .reveal {

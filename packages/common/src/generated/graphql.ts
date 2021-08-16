@@ -209,6 +209,16 @@ export type CollectionListOptions = {
   filter?: Maybe<CollectionFilterParameter>;
 };
 
+/**
+ * Which Collections are present in the products returned
+ * by the search, and in what quantity.
+ */
+export type CollectionResult = {
+  __typename?: 'CollectionResult';
+  collection: Collection;
+  count: Scalars['Int'];
+};
+
 export type CollectionSortParameter = {
   id?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
@@ -709,7 +719,8 @@ export type CustomFieldConfig =
   | FloatCustomFieldConfig
   | BooleanCustomFieldConfig
   | DateTimeCustomFieldConfig
-  | RelationCustomFieldConfig;
+  | RelationCustomFieldConfig
+  | TextCustomFieldConfig;
 
 export type Customer = Node & {
   __typename?: 'Customer';
@@ -1769,11 +1780,6 @@ export type Order = Node & {
    * methods.
    */
   surcharges: Array<Surcharge>;
-  /**
-   * Order-level adjustments to the order total, such as discounts from promotions
-   * @deprecated Use `discounts` instead
-   */
-  adjustments: Array<Adjustment>;
   discounts: Array<Discount>;
   /** An array of all coupon codes applied to the Order */
   couponCodes: Array<Scalars['String']>;
@@ -1871,8 +1877,6 @@ export type OrderItem = Node & {
   /** The proratedUnitPrice including tax */
   proratedUnitPriceWithTax: Scalars['Int'];
   unitTax: Scalars['Int'];
-  /** @deprecated `unitPrice` is now always without tax */
-  unitPriceIncludesTax: Scalars['Boolean'];
   taxRate: Scalars['Float'];
   adjustments: Array<Adjustment>;
   taxLines: Array<TaxLine>;
@@ -1924,8 +1928,6 @@ export type OrderLine = Node & {
   proratedUnitPriceWithTax: Scalars['Int'];
   quantity: Scalars['Int'];
   items: Array<OrderItem>;
-  /** @deprecated Use `linePriceWithTax` instead */
-  totalPrice: Scalars['Int'];
   taxRate: Scalars['Float'];
   /** The total price of the line excluding tax and discounts. */
   linePrice: Scalars['Int'];
@@ -1945,8 +1947,6 @@ export type OrderLine = Node & {
   proratedLinePriceWithTax: Scalars['Int'];
   /** The total tax on this line */
   lineTax: Scalars['Int'];
-  /** @deprecated Use `discounts` instead */
-  adjustments: Array<Adjustment>;
   discounts: Array<Discount>;
   taxLines: Array<TaxLine>;
   order: Order;
@@ -2413,8 +2413,6 @@ export type ProductVariant = Node & {
   assets: Array<Asset>;
   price: Scalars['Int'];
   currencyCode: CurrencyCode;
-  /** @deprecated price now always excludes tax */
-  priceIncludesTax: Scalars['Boolean'];
   priceWithTax: Scalars['Int'];
   stockLevel: Scalars['String'];
   taxRateApplied: TaxRate;
@@ -2433,7 +2431,6 @@ export type ProductVariantFilterParameter = {
   name?: Maybe<StringOperators>;
   price?: Maybe<NumberOperators>;
   currencyCode?: Maybe<StringOperators>;
-  priceIncludesTax?: Maybe<BooleanOperators>;
   priceWithTax?: Maybe<NumberOperators>;
   stockLevel?: Maybe<StringOperators>;
 };
@@ -2679,6 +2676,7 @@ export type SearchResponse = {
   items: Array<SearchResult>;
   totalItems: Scalars['Int'];
   facetValues: Array<FacetValueResult>;
+  collections: Array<CollectionResult>;
 };
 
 export type SearchResult = {
@@ -2687,13 +2685,9 @@ export type SearchResult = {
   slug: Scalars['String'];
   productId: Scalars['ID'];
   productName: Scalars['String'];
-  /** @deprecated Use `productAsset.preview` instead */
-  productPreview: Scalars['String'];
   productAsset?: Maybe<SearchResultAsset>;
   productVariantId: Scalars['ID'];
   productVariantName: Scalars['String'];
-  /** @deprecated Use `productVariantAsset.preview` instead */
-  productVariantPreview: Scalars['String'];
   productVariantAsset?: Maybe<SearchResultAsset>;
   price: SearchResultPrice;
   priceWithTax: SearchResultPrice;
@@ -2893,6 +2887,17 @@ export type TaxRateList = PaginatedList & {
   __typename?: 'TaxRateList';
   items: Array<TaxRate>;
   totalItems: Scalars['Int'];
+};
+
+export type TextCustomFieldConfig = CustomField & {
+  __typename?: 'TextCustomFieldConfig';
+  name: Scalars['String'];
+  type: Scalars['String'];
+  list: Scalars['Boolean'];
+  label?: Maybe<Array<LocalizedString>>;
+  description?: Maybe<Array<LocalizedString>>;
+  readonly?: Maybe<Scalars['Boolean']>;
+  internal?: Maybe<Scalars['Boolean']>;
 };
 
 export type TransitionOrderToStateResult = Order | OrderStateTransitionError;

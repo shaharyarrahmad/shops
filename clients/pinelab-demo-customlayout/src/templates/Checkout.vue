@@ -1,6 +1,23 @@
 <template>
   <Layout #content>
-    <CheckoutSteps previousPage="/cart/" />
+    <CheckoutSteps
+      previousPage="/cart/"
+      customerDetailsLabel="Gegevens"
+    shippingLabel="Verzending"
+    paymentLabel="Betaling"
+    companyLabel="Bedrijfsnaam"
+    firstnameLabel="Voornaam"
+    lastnameLabel="Achternaam"
+    phoneLabel="Telefoonnr."
+    emailLabel="Email"
+    cityLabel="Plaats"
+    postalCodeLabel="Postcode"
+    streetLabel="Straatnaam"
+    houseNumberLabel="Huisnr."
+    countryLabel="Land"
+    totalLabel="Totaal"
+    succesLabel="Succes!"
+    />
   </Layout>
 </template>
 <script>

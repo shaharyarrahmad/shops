@@ -23,6 +23,17 @@
       class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font"
       style="padding-top: 40px"
     >
+      <template
+        v-if="activeOrder.discounts"
+        v-for="discount of activeOrder.discounts"
+      >
+        <div class="cell">
+          <p class="success">{{ discount.description }}</p>
+        </div>
+        <div class="cell success">
+          <p>{{ discount.amountWithTax | euro }}</p>
+        </div>
+      </template>
       <div class="cell">
         <p>Subtotaal:</p>
       </div>

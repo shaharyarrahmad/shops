@@ -62,3 +62,11 @@ yarn migration:revert
 # or
 npm run migration:revert
 ```
+
+### Copying prod DB to test
+```bash 
+# https://console.cloud.google.com/transfer/cloud/jobs
+
+mysqldump --column-statistics=0 -u username123 -h 1.1.1.1 -p prod-db-naame > prod.sql
+mysql -u username123 -h 1.1.1.1 -p test < prod.sql
+```

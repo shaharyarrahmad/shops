@@ -12,14 +12,14 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, collections } = await gridsome.getShopData();
-    const featuredProducts = products.filter((p) =>
-      p.facetValues.find((value) => value.code === 'featured')
-    );
+    const {
+      products,
+      collections,
+      productsPerCollection,
+    } = await gridsome.getShopData();
 
     // Breadcrumb pages
     const Home = '/';
-    const Shop = '/shop/';
     const Cart = '/cart/';
     const Checkout = '/checkout';
 
@@ -30,54 +30,61 @@ module.exports = async function (api) {
       context: {
         products,
         collections,
-        featuredProducts,
-      },
-    });
-
-    // ----------------- Shop ---------------------
-    createPage({
-      path: '/shop/',
-      component: './src/templates/Shop.vue',
-      context: {
-        products,
-        collections,
-        breadcrumb: { Home, Shop },
+        productsPerCollection,
       },
     });
 
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
       createPage({
-        path: `/shop/product/${product.slug}`,
+        path: `/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
           product,
-          breadcrumb: { Home, Shop, [product.name]: product.slug },
+          collections,
+          breadcrumb: { Home, [product.name]: product.slug },
         },
       });
     });
 
+    // ----------------- Collections ---------------------
+    productsPerCollection.forEach(
+      ({ products: productsPerCollection, collection }) => {
+        createPage({
+          path: `/${collection.slug}`,
+          component: './src/templates/Index.vue',
+          context: {
+            products: productsPerCollection,
+            collection,
+            collections,
+            breadcrumb: { Home, [collection.name]: collection.slug },
+          },
+        });
+      }
+    );
+
     // ----------------- Cart ---------------------
-    const breadcrumb = { Home, Shop, Cart };
     createPage({
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        breadcrumb,
+        collections,
+        breadcrumb: { Home, Cart },
       },
     });
 
-    // ----------------- checkout ---------------------
+    // ----------------- Checkout ---------------------
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {},
+      context: {collections,},
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
+      context: {collections,},
     });
   });
 };

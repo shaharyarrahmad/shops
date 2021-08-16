@@ -7,7 +7,7 @@
       :activeOrder="activeOrder"
     >
       <g-link
-        v-for="link of data.links"
+        v-for="link of $context.data.links"
         :to="link.url"
         :key="link.url"
         class="navbar-item"
@@ -28,19 +28,18 @@
 
     <footer v-if="showFooter" class="footer">
       <div class="content has-text-centered is-dark">
-        <a :href="data.instagram" target="_blank">
+        <a :href="$context.data.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
         • Ben de Boef Tattoo's •
-        <a href="https://pinelab.studio/" target="_blank"
-          >Made with ❤ by Pinelab</a
-        >
+        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
       </div>
     </footer>
   </div>
 </template>
 <script>
-import ShopNavBar from '../components/ShopNavbar';
+import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
+import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
 
 export default {
   props: {
@@ -50,17 +49,12 @@ export default {
   },
   components: {
     ShopNavBar,
+    Breadcrumb,
   },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder;
     },
-  },
-  mounted() {},
-  data() {
-    return {
-      data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
-    };
   },
 };
 </script>
@@ -68,6 +62,7 @@ export default {
 .footer a {
   color: white;
 }
+
 .footer a:hover {
   color: white;
 }

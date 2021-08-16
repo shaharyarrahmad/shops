@@ -18,8 +18,10 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: "Work Sans";
-$family-primary: "Work Sans";
+$family-sans-serif: "Roboto Mono";
+$family-primary: "Roboto Mono";
+
+$control-radius: 2px;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(

@@ -96,6 +96,11 @@ export const ORDER_FIELDS = gql`
       errorMessage
       metadata
     }
+    discounts {
+      description
+      amountWithTax
+    }
+    couponCodes
   }
 `;
 
@@ -270,6 +275,32 @@ export const GET_DUTCH_ADDRESS = gql`
     dutchAddressLookup(input: $input) {
       street
       city
+    }
+  }
+`;
+
+export const APPLY_COUPON_CODE = gql`
+  ${ORDER_FIELDS}
+  mutation applyCouponCode($couponCode: String!) {
+    applyCouponCode(couponCode: $couponCode) {
+      ... on Order {
+        ...OrderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
+    }
+  }
+`;
+
+export const REMOVE_COUPON_CODE = gql`
+  ${ORDER_FIELDS}
+  mutation removeCouponCode($couponCode: String!) {
+    removeCouponCode(couponCode: $couponCode) {
+      ... on Order {
+        ...OrderFields
+      }
     }
   }
 `;

@@ -978,10 +978,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@fontsource/work-sans@^4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@fontsource/work-sans/-/work-sans-4.2.2.tgz#f125f018a6b1baa5092901de3a0ef95f58fcefe4"
-  integrity sha512-fFm8a1TbE+qDnRNsf4R6Z/yZP2f3mbj54zSoWUMIWVkgTHM0RfpcOTqoIp7Aj5jon6na0Oynlq5yXvMA5p3pKA==
+"@fontsource/roboto-mono@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.5.0.tgz#27e44fbb1d86a9ef14501493a37eef1d73e60d02"
+  integrity sha512-/6Gm6fJjBHZiFNyvzIKGJkVuyifoc1aoTel+pkzdhxNh7yNhFyokCoChdbbqZEpGKpqs5uld74G5TJthUVFyjw==
 
 "@gridsome/cli@^0.3.4":
   version "0.3.4"
@@ -6655,6 +6655,11 @@ os-filter-obj@^2.0.0:
   dependencies:
     arch "^2.1.0"
 
+outfront@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/outfront/-/outfront-1.1.1.tgz#ed599d899fdd5c8cded93e4c19a70bd3a9349dd2"
+  integrity sha512-3zqwYndsfXtDkfjJ7sIY52XSlIOQM2iY5oneWGnwnI2R4LDAQVdNJgf97iD3VzpY8ZSXfryuwdHlbONDjQNxdw==
+
 ow@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/ow/-/ow-0.8.0.tgz#d360d779c996f4132941a596c87f86ce8e812e62"
@@ -6969,10 +6974,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.31.0.tgz#1c702e8de7d43fd3c6a8c086b3cd9efaba1ad827"
-  integrity sha512-9YKmuh79E9sl4bPiDbw+jFNPM/ua0FuiPzvtaCqTTsdrEEQlTDtFDx9A67cfRhsGRYlOAMgRICQMcKBM6T6eLA==
+pinelab-storefront-client@^0.33.1:
+  version "0.33.1"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.33.1.tgz#431d1d92a3522cf1da9c501b0e8f6495f0f5e5ed"
+  integrity sha512-dAM/KGcQiSYpOWJUJj0EvVg6S/oNlgG0nY0yTSyVyHGOdk6vZKGbiZbLjg9G5Bz3/aKqc9oM4vDP2MXWy+zC/Q==
   dependencies:
     debounce "^1.2.1"
     graphql "15.3.0"

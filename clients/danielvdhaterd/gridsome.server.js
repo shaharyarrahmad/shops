@@ -28,7 +28,7 @@ module.exports = async function (api) {
       path: '/',
       component: './src/templates/ProductsTemplate.vue',
       context: {
-        products: data.products?.reverse(),
+        products: data.products.reverse(),
         collections: data.collections,
       },
     });

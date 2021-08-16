@@ -3,7 +3,7 @@
     class="container product-card-container"
     :class="product.soldOut ? 'soldout' : ''"
   >
-    <g-link :to="`${productUrlPrefix}/${product.slug}`">
+    <g-link :to="`${productUrlPrefix}/${product.slug}`" :aria-label="`${buyLabel} ${product.name}`">
       <b-image
         :src="product.featuredAsset.thumbnail"
         :alt="product.name"
@@ -16,22 +16,17 @@
     </p>
 
     <b-button
-      v-if="product.optionGroups.length === 0"
       class="is-primary is-fullwidth product-card-button"
       :loading="isLoading"
+      :disabled="product.soldOut"
       v-on:click="buy()"
       >{{ product.soldOut ? soldoutLabel : buyLabel }}
     </b-button>
-    <g-link
-      v-else
-      :to="`${productUrlPrefix}/${product.slug}`"
-      class="button is-primary is-fullwidth product-card-button"
-    >
-      {{ product.soldOut ? soldoutLabel : buyLabel }}
-    </g-link>
   </div>
 </template>
 <script>
+import { isOutOfStock } from '../util/product.util';
+
 export default {
   props: {
     buyLabel: {
@@ -55,7 +50,8 @@ export default {
       }
       try {
         this.isLoading = true;
-        const variantId = this.product.variants[0].id;
+        const variantId = this.product.variants.find((v) => !isOutOfStock(v))
+          .id;
         await this.$vendure.addProductToCart(variantId, 1);
         this.$emitter.emit('productAdded', { variantId, quantity: 1 });
       } catch (e) {
