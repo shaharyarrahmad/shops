@@ -12,6 +12,7 @@
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.7",
     "concurrently": "^6.1.0",
+    "outfront": "^1.1.1",
     "pinelab-storefront-client": "^0.33.2"
   },
   "devDependencies": {

@@ -6,9 +6,9 @@ import { config } from '../src/vendure-config';
 (async () => {
   const app = await bootstrap(config);
   await app.get(ChannelConfigService).create({
-    channelId: '4',
-    channelName: 'LAB07',
-    logoUrl: 'http://localhost:8080/logo.svg',
+    channelId: '7',
+    channelName: 'Super A',
+    logoUrl: 'https://supera.netlify.app/img/logo.png',
     supportEmail: 'martijn@pinelab.studio',
   });
 
