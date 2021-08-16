@@ -12,30 +12,17 @@
         </div>
       </section>
 
-      <!--      <section class="hero is-primary is-fullheight hero-background">
-              &lt;!&ndash; Hero content: will be in the middle &ndash;&gt;
-              <div class="hero-body">
-                <div class="container has-text-centered">
-                  <p class="title has-text-black">
-                    {{ data.title }}
-                  </p>
-                  <p class="subtitle has-text-black">
-                    {{ data.subTitle }}
-                  </p>
-                </div>
-              </div>
-            </section>-->
       <br />
       <br />
     </template>
 
     <template #content>
       <section id="bio">
-        <h1 class="title">{{ data.bioTitle }}</h1>
-        <p v-html="data.bio"></p>
+        <h1 class="title">{{ $context.data.bioTitle }}</h1>
+        <p v-html="$context.data.bio"></p>
         <br />
         <g-link
-          v-for="cta of data.ctas"
+          v-for="cta of $context.data.ctas"
           :key="cta.link"
           class="button mr-4 mb-4"
           :to="cta.link"
@@ -63,6 +50,13 @@
         </div>
         <hr />
       </section>
+
+      <section id="news">
+        <h1 class="title">News</h1>
+        <p>Soon more shows, more prints or whatever news you want to put here!</p>
+        <hr />
+      </section>
+
     </template>
   </Layout>
 </template>
@@ -76,7 +70,6 @@ export default {
     ProductCard
   },
   data: () => ({
-    data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
     videoUrl: undefined,
     videos: ['/img/s.mp4', '/img/logo.mp4', '/img/spiral.mp4']
   }),

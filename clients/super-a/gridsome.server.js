@@ -1,4 +1,5 @@
 const { GridsomeService } = require('pinelab-storefront-client');
+const data = require('./content-data.json');
 
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
@@ -17,6 +18,8 @@ module.exports = async function (api) {
     const Shop = '/shop/';
     const Cart = '/cart/';
     const Checkout = '/checkout/';
+    const Portfolio = '/portfolio/';
+    const Bio = '/bio/';
 
     // ----------------- Index ---------------------
     createPage({
@@ -26,6 +29,7 @@ module.exports = async function (api) {
         products,
         collections,
         featuredProducts,
+        data
       },
     });
 
@@ -36,6 +40,7 @@ module.exports = async function (api) {
       context: {
         products,
         collections,
+        data,
         breadcrumb: { Home, Shop },
       },
     });
@@ -47,9 +52,41 @@ module.exports = async function (api) {
         component: './src/templates/Product.vue',
         context: {
           product,
+          data,
           breadcrumb: { Home, Shop, [product.name]: product.slug },
         },
       });
+    });
+
+    // ----------------- Static pages ---------------------
+    createPage({
+      path: '/portfolio/',
+      component: './src/templates/Portfolio.vue',
+      context: {
+        data,
+        breadcrumb: { Home, Portfolio },
+      },
+    });
+
+    data.portfolio.subpages.forEach(page => {
+      createPage({
+        path: `/portfolio/${page.slug}`,
+        component: './src/templates/PortfolioCategory.vue',
+        context: {
+          data,
+          page,
+          breadcrumb: { Home, Portfolio, [page.title]: `/portfolio/${page.slug}` },
+        },
+      });
+    });
+
+    createPage({
+      path: '/bio/',
+      component: './src/templates/Bio.vue',
+      context: {
+        data,
+        breadcrumb: { Home, Bio },
+      },
     });
 
     // ----------------- Cart ---------------------
@@ -57,6 +94,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
+        data,
         breadcrumb: { Home, Shop, Cart },
       },
     });
@@ -65,13 +103,14 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {},
+      context: {data},
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
+      context: {data}
     });
   });
 };

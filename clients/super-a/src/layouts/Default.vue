@@ -8,7 +8,7 @@
       cartIcon="cart"
     >
       <g-link
-        v-for="link of data.links"
+        v-for="link of $context.data.links"
         :to="link.url"
         :key="link.url"
         class="navbar-item"
@@ -29,11 +29,12 @@
 
     <footer v-if="showFooter" class="footer">
       <div class="content has-text-centered is-dark">
-        <a :href="data.instagram" target="_blank">
+        <a :href="$context.data.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
-        • Super A •
-        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
+        • Super A
+        • <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
+        • <a :href="`mailto:${$context.data.email}`" target="_blank">{{ $context.data.email }}</a>
       </div>
     </footer>
   </div>
@@ -58,11 +59,6 @@ export default {
     },
   },
   mounted() {},
-  data() {
-    return {
-      data: require(`../data/${process.env.GRIDSOME_SITE}.json`),
-    };
-  },
 };
 </script>
 <style>

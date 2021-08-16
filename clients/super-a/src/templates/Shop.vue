@@ -41,7 +41,7 @@ export default {
     ProductCard,
   },
   async mounted() {
-    await hydrate(this.$context.featuredProducts, this.$vendure);
+    await hydrate(this.$context.products, this.$vendure);
   },
 };
 </script>
