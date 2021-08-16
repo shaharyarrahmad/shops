@@ -5,12 +5,8 @@
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container has-text-centered">
-            <p class="title">
-              Pinelab.studio
-            </p>
-            <p class="subtitle">
-              Demo webshop
-            </p>
+            <p class="title">Pinelab.studio</p>
+            <p class="subtitle">Demo webshop</p>
           </div>
         </div>
       </section>
@@ -19,14 +15,15 @@
     </template>
 
     <template #content>
-
       <h1 class="title">Pinelab.studio e-commerce</h1>
       <p>
-        Welkom op de demo webshop van Pinelab. Je kunt hier het hele bestelprocess doorlopen, inclusief een nep-betaling. Veel plezier! Vragen of opmerkingen?
+        Welkom op de demo webshop van Pinelab. Je kunt hier het hele
+        bestelprocess doorlopen, inclusief een nep-betaling. Veel plezier!
+        Vragen of opmerkingen?
         <a href="mailto:martijn.pinelab.studio">martijn@pinelab.studio</a>
       </p>
-      <br>
-      <br>
+      <br />
+      <br />
 
       <ProductFilter
         :collections="$context.collections"
@@ -70,12 +67,12 @@ import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/Produc
 export default {
   components: {
     ProductCard,
-    ProductFilter
+    ProductFilter,
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
-  }
+  },
 };
 </script>
 <style>

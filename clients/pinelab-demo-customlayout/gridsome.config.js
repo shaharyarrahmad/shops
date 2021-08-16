@@ -5,7 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Pinelab demo shop",
+  siteName: 'Pinelab demo shop',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link

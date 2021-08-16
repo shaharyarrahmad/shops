@@ -5,7 +5,7 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Super A - Stefan Thelen",
+  siteName: 'Super A - Stefan Thelen',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link

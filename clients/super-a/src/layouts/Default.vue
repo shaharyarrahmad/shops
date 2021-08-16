@@ -39,8 +39,8 @@
   </div>
 </template>
 <script>
-import ShopNavBar from "pinelab-storefront-client/lib/buefy-components/ShopNavbar";
-import Breadcrumb from "pinelab-storefront-client/lib/buefy-components/Breadcrumb";
+import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
+import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
 
 export default {
   props: {

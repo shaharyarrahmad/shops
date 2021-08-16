@@ -77,14 +77,14 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {collections,},
+      context: { collections },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: {collections,},
+      context: { collections },
     });
   });
 };

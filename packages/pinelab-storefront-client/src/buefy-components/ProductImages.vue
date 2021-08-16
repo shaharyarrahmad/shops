@@ -61,7 +61,9 @@ export default {
       );
     },
     assets() {
-      return this.variant?.assets?.length > 0 ? this.variant?.assets : this.product?.assets || [];
+      return this.variant?.assets?.length > 0
+        ? this.variant?.assets
+        : this.product?.assets || [];
     },
   },
   methods: {

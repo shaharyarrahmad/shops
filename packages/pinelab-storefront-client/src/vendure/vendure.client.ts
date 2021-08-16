@@ -16,7 +16,7 @@ import {
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
-  TRANSITION_ORDER_TO_STATE
+  TRANSITION_ORDER_TO_STATE,
 } from './vendure.queries';
 import {
   CreateAddressInput,
@@ -27,7 +27,7 @@ import {
   Order,
   PaymentInput,
   Product,
-  ShippingMethodQuote
+  ShippingMethodQuote,
 } from '../../../common';
 import { CalculatedProduct } from './calculated-product';
 import { setCalculatedFields } from '../util/product.util';
@@ -38,7 +38,7 @@ export class VendureClient {
 
   constructor(private store: Store) {
     this.client = new GraphQLClient(process.env.GRIDSOME_VENDURE_API!, {
-      headers: { 'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN! }
+      headers: { 'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN! },
     });
     this.getActiveOrder().then((order) => (this.store.activeOrder = order));
   }
@@ -68,7 +68,7 @@ export class VendureClient {
   ): Promise<Order> {
     const { addItemToOrder: order } = await this.request(ADD_ITEM_TO_ORDER, {
       productVariantId,
-      quantity
+      quantity,
     });
     this.validateResult(order);
     this.store.activeOrder = order;
@@ -99,7 +99,7 @@ export class VendureClient {
     const { setOrderShippingMethod } = await this.request(
       SET_ORDERSHIPPINGMETHOD,
       {
-        shippingMethodId
+        shippingMethodId,
       }
     );
     this.validateResult(setOrderShippingMethod);
@@ -109,7 +109,7 @@ export class VendureClient {
 
   async adjustOrderLine(orderLineId: string, quantity: number): Promise<Order> {
     const {
-      adjustOrderLine: activeOrder
+      adjustOrderLine: activeOrder,
     } = await this.request(ADJUST_ORDERLINE, { orderLineId, quantity });
     this.validateResult(activeOrder);
     this.store.activeOrder = activeOrder;
@@ -118,7 +118,7 @@ export class VendureClient {
 
   async setCustomerForOrder(input: CreateCustomerInput): Promise<Order> {
     const {
-      setCustomerForOrder: order
+      setCustomerForOrder: order,
     } = await this.request(SET_CUSTOMER_FOR_ORDER, { input });
     this.validateResult(order);
     this.store.activeOrder = order;
@@ -133,7 +133,7 @@ export class VendureClient {
       input.phoneNumber = '-'; // Dirty fix
     }
     const {
-      setOrderShippingAddress: order
+      setOrderShippingAddress: order,
     } = await this.request(SET_ORDERSHIPPINGADDRESS, { input });
     this.store.activeOrder = order;
     return order;
@@ -146,7 +146,7 @@ export class VendureClient {
 
   async transitionOrderToState(state: string): Promise<Order> {
     const {
-      transitionOrderToState
+      transitionOrderToState,
     } = await this.request(TRANSITION_ORDER_TO_STATE, { state });
     this.validateResult(transitionOrderToState);
     this.store.activeOrder = transitionOrderToState;
@@ -155,7 +155,7 @@ export class VendureClient {
 
   async addPaymentToOrder(input: PaymentInput): Promise<Order> {
     const { addPaymentToOrder } = await this.request(ADD_PAYMENT_TO_ORDER, {
-      input
+      input,
     });
     this.validateResult(addPaymentToOrder);
     this.store.activeOrder = addPaymentToOrder;
@@ -171,14 +171,14 @@ export class VendureClient {
     input: DutchPostalCodeInput
   ): Promise<DutchAddressLookupResult | undefined> {
     const { dutchAddressLookup } = await this.request(GET_DUTCH_ADDRESS, {
-      input
+      input,
     });
     return dutchAddressLookup;
   }
 
   async applyCouponCode(couponCode: string): Promise<Order> {
     const { applyCouponCode: order } = await this.request(APPLY_COUPON_CODE, {
-      couponCode
+      couponCode,
     });
     this.validateResult(order);
     this.store.activeOrder = order;
@@ -187,7 +187,7 @@ export class VendureClient {
 
   async removeCouponCode(couponCode: string): Promise<Order> {
     const { removeCouponCode: order } = await this.request(REMOVE_COUPON_CODE, {
-      couponCode
+      couponCode,
     });
     this.store.activeOrder = order;
     return order;

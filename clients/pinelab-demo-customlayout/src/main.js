@@ -22,7 +22,7 @@ import {
 import Layout from '~/layouts/Default.vue';
 import { configureVue } from 'pinelab-storefront-client';
 import '~/theme.scss';
-import "@fontsource/roboto-mono"
+import '@fontsource/roboto-mono';
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 
 export default function (Vue, { router, head, isClient }) {
