@@ -11,7 +11,8 @@
     "@fontsource/montserrat": "^4.4.5",
     "@fontsource/work-sans": "^4.2.2",
     "buefy": "^0.9.7",
-    "concurrently": "^6.1.0"
+    "concurrently": "^6.1.0",
+    "pinelab-storefront-client": "^0.33.2"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
