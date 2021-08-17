@@ -16,6 +16,13 @@ Visit [Pinelab.studio](https://pinelab.studio/webshop) for more info.
 
 ## :scroll: Release notes
 
+### Aug 2021
+
+1. Upgraded to `Vendure 1.2.0`
+1. Using Google Cloud Tasks for worker jobs on a seperate instance.
+1. Proper logging with Winston in Google Stackdriver 
+![Stackdriver screenshot](docs/img.png)
+
 ### June 2021
 
 1. Moved Vendure plugins to `https://github.com/martijnvdbrug/pinelab-vendure-plugins`
