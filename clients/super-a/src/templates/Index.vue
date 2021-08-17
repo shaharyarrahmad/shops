@@ -71,7 +71,7 @@ export default {
     ProductCard,
   },
   metaInfo: {
-    title: "Stefan Thelen’s anti-superhero identity",
+    title: 'Stefan Thelen’s anti-superhero identity',
   },
   data: () => ({
     videoUrl: undefined,

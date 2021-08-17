@@ -34,12 +34,14 @@
         </a>
         <br />
         <br />
-        Super A
-        •         <a :href="`mailto:${$context.data.email}`" target="_blank">{{
+        Super A •
+        <a :href="`mailto:${$context.data.email}`" target="_blank">{{
           $context.data.email
         }}</a>
         •
-        <a class="has-text-grey" href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
+        <a class="has-text-grey" href="https://pinelab.studio/" target="_blank"
+          >Made by Pinelab 🌲</a
+        >
       </div>
     </footer>
   </div>
