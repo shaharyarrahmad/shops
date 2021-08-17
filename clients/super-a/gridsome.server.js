@@ -29,7 +29,7 @@ module.exports = async function (api) {
         products,
         collections,
         featuredProducts,
-        data
+        data,
       },
     });
 
@@ -68,14 +68,18 @@ module.exports = async function (api) {
       },
     });
 
-    data.portfolio.subpages.forEach(page => {
+    data.portfolio.subpages.forEach((page) => {
       createPage({
         path: `/portfolio/${page.slug}`,
         component: './src/templates/PortfolioCategory.vue',
         context: {
           data,
           page,
-          breadcrumb: { Home, Portfolio, [page.title]: `/portfolio/${page.slug}` },
+          breadcrumb: {
+            Home,
+            Portfolio,
+            [page.title]: `/portfolio/${page.slug}`,
+          },
         },
       });
     });
@@ -103,14 +107,14 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: {data},
+      context: { data },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: {data}
+      context: { data },
     });
   });
 };

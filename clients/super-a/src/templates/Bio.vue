@@ -4,13 +4,10 @@
       <h1 class="title">Biography</h1>
 
       <p>Stuff about Stefan</p>
-      <br/>
-
+      <br />
     </template>
   </Layout>
 </template>
 <script>
-
-export default {
-};
+export default {};
 </script>

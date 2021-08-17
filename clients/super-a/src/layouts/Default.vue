@@ -32,9 +32,12 @@
         <a :href="$context.data.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
-        • Super A
-        • <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
-        • <a :href="`mailto:${$context.data.email}`" target="_blank">{{ $context.data.email }}</a>
+        • Super A •
+        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
+        •
+        <a :href="`mailto:${$context.data.email}`" target="_blank">{{
+          $context.data.email
+        }}</a>
       </div>
     </footer>
   </div>

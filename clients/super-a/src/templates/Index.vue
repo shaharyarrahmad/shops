@@ -53,10 +53,11 @@
 
       <section id="news">
         <h1 class="title">News</h1>
-        <p>Soon more shows, more prints or whatever news you want to put here!</p>
+        <p>
+          Soon more shows, more prints or whatever news you want to put here!
+        </p>
         <hr />
       </section>
-
     </template>
   </Layout>
 </template>
@@ -67,17 +68,17 @@ import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
-    ProductCard
+    ProductCard,
   },
   data: () => ({
     videoUrl: undefined,
-    videos: ['/img/s.mp4', '/img/logo.mp4', '/img/spiral.mp4']
+    videos: ['/img/s.mp4', '/img/logo.mp4', '/img/spiral.mp4'],
   }),
   async mounted() {
     this.videoUrl = this.videos[Math.floor(Math.random() * this.videos.length)]; // Random video
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.featuredProducts, this.$vendure);
-  }
+  },
 };
 </script>
 <style>
