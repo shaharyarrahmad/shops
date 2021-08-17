@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: process.env.LOCAL_ENV });
 import { bootstrap, JobQueueService, Logger } from '@vendure/core';
 import { config } from './vendure-config';
 
