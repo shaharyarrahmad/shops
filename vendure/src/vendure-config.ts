@@ -71,7 +71,7 @@ export const config: VendureConfig = {
   customFields: {},
   plugins: [
     CloudTasksPlugin.init({
-      taskHandlerHost: process.env.VENDURE_HOST!,
+      taskHandlerHost: process.env.WORKER_HOST!,
       projectId: process.env.GOOGLE_PROJECT_ID!,
       location: 'europe-west1',
       authSecret: process.env.CLOUD_TASKS_SECRET!,
