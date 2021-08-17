@@ -5,8 +5,8 @@ import { config } from './vendure-config';
 bootstrap(config)
   .then(async (app) => {
     await app.get(JobQueueService).start();
-    Logger.info(`\x1b[46mUsing database ${process.env.DATABASE_NAME} \x1b[0m`);
+    Logger.info(`Using database ${process.env.DATABASE_NAME}`, 'Bootstrap');
   })
   .catch((err) => {
-    Logger.error(err);
+    Logger.error(err, 'UNCAUGHT');
   });
