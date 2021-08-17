@@ -18,7 +18,7 @@
 
     <template #content>
       <section id="bio">
-        <h1 class="title">{{ $context.data.bioTitle }}</h1>
+        <h1 class="title is-1">{{ $context.data.bioTitle }}</h1>
         <p v-html="$context.data.bio"></p>
         <br />
         <g-link
@@ -34,7 +34,7 @@
       </section>
 
       <section id="featured-products">
-        <h1 class="title">New in shop</h1>
+        <h2 class="title is-1">New in shop</h2>
         <div class="columns is-multiline is-mobile">
           <div
             class="column is-half-mobile mb-4"
@@ -52,7 +52,7 @@
       </section>
 
       <section id="news">
-        <h1 class="title">News</h1>
+        <h2 class="title is-1">News</h2>
         <p>
           Soon more shows, more prints or whatever news you want to put here!
         </p>
@@ -69,6 +69,9 @@ import { hydrate } from 'pinelab-storefront-client';
 export default {
   components: {
     ProductCard,
+  },
+  metaInfo: {
+    title: "Stefan Thelen’s anti-superhero identity",
   },
   data: () => ({
     videoUrl: undefined,
