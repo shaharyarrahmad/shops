@@ -4,11 +4,8 @@ const data = require('./content-data.json');
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const {
-      products,
-      collections,
-      productsPerCollection,
-    } = await gridsome.getShopData();
+    const { products, collections, productsPerCollection } =
+      await gridsome.getShopData();
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));

@@ -40,7 +40,7 @@ export const config: VendureConfig = {
     stockAllocationStrategy: new CustomStockAllocationStrategy(),
   },
   apiOptions: {
-    port: ((process.env.PORT as unknown) as number) || 3000,
+    port: (process.env.PORT as unknown as number) || 3000,
     adminApiPath: 'admin-api',
     adminApiPlayground: {}, // turn this off for production
     adminApiDebug: false, // turn this off for production

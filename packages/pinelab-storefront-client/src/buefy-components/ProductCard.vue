@@ -53,8 +53,9 @@ export default {
       }
       try {
         this.isLoading = true;
-        const variantId = this.product.variants.find((v) => !isOutOfStock(v))
-          .id;
+        const variantId = this.product.variants.find(
+          (v) => !isOutOfStock(v)
+        ).id;
         await this.$vendure.addProductToCart(variantId, 1);
         this.$emitter.emit('productAdded', { variantId, quantity: 1 });
       } catch (e) {

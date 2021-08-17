@@ -1,4 +1,4 @@
-name: Deploy Vendure API to dev only
+name: Deploy Vendure API and worker to dev only
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up gcloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@master
         with:
           project_id: pinelab-shops
           service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}

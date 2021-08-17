@@ -331,7 +331,8 @@ export default {
         await this.$vendure.setOrderShippingAddress(address);
         // Get latest eligible shippingmethods
         this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
-        this.selectedShippingMethod = this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
+        this.selectedShippingMethod =
+          this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
       } catch (e) {
         console.error(e);
         this.showError();
@@ -431,7 +432,8 @@ export default {
       );
     }
     this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
-    this.selectedShippingMethod = this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
+    this.selectedShippingMethod =
+      this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
   },
   created() {
     this.getAddress = debounce(this.getAddress, 500);

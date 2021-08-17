@@ -4,11 +4,8 @@ const data = require('./content-data.json');
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const {
-      products,
-      collections,
-      productsPerCollection,
-    } = await gridsome.getShopData();
+    const { products, collections, productsPerCollection } =
+      await gridsome.getShopData();
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
     );

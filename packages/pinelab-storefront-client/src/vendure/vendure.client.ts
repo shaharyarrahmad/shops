@@ -108,18 +108,20 @@ export class VendureClient {
   }
 
   async adjustOrderLine(orderLineId: string, quantity: number): Promise<Order> {
-    const {
-      adjustOrderLine: activeOrder,
-    } = await this.request(ADJUST_ORDERLINE, { orderLineId, quantity });
+    const { adjustOrderLine: activeOrder } = await this.request(
+      ADJUST_ORDERLINE,
+      { orderLineId, quantity }
+    );
     this.validateResult(activeOrder);
     this.store.activeOrder = activeOrder;
     return activeOrder;
   }
 
   async setCustomerForOrder(input: CreateCustomerInput): Promise<Order> {
-    const {
-      setCustomerForOrder: order,
-    } = await this.request(SET_CUSTOMER_FOR_ORDER, { input });
+    const { setCustomerForOrder: order } = await this.request(
+      SET_CUSTOMER_FOR_ORDER,
+      { input }
+    );
     this.validateResult(order);
     this.store.activeOrder = order;
     return order;
@@ -132,9 +134,10 @@ export class VendureClient {
     if (!input.phoneNumber || input.phoneNumber.length === 0) {
       input.phoneNumber = '-'; // Dirty fix
     }
-    const {
-      setOrderShippingAddress: order,
-    } = await this.request(SET_ORDERSHIPPINGADDRESS, { input });
+    const { setOrderShippingAddress: order } = await this.request(
+      SET_ORDERSHIPPINGADDRESS,
+      { input }
+    );
     this.store.activeOrder = order;
     return order;
   }
@@ -145,9 +148,10 @@ export class VendureClient {
   }
 
   async transitionOrderToState(state: string): Promise<Order> {
-    const {
-      transitionOrderToState,
-    } = await this.request(TRANSITION_ORDER_TO_STATE, { state });
+    const { transitionOrderToState } = await this.request(
+      TRANSITION_ORDER_TO_STATE,
+      { state }
+    );
     this.validateResult(transitionOrderToState);
     this.store.activeOrder = transitionOrderToState;
     return transitionOrderToState;
