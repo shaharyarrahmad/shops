@@ -5,7 +5,6 @@ import { VendureLogger } from '@vendure/core';
 const { combine, errors } = format;
 
 export class CloudLogger implements VendureLogger {
-
   private readonly name: string;
 
   constructor(private logger: Logger) {
@@ -35,18 +34,16 @@ export class CloudLogger implements VendureLogger {
   private getLabels(context?: string) {
     return { module: context, name: this.name };
   }
-
 }
 
 const cloudLoggingWinston = new LoggingWinston({
-  logName: `winston_${process.env.K_SERVICE}`
+  logName: `winston_${process.env.SHOP_ENV}`,
 });
 
 const winstonLogger = winston.createLogger({
-  format: combine(
-    errors({ stack: true })),
+  format: combine(errors({ stack: true })),
   level: 'info',
-  transports: [cloudLoggingWinston]
+  transports: [cloudLoggingWinston],
 });
 
 export const cloudLogger = new CloudLogger(winstonLogger);
