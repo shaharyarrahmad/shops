@@ -23,8 +23,6 @@ jobs:
           project_id: pinelab-shops
           service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
           export_default_credentials: true
-      - name: list files
-        run: 'ls'
       - name: Set KeyFile
         run: 'echo "$KEYFILE" > directus_key.json'
         env:
