@@ -37,3 +37,5 @@ vendure/static/email/test-emails/
 !.vscode/tasks.json
 !/vendure/src/__admin-ui/dist/
 /packages/e2e/tests_output/
+/directus-cms/uploads/
+/directus-cms/directus_key.json
