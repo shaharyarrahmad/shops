@@ -1,6 +1,6 @@
 #!/bin/bash
 export ENV_VARS=$(paste -sd, .env)
-gcloud run deploy shops-api \
+gcloud run deploy directus-cms \
             --quiet \
             --image "eu.gcr.io/pinelab-shops/directus-cms:latest" \
             --region "europe-west1" \
