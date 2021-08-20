@@ -32,5 +32,4 @@ export class TaxHelper {
       totalVAT: order.totalWithTax - order.total,
     };
   }
-
 }
