@@ -22,10 +22,10 @@ export class TaxHelper {
     const taxTotal: TaxTotal = {};
     order.taxSummary.forEach((summary) => {
       if (summary.taxRate > 0) {
-        taxTotal[summary.taxRate] = summary.taxTotal;
+        const existingAmount = taxTotal[summary.taxRate] || 0;
+        taxTotal[summary.taxRate] = existingAmount + summary.taxTotal;
       }
     });
-    Logger.error(JSON.stringify(order.taxSummary));
     return {
       taxTotal,
       totalIncVAT: order.totalWithTax,
