@@ -25,6 +25,7 @@ import { MolliePlugin } from 'vendure-plugin-mollie';
 import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import { cloudLogger } from './logger';
+import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.strategy';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -65,6 +66,9 @@ export const config: VendureConfig = {
     database: process.env.DATABASE_NAME,
     migrations: [path.join(__dirname, '../migrations/*.ts')],
   },
+/*  TODO taxOptions: {
+    taxZoneStrategy: new ShippingBasedTaxZoneStrategy()
+  },*/
   paymentOptions: {
     paymentMethodHandlers: [],
   },
