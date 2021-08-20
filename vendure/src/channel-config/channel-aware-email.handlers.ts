@@ -26,10 +26,9 @@ const orderConfirmationHandler = new EmailEventListener('order-confirmation')
     `Bedankt voor je bestelling bij {{ channelName }} met nr. {{ order.code }}`
   )
   .setTemplateVars((event) => {
-    const summary = TaxHelper.getTaxSummary(event.order);
     return {
       order: event.order,
-      summary,
+      summary: TaxHelper.getTaxSummary(event.order),
       ...event.data.config,
     };
   });
