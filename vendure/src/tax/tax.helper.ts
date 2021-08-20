@@ -1,4 +1,4 @@
-import { Order } from '@vendure/core';
+import { Logger, Order } from '@vendure/core';
 
 /**
  * Tax summary for one or multiple orders
@@ -25,6 +25,7 @@ export class TaxHelper {
         taxTotal[summary.taxRate] = summary.taxTotal;
       }
     });
+    Logger.error(JSON.stringify(order.taxSummary));
     return {
       taxTotal,
       totalIncVAT: order.totalWithTax,
