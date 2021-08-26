@@ -91,3 +91,12 @@ $link-focus-border: $primary;*/
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+.title {
+  text-transform: uppercase;
+}
+
+hr {
+    height: 2px;
+    background-color: $primary;
+}

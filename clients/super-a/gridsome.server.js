@@ -68,7 +68,7 @@ module.exports = async function (api) {
     data.portfolio.subpages.forEach((page) => {
       createPage({
         path: `/portfolio/${page.slug}`,
-        component: './src/templates/PortfolioCategory.vue',
+        component: './src/templates/Projects.vue',
         context: {
           data,
           page,
