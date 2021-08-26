@@ -66,7 +66,7 @@ export const config: VendureConfig = {
     database: process.env.DATABASE_NAME,
     migrations: [path.join(__dirname, '../migrations/*.ts')],
   },
-/*  TODO taxOptions: {
+  /*  TODO taxOptions: {
     taxZoneStrategy: new ShippingBasedTaxZoneStrategy()
   },*/
   paymentOptions: {
