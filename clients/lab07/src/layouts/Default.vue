@@ -20,13 +20,6 @@
         <div class="container">
           <NavBar />
 
-          <div style="background-color: pink">
-            <h4>
-              We zijn de site nog aan het testen, binnenkort zijn de producten
-              van LAB07 hier beschikbaar!
-            </h4>
-          </div>
-
           <slot />
           <br />
           <br />
