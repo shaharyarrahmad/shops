@@ -7,7 +7,7 @@
       :activeOrder="activeOrder"
     >
       <g-link
-        v-for="link of $context.data.links"
+        v-for="link of links"
         :to="link.url"
         :key="link.url"
         class="navbar-item"
@@ -46,6 +46,24 @@ export default {
     showFooter: {
       default: true,
     },
+  },
+  data() {
+    return {
+      links: [
+        {
+          name: "Shop",
+          url: "/shop/"
+        },
+        {
+          name: "Tattoos",
+          url: "/tattoos/"
+        },
+        {
+          name: "Contact",
+          url: "/contact/"
+        }
+      ],
+    }
   },
   components: {
     ShopNavBar,
