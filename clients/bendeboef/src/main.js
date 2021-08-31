@@ -53,11 +53,4 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('QuantityInput', QuantityInput);
   Vue.component('Layout', Layout);
   configureVue(Vue, { router, head, isClient });
-  Vue.mixin({
-    methods: {
-      getImage(id, key) {
-        return `https://content.pinelab.studio/assets/${id}?key=${key}`
-      },
-    },
-  });
 }
