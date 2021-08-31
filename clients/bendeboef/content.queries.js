@@ -32,5 +32,5 @@ const GET_HOME = `{
 module.exports = {
   GET_GLOBAL,
   GET_HOME,
-  PREFIX
+  PREFIX,
 };

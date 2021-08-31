@@ -6,7 +6,7 @@
 
       <div class="columns">
         <div class="column is-6">
-          <hr style="margin-top: 0;">
+          <hr style="margin-top: 0" />
           <template v-for="page in $context.data.portfolio.subpages">
             <g-link :to="`/portfolio/${page.slug}`">
               <h2 class="title is-2 is-link pb-4">{{ page.title }}</h2>
@@ -23,7 +23,6 @@
       </div>
 
       <div class="columns is-mobile is-multiline">
-
         <!-- 3 -->
         <div class="column is-4">
           <figure class="image is-square">
@@ -85,17 +84,15 @@
             />
           </figure>
         </div>
-
       </div>
-
     </template>
   </Layout>
 </template>
 <script>
 export default {
   metaInfo: {
-    title: 'Portfolio'
-  }
+    title: 'Portfolio',
+  },
 };
 </script>
 <style>

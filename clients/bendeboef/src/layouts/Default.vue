@@ -51,19 +51,19 @@ export default {
     return {
       links: [
         {
-          name: "Shop",
-          url: "/shop/"
+          name: 'Shop',
+          url: '/shop/',
         },
         {
-          name: "Tattoos",
-          url: "/tattoos/"
+          name: 'Tattoos',
+          url: '/tattoos/',
         },
         {
-          name: "Contact",
-          url: "/contact/"
-        }
+          name: 'Contact',
+          url: '/contact/',
+        },
       ],
-    }
+    };
   },
   components: {
     ShopNavBar,

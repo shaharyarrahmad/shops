@@ -1,8 +1,12 @@
 <template>
   <Layout>
     <template #hero>
-      <section class="hero is-primary is-halfheight hero-background"
-               :style="`background-image: url(' ${ getDefaultImage($context.home.hero_image.id)} ')`" >
+      <section
+        class="hero is-primary is-halfheight hero-background"
+        :style="`background-image: url(' ${getDefaultImage(
+          $context.home.hero_image.id
+        )} ')`"
+      >
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container has-text-centered">
@@ -24,16 +28,10 @@
         <h1 class="title">{{ $context.home.intro_title }}</h1>
         <p v-html="$context.home.intro_text"></p>
         <br />
-        <g-link
-          class="button mr-4 mb-4"
-          :to="$context.home.button1_link"
-        >
+        <g-link class="button mr-4 mb-4" :to="$context.home.button1_link">
           {{ $context.home.button1_text }}
         </g-link>
-        <g-link
-          class="button mr-4 mb-4"
-          :to="$context.home.button2_link"
-        >
+        <g-link class="button mr-4 mb-4" :to="$context.home.button2_link">
           {{ $context.home.button2_text }}
         </g-link>
         <hr />
