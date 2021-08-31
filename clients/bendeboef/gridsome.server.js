@@ -7,15 +7,15 @@ module.exports = async function(api) {
     const [
       shopData,
       globalData,
-      homeData,
+      homeData
     ] = await Promise.all([
       gridsome.getShopData(),
       graphql(GET_GLOBAL),
-      graphql(GET_HOME),
+      graphql(GET_HOME)
     ]);
     const { products, collections, productsPerCollection } = shopData;
-    const { data: {[PREFIX]: {bdb_algemeen: global }}} = globalData;
-    const { data: {[PREFIX]: {bdb_home: home }}} = homeData;
+    const { data: { [PREFIX]: { bdb_algemeen: global } } } = globalData;
+    const { data: { [PREFIX]: { bdb_home: home } } } = homeData;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
@@ -131,5 +131,7 @@ module.exports = async function(api) {
         breadcrumb: { Home, Contact }
       }
     });
+
   });
+
 };

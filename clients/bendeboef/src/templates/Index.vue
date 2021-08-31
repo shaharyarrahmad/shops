@@ -2,7 +2,7 @@
   <Layout>
     <template #hero>
       <section class="hero is-primary is-halfheight hero-background"
-               :style="`background-image: url('/assets/${ $context.home.hero_image.id }?key=default')`" >
+               :style="`background-image: url(' ${ getDefaultImage($context.home.hero_image.id)} ')`" >
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container has-text-centered">
