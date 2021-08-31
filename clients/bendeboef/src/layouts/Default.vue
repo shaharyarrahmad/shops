@@ -28,7 +28,7 @@
 
     <footer v-if="showFooter" class="footer">
       <div class="content has-text-centered is-dark">
-        <a :href="$context.data.instagram" target="_blank">
+        <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
         • Ben de Boef Tattoo's •

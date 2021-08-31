@@ -1,15 +1,16 @@
 <template>
   <Layout>
     <template #hero>
-      <section class="hero is-primary is-halfheight hero-background">
+      <section class="hero is-primary is-halfheight hero-background"
+               :style="`background-image: url(${ getImage($context.home.hero_image.id, 'default') })`" >
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container has-text-centered">
             <p class="title">
-              {{ $context.data.title }}
+              {{ $context.home.title }}
             </p>
             <p class="subtitle">
-              {{ $context.data.subTitle }}
+              {{ $context.home.subTitle }}
             </p>
           </div>
         </div>
@@ -20,16 +21,20 @@
 
     <template #content>
       <section id="bio">
-        <h1 class="title">{{ $context.data.bioTitle }}</h1>
-        <p v-html="$context.data.bio"></p>
+        <h1 class="title">{{ $context.home.intro_title }}</h1>
+        <p v-html="$context.home.intro_text"></p>
         <br />
         <g-link
-          v-for="cta of $context.data.ctas"
-          :key="cta.link"
           class="button mr-4 mb-4"
-          :to="cta.link"
+          :to="$context.home.button1_link"
         >
-          {{ cta.text }}
+          {{ $context.home.button1_text }}
+        </g-link>
+        <g-link
+          class="button mr-4 mb-4"
+          :to="$context.home.button2_link"
+        >
+          {{ $context.home.button2_text }}
         </g-link>
         <hr />
         <br />
@@ -72,7 +77,6 @@ export default {
 </script>
 <style>
 .hero-background {
-  background-image: url('/img/ben-de-boef-tattoo.jpeg');
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;

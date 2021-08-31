@@ -1,19 +1,21 @@
 const { GridsomeService } = require('pinelab-storefront-client');
-const data = require('./content-data.json');
-const { GET_GLOBAL } = require('./content.queries');
+const { GET_GLOBAL, GET_HOME, PREFIX } = require('./content.queries');
 
 module.exports = async function(api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const [
       shopData,
-      globalData
+      globalData,
+      homeData,
     ] = await Promise.all([
       gridsome.getShopData(),
-      graphql(GET_GLOBAL)
+      graphql(GET_GLOBAL),
+      graphql(GET_HOME),
     ]);
     const { products, collections, productsPerCollection } = shopData;
-    const { data: {Directus: {bdb_algemeen: global }}} = globalData;
+    const { data: {[PREFIX]: {bdb_algemeen: global }}} = globalData;
+    const { data: {[PREFIX]: {bdb_home: home }}} = homeData;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
@@ -29,6 +31,19 @@ module.exports = async function(api) {
     const Checkout = '/checkout/';
     const Tattoos = '/tattoos/';
     const Contact = '/contact/';
+
+    // ----------------- Index ---------------------
+    createPage({
+      path: '/',
+      component: './src/templates/Index.vue',
+      context: {
+        global,
+        home,
+        products,
+        collections,
+        featuredProducts
+      }
+    });
 
     // ----------------- Shop ---------------------
     createPage({
@@ -70,18 +85,6 @@ module.exports = async function(api) {
           breadcrumb: { Home, Shop, [product.name]: product.slug }
         }
       });
-    });
-
-    // ----------------- ProductOverview ---------------------
-    createPage({
-      path: '/',
-      component: './src/templates/Index.vue',
-      context: {
-        global,
-        products,
-        collections,
-        featuredProducts
-      }
     });
 
     // ----------------- Cart ---------------------
