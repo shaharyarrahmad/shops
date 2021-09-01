@@ -4,7 +4,6 @@
       <b-image
         :src="small"
         :alt="alt"
-        ratio="1by1"
         class="is-clickable"
       />
     </div>
