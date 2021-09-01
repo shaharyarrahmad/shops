@@ -3,9 +3,9 @@
     <template #hero>
       <section
         class="hero is-primary is-halfheight hero-background"
-        :style="`background-image: url(' ${getDefaultImage(
+        :style="`background-image: url(${getDefaultImage(
           $context.home.hero_image.id
-        )} ')`"
+        )})`"
       >
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
