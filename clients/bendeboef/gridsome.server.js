@@ -1,13 +1,14 @@
 const { GridsomeService } = require('pinelab-storefront-client');
-const { GET_GLOBAL, GET_HOME, PREFIX } = require('./content.queries');
+const { GET_GLOBAL, GET_HOME, PREFIX, GET_NEWS } = require('./content.queries');
 
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const [shopData, globalData, homeData] = await Promise.all([
+    const [shopData, globalData, homeData, newsData] = await Promise.all([
       gridsome.getShopData(),
       graphql(GET_GLOBAL),
       graphql(GET_HOME),
+      graphql(GET_NEWS),
     ]);
     const { products, collections, productsPerCollection } = shopData;
     const {
@@ -20,6 +21,11 @@ module.exports = async function (api) {
         [PREFIX]: { bdb_home: home },
       },
     } = homeData;
+    const {
+      data: {
+        [PREFIX]: { bdb_news: news },
+      },
+    } = newsData;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
@@ -43,6 +49,7 @@ module.exports = async function (api) {
       context: {
         global,
         home,
+        news,
         products,
         collections,
         featuredProducts,

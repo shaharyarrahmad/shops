@@ -10,11 +10,11 @@
         <!-- Hero content: will be in the middle -->
         <div class="hero-body">
           <div class="container has-text-centered">
-            <p class="title">
-              {{ $context.home.title }}
-            </p>
+            <h1 class="title">
+              {{ $context.home.hero_title }}
+            </h1>
             <p class="subtitle">
-              {{ $context.home.subTitle }}
+              {{ $context.home.hero_subtitle }}
             </p>
           </div>
         </div>
@@ -25,7 +25,7 @@
 
     <template #content>
       <section id="bio">
-        <h1 class="title">{{ $context.home.intro_title }}</h1>
+        <h2 class="title">{{ $context.home.intro_title }}</h2>
         <p v-html="$context.home.intro_text"></p>
         <br />
         <g-link class="button mr-4 mb-4" :to="$context.home.button1_link">
@@ -39,7 +39,7 @@
       </section>
 
       <section id="featured-products">
-        <h1 class="title">Latest Products</h1>
+        <h2 class="title">Latest Products</h2>
         <div class="columns is-multiline is-mobile">
           <div
             class="column is-half-mobile mb-4"
@@ -55,6 +55,34 @@
         </div>
         <hr />
       </section>
+
+      <section id="news">
+        <h2 class="title">News</h2>
+        <div class="columns is-multiline is-mobile">
+          <div
+            class="column is-half-mobile is-3-desktop is-3-tablet mb-4"
+            v-for="news of $context.news"
+            :key="news.id"
+          >
+            <PopupImage
+              :small="getSquareImage(news.image.id)"
+              :alt="news.image.title"
+              :large="getDefaultImage(news.image.id)"
+              class="mb-4"
+            />
+            <h2 class="title is-4">{{ news.title }}</h2>
+            <div v-html="news.text"></div>
+          </div>
+        </div>
+        <hr />
+      </section>
+
+      <!--      <b-modal v-model="showImageModal">
+              <p class="image">
+                <img :src="getPreview(asset)" />
+              </p>
+            </b-modal>-->
+
     </template>
   </Layout>
 </template>
@@ -62,15 +90,17 @@
 <script>
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
 import { hydrate } from 'pinelab-storefront-client';
+import PopupImage from './PopupImage';
 
 export default {
   components: {
-    ProductCard,
+    PopupImage,
+    ProductCard
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
-  },
+  }
 };
 </script>
 <style>

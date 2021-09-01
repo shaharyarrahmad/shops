@@ -29,8 +29,24 @@ const GET_HOME = `{
   }
 }`;
 
+const GET_NEWS = `{
+  ${PREFIX} {
+    bdb_news {
+      id
+      sort
+      title
+      text
+      image {
+        id
+        title
+      }
+    }
+  }
+}`;
+
 module.exports = {
   GET_GLOBAL,
   GET_HOME,
+  GET_NEWS,
   PREFIX,
 };
