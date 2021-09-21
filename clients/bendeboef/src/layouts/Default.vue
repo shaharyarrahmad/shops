@@ -59,6 +59,10 @@ export default {
           url: '/tattoos/',
         },
         {
+          name: 'Bio',
+          url: '/bio/',
+        },
+        {
           name: 'Contact',
           url: '/contact/',
         },

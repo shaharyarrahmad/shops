@@ -1,31 +1,15 @@
 const { GridsomeService } = require('pinelab-storefront-client');
-const { GET_GLOBAL, GET_HOME, PREFIX, GET_NEWS } = require('./content.queries');
+const { GET_CONTENT } = require('./content.queries');
 
-module.exports = async function (api) {
+module.exports = async function(api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const [shopData, globalData, homeData, newsData] = await Promise.all([
+    const [shopData, content] = await Promise.all([
       gridsome.getShopData(),
-      graphql(GET_GLOBAL),
-      graphql(GET_HOME),
-      graphql(GET_NEWS),
+      graphql(GET_CONTENT)
     ]);
     const { products, collections, productsPerCollection } = shopData;
-    const {
-      data: {
-        [PREFIX]: { bdb_algemeen: global },
-      },
-    } = globalData;
-    const {
-      data: {
-        [PREFIX]: { bdb_home: home },
-      },
-    } = homeData;
-    const {
-      data: {
-        [PREFIX]: { bdb_news: news },
-      },
-    } = newsData;
+    const {data: {Directus: {bdb_algemeen: global, bdb_home: home, bdb_news: news, bdb_bio: bio}}} = content;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
@@ -40,6 +24,7 @@ module.exports = async function (api) {
     const Cart = '/cart/';
     const Checkout = '/checkout/';
     const Tattoos = '/tattoos/';
+    const Bio = '/bio/';
     const Contact = '/contact/';
 
     // ----------------- Index ---------------------
@@ -52,8 +37,8 @@ module.exports = async function (api) {
         news,
         products,
         collections,
-        featuredProducts,
-      },
+        featuredProducts
+      }
     });
 
     // ----------------- Shop ---------------------
@@ -64,8 +49,8 @@ module.exports = async function (api) {
         global,
         products,
         collections,
-        breadcrumb: { Home, Shop },
-      },
+        breadcrumb: { Home, Shop }
+      }
     });
 
     // ----------------- Collections ---------------------
@@ -79,8 +64,8 @@ module.exports = async function (api) {
             products: productsPerCollection,
             collection,
             collections,
-            breadcrumb: { Home, Shop, [collection.name]: collection.slug },
-          },
+            breadcrumb: { Home, Shop, [collection.name]: collection.slug }
+          }
         });
       }
     );
@@ -93,8 +78,8 @@ module.exports = async function (api) {
         context: {
           global,
           product,
-          breadcrumb: { Home, Shop, [product.name]: product.slug },
-        },
+          breadcrumb: { Home, Shop, [product.name]: product.slug }
+        }
       });
     });
 
@@ -104,8 +89,8 @@ module.exports = async function (api) {
       component: './src/templates/Cart.vue',
       context: {
         global,
-        breadcrumb: { Home, Shop, Cart },
-      },
+        breadcrumb: { Home, Shop, Cart }
+      }
     });
 
     // ----------------- checkout ---------------------
@@ -113,15 +98,15 @@ module.exports = async function (api) {
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
       context: {
-        global,
-      },
+        global
+      }
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global },
+      context: { global }
     });
 
     // ----------------- static pages ---------------------
@@ -130,8 +115,18 @@ module.exports = async function (api) {
       component: './src/templates/Tattoos.vue',
       context: {
         global,
-        breadcrumb: { Home, Tattoos },
-      },
+        breadcrumb: { Home, Tattoos }
+      }
+    });
+
+    createPage({
+      path: '/bio/',
+      component: './src/templates/Bio.vue',
+      context: {
+        global,
+        bio,
+        breadcrumb: { Home, Tattoos }
+      }
     });
 
     createPage({
@@ -139,8 +134,8 @@ module.exports = async function (api) {
       component: './src/templates/Contact.vue',
       context: {
         global,
-        breadcrumb: { Home, Contact },
-      },
+        breadcrumb: { Home, Contact }
+      }
     });
   });
 };
