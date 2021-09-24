@@ -25,7 +25,7 @@ import { MolliePlugin } from 'vendure-plugin-mollie';
 import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import { cloudLogger } from './logger';
-import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.strategy';
+import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -41,7 +41,7 @@ export const config: VendureConfig = {
     stockAllocationStrategy: new CustomStockAllocationStrategy(),
   },
   apiOptions: {
-    port: (process.env.PORT as unknown as number) || 3000,
+    port: process.env.PORT! as unknown as number || 3000,
     adminApiPath: 'admin-api',
     adminApiPlayground: {}, // turn this off for production
     adminApiDebug: false, // turn this off for production
@@ -52,7 +52,7 @@ export const config: VendureConfig = {
   authOptions: {
     superadminCredentials: {
       identifier: 'admin',
-      password: process.env.SUPERADMIN_PASS as string,
+      password: process.env.SUPERADMIN_PASS!,
     },
     tokenMethod: 'bearer',
   },
@@ -60,10 +60,10 @@ export const config: VendureConfig = {
     type: 'mysql',
     synchronize: false,
     logging: false,
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
+    username: process.env.DATABASE_USER!,
+    password: process.env.DATABASE_PASSWORD!,
+    host: process.env.DATABASE_HOST!,
+    database: process.env.DATABASE_NAME!,
     migrations: [path.join(__dirname, '../migrations/*.ts')],
   },
   /*  TODO taxOptions: {
@@ -79,9 +79,9 @@ export const config: VendureConfig = {
       projectId: process.env.GOOGLE_PROJECT_ID!,
       location: 'europe-west1',
       authSecret: process.env.CLOUD_TASKS_SECRET!,
-      queueSuffix: process.env.SHOP_ENV,
+      queueSuffix: process.env.SHOP_ENV!,
     }),
-    DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY as string),
+    DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY!),
     WebhookPlugin.init({
       httpMethod: 'POST',
       delay: 3000,
@@ -95,6 +95,12 @@ export const config: VendureConfig = {
     MolliePlugin.init(process.env.VENDURE_HOST!),
     ChannelConfigPlugin,
     GoogleStoragePlugin,
+    MyparcelPlugin.init(
+      {
+        'demo': process.env.MYPARCEL_DEMO!,
+      },
+      process.env.VENDURE_HOST!
+    ),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
@@ -114,7 +120,7 @@ export const config: VendureConfig = {
         debug: false,
         auth: {
           user: 'noreply@pinelab.studio',
-          pass: process.env.ZOHO_PASS as string,
+          pass: process.env.ZOHO_PASS!,
         },
       },
       handlers: channelAwareEmailHandlers,
