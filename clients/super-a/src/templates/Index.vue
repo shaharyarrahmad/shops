@@ -18,23 +18,27 @@
 
     <template #content>
       <section id="bio">
-        <h1 class="title is-1">{{ $context.data.bioTitle }}</h1>
-        <p v-html="$context.data.bio"></p>
+        <h1 class="title is-1">{{ $context.home.intro_title }}</h1>
+        <p v-html="$context.home.intro_text"></p>
         <br />
         <g-link
-          v-for="cta of $context.data.ctas"
-          :key="cta.link"
           class="button mr-4 mb-4"
-          :to="cta.link"
+          :to="$context.home.button1_url"
         >
-          {{ cta.text }}
+          {{ $context.home.button1_text }}
+        </g-link>
+        <g-link
+          class="button mr-4 mb-4"
+          :to="$context.home.button2_url"
+        >
+          {{ $context.home.button2_text }}
         </g-link>
         <hr />
         <br />
       </section>
 
       <section id="featured-products">
-        <h2 class="title is-1">New in shop</h2>
+        <h2 class="title is-1">{{ $context.home.shop_section_title }}</h2>
         <div class="columns is-multiline is-mobile">
           <div
             class="column is-half-mobile mb-4"
@@ -52,10 +56,23 @@
       </section>
 
       <section id="news">
-        <h2 class="title is-1">News</h2>
-        <p>
-          Soon more shows, more prints or whatever news you want to put here!
-        </p>
+        <h2 class="title is-1">{{ $context.home.news_section_title }}</h2>
+
+        <div class="columns is-multiline">
+          <div class="column is-6"
+               v-for="item of $context.news"
+          >
+            <PopupImage
+              :small="getSquareImage(item.image.id)"
+              :alt="item.image.title"
+              :large="getDefaultImage(item.image.id)"
+              class="mb-4"
+            />
+            <h3 class="title is-3">{{  item.title }}</h3>
+            <p v-html="item.text"></p>
+
+          </div>
+        </div>
         <hr />
       </section>
     </template>
@@ -92,5 +109,8 @@ export default {
   background-attachment: fixed;
   background-size: cover;
   background-color: #999;
+}
+.news-item-image {
+  height: 300px;
 }
 </style>

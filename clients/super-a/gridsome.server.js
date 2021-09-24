@@ -1,11 +1,16 @@
 const { GridsomeService } = require('pinelab-storefront-client');
-const data = require('./content-data.json');
+const { GET_CONTENT } = require('./content.queries');
 
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, collections, productsPerCollection } =
-      await gridsome.getShopData();
+    const [shopData, content] = await Promise.all([
+      gridsome.getShopData(),
+      graphql(GET_CONTENT)
+    ]);
+    const { products, collections, productsPerCollection } = shopData;
+    const {data: {Directus: {supera_algemeen: global, supera_home: home, supera_news: news}}} = content;
+
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
     );
@@ -23,10 +28,12 @@ module.exports = async function (api) {
       path: '/',
       component: './src/templates/Index.vue',
       context: {
+        global,
+        home,
+        news,
         products,
         collections,
         featuredProducts,
-        data,
       },
     });
 
@@ -35,9 +42,9 @@ module.exports = async function (api) {
       path: '/shop/',
       component: './src/templates/Shop.vue',
       context: {
+        global,
         products,
         collections,
-        data,
         breadcrumb: { Home, Shop },
       },
     });
@@ -48,8 +55,8 @@ module.exports = async function (api) {
         path: `/shop/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
+          global,
           product,
-          data,
           breadcrumb: { Home, Shop, [product.name]: product.slug },
         },
       });
@@ -60,17 +67,17 @@ module.exports = async function (api) {
       path: '/portfolio/',
       component: './src/templates/Portfolio.vue',
       context: {
-        data,
+        global,
         breadcrumb: { Home, Portfolio },
       },
     });
 
-    data.portfolio.subpages.forEach((page) => {
+/*    data.portfolio.subpages.forEach((page) => {
       createPage({
         path: `/portfolio/${page.slug}`,
         component: './src/templates/Projects.vue',
         context: {
-          data,
+          global,
           page,
           breadcrumb: {
             Home,
@@ -79,13 +86,13 @@ module.exports = async function (api) {
           },
         },
       });
-    });
+    });*/
 
     createPage({
       path: '/bio/',
       component: './src/templates/Bio.vue',
       context: {
-        data,
+        global,
         breadcrumb: { Home, Bio },
       },
     });
@@ -95,7 +102,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        data,
+        global,
         breadcrumb: { Home, Shop, Cart },
       },
     });
@@ -104,14 +111,14 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { data },
+      context: { global },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { data },
+      context: { global },
     });
   });
 };

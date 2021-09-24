@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
+    "graphql-tag": "^2.12.5",
     "gridsome": "0.7.23",
     "http-server": "^0.12.3",
     "rimraf": "^3.0.2",

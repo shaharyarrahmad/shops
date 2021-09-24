@@ -8,7 +8,7 @@
       cartIcon="cart"
     >
       <g-link
-        v-for="link of $context.data.links"
+        v-for="link of links"
         :to="link.url"
         :key="link.url"
         class="navbar-item"
@@ -29,14 +29,14 @@
 
     <footer v-if="showFooter" class="footer">
       <div class="content has-text-centered is-dark">
-        <a :href="$context.data.instagram" target="_blank">
+        <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
         <br />
         <br />
         Super A •
-        <a :href="`mailto:${$context.data.email}`" target="_blank">{{
-          $context.data.email
+        <a :href="`mailto:${$context.global.email_adressen[0]}`" target="_blank">{{
+          $context.global.email_adressen[0]
         }}</a>
         •
         <a class="has-text-grey" href="https://pinelab.studio/" target="_blank"
@@ -59,6 +59,24 @@ export default {
   components: {
     ShopNavBar,
     Breadcrumb,
+  },
+  data() {
+    return {
+      links: [
+        {
+          name: "Shop",
+          url: "/shop/"
+        },
+        {
+          name: "Portfolio",
+          url: "/portfolio/"
+        },
+        {
+          name: "Bio",
+          url: "/bio/"
+        }
+      ],
+    }
   },
   computed: {
     activeOrder() {

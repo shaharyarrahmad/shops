@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div @click="showImageModal = true">
-      <b-image
-        :src="getPreview(asset)"
-        :alt="product.name"
-        class="is-clickable"
-      />
-    </div>
+    <PopupImage
+      :small="getPreview(asset)"
+      :alt="product.name"
+      :large="getPreview(asset)"
+      class="mb-4"
+    />
     <div class="columns mt-2 is-5 is-mobile">
       <div
         class="column is-one-fifth"
@@ -24,11 +23,6 @@
       </div>
     </div>
 
-    <b-modal v-model="showImageModal">
-      <p class="image">
-        <img :src="getPreview(asset)" />
-      </p>
-    </b-modal>
   </div>
 </template>
 <script>
@@ -49,7 +43,6 @@ export default {
   data() {
     return {
       selectedAsset: undefined,
-      showImageModal: false,
     };
   },
   computed: {

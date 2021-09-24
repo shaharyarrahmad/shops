@@ -1,32 +1,4 @@
 {
-  "bioTitle": "Stefan Thelen’s anti-superhero identity",
-  "bio": "Stefan Thelen/ Super A 1981 Goes, The Netherlands. Super A is a Dutch artist who uses traditional painting technique and a knack for design to create compositions that manipulate familiar iconography into mind-bending and inquisitive pieces. ",
-  "ctas": [
-    {
-      "text": "Checkout my projects",
-      "link": "/portfolio/"
-    },
-    {
-      "text": "Get to the shoppa",
-      "link": "/shop/"
-    }
-  ],
-  "links": [
-    {
-      "name": "Shop",
-      "url": "/shop/"
-    },
-    {
-      "name": "Portfolio",
-      "url": "/portfolio/"
-    },
-    {
-      "name": "Bio",
-      "url": "/bio/"
-    }
-  ],
-  "instagram": "https://www.instagram.com/mr.super_a",
-  "email": "info@super-a.nl",
   "portfolio": {
     "title": "Portfolio",
     "subpages": [

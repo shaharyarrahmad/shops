@@ -14,8 +14,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rm -rf lib && yarn scss && yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
-    "dev-build": "yarn tsc && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
+    "build": "rm -rf lib && yarn scss && yarn tsc --build && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
+    "dev-build": "yarn tsc --build && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
     "scss": "node-sass src/scss/styles.scss -o src/ministore --output-style compressed",
     "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'"
   },
