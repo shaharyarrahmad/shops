@@ -11682,7 +11682,7 @@ vendure-plugin-dutch-postalcode@1.2.5:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-1.2.5.tgz#bfbad24374b325ca3c426b27a524ea0a368c2a16"
   integrity sha512-5Io7Hb+PR5BsaJc7q70DsOAIWcWfQva0UemREKkefoLBHB8RCAi6oT3Skb7bikTgNI+DXFOtr9RWNlhG3jbqrw==
 
-vendure-plugin-google-cloud-tasks@1.2.5:
+vendure-plugin-google-cloud-tasks@1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-1.2.4.tgz#2041fb8497079b2815e5d59f8427ff29bc853a61"
   integrity sha512-3S1HPw/hALU5yfmRVJBzPabzN3lZg5FjhVUIP+gzTA5zpu2OkeMm56Bc3159fLF0a3YqS+Q+XgTn1861CoguZg==
