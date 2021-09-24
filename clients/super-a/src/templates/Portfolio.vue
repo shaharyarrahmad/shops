@@ -1,15 +1,15 @@
 <template>
   <Layout>
     <template #content>
-      <h1 class="title is-1">{{ $context.data.portfolio.title }}</h1>
+      <h1 class="title is-1">Portfolio</h1>
       <br />
 
       <div class="columns">
         <div class="column is-6">
           <hr style="margin-top: 0" />
-          <template v-for="page in $context.data.portfolio.subpages">
-            <g-link :to="`/portfolio/${page.slug}`">
-              <h2 class="title is-2 is-link pb-4">{{ page.title }}</h2>
+          <template v-for="category in $context.categories">
+            <g-link :to="`/portfolio/${category}`">
+              <h2 class="title is-2 is-link pb-4">{{ category }}</h2>
             </g-link>
           </template>
         </div>

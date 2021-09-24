@@ -26,6 +26,23 @@ const GET_CONTENT = gql`{
             title
             text
         }
+        supera_projects {
+            title
+            subtitle
+            description
+            main_image {
+                id
+                title
+            }
+            images {
+                directus_files_id {
+                    id
+                    title
+                }
+            }
+            categories
+            featured
+        }
     }
 }`;
 

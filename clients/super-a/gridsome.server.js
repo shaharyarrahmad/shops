@@ -1,7 +1,7 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 const { GET_CONTENT } = require('./content.queries');
 
-module.exports = async function (api) {
+module.exports = async function(api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const [shopData, content] = await Promise.all([
@@ -9,7 +9,16 @@ module.exports = async function (api) {
       graphql(GET_CONTENT)
     ]);
     const { products, collections, productsPerCollection } = shopData;
-    const {data: {Directus: {supera_algemeen: global, supera_home: home, supera_news: news}}} = content;
+    const {
+      data: {
+        Directus: {
+          supera_algemeen: global,
+          supera_home: home,
+          supera_news: news,
+          supera_projects: projects
+        }
+      }
+    } = content;
 
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
@@ -33,8 +42,8 @@ module.exports = async function (api) {
         news,
         products,
         collections,
-        featuredProducts,
-      },
+        featuredProducts
+      }
     });
 
     // ----------------- Shop ---------------------
@@ -45,8 +54,8 @@ module.exports = async function (api) {
         global,
         products,
         collections,
-        breadcrumb: { Home, Shop },
-      },
+        breadcrumb: { Home, Shop }
+      }
     });
 
     // ----------------- ProductDetail ---------------------
@@ -57,44 +66,56 @@ module.exports = async function (api) {
         context: {
           global,
           product,
-          breadcrumb: { Home, Shop, [product.name]: product.slug },
-        },
+          breadcrumb: { Home, Shop, [product.name]: product.slug }
+        }
       });
     });
 
-    // ----------------- Static pages ---------------------
+    // ----------------- Portfolio ---------------------
+    const featuredProjects = projects.filter(p => p.featured);
+    const projectsPerCategory = new Map();
+    projects.forEach(project => project.categories.forEach(category => {
+      const existingProjects = projectsPerCategory[category] || [];
+      existingProjects.push(project);
+      projectsPerCategory.set(category, existingProjects);
+    }));
+    const categories = Array.from(projectsPerCategory.keys());
+
     createPage({
       path: '/portfolio/',
       component: './src/templates/Portfolio.vue',
       context: {
         global,
-        breadcrumb: { Home, Portfolio },
-      },
+        categories,
+        projects: featuredProjects,
+        breadcrumb: { Home, Portfolio }
+      }
     });
 
-/*    data.portfolio.subpages.forEach((page) => {
+    // ----------------- Portfolio categories---------------------
+    projectsPerCategory.forEach((projects, category) => {
       createPage({
-        path: `/portfolio/${page.slug}`,
+        path: `/portfolio/${category}`,
         component: './src/templates/Projects.vue',
         context: {
           global,
-          page,
+          projects,
           breadcrumb: {
             Home,
             Portfolio,
-            [page.title]: `/portfolio/${page.slug}`,
+            [category]: `/portfolio/${category}`,
           },
         },
       });
-    });*/
+    });
 
     createPage({
       path: '/bio/',
       component: './src/templates/Bio.vue',
       context: {
         global,
-        breadcrumb: { Home, Bio },
-      },
+        breadcrumb: { Home, Bio }
+      }
     });
 
     // ----------------- Cart ---------------------
@@ -103,22 +124,22 @@ module.exports = async function (api) {
       component: './src/templates/Cart.vue',
       context: {
         global,
-        breadcrumb: { Home, Shop, Cart },
-      },
+        breadcrumb: { Home, Shop, Cart }
+      }
     });
 
     // ----------------- Checkout ---------------------
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { global },
+      context: { global }
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global },
+      context: { global }
     });
   });
 };
