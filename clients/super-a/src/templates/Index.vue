@@ -2,7 +2,7 @@
   <Layout>
     <template #hero>
       <!--      https://gist.github.com/leodrummond/bc3fbb44919a1e2d796ff2e4742514d0-->
-      <section class="hero is-halfheight">
+      <section class="hero">
         <div class="hero">
           <ClientOnly>
             <video id="bgvid" playsinline autoplay muted loop>

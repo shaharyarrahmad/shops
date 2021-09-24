@@ -13,19 +13,5 @@
       "link": "/shop/"
     }
   ],
-  "links": [
-    {
-      "name": "Shop",
-      "url": "/shop/"
-    },
-    {
-      "name": "Tattoos",
-      "url": "/tattoos/"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact/"
-    }
-  ],
   "instagram": "https://www.instagram.com/bendeboef"
 }

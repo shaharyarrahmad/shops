@@ -7,7 +7,7 @@
       :activeOrder="activeOrder"
     >
       <g-link
-        v-for="link of $context.data.links"
+        v-for="link of links"
         :to="link.url"
         :key="link.url"
         class="navbar-item"
@@ -28,7 +28,7 @@
 
     <footer v-if="showFooter" class="footer">
       <div class="content has-text-centered is-dark">
-        <a :href="$context.data.instagram" target="_blank">
+        <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
         • Ben de Boef Tattoo's •
@@ -46,6 +46,28 @@ export default {
     showFooter: {
       default: true,
     },
+  },
+  data() {
+    return {
+      links: [
+        {
+          name: 'Shop',
+          url: '/shop/',
+        },
+        {
+          name: 'Tattoos',
+          url: '/tattoos/',
+        },
+        {
+          name: 'Bio',
+          url: '/bio/',
+        },
+        {
+          name: 'Contact',
+          url: '/contact/',
+        },
+      ],
+    };
   },
   components: {
     ShopNavBar,

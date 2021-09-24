@@ -1,11 +1,15 @@
 const { GridsomeService } = require('pinelab-storefront-client');
-const data = require('./content-data.json');
+const { GET_CONTENT } = require('./content.queries');
 
-module.exports = async function (api) {
+module.exports = async function(api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, collections, productsPerCollection } =
-      await gridsome.getShopData();
+    const [shopData, content] = await Promise.all([
+      gridsome.getShopData(),
+      graphql(GET_CONTENT)
+    ]);
+    const { products, collections, productsPerCollection } = shopData;
+    const {data: {Directus: {bdb_algemeen: global, bdb_home: home, bdb_news: news, bdb_bio: bio}}} = content;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
@@ -20,18 +24,33 @@ module.exports = async function (api) {
     const Cart = '/cart/';
     const Checkout = '/checkout/';
     const Tattoos = '/tattoos/';
+    const Bio = '/bio/';
     const Contact = '/contact/';
+
+    // ----------------- Index ---------------------
+    createPage({
+      path: '/',
+      component: './src/templates/Index.vue',
+      context: {
+        global,
+        home,
+        news,
+        products,
+        collections,
+        featuredProducts
+      }
+    });
 
     // ----------------- Shop ---------------------
     createPage({
       path: '/shop/',
       component: './src/templates/Shop.vue',
       context: {
-        data,
+        global,
         products,
         collections,
-        breadcrumb: { Home, Shop },
-      },
+        breadcrumb: { Home, Shop }
+      }
     });
 
     // ----------------- Collections ---------------------
@@ -41,12 +60,12 @@ module.exports = async function (api) {
           path: `/shop/${collection.slug}`,
           component: './src/templates/Shop.vue',
           context: {
-            data,
+            global,
             products: productsPerCollection,
             collection,
             collections,
-            breadcrumb: { Home, Shop, [collection.name]: collection.slug },
-          },
+            breadcrumb: { Home, Shop, [collection.name]: collection.slug }
+          }
         });
       }
     );
@@ -57,23 +76,11 @@ module.exports = async function (api) {
         path: `/shop/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
-          data,
+          global,
           product,
-          breadcrumb: { Home, Shop, [product.name]: product.slug },
-        },
+          breadcrumb: { Home, Shop, [product.name]: product.slug }
+        }
       });
-    });
-
-    // ----------------- ProductOverview ---------------------
-    createPage({
-      path: '/',
-      component: './src/templates/Index.vue',
-      context: {
-        data,
-        products,
-        collections,
-        featuredProducts,
-      },
     });
 
     // ----------------- Cart ---------------------
@@ -81,9 +88,9 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        data,
-        breadcrumb: { Home, Shop, Cart },
-      },
+        global,
+        breadcrumb: { Home, Shop, Cart }
+      }
     });
 
     // ----------------- checkout ---------------------
@@ -91,15 +98,15 @@ module.exports = async function (api) {
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
       context: {
-        data,
-      },
+        global
+      }
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { data },
+      context: { global }
     });
 
     // ----------------- static pages ---------------------
@@ -107,18 +114,28 @@ module.exports = async function (api) {
       path: '/tattoos/',
       component: './src/templates/Tattoos.vue',
       context: {
-        data,
-        breadcrumb: { Home, Tattoos },
-      },
+        global,
+        breadcrumb: { Home, Tattoos }
+      }
+    });
+
+    createPage({
+      path: '/bio/',
+      component: './src/templates/Bio.vue',
+      context: {
+        global,
+        bio,
+        breadcrumb: { Home, Tattoos }
+      }
     });
 
     createPage({
       path: '/contact/',
       component: './src/templates/Contact.vue',
       context: {
-        data,
-        breadcrumb: { Home, Contact },
-      },
+        global,
+        breadcrumb: { Home, Contact }
+      }
     });
   });
 };

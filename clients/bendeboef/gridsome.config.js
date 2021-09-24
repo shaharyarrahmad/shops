@@ -22,5 +22,12 @@ module.exports = {
         },
       },
     },
+    {
+      use: '@gridsome/source-graphql',
+      options: {
+        url: `${process.env.GRIDSOME_DIRECTUS_HOST}/graphql`,
+        fieldName: 'Directus',
+      },
+    },
   ],
 };
