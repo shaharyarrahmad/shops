@@ -1,7 +1,7 @@
 {
   "name": "pinelab-demo",
   "private": true,
-  "version": "0.33.2",
+  "version": "0.34.0",
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
     "link-here": "yarn link pinelab-storefront-client",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "pinelab-storefront-client": "^0.33.2"
+    "pinelab-storefront-client": "^0.34.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
