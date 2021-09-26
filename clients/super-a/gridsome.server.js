@@ -75,7 +75,7 @@ module.exports = async function(api) {
     const featuredProjects = projects.filter(p => p.featured);
     const projectsPerCategory = new Map();
     projects.forEach(project => project.categories.forEach(category => {
-      const existingProjects = projectsPerCategory[category] || [];
+      const existingProjects = projectsPerCategory.get(category) || [];
       existingProjects.push(project);
       projectsPerCategory.set(category, existingProjects);
     }));

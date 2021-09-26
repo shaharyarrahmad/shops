@@ -4,8 +4,9 @@
       <h1 class="title is-1">{{ $context.category }}</h1>
       <br />
 
+      <section :id="project.title" v-for="project of $context.projects">
       <hr />
-      <div class="columns" v-for="project of $context.projects">
+      <div class="columns" >
         <div class="column is-4">
           <h2 class="title">{{ project.title }}</h2>
           <h3 class="subtitle">{{ project.subtitle }}</h3>
@@ -13,70 +14,12 @@
         </div>
         <div class="column is-4">
           <div class="columns is-5 is-mobile is-multiline">
-            <div class="column is-one-third">
-              <figure class="image is-square">
+            <div class="column is-one-third" v-for="image of project.images">
                 <PopupImage
-                            small="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                            alt="project.main_image.title"
-                            large="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
+                            :small="getSquareImage(image.directus_files_id.id)"
+                            :alt="image.directus_files_id.title"
+                            :large="getDefaultImage(image.directus_files_id.id)"
                 />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-square">
-                <img
-                  src="https://storage.googleapis.com/pinelab-shops-assets/preview/dc/pinkpantherweb__preview.jpg"
-                />
-              </figure>
             </div>
           </div>
         </div>
@@ -98,6 +41,7 @@
         </div>
       </div>
       <br />
+      </section>
 
     </template>
   </Layout>
