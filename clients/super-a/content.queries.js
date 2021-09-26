@@ -34,6 +34,7 @@ const GET_CONTENT = gql`{
                 id
                 title
             }
+            video_url
             images {
                 directus_files_id {
                     id

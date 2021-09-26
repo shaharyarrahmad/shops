@@ -99,6 +99,7 @@ module.exports = async function(api) {
         component: './src/templates/Projects.vue',
         context: {
           global,
+          category,
           projects,
           breadcrumb: {
             Home,
