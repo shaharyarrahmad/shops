@@ -1,5 +1,5 @@
 {
-  "name": "storefront-dev-server",
+  "name": "super-a-webshop",
   "private": true,
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",

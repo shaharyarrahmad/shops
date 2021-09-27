@@ -15,7 +15,8 @@ module.exports = async function(api) {
           supera_algemeen: global,
           supera_home: home,
           supera_news: news,
-          supera_projects: projects
+          supera_projects: projects,
+          supera_biography: bio
         }
       }
     } = content;
@@ -31,6 +32,7 @@ module.exports = async function(api) {
     const Checkout = '/checkout/';
     const Portfolio = '/portfolio/';
     const Bio = '/bio/';
+    const Contact = '/contact/';
 
     // ----------------- Index ---------------------
     createPage({
@@ -110,12 +112,24 @@ module.exports = async function(api) {
       });
     });
 
+    // ----------------- Bio ---------------------
     createPage({
       path: '/bio/',
       component: './src/templates/Bio.vue',
       context: {
         global,
+        bio,
         breadcrumb: { Home, Bio }
+      }
+    });
+
+    // ----------------- Contact ---------------------
+    createPage({
+      path: '/contact/',
+      component: './src/templates/Contact.vue',
+      context: {
+        global,
+        breadcrumb: { Home, Contact }
       }
     });
 

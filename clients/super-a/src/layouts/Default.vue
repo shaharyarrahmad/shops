@@ -74,6 +74,10 @@ export default {
         {
           name: "Bio",
           url: "/bio/"
+        },
+        {
+          name: "Contact",
+          url: "/contact/"
         }
       ],
     }

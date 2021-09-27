@@ -44,6 +44,17 @@ const GET_CONTENT = gql`{
             categories
             featured
         }
+        supera_biography {
+            id
+            title
+            text
+            images {
+                directus_files_id {
+                    id
+                    title
+                }
+            }
+        }
     }
 }`;
 

@@ -1,10 +1,20 @@
 <template>
   <Layout>
     <template #content>
-      <h1 class="title">Biography</h1>
+      <h1 class="title">{{ $context.bio.title }}</h1>
 
-      <p>Stuff about Stefan</p>
+      <p v-html="$context.bio.text"></p>
       <br />
+
+      <div class="columns is-multiline is-mobile">
+        <div class="column is-half-mobile is-one-quarter-tablet mb-4" v-for="image of $context.bio.images">
+          <PopupImage
+            :small="getSquareImage(image.directus_files_id.id)"
+            :alt="image.directus_files_id.title"
+            :large="getDefaultImage(image.directus_files_id.id)"
+          />
+        </div>
+      </div>
     </template>
   </Layout>
 </template>
