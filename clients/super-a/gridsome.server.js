@@ -1,7 +1,13 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 const { GET_CONTENT } = require('./content.queries');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function(api) {
+
+/*  api.chainWebpack(config => {
+    config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
+  });*/
+
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const [shopData, content] = await Promise.all([
@@ -106,9 +112,9 @@ module.exports = async function(api) {
           breadcrumb: {
             Home,
             Portfolio,
-            [category]: `/portfolio/${category}`,
-          },
-        },
+            [category]: `/portfolio/${category}`
+          }
+        }
       });
     });
 
@@ -127,6 +133,16 @@ module.exports = async function(api) {
     createPage({
       path: '/contact/',
       component: './src/templates/Contact.vue',
+      context: {
+        global,
+        breadcrumb: { Home, Contact }
+      }
+    });
+
+    // ----------------- Terms ---------------------
+    createPage({
+      path: '/terms-conditions-and-privacy-policy/',
+      component: './src/templates/Terms.vue',
       context: {
         global,
         breadcrumb: { Home, Contact }
