@@ -24,7 +24,7 @@
           >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
         </b-button>
         <br />
-        <p v-html="$context.product.description"></p>
+        <div v-html="$context.product.description"></div>
       </div>
     </div>
   </Layout>

@@ -2,7 +2,7 @@
   <Layout>
     <div class="bio">
       <h1>{{ global.aboutTitle }}</h1>
-      <p v-html="global.aboutText"></p>
+      <div v-html="global.aboutText"></div>
     </div>
     <ProductOverview />
   </Layout>

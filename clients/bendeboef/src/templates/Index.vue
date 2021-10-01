@@ -26,7 +26,7 @@
     <template #content>
       <section id="bio">
         <h2 class="title">{{ $context.home.intro_title }}</h2>
-        <p v-html="$context.home.intro_text"></p>
+        <div v-html="$context.home.intro_text"></div>
         <br />
         <g-link class="button mr-4 mb-4" :to="$context.home.button1_link">
           {{ $context.home.button1_text }}

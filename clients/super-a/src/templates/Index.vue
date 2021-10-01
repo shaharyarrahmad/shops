@@ -19,7 +19,7 @@
     <template #content>
       <section id="bio">
         <h1 class="title is-1">{{ $context.home.intro_title }}</h1>
-        <p v-html="$context.home.intro_text"></p>
+        <div v-html="$context.home.intro_text"></div>
         <br />
         <g-link
           class="button mr-4 mb-4"
@@ -54,7 +54,6 @@
         </div>
         <hr />
       </section>
-
       <section id="news">
         <h2 class="title is-1">{{ $context.home.news_section_title }}</h2>
 
@@ -69,7 +68,7 @@
               class="mb-4"
             />
             <h3 class="title is-3">{{  item.title }}</h3>
-            <p v-html="item.text"></p>
+            <div v-html="item.text"></div>
 
           </div>
         </div>

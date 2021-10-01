@@ -23,7 +23,7 @@
           >{{ isSoldOut ? 'Sold out' : 'Buy' }}
         </b-button>
         <br />
-        <p v-html="$context.product.description"></p>
+        <div v-html="$context.product.description"></div>
       </div>
     </div>
   </Layout>

@@ -3,7 +3,7 @@
     <template #content>
       <h1 class="title">{{ $context.bio.title }}</h1>
 
-      <p v-html="$context.bio.text"></p>
+      <div v-html="$context.bio.text"></div>
       <br />
 
       <div class="columns is-multiline is-mobile">

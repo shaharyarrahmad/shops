@@ -10,7 +10,7 @@
         <div class="column is-4">
           <h2 class="title">{{ project.title }}</h2>
           <h3 class="subtitle">{{ project.subtitle }}</h3>
-          <p v-html="project.description"></p>
+          <div v-html="project.description"></div>
         </div>
         <div class="column is-4">
           <div class="columns is-5 is-mobile is-multiline">
