@@ -1,5 +1,16 @@
 <template>
   <div>
+    <Consent
+      accept-text="Accept"
+      decline-text="No"
+      thank-you-message="Thanks!"
+      v-on:approved="activateAnalytics()"
+    >
+      We send anonymized data to Google Analytics to improve our site. Are you oke with that?
+      <br/>
+      <a href="/terms-conditions-and-privacy-policy/" target="_blank">Read our policy</a>
+    </Consent>
+
     <ShopNavBar
       logo="/img/logo.png"
       logo-alt="Super A"
@@ -27,7 +38,7 @@
       <slot name="content" />
     </div>
 
-    <footer v-if="showFooter" class="footer">
+    <footer v-if="showFooter" class="footer main-footer">
       <div class="content has-text-centered is-dark">
         <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
@@ -49,6 +60,8 @@
 <script>
 import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
 import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import Consent from '../templates/Consent';
+import { bootstrap } from 'vue-gtag'
 
 export default {
   props: {
@@ -59,6 +72,7 @@ export default {
   components: {
     ShopNavBar,
     Breadcrumb,
+    Consent
   },
   data() {
     return {
@@ -87,14 +101,25 @@ export default {
       return this.$store?.activeOrder;
     },
   },
-  mounted() {},
+  methods: {
+    async activateAnalytics() {
+      await bootstrap();
+      console.log('ga approved');
+    }
+  },
+  mounted() {
+  },
 };
 </script>
 <style>
-.footer a {
+.main-footer a {
   color: white;
 }
-.footer a:hover {
+.main-footer a:hover {
   color: white;
+}
+/* Consent cancel greyed */
+body > div.notices.is-bottom > div > div.action.is-light.is-cancel > button {
+  color: #5f5f5f
 }
 </style>

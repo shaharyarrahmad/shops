@@ -66,7 +66,7 @@
               :small="getSquareImage(item.image.id)"
               :alt="item.image.title"
               :large="getDefaultImage(item.image.id)"
-              class="mb-4 news-item"
+              class="mb-4"
             />
             <h3 class="title is-3">{{  item.title }}</h3>
             <p v-html="item.text"></p>
@@ -109,8 +109,5 @@ export default {
   background-attachment: fixed;
   background-size: cover;
   background-color: #999;
-}
-.news-item img {
-  height: 300px;
 }
 </style>
