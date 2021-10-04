@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <h1 class="title">Contact</h1>
+      <h1>Contact</h1>
 
       <p>For any inquiries please send an email to :</p>
       <a :href="`mailto:${$context.global.email_adressen[0]}`">{{ $context.global.email_adressen[0] }}</a>

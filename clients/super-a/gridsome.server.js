@@ -22,7 +22,8 @@ module.exports = async function(api) {
           supera_home: home,
           supera_news: news,
           supera_projects: projects,
-          supera_biography: bio
+          supera_biography: bio,
+          supera_terms_conditions: terms
         }
       }
     } = content;
@@ -145,7 +146,8 @@ module.exports = async function(api) {
       component: './src/templates/Terms.vue',
       context: {
         global,
-        breadcrumb: { Home, Contact }
+        terms,
+        breadcrumb: { Home, ['Terms, conditions and privacy policy']: '/terms-conditions-and-privacy-policy/' }
       }
     });
 

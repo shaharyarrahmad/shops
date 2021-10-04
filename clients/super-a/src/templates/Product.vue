@@ -1,7 +1,7 @@
 <template>
   <Layout #content>
     <br />
-    <h1 class="title">{{ $context.product.name }}</h1>
+    <h1{{ $context.product.name }}</h1>
     <div class="columns">
       <div class="column">
         <ProductImages :product="$context.product" :variant="variant" />

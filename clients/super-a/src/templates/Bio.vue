@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <h1 class="title">{{ $context.bio.title }}</h1>
+      <h1>{{ $context.bio.title }}</h1>
 
       <div v-html="$context.bio.text"></div>
       <br />

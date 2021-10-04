@@ -2,7 +2,12 @@
   <Layout>
     <template #content>
 
-      <h1 class="title is-1">Terms &#038; Conditions</h1>
+      <h1>{{ $context.terms.title }}</h1>
+
+      <div v-html="$context.terms.text"></div>
+
+<!--
+
         <h3 class="title is-4">Shipping and costs</h3>
 
       <p>
@@ -16,9 +21,9 @@
 
       <br/>
       <br/>
-<!--
-</span><span style="font-size: inherit;">All items will be shipped with insurance and track &amp; trace. </span></p>
-        <p><span style="color: inherit; font-size: 1em; font-weight: 600;">Clothing<br />
+      <p>All items will be shipped with insurance and track &amp; trace.</p>
+
+      <h3 class="title is-4">Clothing</h3>>
 </span>When you want to purchase a piece of clothing make sure to use the size guide located above the sizes menu. Since
           we print on demand we do not accept returns or exchanges.</p>
         <div class="panel">
@@ -59,9 +64,6 @@ as soon as possible. Y</span><span style="font-size: inherit;">ou will be notifi
           <a :href="`mailto:${$context.global.email_adressen[1]}`">{{ $context.global.email_adressen[1] }}</a>
           <br />
 -->
-
-      <h2 class="title is-1">Privacy Policy</h2>
-
     </template>
   </Layout>
 </template>

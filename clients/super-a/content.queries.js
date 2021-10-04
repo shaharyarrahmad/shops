@@ -55,6 +55,11 @@ const GET_CONTENT = gql`{
                 }
             }
         }
+        supera_terms_conditions {
+            id
+            title
+            text
+        }
     }
 }`;
 

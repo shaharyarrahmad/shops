@@ -53,6 +53,11 @@
         <a class="has-text-grey" href="https://pinelab.studio/" target="_blank"
           >Made by Pinelab 🌲</a
         >
+        <br/>
+        <br/>
+        <a class="has-text-grey" href="/terms-conditions-and-privacy-policy/" target="_blank">
+          Terms, conditions and privacy policy
+        </a>
       </div>
     </footer>
   </div>

@@ -1,9 +1,9 @@
-module.exports = {
-  beforeEach: function (browser, done) {
-    browser.resizeWindow(414, 1200, done);
-  },
+require('dotenv').config();
+let orderId;
 
-  'Pinelab shop - order': function (browser) {
+module.exports = {
+
+  'Customer checkout': function(browser) {
     const theJaunt = 'img[alt="The Jaunt"]';
     const edition = 'button[aria-label="Edition Laura Berger"]';
     const buyButton = 'button[aria-label="In winkelmand"]';
@@ -20,7 +20,7 @@ module.exports = {
       houseNr: 'input[placeholder="Huisnr.*"]',
       street: 'input[placeholder="Straatnaam*"]',
       city: 'input[placeholder="Plaats*"]',
-      submit: 'button[type="submit"]',
+      submit: 'button[type="submit"]'
     };
     const ideal = 'button[value="ideal"]';
     const ing = 'button[value="ideal_INGBNL2A"]';
@@ -60,6 +60,26 @@ module.exports = {
       .click(paid)
       .click(continueBtn)
       .waitForElementVisible(success)
+      .url(({ value }) => {
+        orderId = value.replace('https://pinelab-customlayout.netlify.app/order/', '')
+      })
       .end();
   },
+  'Admin order handling': function(browser) {
+    const username = 'input[id="login_username"]';
+    const password = 'input[id="login_password"]';
+    const orderTab = 'a[data-item-id="sales"]';
+    const submit = 'button[type="submit"]';
+    console.log('-------------------', orderId)
+    browser
+      .url('https://test-api.pinelab.studio/admin/')
+      .waitForElementVisible(username)
+      .setValue(username, process.env.VENDURE_USERNAME)
+      .setValue(password, process.env.VENDURE_PASSWORD)
+      .click(submit)
+      .waitForElementVisible(orderTab)
+      .click(orderTab)
+      .assert.containsText('body', orderId)
+      .end();
+  }
 };

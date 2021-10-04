@@ -1,15 +1,15 @@
 <template>
   <Layout>
     <template #content>
-      <h1 class="title is-1">{{ $context.category }}</h1>
+      <h1>{{ $context.category }}</h1>
       <br />
 
       <section :id="project.title" v-for="project of $context.projects">
       <hr />
       <div class="columns" >
         <div class="column is-4">
-          <h2 class="title">{{ project.title }}</h2>
-          <h3 class="subtitle">{{ project.subtitle }}</h3>
+          <h2>{{ project.title }}</h2>
+          <h4 class="subtitle">{{ project.subtitle }}</h4>
           <div v-html="project.description"></div>
         </div>
         <div class="column is-4">

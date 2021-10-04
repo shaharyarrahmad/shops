@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <h1 class="title is-1">Portfolio</h1>
+      <h1>Portfolio</h1>
       <br />
 
       <div class="columns">
@@ -9,7 +9,7 @@
           <hr style="margin-top: 0" />
           <template v-for="category in $context.categories">
             <g-link :to="`/portfolio/${category}`">
-              <h2 class="title is-2 is-link pb-4">{{ category }}</h2>
+              <h2 class="is-link pb-4">{{ category }}</h2>
             </g-link>
           </template>
         </div>
