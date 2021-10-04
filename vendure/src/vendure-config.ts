@@ -1,7 +1,7 @@
 import {
   CollectionModificationEvent,
   DefaultLogger,
-  DefaultSearchPlugin,
+  DefaultSearchPlugin, defaultShippingCalculator,
   LogLevel,
   ProductEvent,
   ProductVariantChannelEvent,
@@ -23,7 +23,8 @@ import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import { cloudLogger } from './logger';
 import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
-import {ShippingBasedTaxZoneStrategy} from './tax/shipping-based-tax-zone.strategy';
+import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.strategy';
+import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -66,6 +67,9 @@ export const config: VendureConfig = {
   },
   taxOptions: {
     taxZoneStrategy: new ShippingBasedTaxZoneStrategy()
+  },
+  shippingOptions: {
+    shippingCalculators: [defaultShippingCalculator, cartTaxShippingCalculator]
   },
   paymentOptions: {
     paymentMethodHandlers: []

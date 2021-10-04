@@ -45,10 +45,10 @@
             <th></th>
             <th>{{ order.shippingWithTax | euro }}</th>
           </tr>
-          <tr v-for="taxLine of order.taxSummary">
+          <tr v-for="(total, rate) in taxLines">
             <td>{{ taxLabel }}</td>
-            <td>{{ taxLine.taxRate }} %</td>
-            <td :id="`tax-${taxLine.taxRate}-amount`">{{ taxLine.taxTotal | euro}}</td>
+            <td>{{ rate }} %</td>
+            <td :id="`tax-${rate}-amount`">{{ total | euro}}</td>
           </tr>
           <tr>
             <th>{{ totalLabel }}</th>
@@ -87,6 +87,7 @@ export default {
       order: undefined,
       error: undefined,
       activeStep: 4,
+      taxLines: {}
     };
   },
   async mounted() {
@@ -104,6 +105,10 @@ export default {
         pollingCount++;
         console.log(`Polling for payment status ${pollingCount}`);
       }
+      this.order.taxSummary.forEach(line => {
+        const total = this.taxLines[line.taxRate] || 0;
+        this.taxLines[line.taxRate] = total + line.taxTotal
+      })
     } catch (e) {
       console.error(e);
       this.error = `Something is wrong, please contact us. ${e?.response?.errors?.[0]?.message}`;
