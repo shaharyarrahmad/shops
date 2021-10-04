@@ -5,7 +5,7 @@ import {
   ADD_PAYMENT_TO_ORDER,
   ADJUST_ORDERLINE,
   APPLY_COUPON_CODE,
-  GET_ACTIVE_ORDER,
+  GET_ACTIVE_ORDER, GET_AVAILABLE_COUNTRIES,
   GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
   GET_NEXT_ORDERSTATES,
@@ -16,9 +16,11 @@ import {
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
-  TRANSITION_ORDER_TO_STATE,
+  TRANSITION_ORDER_TO_STATE
 } from './vendure.queries';
 import {
+  Country,
+  CountryList,
   CreateAddressInput,
   CreateCustomerInput,
   DutchAddressLookupResult,
@@ -27,7 +29,7 @@ import {
   Order,
   PaymentInput,
   Product,
-  ShippingMethodQuote,
+  ShippingMethodQuote
 } from '../../../common';
 import { CalculatedProduct } from './calculated-product';
 import { setCalculatedFields } from '../util/product.util';
@@ -197,6 +199,11 @@ export class VendureClient {
     return order;
   }
 
+  async getAvailableCountries(): Promise<Country[]> {
+    const { availableCountries } = await this.request(GET_AVAILABLE_COUNTRIES);
+    return availableCountries;
+  }
+
   validateResult<T extends ErrorResult>(result: T): void {
     if (result && result.errorCode) {
       if (result.errorCode === 'ORDER_MODIFICATION_ERROR') {
@@ -213,13 +220,10 @@ export class VendureClient {
     if (token) {
       this.client.setHeader('Authorization', `Bearer ${token}`);
     }
-    const { data, headers, errors } = await this.client.rawRequest(
+    const { data, headers } = await this.client.rawRequest(
       document,
       variables
     );
-    if (errors) {
-      throw errors;
-    }
     token = headers.get(this.tokenName);
     if (token) {
       window.localStorage.setItem(this.tokenName, token);

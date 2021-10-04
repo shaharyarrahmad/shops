@@ -171,9 +171,10 @@
                 icon="earth"
                 v-model="address.countryCode"
               >
-                <option value="nl" selected>Nederland</option>
-                <option value="de">Duitsland</option>
-                <option value="be">België</option>
+                <option v-for="country of availableCountries"
+                        :key="country.code"
+                        :value="country.code">{{ country.name }}
+                </option>
               </b-select>
             </b-field>
 
@@ -267,8 +268,10 @@
 </template>
 <script>
 import { debounce } from 'debounce';
+import PopupImage from '../../lib/buefy-components/PopupImage';
 
 export default {
+  components: { PopupImage },
   props: {
     previousPage: { required: true },
     customerDetailsLabel: { default: 'Customer details' },
@@ -285,15 +288,16 @@ export default {
     houseNumberLabel: { default: 'HouseNr' },
     countryLabel: { default: 'Country' },
     totalLabel: { default: 'Total' },
-    succesLabel: { default: 'Success!' },
+    succesLabel: { default: 'Success!' }
   },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder || {};
-    },
+    }
   },
   data() {
     return {
+      availableCountries: [],
       loadingShipping: false,
       loadingPayment: false,
       activeStep: 0,
@@ -301,7 +305,7 @@ export default {
         emailAddress: undefined,
         firstName: undefined,
         lastName: undefined,
-        phoneNumber: undefined,
+        phoneNumber: undefined
       },
       address: {
         company: undefined,
@@ -309,10 +313,10 @@ export default {
         streetLine1: undefined,
         streetLine2: undefined,
         postalCode: undefined,
-        countryCode: 'nl',
+        countryCode: 'nl'
       },
       shippingMethods: [],
-      selectedShippingMethod: undefined,
+      selectedShippingMethod: undefined
     };
   },
   methods: {
@@ -324,7 +328,7 @@ export default {
         fullName: `${this.customer.firstName} ${this.customer.lastName}`,
         defaultBillingAddress: true,
         defaultShippingAddress: true,
-        phoneNumber: this.customer.phoneNumber,
+        phoneNumber: this.customer.phoneNumber
       };
       try {
         await this.$vendure.setCustomerForOrder(this.customer);
@@ -351,7 +355,7 @@ export default {
         }
         const order = await this.$vendure.addPaymentToOrder({
           method: `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`,
-          metadata: {},
+          metadata: {}
         });
         const latestPayment = order?.payments?.[order?.payments.length - 1];
         if (latestPayment?.metadata?.public?.redirectLink) {
@@ -372,20 +376,8 @@ export default {
       this.$buefy.toast.open({
         message: `Something went wrong...`,
         position: 'is-bottom',
-        type: 'is-danger',
+        type: 'is-danger'
       });
-    },
-    getCountryCode(country) {
-      switch (country) {
-        case 'Nederland':
-          return 'nl';
-        case 'België':
-          return 'be';
-        case 'Duitsland':
-          return 'de';
-        default:
-          return 'nl';
-      }
     },
     goBack() {
       if (this.activeStep === 0) {
@@ -402,13 +394,13 @@ export default {
       }
       const address = await this.$vendure.getAddress({
         postalCode: this.address.postalCode,
-        houseNumber: this.address.streetLine2,
+        houseNumber: this.address.streetLine2
       });
       if (address && address.street) {
         this.address.streetLine1 = address.street;
         this.address.city = address.city;
       }
-    },
+    }
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -426,18 +418,18 @@ export default {
     this.address.streetLine2 = activeOrder?.shippingAddress?.streetLine2;
     this.address.city = activeOrder?.shippingAddress?.city;
     this.address.postalCode = activeOrder?.shippingAddress?.postalCode;
-    if (activeOrder?.shippingAddress?.country) {
-      this.address.countryCode = this.getCountryCode(
-        activeOrder?.shippingAddress?.country
-      );
-    }
     this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
+    if (activeOrder?.shippingAddress?.country) {
+      const country = this.availableCountries.find(c => c.name === activeOrder.shippingAddress.country);
+      this.address.countryCode = country?.code || 'nl';
+    }
     this.selectedShippingMethod =
       this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
   },
-  created() {
+  async created() {
     this.getAddress = debounce(this.getAddress, 500);
-  },
+    this.availableCountries = await this.$vendure.getAvailableCountries();
+  }
 };
 </script>
 <style>

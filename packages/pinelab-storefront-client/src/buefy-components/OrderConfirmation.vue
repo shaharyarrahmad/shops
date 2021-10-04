@@ -45,6 +45,11 @@
             <th></th>
             <th>{{ order.shippingWithTax | euro }}</th>
           </tr>
+          <tr v-for="taxLine of order.taxSummary">
+            <td>{{ taxLabel }}</td>
+            <td>{{ taxLine.taxRate }} %</td>
+            <td :id="`tax-${taxLine.taxRate}-amount`">{{ taxLine.taxTotal | euro}}</td>
+          </tr>
           <tr>
             <th>{{ totalLabel }}</th>
             <th></th>
@@ -57,6 +62,7 @@
             <td>{{ line.quantity }}</td>
             <td>{{ line.linePriceWithTax | euro }}</td>
           </tr>
+          <tr><td>&NonBreakingSpace;</td></tr>
         </tbody>
       </table>
     </div>
@@ -74,6 +80,7 @@ export default {
     totalLabel: { default: 'Total' },
     succesLabel: { default: 'Success!' },
     shippingLabel: { default: 'Shipping' },
+    taxLabel: { default: 'Tax' },
   },
   data() {
     return {

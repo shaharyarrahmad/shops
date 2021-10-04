@@ -7,16 +7,13 @@ import {
   ProductVariantChannelEvent,
   ProductVariantEvent,
   VendureConfig,
-  VendureLogger,
+  VendureLogger
 } from '@vendure/core';
 import { EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
-import {
-  GoogleStoragePlugin,
-  GoogleStorageStrategy,
-} from 'vendure-plugin-google-storage-assets';
+import { GoogleStoragePlugin, GoogleStorageStrategy } from 'vendure-plugin-google-storage-assets';
 import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-allocation.strategy';
 import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
@@ -26,6 +23,7 @@ import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import { cloudLogger } from './logger';
 import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
+import {ShippingBasedTaxZoneStrategy} from './tax/shipping-based-tax-zone.strategy';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -38,7 +36,7 @@ if (process.env.K_SERVICE) {
 export const config: VendureConfig = {
   logger,
   orderOptions: {
-    stockAllocationStrategy: new CustomStockAllocationStrategy(),
+    stockAllocationStrategy: new CustomStockAllocationStrategy()
   },
   apiOptions: {
     port: process.env.PORT! as unknown as number || 3000,
@@ -47,14 +45,14 @@ export const config: VendureConfig = {
     adminApiDebug: false, // turn this off for production
     shopApiPath: 'shop-api',
     shopApiPlayground: {}, // turn this off for production
-    shopApiDebug: false, // turn this off for production
+    shopApiDebug: false // turn this off for production
   },
   authOptions: {
     superadminCredentials: {
       identifier: 'admin',
-      password: process.env.SUPERADMIN_PASS!,
+      password: process.env.SUPERADMIN_PASS!
     },
-    tokenMethod: 'bearer',
+    tokenMethod: 'bearer'
   },
   dbConnectionOptions: {
     type: 'mysql',
@@ -64,13 +62,13 @@ export const config: VendureConfig = {
     password: process.env.DATABASE_PASSWORD!,
     host: process.env.DATABASE_HOST!,
     database: process.env.DATABASE_NAME!,
-    migrations: [path.join(__dirname, '../migrations/*.ts')],
+    migrations: [path.join(__dirname, '../migrations/*.ts')]
   },
-  /*  TODO taxOptions: {
+  taxOptions: {
     taxZoneStrategy: new ShippingBasedTaxZoneStrategy()
-  },*/
+  },
   paymentOptions: {
-    paymentMethodHandlers: [],
+    paymentMethodHandlers: []
   },
   customFields: {},
   plugins: [
@@ -79,7 +77,7 @@ export const config: VendureConfig = {
       projectId: process.env.GOOGLE_PROJECT_ID!,
       location: 'europe-west1',
       authSecret: process.env.CLOUD_TASKS_SECRET!,
-      queueSuffix: process.env.SHOP_ENV!,
+      queueSuffix: process.env.SHOP_ENV!
     }),
     DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY!),
     WebhookPlugin.init({
@@ -89,25 +87,25 @@ export const config: VendureConfig = {
         ProductEvent,
         ProductVariantChannelEvent,
         ProductVariantEvent,
-        CollectionModificationEvent,
-      ],
+        CollectionModificationEvent
+      ]
     }),
     MolliePlugin.init(process.env.VENDURE_HOST!),
     ChannelConfigPlugin,
     GoogleStoragePlugin,
     MyparcelPlugin.init(
       {
-        'demo': process.env.MYPARCEL_DEMO!,
+        'demo': process.env.MYPARCEL_DEMO!
       },
       process.env.VENDURE_HOST!
     ),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
-          bucketName: process.env.BUCKET!,
+          bucketName: process.env.BUCKET!
         }),
       route: 'assets',
-      assetUploadDir: '/tmp/vendure/assets',
+      assetUploadDir: '/tmp/vendure/assets'
     }),
     DefaultSearchPlugin,
     EmailPlugin.init({
@@ -120,22 +118,22 @@ export const config: VendureConfig = {
         debug: false,
         auth: {
           user: 'noreply@pinelab.studio',
-          pass: process.env.ZOHO_PASS!,
-        },
+          pass: process.env.ZOHO_PASS!
+        }
       },
       handlers: channelAwareEmailHandlers,
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
-        fromAddress: '"Webshop" <noreply@pinelab.studio>',
-      },
+        fromAddress: '"Webshop" <noreply@pinelab.studio>'
+      }
     }),
     // Production ready, precompiled admin UI
     AdminUiPlugin.init({
       route: 'admin',
       port: 3002,
       app: {
-        path: path.join(__dirname, '__admin-ui/dist'),
-      },
-    }),
-  ],
+        path: path.join(__dirname, '__admin-ui/dist')
+      }
+    })
+  ]
 };

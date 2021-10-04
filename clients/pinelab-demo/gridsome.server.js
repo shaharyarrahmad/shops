@@ -1,45 +1,87 @@
 const { GridsomeService } = require('pinelab-storefront-client');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = function (api) {
-  console.log(`\x1b[46mUsing API ${process.env.GRIDSOME_VENDURE_API}\x1b[0m`);
+module.exports = async function (api) {
+  /*
+  api.chainWebpack(config => {
+    config
+      .plugin('BundleAnalyzerPlugin')
+      .use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
+  });
+*/
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const data = await gridsome.getShopData();
+    const { products, collections, productsPerCollection } =
+      await gridsome.getShopData();
+
+    // Breadcrumb pages
+    const Home = '/';
+    const Cart = '/cart/';
+    const Checkout = '/checkout';
 
     // ----------------- ProductOverview ---------------------
     createPage({
       path: '/',
-      component: './src/templates/ProductsTemplate.vue',
+      component: './src/templates/Index.vue',
       context: {
-        products: data.products,
-        collections: data.collections,
+        products,
+        collections,
+        productsPerCollection,
       },
     });
 
     // ----------------- ProductDetail ---------------------
-    data.products.forEach((product) => {
+    products.forEach((product) => {
       createPage({
-        path: `/product/${product.slug}/`,
-        component: './src/templates/ProductTemplate.vue',
+        path: `/product/${product.slug}`,
+        component: './src/templates/Product.vue',
         context: {
           product,
-          previousPage: '/',
+          collections,
+          breadcrumb: { Home, [product.name]: product.slug },
         },
       });
     });
 
-    // ----------------- Collection pages ---------------------
-    data.productsPerCollection.forEach((collectionMap) => {
-      createPage({
-        path: `/${collectionMap.collection.slug}/`,
-        component: './src/templates/ProductsTemplate.vue',
-        context: {
-          products: collectionMap.products,
-          collection: collectionMap.collection,
-          previousPage: '/',
-        },
-      });
+    // ----------------- Collections ---------------------
+    productsPerCollection.forEach(
+      ({ products: productsPerCollection, collection }) => {
+        createPage({
+          path: `/${collection.slug}`,
+          component: './src/templates/Index.vue',
+          context: {
+            products: productsPerCollection,
+            collection,
+            collections,
+            breadcrumb: { Home, [collection.name]: collection.slug },
+          },
+        });
+      }
+    );
+
+    // ----------------- Cart ---------------------
+    createPage({
+      path: '/cart/',
+      component: './src/templates/Cart.vue',
+      context: {
+        collections,
+        breadcrumb: { Home, Cart },
+      },
+    });
+
+    // ----------------- Checkout ---------------------
+    createPage({
+      path: '/checkout/',
+      component: './src/templates/Checkout.vue',
+      context: { collections },
+    });
+
+    // ----------------- Order confirmation ------------
+    createPage({
+      path: '/order/:code',
+      component: './src/templates/Order.vue',
+      context: { collections },
     });
   });
 };
