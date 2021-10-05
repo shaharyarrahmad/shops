@@ -1,8 +1,31 @@
+const { add } = require('husky');
 require('dotenv').config();
 let orderId;
+const demoSite = 'https://pinelab-demo.netlify.app';
+const address = {
+  firstName: 'Martijn',
+  lastName: 'Pinelab',
+  phone: '06 123456788',
+  email: 'martijn@pinelab.studio',
+  postalCode: '1013 MM',
+  houseNr: '159',
+  street: 'IJdok',
+  city: 'Amsterdam',
+  country: 'Nederland'
+};
+const prices = {
+  itemFE: '67,50',
+  shippingFE: '5,-',
+  totalFE: '72,50',
+  itemBE: '67.50',
+  itemWithoutTaxBE: '61.93',
+  shippingWithoutTaxBE: '4.59',
+  totalBE: '72.50',
+  totalWithoutTaxBE: '66.52',
+  tax: '9%',
+}
 
 module.exports = {
-
   'Customer checkout': function(browser) {
     const theJaunt = 'img[alt="The Jaunt"]';
     const edition = 'button[aria-label="Edition Laura Berger"]';
@@ -28,7 +51,7 @@ module.exports = {
     const continueBtn = 'button[class="button form__button"]';
     const success = 'table[class="table is-fullwidth"]';
     browser
-      .url('https://pinelab-customlayout.netlify.app/')
+      .url(demoSite)
       .waitForElementVisible(theJaunt)
       .click(theJaunt)
       .waitForElementVisible(edition)
@@ -40,17 +63,19 @@ module.exports = {
       .click(orderNowButton)
       .waitForElementVisible(customerForm.firstname)
       .pause(500)
-      .setValue(customerForm.firstname, 'Martinho')
-      .setValue(customerForm.lastname, 'Bruggio')
-      .setValue(customerForm.phone, '06 123456788')
-      .setValue(customerForm.email, 'martijn@pinelab.studio')
-      .setValue(customerForm.postalCode, '1013 MM')
-      .setValue(customerForm.houseNr, '159')
-      .pause(1000)
-      .assert.value(customerForm.city, 'Amsterdam')
-      .assert.value(customerForm.street, 'IJdok')
+      .setValue(customerForm.firstname, address.firstName)
+      .setValue(customerForm.lastname, address.lastName)
+      .setValue(customerForm.phone, address.phone)
+      .setValue(customerForm.email, address.email)
+      .setValue(customerForm.postalCode, address.postalCode)
+      .setValue(customerForm.houseNr, address.houseNr)
+      .assert.value(customerForm.city, address.city)
+      .assert.value(customerForm.street, address.street)
       .click(customerForm.submit)
+      .assert.containsText('body', 'Betaling')
       .pause(1000)
+      .useXpath().click("//*[contains(text(), 'Verzenden (€5,-)')]")
+      .useCss()
       .click('button[type="button"]')
       .waitForElementVisible(ideal)
       .click(ideal)
@@ -61,16 +86,18 @@ module.exports = {
       .click(continueBtn)
       .waitForElementVisible(success)
       .url(({ value }) => {
-        orderId = value.replace('https://pinelab-customlayout.netlify.app/order/', '')
+        orderId = value.replace(`${demoSite}/order/`, '');
       })
+      .assert.containsText('body', prices.itemFE)
+      .assert.containsText('body', prices.shippingFE)
+      .assert.containsText('body', prices.totalFE)
       .end();
   },
-  'Admin order handling': function(browser) {
+  'Admin order': function(browser) {
     const username = 'input[id="login_username"]';
     const password = 'input[id="login_password"]';
     const orderTab = 'a[data-item-id="sales"]';
     const submit = 'button[type="submit"]';
-    console.log('-------------------', orderId)
     browser
       .url('https://test-api.pinelab.studio/admin/')
       .waitForElementVisible(username)
@@ -80,6 +107,28 @@ module.exports = {
       .waitForElementVisible(orderTab)
       .click(orderTab)
       .assert.containsText('body', orderId)
+      .useXpath()
+      .click('//a[text()=\' Open \']')
+      .useCss()
+      .assert.containsText('body', address.firstName)
+      .assert.containsText('body', address.lastName)
+      .assert.containsText('body', address.city)
+      .assert.containsText('body', address.postalCode)
+      .assert.containsText('body', address.street)
+      .assert.containsText('body', address.houseNr)
+      .assert.containsText('body', address.country)
+      .assert.containsText('body', address.phone)
+      .assert.containsText('body', prices.itemBE)
+      .assert.not.containsText('body', '21%')
+      .assert.containsText('body', prices.itemWithoutTaxBE)
+      .assert.containsText('body', prices.shippingWithoutTaxBE)
+      .assert.containsText('body', prices.totalBE)
+      .assert.containsText('body', prices.totalWithoutTaxBE)
+      .useXpath()
+      .click('//button[text()=\' Fulfill order \']')
+      .useCss()
+      .click('button[type="submit"]')
+      .assert.containsText('body', 'Created fulfillment')
       .end();
   }
 };

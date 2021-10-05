@@ -1,4 +1,4 @@
-import { Logger, Order } from '@vendure/core';
+import { Order } from '@vendure/core';
 
 /**
  * Tax summary for one or multiple orders
@@ -21,16 +21,14 @@ export class TaxHelper {
   static getTaxSummary(order: Order): TaxSummary {
     const taxTotal: TaxTotal = {};
     order.taxSummary.forEach((summary) => {
-      if (summary.taxRate > 0) {
-        const existingAmount = taxTotal[summary.taxRate] || 0;
-        taxTotal[summary.taxRate] = existingAmount + summary.taxTotal;
-      }
+      const existingAmount = taxTotal[summary.taxRate] || 0;
+      taxTotal[summary.taxRate] = existingAmount + summary.taxTotal;
     });
     return {
       taxTotal,
       totalIncVAT: order.totalWithTax,
       totalExVAT: order.total,
-      totalVAT: order.totalWithTax - order.total,
+      totalVAT: order.totalWithTax - order.total
     };
   }
 }
