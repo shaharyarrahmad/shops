@@ -90,11 +90,9 @@
 <script>
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
 import { hydrate } from 'pinelab-storefront-client';
-import PopupImage from './PopupImage';
 
 export default {
   components: {
-    PopupImage,
     ProductCard
   },
   async mounted() {
