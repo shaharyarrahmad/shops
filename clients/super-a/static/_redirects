@@ -2,3 +2,7 @@
 /admin/ https://api.pinelab.studio/admin/ 302
 /cms/ https://content.pinelab.studio/ 302
 /assets/* https://content.pinelab.studio/assets/:splat 200
+/portfolio/* /portfolio/ 301
+/about/* /bio/ 301
+/product/* /shop/ 301
+/terms-conditions/ /terms-conditions-and-privacy-policy/ 301

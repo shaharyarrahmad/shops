@@ -12,7 +12,7 @@
     </Consent>
 
     <ShopNavBar
-      logo="/img/logo.png"
+      logo="/img/logo.svg"
       logo-alt="Super A"
       cart-link="/cart/"
       :activeOrder="activeOrder"
@@ -126,5 +126,8 @@ export default {
 /* Consent cancel greyed */
 body > div.notices.is-bottom > div > div.action.is-light.is-cancel > button {
   color: #5f5f5f
+}
+.shop-logo {
+  margin-right: 20px;
 }
 </style>

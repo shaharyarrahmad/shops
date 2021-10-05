@@ -1,25 +1,26 @@
-# Pinelab Storefront client template
-Pinelab shop temaplate. Uses the pinelab-storefront-client library for static page generation and Vue Components.
+# Pinelab Demo Shop
+Pinelab demo shop. can be used as template for new shops
 
-## Setup a new shop
-In the example below `demo` is the channelToken
+`demo` is an example channelToken in this example
+
+## Vendure setup
+1. Create channel
+2. Create products
+3. Set channel-config in DB with script
+4. Create paymentMethod with code `mollie-payment-demo`
+5. Create shippingMethods
+6. Create admin user for channel
+7. Login as the admin and setup dashboard
+
+## Storefront setup
 1. Create a new site in Netlify
-1. Create a build hook and add the URL in the Vendure Admin
-1. Copy this folder to `clients/new-name`
-1. Change relative imports to `pinelab-storefront-client`
-1. Create a new channel in the Vendure API
-1. Create shipping methods, usually default and pick up
-1. Add products and categories
-1. Create a `.env` in the root of the project with the following content:
-    ```
-    GRIDSOME_VENDURE_API=https://api.pinelab.studio/shop-api
-    GRIDSOME_VENDURE_TOKEN=demo 
-    ```
-1. Run `yarn gridsome develop` as test
-1. Add paymentmethod in Vendure with name and code `mollie-payment-demo`
-1. Create channel-config in Vendure DB
-1. Replace logo's in `static` folder
-1. Add footer data like Chamber of commerceNr and privacy policy etc. 
-1. `yarn`
-1. `yarn gridsome develop`
-1. Go to localhost
+2. Create a build hook and add the URL in the Vendure Admin
+3. Copy this folder to `clients/demo`
+4. Set variables in `.env`
+5. Run `yarn gridsome develop` as test
+6. Replace logo's in `static` folder
+7. Add footer data like Chamber of commerceNr and privacy policy etc.
+
+## Optional steps
+1. Storefront SEO for products
+2. Redirects from old website
