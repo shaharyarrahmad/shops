@@ -8,7 +8,7 @@ module.exports = async function(api) {
       gridsome.getShopData(),
       graphql(GET_CONTENT)
     ]);
-    const { products, collections, productsPerCollection } = shopData;
+    const { products, collections, productsPerCollection, availableCountries } = shopData;
     const {data: {Directus: {bdb_algemeen: global, bdb_home: home, bdb_news: news, bdb_bio: bio}}} = content;
 
     // Static pages should never have soldOut products, this is updated when mounted()
@@ -106,7 +106,7 @@ module.exports = async function(api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global }
+      context: { global, availableCountries }
     });
 
     // ----------------- static pages ---------------------

@@ -1,11 +1,11 @@
 import {
   Collection,
-  CollectionList,
+  CollectionList, Country,
   Product,
   ProductList,
-  ProductVariant,
+  ProductVariant
 } from '../../../common';
-import { GET_COLLECTIONS, GET_PRODUCTS } from './gridsome.queries';
+import { GET_AVAILABLE_COUNTRIES, GET_COLLECTIONS, GET_PRODUCTS } from './gridsome.queries';
 import { CollectionMap, deduplicate, setCalculatedFields } from '../';
 import { CalculatedProduct } from '../vendure/calculated-product';
 import { BasicCollection, ShopData } from './types/shop-data';
@@ -17,9 +17,10 @@ export class GridsomeService {
   constructor(private graphqlFn: Function) {}
 
   async getShopData(): Promise<ShopData> {
-    const [collectionList, productList] = await Promise.all([
+    const [collectionList, productList, availableCountries] = await Promise.all([
       this.getAllCollections(),
       this.getAllProducts(),
+      this.getAvailableCountries()
     ]);
     const products = productList.items.map((p: Product) =>
       setCalculatedFields(p)
@@ -45,6 +46,7 @@ export class GridsomeService {
       products,
       productsPerCollection,
       collections,
+      availableCountries
     };
   }
 
@@ -75,5 +77,10 @@ export class GridsomeService {
       },
     } = await this.graphqlFn(GET_PRODUCTS);
     return products;
+  }
+
+  async getAvailableCountries(): Promise<Country[]> {
+    const { data: {Vendure: {availableCountries}} } = await this.graphqlFn(GET_AVAILABLE_COUNTRIES);
+    return availableCountries;
   }
 }

@@ -12,7 +12,7 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, collections, productsPerCollection } =
+    const { products, collections, productsPerCollection, availableCountries } =
       await gridsome.getShopData();
 
     // Breadcrumb pages
@@ -74,7 +74,7 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { collections },
+      context: { collections, availableCountries },
     });
 
     // ----------------- Order confirmation ------------

@@ -1,6 +1,9 @@
 <template>
   <Layout #content>
-    <CheckoutSteps previousPage="/cart/" />
+    <CheckoutSteps
+      previousPage="/cart/"
+      :availableCountries="$context.availableCountries"
+    />
   </Layout>
 </template>
 <script>

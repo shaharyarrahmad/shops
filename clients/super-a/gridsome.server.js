@@ -14,7 +14,7 @@ module.exports = async function(api) {
       gridsome.getShopData(),
       graphql(GET_CONTENT)
     ]);
-    const { products, collections, productsPerCollection } = shopData;
+    const { products, collections, productsPerCollection, availableCountries } = shopData;
     const {
       data: {
         Directus: {
@@ -165,7 +165,7 @@ module.exports = async function(api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { global }
+      context: { global, availableCountries }
     });
 
     // ----------------- Order confirmation ------------

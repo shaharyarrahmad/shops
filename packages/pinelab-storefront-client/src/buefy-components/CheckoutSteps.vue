@@ -288,7 +288,13 @@ export default {
     houseNumberLabel: { default: 'HouseNr' },
     countryLabel: { default: 'Country' },
     totalLabel: { default: 'Total' },
-    succesLabel: { default: 'Success!' }
+    succesLabel: { default: 'Success!' },
+    availableCountries: {
+      type: Array,
+      default() {
+        return [{name: 'Nederland', code: 'nl'}];
+      }
+    }
   },
   computed: {
     activeOrder() {
@@ -297,7 +303,6 @@ export default {
   },
   data() {
     return {
-      availableCountries: [],
       loadingShipping: false,
       loadingPayment: false,
       activeStep: 0,
@@ -428,7 +433,6 @@ export default {
   },
   async created() {
     this.getAddress = debounce(this.getAddress, 500);
-    this.availableCountries = await this.$vendure.getAvailableCountries();
   }
 };
 </script>

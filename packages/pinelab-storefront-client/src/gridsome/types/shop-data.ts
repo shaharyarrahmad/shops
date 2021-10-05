@@ -1,5 +1,5 @@
 import { CalculatedProduct } from '../../vendure/calculated-product';
-import { Collection } from '../../../../common';
+import { Collection, Country } from '../../../../common';
 
 export interface ShopData {
   /**
@@ -15,6 +15,10 @@ export interface ShopData {
    * DOES NOT INCLUDE VARIANTS. Just basic collection info
    */
   collections: BasicCollection[];
+  /**
+   * List of {code,name} countries for shippingAddress. Used by CheckoutComponent
+   */
+  availableCountries: Country[];
 }
 
 export interface CollectionMap {

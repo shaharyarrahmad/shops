@@ -5,7 +5,7 @@ import {
   ADD_PAYMENT_TO_ORDER,
   ADJUST_ORDERLINE,
   APPLY_COUPON_CODE,
-  GET_ACTIVE_ORDER, GET_AVAILABLE_COUNTRIES,
+  GET_ACTIVE_ORDER,
   GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
   GET_NEXT_ORDERSTATES,
@@ -197,11 +197,6 @@ export class VendureClient {
     });
     this.store.activeOrder = order;
     return order;
-  }
-
-  async getAvailableCountries(): Promise<Country[]> {
-    const { availableCountries } = await this.request(GET_AVAILABLE_COUNTRIES);
-    return availableCountries;
   }
 
   validateResult<T extends ErrorResult>(result: T): void {

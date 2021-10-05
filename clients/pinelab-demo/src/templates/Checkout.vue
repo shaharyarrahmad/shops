@@ -17,6 +17,7 @@
       countryLabel="Land"
       totalLabel="Totaal"
       succesLabel="Succes!"
+      :availableCountries="$context.availableCountries"
     />
   </Layout>
 </template>

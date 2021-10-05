@@ -309,12 +309,3 @@ export const REMOVE_COUPON_CODE = gql`
         }
     }
 `;
-
-export const GET_AVAILABLE_COUNTRIES = gql`
-    query availableCountries {
-        availableCountries {
-            name
-            code
-        }
-    }
-`;
