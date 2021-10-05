@@ -1,7 +1,8 @@
 import {
   CollectionModificationEvent,
   DefaultLogger,
-  DefaultSearchPlugin, defaultShippingCalculator,
+  DefaultSearchPlugin,
+  defaultShippingEligibilityChecker,
   LogLevel,
   ProductEvent,
   ProductVariantChannelEvent,
@@ -25,6 +26,7 @@ import { cloudLogger } from './logger';
 import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
 import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.strategy';
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
+import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -69,7 +71,8 @@ export const config: VendureConfig = {
     taxZoneStrategy: new ShippingBasedTaxZoneStrategy()
   },
   shippingOptions: {
-    shippingCalculators: [cartTaxShippingCalculator]
+    shippingCalculators: [cartTaxShippingCalculator],
+    shippingEligibilityCheckers: [defaultShippingEligibilityChecker, eligibleByZoneChecker]
   },
   paymentOptions: {
     paymentMethodHandlers: []
