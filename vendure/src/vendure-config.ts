@@ -69,7 +69,7 @@ export const config: VendureConfig = {
     taxZoneStrategy: new ShippingBasedTaxZoneStrategy()
   },
   shippingOptions: {
-    shippingCalculators: [defaultShippingCalculator, cartTaxShippingCalculator]
+    shippingCalculators: [cartTaxShippingCalculator]
   },
   paymentOptions: {
     paymentMethodHandlers: []
