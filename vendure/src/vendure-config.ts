@@ -102,7 +102,8 @@ export const config: VendureConfig = {
     GoogleStoragePlugin,
     MyparcelPlugin.init(
       {
-        'demo': process.env.MYPARCEL_DEMO!
+        'demo': process.env.MYPARCEL_DEMO!,
+        'super-a': process.env.MYPARCEL_DEMO!
       },
       process.env.VENDURE_HOST!
     ),
