@@ -15,6 +15,8 @@ const address = {
 };
 const prices = {
   itemFE: '67,50',
+  shippingOutsideEU: '14,-',
+  totalOutsideEU: '81,50',
   shippingFE: '5,-',
   totalFE: '72,50',
   itemBE: '67.50',
@@ -71,11 +73,26 @@ module.exports = {
       .setValue(customerForm.houseNr, address.houseNr)
       .assert.value(customerForm.city, address.city)
       .assert.value(customerForm.street, address.street)
+      .click('select[name="country"] option[value="AT"]')
       .click(customerForm.submit)
+      // Shipping
       .assert.containsText('body', 'Betaling')
       .pause(1000)
+      .useXpath().click("//*[contains(text(), 'Verzenden (€14,-)')]")
+      .useCss()
+      .assert.containsText('body', prices.totalOutsideEU)
+      // Back to customer details
+      .click('div > div > div > div:nth-child(1) > a')
+      .waitForElementVisible(customerForm.firstname)
+      .pause(500)
+      .click('select[name="country"] option[value="nl"]')
+      .click(customerForm.submit)
+      .pause(1000)
+      // Shipping
       .useXpath().click("//*[contains(text(), 'Verzenden (€5,-)')]")
       .useCss()
+      .assert.containsText('body', prices.totalFE)
+      // Payment
       .click('button[type="button"]')
       .waitForElementVisible(ideal)
       .click(ideal)
