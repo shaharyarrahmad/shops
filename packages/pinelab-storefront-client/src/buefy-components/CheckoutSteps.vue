@@ -292,7 +292,7 @@ export default {
     availableCountries: {
       type: Array,
       default() {
-        return [{name: 'Nederland', code: 'nl'}];
+        return [{ name: 'Nederland', code: 'nl' }];
       }
     }
   },
@@ -338,6 +338,7 @@ export default {
       try {
         await this.$vendure.setCustomerForOrder(this.customer);
         await this.$vendure.setOrderShippingAddress(address);
+        await this.$vendure.setLowestShippingMethod();
         // Get latest eligible shippingmethods
         this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
         this.selectedShippingMethod =
