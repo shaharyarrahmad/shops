@@ -1,14 +1,14 @@
 {
   "name": "lab07",
   "private": true,
-  "version": "0.36.0",
+  "version": "0.36.1",
   "scripts": {
     "serve": "yarn gridsome develop",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch './src' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
   },
   "dependencies": {
     "@fontsource/roboto-mono": "^4.0.1",
-    "pinelab-storefront-client": "^0.36.0"
+    "pinelab-storefront-client": "^0.36.1"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
