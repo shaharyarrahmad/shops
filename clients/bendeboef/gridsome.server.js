@@ -9,7 +9,7 @@ module.exports = async function(api) {
       graphql(GET_CONTENT)
     ]);
     const { products, collections, productsPerCollection, availableCountries } = shopData;
-    const {data: {Directus: {bdb_algemeen: global, bdb_home: home, bdb_news: news, bdb_bio: bio}}} = content;
+    const {data: {Directus: {bdb_algemeen: global, bdb_home: home, bdb_news: news, bdb_bio: bio, bdb_tattoos: tattoos}}} = content;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
@@ -98,7 +98,8 @@ module.exports = async function(api) {
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
       context: {
-        global
+        global,
+        availableCountries
       }
     });
 
@@ -106,7 +107,7 @@ module.exports = async function(api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global, availableCountries }
+      context: { global }
     });
 
     // ----------------- static pages ---------------------
@@ -115,6 +116,7 @@ module.exports = async function(api) {
       component: './src/templates/Tattoos.vue',
       context: {
         global,
+        tattoos,
         breadcrumb: { Home, Tattoos }
       }
     });

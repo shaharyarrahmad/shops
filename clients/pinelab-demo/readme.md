@@ -20,6 +20,7 @@ Pinelab demo shop. can be used as template for new shops
 5. Run `yarn gridsome develop` as test
 6. Replace logo's in `static` folder
 7. Add footer data like Chamber of commerceNr and privacy policy etc.
+8. Set up 404 page
 
 ## Optional steps
 1. Storefront SEO for products

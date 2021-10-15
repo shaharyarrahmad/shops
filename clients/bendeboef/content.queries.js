@@ -40,6 +40,15 @@ const GET_CONTENT = gql`{
                 title
             }
         }
+        bdb_tattoos {
+            id
+            title
+            text
+            image {
+                id
+                title
+            }
+        }
     }
 }`;
 
