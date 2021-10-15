@@ -64,7 +64,7 @@ export default function (Vue, { router, head, isClient }) {
   Vue.mixin({
     methods: {
       getDefaultImage: (id) => `${assetHost}/assets/${id}?key=default`,
-      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`,
-    },
+      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`
+    }
   });
 }

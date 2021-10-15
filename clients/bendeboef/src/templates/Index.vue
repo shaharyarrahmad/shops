@@ -19,8 +19,6 @@
           </div>
         </div>
       </section>
-      <br />
-      <br />
     </template>
 
     <template #content>
@@ -35,7 +33,6 @@
           {{ $context.home.button2_text }}
         </g-link>
         <hr />
-        <br />
       </section>
 
       <section id="featured-products">
@@ -53,6 +50,7 @@
             />
           </div>
         </div>
+        <a href="/shop/">More Ben de Boef items ></a>
         <hr />
       </section>
 
@@ -60,7 +58,7 @@
         <h2 class="title">News</h2>
         <div class="columns is-multiline is-mobile">
           <div
-            class="column is-half-mobile is-3-desktop is-3-tablet mb-4"
+            class="column is-12-mobile is-3-desktop is-6-tablet mb-4"
             v-for="news of $context.news"
             :key="news.id"
           >

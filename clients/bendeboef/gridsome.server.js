@@ -127,7 +127,7 @@ module.exports = async function(api) {
       context: {
         global,
         bio,
-        breadcrumb: { Home, Tattoos }
+        breadcrumb: { Home, Bio }
       }
     });
 

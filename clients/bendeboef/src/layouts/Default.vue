@@ -26,8 +26,8 @@
       <slot name="content" />
     </div>
 
-    <footer v-if="showFooter" class="footer">
-      <div class="content has-text-centered is-dark">
+    <footer v-if="showFooter" class="footer" >
+      <div id="#contact" class="content has-text-centered is-dark">
         <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
