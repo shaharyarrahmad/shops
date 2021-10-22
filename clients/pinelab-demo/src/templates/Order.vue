@@ -12,7 +12,6 @@ export default {
   },
   methods: {
     track(event) {
-      console.log(event);
       const purchase = {
         "transaction_id": event.orderId,
         "affiliation": "Pinelab demo shop",
