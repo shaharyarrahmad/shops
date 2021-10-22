@@ -96,8 +96,7 @@ export default {
     try {
       while (this.order?.state !== 'PaymentSettled') {
         if (pollingCount > 10) {
-          this.error = 'Something is wrong, please contact us...';
-          break;
+          throw Error(`Order not settled after polling 10 times`);
         }
         this.order = await this.$vendure.getOrderByCode(code);
         console.log(this.order?.state);
@@ -108,10 +107,11 @@ export default {
       this.order.taxSummary.forEach(line => {
         const total = this.taxLines[line.taxRate] || 0;
         this.taxLines[line.taxRate] = total + line.taxTotal
-      })
+      });
+      this.$emit('order-confirmed', {orderId: this.orderId, value: this.order.totalWithTax});
     } catch (e) {
       console.error(e);
-      this.error = `Something is wrong, please contact us. ${e?.response?.errors?.[0]?.message}`;
+      this.error = 'Something is wrong, please contact us...';
     }
   },
 };
