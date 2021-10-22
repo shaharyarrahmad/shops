@@ -76,8 +76,8 @@ module.exports = {
       .click('select[name="country"] option[value="AT"]')
       .click(customerForm.submit)
       // Shipping
+      .pause(500)
       .assert.containsText('body', 'Betaling')
-      .pause(1000)
       .useXpath().click("//*[contains(text(), 'Verzenden (€14,-)')]")
       .useCss()
       .assert.containsText('body', prices.totalOutsideEU)

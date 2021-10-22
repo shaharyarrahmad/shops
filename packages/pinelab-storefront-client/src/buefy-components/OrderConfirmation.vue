@@ -108,7 +108,7 @@ export default {
         const total = this.taxLines[line.taxRate] || 0;
         this.taxLines[line.taxRate] = total + line.taxTotal
       });
-      this.$emit('order-confirmed', {orderId: this.orderId, value: this.order.totalWithTax});
+      this.$emit('order-confirmed', {orderId: this.order.code, value: this.order.totalWithTax});
     } catch (e) {
       console.error(e);
       this.error = 'Something is wrong, please contact us...';
