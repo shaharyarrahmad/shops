@@ -11,7 +11,7 @@
     "@fontsource/roboto-mono": "^4.5.0",
     "buefy": "^0.9.7",
     "outfront": "^1.1.1",
-    "pinelab-storefront-client": "^0.37.0",
+    "pinelab-storefront-client": "^0.37.1",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
@@ -25,7 +25,7 @@
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
-  "version": "0.37.0",
+  "version": "0.37.1",
   "resolutions": {
     "graphql": "^14.7.0"
   }
