@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <template #content>
+      <div v-if="$context.featuredProducts && $context.featuredProducts.length > 0">
       <ProductFilter
         :collections="$context.collections"
         no-collection-url="/shop/"
@@ -26,6 +27,11 @@
             product-url-prefix="/shop/product/"
           />
         </div>
+      </div>
+      </div>
+      <div v-else>
+        <h1>Soon more</h1>
+        <p>No items yet, we're working on it!</p>
       </div>
     </template>
   </Layout>

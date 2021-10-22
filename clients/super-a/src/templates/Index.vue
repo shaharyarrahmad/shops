@@ -37,7 +37,7 @@
         <hr />
       </section>
 
-      <section id="featured-products">
+      <section id="featured-products" v-if="$context.featuredProducts && $context.featuredProducts.length > 0">
         <h2>{{ $context.home.shop_section_title }}</h2>
         <div class="columns is-multiline is-mobile">
           <div
