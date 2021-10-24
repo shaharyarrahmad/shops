@@ -2,7 +2,7 @@
   <Layout>
     <template #hero>
       <section
-        class="hero is-primary is-halfheight hero-background"
+        class="hero is-primary is-fullheight-with-navbar hero-background"
         :style="`background-image: url(${getDefaultImage(
           $context.home.hero_image.id
         )})`"
