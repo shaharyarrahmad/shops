@@ -22,7 +22,7 @@
       </b-step-item>
     </b-steps>
 
-    <p v-if="!order && !error">Loading...</p>
+    <p v-if="(!order || order.state !== 'PaymentSettled') && !error">Loading...</p>
 
     <b-notification v-else-if="error" class="is-danger">
       {{ error }}
