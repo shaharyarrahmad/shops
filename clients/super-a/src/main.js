@@ -21,7 +21,7 @@ export default function(Vue, { router, head, isClient }) {
           anonymize_ip: true
         }
       },
-      bootstrap: true
+      bootstrap: false
     }, router);
   }
   Vue.use(Buefy);
