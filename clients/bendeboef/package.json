@@ -13,7 +13,8 @@
     "buefy": "^0.9.5",
     "debounce": "^1.2.1",
     "outfront": "^1.1.1",
-    "pinelab-storefront-client": "^0.38.0"
+    "pinelab-storefront-client": "^0.38.0",
+    "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
