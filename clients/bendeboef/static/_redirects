@@ -2,3 +2,9 @@
 /admin/ https://api.pinelab.studio/admin/ 302
 /cms/ https://content.pinelab.studio/ 302
 /assets/* https://content.pinelab.studio/assets/:splat 200
+http://bendeboef.nl/* https://bendeboef.com/:splat 302!
+https://bendeboef.nl/* https://bendeboef.com/:splat 302!
+/commissioned / 302
+/clothing /shop/clothing-2/ 302
+/art /shop/art/ 302
+/press / 302
