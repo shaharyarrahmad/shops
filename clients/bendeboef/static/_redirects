@@ -3,6 +3,8 @@
 /cms/ https://content.pinelab.studio/ 302
 /assets/* https://content.pinelab.studio/assets/:splat 200
 http://bendeboef.nl/* https://bendeboef.com/:splat 302!
+http://www.bendeboef.nl/* https://bendeboef.com/:splat 302!
+https://www.bendeboef.nl/* https://bendeboef.com/:splat 302!
 https://bendeboef.nl/* https://bendeboef.com/:splat 302!
 /commissioned / 302
 /clothing /shop/clothing-2/ 302
