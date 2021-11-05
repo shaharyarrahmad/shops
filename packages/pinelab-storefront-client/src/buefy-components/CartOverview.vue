@@ -1,18 +1,30 @@
 <template>
-  <div>
-    <div v-if="lines.length > 0">
-      <div class="has-text-right">
-        <g-link :to="linkToCheckout" class="button is-primary"
+  <ClientOnly>
+    <div>
+      <div v-if="lines.length > 0">
+        <div class="has-text-right">
+          <g-link :to="linkToCheckout" class="button is-primary"
           >{{ checkoutButtonLabel }}
-        </g-link>
-      </div>
-      <br />
-      <p class="has-text-right">
-        <strong>{{ totalLabel }}:</strong> {{ activeOrder.totalWithTax | euro }}
-      </p>
-      <br />
-      <table class="table order-table is-fullwidth is-striped">
-        <tbody>
+          </g-link>
+        </div>
+        <br />
+        <p class="has-text-right">
+          <strong>{{ totalLabel }}:</strong> {{ activeOrder.totalWithTax | euro }}
+        </p>
+        <br />
+        <div class="columns">
+          <div class="column is-half is-offset-half">
+            <b-field :type="couponClass">
+              <b-input v-on:input="applyCouponCode()"
+                       :placeholder="couponLabel"
+                       icon="check-decagram"
+                       :loading="loadingCoupon"
+                       v-model="couponCode" />
+            </b-field>
+          </div>
+        </div>
+        <table class="table order-table is-fullwidth is-striped">
+          <tbody>
           <tr v-for="line of lines">
             <td class="image-column is-hidden-mobile">
               <img
@@ -21,13 +33,10 @@
               />
             </td>
             <td>
-              <p>
-                <strong>{{ line.productVariant.product.name }}</strong>
-                <br />
-                <span class="has-text-grey">{{
+              <p class="is-hidden-mobile"><strong>{{ line.productVariant.product.name }}</strong></p>
+              <p class="has-text-grey">{{
                   line.productVariant.name
-                }}</span>
-              </p>
+                }}</p>
             </td>
             <td class="quantity-column">
               <b-field>
@@ -45,35 +54,55 @@
               />
             </td>
           </tr>
-        </tbody>
-      </table>
-      <div class="has-text-right">
-        <g-link :to="linkToCheckout" class="button is-primary"
+          <tr class="has-text-success">
+            <template
+              v-for="discount of activeOrder.discounts">
+              <td></td>
+              <td>
+                <p>{{ discount.description }}</p>
+              </td>
+              <td></td>
+              <td class="has-text-right">
+                <p>{{ discount.amountWithTax | euro }}</p>
+              </td>
+            </template>
+          </tr>
+          </tbody>
+        </table>
+        <div class="has-text-right">
+          <g-link :to="linkToCheckout" class="button is-primary"
           >{{ checkoutButtonLabel }}
-        </g-link>
+          </g-link>
+        </div>
       </div>
+      <div v-else v-html="emptyCartLabel"></div>
     </div>
-    <div v-else v-html="emptyCartLabel"></div>
-  </div>
+  </ClientOnly>
 </template>
 <script>
+import { debounce } from 'debounce';
+
 export default {
   props: {
     emptyCartLabel: {
-      required: true,
+      required: true
     },
     checkoutButtonLabel: {
       type: String,
-      default: 'Order now',
+      default: 'Order now'
     },
     linkToCheckout: {
       type: String,
-      required: true,
+      required: true
     },
     totalLabel: {
       type: String,
-      default: 'Total',
+      default: 'Total'
     },
+    couponLabel: {
+      type: String,
+      default: 'Coupon code'
+    }
   },
   computed: {
     activeOrder() {
@@ -82,15 +111,51 @@ export default {
     lines() {
       return this.$store?.activeOrder?.lines || [];
     },
+    hasCoupon() {
+      return this.$store?.activeOrder?.couponCodes?.length > 0;
+    },
+    couponClass() {
+      if (this.isInvalidCoupon) {
+        return 'is-danger';
+      } else if (this.hasCoupon) {
+        return 'is-success';
+      }
+    }
+  },
+  data() {
+    return {
+      couponCode: undefined,
+      isInvalidCoupon: false,
+      loadingCoupon: false
+    };
   },
   methods: {
     async remove(lineId) {
       await this.$vendure.adjustOrderLine(lineId, 0);
     },
+    async applyCouponCode() {
+      try {
+        this.loadingCoupon = true;
+        await Promise.all(this.activeOrder.couponCodes.map((code) =>
+          this.$vendure.removeCouponCode(code)
+        ));
+        await this.$vendure.applyCouponCode(this.couponCode);
+        this.isInvalidCoupon = false;
+      } catch (error) {
+        console.warn(error);
+        this.isInvalidCoupon = true;
+      } finally {
+        this.loadingCoupon = false;
+      }
+    }
+  },
+
+  created() {
+    this.applyCouponCode = debounce(this.applyCouponCode, 500);
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
-  },
+  }
 };
 </script>
 <style>
@@ -103,7 +168,7 @@ export default {
 }
 
 .quantity-column {
-  width: 150px;
-  min-width: 150px;
+  width: 140px;
+  min-width: 140px;
 }
 </style>
