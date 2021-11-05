@@ -26,7 +26,7 @@
       <slot name="content" />
     </div>
 
-    <footer v-if="showFooter" class="footer" >
+    <footer v-if="showFooter" class="footer">
       <div id="#contact" class="content has-text-centered is-dark">
         <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
@@ -44,40 +44,52 @@ import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrum
 export default {
   props: {
     showFooter: {
-      default: true,
-    },
+      default: true
+    }
+  },
+  metaInfo() {
+    const desc = "Ben is an artist and tattoo artist from Amsterdam. Tattooing with renowned artists like Yoji Harada † and has tattood at the well known \"Schiffmacher en Veldhoen\".";
+    return {
+      title: this.$context.global.title,
+      meta: [
+        { name: 'description', content: desc },
+        { name: 'og:title', content: this.$context.global.title },
+        { name: 'og:description', content: desc },
+        { name: 'og:image', content: "https://bendeboef.com/img/social-ben.jpg" }
+      ]
+    };
   },
   data() {
     return {
       links: [
         {
           name: 'Shop',
-          url: '/shop/',
+          url: '/shop/'
         },
         {
           name: 'Tattoos',
-          url: '/tattoos/',
+          url: '/tattoos/'
         },
         {
           name: 'Bio',
-          url: '/bio/',
+          url: '/bio/'
         },
         {
           name: 'Contact',
-          url: '/contact/',
-        },
-      ],
+          url: '/contact/'
+        }
+      ]
     };
   },
   components: {
     ShopNavBar,
-    Breadcrumb,
+    Breadcrumb
   },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder;
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
