@@ -29,7 +29,6 @@
 </template>
 <script>
 import { isOutOfStock } from '../util/product.util';
-import { getMetaInfo } from '../util/seo.util';
 
 export default {
   props: {
@@ -46,9 +45,6 @@ export default {
   },
   data() {
     return { isLoading: false };
-  },
-  metaInfo() {
-    return getMetaInfo(this.$context.product);
   },
   methods: {
     async buy() {

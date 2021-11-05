@@ -31,7 +31,7 @@
 <script>
 import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';
 import VariantSelector from 'pinelab-storefront-client/lib/buefy-components/VariantSelector';
-import { buy, hydrate, isOutOfStock } from 'pinelab-storefront-client';
+import { buy, hydrate, isOutOfStock, getMetaInfo } from 'pinelab-storefront-client';
 
 export default {
   components: {
@@ -58,6 +58,9 @@ export default {
   },
   async mounted() {
     await hydrate(this.$context.product, this.$vendure);
+  },
+  metaInfo() {
+    return getMetaInfo(this.$context.product);
   },
   methods: {
     async buy() {

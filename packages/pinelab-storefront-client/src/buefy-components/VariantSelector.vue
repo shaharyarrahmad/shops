@@ -7,7 +7,7 @@
         v-for="option of group.options"
         :key="option.id"
         :aria-label="`${group.name} ${option.name}`"
-        class="mr-2"
+        class="mr-2 mb-2"
         :class="{ 'is-primary': selectedOptions[group.id] === option.id }"
         @click="select(group.id, option.id)"
       >

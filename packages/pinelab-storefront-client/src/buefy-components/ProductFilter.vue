@@ -5,7 +5,7 @@
         v-if="isSelected(collection)"
         :to="`${noCollectionUrl.length > 0 ? noCollectionUrl : '/'}`"
         :key="collection.id"
-        class="button is-primary mr-2"
+        class="button is-primary mr-2 mb-2"
       >
         <span> {{ collection.name }} </span
         ><span class="icon is-small"><i class="mdi mdi-close-thick"></i></span>
@@ -14,7 +14,7 @@
         v-else
         :to="`${noCollectionUrl}/${collection.slug}/`"
         :key="collection.id"
-        class="button is-outlined mr-2"
+        class="button is-outlined mr-2 mb-2"
       >
         {{ collection.name }}
       </g-link>
