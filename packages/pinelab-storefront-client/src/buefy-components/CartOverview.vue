@@ -54,18 +54,15 @@
               />
             </td>
           </tr>
-          <tr class="has-text-success">
-            <template
-              v-for="discount of activeOrder.discounts">
-              <td></td>
-              <td>
+          <tr class="has-text-success" v-for="discount of activeOrder.discounts">
+              <td class="is-hidden-mobile"></td>
+              <td colspan="2">
                 <p>{{ discount.description }}</p>
               </td>
-              <td></td>
-              <td class="has-text-right">
+              <td class="has-text-right nowrap">
                 <p>{{ discount.amountWithTax | euro }}</p>
               </td>
-            </template>
+              <td></td>
           </tr>
           </tbody>
         </table>
@@ -155,6 +152,7 @@ export default {
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
+    this.couponCode = this.activeOrder?.couponCodes?.[0]
   }
 };
 </script>
@@ -170,5 +168,8 @@ export default {
 .quantity-column {
   width: 140px;
   min-width: 140px;
+}
+.nowrap {
+  white-space: nowrap;
 }
 </style>
