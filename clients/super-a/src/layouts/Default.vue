@@ -12,7 +12,7 @@
     </Consent>
 
     <ShopNavBar
-      logo="/img/logo.svg"
+      logo="/img/logo_small.png"
       logo-alt="Super A"
       cart-link="/cart/"
       :activeOrder="activeOrder"
@@ -100,6 +100,18 @@ export default {
         }
       ],
     }
+  },
+  metaInfo() {
+    const desc = "Stefan Thelen's anti-superhero identity - Super A is a Dutch artist who uses traditional painting technique and a knack for design to create compositions that manipulate familiar iconography into mind-bending and inquisitive pieces.";
+    return {
+      title: this.$context.global.title,
+      meta: [
+        { name: 'description', content: desc },
+        { name: 'og:title', content: this.$context.global.title },
+        { name: 'og:description', content: desc },
+        { name: 'og:image', content: "https://supera.netlify.app/img/hero.jpg" }
+      ]
+    };
   },
   computed: {
     activeOrder() {

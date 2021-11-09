@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #content>
-      <div v-if="$context.featuredProducts && $context.featuredProducts.length > 0">
+      <div v-if="$context.products && $context.products.length > 0">
       <ProductFilter
         :collections="$context.collections"
         no-collection-url="/shop/"

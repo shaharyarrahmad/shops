@@ -1,6 +1,10 @@
 <template>
   <Layout #content>
-    <OrderConfirmation />
+    <OrderConfirmation>
+        <video playsinline autoplay muted loop>
+          <source src="/video/shipping.mp4" type="video/mp4" />
+        </video>
+    </OrderConfirmation>
   </Layout>
 </template>
 <script>

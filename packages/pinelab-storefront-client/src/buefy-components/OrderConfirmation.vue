@@ -66,6 +66,9 @@
         </tbody>
       </table>
     </div>
+
+    <slot />
+
   </div>
 </template>
 <script>
