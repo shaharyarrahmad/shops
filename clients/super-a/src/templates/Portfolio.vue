@@ -15,11 +15,11 @@
         </div>
         <div class="column is-6">
           <g-link :to="`/portfolio/${$context.projects[0].categories[0]}#${$context.projects[0].title}`">
-            <figure class="image is-square">
-              <img
-                :src="getSquareImage($context.projects[0].main_image.id)"
-              />
-            </figure>
+            <b-image
+              :src="getSquareImage($context.projects[0].main_image.id)"
+              :alt="$context.projects[0].main_image.title"
+              placeholder="/img/placeholder.png"
+            />
           </g-link>
         </div>
       </div>

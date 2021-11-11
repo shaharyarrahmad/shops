@@ -12,6 +12,7 @@
             :small="getSquareImage(image.directus_files_id.id)"
             :alt="image.directus_files_id.title"
             :large="getDefaultImage(image.directus_files_id.id)"
+            placeholder="/img/placeholder.png"
           />
         </div>
       </div>

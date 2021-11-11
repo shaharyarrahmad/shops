@@ -19,6 +19,7 @@
                             :small="getSquareImage(image.directus_files_id.id)"
                             :alt="image.directus_files_id.title"
                             :large="getDefaultImage(image.directus_files_id.id)"
+                            placeholder="/img/placeholder.png"
                 />
             </div>
           </div>
@@ -37,6 +38,7 @@
             :small="getSquareImage(project.main_image.id)"
             :alt="project.main_image.title"
             :large="getDefaultImage(project.main_image.id)"
+            placeholder="/img/placeholder.png"
           />
         </div>
       </div>
