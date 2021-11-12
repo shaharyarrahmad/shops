@@ -39,7 +39,13 @@
     </div>
 
     <footer v-if="showFooter" class="footer main-footer">
+
       <div class="content has-text-centered is-dark">
+
+<!--        <Newsletter/>-->
+
+        <br/>
+
         <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
         </a>
@@ -65,6 +71,7 @@
 <script>
 import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
 import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import Newsletter from '../components/Newsletter';
 import Consent from '../templates/Consent';
 import { bootstrap } from 'vue-gtag'
 
@@ -77,7 +84,8 @@ export default {
   components: {
     ShopNavBar,
     Breadcrumb,
-    Consent
+    Consent,
+    Newsletter
   },
   data() {
     return {
