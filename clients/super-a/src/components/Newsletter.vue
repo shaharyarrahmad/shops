@@ -1,7 +1,9 @@
 <template>
+
+
   <div class="container" style="max-width: 30rem;">
     <p class="mb-2">Subscribe to my newsletter to stay up to date!</p>
-    <form action="https://studio.us7.list-manage.com/subscribe/post?u=c9829cf44cd2671865d2483c8&amp;id=08c3f6f397"
+    <form action="https://super-a.us20.list-manage.com/subscribe/post?u=87f5a51aaf0b4db35b3d41e3b&amp;id=ba19f476ac"
           method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
           target="_blank" novalidate>
 
@@ -20,7 +22,7 @@
           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
           <div style="position: absolute; left: -5000px;" aria-hidden="true">
             <input type="text"
-                   name="b_c9829cf44cd2671865d2483c8_08c3f6f397"
+                   name="b_87f5a51aaf0b4db35b3d41e3b_ba19f476ac"
                    tabindex="-1" value="">
           </div>
         </div>

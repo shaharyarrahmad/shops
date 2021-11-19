@@ -42,7 +42,7 @@
 
       <div class="content has-text-centered is-dark">
 
-<!--        <Newsletter/>-->
+        <Newsletter/>
 
         <br/>
 

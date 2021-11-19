@@ -1,8 +1,8 @@
 <template>
   <Layout #content>
     <OrderConfirmation>
-<!--      <Newsletter />
-      <br />-->
+      <Newsletter />
+      <br />
       <video playsinline autoplay muted loop>
         <source src="/video/shipping.mp4" type="video/mp4" />
       </video>
