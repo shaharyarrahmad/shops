@@ -36,7 +36,7 @@
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
     "vendure-plugin-dutch-postalcode": "1.2.5",
-    "vendure-plugin-google-cloud-tasks": "1.2.4",
+    "vendure-plugin-google-cloud-tasks": "1.2.6",
     "vendure-plugin-google-storage-assets": "1.2.5",
     "vendure-plugin-mollie": "1.2.5",
     "vendure-plugin-myparcel": "1.2.5",
