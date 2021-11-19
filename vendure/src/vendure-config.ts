@@ -103,7 +103,8 @@ export const config: VendureConfig = {
     MyparcelPlugin.init(
       {
         'demo': process.env.MYPARCEL_DEMO!,
-        'super-a': process.env.MYPARCEL_SUPERA!
+        'super-a': process.env.MYPARCEL_SUPERA!,
+        'bendeboef': process.env.MYPARCEL_BENDEBOEF!
       },
       process.env.VENDURE_HOST!
     ),

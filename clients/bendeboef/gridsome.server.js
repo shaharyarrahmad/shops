@@ -9,10 +9,22 @@ module.exports = async function(api) {
       graphql(GET_CONTENT)
     ]);
     const { products, collections, productsPerCollection, availableCountries } = shopData;
-    const {data: {Directus: {bdb_algemeen: global, bdb_home: home, bdb_news: news, bdb_bio: bio, bdb_tattoos: tattoos}}} = content;
+    const {
+      data: {
+        Directus: {
+          bdb_algemeen: global,
+          bdb_home: home,
+          bdb_news: news,
+          bdb_bio: bio,
+          bdb_tattoos: tattoos
+        }
+      }
+    } = content;
 
     // Static pages should never have soldOut products, this is updated when mounted()
     products.forEach((p) => (p.soldOut = false));
+
+    products.reverse();
 
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
