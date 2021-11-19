@@ -9,7 +9,7 @@
           <hr style="margin-top: 0" />
           <template v-for="category in $context.categories">
             <g-link :to="`/portfolio/${category}`">
-              <h2 class="is-link pb-4">{{ category }}</h2>
+              <h4 class="is-link pb-2">{{ category }}</h4>
             </g-link>
           </template>
         </div>
