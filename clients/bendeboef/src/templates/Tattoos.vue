@@ -2,7 +2,14 @@
   <Layout>
     <template #content>
       <h1 class="title">Tattoos by Ben de Boef</h1>
-      <br>
+      <br/>
+      <a href="/nazorg-tattoo.pdf" target="_blank">Read our tattoo aftercare instructions</a>
+      <br/>
+      <a href="/toestemmingsformulier.pdf" target="_blank">Download the permission form here</a>
+      <br/>
+      <a href="/Algemene voorwaarden.pdf" target="_blank">Ben de Boef's terms and conditions</a>
+      <br/>
+      <br/>
       <div class="columns is-multiline is-mobile">
         <div
           v-for="tattoo of $context.tattoos"
@@ -23,9 +30,7 @@
         <b-icon icon="instagram" size="is-large"></b-icon>
       </a>
       <br>
-      <br>
-      <br>
-      <a href="/nazorg-tattoo.pdf" target="_blank">Read our tattoo aftercare instructions</a>
+
       </div>
     </template>
   </Layout>
