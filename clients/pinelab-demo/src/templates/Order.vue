@@ -1,6 +1,6 @@
 <template>
   <Layout #content>
-    <OrderConfirmation v-on:order-confirmed="track($event)" />
+    <OrderConfirmation/>
   </Layout>
 </template>
 <script>
@@ -16,6 +16,7 @@ export default {
         transaction_id: event.orderId,
         affiliation: 'Pinelab demo shop',
         value: event.value / 100,
+        currency: "EUR"
       };
       console.log(purchase);
       this.$gtag.purchase(purchase);
