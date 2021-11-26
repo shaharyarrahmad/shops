@@ -171,9 +171,12 @@
                 icon="earth"
                 v-model="address.countryCode"
               >
-                <option v-for="country of availableCountries"
-                        :key="country.code"
-                        :value="country.code">{{ country.name }}
+                <option
+                  v-for="country of availableCountries"
+                  :key="country.code"
+                  :value="country.code"
+                >
+                  {{ country.name }}
                 </option>
               </b-select>
             </b-field>
@@ -293,13 +296,13 @@ export default {
       type: Array,
       default() {
         return [{ name: 'Nederland', code: 'nl' }];
-      }
-    }
+      },
+    },
   },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder || {};
-    }
+    },
   },
   data() {
     return {
@@ -310,7 +313,7 @@ export default {
         emailAddress: undefined,
         firstName: undefined,
         lastName: undefined,
-        phoneNumber: undefined
+        phoneNumber: undefined,
       },
       address: {
         company: undefined,
@@ -318,10 +321,10 @@ export default {
         streetLine1: undefined,
         streetLine2: undefined,
         postalCode: undefined,
-        countryCode: 'nl'
+        countryCode: 'nl',
       },
       shippingMethods: [],
-      selectedShippingMethod: undefined
+      selectedShippingMethod: undefined,
     };
   },
   methods: {
@@ -333,7 +336,7 @@ export default {
         fullName: `${this.customer.firstName} ${this.customer.lastName}`,
         defaultBillingAddress: true,
         defaultShippingAddress: true,
-        phoneNumber: this.customer.phoneNumber
+        phoneNumber: this.customer.phoneNumber,
       };
       try {
         await this.$vendure.setCustomerForOrder(this.customer);
@@ -361,7 +364,7 @@ export default {
         }
         const order = await this.$vendure.addPaymentToOrder({
           method: `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`,
-          metadata: {}
+          metadata: {},
         });
         const latestPayment = order?.payments?.[order?.payments.length - 1];
         if (latestPayment?.metadata?.public?.redirectLink) {
@@ -382,7 +385,7 @@ export default {
       this.$buefy.toast.open({
         message: `Something went wrong...`,
         position: 'is-bottom',
-        type: 'is-danger'
+        type: 'is-danger',
       });
     },
     goBack() {
@@ -400,13 +403,13 @@ export default {
       }
       const address = await this.$vendure.getAddress({
         postalCode: this.address.postalCode,
-        houseNumber: this.address.streetLine2
+        houseNumber: this.address.streetLine2,
       });
       if (address && address.street) {
         this.address.streetLine1 = address.street;
         this.address.city = address.city;
       }
-    }
+    },
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -426,7 +429,9 @@ export default {
     this.address.postalCode = activeOrder?.shippingAddress?.postalCode;
     this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     if (activeOrder?.shippingAddress?.country) {
-      const country = this.availableCountries.find(c => c.name === activeOrder.shippingAddress.country);
+      const country = this.availableCountries.find(
+        (c) => c.name === activeOrder.shippingAddress.country
+      );
       this.address.countryCode = country?.code || 'nl';
     }
     this.selectedShippingMethod =
@@ -434,7 +439,7 @@ export default {
   },
   async created() {
     this.getAddress = debounce(this.getAddress, 500);
-  }
+  },
 };
 </script>
 <style>

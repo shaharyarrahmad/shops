@@ -80,7 +80,6 @@
                 <img :src="getPreview(asset)" />
               </p>
             </b-modal>-->
-
     </template>
   </Layout>
 </template>
@@ -91,12 +90,12 @@ import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
-    ProductCard
+    ProductCard,
   },
   async mounted() {
     await hydrate(this.$context.featuredProducts, this.$vendure);
     await this.$vendure.getActiveOrder();
-  }
+  },
 };
 </script>
 <style>

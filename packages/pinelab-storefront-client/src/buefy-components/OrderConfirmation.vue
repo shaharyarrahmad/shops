@@ -22,7 +22,9 @@
       </b-step-item>
     </b-steps>
 
-    <p v-if="(!order || order.state !== 'PaymentSettled') && !error">Loading...</p>
+    <p v-if="(!order || order.state !== 'PaymentSettled') && !error">
+      Loading...
+    </p>
 
     <b-notification v-else-if="error" class="is-danger">
       {{ error }}
@@ -48,7 +50,7 @@
           <tr v-for="(total, rate) in taxLines">
             <td>{{ taxLabel }}</td>
             <td>{{ rate }} %</td>
-            <td :id="`tax-${rate}-amount`">{{ total | euro}}</td>
+            <td :id="`tax-${rate}-amount`">{{ total | euro }}</td>
           </tr>
           <tr>
             <th>{{ totalLabel }}</th>
@@ -62,13 +64,14 @@
             <td>{{ line.quantity }}</td>
             <td>{{ line.linePriceWithTax | euro }}</td>
           </tr>
-          <tr><td>&NonBreakingSpace;</td></tr>
+          <tr>
+            <td>&NonBreakingSpace;</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <slot />
-
   </div>
 </template>
 <script>
@@ -90,7 +93,7 @@ export default {
       order: undefined,
       error: undefined,
       activeStep: 4,
-      taxLines: {}
+      taxLines: {},
     };
   },
   async mounted() {
@@ -107,11 +110,14 @@ export default {
         pollingCount++;
         console.log(`Polling for payment status ${pollingCount}`);
       }
-      this.order.taxSummary.forEach(line => {
+      this.order.taxSummary.forEach((line) => {
         const total = this.taxLines[line.taxRate] || 0;
-        this.taxLines[line.taxRate] = total + line.taxTotal
+        this.taxLines[line.taxRate] = total + line.taxTotal;
       });
-      this.$emit('order-confirmed', {orderId: this.order.code, value: this.order.totalWithTax});
+      this.$emit('order-confirmed', {
+        orderId: this.order.code,
+        value: this.order.totalWithTax,
+      });
     } catch (e) {
       console.error(e);
       this.error = 'Something is wrong, please contact us...';

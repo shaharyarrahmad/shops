@@ -8,21 +8,25 @@ import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/Quanti
 import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
 import VueGtag from 'vue-gtag';
 
-export default function(Vue, { router, head, isClient }) {
+export default function (Vue, { router, head, isClient }) {
   if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
     require('outfront').default();
     console.log('OutfrontJS mobile logging enabled');
   }
   if (isClient) {
-    Vue.use(VueGtag, {
-      config: {
-        id: 'G-RSXZBW7FVM',
-        params: {
-          anonymize_ip: true
-        }
+    Vue.use(
+      VueGtag,
+      {
+        config: {
+          id: 'G-RSXZBW7FVM',
+          params: {
+            anonymize_ip: true,
+          },
+        },
+        bootstrap: false,
       },
-      bootstrap: false
-    }, router);
+      router
+    );
   }
   Vue.use(Buefy);
   Vue.component('QuantityInput', QuantityInput);
@@ -37,7 +41,7 @@ export default function(Vue, { router, head, isClient }) {
   Vue.mixin({
     methods: {
       getDefaultImage: (id) => `${assetHost}/assets/${id}?key=default`,
-      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`
-    }
+      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`,
+    },
   });
 }

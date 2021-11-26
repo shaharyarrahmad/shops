@@ -2,9 +2,8 @@ const { GridsomeService } = require('pinelab-storefront-client');
 const { GET_CONTENT } = require('./content.queries');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = async function(api) {
-
-/*  api.chainWebpack(config => {
+module.exports = async function (api) {
+  /*  api.chainWebpack(config => {
     config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
   });*/
 
@@ -12,9 +11,10 @@ module.exports = async function(api) {
     const gridsome = new GridsomeService(graphql);
     const [shopData, content] = await Promise.all([
       gridsome.getShopData(),
-      graphql(GET_CONTENT)
+      graphql(GET_CONTENT),
     ]);
-    const { products, collections, productsPerCollection, availableCountries } = shopData;
+    const { products, collections, productsPerCollection, availableCountries } =
+      shopData;
     const {
       data: {
         Directus: {
@@ -23,9 +23,9 @@ module.exports = async function(api) {
           supera_news: news,
           supera_projects: projects,
           supera_biography: bio,
-          supera_terms_conditions: terms
-        }
-      }
+          supera_terms_conditions: terms,
+        },
+      },
     } = content;
 
     const featuredProducts = products.filter((p) =>
@@ -51,8 +51,8 @@ module.exports = async function(api) {
         news,
         products,
         collections,
-        featuredProducts
-      }
+        featuredProducts,
+      },
     });
 
     // ----------------- Shop ---------------------
@@ -63,8 +63,8 @@ module.exports = async function(api) {
         global,
         products,
         collections,
-        breadcrumb: { Home, Shop }
-      }
+        breadcrumb: { Home, Shop },
+      },
     });
 
     // ----------------- ProductDetail ---------------------
@@ -75,19 +75,21 @@ module.exports = async function(api) {
         context: {
           global,
           product,
-          breadcrumb: { Home, Shop, [product.name]: product.slug }
-        }
+          breadcrumb: { Home, Shop, [product.name]: product.slug },
+        },
       });
     });
 
     // ----------------- Portfolio ---------------------
-    const featuredProjects = projects.filter(p => p.featured);
+    const featuredProjects = projects.filter((p) => p.featured);
     const projectsPerCategory = new Map();
-    projects.forEach(project => project.categories.forEach(category => {
-      const existingProjects = projectsPerCategory.get(category) || [];
-      existingProjects.push(project);
-      projectsPerCategory.set(category, existingProjects);
-    }));
+    projects.forEach((project) =>
+      project.categories.forEach((category) => {
+        const existingProjects = projectsPerCategory.get(category) || [];
+        existingProjects.push(project);
+        projectsPerCategory.set(category, existingProjects);
+      })
+    );
     const categories = Array.from(projectsPerCategory.keys());
 
     createPage({
@@ -97,8 +99,8 @@ module.exports = async function(api) {
         global,
         categories,
         projects: featuredProjects,
-        breadcrumb: { Home, Portfolio }
-      }
+        breadcrumb: { Home, Portfolio },
+      },
     });
 
     // ----------------- Portfolio categories---------------------
@@ -113,9 +115,9 @@ module.exports = async function(api) {
           breadcrumb: {
             Home,
             Portfolio,
-            [category]: `/portfolio/${category}`
-          }
-        }
+            [category]: `/portfolio/${category}`,
+          },
+        },
       });
     });
 
@@ -126,8 +128,8 @@ module.exports = async function(api) {
       context: {
         global,
         bio,
-        breadcrumb: { Home, Bio }
-      }
+        breadcrumb: { Home, Bio },
+      },
     });
 
     // ----------------- Contact ---------------------
@@ -136,8 +138,8 @@ module.exports = async function(api) {
       component: './src/templates/Contact.vue',
       context: {
         global,
-        breadcrumb: { Home, Contact }
-      }
+        breadcrumb: { Home, Contact },
+      },
     });
 
     // ----------------- Terms ---------------------
@@ -147,8 +149,12 @@ module.exports = async function(api) {
       context: {
         global,
         terms,
-        breadcrumb: { Home, ['Terms, conditions and privacy policy']: '/terms-conditions-and-privacy-policy/' }
-      }
+        breadcrumb: {
+          Home,
+          ['Terms, conditions and privacy policy']:
+            '/terms-conditions-and-privacy-policy/',
+        },
+      },
     });
 
     // ----------------- Cart ---------------------
@@ -157,22 +163,22 @@ module.exports = async function(api) {
       component: './src/templates/Cart.vue',
       context: {
         global,
-        breadcrumb: { Home, Shop, Cart }
-      }
+        breadcrumb: { Home, Shop, Cart },
+      },
     });
 
     // ----------------- Checkout ---------------------
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { global, availableCountries }
+      context: { global, availableCountries },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global }
+      context: { global },
     });
   });
 };

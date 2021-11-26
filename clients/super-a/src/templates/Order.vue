@@ -16,7 +16,7 @@ import Newsletter from '../components/Newsletter';
 export default {
   components: {
     Newsletter,
-    OrderConfirmation
-  }
+    OrderConfirmation,
+  },
 };
 </script>

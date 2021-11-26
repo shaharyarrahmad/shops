@@ -31,7 +31,12 @@
 <script>
 import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';
 import VariantSelector from 'pinelab-storefront-client/lib/buefy-components/VariantSelector';
-import { buy, hydrate, isOutOfStock, getMetaInfo } from 'pinelab-storefront-client';
+import {
+  buy,
+  hydrate,
+  isOutOfStock,
+  getMetaInfo,
+} from 'pinelab-storefront-client';
 
 export default {
   components: {

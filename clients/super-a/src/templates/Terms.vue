@@ -1,12 +1,11 @@
 <template>
   <Layout>
     <template #content>
-
       <h1>{{ $context.terms.title }}</h1>
 
       <div v-html="$context.terms.text"></div>
 
-<!--
+      <!--
 
         <h3 class="title is-4">Shipping and costs</h3>
 

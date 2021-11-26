@@ -7,7 +7,10 @@
       <br />
 
       <div class="columns is-multiline is-mobile">
-        <div class="column is-half-mobile is-one-quarter-tablet mb-4" v-for="image of $context.bio.images">
+        <div
+          class="column is-half-mobile is-one-quarter-tablet mb-4"
+          v-for="image of $context.bio.images"
+        >
           <PopupImage
             :small="getSquareImage(image.directus_files_id.id)"
             :alt="image.directus_files_id.title"

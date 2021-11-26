@@ -25,7 +25,7 @@ import '~/theme.scss';
 import '@fontsource/work-sans';
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
-import VueGtag from "vue-gtag";
+import VueGtag from 'vue-gtag';
 
 export default function (Vue, { router, head, isClient }) {
   if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
@@ -53,14 +53,18 @@ export default function (Vue, { router, head, isClient }) {
     Tooltip,
   ].forEach((component) => Vue.use(component));
   if (isClient) {
-    Vue.use(VueGtag, {
-      config: {
-        id: 'G-HWPW53KXT8',
-        params: {
-          anonymize_ip: true
-        }
-      }
-    }, router);
+    Vue.use(
+      VueGtag,
+      {
+        config: {
+          id: 'G-HWPW53KXT8',
+          params: {
+            anonymize_ip: true,
+          },
+        },
+      },
+      router
+    );
   }
   Vue.component('QuantityInput', QuantityInput);
   Vue.component('Layout', Layout);
@@ -75,7 +79,7 @@ export default function (Vue, { router, head, isClient }) {
   Vue.mixin({
     methods: {
       getDefaultImage: (id) => `${assetHost}/assets/${id}?key=default`,
-      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`
-    }
+      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`,
+    },
   });
 }

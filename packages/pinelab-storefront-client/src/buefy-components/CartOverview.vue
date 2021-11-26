@@ -4,57 +4,63 @@
       <div v-if="lines.length > 0">
         <div class="has-text-right">
           <g-link :to="linkToCheckout" class="button is-primary"
-          >{{ checkoutButtonLabel }}
+            >{{ checkoutButtonLabel }}
           </g-link>
         </div>
         <br />
         <p class="has-text-right">
-          <strong>{{ totalLabel }}:</strong> {{ activeOrder.totalWithTax | euro }}
+          <strong>{{ totalLabel }}:</strong>
+          {{ activeOrder.totalWithTax | euro }}
         </p>
         <br />
         <div class="columns">
           <div class="column is-half is-offset-half">
             <b-field :type="couponClass">
-              <b-input v-on:input="applyCouponCode()"
-                       :placeholder="couponLabel"
-                       icon="check-decagram"
-                       :loading="loadingCoupon"
-                       v-model="couponCode" />
+              <b-input
+                v-on:input="applyCouponCode()"
+                :placeholder="couponLabel"
+                icon="check-decagram"
+                :loading="loadingCoupon"
+                v-model="couponCode"
+              />
             </b-field>
           </div>
         </div>
         <table class="table order-table is-fullwidth is-striped">
           <tbody>
-          <tr v-for="line of lines">
-            <td class="image-column is-hidden-mobile">
-              <img
-                :src="line.featuredAsset.thumbnail"
-                :alt="`${line.productVariant.name} thumbnail`"
-              />
-            </td>
-            <td>
-              <p class="is-hidden-mobile"><strong>{{ line.productVariant.product.name }}</strong></p>
-              <p class="has-text-grey">{{
-                  line.productVariant.name
-                }}</p>
-            </td>
-            <td class="quantity-column">
-              <b-field>
-                <QuantityInput :value="line.quantity" :line-id="line.id" />
-              </b-field>
-            </td>
-            <td class="has-text-right">
-              <p>{{ line.linePriceWithTax | euro }}</p>
-            </td>
-            <td class="has-text-right" style="padding-right: 0">
-              <b-button
-                type="is-outlined is-small"
-                @click="remove(line.id)"
-                icon-right="close"
-              />
-            </td>
-          </tr>
-          <tr class="has-text-success" v-for="discount of activeOrder.discounts">
+            <tr v-for="line of lines">
+              <td class="image-column is-hidden-mobile">
+                <img
+                  :src="line.featuredAsset.thumbnail"
+                  :alt="`${line.productVariant.name} thumbnail`"
+                />
+              </td>
+              <td>
+                <p class="is-hidden-mobile">
+                  <strong>{{ line.productVariant.product.name }}</strong>
+                </p>
+                <p class="has-text-grey">{{ line.productVariant.name }}</p>
+              </td>
+              <td class="quantity-column">
+                <b-field>
+                  <QuantityInput :value="line.quantity" :line-id="line.id" />
+                </b-field>
+              </td>
+              <td class="has-text-right">
+                <p>{{ line.linePriceWithTax | euro }}</p>
+              </td>
+              <td class="has-text-right" style="padding-right: 0">
+                <b-button
+                  type="is-outlined is-small"
+                  @click="remove(line.id)"
+                  icon-right="close"
+                />
+              </td>
+            </tr>
+            <tr
+              class="has-text-success"
+              v-for="discount of activeOrder.discounts"
+            >
               <td class="is-hidden-mobile"></td>
               <td colspan="2">
                 <p>{{ discount.description }}</p>
@@ -63,12 +69,12 @@
                 <p>{{ discount.amountWithTax | euro }}</p>
               </td>
               <td></td>
-          </tr>
+            </tr>
           </tbody>
         </table>
         <div class="has-text-right">
           <g-link :to="linkToCheckout" class="button is-primary"
-          >{{ checkoutButtonLabel }}
+            >{{ checkoutButtonLabel }}
           </g-link>
         </div>
       </div>
@@ -82,24 +88,24 @@ import { debounce } from 'debounce';
 export default {
   props: {
     emptyCartLabel: {
-      required: true
+      required: true,
     },
     checkoutButtonLabel: {
       type: String,
-      default: 'Order now'
+      default: 'Order now',
     },
     linkToCheckout: {
       type: String,
-      required: true
+      required: true,
     },
     totalLabel: {
       type: String,
-      default: 'Total'
+      default: 'Total',
     },
     couponLabel: {
       type: String,
-      default: 'Coupon code'
-    }
+      default: 'Coupon code',
+    },
   },
   computed: {
     activeOrder() {
@@ -117,13 +123,13 @@ export default {
       } else if (this.hasCoupon) {
         return 'is-success';
       }
-    }
+    },
   },
   data() {
     return {
       couponCode: undefined,
       isInvalidCoupon: false,
-      loadingCoupon: false
+      loadingCoupon: false,
     };
   },
   methods: {
@@ -133,9 +139,11 @@ export default {
     async applyCouponCode() {
       try {
         this.loadingCoupon = true;
-        await Promise.all(this.activeOrder.couponCodes.map((code) =>
-          this.$vendure.removeCouponCode(code)
-        ));
+        await Promise.all(
+          this.activeOrder.couponCodes.map((code) =>
+            this.$vendure.removeCouponCode(code)
+          )
+        );
         await this.$vendure.applyCouponCode(this.couponCode);
         this.isInvalidCoupon = false;
       } catch (error) {
@@ -144,7 +152,7 @@ export default {
       } finally {
         this.loadingCoupon = false;
       }
-    }
+    },
   },
 
   created() {
@@ -152,8 +160,8 @@ export default {
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
-    this.couponCode = this.activeOrder?.couponCodes?.[0]
-  }
+    this.couponCode = this.activeOrder?.couponCodes?.[0];
+  },
 };
 </script>
 <style>

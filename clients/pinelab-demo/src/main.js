@@ -25,12 +25,12 @@ import '~/theme.scss';
 import '@fontsource/roboto-mono';
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
-import VueGtag from "vue-gtag";
+import VueGtag from 'vue-gtag';
 
 export default function (Vue, { router, head, isClient }) {
   if (isClient) {
     Vue.use(VueGtag, {
-      config: { id: 'G-7B6288325Y' }
+      config: { id: 'G-7B6288325Y' },
     });
   }
   if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {

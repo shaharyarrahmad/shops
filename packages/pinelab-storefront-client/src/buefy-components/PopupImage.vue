@@ -23,8 +23,8 @@ export default {
   props: ['small', 'alt', 'large', 'placeholder'],
   data() {
     return {
-      show: false
+      show: false,
     };
-  }
+  },
 };
 </script>

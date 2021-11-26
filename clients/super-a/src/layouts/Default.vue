@@ -6,9 +6,12 @@
       thank-you-message="Thanks!"
       v-on:approved="activateAnalytics()"
     >
-      We send anonymized data to Google Analytics to improve our site. Are you oke with that?
-      <br/>
-      <a href="/terms-conditions-and-privacy-policy/" target="_blank">Read our policy</a>
+      We send anonymized data to Google Analytics to improve our site. Are you
+      oke with that?
+      <br />
+      <a href="/terms-conditions-and-privacy-policy/" target="_blank"
+        >Read our policy</a
+      >
     </Consent>
 
     <ShopNavBar
@@ -39,12 +42,10 @@
     </div>
 
     <footer v-if="showFooter" class="footer main-footer">
-
       <div class="content has-text-centered is-dark">
+        <Newsletter />
 
-        <Newsletter/>
-
-        <br/>
+        <br />
 
         <a :href="$context.global.instagram" target="_blank">
           <b-icon icon="instagram"></b-icon>
@@ -52,16 +53,22 @@
         <br />
         <br />
         Super A •
-        <a :href="`mailto:${$context.global.email_adressen[0]}`" target="_blank">{{
-          $context.global.email_adressen[0]
-        }}</a>
+        <a
+          :href="`mailto:${$context.global.email_adressen[0]}`"
+          target="_blank"
+          >{{ $context.global.email_adressen[0] }}</a
+        >
         •
         <a class="has-text-grey" href="https://pinelab.studio/" target="_blank"
           >Made by Pinelab 🌲</a
         >
-        <br/>
-        <br/>
-        <a class="has-text-grey" href="/terms-conditions-and-privacy-policy/" target="_blank">
+        <br />
+        <br />
+        <a
+          class="has-text-grey"
+          href="/terms-conditions-and-privacy-policy/"
+          target="_blank"
+        >
           Terms, conditions and privacy policy
         </a>
       </div>
@@ -73,7 +80,7 @@ import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavba
 import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
 import Newsletter from '../components/Newsletter';
 import Consent from '../templates/Consent';
-import { bootstrap } from 'vue-gtag'
+import { bootstrap } from 'vue-gtag';
 
 export default {
   props: {
@@ -85,40 +92,44 @@ export default {
     ShopNavBar,
     Breadcrumb,
     Consent,
-    Newsletter
+    Newsletter,
   },
   data() {
     return {
       links: [
         {
-          name: "Shop",
-          url: "/shop/"
+          name: 'Shop',
+          url: '/shop/',
         },
         {
-          name: "Portfolio",
-          url: "/portfolio/"
+          name: 'Portfolio',
+          url: '/portfolio/',
         },
         {
-          name: "Bio",
-          url: "/bio/"
+          name: 'Bio',
+          url: '/bio/',
         },
         {
-          name: "Contact",
-          url: "/contact/"
-        }
+          name: 'Contact',
+          url: '/contact/',
+        },
       ],
-    }
+    };
   },
   metaInfo() {
-    const desc = "Stefan Thelen's anti-superhero identity - Super A is a Dutch artist who uses traditional painting technique and a knack for design to create compositions that manipulate familiar iconography into mind-bending and inquisitive pieces.";
+    const desc =
+      "Stefan Thelen's anti-superhero identity - Super A is a Dutch artist who uses traditional painting technique and a knack for design to create compositions that manipulate familiar iconography into mind-bending and inquisitive pieces.";
     return {
       title: this.$context.global.title,
       meta: [
         { name: 'description', content: desc },
         { name: 'og:title', content: this.$context.global.title },
         { name: 'og:description', content: desc },
-        { name: 'og:image', content: "https://supera.netlify.app/img/hero.jpg" }
-      ]
+        {
+          name: 'og:image',
+          content: 'https://supera.netlify.app/img/hero.jpg',
+        },
+      ],
     };
   },
   computed: {
@@ -130,10 +141,9 @@ export default {
     async activateAnalytics() {
       await bootstrap();
       console.log('ga approved');
-    }
+    },
   },
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 <style>
@@ -145,7 +155,7 @@ export default {
 }
 /* Consent cancel greyed */
 body > div.notices.is-bottom > div > div.action.is-light.is-cancel > button {
-  color: #5f5f5f
+  color: #5f5f5f;
 }
 .shop-logo {
   margin-right: 20px;

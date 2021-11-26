@@ -16,7 +16,7 @@ import {
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
-  TRANSITION_ORDER_TO_STATE
+  TRANSITION_ORDER_TO_STATE,
 } from './vendure.queries';
 import {
   Country,
@@ -29,7 +29,7 @@ import {
   Order,
   PaymentInput,
   Product,
-  ShippingMethodQuote
+  ShippingMethodQuote,
 } from '../../../common';
 import { CalculatedProduct } from './calculated-product';
 import { setCalculatedFields } from '../util/product.util';
@@ -215,10 +215,7 @@ export class VendureClient {
     if (token) {
       this.client.setHeader('Authorization', `Bearer ${token}`);
     }
-    const { data, headers } = await this.client.rawRequest(
-      document,
-      variables
-    );
+    const { data, headers } = await this.client.rawRequest(document, variables);
     token = headers.get(this.tokenName);
     if (token) {
       window.localStorage.setItem(this.tokenName, token);

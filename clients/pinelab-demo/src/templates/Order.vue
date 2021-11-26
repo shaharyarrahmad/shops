@@ -1,6 +1,6 @@
 <template>
   <Layout #content>
-    <OrderConfirmation v-on:order-confirmed="track($event)"/>
+    <OrderConfirmation v-on:order-confirmed="track($event)" />
   </Layout>
 </template>
 <script>
@@ -13,13 +13,13 @@ export default {
   methods: {
     track(event) {
       const purchase = {
-        "transaction_id": event.orderId,
-        "affiliation": "Pinelab demo shop",
-        "value": event.value / 100
+        transaction_id: event.orderId,
+        affiliation: 'Pinelab demo shop',
+        value: event.value / 100,
       };
       console.log(purchase);
-      this.$gtag.purchase(purchase)
-    }
-  }
+      this.$gtag.purchase(purchase);
+    },
+  },
 };
 </script>

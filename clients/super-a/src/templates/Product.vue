@@ -1,7 +1,7 @@
 <template>
   <Layout #content>
     <br />
-    <h1{{ $context.product.name }}</h1>
+    <h1>{{ $context.product.name }}</h1>
     <div class="columns">
       <div class="column">
         <ProductImages :product="$context.product" :variant="variant" />
@@ -31,7 +31,12 @@
 <script>
 import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';
 import VariantSelector from 'pinelab-storefront-client/lib/buefy-components/VariantSelector';
-import { buy, getMetaInfo, hydrate, isOutOfStock } from 'pinelab-storefront-client';
+import {
+  buy,
+  getMetaInfo,
+  hydrate,
+  isOutOfStock,
+} from 'pinelab-storefront-client';
 
 export default {
   components: {

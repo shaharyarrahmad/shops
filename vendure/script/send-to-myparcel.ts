@@ -1,5 +1,10 @@
 require('dotenv').config({ path: process.env.LOCAL_ENV });
-import { bootstrap, ChannelService, OrderService, RequestContext } from '@vendure/core';
+import {
+  bootstrap,
+  ChannelService,
+  OrderService,
+  RequestContext,
+} from '@vendure/core';
 import { config } from '../src/vendure-config';
 import { MyparcelService } from 'vendure-plugin-myparcel/dist/myparcel.service';
 

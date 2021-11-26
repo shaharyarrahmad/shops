@@ -3,8 +3,12 @@
     <div v-if="!consentSet" class="footer consent-block p-3 px-6">
       <slot />
       <div class="has-text-right">
-        <b-button @click="decline()" class="is-dark">{{ declineText }}</b-button>
-        <b-button @click="accept()" class="is-success">{{ acceptText }}</b-button>
+        <b-button @click="decline()" class="is-dark">{{
+          declineText
+        }}</b-button>
+        <b-button @click="accept()" class="is-success">{{
+          acceptText
+        }}</b-button>
       </div>
     </div>
   </ClientOnly>
@@ -14,7 +18,7 @@ export default {
   props: ['acceptText', 'declineText', 'thankYouMessage'],
   data() {
     return {
-      consentSet: false
+      consentSet: false,
     };
   },
   methods: {
@@ -24,10 +28,10 @@ export default {
       this.$emit('declined');
     },
     accept() {
-      window.localStorage.setItem('consent_given', (new Date()).toISOString());
+      window.localStorage.setItem('consent_given', new Date().toISOString());
       this.$emit('approved');
       this.consentSet = true;
-    }
+    },
   },
   mounted() {
     const consent = window.localStorage.getItem('consent_given');
@@ -40,7 +44,7 @@ export default {
     } else if (!consent) {
       this.consentSet = false;
     }
-  }
+  },
 };
 </script>
 <style>

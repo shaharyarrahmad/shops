@@ -1,14 +1,15 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 const { GET_CONTENT } = require('./content.queries');
 
-module.exports = async function(api) {
+module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const [shopData, content] = await Promise.all([
       gridsome.getShopData(),
-      graphql(GET_CONTENT)
+      graphql(GET_CONTENT),
     ]);
-    const { products, collections, productsPerCollection, availableCountries } = shopData;
+    const { products, collections, productsPerCollection, availableCountries } =
+      shopData;
     const {
       data: {
         Directus: {
@@ -16,9 +17,9 @@ module.exports = async function(api) {
           bdb_home: home,
           bdb_news: news,
           bdb_bio: bio,
-          bdb_tattoos: tattoos
-        }
-      }
+          bdb_tattoos: tattoos,
+        },
+      },
     } = content;
 
     // Static pages should never have soldOut products, this is updated when mounted()
@@ -49,8 +50,8 @@ module.exports = async function(api) {
         news,
         products,
         collections,
-        featuredProducts
-      }
+        featuredProducts,
+      },
     });
 
     // ----------------- Shop ---------------------
@@ -61,8 +62,8 @@ module.exports = async function(api) {
         global,
         products,
         collections,
-        breadcrumb: { Home, Shop }
-      }
+        breadcrumb: { Home, Shop },
+      },
     });
 
     // ----------------- Collections ---------------------
@@ -76,8 +77,8 @@ module.exports = async function(api) {
             products: productsPerCollection,
             collection,
             collections,
-            breadcrumb: { Home, Shop, [collection.name]: collection.slug }
-          }
+            breadcrumb: { Home, Shop, [collection.name]: collection.slug },
+          },
         });
       }
     );
@@ -90,8 +91,8 @@ module.exports = async function(api) {
         context: {
           global,
           product,
-          breadcrumb: { Home, Shop, [product.name]: product.slug }
-        }
+          breadcrumb: { Home, Shop, [product.name]: product.slug },
+        },
       });
     });
 
@@ -101,8 +102,8 @@ module.exports = async function(api) {
       component: './src/templates/Cart.vue',
       context: {
         global,
-        breadcrumb: { Home, Shop, Cart }
-      }
+        breadcrumb: { Home, Shop, Cart },
+      },
     });
 
     // ----------------- checkout ---------------------
@@ -111,15 +112,15 @@ module.exports = async function(api) {
       component: './src/templates/Checkout.vue',
       context: {
         global,
-        availableCountries
-      }
+        availableCountries,
+      },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global }
+      context: { global },
     });
 
     // ----------------- static pages ---------------------
@@ -129,8 +130,8 @@ module.exports = async function(api) {
       context: {
         global,
         tattoos,
-        breadcrumb: { Home, Tattoos }
-      }
+        breadcrumb: { Home, Tattoos },
+      },
     });
 
     createPage({
@@ -139,8 +140,8 @@ module.exports = async function(api) {
       context: {
         global,
         bio,
-        breadcrumb: { Home, Bio }
-      }
+        breadcrumb: { Home, Bio },
+      },
     });
 
     createPage({
@@ -148,8 +149,8 @@ module.exports = async function(api) {
       component: './src/templates/Contact.vue',
       context: {
         global,
-        breadcrumb: { Home, Contact }
-      }
+        breadcrumb: { Home, Contact },
+      },
     });
   });
 };

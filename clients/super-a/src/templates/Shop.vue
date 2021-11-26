@@ -2,32 +2,32 @@
   <Layout>
     <template #content>
       <div v-if="$context.products && $context.products.length > 0">
-      <ProductFilter
-        :collections="$context.collections"
-        no-collection-url="/shop/"
-        :selected-collection="$context.selectedCollection"
-      />
+        <ProductFilter
+          :collections="$context.collections"
+          no-collection-url="/shop/"
+          :selected-collection="$context.selectedCollection"
+        />
 
-      <br />
-      <div
-        v-if="$context.selectedCollection"
-        v-html="$context.selectedCollection.description"
-      ></div>
-      <br />
-
-      <div class="columns is-multiline is-mobile">
+        <br />
         <div
-          class="column is-half-mobile is-one-quarter-tablet mb-4"
-          v-for="product of $context.products"
-          :key="product.slug"
-        >
-          <ProductCard
-            :product="product"
-            buy-label="Add to cart"
-            product-url-prefix="/shop/product/"
-          />
+          v-if="$context.selectedCollection"
+          v-html="$context.selectedCollection.description"
+        ></div>
+        <br />
+
+        <div class="columns is-multiline is-mobile">
+          <div
+            class="column is-half-mobile is-one-quarter-tablet mb-4"
+            v-for="product of $context.products"
+            :key="product.slug"
+          >
+            <ProductCard
+              :product="product"
+              buy-label="Add to cart"
+              product-url-prefix="/shop/product/"
+            />
+          </div>
         </div>
-      </div>
       </div>
       <div v-else>
         <h1>Soon more</h1>

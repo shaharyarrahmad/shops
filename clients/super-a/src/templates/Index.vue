@@ -37,7 +37,10 @@
         <hr />
       </section>
 
-      <section id="featured-products" v-if="$context.featuredProducts && $context.featuredProducts.length > 0">
+      <section
+        id="featured-products"
+        v-if="$context.featuredProducts && $context.featuredProducts.length > 0"
+      >
         <h2>{{ $context.home.shop_section_title }}</h2>
         <div class="columns is-multiline is-mobile">
           <div
@@ -58,20 +61,17 @@
         <h2>{{ $context.home.news_section_title }}</h2>
 
         <div class="columns is-multiline">
-          <div class="column is-6"
-               v-for="item of $context.news"
-          >
-            <figure class="b-image-wrapper image" style="height:300px;">
+          <div class="column is-6" v-for="item of $context.news">
+            <figure class="b-image-wrapper image" style="height: 300px">
               <img
                 :src="getSquareImage(item.image.id)"
                 :alt="item.image.title"
                 class="mb-4 has-ratio"
-                style="height:300px;"
+                style="height: 300px"
               />
             </figure>
             <h3>{{ item.title }}</h3>
             <div v-html="item.text" class="mb-5"></div>
-
           </div>
         </div>
         <hr />
@@ -86,20 +86,20 @@ import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
-    ProductCard
+    ProductCard,
   },
   metaInfo: {
-    title: 'Stefan Thelen’s anti-superhero identity'
+    title: 'Stefan Thelen’s anti-superhero identity',
   },
   data: () => ({
     videoUrl: undefined,
-    videos: ['/video/s.mp4', '/video/logo.mp4', '/video/spiral.mp4']
+    videos: ['/video/s.mp4', '/video/logo.mp4', '/video/spiral.mp4'],
   }),
   async mounted() {
     this.videoUrl = this.videos[Math.floor(Math.random() * this.videos.length)]; // Random video
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.featuredProducts, this.$vendure);
-  }
+  },
 };
 </script>
 <style>

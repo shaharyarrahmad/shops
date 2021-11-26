@@ -1,14 +1,13 @@
 import { LanguageCode } from '@vendure/common/lib/generated-types';
-import {InitialData} from '@vendure/core';
+import { InitialData } from '@vendure/core';
 
 export const initialData: InitialData = {
   defaultLanguage: LanguageCode.en,
   defaultZone: 'EU',
-  taxRates: [
-  ],
+  taxRates: [],
   shippingMethods: [],
   paymentMethods: [],
-  collections:[],
+  collections: [],
   countries: [
     { name: 'Afghanistan', code: 'AF', zone: 'Asia' },
     { name: 'Åland Islands', code: 'AX', zone: 'Europe' },
@@ -127,7 +126,11 @@ export const initialData: InitialData = {
     { name: 'Kazakhstan', code: 'KZ', zone: 'Asia' },
     { name: 'Kenya', code: 'KE', zone: 'Africa' },
     { name: 'Kiribati', code: 'KI', zone: 'Oceania' },
-    { name: "Korea (Democratic People's Republic of)", code: 'KP', zone: 'Asia' },
+    {
+      name: "Korea (Democratic People's Republic of)",
+      code: 'KP',
+      zone: 'Asia',
+    },
     { name: 'Korea (Republic of)', code: 'KR', zone: 'Asia' },
     { name: 'Kuwait', code: 'KW', zone: 'Asia' },
     { name: 'Kyrgyzstan', code: 'KG', zone: 'Asia' },
@@ -141,7 +144,11 @@ export const initialData: InitialData = {
     { name: 'Lithuania', code: 'LT', zone: 'EU' },
     { name: 'Luxembourg', code: 'LU', zone: 'EU' },
     { name: 'Macao', code: 'MO', zone: 'Asia' },
-    { name: 'Macedonia (the former Yugoslav Republic of)', code: 'MK', zone: 'Europe' },
+    {
+      name: 'Macedonia (the former Yugoslav Republic of)',
+      code: 'MK',
+      zone: 'Europe',
+    },
     { name: 'Madagascar', code: 'MG', zone: 'Africa' },
     { name: 'Malawi', code: 'MW', zone: 'Africa' },
     { name: 'Malaysia', code: 'MY', zone: 'Asia' },
@@ -166,7 +173,7 @@ export const initialData: InitialData = {
     { name: 'Namibia', code: 'NA', zone: 'Africa' },
     { name: 'Nauru', code: 'NR', zone: 'Oceania' },
     { name: 'Nepal', code: 'NP', zone: 'Asia' },
-//    { name: 'Nederland', code: 'NL', zone: 'EU' },
+    //    { name: 'Nederland', code: 'NL', zone: 'EU' },
     { name: 'New Caledonia', code: 'NC', zone: 'Oceania' },
     { name: 'New Zealand', code: 'NZ', zone: 'Oceania' },
     { name: 'Nicaragua', code: 'NI', zone: 'Americas' },
@@ -195,7 +202,11 @@ export const initialData: InitialData = {
     { name: 'Russian Federation', code: 'RU', zone: 'Europe' },
     { name: 'Rwanda', code: 'RW', zone: 'Africa' },
     { name: 'Saint Barthélemy', code: 'BL', zone: 'Americas' },
-    { name: 'Saint Helena, Ascension and Tristan da Cunha', code: 'SH', zone: 'Africa' },
+    {
+      name: 'Saint Helena, Ascension and Tristan da Cunha',
+      code: 'SH',
+      zone: 'Africa',
+    },
     { name: 'Saint Kitts and Nevis', code: 'KN', zone: 'Americas' },
     { name: 'Saint Lucia', code: 'LC', zone: 'Americas' },
     { name: 'Saint Martin (French part)', code: 'MF', zone: 'Americas' },
@@ -216,7 +227,11 @@ export const initialData: InitialData = {
     { name: 'Solomon Islands', code: 'SB', zone: 'Oceania' },
     { name: 'Somalia', code: 'SO', zone: 'Africa' },
     { name: 'South Africa', code: 'ZA', zone: 'Africa' },
-    { name: 'South Georgia and the South Sandwich Islands', code: 'GS', zone: 'Americas' },
+    {
+      name: 'South Georgia and the South Sandwich Islands',
+      code: 'GS',
+      zone: 'Americas',
+    },
     { name: 'South Sudan', code: 'SS', zone: 'Africa' },
     { name: 'Spain', code: 'ES', zone: 'EU' },
     { name: 'Sri Lanka', code: 'LK', zone: 'Asia' },
@@ -245,11 +260,19 @@ export const initialData: InitialData = {
     { name: 'United Arab Emirates', code: 'AE', zone: 'Asia' },
     { name: 'United Kingdom', code: 'GB', zone: 'Europe' },
     { name: 'United States of America', code: 'US', zone: 'Americas' },
-    { name: 'United States Minor Outlying Islands', code: 'UM', zone: 'Oceania' },
+    {
+      name: 'United States Minor Outlying Islands',
+      code: 'UM',
+      zone: 'Oceania',
+    },
     { name: 'Uruguay', code: 'UY', zone: 'Americas' },
     { name: 'Uzbekistan', code: 'UZ', zone: 'Asia' },
     { name: 'Vanuatu', code: 'VU', zone: 'Oceania' },
-    { name: 'Venezuela (Bolivarian Republic of)', code: 'VE', zone: 'Americas' },
+    {
+      name: 'Venezuela (Bolivarian Republic of)',
+      code: 'VE',
+      zone: 'Americas',
+    },
     { name: 'Viet Nam', code: 'VN', zone: 'Asia' },
     { name: 'Virgin Islands (British)', code: 'VG', zone: 'Americas' },
     { name: 'Virgin Islands (U.S.)', code: 'VI', zone: 'Americas' },
