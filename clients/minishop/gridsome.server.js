@@ -15,10 +15,6 @@ module.exports = async function (api) {
     const { products, availableCountries } =
       await gridsome.getShopData();
 
-    // Breadcrumb pages
-    const Home = '/';
-    const Cart = '/cart/';
-    const Checkout = '/checkout';
 
     // ----------------- ProductOverview ---------------------
     createPage({
@@ -36,7 +32,7 @@ module.exports = async function (api) {
         component: './src/templates/Product.vue',
         context: {
           product,
-          breadcrumb: { Home, [product.name]: product.slug },
+          back: '/'
         },
       });
     });
@@ -46,7 +42,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        breadcrumb: { Home, Cart },
+        back: '/'
       },
     });
 
@@ -61,6 +57,7 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
+      context: { back: '/' }
     });
   });
 };
