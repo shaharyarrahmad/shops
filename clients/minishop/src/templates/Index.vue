@@ -14,9 +14,9 @@
       >
         <ProductCard
           :product="product"
-          buy-label="In winkelmand"
+          buy-label="Add to cart"
           product-url-prefix="product"
-          soldoutLabel="Uitverkocht"
+          soldoutLabel="Sold out"
         />
       </div>
     </div>

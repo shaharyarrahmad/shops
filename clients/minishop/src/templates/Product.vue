@@ -19,9 +19,9 @@
           class="is-primary is-fullwidth"
           :loading="isLoading"
           :disabled="isSoldOut"
-          aria-label="In winkelmand"
+          aria-label="Add to cart"
           v-on:click="buy()"
-          >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
+          >{{ isSoldOut ? 'Sold out' : 'Add to cart' }}
         </b-button>
         <br />
         <div v-html="$context.product.description"></div>
