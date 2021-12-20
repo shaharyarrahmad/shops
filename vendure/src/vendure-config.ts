@@ -26,7 +26,7 @@ import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
 import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.strategy';
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
-import { MolliePlugin } from '../../../vendure/packages/payment-plugin/package/mollie';
+import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -82,13 +82,13 @@ export const config: VendureConfig = {
   },
   customFields: {},
   plugins: [
-/*    CloudTasksPlugin.init({
+    CloudTasksPlugin.init({
       taskHandlerHost: process.env.WORKER_HOST!,
       projectId: process.env.GOOGLE_PROJECT_ID!,
       location: 'europe-west1',
       authSecret: process.env.CLOUD_TASKS_SECRET!,
       queueSuffix: process.env.SHOP_ENV!
-    }),*/
+    }),
     DutchPostalCodePlugin.init(process.env.POSTCODE_APIKEY!),
     WebhookPlugin.init({
       httpMethod: 'POST',
