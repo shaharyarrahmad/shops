@@ -6655,11 +6655,6 @@ os-filter-obj@^2.0.0:
   dependencies:
     arch "^2.1.0"
 
-outfront@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/outfront/-/outfront-1.1.1.tgz#ed599d899fdd5c8cded93e4c19a70bd3a9349dd2"
-  integrity sha512-3zqwYndsfXtDkfjJ7sIY52XSlIOQM2iY5oneWGnwnI2R4LDAQVdNJgf97iD3VzpY8ZSXfryuwdHlbONDjQNxdw==
-
 ow@^0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/ow/-/ow-0.8.0.tgz#d360d779c996f4132941a596c87f86ce8e812e62"
@@ -9344,11 +9339,6 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
-
-vue-gtag@^1.16.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/vue-gtag/-/vue-gtag-1.16.1.tgz#edb2f20ab4f6c4d4d372dfecf8c1fcc8ab890181"
-  integrity sha512-5vs0pSGxdqrfXqN1Qwt0ZFXG0iTYjRMu/saddc7QIC5yp+DKgjWQRpGYVa7Pq+KbThxwzzMfo0sGi7ISa6NowA==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
