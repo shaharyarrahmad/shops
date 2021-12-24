@@ -143,6 +143,11 @@ export const config: VendureConfig = {
     AdminUiPlugin.init({
       route: 'admin',
       port: 3002,
+      adminUiConfig: {
+        brand: 'Pinelab shops',
+        hideVendureBranding: false,
+        hideVersion: false,
+      },
       app: {
         path: path.join(__dirname, '__admin-ui/dist')
       }
