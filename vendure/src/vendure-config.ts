@@ -44,7 +44,7 @@ export const config: VendureConfig = {
   apiOptions: {
     port: (process.env.PORT! as unknown as number) || 3000,
     adminApiPath: 'admin-api',
-    adminApiPlayground: {}, // turn this off for production
+    adminApiPlayground: false,
     adminApiDebug: false, // turn this off for production
     shopApiPath: 'shop-api',
     shopApiPlayground: {}, // turn this off for production
