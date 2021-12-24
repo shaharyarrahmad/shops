@@ -1,7 +1,6 @@
-const { add } = require('husky');
 require('dotenv').config();
 let orderId;
-const demoSite = 'https://pinelab-demo.netlify.app';
+const demoSite = 'https://minishop.studio';
 const address = {
   firstName: 'Martijn',
   lastName: 'Pinelab',
@@ -11,7 +10,7 @@ const address = {
   houseNr: '159',
   street: 'IJdok',
   city: 'Amsterdam',
-  country: 'Nederland',
+  country: 'Nederland'
 };
 const prices = {
   itemFE: '67,50',
@@ -24,28 +23,27 @@ const prices = {
   shippingWithoutTaxBE: '4.59',
   totalBE: '72.50',
   totalWithoutTaxBE: '66.52',
-  tax: '9%',
+  tax: '9%'
 };
 
 module.exports = {
-  'Customer checkout': function (browser) {
+  'Customer checkout': function(browser) {
     const theJaunt = 'img[alt="The Jaunt"]';
     const edition = 'button[aria-label="Edition Laura Berger"]';
-    const buyButton = 'button[aria-label="In winkelmand"]';
+    const buyButton = 'button[aria-label="Add to cart"]';
     const checkoutSnackbar =
       'body > div.notices.is-top > div > div.action.is-light > button';
-    const orderNowButton =
-      '#app > div.container.is-widescreen.section > div > div > div:nth-child(6) > a';
+    const orderNowButton = 'a[href="/checkout/"]';
     const customerForm = {
-      firstname: 'input[placeholder="Voornaam*"]',
-      lastname: 'input[placeholder="Achternaam*"]',
-      phone: 'input[placeholder="Telefoonnr."]',
-      email: 'input[placeholder="Email*"]',
-      postalCode: 'input[placeholder="Postcode*"]',
-      houseNr: 'input[placeholder="Huisnr.*"]',
-      street: 'input[placeholder="Straatnaam*"]',
-      city: 'input[placeholder="Plaats*"]',
-      submit: 'button[type="submit"]',
+      firstname: 'input[placeholder="Firstname*"]',
+      lastname: 'input[placeholder="Lastname*"]',
+      phone: 'input[placeholder="Phonenumber"]',
+      email: 'input[placeholder="Emailaddress*"]',
+      postalCode: 'input[placeholder="Postalcode*"]',
+      houseNr: 'input[placeholder="HouseNr*"]',
+      street: 'input[placeholder="Street*"]',
+      city: 'input[placeholder="City*"]',
+      submit: 'button[type="submit"]'
     };
     const ideal = 'button[value="ideal"]';
     const ing = 'button[value="ideal_INGBNL2A"]';
@@ -77,9 +75,9 @@ module.exports = {
       .click(customerForm.submit)
       // Shipping
       .pause(500)
-      .assert.containsText('body', 'Betaling')
+      .assert.containsText('body', 'Payment')
       .useXpath()
-      .click("//*[contains(text(), 'Verzenden (€14,-)')]")
+      .click('//*[contains(text(), \'Verzenden (€14,-)\')]')
       .useCss()
       .assert.containsText('body', prices.totalOutsideEU)
       // Back to customer details
@@ -91,7 +89,7 @@ module.exports = {
       .pause(1000)
       // Shipping
       .useXpath()
-      .click("//*[contains(text(), 'Verzenden (€5,-)')]")
+      .click('//*[contains(text(), \'Verzenden (€5,-)\')]')
       .useCss()
       .assert.containsText('body', prices.totalFE)
       // Payment
@@ -112,7 +110,7 @@ module.exports = {
       .assert.containsText('body', prices.totalFE)
       .end();
   },
-  'Admin order': function (browser) {
+  'Admin order': function(browser) {
     const username = 'input[id="login_username"]';
     const password = 'input[id="login_password"]';
     const orderTab = 'a[data-item-id="sales"]';
@@ -127,7 +125,7 @@ module.exports = {
       .click(orderTab)
       .assert.containsText('body', orderId)
       .useXpath()
-      .click("//a[text()=' Open ']")
+      .click('//a[text()=\' Open \']')
       .useCss()
       .assert.containsText('body', address.firstName)
       .assert.containsText('body', address.lastName)
@@ -144,10 +142,10 @@ module.exports = {
       .assert.containsText('body', prices.totalBE)
       .assert.containsText('body', prices.totalWithoutTaxBE)
       .useXpath()
-      .click("//button[text()=' Fulfill order ']")
+      .click('//button[text()=\' Fulfill order \']')
       .useCss()
       .click('button[type="submit"]')
       .assert.containsText('body', 'Created fulfillment')
       .end();
-  },
+  }
 };
