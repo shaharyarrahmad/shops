@@ -9,7 +9,7 @@ module.exports = {
     server_path: require('geckodriver').path,
     cli_args: [
       // very verbose geckodriver logs
-      // '-vv'
+      '-vv'
     ],
   },
   detailed_output: false,

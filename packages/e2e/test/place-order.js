@@ -15,14 +15,15 @@ const address = {
 const prices = {
   itemFE: '67,50',
   shippingOutsideEU: '14,-',
-  totalOutsideEU: '81,50',
+  totalOutsideEU: '74,75',
   shippingFE: '5,-',
-  totalFE: '72,50',
+  totalFE: '65,15',
   itemBE: '67.50',
   itemWithoutTaxBE: '61.93',
   shippingWithoutTaxBE: '4.59',
-  totalBE: '72.50',
-  totalWithoutTaxBE: '66.52',
+  totalBE: '65.15',
+  totalWithoutTaxBE: '59.77',
+  dicountWithTaxBE: '-€7.36',
   tax: '9%'
 };
 
@@ -33,6 +34,7 @@ module.exports = {
     const buyButton = 'button[aria-label="Add to cart"]';
     const checkoutSnackbar =
       'body > div.notices.is-top > div > div.action.is-light > button';
+    const couponField = 'input[placeholder="Coupon code"]';
     const orderNowButton = 'a[href="/checkout/"]';
     const customerForm = {
       firstname: 'input[placeholder="Firstname*"]',
@@ -60,6 +62,12 @@ module.exports = {
       .waitForElementVisible(checkoutSnackbar)
       .click(checkoutSnackbar)
       .waitForElementVisible(orderNowButton)
+      .pause(500)
+      // Coupon
+      .setValue(couponField, "GIMME10")
+      .pause(1000)
+      .assert.containsText('body', '- €6,75')
+      // Customer details
       .click(orderNowButton)
       .waitForElementVisible(customerForm.firstname)
       .pause(500)
@@ -141,6 +149,7 @@ module.exports = {
       .assert.containsText('body', prices.shippingWithoutTaxBE)
       .assert.containsText('body', prices.totalBE)
       .assert.containsText('body', prices.totalWithoutTaxBE)
+      .assert.containsText('body', prices.dicountWithTaxBE)
       .useXpath()
       .click('//button[text()=\' Fulfill order \']')
       .useCss()
