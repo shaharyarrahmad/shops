@@ -1,13 +1,7 @@
 <template>
   <section id="product">
     <div
-      class="
-        grid-x
-        small-up-1
-        medium-up-2
-        large-up-2
-        grid-padding-x grid-padding-y
-      "
+      class="grid-x small-up-1 medium-up-2 large-up-2 grid-padding-x grid-padding-y"
     >
       <div class="cell">
         <AsyncImage

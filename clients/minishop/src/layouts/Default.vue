@@ -6,19 +6,13 @@
       cart-link="/cart/"
       :activeOrder="activeOrder"
     >
-      <g-link
-        to="https://pinelab.studio/minishop/"
-        class="navbar-item"
-      >
+      <g-link to="https://pinelab.studio/minishop/" class="navbar-item">
         Ik wil ook een minishop
       </g-link>
     </ShopNavBar>
 
     <div class="container is-widescreen section" style="min-height: 90vh">
-      <b-button v-if="$context.back"
-                tag="a"
-                :href="$context.back"
-                >
+      <b-button v-if="$context.back" tag="a" :href="$context.back">
         <
       </b-button>
 

@@ -20,15 +20,7 @@
       </fieldset>
     </div>
     <div
-      class="
-        grid-x
-        small-up-2
-        medium-up-2
-        large-up-2
-        grid-padding-x
-        text-right
-        small-font
-      "
+      class="grid-x small-up-2 medium-up-2 large-up-2 grid-padding-x text-right small-font"
       style="padding-top: 40px"
     >
       <template

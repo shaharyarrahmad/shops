@@ -10,7 +10,7 @@ const address = {
   houseNr: '159',
   street: 'IJdok',
   city: 'Amsterdam',
-  country: 'Nederland'
+  country: 'Nederland',
 };
 const prices = {
   itemFE: '67,50',
@@ -24,11 +24,11 @@ const prices = {
   totalBE: '65.15',
   totalWithoutTaxBE: '59.77',
   dicountWithTaxBE: '-€7.36',
-  tax: '9%'
+  tax: '9%',
 };
 
 module.exports = {
-  'Customer checkout': function(browser) {
+  'Customer checkout': function (browser) {
     const theJaunt = 'img[alt="The Jaunt"]';
     const edition = 'button[aria-label="Edition Laura Berger"]';
     const buyButton = 'button[aria-label="Add to cart"]';
@@ -45,7 +45,7 @@ module.exports = {
       houseNr: 'input[placeholder="HouseNr*"]',
       street: 'input[placeholder="Street*"]',
       city: 'input[placeholder="City*"]',
-      submit: 'button[type="submit"]'
+      submit: 'button[type="submit"]',
     };
     const ideal = 'button[value="ideal"]';
     const ing = 'button[value="ideal_INGBNL2A"]';
@@ -64,7 +64,7 @@ module.exports = {
       .waitForElementVisible(orderNowButton)
       .pause(500)
       // Coupon
-      .setValue(couponField, "GIMME10")
+      .setValue(couponField, 'GIMME10')
       .pause(1000)
       .assert.containsText('body', '- €6,75')
       // Customer details
@@ -85,7 +85,7 @@ module.exports = {
       .pause(500)
       .assert.containsText('body', 'Payment')
       .useXpath()
-      .click('//*[contains(text(), \'Verzenden (€14,-)\')]')
+      .click("//*[contains(text(), 'Verzenden (€14,-)')]")
       .useCss()
       .assert.containsText('body', prices.totalOutsideEU)
       // Back to customer details
@@ -97,7 +97,7 @@ module.exports = {
       .pause(1000)
       // Shipping
       .useXpath()
-      .click('//*[contains(text(), \'Verzenden (€5,-)\')]')
+      .click("//*[contains(text(), 'Verzenden (€5,-)')]")
       .useCss()
       .assert.containsText('body', prices.totalFE)
       // Payment
@@ -118,7 +118,7 @@ module.exports = {
       .assert.containsText('body', prices.totalFE)
       .end();
   },
-  'Admin order': function(browser) {
+  'Admin order': function (browser) {
     const username = 'input[id="login_username"]';
     const password = 'input[id="login_password"]';
     const orderTab = 'a[data-item-id="sales"]';
@@ -133,7 +133,7 @@ module.exports = {
       .click(orderTab)
       .assert.containsText('body', orderId)
       .useXpath()
-      .click('//a[text()=\' Open \']')
+      .click("//a[text()=' Open ']")
       .useCss()
       .assert.containsText('body', address.firstName)
       .assert.containsText('body', address.lastName)
@@ -151,10 +151,10 @@ module.exports = {
       .assert.containsText('body', prices.totalWithoutTaxBE)
       .assert.containsText('body', prices.dicountWithTaxBE)
       .useXpath()
-      .click('//button[text()=\' Fulfill order \']')
+      .click("//button[text()=' Fulfill order ']")
       .useCss()
       .click('button[type="submit"]')
       .assert.containsText('body', 'Created fulfillment')
       .end();
-  }
+  },
 };

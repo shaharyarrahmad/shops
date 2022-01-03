@@ -1,5 +1,10 @@
 require('dotenv').config({ path: process.env.LOCAL_ENV });
-import { bootstrap, ChannelService, PaymentMethodService, RequestContext } from '@vendure/core';
+import {
+  bootstrap,
+  ChannelService,
+  PaymentMethodService,
+  RequestContext,
+} from '@vendure/core';
 import { config } from '../src/vendure-config';
 
 // Update Mollie redirects to also include '/order' in the path
@@ -10,12 +15,14 @@ import { config } from '../src/vendure-config';
     apiType: 'admin',
     isAuthorized: true,
     authorizedAsOwnerOnly: false,
-    channel
+    channel,
   });
   const { items: methods } = await app.get(PaymentMethodService).findAll(ctx);
   console.log();
-  for(const method of methods) {
-    const redirectUrl = method.handler.args.find(arg => arg.name === 'redirectUrl');
+  for (const method of methods) {
+    const redirectUrl = method.handler.args.find(
+      (arg) => arg.name === 'redirectUrl'
+    );
     if (!redirectUrl) {
       console.error(`No redirectUrl found for ${method.name}`);
       process.exit(1);
@@ -29,8 +36,8 @@ import { config } from '../src/vendure-config';
       id: method.id,
       handler: {
         code: method.handler.code,
-        arguments: method.handler.args
-      }
+        arguments: method.handler.args,
+      },
     });
     console.log(`Updated to ${newValue}`);
   }

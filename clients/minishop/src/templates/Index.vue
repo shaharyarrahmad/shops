@@ -1,6 +1,5 @@
 <template>
   <Layout>
-
     <h1 class="title has-text-centered">Minishop demo</h1>
 
     <br />
@@ -31,13 +30,12 @@ import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/Produc
 export default {
   components: {
     ProductCard,
-    ProductFilter
+    ProductFilter,
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
-  }
+  },
 };
 </script>
-<style>
-</style>
+<style></style>
