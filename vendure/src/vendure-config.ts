@@ -16,9 +16,7 @@ import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
 import { GoogleStoragePlugin, GoogleStorageStrategy } from 'vendure-plugin-google-storage-assets';
 import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-allocation.strategy';
-import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
-import { channelAwareEmailHandlers } from './channel-config/channel-aware-email.handlers';
 import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import { cloudLogger } from './logger';
@@ -27,6 +25,7 @@ import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.stra
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
+import { orderConfirmationHandler } from './email/channel-aware-email.handlers';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -101,7 +100,6 @@ export const config: VendureConfig = {
       ]
     }),
     MolliePlugin.init({ vendureHost: process.env.VENDURE_HOST! }),
-    ChannelConfigPlugin,
     GoogleStoragePlugin,
     MyparcelPlugin.init(
       {
@@ -133,7 +131,7 @@ export const config: VendureConfig = {
           pass: process.env.ZOHO_PASS!
         }
       },
-      handlers: channelAwareEmailHandlers,
+      handlers: [orderConfirmationHandler],
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>'
