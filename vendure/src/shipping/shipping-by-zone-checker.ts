@@ -5,7 +5,7 @@ import {
   RequestContext,
   ShippingEligibilityChecker,
   Zone,
-  ZoneService
+  ZoneService,
 } from '@vendure/core';
 import { getZonesForCountryCode } from '../util/zone.util';
 
@@ -27,10 +27,10 @@ export const eligibleByZoneChecker = new ShippingEligibilityChecker({
           { value: 'Europe' },
           { value: 'Africa' },
           { value: 'Oceania' },
-          { value: 'Americas' }
-        ]
-      }
-    }
+          { value: 'Americas' },
+        ],
+      },
+    },
   },
   init: async (injector) => {
     const channel = await injector.get(ChannelService).getDefaultChannel();
@@ -38,7 +38,7 @@ export const eligibleByZoneChecker = new ShippingEligibilityChecker({
       apiType: 'admin',
       isAuthorized: true,
       authorizedAsOwnerOnly: false,
-      channel
+      channel,
     });
     allZones = await injector.get(ZoneService).findAll(ctx);
   },
@@ -82,5 +82,5 @@ export const eligibleByZoneChecker = new ShippingEligibilityChecker({
       );
     }
     return !!eligible;
-  }
+  },
 });

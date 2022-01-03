@@ -12,9 +12,7 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, availableCountries } =
-      await gridsome.getShopData();
-
+    const { products, availableCountries } = await gridsome.getShopData();
 
     // ----------------- ProductOverview ---------------------
     createPage({
@@ -32,7 +30,7 @@ module.exports = async function (api) {
         component: './src/templates/Product.vue',
         context: {
           product,
-          back: '/'
+          back: '/',
         },
       });
     });
@@ -42,7 +40,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        back: '/'
+        back: '/',
       },
     });
 
@@ -57,7 +55,7 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { back: '/' }
+      context: { back: '/' },
     });
   });
 };

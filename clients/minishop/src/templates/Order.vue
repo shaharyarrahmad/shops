@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <OrderConfirmation/>
+    <OrderConfirmation />
   </Layout>
 </template>
 <script>
