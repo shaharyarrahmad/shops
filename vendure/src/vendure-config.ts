@@ -25,7 +25,7 @@ import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.stra
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
-import { orderConfirmationHandler } from './email/channel-aware-email.handlers';
+import { channelAwareOrderConfirmationHandler } from './email/channel-aware-email.handlers';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -131,7 +131,7 @@ export const config: VendureConfig = {
           pass: process.env.ZOHO_PASS!
         }
       },
-      handlers: [orderConfirmationHandler],
+      handlers: [channelAwareOrderConfirmationHandler],
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>'

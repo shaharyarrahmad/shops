@@ -7,7 +7,7 @@ interface AdminWithChannel {
   channel_code: string;
 }
 
-export const orderConfirmationHandler: EmailEventHandler<any, any> = new EmailEventListener('order-confirmation')
+export const channelAwareOrderConfirmationHandler: EmailEventHandler<any, any> = new EmailEventListener('order-confirmation')
   .on(OrderStateTransitionEvent)
   .filter(
     (event) =>
