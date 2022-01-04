@@ -1,7 +1,7 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <OrderConfirmation />
-  </Layout>
+  </DefaultLayout>
 </template>
 <script>
 import OrderConfirmation from 'pinelab-storefront-client/lib/buefy-components/OrderConfirmation';
