@@ -55,7 +55,7 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { showBack: true, },
+      context: { showBack: true },
     });
   });
 };

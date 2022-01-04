@@ -18,7 +18,6 @@
     </ShopNavBar>
 
     <div class="container is-widescreen section" style="min-height: 90vh">
-
       <b-button v-if="$context.showBack" tag="a" @click="$router.go(-1)">
         <
       </b-button>
