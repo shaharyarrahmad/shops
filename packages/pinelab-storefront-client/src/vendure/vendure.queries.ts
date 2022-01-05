@@ -23,7 +23,11 @@ export const PRODUCT_FIELDS = gql`
       stockLevel
       options {
         id
-        groupId
+        name
+        group {
+          id
+          name
+        }
       }
       assets {
         id
