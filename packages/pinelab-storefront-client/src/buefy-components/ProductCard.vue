@@ -8,7 +8,8 @@
       :aria-label="`${buyLabel} ${product.name}`"
     >
       <b-image
-        :src="product.featuredAsset.thumbnail"
+        :src="maybeThumbnail"
+        src-fallback="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjsLO3+w8AAzUBu+yY3w4AAAAASUVORK5CYII="
         :alt="product.name"
         ratio="1by1"
       />
@@ -44,7 +45,10 @@ export default {
     soldoutLabel: { default: 'Sold out' },
   },
   data() {
-    return { isLoading: false };
+    return {
+      isLoading: false,
+      maybeThumbnail: this.product.featuredAsset?.thumbnail,
+    };
   },
   methods: {
     async buy() {

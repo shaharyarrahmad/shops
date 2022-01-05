@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "nightwatch",
+    "e2e": "nightwatch",
     "test:admin": "nightwatch --test test/place-order.js --testcase \"Admin order\""
   },
   "devDependencies": {

@@ -17,16 +17,20 @@
     "build": "rm -rf lib && yarn scss && yarn tsc --build && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
     "dev-build": "yarn tsc --build && yarn copyfiles -u 1 'src/ministore/**/*' 'src/buefy-components/**/*' lib",
     "scss": "node-sass src/scss/styles.scss -o src/ministore --output-style compressed",
-    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'"
+    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/debounce": "^1.2.0",
+    "@types/jest": "^27.4.0",
     "@types/node": "^15.12.2",
     "concurrently": "^6.0.2",
     "copyfiles": "^2.4.1",
     "foundation-sites": "^6.6.3",
+    "jest": "^27.4.6",
     "node-sass": "^5.0.0",
     "nodemon": "^2.0.7",
+    "ts-jest": "^27.1.2",
     "typescript": "^4.2.3",
     "vue": "^2.6.12"
   },

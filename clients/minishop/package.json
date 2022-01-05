@@ -1,5 +1,5 @@
 {
-  "name": "pinelab-customlayout",
+  "name": "pinelab-minishop",
   "private": true,
   "scripts": {
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\"",

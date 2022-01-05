@@ -5,11 +5,11 @@
   "scripts": {
     "postinstall": "yarn husky install",
     "bootstrap": "yarn && yarn lerna exec yarn && yarn lerna run build",
-    "lerna:publish": "yarn lerna run build && yarn lerna publish",
+    "lerna:publish": "yarn lerna run test && yarn lerna run build && yarn lerna publish",
     "prettier:check": "prettier --check --single-quote \"./**/*.{ts,tsx,js,vue}\"",
     "prettier:write": "prettier --write --single-quote \"./**/*.{ts,tsx,js,vue}\"",
     "generate-types": "cd packages/common && yarn generate",
-    "e2e": "cd packages/e2e && yarn test"
+    "e2e": "cd packages/e2e && yarn e2e"
   },
   "license": "MIT",
   "devDependencies": {
