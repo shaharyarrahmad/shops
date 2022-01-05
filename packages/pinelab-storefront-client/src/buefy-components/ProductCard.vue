@@ -7,12 +7,7 @@
       :to="`${productUrlPrefix}/${product.slug}`"
       :aria-label="`${buyLabel} ${product.name}`"
     >
-      <b-image
-        :src="maybeThumbnail"
-        src-fallback="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjsLO3+w8AAzUBu+yY3w4AAAAASUVORK5CYII="
-        :alt="product.name"
-        ratio="1by1"
-      />
+      <b-image :src="maybeThumbnail" :alt="product.name" ratio="1by1" />
     </g-link>
     <p>{{ product.name }}</p>
     <p class="mb-2">
