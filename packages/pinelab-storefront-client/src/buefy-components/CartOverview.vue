@@ -31,7 +31,8 @@
             <tr v-for="line of lines">
               <td class="image-column is-hidden-mobile">
                 <img
-                  :src="line.featuredAsset.thumbnail"
+                  v-if="getThumbnail(line.featuredAsset)"
+                  :src="getThumbnail(line.featuredAsset)"
                   :alt="`${line.productVariant.name} thumbnail`"
                 />
               </td>
@@ -153,8 +154,10 @@ export default {
         this.loadingCoupon = false;
       }
     },
+    getThumbnail(asset) {
+      return asset?.thumbnail;
+    },
   },
-
   created() {
     this.applyCouponCode = debounce(this.applyCouponCode, 500);
   },

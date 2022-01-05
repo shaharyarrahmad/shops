@@ -1,11 +1,11 @@
 {
   "name": "e2e",
-  "version": "0.40.0",
+  "version": "0.40.2",
   "main": "index.js",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "nightwatch",
+    "e2e": "nightwatch",
     "test:admin": "nightwatch --test test/place-order.js --testcase \"Admin order\""
   },
   "devDependencies": {

@@ -30,7 +30,7 @@ module.exports = async function (api) {
         component: './src/templates/Product.vue',
         context: {
           product,
-          back: '/',
+          showBack: true,
         },
       });
     });
@@ -40,7 +40,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
-        back: '/',
+        showBack: true,
       },
     });
 
@@ -55,7 +55,7 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { back: '/' },
+      context: { showBack: true },
     });
   });
 };

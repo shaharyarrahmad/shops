@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <br />
     <h1 class="title">{{ $context.product.name }}</h1>
     <div class="columns">
@@ -27,7 +27,7 @@
         <div v-html="$context.product.description"></div>
       </div>
     </div>
-  </Layout>
+  </DefaultLayout>
 </template>
 <script>
 import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';

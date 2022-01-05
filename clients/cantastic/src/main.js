@@ -1,6 +1,6 @@
 import 'buefy/dist/buefy.css';
 import Buefy from 'buefy';
-import Layout from '~/layouts/Default.vue';
+import DefaultLayout from '~/layouts/DefaultLayout.vue';
 import { configureVue } from 'pinelab-storefront-client';
 import '~/theme.scss';
 import '@fontsource/poppins';
@@ -10,7 +10,7 @@ import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImag
 export default function (Vue, { router, head, isClient }) {
   Vue.use(Buefy);
   Vue.component('QuantityInput', QuantityInput);
-  Vue.component('Layout', Layout);
+  Vue.component('DefaultLayout', DefaultLayout);
   Vue.component('PopupImage', PopupImage);
   configureVue(Vue, { router, head, isClient });
 }

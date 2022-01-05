@@ -7,11 +7,7 @@
       :to="`${productUrlPrefix}/${product.slug}`"
       :aria-label="`${buyLabel} ${product.name}`"
     >
-      <b-image
-        :src="product.featuredAsset.thumbnail"
-        :alt="product.name"
-        ratio="1by1"
-      />
+      <b-image :src="maybeThumbnail" :alt="product.name" ratio="1by1" />
     </g-link>
     <p>{{ product.name }}</p>
     <p class="mb-2">
@@ -44,7 +40,10 @@ export default {
     soldoutLabel: { default: 'Sold out' },
   },
   data() {
-    return { isLoading: false };
+    return {
+      isLoading: false,
+      maybeThumbnail: this.product.featuredAsset?.thumbnail,
+    };
   },
   methods: {
     async buy() {

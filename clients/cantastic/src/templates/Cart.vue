@@ -1,10 +1,10 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <CartOverview
       empty-cart-label="No products yet..."
       link-to-checkout="/checkout/"
     />
-  </Layout>
+  </DefaultLayout>
 </template>
 <script>
 import CartOverview from 'pinelab-storefront-client/lib/buefy-components/CartOverview';

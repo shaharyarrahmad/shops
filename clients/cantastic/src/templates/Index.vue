@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <h1 class="has-text-centered">Cantastic</h1>
 
     <br />
@@ -19,7 +19,7 @@
         />
       </div>
     </div>
-  </Layout>
+  </DefaultLayout>
 </template>
 
 <script>
