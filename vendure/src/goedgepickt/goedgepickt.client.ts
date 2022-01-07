@@ -32,13 +32,13 @@ export class GoedgepicktClient {
     return result.items as Product[];
   }
 
-  async createProduct(product: ProductInput): Promise<Product> {
+  async createProduct(product: ProductInput): Promise<Product[]> {
     const result = await this.rawRequest({
       entity: 'products',
       method: 'POST',
       payload: product,
     });
-    return result as Product;
+    return result.items as Product[];
   }
 
   async rawRequest(input: RawRequestInput): Promise<any> {
@@ -58,9 +58,8 @@ export class GoedgepicktClient {
       }
     );
     const json = await result.json();
-    if (json.error || json.errorMessage) {
-      const errorMessage = json.error ?? json.errorMessage;
-      Logger.error(`Failed to ${input.method} ${input.entity}: ${json}`);
+    if (json.error || json.errorMessage || json.message) {
+      const errorMessage = json.error ?? json.errorMessage ?? json.message;
       throw Error(errorMessage);
     }
     return json;
