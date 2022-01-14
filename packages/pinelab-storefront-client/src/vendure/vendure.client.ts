@@ -201,8 +201,11 @@ export class VendureClient {
 
   validateResult<T extends ErrorResult>(result: T): void {
     if (result && result.errorCode) {
-      if (result.errorCode === 'ORDER_MODIFICATION_ERROR') {
-        window.localStorage.removeItem(this.tokenName); // remove unusbale 'stuck' orders
+      if (
+        result.errorCode === 'ORDER_MODIFICATION_ERROR' ||
+        result.errorCode === 'ORDER_PAYMENT_STATE_ERROR'
+      ) {
+        window.localStorage.removeItem(this.tokenName); // These are unrecoverable states, so remove activeOrder
       }
       throw Error(
         `${this.store.activeOrder?.code} - ${result.errorCode} - ${result.message}`

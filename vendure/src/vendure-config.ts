@@ -29,10 +29,6 @@ import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 import { channelAwareOrderConfirmationHandler } from './email/channel-aware-email.handlers';
-import {
-  GoedgepicktChannelConfig,
-  GoedgepicktPlugin,
-} from './goedgepickt/goedgepickt.plugin';
 import { pluginConfigPerChannel } from './plugin-config-per-channel';
 
 let logger: VendureLogger;
@@ -45,7 +41,7 @@ if (process.env.K_SERVICE) {
 
 // Check which plugins are configured for which channels
 const myParcelConfigs: Record<string, string> = {};
-const goedgepicktConfigs: GoedgepicktChannelConfig[] = [];
+const goedgepicktConfigs = [];
 for (const {
   channelToken,
   myParcelApiKey,
@@ -140,10 +136,10 @@ export const config: VendureConfig = {
     MolliePlugin.init({ vendureHost: process.env.VENDURE_HOST! }),
     GoogleStoragePlugin,
     MyparcelPlugin.init(myParcelConfigs, process.env.VENDURE_HOST!),
-    GoedgepicktPlugin.init({
+    /*    GoedgepicktPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       configPerChannel: goedgepicktConfigs,
-    }),
+    }),*/
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
