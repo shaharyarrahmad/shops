@@ -46,15 +46,25 @@ const testProduct: ImportableProduct = {
   const app = await bootstrap(config);
 
   // TODO creating optionGroup with options doesnt work
-  await a0ppoptionService.create(ctx, {
-    code: optionName,
+  const channel = await app
+    .get(ChannelService)
+    .getChannelFromToken(channelToken);
+  const ctx = new RequestContext({
+    channel,
+    isAuthorized: true,
+    apiType: 'admin',
+    authorizedAsOwnerOnly: false,
+  });
+  const created = await app.get(ProductOptionGroupService).create(ctx, {
+    code: 'Colorzzz',
     translations: [
       {
         languageCode: LanguageCode.en,
-        name: optionName,
+        name: 'Colorzzz',
       },
     ],
-    options: optionValues.map((value) => ({
+    options: ['blue', 'yellow'].map((value) => ({
+      id: 12333,
       code: value,
       translations: [
         {
@@ -64,6 +74,7 @@ const testProduct: ImportableProduct = {
       ],
     })),
   });
+  console.log(created);
 
   //await createProduct(app, channelToken, testProduct);
 
