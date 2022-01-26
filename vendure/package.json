@@ -37,12 +37,12 @@
     "copyfiles": "^2.4.1",
     "mysql": "^2.18.1",
     "typescript": "4.3.5",
-    "vendure-plugin-dutch-postalcode": "1.3.2",
-    "vendure-plugin-google-cloud-tasks": "1.3.2",
-    "vendure-plugin-google-storage-assets": "1.3.2",
-    "vendure-plugin-myparcel": "1.3.2",
-    "vendure-plugin-webhook": "1.3.2",
-    "winston": "^3.3.3"
+    "vendure-plugin-dutch-postalcode": "2.0.4",
+    "vendure-plugin-google-cloud-tasks": "2.0.4",
+    "vendure-plugin-google-storage-assets": "2.0.4",
+    "vendure-plugin-myparcel": "2.0.6",
+    "vendure-plugin-webhook": "2.0.4",
+    "winston": "^3.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.13",

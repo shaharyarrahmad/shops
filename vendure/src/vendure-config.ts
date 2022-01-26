@@ -104,14 +104,10 @@ export const config: VendureConfig = {
     }),
     MolliePlugin.init({ vendureHost: process.env.VENDURE_HOST! }),
     GoogleStoragePlugin,
-    MyparcelPlugin.init(
-      {
-        demo: process.env.MYPARCEL_DEMO!,
-        'super-a': process.env.MYPARCEL_SUPERA!,
-        bendeboef: process.env.MYPARCEL_BENDEBOEF!,
-      },
-      process.env.VENDURE_HOST!
-    ),
+    MyparcelPlugin.init({
+      vendureHost: process.env.VENDURE_HOST!,
+      syncWebhookOnStartup: process.env.SHOP_ENV === 'test' ? false : true, // Don't sync for test env
+    }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
