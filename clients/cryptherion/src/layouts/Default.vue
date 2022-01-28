@@ -1,8 +1,8 @@
 <template>
   <div>
     <ShopNavBar
-      logo="/pinelab-logo.png"
-      logo-alt="Pinelab logo"
+      logo="/img/cryptherion_logo.png"
+      logo-alt="Cryptherion logo"
       cart-link="/cart/"
       :activeOrder="activeOrder"
     >
