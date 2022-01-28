@@ -8,9 +8,11 @@ import {
   Permission,
   RequestContext,
   RoleService,
+  ShippingMethodService,
   ZoneService,
 } from '@vendure/core';
 import prompt from 'prompt';
+import { ChannelResolver } from '@vendure/core/dist/api/resolvers/admin/channel.resolver';
 
 /**
  * Create a channel with default role
@@ -72,6 +74,12 @@ defaultPermissions.push(
   Permission.DeleteProduct
 );
 defaultPermissions.push(
+  Permission.CreatePromotion,
+  Permission.ReadPromotion,
+  Permission.UpdatePromotion,
+  Permission.DeletePromotion
+);
+defaultPermissions.push(
   Permission.CreateShippingMethod,
   Permission.ReadShippingMethod,
   Permission.UpdateShippingMethod,
@@ -106,10 +114,12 @@ defaultPermissions.push(Permission.ReadZone);
   prompt.start();
   const { channelName }: { channelName: string } = await prompt.get(schema);
   // Create channel
+  const channelResolver = app.get(ChannelResolver);
   const channelService = app.get(ChannelService);
   const zoneService = app.get(ZoneService);
   const roleService = app.get(RoleService);
   const paymentMethodService = app.get(PaymentMethodService);
+  const shippingService = app.get(ShippingMethodService);
   const defaultChannel = await channelService.getDefaultChannel();
   let ctx = new RequestContext({
     channel: defaultChannel,
@@ -123,14 +133,16 @@ defaultPermissions.push(Permission.ReadZone);
   if (!europe) {
     throw Error(`Unable to find zone Europe. Cannot create channel`);
   }
-  const channel = (await channelService.create(ctx, {
-    code: channelName,
-    token: channelName,
-    currencyCode: CurrencyCode.EUR,
-    defaultLanguageCode: LanguageCode.en,
-    defaultShippingZoneId: europe.id,
-    defaultTaxZoneId: europe.id,
-    pricesIncludeTax: true,
+  const channel = (await channelResolver.createChannel(ctx, {
+    input: {
+      code: channelName,
+      token: channelName,
+      currencyCode: CurrencyCode.EUR,
+      defaultLanguageCode: LanguageCode.en,
+      defaultShippingZoneId: europe.id,
+      defaultTaxZoneId: europe.id,
+      pricesIncludeTax: true,
+    },
   })) as Channel;
   if (!channel.code) {
     console.error(channel);
@@ -176,6 +188,30 @@ defaultPermissions.push(Permission.ReadZone);
     },
   });
   console.log(`Created Mollie paymentmethod: ${mollie.code}`);
+  const send = await shippingService.create(ctx, {
+    code: `${channelName}-verzenden`,
+    translations: [{ languageCode: LanguageCode.en, name: 'Verzenden' }],
+    calculator: {
+      code: 'tax-based-calculator',
+      arguments: [
+        {
+          name: 'rate',
+          value: '480',
+        },
+      ],
+    },
+    checker: {
+      code: 'default-shipping-eligibility-checker',
+      arguments: [
+        {
+          name: 'orderMinimum',
+          value: '0',
+        },
+      ],
+    },
+    fulfillmentHandler: 'manual-fulfillment',
+  });
+  console.log(`Created default shippingmethod: ${send.code}`);
   console.log(`All done. Don't forget to create a user via the Admin UI`);
   process.exit(0);
 })();

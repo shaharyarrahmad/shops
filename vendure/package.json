@@ -10,6 +10,7 @@
     "serve:test": "export LOCAL_ENV=.env.test && yarn serve",
     "script:prod": "export LOCAL_ENV=.env && yarn ts-node",
     "script:test": "export LOCAL_ENV=.env.test && yarn ts-node",
+    "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",
     "build": "yarn tsc && yarn copy",
     "build:admin": "yarn ts-node src/compile-admin-ui.ts",
     "migration:generate:test": "export LOCAL_ENV=.env.test && yarn ts-node migration generate",
