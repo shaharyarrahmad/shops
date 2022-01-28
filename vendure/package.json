@@ -8,19 +8,13 @@
     "serve": "nodemon -e ts --watch '../packages/' --watch './src/' --exec \"yarn build && node ./dist/index\"",
     "serve:prod": "export LOCAL_ENV=.env && yarn serve",
     "serve:test": "export LOCAL_ENV=.env.test && yarn serve",
-    "serve:copy": "export LOCAL_ENV=.env.copy && yarn serve",
     "script:prod": "export LOCAL_ENV=.env && yarn ts-node",
     "script:test": "export LOCAL_ENV=.env.test && yarn ts-node",
-    "script:copy": "export LOCAL_ENV=.env.copy && yarn ts-node",
-    "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",
     "build": "yarn tsc && yarn copy",
     "build:admin": "yarn ts-node src/compile-admin-ui.ts",
     "migration:generate:test": "export LOCAL_ENV=.env.test && yarn ts-node migration generate",
     "migration:run:test": "export LOCAL_ENV=.env.test && yarn ts-node migration run",
     "migration:revert:test": "export LOCAL_ENV=.env.test && yarn ts-node migration revert",
-    "migration:generate:copy": "export LOCAL_ENV=.env.copy && yarn ts-node migration generate",
-    "migration:run:copy": "export LOCAL_ENV=.env.copy && yarn ts-node migration run",
-    "migration:revert:copy": "export LOCAL_ENV=.env.copy && yarn ts-node migration revert",
     "migration:generate:prod": "export LOCAL_ENV=.env && yarn ts-node migration generate",
     "migration:run:prod": "export LOCAL_ENV=.env && yarn ts-node migration run",
     "migration:revert:prod": "export LOCAL_ENV=.env && yarn ts-node migration revert"
@@ -45,7 +39,9 @@
     "winston": "^3.4.0"
   },
   "devDependencies": {
+    "@types/prompt": "^1.1.2",
     "nodemon": "^2.0.13",
+    "prompt": "^1.2.1",
     "ts-node": "^10.1.0"
   }
 }
