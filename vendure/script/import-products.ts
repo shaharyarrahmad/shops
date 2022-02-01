@@ -15,7 +15,36 @@ import * as Papa from 'papaparse';
 import { ParseResult } from 'papaparse';
 import { ProductOptionResolver } from '@vendure/core/dist/api/resolvers/admin/product-option.resolver';
 
-const fileName = 'script/cantastic.csv';
+// TODO: get inputs: filepath, use filename as channelToken and use channelToken as named strategy
+
+// Use this importer like this:
+// yarn script:test script/import-products data/cantastic.csv
+
+export type ProductReader = (csvRow: any) => ImportableProduct;
+
+export interface ImportableProduct {
+  name: string;
+  slug: string;
+  description: string;
+  variants: ImportableVariant[];
+}
+
+export interface ImportableVariant {
+  name: string;
+  sku: string;
+  stock: number;
+  price: number;
+  options: ImportableOption[];
+}
+
+export interface ImportableOption {
+  name: string;
+  value: string;
+}
+
+const strategyName = '';
+
+const fileName = process.argv[2];
 const channelToken = 'cantastic';
 
 const testProduct: ImportableProduct = {
@@ -185,24 +214,6 @@ async function createProduct(
   await variantService.create(ctx, input);
 }
 
-type ProductReader = (csvRow: any) => ImportableProduct;
-
-interface ImportableProduct {
-  name: string;
-  slug: string;
-  description: string;
-  variants: Variant[];
-}
-
-interface Variant {
-  name: string;
-  sku: string;
-  stock: number;
-  price: number;
-  options: Option[];
-}
-
-interface Option {
-  name: string;
-  value: string;
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
