@@ -18,7 +18,7 @@ import {
   GoogleStoragePlugin,
   GoogleStorageStrategy,
 } from 'vendure-plugin-google-storage-assets';
-import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-allocation.strategy';
+import { AllocateStockOnSettlementStrategy } from './stock-allocation/allocate-stock-on-settlement.strategy';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { DutchPostalCodePlugin } from 'vendure-plugin-dutch-postalcode';
 import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
@@ -28,7 +28,8 @@ import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.stra
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
-import { channelAwareOrderConfirmationHandler } from './email/channel-aware-email.handlers';
+import { adminOrderConfirmationHandler } from './order/order-confirmation.handlers';
+import { PlaceOrderOnSettlementStrategy } from './order/place-order-on-settlement.strategy';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -41,7 +42,8 @@ if (process.env.K_SERVICE) {
 export const config: VendureConfig = {
   logger,
   orderOptions: {
-    stockAllocationStrategy: new CustomStockAllocationStrategy(),
+    stockAllocationStrategy: new AllocateStockOnSettlementStrategy(),
+    orderPlacedStrategy: new PlaceOrderOnSettlementStrategy(),
   },
   apiOptions: {
     port: (process.env.PORT! as unknown as number) || 3000,
@@ -130,7 +132,7 @@ export const config: VendureConfig = {
           pass: process.env.ZOHO_PASS!,
         },
       },
-      handlers: [channelAwareOrderConfirmationHandler],
+      handlers: [adminOrderConfirmationHandler],
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>',
