@@ -8,7 +8,9 @@ import {
 /**
  * Only allocate stock to orders when PaymentSettled
  */
-export class CustomStockAllocationStrategy implements StockAllocationStrategy {
+export class AllocateStockOnSettlementStrategy
+  implements StockAllocationStrategy
+{
   shouldAllocateStock(
     ctx: RequestContext,
     fromState: OrderState,

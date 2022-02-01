@@ -12,7 +12,10 @@ interface AdminWithChannel {
   channel_code: string;
 }
 
-export const channelAwareOrderConfirmationHandler: EmailEventHandler<any, any> =
+/**
+ * Send email to customer AND administrators of channel
+ */
+export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
   new EmailEventListener('order-confirmation')
     .on(OrderStateTransitionEvent)
     .filter(
