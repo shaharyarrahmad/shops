@@ -6,21 +6,24 @@ import {
   ProductService,
   ProductVariantService,
   RequestContext,
+  TaxCategoryService,
   Translated,
 } from '@vendure/core';
 import { CreateProductVariantInput } from '@vendure/common/lib/generated-types';
 import { INestApplication } from '@nestjs/common';
 import * as fs from 'fs';
 import * as Papa from 'papaparse';
-import { ParseResult } from 'papaparse';
 import { ProductOptionResolver } from '@vendure/core/dist/api/resolvers/admin/product-option.resolver';
+import * as path from 'path';
+import { cantasticReader } from './product-import-strategies/cantastic-reader';
 
-// TODO: get inputs: filepath, use filename as channelToken and use channelToken as named strategy
+/**
+ * Use this importer like this:
+ * yarn script:test script/import-products data/cantastic.csv
+ * cantastic is the channelToken and the name of the strategy that will be used
+ */
 
-// Use this importer like this:
-// yarn script:test script/import-products data/cantastic.csv
-
-export type ProductReader = (csvRow: any) => ImportableProduct;
+export type CsvReader = (csvRows: any[]) => ImportableProduct[];
 
 export interface ImportableProduct {
   name: string;
@@ -41,11 +44,6 @@ export interface ImportableOption {
   name: string;
   value: string;
 }
-
-const strategyName = '';
-
-const fileName = process.argv[2];
-const channelToken = 'cantastic';
 
 const testProduct: ImportableProduct = {
   name: 'TestProd',
@@ -69,12 +67,35 @@ const testProduct: ImportableProduct = {
   ],
 };
 
+const strategies: { [key: string]: CsvReader } = {
+  cantastic: cantasticReader,
+};
+
+let app: INestApplication;
 (async () => {
   require('dotenv').config({ path: process.env.LOCAL_ENV });
-  const { config } = require('../src/vendure-config');
-  const app = await bootstrap(config);
+  const filePath = process.argv[2];
+  const channelToken = path.basename(filePath, '.csv');
+  if (!fs.existsSync(filePath)) {
+    await logAndExit(`${filePath} doesn't exists`);
+  }
+  const csvReader = strategies[channelToken];
+  if (!csvReader) {
+    await logAndExit(`No csvReader strategy defined for ${channelToken}`);
+  }
+  console.log(
+    `Importing products from ${filePath} to channel ${channelToken} in database ${process.env.DATABASE_NAME}`
+  );
+  await sleep(5000); // Wait for user to read message
 
-  // TODO creating optionGroup with options doesnt work
+  // parse data
+  const rows = await parse(filePath);
+  const products = csvReader(rows);
+  console.log(JSON.stringify(products.slice(0, 2)));
+
+  // Import to DB
+  const { config } = require('../src/vendure-config');
+  app = await bootstrap(config);
   const channel = await app
     .get(ChannelService)
     .getChannelFromToken(channelToken);
@@ -84,43 +105,38 @@ const testProduct: ImportableProduct = {
     apiType: 'admin',
     authorizedAsOwnerOnly: false,
   });
-
-  await createProduct(app, channelToken, testProduct);
-
-  /*
-
-    const rows = await parse(fileName);
-    console.log(rows);
-  */
+  const taxCategories = await app.get(TaxCategoryService).findAll(ctx);
+  const defaultTaxCategoryId = taxCategories.find((tc) => tc.isDefault);
+  if (!defaultTaxCategoryId) {
+    await logAndExit('No default taxCategory found in DB!');
+  }
   process.exit(0);
 })();
 
-function parse(fileName: string): Promise<ParseResult<unknown>> {
+/**
+ * Parse local csv file
+ */
+function parse(fileName: string): Promise<any[]> {
   const file = fs.readFileSync(fileName);
   return new Promise((resolve) => {
     Papa.parse(file.toString(), {
       header: true,
       complete: function (results) {
-        resolve(results);
+        resolve(results.data);
       },
     });
   });
 }
 
+/**
+ * Write product to DB
+ */
 async function createProduct(
   app: INestApplication,
-  channelToken: string,
-  product: ImportableProduct
+  ctx: RequestContext,
+  product: ImportableProduct,
+  defaultTaxCategoryId: string
 ): Promise<void> {
-  const channel = await app
-    .get(ChannelService)
-    .getChannelFromToken(channelToken);
-  const ctx = new RequestContext({
-    channel,
-    isAuthorized: true,
-    apiType: 'admin',
-    authorizedAsOwnerOnly: false,
-  });
   const productService = app.get(ProductService);
   const productOptionResolver = app.get(ProductOptionResolver);
   const variantService = app.get(ProductVariantService);
@@ -147,6 +163,7 @@ async function createProduct(
   });
   // Create optionGroups
   const createdGroups: Translated<ProductOptionGroup>[] = [];
+  // @ts-ignore
   for (const [optionName, optionValues] of optionGroups.entries()) {
     const createdGroup = await productOptionResolver.createProductOptionGroup(
       ctx,
@@ -203,6 +220,7 @@ async function createProduct(
       price: variant.price,
       stockOnHand: variant.stock,
       optionIds: Array.from(optionIds),
+      taxCategoryId: defaultTaxCategoryId,
       translations: [
         {
           languageCode: LanguageCode.en,
@@ -214,6 +232,19 @@ async function createProduct(
   await variantService.create(ctx, input);
 }
 
-function sleep(ms) {
+async function logAndExit(message: string) {
+  console.error(message);
+  await app?.close();
+  process.exit(1);
+}
+
+function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[^\w-]+/g, '');
 }
