@@ -3,7 +3,6 @@ import {
   ChannelService,
   LanguageCode,
   ProductOptionGroup,
-  ProductOptionGroupService,
   ProductService,
   ProductVariantService,
   RequestContext,
@@ -14,6 +13,7 @@ import { INestApplication } from '@nestjs/common';
 import * as fs from 'fs';
 import * as Papa from 'papaparse';
 import { ParseResult } from 'papaparse';
+import { ProductOptionResolver } from '@vendure/core/dist/api/resolvers/admin/product-option.resolver';
 
 const fileName = 'script/cantastic.csv';
 const channelToken = 'cantastic';
@@ -55,34 +55,15 @@ const testProduct: ImportableProduct = {
     apiType: 'admin',
     authorizedAsOwnerOnly: false,
   });
-  const created = await app.get(ProductOptionGroupService).create(ctx, {
-    code: 'Colorzzz',
-    translations: [
-      {
-        languageCode: LanguageCode.en,
-        name: 'Colorzzz',
-      },
-    ],
-    options: ['blue', 'yellow'].map((value) => ({
-      id: 12333,
-      code: value,
-      translations: [
-        {
-          languageCode: LanguageCode.en,
-          name: value,
-        },
-      ],
-    })),
-  });
-  console.log(created);
 
-  //await createProduct(app, channelToken, testProduct);
+  await createProduct(app, channelToken, testProduct);
 
   /*
 
     const rows = await parse(fileName);
     console.log(rows);
   */
+  process.exit(0);
 })();
 
 function parse(fileName: string): Promise<ParseResult<unknown>> {
@@ -112,7 +93,7 @@ async function createProduct(
     authorizedAsOwnerOnly: false,
   });
   const productService = app.get(ProductService);
-  const optionService = app.get(ProductOptionGroupService);
+  const productOptionResolver = app.get(ProductOptionResolver);
   const variantService = app.get(ProductVariantService);
   // Create product
   const { id: productId, slug } = await productService.create(ctx, {
@@ -138,24 +119,29 @@ async function createProduct(
   // Create optionGroups
   const createdGroups: Translated<ProductOptionGroup>[] = [];
   for (const [optionName, optionValues] of optionGroups.entries()) {
-    const createdGroup = await optionService.create(ctx, {
-      code: optionName,
-      translations: [
-        {
-          languageCode: LanguageCode.en,
-          name: optionName,
+    const createdGroup = await productOptionResolver.createProductOptionGroup(
+      ctx,
+      {
+        input: {
+          code: optionName,
+          translations: [
+            {
+              languageCode: LanguageCode.en,
+              name: optionName,
+            },
+          ],
+          options: optionValues.map((value) => ({
+            code: value,
+            translations: [
+              {
+                languageCode: LanguageCode.en,
+                name: value,
+              },
+            ],
+          })),
         },
-      ],
-      options: optionValues.map((value) => ({
-        code: value,
-        translations: [
-          {
-            languageCode: LanguageCode.en,
-            name: value,
-          },
-        ],
-      })),
-    });
+      }
+    );
     createdGroups.push(createdGroup);
     await productService.addOptionGroupToProduct(
       ctx,
