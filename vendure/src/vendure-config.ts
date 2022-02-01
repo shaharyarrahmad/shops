@@ -29,7 +29,6 @@ import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 import { channelAwareOrderConfirmationHandler } from './email/channel-aware-email.handlers';
-import { pluginConfigPerChannel } from './plugin-config-per-channel';
 
 let logger: VendureLogger;
 if (process.env.K_SERVICE) {
@@ -39,35 +38,6 @@ if (process.env.K_SERVICE) {
   logger = new DefaultLogger({ level: LogLevel.Debug });
 }
 
-// Check which plugins are configured for which channels
-const myParcelConfigs: Record<string, string> = {};
-const goedgepicktConfigs = [];
-for (const {
-  channelToken,
-  myParcelApiKey,
-  goedgepicktApiKey,
-  goedgepicktWebshopUuid,
-} of pluginConfigPerChannel) {
-  if (myParcelApiKey) {
-    myParcelConfigs[channelToken] = myParcelApiKey;
-  }
-  if (goedgepicktApiKey && goedgepicktWebshopUuid) {
-    goedgepicktConfigs.push({
-      channelToken,
-      apiKey: goedgepicktApiKey,
-      webshopUuid: goedgepicktWebshopUuid,
-    });
-  }
-}
-logger.info(
-  `MyParcel plugin enabled for ${Object.keys(myParcelConfigs).join(',')}`
-);
-logger.info(
-  `Goedgepickt plugin enabled for ${goedgepicktConfigs
-    .map((g) => g.channelToken)
-    .join(',')}`
-);
-
 export const config: VendureConfig = {
   logger,
   orderOptions: {
@@ -76,7 +46,6 @@ export const config: VendureConfig = {
   apiOptions: {
     port: (process.env.PORT! as unknown as number) || 3000,
     adminApiPath: 'admin-api',
-    adminListQueryLimit: 10000,
     adminApiPlayground: false,
     adminApiDebug: false, // turn this off for production
     shopApiPath: 'shop-api',
@@ -135,11 +104,10 @@ export const config: VendureConfig = {
     }),
     MolliePlugin.init({ vendureHost: process.env.VENDURE_HOST! }),
     GoogleStoragePlugin,
-    MyparcelPlugin.init(myParcelConfigs, process.env.VENDURE_HOST!),
-    /*    GoedgepicktPlugin.init({
+    MyparcelPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
-      configPerChannel: goedgepicktConfigs,
-    }),*/
+      syncWebhookOnStartup: process.env.SHOP_ENV === 'test' ? false : true, // Don't sync for test env
+    }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
