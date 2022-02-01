@@ -108,7 +108,7 @@ export const config: VendureConfig = {
     GoogleStoragePlugin,
     MyparcelPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
-      syncWebhookOnStartup: process.env.SHOP_ENV === 'test' ? false : true, // Don't sync for test env
+      syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
     }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
