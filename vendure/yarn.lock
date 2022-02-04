@@ -11896,10 +11896,10 @@ vendure-plugin-dutch-postalcode@2.0.4:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.0.4.tgz#6be3592afc0712533b13e66ae95b4e0527a0de49"
   integrity sha512-1zyKcBwQWf6AoL1A2lAKMu4wzudLzyOM5iIaL2pnrkQiIG+068ydTj6gdD5ktl2qWDp1NPs3v65t1E6xVTuIag==
 
-vendure-plugin-goedgepickt@0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-0.2.4.tgz#16007f2dcc82db21f96d90de555a797ea9a686f9"
-  integrity sha512-Hdd+4UFcov6Hl9+VToQeWfEdYdNXF5aCz0okeZEuPPxEeStIF/7h5bubf3Cru3FAqpTdr4en4kcyPj0kiyjIzQ==
+vendure-plugin-goedgepickt@0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-0.2.5.tgz#58e3a54cf8666d56d2a16482455a6994f66d0a24"
+  integrity sha512-9nh9DRg6PAOnzwFFg+nomgOsR7l5O6IBdiiNGgPTudmHR2XRW0qokBKS2z9rsDoH7MGyT7Mg91XqH1npWGKopQ==
   dependencies:
     node-fetch "2"
 
