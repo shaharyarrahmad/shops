@@ -8418,6 +8418,13 @@ node-addon-api@^4.2.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-4.2.0.tgz#117cbb5a959dff0992e1c586ae0393573e4d2a87"
   integrity sha512-eazsqzwG2lskuzBqCGPi7Ac2UgOoMz8JVOXVhTvvPDYhthvNpefx8jWD8Np7Gv+2Sz0FlPWZk0nJV0z598Wn8Q==
 
+node-fetch@2:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
+  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
+
 node-fetch@^2.2.0, node-fetch@^2.6.0, node-fetch@^2.6.1, node-fetch@^2.6.5:
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.6.tgz#1751a7c01834e8e1697758732e9efb6eeadfaf89"
@@ -11889,6 +11896,13 @@ vendure-plugin-dutch-postalcode@2.0.4:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.0.4.tgz#6be3592afc0712533b13e66ae95b4e0527a0de49"
   integrity sha512-1zyKcBwQWf6AoL1A2lAKMu4wzudLzyOM5iIaL2pnrkQiIG+068ydTj6gdD5ktl2qWDp1NPs3v65t1E6xVTuIag==
 
+vendure-plugin-goedgepickt@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-0.2.4.tgz#16007f2dcc82db21f96d90de555a797ea9a686f9"
+  integrity sha512-Hdd+4UFcov6Hl9+VToQeWfEdYdNXF5aCz0okeZEuPPxEeStIF/7h5bubf3Cru3FAqpTdr4en4kcyPj0kiyjIzQ==
+  dependencies:
+    node-fetch "2"
+
 vendure-plugin-google-cloud-tasks@2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-2.0.4.tgz#b746a788b55f6ec94e80bc2be55a1cd6f80cedbf"
@@ -11897,10 +11911,10 @@ vendure-plugin-google-cloud-tasks@2.0.4:
     "@google-cloud/tasks" "^2.3.4"
     body-parser "^1.19.0"
 
-vendure-plugin-google-storage-assets@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.0.4.tgz#224719cdc1262b269e8892e6c55d17e6538bfdce"
-  integrity sha512-mQ0s60VdWw/QGYLoxjvKMNDXugouYHau8+zOIz/cNyo3ES2cdFOur8iKJ8WsLLv0MnIQ3FI52eFpNKHTHbQtMQ==
+vendure-plugin-google-storage-assets@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.1.0.tgz#bdb441d39b796391bb4f7bdf0db7637950e4b47a"
+  integrity sha512-qdEoDCzibGPnLRwt533Qx5gSnTA6UUXld3+gqdsZY4Ysj0AcmUXxqeTBGOMEoK4IYpgX2/cHjsApvnR1askNRw==
   dependencies:
     "@google-cloud/storage" "^5.8.3"
     tmp "^0.2.1"

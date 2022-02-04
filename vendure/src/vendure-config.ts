@@ -30,13 +30,16 @@ import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 import { adminOrderConfirmationHandler } from './order/order-confirmation.handlers';
 import { PlaceOrderOnSettlementStrategy } from './order/place-order-on-settlement.strategy';
+import { GoedgepicktPlugin } from 'vendure-plugin-goedgepickt';
 
 let logger: VendureLogger;
+let areWeRunningLocal = false;
 if (process.env.K_SERVICE) {
   // This means we are in CloudRun
   logger = cloudLogger;
 } else {
   logger = new DefaultLogger({ level: LogLevel.Debug });
+  areWeRunningLocal = true;
 }
 
 export const config: VendureConfig = {
@@ -48,7 +51,7 @@ export const config: VendureConfig = {
   apiOptions: {
     port: (process.env.PORT! as unknown as number) || 3000,
     adminApiPath: 'admin-api',
-    adminApiPlayground: false,
+    adminApiPlayground: areWeRunningLocal ? {} : false,
     adminApiDebug: false, // turn this off for production
     shopApiPath: 'shop-api',
     shopApiPlayground: {}, // turn this off for production
@@ -109,6 +112,10 @@ export const config: VendureConfig = {
     MyparcelPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
+    }),
+    GoedgepicktPlugin.init({
+      vendureHost: process.env.VENDURE_HOST!,
+      setWebhook: process.env.SHOP_ENV === 'test', // Just sync for test now
     }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
