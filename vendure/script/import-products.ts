@@ -7,6 +7,7 @@ import {
   ProductVariantService,
   RequestContext,
   TaxCategoryService,
+  TransactionalConnection,
   Translated,
 } from '@vendure/core';
 import { CreateProductVariantInput } from '@vendure/common/lib/generated-types';
@@ -23,7 +24,7 @@ import { cantasticReader } from './product-import-strategies/cantastic-reader';
  * cantastic is the channelToken and the name of the strategy that will be used
  */
 
-export type CsvReader = (csvRows: any[]) => ImportableProduct[];
+export type CsvToProductFn = (csvRows: any[]) => ImportableProduct[];
 
 export interface ImportableProduct {
   name: string;
@@ -45,29 +46,7 @@ export interface ImportableOption {
   value: string;
 }
 
-const testProduct: ImportableProduct = {
-  name: 'TestProd',
-  slug: 'test-slug-prod',
-  description: '<p>descriptionnn</p>',
-  variants: [
-    {
-      name: 'Loop Colors 600ml Box Deal CHROME',
-      sku: 'lp-deals-600ml-436box',
-      stock: 3,
-      price: 2311,
-      options: [{ name: 'Color', value: 'LP-436 CHROME' }],
-    },
-    {
-      name: 'Loop Colors 600ml Box Deal ASPHALT',
-      sku: 'lp-deals-600ml-435box',
-      stock: 66,
-      price: 6666,
-      options: [{ name: 'Color', value: 'LP-43 ASPHALT' }],
-    },
-  ],
-};
-
-const strategies: { [key: string]: CsvReader } = {
+const strategies: { [key: string]: CsvToProductFn } = {
   cantastic: cantasticReader,
 };
 
@@ -79,26 +58,28 @@ let app: INestApplication;
   if (!fs.existsSync(filePath)) {
     await logAndExit(`${filePath} doesn't exists`);
   }
-  const csvReader = strategies[channelToken];
-  if (!csvReader) {
+  const transformCsvToProducts = strategies[channelToken];
+  if (!transformCsvToProducts) {
     await logAndExit(`No csvReader strategy defined for ${channelToken}`);
   }
+  // parse data
+  let rows = await parse(filePath);
+  rows = rows.slice(0, 20); // TODO import all
+  const products = transformCsvToProducts(rows);
+  if (!products || products.length === 0) {
+    await logAndExit('No products to import');
+  }
   console.log(
-    `Importing products from ${filePath} to channel ${channelToken} in database ${process.env.DATABASE_NAME}`
+    `Importing ${products.length} products from ${filePath} to channel ${channelToken} in database ${process.env.DATABASE_NAME}`
   );
   await sleep(5000); // Wait for user to read message
-
-  // parse data
-  const rows = await parse(filePath);
-  const products = csvReader(rows);
-  console.log(JSON.stringify(products.slice(0, 2)));
-
   // Import to DB
   const { config } = require('../src/vendure-config');
   app = await bootstrap(config);
   const channel = await app
     .get(ChannelService)
     .getChannelFromToken(channelToken);
+  const connection = await app.get(TransactionalConnection);
   const ctx = new RequestContext({
     channel,
     isAuthorized: true,
@@ -106,10 +87,22 @@ let app: INestApplication;
     authorizedAsOwnerOnly: false,
   });
   const taxCategories = await app.get(TaxCategoryService).findAll(ctx);
-  const defaultTaxCategoryId = taxCategories.find((tc) => tc.isDefault);
-  if (!defaultTaxCategoryId) {
+  const defaultTaxCategory = taxCategories.find((tc) => tc.isDefault);
+  if (!defaultTaxCategory) {
     await logAndExit('No default taxCategory found in DB!');
   }
+  // Import
+  await connection.withTransaction(ctx, async (transactionalCtx) => {
+    for (const product of products) {
+      await createProduct(
+        app,
+        transactionalCtx,
+        product,
+        defaultTaxCategory!.id as string
+      );
+    }
+  });
+
   process.exit(0);
 })();
 
@@ -213,7 +206,7 @@ async function createProduct(
       }
       optionIds.add(createdOption.id);
     });
-    console.log(`Creating variant ${variant.sku} with options ${optionIds}`);
+    console.log(`Creating variant ${variant.sku}`);
     return {
       productId,
       sku: variant.sku,
@@ -230,6 +223,7 @@ async function createProduct(
     };
   });
   await variantService.create(ctx, input);
+  console.log(`Created ${input.length} variants`);
 }
 
 async function logAndExit(message: string) {

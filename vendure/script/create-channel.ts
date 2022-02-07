@@ -128,10 +128,10 @@ defaultPermissions.push(Permission.ReadZone);
     isAuthorized: true,
   });
   const europe = (await zoneService.findAll(ctx)).find(
-    (zone) => zone.name === 'Europe'
+    (zone) => zone.name === 'EU'
   );
   if (!europe) {
-    throw Error(`Unable to find zone Europe. Cannot create channel`);
+    throw Error(`Unable to find zone EU. Cannot create channel`);
   }
   const channel = (await channelResolver.createChannel(ctx, {
     input: {

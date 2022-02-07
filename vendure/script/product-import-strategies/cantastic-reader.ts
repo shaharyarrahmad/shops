@@ -1,12 +1,12 @@
 import {
-  CsvReader,
+  CsvToProductFn,
   ImportableOption,
   ImportableProduct,
   ImportableVariant,
   slugify,
 } from '../import-products';
 
-export const cantasticReader: CsvReader = (csvRows: CantasticRow[]) => {
+export const cantasticReader: CsvToProductFn = (csvRows: CantasticRow[]) => {
   const variantsPerProduct = new Map<string, ImportableVariant[]>();
   csvRows.forEach((row, index) => {
     if (!row.Naam || !row.Naam.trim()) {
@@ -32,6 +32,7 @@ export const cantasticReader: CsvReader = (csvRows: CantasticRow[]) => {
       stock,
       price,
     });
+    variantsPerProduct.set(row.Naam, existingVariants);
   });
   const products: ImportableProduct[] = [];
   // @ts-ignore
