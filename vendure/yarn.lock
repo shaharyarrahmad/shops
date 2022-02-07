@@ -8425,6 +8425,13 @@ node-addon-api@^4.2.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-4.2.0.tgz#117cbb5a959dff0992e1c586ae0393573e4d2a87"
   integrity sha512-eazsqzwG2lskuzBqCGPi7Ac2UgOoMz8JVOXVhTvvPDYhthvNpefx8jWD8Np7Gv+2Sz0FlPWZk0nJV0z598Wn8Q==
 
+node-fetch@2:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.7.tgz#24de9fba827e3b4ae44dc8b20256a379160052ad"
+  integrity sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==
+  dependencies:
+    whatwg-url "^5.0.0"
+
 node-fetch@^2.2.0, node-fetch@^2.6.0, node-fetch@^2.6.1, node-fetch@^2.6.5:
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.6.tgz#1751a7c01834e8e1697758732e9efb6eeadfaf89"
@@ -11900,6 +11907,13 @@ vendure-plugin-dutch-postalcode@2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.0.4.tgz#6be3592afc0712533b13e66ae95b4e0527a0de49"
   integrity sha512-1zyKcBwQWf6AoL1A2lAKMu4wzudLzyOM5iIaL2pnrkQiIG+068ydTj6gdD5ktl2qWDp1NPs3v65t1E6xVTuIag==
+
+vendure-plugin-goedgepickt@0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-0.2.5.tgz#58e3a54cf8666d56d2a16482455a6994f66d0a24"
+  integrity sha512-9nh9DRg6PAOnzwFFg+nomgOsR7l5O6IBdiiNGgPTudmHR2XRW0qokBKS2z9rsDoH7MGyT7Mg91XqH1npWGKopQ==
+  dependencies:
+    node-fetch "2"
 
 vendure-plugin-google-cloud-tasks@2.0.4:
   version "2.0.4"
