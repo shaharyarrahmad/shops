@@ -30,7 +30,7 @@ export const cantasticReader: CsvToProductFn = (csvRows: CantasticRow[]) => {
       options,
       sku: row.Productcode,
       stock,
-      price,
+      price: price * 100,
     });
     variantsPerProduct.set(row.Naam, existingVariants);
   });
