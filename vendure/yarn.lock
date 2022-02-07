@@ -11903,45 +11903,45 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vendure-plugin-dutch-postalcode@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.0.4.tgz#6be3592afc0712533b13e66ae95b4e0527a0de49"
-  integrity sha512-1zyKcBwQWf6AoL1A2lAKMu4wzudLzyOM5iIaL2pnrkQiIG+068ydTj6gdD5ktl2qWDp1NPs3v65t1E6xVTuIag==
+vendure-plugin-dutch-postalcode@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.1.1.tgz#c05addfb38c458368400aeaab0f7996b0d0e282f"
+  integrity sha512-M4gI/0OeH24cPkVfJiPCwbeMJuwSLr5wy5yE4VtqxWZBTo6RYHtneRVElpSq9E86cSO7lAhPTF7AmO1HZmjEPQ==
 
-vendure-plugin-goedgepickt@0.2.5:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-0.2.5.tgz#58e3a54cf8666d56d2a16482455a6994f66d0a24"
-  integrity sha512-9nh9DRg6PAOnzwFFg+nomgOsR7l5O6IBdiiNGgPTudmHR2XRW0qokBKS2z9rsDoH7MGyT7Mg91XqH1npWGKopQ==
+vendure-plugin-goedgepickt@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-2.1.1.tgz#c18a3c69c6c76279a56c0a84a1290d7e651c990c"
+  integrity sha512-vpBGGvsGYq2z1kw4Xi1U8mtcNrh4EnW8p4g8DOcRCZnJQaSpvGVnoSK0dUueDVlYjPzg1796TJmOdZ7fUOU6qg==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-2.0.4.tgz#b746a788b55f6ec94e80bc2be55a1cd6f80cedbf"
-  integrity sha512-Kk6ztXBgwf1hX2qyF4GI+2+PuFYB9tygX07LX+q/W7naOeONX/Dgx/93I2CGE6D/fV9Raqv7Ew4cQuf0rGn0VQ==
+vendure-plugin-google-cloud-tasks@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-2.1.1.tgz#324a26e3ba084a9f785096ac95d940660cacc870"
+  integrity sha512-WmHiRFmjPcFNEDI9TYxdDgsMzn7JQa65zvhr+oMLC8+62noKHv+sAMTj30l1zu1fBo03UGsINlpNZDTMySEk1g==
   dependencies:
     "@google-cloud/tasks" "^2.3.4"
     body-parser "^1.19.0"
 
-vendure-plugin-google-storage-assets@2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.1.0.tgz#bdb441d39b796391bb4f7bdf0db7637950e4b47a"
-  integrity sha512-qdEoDCzibGPnLRwt533Qx5gSnTA6UUXld3+gqdsZY4Ysj0AcmUXxqeTBGOMEoK4IYpgX2/cHjsApvnR1askNRw==
+vendure-plugin-google-storage-assets@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.1.1.tgz#93c0621a5a2697432b54e5831f937409916b4af7"
+  integrity sha512-/HcX2Ssuxf1MhKWhVn8CFMnePr+aTy5Je/kRP5J8tkhIub3PnH1YQWbZvbABw3OsRz3ql8xT2FiL1ShSDd/bfg==
   dependencies:
     "@google-cloud/storage" "^5.8.3"
     tmp "^0.2.1"
 
-vendure-plugin-myparcel@2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-2.0.6.tgz#b816a6ab4365e17c03dacb83084d806bcb8cd70c"
-  integrity sha512-MU9N0/ZxNMYxmISEaYLwXKThZ8ZXdTHOtVlUTMfI3ChwMLKN+zk0s/bgaU4L3ewiqsGFaTCaL+XLsy1DyQ8K/w==
+vendure-plugin-myparcel@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-2.1.1.tgz#6342a4f40acd20fbed2f2fec20e82fb4cc892271"
+  integrity sha512-Tp6GNNAA0+szddqEE9OGRShxfkwdJKpRzpZyknm0f1+oTHtHmkNrGfZZt25aeDug/hkKjNDjyRxcR8I7Wpq8Fg==
   dependencies:
     axios "^0.21.4"
 
-vendure-plugin-webhook@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.0.4.tgz#8cd215e5a16ae0d1ab6930b718a78b015d0cea4c"
-  integrity sha512-X2fy/O9xCnK2YjmwB/AmQgjsKVLptU+ijGziI+GnsJRWQQOWDv/x4ZNmZ40ZoEI9LP2wgUpUE3A99yA4brqWyA==
+vendure-plugin-webhook@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.1.1.tgz#f4f9079536b9f824a41d2f3d6b043bfa2a715905"
+  integrity sha512-Z+jTaBCSdwU3YybZYSrgIsAJPDBBR4YibssvN6y/EnhX22fv6dPx4DJ1nJcIxef38eGHsOCX5A6tXBHNCvAdEw==
 
 verror@1.10.0:
   version "1.10.0"
