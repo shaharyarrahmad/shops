@@ -13,4 +13,8 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('DefaultLayout', DefaultLayout);
   Vue.component('PopupImage', PopupImage);
   configureVue(Vue, { router, head, isClient });
+  if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
+    require('outfront').default();
+    console.log('OutfrontJS mobile logging enabled');
+  }
 }
