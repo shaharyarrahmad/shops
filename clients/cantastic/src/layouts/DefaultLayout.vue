@@ -16,7 +16,7 @@
           <g-link :to="collection.slug" class="navbar-link">
             {{ collection.name }}
           </g-link>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown" style="overflow: hidden">
             <!-- Multi column drop down -->
             <div v-if="hasSubSubCollection(collection)">
               <div class="columns">
