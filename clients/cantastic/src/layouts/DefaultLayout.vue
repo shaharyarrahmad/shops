@@ -6,16 +6,60 @@
       cart-link="/cart/"
       :activeOrder="activeOrder"
     >
-      <g-link to="https://pinelab.studio/minishop/" class="navbar-item">
-        Cans
-      </g-link>
-      <g-link to="https://pinelab.studio/minishop/" class="navbar-item">
-        Caps
-      </g-link>
-      <g-link to="https://pinelab.studio/minishop/" class="navbar-item">
-        Markers
-      </g-link>
+      <template v-for="(collection, index) of collections">
+        <!-- Collections with subCollections -->
+        <div
+          v-if="collection.subCollection"
+          :key="`${collection.slug}-${index}`"
+          class="navbar-item has-dropdown is-hoverable"
+        >
+          <g-link :to="collection.slug" class="navbar-link">
+            {{ collection.name }}
+          </g-link>
+          <div class="navbar-dropdown">
+            <!-- Multi column drop down -->
+            <div v-if="hasSubSubCollection(collection)">
+              <div class="columns">
+                <div
+                  class="column"
+                  v-for="(subCollection, index) of collection.subCollection"
+                >
+                  <h4 class="navbar-item">{{ subCollection.name }}</h4>
+                  <g-link
+                    class="navbar-item"
+                    v-for="(subsub, index) of subCollection.subCollection"
+                    :to="subsub.slug"
+                    :key="`${subsub.slug}-${index}`"
+                  >
+                    {{ subsub.name }}
+                  </g-link>
+                </div>
+              </div>
+            </div>
+            <!-- Single column for subcollection without sub-sub-->
+            <div v-else>
+              <g-link
+                class="navbar-item"
+                v-for="(subCollection, index) of collection.subCollection"
+                :to="subCollection.slug"
+                :key="`${subCollection.slug}-${index}`"
+              >
+                {{ subCollection.name }}
+              </g-link>
+            </div>
+          </div>
+        </div>
+        <!-- No dropdown, because no subCollections -->
+        <g-link v-else :to="collection.slug" class="navbar-item">
+          {{ collection.name }}
+        </g-link>
+      </template>
     </ShopNavBar>
+
+    <!--    USP bar   -->
+    <div class="has-text-centered has-background-info has-text-light usp-bar">
+      USPS
+    </div>
 
     <div class="container is-widescreen section" style="min-height: 90vh">
       <b-button v-if="$context.showBack" tag="a" @click="$router.go(-1)">
@@ -44,6 +88,100 @@ export default {
     ShopNavBar,
     Breadcrumb,
   },
+  data() {
+    return {
+      collections: [
+        {
+          name: 'Spray paint & caps',
+          slug: '/shop/',
+          subCollection: [
+            {
+              name: 'Spraypaint',
+              slug: '/sub1/',
+              subCollection: [
+                {
+                  name: 'Loop Colors 400ml',
+                  slug: '/sub/',
+                },
+                {
+                  name: 'Loop Colors 600ml',
+                  slug: '/sub/',
+                },
+                {
+                  name: 'Montana black 400ml',
+                  slug: '/sub/',
+                },
+              ],
+            },
+            {
+              name: 'Caps',
+              slug: '/shop/',
+              subCollection: [
+                {
+                  name: 'Skinny caps',
+                  slug: '/sub3/',
+                },
+                {
+                  name: 'Soft caps',
+                  slug: '/sub3/',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: 'Markers',
+          slug: '/shop/',
+        },
+        {
+          name: 'Uitrusting',
+          slug: '/shop/',
+        },
+        {
+          name: 'Tekenen & Stickers',
+          slug: '/shop/',
+        },
+        {
+          name: 'Kleding',
+          slug: '/shop/',
+          subCollection: [
+            {
+              name: 'T-shirts',
+              slug: '/sub2/',
+            },
+            {
+              name: 'Sweaters',
+              slug: '/sub2/',
+            },
+            {
+              name: 'Hoodies',
+              slug: '/sub2/',
+            },
+          ],
+        },
+        {
+          name: 'Boeken & magazines',
+          slug: '/shop/',
+        },
+        {
+          name: 'Prints',
+          slug: '/shop/',
+        },
+        {
+          name: 'Blog',
+          slug: '/shop/',
+        },
+      ],
+    };
+  },
+  methods: {
+    hasSubSubCollection(collection) {
+      // Check if any of the subCollections has another Subcollection
+      return collection.subCollection.find(
+        (sub) => sub.subCollection && sub.subCollection.length > 0
+      );
+    },
+  },
   computed: {
     activeOrder() {
       return this.$store?.activeOrder;
@@ -52,11 +190,11 @@ export default {
 };
 </script>
 <style>
-.footer a {
-  color: white;
+.usp-bar {
+  margin-top: 32px;
 }
 
-.footer a:hover {
-  color: white;
+.navbar-dropdown h4.navbar-item {
+  margin-bottom: 0;
 }
 </style>

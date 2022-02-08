@@ -2,12 +2,12 @@
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$text: #3f3f3f;
+$text: #131520;
 $primary: $text;
-$link: #3F88C5;
+$link: #003082;
 $info: $link;
-$success: #3BCEAC;
-$warning: #FFBA08;
+$success: #0CCE6B;
+$warning: #F7DBA7;
 $danger: #EF6461;
 $dark: $text;
 
@@ -21,7 +21,7 @@ $custom-shades: null !default;
 $family-sans-serif: "Poppins";
 $family-primary: "Poppins";
 
-$control-radius: 2px;
+$control-radius: 6px;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
