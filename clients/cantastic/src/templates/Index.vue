@@ -1,10 +1,5 @@
 <template>
   <DefaultLayout>
-    <h1 class="has-text-centered">Cantastic</h1>
-
-    <br />
-    <br />
-
     <div class="columns is-multiline is-mobile">
       <div
         class="column is-half-mobile is-one-quarter-tablet mb-4"

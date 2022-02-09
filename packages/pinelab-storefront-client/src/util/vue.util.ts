@@ -20,6 +20,14 @@ export function configureVue(
     rel: 'preconnect',
     href: 'https://storage.googleapis.com',
   });
+  head.link.push({
+    rel: 'dns-prefetch',
+    href: '//content.pinelab.studio',
+  });
+  head.link.push({
+    rel: 'preconnect',
+    href: 'https://content.pinelab.studio',
+  });
 
   // Add euro filter for global use
   Vue.filter('euro', function (value: number, format: string) {

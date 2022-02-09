@@ -1,15 +1,55 @@
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
-// Set your colors
-$text: #131520;
-$primary: $text;
-$link: #003082;
-$info: $link;
-$success: #0CCE6B;
-$warning: #F7DBA7;
-$danger: #de3737;
-$dark: $text;
+// https://bulma.io/documentation/customize/variables/
+
+$loop-dark: #131520;
+$loop-soft-dark: #19180A;
+$loop-soft-dark2: #333232;
+$loop-blue: #003082;
+$loop-red: #de3737;
+$loop-grey: #dfdee6;
+$loop-white: #ffffff;
+$loop-green: #0CCE6B;
+$loop-orange: #F7DBA7;
+
+// Dark theme with white buttons
+//$text: $loop-white;
+//$primary: $loop-grey;
+//$link: $loop-grey;
+//$info: $loop-blue;
+//$success: #0CCE6B;
+//$warning: #F7DBA7;
+//$danger: #de3737;
+//$dark: $text;
+//$body-background-color: $loop-soft-dark;
+//$primary-invert: $loop-dark;
+//$text-strong: $loop-white;
+
+// Dark theme with red buttons
+//$text: $loop-white;
+//$primary: $loop-red;
+//$link: $loop-grey;
+//$info: $loop-blue;
+//$success: #0CCE6B;
+//$warning: #F7DBA7;
+//$danger: #de3737;
+//$dark: $text;
+//$body-background-color: $loop-soft-dark;
+//$primary-invert: $loop-white;
+//$text-strong: $loop-white;
+
+// White theme
+$text: $loop-soft-dark2;
+$primary: $loop-soft-dark2;
+$link: $loop-blue;
+$info: $loop-blue;
+$success: $loop-green;
+$warning: $loop-orange;
+$danger: $loop-red;
+$body-background-color: $loop-white;
+$primary-invert: $loop-white;
+$dark: $loop-dark;
 
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
@@ -22,6 +62,13 @@ $family-sans-serif: "Poppins";
 $family-primary: "Poppins";
 
 $control-radius: 6px;
+
+// Links
+/*$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;*/
+
+// --------------------------------- END OF CUSTOM VARS -----------------------------------------------
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
@@ -82,10 +129,7 @@ $colors: mergeColorMaps(
                 $custom-colors
 );
 
-// Links
-/*$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;*/
+
 
 // Import Bulma and Buefy styles
 @import "~bulma";
@@ -109,4 +153,7 @@ h3 {
 h4 {
   @extend .title;
   @extend .is-4;
+}
+.navbar {
+  background: $loop-white;
 }
