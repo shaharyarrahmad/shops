@@ -11,18 +11,10 @@ export function configureVue(
   Vue: VueConstructor,
   { router, head, isClient }: any
 ): void {
-  // DNS prefetch for images from storage
-  head.link.push({
-    rel: 'dns-prefetch',
-    href: '//storage.googleapis.com',
-  });
+  // preconnect for images from storage and cms
   head.link.push({
     rel: 'preconnect',
     href: 'https://storage.googleapis.com',
-  });
-  head.link.push({
-    rel: 'dns-prefetch',
-    href: '//content.pinelab.studio',
   });
   head.link.push({
     rel: 'preconnect',
