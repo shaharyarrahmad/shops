@@ -57,9 +57,7 @@ export default {
       return this.$store?.activeOrder;
     },
   },
-  mounted() {
-    console.log(this.$route);
-  },
+  mounted() {},
 };
 </script>
 <style>

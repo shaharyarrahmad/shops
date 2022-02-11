@@ -2,9 +2,9 @@
   <Layout>
     <section
       v-if="$context.featuredProduct"
-      class="hero is-halfheight main-feature p-6 is-light-blue mb-6"
+      class="hero is-halfheight main-feature p-6 is-light-blue mb-2"
     >
-      <div class="columns is-mobile">
+      <div class="columns">
         <div class="column">
           <h1 class="title py-6">
             {{ $context.featuredProduct.name }}
@@ -33,6 +33,27 @@
         </div>
       </div>
     </section>
+    <section id="usps" class="mb-6 is-dark has-background-black has-text-light">
+      <div class="content has-text-centered is-medium">
+        <b-icon
+          class="mx-2"
+          icon="check-circle"
+          size="is-small"
+          type="is-success"
+        >
+        </b-icon>
+        Voor 23:00 besteld volgende dag in huis
+
+        <b-icon
+          class="mx-2"
+          icon="check-circle"
+          size="is-small"
+          type="is-success"
+        >
+        </b-icon>
+        Voor 23:00 besteld volgende dag in huis
+      </div>
+    </section>
 
     <div class="columns is-multiline is-mobile">
       <div
@@ -54,15 +75,12 @@
 <script>
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
 import { hydrate } from 'pinelab-storefront-client';
-import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/ProductFilter';
 
 export default {
   components: {
     ProductCard,
-    ProductFilter,
   },
   async mounted() {
-    console.log(this.$context.featuredProduct.description);
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
   },
