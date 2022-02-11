@@ -53,6 +53,7 @@ module.exports = async function (api) {
             products: productsPerCollection,
             collection,
             collections,
+            back: '/',
           },
         });
       }

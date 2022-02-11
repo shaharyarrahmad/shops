@@ -137,6 +137,16 @@ h3 {
   @extend .cr-heading;
 }
 
+h4 {
+  @extend .is-size-4;
+  @extend .cr-heading;
+}
+
+h5 {
+  @extend .is-size-5;
+  @extend .cr-heading;
+}
+
 .is-light-blue {
   background: $cr-light-blue;
 }

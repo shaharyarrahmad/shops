@@ -31,6 +31,23 @@
     </div>
 
     <footer v-if="showFooter" class="footer">
+      <div class="columns has-text-centered">
+        <div class="column">
+          <h4>Assortiment</h4>
+          <g-link
+            v-for="collection of $context.collections"
+            :to="`/categorie/${collection.slug}`"
+            :key="collection.slug"
+          >
+            {{ collection.name }}<br />
+          </g-link>
+        </div>
+        <div class="column">
+          <h4>Contact</h4>
+          <p>telefoonnummer:</p>
+          <p>info@cryptherion.io</p>
+        </div>
+      </div>
       <div class="content has-text-centered is-dark">
         Cryptherion.io •
         <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>

@@ -1,5 +1,50 @@
 <template>
   <Layout>
+    <div class="mb-2 has-text-centered">
+      <img src="/img/cryptherion-logo-black.svg" />
+      <section id="usps" class="is-dark">
+        <div class="content has-text-centered">
+          <span class="line">
+            <b-icon
+              v-for="i of 5"
+              :key="`star${i}`"
+              icon="star-circle"
+              size="is-small"
+              type="is-warning"
+            ></b-icon>
+            <span class="mx-2"
+              >Bekijk onze reviews op
+              <a href="https://www.trustpilot.com/" target="_blank"
+                >Trustpilot</a
+              ></span
+            >
+          </span>
+
+          <span class="line">
+            <b-icon
+              class="mx-2"
+              icon="check-circle"
+              size="is-small"
+              type="is-success"
+            >
+            </b-icon>
+            <span>Voor 23:00 besteld volgende dag in huis</span>
+          </span>
+
+          <span class="line">
+            <b-icon
+              class="mx-2"
+              icon="check-circle"
+              size="is-small"
+              type="is-success"
+            >
+            </b-icon>
+            <span class="mr-2">Betaal met Bitcoin</span>
+          </span>
+        </div>
+      </section>
+    </div>
+
     <section
       v-if="$context.featuredProduct"
       class="hero is-halfheight main-feature p-6 is-light-blue mb-2"
@@ -9,7 +54,7 @@
           <h1 class="title py-6">
             {{ $context.featuredProduct.name }}
           </h1>
-          <p class="subtitle">De meests verkochte seed wallet</p>
+          <p class="subtitle">De meest verkochte seed</p>
           <g-link
             :to="`/product/${$context.featuredProduct.slug}`"
             class="is-info is-fullwidth button is-large"
@@ -31,27 +76,6 @@
             ratio="1by1"
           />
         </div>
-      </div>
-    </section>
-    <section id="usps" class="mb-6 is-dark has-background-black has-text-light">
-      <div class="content has-text-centered is-medium">
-        <b-icon
-          class="mx-2"
-          icon="check-circle"
-          size="is-small"
-          type="is-success"
-        >
-        </b-icon>
-        Voor 23:00 besteld volgende dag in huis
-
-        <b-icon
-          class="mx-2"
-          icon="check-circle"
-          size="is-small"
-          type="is-success"
-        >
-        </b-icon>
-        Voor 23:00 besteld volgende dag in huis
       </div>
     </section>
 
@@ -91,4 +115,8 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+span.line {
+  display: inline-block;
+}
+</style>

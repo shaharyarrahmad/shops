@@ -9,7 +9,7 @@ if (process.env.VENDURE_ENV === 'local') {
 }
 
 module.exports = {
-  siteName: 'Minishop',
+  siteName: 'Cryptherion.io',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link
