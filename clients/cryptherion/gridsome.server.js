@@ -12,7 +12,8 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, availableCountries } = await gridsome.getShopData();
+    const { products, availableCountries, collections, productsPerCollection } =
+      await gridsome.getShopData();
 
     const featuredProduct = products.find((p) =>
       p.facetValues.find((value) => value.code === 'main-feature')
@@ -25,6 +26,7 @@ module.exports = async function (api) {
       context: {
         products,
         featuredProduct,
+        collections,
       },
     });
 
@@ -34,17 +36,34 @@ module.exports = async function (api) {
         path: `/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
+          collections,
           product,
           back: '/',
         },
       });
     });
 
+    // ----------------- Collections ---------------------
+    productsPerCollection.forEach(
+      ({ products: productsPerCollection, collection }) => {
+        createPage({
+          path: `/categorie/${collection.slug}`,
+          component: './src/templates/Collection.vue',
+          context: {
+            products: productsPerCollection,
+            collection,
+            collections,
+          },
+        });
+      }
+    );
+
     // ----------------- Cart ---------------------
     createPage({
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
+        collections,
         back: '/',
       },
     });
@@ -53,14 +72,17 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { availableCountries },
+      context: { availableCountries, collections },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { back: '/' },
+      context: {
+        collections,
+        back: '/',
+      },
     });
   });
 };

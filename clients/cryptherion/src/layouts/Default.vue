@@ -6,9 +6,14 @@
       cart-link="/cart/"
       :activeOrder="activeOrder"
     >
-      <!--      <g-link to="https://pinelab.studio/minishop/" class="navbar-item">
-        Ik wil ook een minishop
-      </g-link>-->
+      <g-link
+        v-for="collection of $context.collections"
+        :to="`/categorie/${collection.slug}`"
+        :key="collection.slug"
+        class="navbar-item"
+      >
+        {{ collection.name }}
+      </g-link>
     </ShopNavBar>
 
     <div class="container is-widescreen section" style="min-height: 90vh">

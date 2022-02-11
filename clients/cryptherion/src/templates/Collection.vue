@@ -1,37 +1,10 @@
 <template>
   <Layout>
-    <section
-      v-if="$context.featuredProduct"
-      class="hero is-halfheight main-feature p-6 is-light-blue mb-6"
-    >
-      <div class="columns is-mobile">
-        <div class="column">
-          <h1 class="title py-6">
-            {{ $context.featuredProduct.name }}
-          </h1>
-          <p class="subtitle">De meests verkochte seed wallet</p>
-          <g-link
-            :to="`/product/${$context.featuredProduct.slug}`"
-            class="is-info is-fullwidth button is-large"
-            style="padding: 30px"
-          >
-            <h2>
-              {{ $context.featuredProduct.lowestPrice | euro }}
-              <span class="icon is-large ml-4"
-                ><i class="mdi mdi-alert-octagram"></i
-              ></span>
-            </h2>
-          </g-link>
-        </div>
+    <section id="category-intro">
+      <h1>{{ $context.collection.name }}</h1>
+      <b-image :src="$context.collection.featuredAsset"></b-image>
 
-        <div class="column">
-          <b-image
-            :src="maybe($context.featuredProduct.featuredAsset, 'preview')"
-            :alt="$context.featuredProduct.name"
-            ratio="1by1"
-          />
-        </div>
-      </div>
+      {{ $context.collection }}
     </section>
 
     <div class="columns is-multiline is-mobile">

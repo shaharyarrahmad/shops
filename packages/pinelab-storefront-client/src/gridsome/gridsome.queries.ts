@@ -70,6 +70,10 @@ export const GET_COLLECTIONS = gql`
           name
           slug
           description
+          featuredAsset {
+            preview
+            thumbnail
+          }
           productVariants {
             items {
               product {
