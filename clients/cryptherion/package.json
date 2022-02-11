@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.3",
+    "@fontsource/titillium-web": "^4.5.1",
     "buefy": "^0.9.7",
     "pinelab-storefront-client": "^0.41.1"
   },

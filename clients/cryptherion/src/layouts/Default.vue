@@ -61,8 +61,14 @@ export default {
 .footer a {
   color: white;
 }
-
 .footer a:hover {
   color: white;
+}
+.product-card-container > p {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+.navbar {
+  border-bottom: 1px solid #e1e1e1;
 }
 </style>

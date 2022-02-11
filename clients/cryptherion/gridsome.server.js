@@ -14,12 +14,17 @@ module.exports = async function (api) {
     const gridsome = new GridsomeService(graphql);
     const { products, availableCountries } = await gridsome.getShopData();
 
+    const featuredProduct = products.find((p) =>
+      p.facetValues.find((value) => value.code === 'main-feature')
+    );
+
     // ----------------- ProductOverview ---------------------
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
       context: {
         products,
+        featuredProduct,
       },
     });
 

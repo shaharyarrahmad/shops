@@ -2,8 +2,9 @@ import 'buefy/dist/buefy.css';
 import Buefy from 'buefy';
 import Layout from '~/layouts/Default.vue';
 import { configureVue } from 'pinelab-storefront-client';
-import '~/theme.scss';
 import '@fontsource/roboto';
+import '@fontsource/titillium-web';
+import '~/theme.scss';
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
 
