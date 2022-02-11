@@ -1,7 +1,7 @@
 <template>
   <div>
     <ShopNavBar
-      logo="/img/cryptherion_logo.png"
+      logo="/img/cryptherion-logo-black.svg"
       logo-alt="Cryptherion logo"
       cart-link="/cart/"
       :activeOrder="activeOrder"
@@ -18,7 +18,11 @@
 
       <br />
 
-      <slot />
+      <transition :name="$route.meta.transitionName" appear>
+        <main>
+          <slot />
+        </main>
+      </transition>
     </div>
 
     <footer v-if="showFooter" class="footer">
@@ -47,6 +51,9 @@ export default {
     activeOrder() {
       return this.$store?.activeOrder;
     },
+  },
+  mounted() {
+    console.log(this.$route);
   },
 };
 </script>

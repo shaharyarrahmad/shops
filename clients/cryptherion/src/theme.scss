@@ -1,3 +1,20 @@
+// Page transition
+.slide-next-leave-active,
+.slide-next-enter-active {
+  transition: 0.3s;
+}
+.slide-next-enter {
+  transform: translateX(100%);
+}
+
+.slide-previous-leave-active,
+.slide-previous-enter-active {
+  transition: 0.3s;
+}
+.slide-previous-enter {
+  transform: translateY(100%);
+}
+
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
@@ -18,8 +35,8 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: "Roboto Mono";
-$family-primary: "Roboto Mono";
+$family-sans-serif: "Roboto";
+$family-primary: "Roboto";
 
 $control-radius: 2px;
 

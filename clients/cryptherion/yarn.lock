@@ -928,6 +928,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/roboto-mono/-/roboto-mono-4.5.1.tgz#8b1b38ad7d2c202968ffd87bee3e471152b437e9"
   integrity sha512-uP/GMF9N2XaxrB9flM1LiZUdcrG/3YdYpGJddY2d7rvsqqitZ8fWBckbdW717WMty4V96N+k1EArilYwQOvN3A==
 
+"@fontsource/roboto@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-4.5.3.tgz#c729ac22c35ae1c224cde10042ce7ab356bc4dda"
+  integrity sha512-NUvBTj332dFRdiVkLlavXbDGoD2zyyeGYmMyrXOnctg/3e4pq95+rJgNfUP+k4v8UBk2L1aomGw9dDjbRdAmTg==
+
 "@gridsome/cli@^0.3.4":
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/@gridsome/cli/-/cli-0.3.4.tgz#42fa7a4368a80bd04ec497c93cae5a66b041fe22"
@@ -6958,10 +6963,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@^0.40.2:
-  version "0.40.2"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.40.2.tgz#677b9dc911a8a7b7b79181b2b3c9639b952a4077"
-  integrity sha512-csVmwsuzuqR7dDojUc6pEymRpiRUwVKj2Q3Nuuk7aBvRxqRzNKRg21Ag1yz+pFHVOFFATZKY2lDesg2PCVRGsA==
+pinelab-storefront-client@^0.41.1:
+  version "0.41.1"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.41.1.tgz#563b32e07f232c30d5311c5f595243b4526b39cd"
+  integrity sha512-kZvcQTdARlmvChcupn/7we5lwCXHUQgT45vasuwkMMuVwBnt4Ee8JcGH04ErBUNYvvfyvJ0qTwx4Rl7cqRIl+w==
   dependencies:
     debounce "^1.2.1"
     graphql "15.3.0"
