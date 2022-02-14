@@ -21,10 +21,10 @@
             <div v-if="hasSubSubCollection(collection)">
               <div class="columns">
                 <div
-                  class="column"
+                  class="column is-3"
                   v-for="(subCollection, index) of collection.subCollection"
                 >
-                  <h4 class="navbar-item">{{ subCollection.name }}</h4>
+                  <h5 class="navbar-item">{{ subCollection.name }}</h5>
                   <g-link
                     class="navbar-item"
                     v-for="(subsub, index) of subCollection.subCollection"
@@ -192,9 +192,5 @@ export default {
 <style>
 .usp-bar {
   margin-top: 32px;
-}
-
-.navbar-dropdown h4.navbar-item {
-  margin-bottom: 0;
 }
 </style>

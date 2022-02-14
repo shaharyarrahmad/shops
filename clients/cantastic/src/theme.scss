@@ -154,6 +154,29 @@ h4 {
   @extend .title;
   @extend .is-4;
 }
+h5 {
+  @extend .title;
+  @extend .is-5;
+}
+h6 {
+  @extend .title;
+  @extend .is-6;
+}
+
+/** Navbar stuff **/
 .navbar {
   background: $loop-white;
+}
+.navbar-dropdown h5.navbar-item {
+  @media screen and (max-width: $desktop) {
+    display: none;
+  }
+  margin-bottom: 0;
+}
+.navbar-dropdown {
+  @media screen and (min-width: $desktop) {
+    width: 100vw;
+    top: 56px;
+    position: fixed;
+  }
 }
