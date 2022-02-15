@@ -12,12 +12,37 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, availableCountries, collections, productsPerCollection } =
-      await gridsome.getShopData();
+    const {
+      products,
+      availableCountries,
+      collections: allCollections,
+      productsPerCollection,
+    } = await gridsome.getShopData();
 
     const featuredProduct = products.find((p) =>
       p.facetValues.find((value) => value.code === 'main-feature')
     );
+
+    // Get toplevel collections
+    const collections = gridsome.unflatten(allCollections);
+    /*    let collections = allCollections.filter(col => {
+      return col.parent.name === '__root_collection__';
+    });
+    // Find and set child collections, because queried children only have id and name fields
+    collections = collections.map(collection => {
+      const extendedChildren = collection.children.map(originalChild => {
+        const fullChildCollection = allCollections.find(c => c.id === originalChild.id);
+        return {
+          ...originalChild,
+          ...fullChildCollection
+
+        }
+      });
+      return {
+        ...collection,
+        children: extendedChildren
+      }
+    })*/
 
     console.log(JSON.stringify(collections));
 

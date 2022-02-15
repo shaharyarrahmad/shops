@@ -94,4 +94,62 @@ export class GridsomeService {
     } = await this.graphqlFn(GET_AVAILABLE_COUNTRIES);
     return availableCountries;
   }
+
+  /**
+   * By default the collection graphql query returns all child and parent collections in one flat array.
+   * This function sets the correct childCollections for each topLevel collection.
+   * @param allCollections
+   */
+  unflatten(allCollections: Collection[]): Collection[] {
+    // Get toplevel collections
+    let collections = allCollections.filter(
+      (col) => col.parent?.name === '__root_collection__'
+    );
+    // Find and set child collections, because queried children only have id and name fields
+    return collections.map((collection) => {
+      const extendedChildren = collection.children?.map((originalChild) => {
+        const fullChildCollection = allCollections.find(
+          (c) => c.id === originalChild.id
+        );
+        return {
+          ...originalChild,
+          ...fullChildCollection,
+        };
+      });
+      return {
+        ...collection,
+        children: extendedChildren,
+      };
+    });
+  }
+
+  /**
+   * Recursively gets childCollections for given collection
+   */
+  private getChildCollection(
+    collection: Collection,
+    allCollections: Collection[]
+  ): Collection {
+    const fullChildren = collection.children?.map((originalChild) => {
+      let fullChildCollection = allCollections.find(
+        (c) => c.id === originalChild.id
+      );
+      if (!fullChildCollection) {
+        throw Error(
+          `Child collection ${originalChild.name} is not in allCollections list`
+        );
+      }
+      if (fullChildCollection?.children?.length) {
+        fullChildCollection = this.getChildCollection(
+          fullChildCollection,
+          allCollections
+        );
+      }
+      return fullChildCollection;
+    });
+    return {
+      ...collection,
+      children: fullChildren,
+    };
+  }
 }
