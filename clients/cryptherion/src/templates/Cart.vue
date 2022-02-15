@@ -2,7 +2,7 @@
   <Layout>
     <CartOverview
       empty-cart-label="No products yet..."
-      link-to-checkout="/checkout/"
+      link-to-checkout="/cart/checkout/"
     />
   </Layout>
 </template>

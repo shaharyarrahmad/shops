@@ -146,7 +146,11 @@ h5 {
   @extend .is-size-5;
   @extend .cr-heading;
 }
-
 .is-light-blue {
   background: $cr-light-blue;
+}
+.hero-logo {
+  @media screen and (min-width: $desktop) {
+    max-width: 400px;
+  }
 }

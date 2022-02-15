@@ -1,21 +1,13 @@
 <template>
   <Layout>
     <section id="category-intro" class="mb-6">
-      <h1 class="has-text-centered pb-2">{{ $context.collection.name }}</h1>
+      <!--      <h1 class="has-text-centered pb-2">{{ $context.collection.name }}</h1>-->
       <img
         class="collection-banner"
         :src="maybe($context.collection.featuredAsset, 'preview')"
         :alt="`Categorie ${$context.collection.name}`"
       />
       <p v-html="$context.collection.description"></p>
-      <!--      <div class="columns">
-              <div class="column">
-                <b-image :src="maybe($context.collection.featuredAsset, 'preview')"></b-image>
-              </div>
-              <div class="column">
-                <p v-html="$context.collection.description"></p>
-              </div>
-            </div>-->
     </section>
 
     <div class="columns is-multiline is-mobile">

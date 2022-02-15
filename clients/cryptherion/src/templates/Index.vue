@@ -1,7 +1,11 @@
 <template>
   <Layout>
     <div class="mb-2 has-text-centered">
-      <img src="/img/cryptherion-logo-black.svg" />
+      <img
+        src="/img/cryptherion-logo-black.svg"
+        alt="Cryptherion logo"
+        class="hero-logo"
+      />
       <section id="usps" class="is-dark">
         <div class="content has-text-centered">
           <span class="line">

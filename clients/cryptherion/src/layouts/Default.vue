@@ -23,6 +23,8 @@
 
       <br />
 
+      <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
+
       <transition :name="$route.meta.transitionName" appear>
         <main>
           <slot />

@@ -19,7 +19,12 @@ module.exports = async function (api) {
       p.facetValues.find((value) => value.code === 'main-feature')
     );
 
-    // ----------------- ProductOverview ---------------------
+    // Breadcrumb
+    const Home = '/';
+    const Winkelmand = '/cart/';
+    const Checkout = '/cart/checkout';
+
+    // ----------------- Index ---------------------
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
@@ -32,13 +37,25 @@ module.exports = async function (api) {
 
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
+      const collectionMap = productsPerCollection.find((collectionMap) =>
+        collectionMap.products.find((p) => p.slug === product.slug)
+      );
+      const breadcrumb = {
+        Home,
+      };
+      if (collectionMap && collectionMap.collection) {
+        breadcrumb[
+          collectionMap.collection.name
+        ] = `/categorie/${collectionMap.collection.slug}/`;
+      }
+      breadcrumb[product.name] = product.slug;
       createPage({
         path: `/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
           collections,
           product,
-          back: '/',
+          breadcrumb,
         },
       });
     });
@@ -53,7 +70,7 @@ module.exports = async function (api) {
             products: productsPerCollection,
             collection,
             collections,
-            back: '/',
+            breadcrumb: { Home, [collection.name]: collection.slug },
           },
         });
       }
@@ -61,7 +78,7 @@ module.exports = async function (api) {
 
     // ----------------- Cart ---------------------
     createPage({
-      path: '/cart/',
+      path: '/winkelmand/',
       component: './src/templates/Cart.vue',
       context: {
         collections,
@@ -71,7 +88,7 @@ module.exports = async function (api) {
 
     // ----------------- Checkout ---------------------
     createPage({
-      path: '/checkout/',
+      path: '/cart/checkout/',
       component: './src/templates/Checkout.vue',
       context: { availableCountries, collections },
     });
