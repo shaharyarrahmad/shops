@@ -61,37 +61,38 @@ export const GET_PRODUCTS = gql`
 `;
 
 export const GET_COLLECTIONS = gql`
-    ${PRODUCT_FIELDS}
-    {
-        Vendure {
-            collections {
-                items {
-                    id
-                    name
-                    slug
-                    description
-                    id
-                    name
-                }
-                children {
-                    id
-                    name
-                }
-                featuredAsset {
-                    preview
-                    thumbnail
-                }
-                productVariants {
-                    items {
-                        product {
-                            ...ProductFields
-                        }
-                    }
-                }
+  ${PRODUCT_FIELDS}
+  {
+    Vendure {
+      collections {
+        items {
+          id
+          name
+          slug
+          description
+          parent {
+            id
+            name
+          }
+          children {
+            id
+            name
+          }
+          featuredAsset {
+            preview
+            thumbnail
+          }
+          productVariants {
+            items {
+              product {
+                ...ProductFields
+              }
             }
+          }
         }
+      }
     }
-    }
+  }
 `;
 
 export const GET_AVAILABLE_COUNTRIES = gql`
