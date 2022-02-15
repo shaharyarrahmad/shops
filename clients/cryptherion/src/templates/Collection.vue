@@ -19,13 +19,14 @@
       </div>
     </section>
 
-    <!--    <div> We are in subcollection {{$context.collection.name }}
+    <div v-if="parentCollection">
+      We are in subcollection {{ $context.collection.name }}
       <ProductFilter
-        :collections="$context.collections"
+        :collections="$context.siblingCollections"
         no-collection-url="/categorie/"
         :selected-collection="$context.collection"
       />
-    </div>-->
+    </div>
 
     <div class="columns is-multiline is-mobile">
       <div

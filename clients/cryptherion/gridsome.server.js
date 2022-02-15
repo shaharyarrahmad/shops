@@ -72,7 +72,6 @@ module.exports = async function (api) {
     productsPerCollection.forEach(
       ({ products: productsPerCollection, collection }) => {
         const breadcrumb = { Home };
-        let isSubCollection = false;
         let parent;
         if (collection.parent.name !== '__root_collection__') {
           parent = collection.parent;
@@ -81,6 +80,11 @@ module.exports = async function (api) {
           ] = `/categorie/${collection.parent.slug}/`;
         }
         breadcrumb[collection.name] = `/categorie/${collection.slug}/`;
+        const siblings = allCollections.filter(
+          (c) =>
+            c.parent.id === collection.parent.id &&
+            collection.name !== '__root_collection__'
+        );
         // No more subcollections
         createPage({
           path: `/categorie/${collection.slug}`,
@@ -89,6 +93,7 @@ module.exports = async function (api) {
             products: productsPerCollection,
             collection,
             parentCollection: parent,
+            siblingCollections: siblings,
             collections,
             breadcrumb,
           },
