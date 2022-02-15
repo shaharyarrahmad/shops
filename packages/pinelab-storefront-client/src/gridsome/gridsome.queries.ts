@@ -73,10 +73,12 @@ export const GET_COLLECTIONS = gql`
           parent {
             id
             name
+            slug
           }
           children {
             id
             name
+            slug
           }
           featuredAsset {
             preview

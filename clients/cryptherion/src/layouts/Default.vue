@@ -7,14 +7,36 @@
       cart-icon="basket"
       :activeOrder="activeOrder"
     >
-      <g-link
-        v-for="collection of $context.collections"
-        :to="`/categorie/${collection.slug}`"
-        :key="collection.slug"
-        class="navbar-item"
-      >
-        {{ collection.name }}
-      </g-link>
+      <template v-for="collection of $context.collections">
+        <!-- collections with children-->
+        <div
+          v-if="collection.children"
+          class="navbar-item has-dropdown is-hoverable"
+        >
+          <g-link class="navbar-item" :to="`/categorie/${collection.slug}`">
+            {{ collection.name }}
+          </g-link>
+          <div class="navbar-dropdown">
+            <g-link
+              v-for="subCollection of collection.children"
+              :key="subCollection.slug"
+              class="navbar-item"
+              :to="`/categorie/${subCollection.slug}`"
+            >
+              {{ subCollection.name }}
+            </g-link>
+          </div>
+        </div>
+        <!-- flat no-children collections -->
+        <g-link
+          v-else
+          :to="`/categorie/${collection.slug}`"
+          :key="collection.slug"
+          class="navbar-item"
+        >
+          {{ collection.name }}
+        </g-link>
+      </template>
     </ShopNavBar>
 
     <div class="container is-widescreen section" style="min-height: 90vh">
@@ -84,13 +106,16 @@ export default {
 .footer a {
   color: white;
 }
+
 .footer a:hover {
   color: white;
 }
+
 .product-card-container > p {
   font-size: 1.5rem;
   font-style: italic;
 }
+
 .navbar {
   border-bottom: 1px solid #e1e1e1;
 }

@@ -25,26 +25,6 @@ module.exports = async function (api) {
 
     // Get toplevel collections
     const collections = gridsome.unflatten(allCollections);
-    /*    let collections = allCollections.filter(col => {
-      return col.parent.name === '__root_collection__';
-    });
-    // Find and set child collections, because queried children only have id and name fields
-    collections = collections.map(collection => {
-      const extendedChildren = collection.children.map(originalChild => {
-        const fullChildCollection = allCollections.find(c => c.id === originalChild.id);
-        return {
-          ...originalChild,
-          ...fullChildCollection
-
-        }
-      });
-      return {
-        ...collection,
-        children: extendedChildren
-      }
-    })*/
-
-    console.log(JSON.stringify(collections));
 
     // Breadcrumb
     const Home = '/';
@@ -90,6 +70,15 @@ module.exports = async function (api) {
     // ----------------- Collections ---------------------
     productsPerCollection.forEach(
       ({ products: productsPerCollection, collection }) => {
+        const breadcrumb = { Home };
+        if (collection.parent.name !== '__root_collection__') {
+          // Set parent collection in breadcrumb if not root
+          breadcrumb[collection.parent.name] = collection.parent.slug;
+          console.log('ddssdsd', collection.parent.name);
+          console.log('fffff', collection.parent.slug);
+        }
+        breadcrumb[collection.name] = collection.slug;
+        console.log(breadcrumb);
         createPage({
           path: `/categorie/${collection.slug}`,
           component: './src/templates/Collection.vue',
@@ -97,7 +86,7 @@ module.exports = async function (api) {
             products: productsPerCollection,
             collection,
             collections,
-            breadcrumb: { Home, [collection.name]: collection.slug },
+            breadcrumb,
           },
         });
       }
