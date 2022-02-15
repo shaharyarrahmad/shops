@@ -106,21 +106,9 @@ export class GridsomeService {
       (col) => col.parent?.name === '__root_collection__'
     );
     // Find and set child collections, because queried children only have id and name fields
-    return collections.map((collection) => {
-      const extendedChildren = collection.children?.map((originalChild) => {
-        const fullChildCollection = allCollections.find(
-          (c) => c.id === originalChild.id
-        );
-        return {
-          ...originalChild,
-          ...fullChildCollection,
-        };
-      });
-      return {
-        ...collection,
-        children: extendedChildren,
-      };
-    });
+    return collections.map((collection) =>
+      this.getChildCollection(collection, allCollections)
+    );
   }
 
   /**
