@@ -2123,7 +2123,7 @@ browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.17.5, browserslist@^4
     node-releases "^2.0.1"
     picocolors "^1.0.0"
 
-buefy@^0.9.7:
+buefy@^0.9.14:
   version "0.9.14"
   resolved "https://registry.yarnpkg.com/buefy/-/buefy-0.9.14.tgz#f0441ece5255fa757bf9956761415341d18fe68b"
   integrity sha512-4+8xLQBHm7H+XmCNXvEmFY01gYHvGIkMGBLxcCpbumrt5Eyj21JP7I6G313tLaT2XDk06IiNSnqgPxzFExHPjQ==
@@ -6963,10 +6963,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@^0.42.1:
-  version "0.42.1"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.42.1.tgz#f029d8cc8140e69a076b1ee7e6ff4703d0c19399"
-  integrity sha512-nl1C3AVcwUnyuIlZsITmHDWJqH5vCEd3k3i4tLdZZmnRghx61LClB3C/muhQ3gdw2asDML72EF/oXCKwgW7Kkw==
+pinelab-storefront-client@^0.42.3:
+  version "0.42.3"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.42.3.tgz#f88b15fa9bf278dbbb5abb466fd5ff6d59c773b9"
+  integrity sha512-CsoIKqqZ7QCZTXfxzKu4N7WuLjdA0jDm3YKq15QUo1oTnTuyrp1wPatZnwTQRRKXqYmb2n+7CtUlMukJlOmLVA==
   dependencies:
     debounce "^1.2.1"
     graphql "15.3.0"

@@ -48,6 +48,8 @@
 
       <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
 
+      <br />
+
       <transition :name="$route.meta.transitionName" appear>
         <main>
           <slot />
@@ -55,7 +57,7 @@
       </transition>
     </div>
 
-    <footer v-if="showFooter" class="footer">
+    <footer class="footer">
       <div class="columns has-text-centered">
         <div class="column">
           <h4>Assortiment</h4>

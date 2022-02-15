@@ -68,23 +68,27 @@ module.exports = async function (api) {
     });
 
     // ----------------- Collections ---------------------
+    // TODO iterate topLevel collections instead of products per collection
     productsPerCollection.forEach(
       ({ products: productsPerCollection, collection }) => {
         const breadcrumb = { Home };
+        let isSubCollection = false;
+        let parent;
         if (collection.parent.name !== '__root_collection__') {
-          // Set parent collection in breadcrumb if not root
-          breadcrumb[collection.parent.name] = collection.parent.slug;
-          console.log('ddssdsd', collection.parent.name);
-          console.log('fffff', collection.parent.slug);
+          parent = collection.parent;
+          breadcrumb[
+            collection.parent.name
+          ] = `/categorie/${collection.parent.slug}/`;
         }
-        breadcrumb[collection.name] = collection.slug;
-        console.log(breadcrumb);
+        breadcrumb[collection.name] = `/categorie/${collection.slug}/`;
+        // No more subcollections
         createPage({
           path: `/categorie/${collection.slug}`,
           component: './src/templates/Collection.vue',
           context: {
             products: productsPerCollection,
             collection,
+            parentCollection: parent,
             collections,
             breadcrumb,
           },
