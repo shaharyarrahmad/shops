@@ -4,6 +4,7 @@
       logo="/img/cryptherion-logo-black.svg"
       logo-alt="Cryptherion logo"
       cart-link="/cart/"
+      cart-icon="basket"
       :activeOrder="activeOrder"
     >
       <g-link

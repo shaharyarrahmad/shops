@@ -58,7 +58,9 @@
           <h1 class="title py-6">
             {{ $context.featuredProduct.name }}
           </h1>
-          <p class="subtitle">De meest verkochte seed</p>
+          <p class="subtitle">
+            {{ getMainFeatureText($context.featuredProduct) }}
+          </p>
           <g-link
             :to="`/product/${$context.featuredProduct.slug}`"
             class="is-info is-fullwidth button is-large"
@@ -91,9 +93,9 @@
       >
         <ProductCard
           :product="product"
-          buy-label="Add to cart"
+          buy-label="In winkelmand"
           product-url-prefix="product"
-          soldoutLabel="Sold out"
+          soldoutLabel="Uitverkocht"
         />
       </div>
     </div>
@@ -115,6 +117,10 @@ export default {
   methods: {
     maybe(obj, property) {
       return obj?.[property];
+    },
+    getMainFeatureText(product) {
+      const facet = product.facetValues.find((f) => f.code === 'main-feature');
+      return facet?.name || 'main featured product';
     },
   },
 };

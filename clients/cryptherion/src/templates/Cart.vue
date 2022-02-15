@@ -1,8 +1,9 @@
 <template>
   <Layout>
+    <br />
     <CartOverview
-      empty-cart-label="No products yet..."
-      link-to-checkout="/cart/checkout/"
+      empty-cart-label="Je hebt nog geen producten in je winkelmand..."
+      link-to-checkout="/checkout/"
     />
   </Layout>
 </template>

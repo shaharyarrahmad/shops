@@ -19,6 +19,8 @@ module.exports = async function (api) {
       p.facetValues.find((value) => value.code === 'main-feature')
     );
 
+    console.log(JSON.stringify(collections));
+
     // Breadcrumb
     const Home = '/';
     const Winkelmand = '/cart/';
@@ -78,19 +80,20 @@ module.exports = async function (api) {
 
     // ----------------- Cart ---------------------
     createPage({
-      path: '/winkelmand/',
+      path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
         collections,
         back: '/',
+        breadcrumb: { Home, Winkelmand },
       },
     });
 
     // ----------------- Checkout ---------------------
     createPage({
-      path: '/cart/checkout/',
+      path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { availableCountries, collections },
+      context: { availableCountries, collections, hideNavBar: true },
     });
 
     // ----------------- Order confirmation ------------
