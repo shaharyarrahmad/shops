@@ -13,7 +13,10 @@
           v-if="collection.children"
           class="navbar-item has-dropdown is-hoverable"
         >
-          <g-link class="navbar-item" :to="`/categorie/${collection.slug}`">
+          <g-link
+            class="navbar-link is-arrowless"
+            :to="`/categorie/${collection.slug}`"
+          >
             {{ collection.name }}
           </g-link>
           <div class="navbar-dropdown">
