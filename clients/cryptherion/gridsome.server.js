@@ -51,9 +51,15 @@ module.exports = async function (api) {
         Home,
       };
       if (collectionMap && collectionMap.collection) {
-        breadcrumb[
-          collectionMap.collection.name
-        ] = `/categorie/${collectionMap.collection.slug}/`;
+        const collection = collectionMap.collection;
+        // add parentCollection to breadcrumb
+        if (collection.parent.name !== '__root_collection__') {
+          breadcrumb[
+            collection.parent.name
+          ] = `/categorie/${collection.parent.slug}/`;
+        }
+        // add collection to breadcrumb
+        breadcrumb[collection.name] = `/categorie/${collection.slug}/`;
       }
       breadcrumb[product.name] = product.slug;
       createPage({
