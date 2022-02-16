@@ -3,30 +3,44 @@
     <section id="category-intro" class="mb-6">
       <!--      <h1 class="has-text-centered pb-2">{{ $context.collection.name }}</h1>-->
       <img
+        v-if="$context.collection.featuredAsset"
         class="collection-banner"
         :src="maybe($context.collection.featuredAsset, 'preview')"
         :alt="`Categorie ${$context.collection.name}`"
       />
-      <div
-        :class="{ collapsed: collapsed }"
-        v-html="$context.collection.description"
-      ></div>
-      <div class="has-text-right">
-        <a @click="collapsed = !collapsed">
-          <b-icon pack="mdi" :icon="collapsed ? 'chevron-down' : 'chevron-up'">
-          </b-icon>
-        </a>
-      </div>
+      <template v-if="$context.collection.description">
+        <div
+          :class="{ collapsed: collapsed }"
+          v-html="$context.collection.description"
+        ></div>
+        <div class="has-text-right">
+          <a @click="collapsed = !collapsed">
+            <b-icon
+              pack="mdi"
+              :icon="collapsed ? 'chevron-down' : 'chevron-up'"
+            >
+            </b-icon>
+          </a>
+        </div>
+      </template>
     </section>
 
-    <div v-if="parentCollection">
-      We are in subcollection {{ $context.collection.name }}
+    <div v-if="$context.parentCollection">
       <ProductFilter
         :collections="$context.siblingCollections"
-        no-collection-url="/categorie/"
+        :no-collection-url="`/categorie/${$context.parentCollection.slug}/`"
+        collection-url-prefix="/categorie/"
         :selected-collection="$context.collection"
       />
     </div>
+    <div v-else>
+      <ProductFilter
+        :collections="$context.childCollections"
+        collection-url-prefix="/categorie/"
+        :no-collection-url="`/categorie/`"
+      />
+    </div>
+    <br />
 
     <div class="columns is-multiline is-mobile">
       <div

@@ -68,7 +68,6 @@ module.exports = async function (api) {
     });
 
     // ----------------- Collections ---------------------
-    // TODO iterate topLevel collections instead of products per collection
     productsPerCollection.forEach(
       ({ products: productsPerCollection, collection }) => {
         const breadcrumb = { Home };
@@ -81,9 +80,10 @@ module.exports = async function (api) {
         }
         breadcrumb[collection.name] = `/categorie/${collection.slug}/`;
         const siblings = allCollections.filter(
-          (c) =>
-            c.parent.id === collection.parent.id &&
-            collection.name !== '__root_collection__'
+          (c) => c.parent.id === collection.parent.id
+        );
+        const children = collection.children.map((child) =>
+          allCollections.find((col) => col.id === child.id)
         );
         // No more subcollections
         createPage({
@@ -94,6 +94,7 @@ module.exports = async function (api) {
             collection,
             parentCollection: parent,
             siblingCollections: siblings,
+            childCollections: children,
             collections,
             breadcrumb,
           },

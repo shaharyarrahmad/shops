@@ -12,7 +12,7 @@
       </g-link>
       <g-link
         v-else
-        :to="`${noCollectionUrl}/${collection.slug}/`"
+        :to="`${collectionUrlPrefix || noCollectionUrl}/${collection.slug}/`"
         :key="collection.id"
         class="button is-outlined mr-2 mb-2"
       >
@@ -31,6 +31,9 @@ export default {
     selectedCollection: { type: Object },
     noCollectionUrl: {
       required: true,
+    },
+    collectionUrlPrefix: {
+      required: false,
     },
   },
   methods: {
