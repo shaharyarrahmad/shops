@@ -53,7 +53,7 @@
 
       <br />
 
-      <transition :name="$route.meta.transitionName" appear>
+      <transition name="fade" appear>
         <main>
           <slot />
         </main>

@@ -28,7 +28,7 @@
     <div v-if="$context.parentCollection">
       <ProductFilter
         :collections="$context.siblingCollections"
-        :no-collection-url="`/categorie/${$context.parentCollection.slug}/`"
+        :no-collection-url="`/categorie/${$context.parentCollection.slug}`"
         collection-url-prefix="/categorie/"
         :selected-collection="$context.collection"
       />

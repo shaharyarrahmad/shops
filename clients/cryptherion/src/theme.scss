@@ -1,19 +1,21 @@
-// Page transition
+/*// Page transition
+.slide-previous-leave-active,
+.slide-previous-enter-active,
 .slide-next-leave-active,
 .slide-next-enter-active {
+  transition-property: opacity;
+  transition-timing-function: ease;
   transition: 0.3s;
 }
 .slide-next-enter {
-  transform: translateX(100%);
+  opacity: 0;
+  !*transform: translateX(-100%);*!
 }
 
-.slide-previous-leave-active,
-.slide-previous-enter-active {
-  transition: 0.3s;
-}
 .slide-previous-enter {
-  transform: translateY(100%);
-}
+  opacity: 0;
+  !*transform: translateY(100%);*!
+}*/
 
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
