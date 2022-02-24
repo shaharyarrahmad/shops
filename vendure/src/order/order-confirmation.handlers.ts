@@ -31,9 +31,11 @@ export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
     )
     .loadData(async ({ event, injector }) => {
       const channel = event.ctx.channel;
-      let [admins, invoice] = await Promise.all([
+      let [admins, invoicesEnabled] = await Promise.all([
         getAdminsForChannel(injector, channel.id),
-        injector.get(InvoiceService).getInvoice(event.order.code),
+        injector
+          .get(InvoiceService)
+          .isInvoicePluginEnabled(channel.id as string),
       ]);
       const channelName = admins?.[0]?.channel_code;
       admins = admins.filter((admin) => admin.admin_emailAddress.includes('@'));
@@ -45,8 +47,8 @@ export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
       }
       const adminRecipients = admins.map((admin) => admin.admin_emailAddress);
       let invoiceLink;
-      if (invoice) {
-        invoiceLink = `${process.env.VENDURE_HOST}/invoices/${channel.token}/${invoice.orderCode}?email=${invoice.customerEmail}`;
+      if (invoicesEnabled) {
+        invoiceLink = `${process.env.VENDURE_HOST}/invoices/${channel.token}/${event.order.code}?email=${event.order.customer?.emailAddress}`;
       }
       Logger.info(
         `Sending order confirmation email to ${adminRecipients} for channel ${channelName}`,
