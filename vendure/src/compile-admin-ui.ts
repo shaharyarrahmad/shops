@@ -3,10 +3,12 @@ import * as path from 'path';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
 import { GoedgepicktPlugin } from 'vendure-plugin-goedgepickt';
+import { InvoicePlugin } from 'vendure-plugin-invoices';
 
 compileUiExtensions({
   outputPath: path.join(__dirname, '__admin-ui'),
   extensions: [
+    InvoicePlugin.ui,
     WebhookPlugin.ui,
     MyparcelPlugin.ui,
     GoedgepicktPlugin.ui,

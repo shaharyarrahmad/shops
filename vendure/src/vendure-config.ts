@@ -31,15 +31,19 @@ import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 import { adminOrderConfirmationHandler } from './order/order-confirmation.handlers';
 import { PlaceOrderOnSettlementStrategy } from './order/place-order-on-settlement.strategy';
 import { GoedgepicktPlugin } from 'vendure-plugin-goedgepickt';
+import {
+  GoogleStorageInvoiceStrategy,
+  InvoicePlugin,
+} from 'vendure-plugin-invoices';
 
 let logger: VendureLogger;
-let areWeRunningLocal = false;
+let runningLocal = false;
 if (process.env.K_SERVICE) {
   // This means we are in CloudRun
   logger = cloudLogger;
 } else {
   logger = new DefaultLogger({ level: LogLevel.Debug });
-  areWeRunningLocal = true;
+  runningLocal = true;
 }
 
 export const config: VendureConfig = {
@@ -51,7 +55,7 @@ export const config: VendureConfig = {
   apiOptions: {
     port: (process.env.PORT! as unknown as number) || 3000,
     adminApiPath: 'admin-api',
-    adminApiPlayground: areWeRunningLocal ? {} : false,
+    adminApiPlayground: runningLocal ? {} : false,
     adminApiDebug: false, // turn this off for production
     shopApiPath: 'shop-api',
     shopApiPlayground: {}, // turn this off for production
@@ -89,6 +93,13 @@ export const config: VendureConfig = {
   },
   customFields: {},
   plugins: [
+    InvoicePlugin.init({
+      vendureHost: process.env.VENDURE_HOST!,
+      storageStrategy: new GoogleStorageInvoiceStrategy({
+        bucketName: 'pinelab-invoices',
+        storageOptions: runningLocal ? { keyFilename: 'key.json' } : undefined,
+      }),
+    }),
     CloudTasksPlugin.init({
       taskHandlerHost: process.env.WORKER_HOST!,
       projectId: process.env.GOOGLE_PROJECT_ID!,

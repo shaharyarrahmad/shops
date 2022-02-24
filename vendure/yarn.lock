@@ -12056,10 +12056,10 @@ vendure-plugin-google-storage-assets@2.1.1:
     "@google-cloud/storage" "^5.8.3"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-0.0.1.tgz#ed607e3f7d6ddda66de6183b95f23bcbe2fd1624"
-  integrity sha512-9KmEv7zaD4+1ZMzWQQtMm3LPyUWs+lq1qthZc1l0hN1sTzuryQ57dgpP9MXT9UX+X0mO1UgZZ1MBPpJMuhs1Rg==
+vendure-plugin-invoices@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-0.0.4.tgz#d86aa7b9204c92e2ebfdcb457b8f9309167d61c3"
+  integrity sha512-R6tVcXTy7nKvo5QukpcMieHGvNE0RtkwRVPD7MFi7V945X629HK5ZD0jsLKziCGt1e/cgOX9igmRtI2gCU0VXQ==
   dependencies:
     adm-zip "^0.5.9"
     pdf-creator-node "^2.3.4"
