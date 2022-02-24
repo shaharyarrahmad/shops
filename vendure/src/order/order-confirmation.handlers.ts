@@ -1,16 +1,21 @@
 import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
 import {
   Administrator,
+  ID,
+  Injector,
   Logger,
   OrderStateTransitionEvent,
   TransactionalConnection,
 } from '@vendure/core';
 import { TaxHelper } from '../tax/tax.helper';
+import { InvoiceService } from 'vendure-plugin-invoices';
 
 interface AdminWithChannel {
   admin_emailAddress: string;
   channel_code: string;
 }
+
+const loggerCtx = 'OrderConfirmationHandler';
 
 /**
  * Send email to customer AND administrators of channel
@@ -26,34 +31,28 @@ export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
     )
     .loadData(async ({ event, injector }) => {
       const channel = event.ctx.channel;
-      let admins: AdminWithChannel[] = await injector
-        .get(TransactionalConnection)
-        .getRepository(Administrator)
-        .createQueryBuilder('admin')
-        .innerJoin('admin.user', 'user')
-        .innerJoin('user.roles', 'role')
-        .innerJoinAndSelect(
-          'role.channels',
-          'channel',
-          'channel.id = :channelId',
-          { channelId: channel.id }
-        )
-        .execute();
-      if (!admins?.[0]?.channel_code) {
-        throw Error(`No channel found with id ${channel.id}`);
-      }
-      const channelName = admins[0].channel_code;
+      let [admins, invoice] = await Promise.all([
+        getAdminsForChannel(injector, channel.id),
+        injector.get(InvoiceService).getInvoice(event.order.code),
+      ]);
+      const channelName = admins?.[0]?.channel_code;
       admins = admins.filter((admin) => admin.admin_emailAddress.includes('@'));
       if (!admins?.[0]?.admin_emailAddress) {
         Logger.error(
-          `No admin found to send confirmation email for channel with id ${channel.id}`
+          `No admin found to send confirmation email for channel with id ${channel.id}`,
+          loggerCtx
         );
       }
       const adminRecipients = admins.map((admin) => admin.admin_emailAddress);
+      let invoiceLink;
+      if (invoice) {
+        invoiceLink = `${process.env.VENDURE_HOST}/invoices/${channel.token}/${invoice.orderCode}?email=${invoice.customerEmail}`;
+      }
       Logger.info(
-        `Sending order confirmation email to ${adminRecipients} for channel ${channelName}`
+        `Sending order confirmation email to ${adminRecipients} for channel ${channelName}`,
+        loggerCtx
       );
-      return { channelName, adminRecipients };
+      return { channelName, adminRecipients, invoiceLink };
     })
     .setRecipient(
       (event) =>
@@ -72,3 +71,19 @@ export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
         ...event.data,
       };
     });
+
+async function getAdminsForChannel(
+  injector: Injector,
+  channelId: ID
+): Promise<AdminWithChannel[]> {
+  return injector
+    .get(TransactionalConnection)
+    .getRepository(Administrator)
+    .createQueryBuilder('admin')
+    .innerJoin('admin.user', 'user')
+    .innerJoin('user.roles', 'role')
+    .innerJoinAndSelect('role.channels', 'channel', 'channel.id = :channelId', {
+      channelId,
+    })
+    .execute();
+}

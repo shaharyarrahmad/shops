@@ -28,7 +28,7 @@
             <tr padding-bottom="0px">
               <td>{{ quantity }} x</td>
               <td>
-                {{ productVariant.sku }} {{ productVariant.name }}
+                {{ productVariant.name }}
               </td>
               <td align="right">€ {{ formatMoney linePrice }}</td>
             </tr>
@@ -40,13 +40,23 @@
             <td align="right">€ {{ formatMoney order.shipping }}</td>
           </tr>
 
+          {{#each order.discounts }}
+            <tr>
+              <td></td>
+              <td>{{ description }}</td>
+              <td align="right">€{{ formatMoney amount }}</td>
+            </tr>
+          {{/each}}
+
           <tr></tr>
         </mj-table>
+
         <mj-divider border-color="#343434" border-width="1px"></mj-divider>
+
         <mj-table cellpadding="6px">
 
           <tr>
-            <td>Totaal Excl.</td>
+            <td>Totaal excl.</td>
             <td align="right">€ {{ formatMoney summary.totalExVAT }}</td>
           </tr>
           {{#each summary.taxTotal}}
@@ -56,7 +66,7 @@
             </tr>
           {{/each}}
           <tr>
-            <td><strong>Totaal Incl.</strong></td>
+            <td><strong>Totaal incl.</strong></td>
             <td align="right"><strong>€ {{ formatMoney summary.totalIncVAT }}</strong></td>
           </tr>
 
@@ -92,6 +102,14 @@
         <mj-text padding-bottom="0px">{{ formatDate order.orderPlacedAt }}</mj-text>
       </mj-column>
     </mj-section>
+
+    {{#if invoiceLink }}
+      <mj-section>
+        <mj-column>
+          <mj-text><a href="{{ invoiceLink }}" target="_blank">Download factuur als pdf</a></mj-text>
+        </mj-column>
+      </mj-section>
+    {{/if}}
 
     <mj-section>
       <mj-column>

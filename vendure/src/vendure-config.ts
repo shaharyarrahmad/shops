@@ -35,6 +35,7 @@ import {
   GoogleStorageInvoiceStrategy,
   InvoicePlugin,
 } from 'vendure-plugin-invoices';
+import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
 
 let logger: VendureLogger;
 let runningLocal = false;
@@ -99,6 +100,7 @@ export const config: VendureConfig = {
         bucketName: 'pinelab-invoices',
         storageOptions: runningLocal ? { keyFilename: 'key.json' } : undefined,
       }),
+      dataStrategy: new TaxInvoiceStrategy(),
     }),
     CloudTasksPlugin.init({
       taskHandlerHost: process.env.WORKER_HOST!,
