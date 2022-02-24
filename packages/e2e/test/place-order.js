@@ -121,8 +121,9 @@ module.exports = {
   'Admin order': function (browser) {
     const username = 'input[id="login_username"]';
     const password = 'input[id="login_password"]';
-    const orderTab = 'a[data-item-id="sales"]';
+    const orderTab = 'a[href="/admin/orders"]';
     const submit = 'button[type="submit"]';
+    const invoicesTab = 'a[href="/admin/extensions/invoices"]';
     browser
       .url('https://test-api.pinelab.studio/admin/')
       .waitForElementVisible(username)
@@ -155,6 +156,8 @@ module.exports = {
       .useCss()
       .click('button[type="submit"]')
       .assert.containsText('body', 'Created fulfillment')
+      .click(invoicesTab)
+      .assert.containsText('body', orderId)
       .end();
   },
 };
