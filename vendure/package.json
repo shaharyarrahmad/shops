@@ -36,6 +36,7 @@
     "vendure-plugin-goedgepickt": "2.1.1",
     "vendure-plugin-google-cloud-tasks": "2.1.1",
     "vendure-plugin-google-storage-assets": "2.1.1",
+    "vendure-plugin-invoices": "^0.0.1",
     "vendure-plugin-myparcel": "2.1.1",
     "vendure-plugin-webhook": "2.1.1",
     "winston": "^3.4.0"

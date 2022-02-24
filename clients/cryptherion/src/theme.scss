@@ -1,22 +1,3 @@
-/*// Page transition
-.slide-previous-leave-active,
-.slide-previous-enter-active,
-.slide-next-leave-active,
-.slide-next-enter-active {
-  transition-property: opacity;
-  transition-timing-function: ease;
-  transition: 0.3s;
-}
-.slide-next-enter {
-  opacity: 0;
-  !*transform: translateX(-100%);*!
-}
-
-.slide-previous-enter {
-  opacity: 0;
-  !*transform: translateY(100%);*!
-}*/
-
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
