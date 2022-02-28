@@ -70,17 +70,6 @@ export const eligibleByZoneChecker = new ShippingEligibilityChecker({
     const eligible = args.zones?.find((configuredZone) =>
       zoneNames.includes(configuredZone.toLowerCase())
     );
-    if (eligible) {
-      Logger.info(
-        `Order ${order.code} (${orderCountryCode}) eligible for shipping in ${args.zones}`,
-        loggerCtx
-      );
-    } else {
-      Logger.info(
-        `Order ${order.code} (${orderCountryCode}) NOT eligible for shipping in ${args.zones}`,
-        loggerCtx
-      );
-    }
     return !!eligible;
   },
 });

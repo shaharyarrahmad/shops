@@ -5,6 +5,7 @@ import {
   ADD_PAYMENT_TO_ORDER,
   ADJUST_ORDERLINE,
   APPLY_COUPON_CODE,
+  CREATE_MOLLIE_PAYMENT_INTENT,
   GET_ACTIVE_ORDER,
   GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
@@ -159,13 +160,24 @@ export class VendureClient {
     return transitionOrderToState;
   }
 
-  async addPaymentToOrder(input: PaymentInput): Promise<Order> {
+  /*  async addPaymentToOrder(input: PaymentInput): Promise<Order> {
     const { addPaymentToOrder } = await this.request(ADD_PAYMENT_TO_ORDER, {
       input,
     });
     this.validateResult(addPaymentToOrder);
     this.store.activeOrder = addPaymentToOrder;
     return addPaymentToOrder;
+  }*/
+
+  async createMolliePaymentIntent(code: string): Promise<string> {
+    const { createMolliePaymentIntent } = await this.request(
+      CREATE_MOLLIE_PAYMENT_INTENT,
+      {
+        input: { paymentMethodCode: code },
+      }
+    );
+    this.validateResult(createMolliePaymentIntent);
+    return createMolliePaymentIntent.url;
   }
 
   async getOrderByCode(code: string): Promise<Order | undefined> {

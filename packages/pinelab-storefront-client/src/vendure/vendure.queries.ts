@@ -270,6 +270,20 @@ export const ADD_PAYMENT_TO_ORDER = gql`
   }
 `;
 
+export const CREATE_MOLLIE_PAYMENT_INTENT = gql`
+  mutation createMolliePaymentIntent($input: MolliePaymentIntentInput!) {
+    createMolliePaymentIntent(input: $input) {
+      ... on MolliePaymentIntent {
+        url
+      }
+      ... on MolliePaymentIntentError {
+        errorCode
+        message
+      }
+    }
+  }
+`;
+
 export const GET_ORDER_BY_CODE = gql`
   ${ORDER_FIELDS}
   query orderByCode($code: String!) {
