@@ -5,7 +5,7 @@ import { bootstrap, JobQueueService, Logger } from '@vendure/core';
   if (process.env.LOCAL_ENV) {
     // Use localtunnel if we are local
     const tunnel = await require('localtunnel')({ port: 3050 });
-    process.env.VENDURE_HOST = 'https://0872-85-145-210-58.ngrok.io/';
+    process.env.VENDURE_HOST = tunnel.url;
     console.warn(`Using localtunnel ${tunnel.url}`);
   }
   const { config } = require('./vendure-config');
