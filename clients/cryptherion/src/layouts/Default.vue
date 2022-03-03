@@ -85,7 +85,7 @@
     </footer>
 
     <Consent
-      accept-text="Ja, "
+      accept-text="Ja, accepteer cookies"
       decline-text="Nee"
       v-on:approved="activate()"
       class="p-6"
