@@ -113,6 +113,7 @@ export const config: VendureConfig = {
     WebhookPlugin.init({
       httpMethod: 'POST',
       delay: 3000,
+      enableInWorker: false,
       events: [
         ProductEvent,
         ProductVariantChannelEvent,
