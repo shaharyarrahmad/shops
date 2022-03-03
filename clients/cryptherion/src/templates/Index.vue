@@ -8,7 +8,7 @@
       />
       <section id="usps" class="is-dark">
         <div class="content has-text-centered">
-          <span class="line">
+          <!--          <span class="line">
             <b-icon
               v-for="i of 5"
               :key="`star${i}`"
@@ -22,7 +22,7 @@
                 >Trustpilot</a
               ></span
             >
-          </span>
+          </span>-->
 
           <span class="line">
             <b-icon
@@ -35,7 +35,7 @@
             <span>Voor 23:00 besteld volgende dag in huis</span>
           </span>
 
-          <span class="line">
+          <!--          <span class="line">
             <b-icon
               class="mx-2"
               icon="check-circle"
@@ -44,7 +44,7 @@
             >
             </b-icon>
             <span class="mr-2">Betaal met Bitcoin</span>
-          </span>
+          </span>-->
         </div>
       </section>
     </div>
@@ -85,20 +85,28 @@
       </div>
     </section>
 
-    <div class="columns is-multiline is-mobile">
-      <div
-        class="column is-half-mobile is-one-quarter-tablet mb-4"
-        v-for="product of $context.products"
-        :key="product.slug"
+    <section
+      class="py-4 category"
+      v-for="collection of $context.collections"
+      :key="collection.slug"
+    >
+      <g-link :to="collection.slug"
+        ><h2>{{ collection.name }}</h2></g-link
       >
-        <ProductCard
-          :product="product"
-          buy-label="In winkelmand"
-          product-url-prefix="product"
-          soldoutLabel="Uitverkocht"
-        />
+      <div class="columns is-multiline is-mobile">
+        <div
+          class="column is-4-mobile is-2-tablet has-text-centered"
+          v-for="childCollection of collection.children"
+          :key="childCollection.slug"
+        >
+          <b-image
+            :src="maybe(childCollection.featuredAsset, 'thumbnail')"
+            ratio="1by1"
+          ></b-image>
+          {{ childCollection.name }}
+        </div>
       </div>
-    </div>
+    </section>
   </Layout>
 </template>
 

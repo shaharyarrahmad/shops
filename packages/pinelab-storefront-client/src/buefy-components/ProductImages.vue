@@ -6,7 +6,7 @@
       :large="getPreview(asset)"
       class="mb-4"
     />
-    <div class="columns mt-2 is-5 is-mobile">
+    <div class="columns mt-2 is-5 is-mobile is-multiline">
       <div
         class="column is-one-fifth"
         v-if="assets.length > 1"

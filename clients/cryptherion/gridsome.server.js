@@ -1,4 +1,5 @@
 const { GridsomeService } = require('pinelab-storefront-client');
+const _ = require('lodash');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -74,39 +75,44 @@ module.exports = async function (api) {
     });
 
     // ----------------- Collections ---------------------
-    productsPerCollection.forEach(
-      ({ products: productsPerCollection, collection }) => {
-        const breadcrumb = { Home };
-        let parent;
-        if (collection.parent.name !== '__root_collection__') {
-          parent = collection.parent;
-          breadcrumb[
-            collection.parent.name
-          ] = `/categorie/${collection.parent.slug}/`;
-        }
-        breadcrumb[collection.name] = `/categorie/${collection.slug}/`;
-        const siblings = allCollections.filter(
-          (c) => c.parent.id === collection.parent.id
-        );
-        const children = collection.children.map((child) =>
-          allCollections.find((col) => col.id === child.id)
-        );
-        // No more subcollections
-        createPage({
-          path: `/categorie/${collection.slug}`,
-          component: './src/templates/Collection.vue',
-          context: {
-            products: productsPerCollection,
-            collection,
-            parentCollection: parent,
-            siblingCollections: siblings,
-            childCollections: children,
-            collections,
-            breadcrumb,
-          },
-        });
+    productsPerCollection.forEach(({ products, collection }) => {
+      const breadcrumb = { Home };
+      let parent;
+      if (collection.parent.name !== '__root_collection__') {
+        parent = collection.parent;
+        breadcrumb[
+          collection.parent.name
+        ] = `/categorie/${collection.parent.slug}/`;
       }
-    );
+      breadcrumb[collection.name] = `/categorie/${collection.slug}/`;
+      const siblings = allCollections.filter(
+        (c) => c.parent.id === collection.parent.id
+      );
+      const children = collection.children.map((child) =>
+        allCollections.find((col) => col.id === child.id)
+      );
+      children.forEach((childCollection) => {
+        // Get child products
+        const childProducts =
+          productsPerCollection.find(
+            (p) => p.collection.name === childCollection.name
+          )?.products || [];
+        products.push(...childProducts);
+      });
+      createPage({
+        path: `/categorie/${collection.slug}`,
+        component: './src/templates/Collection.vue',
+        context: {
+          products: _.uniqBy(products, 'slug'),
+          collection,
+          parentCollection: parent,
+          siblingCollections: siblings,
+          childCollections: children,
+          collections,
+          breadcrumb,
+        },
+      });
+    });
 
     // ----------------- Cart ---------------------
     createPage({

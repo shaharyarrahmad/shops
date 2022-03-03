@@ -24,7 +24,7 @@
           >{{ isSoldOut ? 'Sold out' : 'Add to cart' }}
         </b-button>
         <br />
-        <div v-html="$context.product.description"></div>
+        <div class="content" v-html="$context.product.description"></div>
       </div>
     </div>
   </Layout>

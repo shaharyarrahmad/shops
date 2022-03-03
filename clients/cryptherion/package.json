@@ -12,13 +12,15 @@
     "@fontsource/roboto": "^4.5.3",
     "@fontsource/titillium-web": "^4.5.1",
     "buefy": "^0.9.14",
-    "pinelab-storefront-client": "^0.42.4"
+    "pinelab-storefront-client": "^0.42.4",
+    "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
     "concurrently": "^6.2.0",
     "gridsome": "^0.7.23",
     "http-server": "^0.12.3",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "sass": "^1.32.13",

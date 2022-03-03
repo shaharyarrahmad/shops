@@ -50,9 +50,9 @@
       >
         <ProductCard
           :product="product"
-          buy-label="Add to cart"
+          buy-label="In winkelmand"
           product-url-prefix="product"
-          soldoutLabel="Sold out"
+          soldoutLabel="Uitverkocht"
         />
       </div>
     </div>

@@ -83,11 +83,25 @@
         <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
       </div>
     </footer>
+
+    <Consent
+      accept-text="Ja, "
+      decline-text="Nee"
+      v-on:approved="activate()"
+      class="p-6"
+    >
+      <p class="mt-3">
+        Vind je het goed dat we geanonimiseerde data naar Google Analytics
+        sturen om onze webshop te verbeteren?
+      </p>
+    </Consent>
   </div>
 </template>
 <script>
 import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
 import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import Consent from 'pinelab-storefront-client/lib/buefy-components/Consent';
+import { bootstrap } from 'vue-gtag';
 
 export default {
   props: {
@@ -98,6 +112,7 @@ export default {
   components: {
     ShopNavBar,
     Breadcrumb,
+    Consent,
   },
   computed: {
     activeOrder() {
@@ -105,6 +120,12 @@ export default {
     },
   },
   mounted() {},
+  methods: {
+    activate() {
+      console.log('Cookies approved');
+      bootstrap();
+    },
+  },
 };
 </script>
 <style>
