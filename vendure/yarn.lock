@@ -12099,10 +12099,10 @@ vendure-plugin-myparcel@2.2.2:
   dependencies:
     axios "^0.21.4"
 
-vendure-plugin-webhook@2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.2.4.tgz#388a7aa94fd8e2a4b0cb556b7bab7152cd7a82d8"
-  integrity sha512-7IyTtThztplih9aYQpNCrKGxmkCyq3VYiRsdBY9F84NedaYX+nFb9pikN4pRWOPvq+gqZ57MEpPDXIJegSUq3g==
+vendure-plugin-webhook@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.3.1.tgz#daa6b94081462e807b44f6db5b4c861a7d89adf8"
+  integrity sha512-umN8gleEaOA+FMtQpwvaEJ/7CGT6cN464CCAB2bhREZfkhkIZD+ewE3AzfD2PBZZ7jyn33Q923GQLmMnmQyRnQ==
 
 verror@1.10.0:
   version "1.10.0"

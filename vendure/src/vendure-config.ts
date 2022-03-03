@@ -38,10 +38,12 @@ import {
 import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
 
 let logger: VendureLogger;
-let runningLocal = false;
+export let runningLocal = false;
+export let runningInWorker = false;
 if (process.env.K_SERVICE) {
   // This means we are in CloudRun
   logger = cloudLogger;
+  runningInWorker = process.env.K_SERVICE.indexOf('worker') > -1; // Name of worker is worker or worker-test
 } else {
   logger = new DefaultLogger({ level: LogLevel.Debug });
   runningLocal = true;
@@ -113,7 +115,7 @@ export const config: VendureConfig = {
     WebhookPlugin.init({
       httpMethod: 'POST',
       delay: 3000,
-      enableInWorker: false,
+      disabled: runningInWorker || runningLocal, // disable for 'worker' and locally
       events: [
         ProductEvent,
         ProductVariantChannelEvent,

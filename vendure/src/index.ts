@@ -1,12 +1,21 @@
 require('dotenv').config({ path: process.env.LOCAL_ENV });
-import { bootstrap, JobQueueService, Logger } from '@vendure/core';
-import { config } from './vendure-config';
+import { bootstrap, bootstrapWorker, Logger } from '@vendure/core';
+import { config, runningInWorker } from './vendure-config';
 
-bootstrap(config)
-  .then(async (app) => {
-    await app.get(JobQueueService).start();
-    Logger.info(`Using database ${process.env.DATABASE_NAME}`);
-  })
-  .catch((err) => {
-    Logger.error(err);
-  });
+if (runningInWorker) {
+  bootstrapWorker(config)
+    .then(() => {
+      Logger.info(`Bootstrapped worker for env ${process.env.SHOP_ENV}`);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+} else {
+  bootstrap(config)
+    .then(() => {
+      Logger.info(`Bootstrapped Vendure for env ${process.env.SHOP_ENV}`);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}

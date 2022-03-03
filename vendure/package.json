@@ -38,7 +38,7 @@
     "vendure-plugin-google-storage-assets": "2.2.2",
     "vendure-plugin-invoices": "^2.2.3",
     "vendure-plugin-myparcel": "2.2.2",
-    "vendure-plugin-webhook": "2.2.4",
+    "vendure-plugin-webhook": "2.3.1",
     "winston": "^3.6.0"
   },
   "devDependencies": {
