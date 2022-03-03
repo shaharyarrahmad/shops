@@ -47,11 +47,10 @@
         <
       </b-button>
 
-      <br />
-
-      <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
-
-      <br />
+      <template v-if="$context.breadcrumb">
+        <Breadcrumb :crumbs="$context.breadcrumb" />
+        <br />
+      </template>
 
       <transition name="fade" appear>
         <main>
@@ -76,16 +75,47 @@
         </div>
       </div>
       <section id="contact" class="content has-text-centered is-dark">
-        <b-icon icon="phone" size="is-small" type="is-success"></b-icon>
-        <a href="tel:0031657079958">06 57 07 99 58</a>
-        <b-icon icon="email" size="is-small" type="is-success"></b-icon>
-        <a href="mailto:info@cryptherion.io">info@cryptherion.io</a>
-        <b-icon icon="map-marker" size="is-small" type="is-success"></b-icon
-        >Smalschipstraat 5, 1086 VM Amsterdam
+        <span class="line">
+          <b-icon icon="phone" size="is-small" type="is-success"></b-icon>
+          <a :href="`tel:${$context.global.telefoon}`">{{
+            $context.global.telefoon
+          }}</a>
+        </span>
+
+        <span class="line">
+          <b-icon icon="email" size="is-small" type="is-success"></b-icon>
+          <a :href="`mailto:${$context.global.email}`">{{
+            $context.global.email
+          }}</a>
+        </span>
+
+        <span class="line">
+          <b-icon icon="map-marker" size="is-small" type="is-success"></b-icon>
+          {{ $context.global.adres }}
+        </span>
+
+        <span class="line">
+          <b-icon
+            icon="account-check"
+            size="is-small"
+            type="is-success"
+          ></b-icon>
+          <g-link to="/privacy-beleid/">Privacy beleid</g-link>
+        </span>
+        <span class="line">
+          <b-icon
+            icon="file-document"
+            size="is-small"
+            type="is-success"
+          ></b-icon>
+          <g-link to="/algemene-voorwaarden/">Algemene voorwaarden</g-link>
+        </span>
       </section>
-      <div class="content has-text-centered is-dark">
+      <div class="content has-text-centered is-dark has-text-grey">
         Cryptherion.io •
-        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
+        <a href="https://pinelab.studio/" class="has-text-grey" target="_blank"
+          >Made by Pinelab 🌲</a
+        >
       </div>
     </footer>
 
@@ -154,5 +184,9 @@ export default {
 #contact .icon {
   padding-left: 20px;
   padding-right: 15px;
+}
+
+span.line {
+  display: inline-block;
 }
 </style>

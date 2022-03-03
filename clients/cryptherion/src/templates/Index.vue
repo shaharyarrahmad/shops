@@ -42,7 +42,9 @@
               size="is-small"
               type="is-success"
             ></b-icon>
-            <a href="tel:0031657079958">06 57 07 99 58</a>
+            <a :href="`tel:${$context.global.telefoon}`">{{
+              $context.global.telefoon
+            }}</a>
           </span>
 
           <span class="line">
@@ -52,7 +54,9 @@
               size="is-small"
               type="is-success"
             ></b-icon>
-            <a href="mailto:info@cryptherion.io">info@cryptherion.io</a>
+            <a :href="`mailto:${$context.global.email}`">{{
+              $context.global.email
+            }}</a>
           </span>
 
           <!--          <span class="line">
@@ -119,7 +123,7 @@
           v-for="childCollection of collection.children"
           :key="childCollection.slug"
         >
-          <g-link :to="`/categorie/${collection.slug}`">
+          <g-link :to="`/categorie/${childCollection.slug}`">
             <b-image
               :src="maybe(childCollection.featuredAsset, 'thumbnail')"
               ratio="1by1"
@@ -155,8 +159,4 @@ export default {
   },
 };
 </script>
-<style>
-span.line {
-  display: inline-block;
-}
-</style>
+<style></style>

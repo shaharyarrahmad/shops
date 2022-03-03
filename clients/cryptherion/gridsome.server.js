@@ -1,5 +1,6 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 const _ = require('lodash');
+const { GET_CONTENT } = require('./content.queries');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -13,12 +14,31 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
+
+    const [
+      {
+        products,
+        availableCountries,
+        collections: allCollections,
+        productsPerCollection,
+      },
+      content,
+    ] = await Promise.all([gridsome.getShopData(), graphql(GET_CONTENT)]);
+
     const {
-      products,
-      availableCountries,
-      collections: allCollections,
-      productsPerCollection,
-    } = await gridsome.getShopData();
+      data: {
+        Directus: {
+          cryptherion_algemeen: {
+            telefoon,
+            email,
+            adres,
+            algemene_voorwaarden,
+            privacy_beleid,
+          },
+        },
+      },
+    } = content;
+    const global = { telefoon, adres, email };
 
     const featuredProduct = products.find((p) =>
       p.facetValues.find((value) => value.code === 'main-feature')
@@ -37,6 +57,7 @@ module.exports = async function (api) {
       path: '/',
       component: './src/templates/Index.vue',
       context: {
+        global,
         products,
         featuredProduct,
         collections,
@@ -67,6 +88,7 @@ module.exports = async function (api) {
         path: `/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
+          global,
           collections,
           product,
           breadcrumb,
@@ -103,6 +125,7 @@ module.exports = async function (api) {
         path: `/categorie/${collection.slug}`,
         component: './src/templates/Collection.vue',
         context: {
+          global,
           products: _.uniqBy(products, 'slug'),
           collection,
           parentCollection: parent,
@@ -119,6 +142,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
+        global,
         collections,
         back: '/',
         breadcrumb: { Home, Winkelmand },
@@ -129,7 +153,7 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { availableCountries, collections, hideNavBar: true },
+      context: { global, availableCountries, collections, hideNavBar: true },
     });
 
     // ----------------- Order confirmation ------------
@@ -137,9 +161,22 @@ module.exports = async function (api) {
       path: '/order/:code',
       component: './src/templates/Order.vue',
       context: {
+        global,
         collections,
         back: '/',
       },
+    });
+
+    // ----------------- Static pages ---------------------
+    createPage({
+      path: '/algemene-voorwaarden/',
+      component: './src/templates/ContentPage.vue',
+      context: { global, collections, content: algemene_voorwaarden },
+    });
+    createPage({
+      path: '/privacy-beleid/',
+      component: './src/templates/ContentPage.vue',
+      context: { global, collections, content: privacy_beleid },
     });
   });
 };
