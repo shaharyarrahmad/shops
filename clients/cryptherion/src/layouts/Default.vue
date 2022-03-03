@@ -61,23 +61,28 @@
     </div>
 
     <footer class="footer">
-      <div class="columns has-text-centered">
-        <div class="column">
-          <h4>Assortiment</h4>
-          <g-link
-            v-for="collection of $context.collections"
-            :to="`/categorie/${collection.slug}`"
-            :key="collection.slug"
+      <div class="columns">
+        <div class="column" v-for="collection of $context.collections">
+          <g-link :to="`/categorie/${collection.slug}`"
+            ><h4>{{ collection.name }}</h4></g-link
           >
-            {{ collection.name }}<br />
+          <g-link
+            v-for="childCollection of collection.children"
+            :to="`/categorie/${childCollection.slug}`"
+            :key="childCollection.slug"
+          >
+            {{ childCollection.name }}<br />
           </g-link>
         </div>
-        <div class="column">
-          <h4>Contact</h4>
-          <p>telefoonnummer:</p>
-          <p>info@cryptherion.io</p>
-        </div>
       </div>
+      <section id="contact" class="content has-text-centered is-dark">
+        <b-icon icon="phone" size="is-small" type="is-success"></b-icon>
+        <a href="tel:0031657079958">06 57 07 99 58</a>
+        <b-icon icon="email" size="is-small" type="is-success"></b-icon>
+        <a href="mailto:info@cryptherion.io">info@cryptherion.io</a>
+        <b-icon icon="map-marker" size="is-small" type="is-success"></b-icon
+        >Smalschipstraat 5, 1086 VM Amsterdam
+      </section>
       <div class="content has-text-centered is-dark">
         Cryptherion.io •
         <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
@@ -144,5 +149,10 @@ export default {
 
 .navbar {
   border-bottom: 1px solid #e1e1e1;
+}
+
+#contact .icon {
+  padding-left: 20px;
+  padding-right: 15px;
 }
 </style>

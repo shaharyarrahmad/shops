@@ -114,9 +114,6 @@ h2 {
   @extend .is-size-2;
   @extend .cr-heading;
 }
-.category a > h2  {
-  color: $text;
-}
 h3 {
   @extend .is-size-3;
   @extend .cr-heading;
@@ -138,4 +135,8 @@ h5 {
   @media screen and (min-width: $desktop) {
     max-width: 400px;
   }
+}
+#usps a,
+.category a  {
+  color: $text;
 }

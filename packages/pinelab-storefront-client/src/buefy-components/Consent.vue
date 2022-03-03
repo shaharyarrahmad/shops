@@ -3,9 +3,12 @@
     <div v-if="!consentSet" class="footer consent-block p-3 px-6">
       <slot />
       <div class="has-text-right">
-        <b-button @click="decline()" class="is-dark">{{
-          declineText
-        }}</b-button>
+        <b-button
+          @click="decline()"
+          class="is-dark"
+          style="background-color: transparent"
+          >{{ declineText }}</b-button
+        >
         <b-button @click="accept()" class="is-success">{{
           acceptText
         }}</b-button>

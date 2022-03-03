@@ -35,6 +35,26 @@
             <span>Voor 23:00 besteld volgende dag in huis</span>
           </span>
 
+          <span class="line">
+            <b-icon
+              class="mx-2"
+              icon="phone"
+              size="is-small"
+              type="is-success"
+            ></b-icon>
+            <a href="tel:0031657079958">06 57 07 99 58</a>
+          </span>
+
+          <span class="line">
+            <b-icon
+              class="mx-2"
+              icon="email"
+              size="is-small"
+              type="is-success"
+            ></b-icon>
+            <a href="mailto:info@cryptherion.io">info@cryptherion.io</a>
+          </span>
+
           <!--          <span class="line">
             <b-icon
               class="mx-2"
@@ -51,7 +71,7 @@
 
     <section
       v-if="$context.featuredProduct"
-      class="hero is-halfheight main-feature p-6 is-light-blue mb-2"
+      class="hero is-halfheight main-feature px-5 is-light-blue mb-2"
     >
       <div class="columns">
         <div class="column">
@@ -90,20 +110,22 @@
       v-for="collection of $context.collections"
       :key="collection.slug"
     >
-      <g-link :to="collection.slug"
-        ><h2>{{ collection.name }}</h2></g-link
-      >
+      <g-link :to="`/categorie/${collection.slug}`">
+        <h2>{{ collection.name }}</h2>
+      </g-link>
       <div class="columns is-multiline is-mobile">
         <div
           class="column is-4-mobile is-2-tablet has-text-centered"
           v-for="childCollection of collection.children"
           :key="childCollection.slug"
         >
-          <b-image
-            :src="maybe(childCollection.featuredAsset, 'thumbnail')"
-            ratio="1by1"
-          ></b-image>
-          {{ childCollection.name }}
+          <g-link :to="`/categorie/${collection.slug}`">
+            <b-image
+              :src="maybe(childCollection.featuredAsset, 'thumbnail')"
+              ratio="1by1"
+            ></b-image>
+            {{ childCollection.name }}
+          </g-link>
         </div>
       </div>
     </section>
