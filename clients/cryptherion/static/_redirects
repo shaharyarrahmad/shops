@@ -2,5 +2,5 @@
 /admin/ https://api.pinelab.studio/admin/ 302
 /cms/ https://content.pinelab.studio/admin/ 302
 
-http://cryptherion.io/* https://cryptherion.netlify.app/we-zijn-er-mee-bezig 302!
-https://cryptherion.io/* https://cryptherion.netlify.app/we-zijn-er-mee-bezig 302!
+http://cryptherion.io /we-zijn-er-mee-bezig 302!
+https://cryptherion.io /we-zijn-er-mee-bezig 302!
