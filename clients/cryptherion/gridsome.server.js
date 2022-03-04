@@ -178,5 +178,16 @@ module.exports = async function (api) {
       component: './src/templates/ContentPage.vue',
       context: { global, collections, content: privacy_beleid },
     });
+    createPage({
+      path: '/we-zijn-er-mee-bezig/',
+      component: './src/templates/UnderConstruction.vue',
+      context: {
+        global,
+        collections,
+        content: `
+      <h1>We zijn nog met de site bezig!</h1>
+      `,
+      },
+    });
   });
 };
