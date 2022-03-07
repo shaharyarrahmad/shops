@@ -21,6 +21,7 @@ import { cantasticReader } from './product-import-strategies/cantastic-reader';
 /**
  * Use this importer like this:
  * yarn script:test script/import-products data/cantastic.csv
+ * yarn script:test script/import-products data/cantastic.csv DELETE // for deletion of producst by slug
  * cantastic is the channelToken and the name of the strategy that will be used
  */
 
@@ -54,6 +55,7 @@ let app: INestApplication;
 (async () => {
   require('dotenv').config({ path: process.env.LOCAL_ENV });
   const filePath = process.argv[2];
+  const action = process.argv[3];
   const channelToken = path.basename(filePath, '.csv');
   if (!fs.existsSync(filePath)) {
     await logAndExit(`${filePath} doesn't exists`);
@@ -64,13 +66,17 @@ let app: INestApplication;
   }
   // parse data
   let rows = await parse(filePath);
-  rows = rows.slice(0, 20); // TODO import all
+  // rows = rows.slice(0, 10);
   const products = transformCsvToProducts(rows);
   if (!products || products.length === 0) {
     await logAndExit('No products to import');
   }
   console.log(
-    `Importing ${products.length} products from ${filePath} to channel ${channelToken} in database ${process.env.DATABASE_NAME}`
+    `${action === 'DELETE' ? 'Deleting' : 'Importing'} ${
+      products.length
+    } products from ${filePath} in channel ${channelToken} in database ${
+      process.env.DATABASE_NAME
+    }`
   );
   await sleep(5000); // Wait for user to read message
   // Import to DB
@@ -91,15 +97,43 @@ let app: INestApplication;
   if (!defaultTaxCategory) {
     await logAndExit('No default taxCategory found in DB!');
   }
+  // Cleanup max length of names and codes
+  const maxlength = 240;
+  products.forEach((product) => {
+    product.slug = product.slug.substring(0, maxlength);
+    product.name = product.name.substring(0, maxlength);
+    product.variants.forEach((variant) => {
+      variant.sku = variant.sku.substring(0, maxlength);
+      variant.name = variant.name.substring(0, maxlength);
+      variant.options.forEach((option) => {
+        option.name = option.name.substring(0, maxlength);
+        option.value = option.value.substring(0, maxlength);
+      });
+    });
+  });
   // Import
   await connection.withTransaction(ctx, async (transactionalCtx) => {
     for (const product of products) {
-      await createProduct(
-        app,
-        transactionalCtx,
-        product,
-        defaultTaxCategory!.id as string
-      );
+      if (action === 'DELETE') {
+        const existing = await app
+          .get(ProductService)
+          .findOneBySlug(ctx, product.slug);
+        if (existing) {
+          await app.get(ProductService).softDelete(ctx, existing.id);
+        }
+        console.log(`DELETED ${product.slug}`);
+      } else {
+        await createProduct(
+          app,
+          transactionalCtx,
+          product,
+          defaultTaxCategory!.id as string
+        )
+          .then(() => console.log(`Created ${product.slug}`))
+          .catch((err) =>
+            console.error(`Failed to import ${product.slug}`, err)
+          );
+      }
     }
   });
 
@@ -145,7 +179,6 @@ async function createProduct(
       },
     ],
   });
-  console.info(`Created product ${slug}`);
   const optionGroups = new Map<string, string[]>();
   product.variants.forEach((variant) => {
     variant.options.forEach((option) => {
@@ -187,9 +220,6 @@ async function createProduct(
       productId,
       createdGroup.id
     );
-    console.info(
-      `Created optionGroup ${optionName} with options ${optionValues.join(',')}`
-    );
   }
   // Find optionIds for variant
   const createdOptions = createdGroups.map((group) => group.options).flat();
@@ -206,7 +236,6 @@ async function createProduct(
       }
       optionIds.add(createdOption.id);
     });
-    console.log(`Creating variant ${variant.sku}`);
     return {
       productId,
       sku: variant.sku,
@@ -223,7 +252,6 @@ async function createProduct(
     };
   });
   await variantService.create(ctx, input);
-  console.log(`Created ${input.length} variants`);
 }
 
 async function logAndExit(message: string) {

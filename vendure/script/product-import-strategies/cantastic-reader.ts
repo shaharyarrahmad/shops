@@ -56,7 +56,7 @@ function parseAttributes(attributeString: string): ImportableOption[] {
   attributes.forEach((attribute) => {
     let [optionName, ...optionValues] = attribute.split(':');
     optionName = optionName.trim();
-    const optionValue = optionValues.join(':').trim();
+    const optionValue = optionValues.join(':').trim(); // In case there is another ':' used in the value
     if (!optionName || !optionValue || optionName === 'large_number') {
       return;
     }
