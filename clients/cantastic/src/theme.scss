@@ -7,45 +7,19 @@ $loop-dark: #131520;
 $loop-soft-dark: #19180A;
 $loop-soft-dark2: #333232;
 $loop-blue: #003082;
-$loop-red: #de3737;
+$loop-red: #DF3837;
+$loop-red2: #E55F5E;
 $loop-grey: #dfdee6;
 $loop-white: #ffffff;
 $loop-green: #0CCE6B;
 $loop-orange: #F7DBA7;
 
-// Dark theme with white buttons
-//$text: $loop-white;
-//$primary: $loop-grey;
-//$link: $loop-grey;
-//$info: $loop-blue;
-//$success: #0CCE6B;
-//$warning: #F7DBA7;
-//$danger: #de3737;
-//$dark: $text;
-//$body-background-color: $loop-soft-dark;
-//$primary-invert: $loop-dark;
-//$text-strong: $loop-white;
-
-// Dark theme with red buttons
-//$text: $loop-white;
-//$primary: $loop-red;
-//$link: $loop-grey;
-//$info: $loop-blue;
-//$success: #0CCE6B;
-//$warning: #F7DBA7;
-//$danger: #de3737;
-//$dark: $text;
-//$body-background-color: $loop-soft-dark;
-//$primary-invert: $loop-white;
-//$text-strong: $loop-white;
-
-// White theme
 $text: $loop-soft-dark2;
-$primary: $loop-soft-dark2;
+$primary: $loop-red;
 $link: $loop-blue;
 $info: $loop-blue;
 $success: $loop-green;
-$warning: $loop-orange;
+$warning: $loop-red2;
 $danger: $loop-red;
 $body-background-color: $loop-white;
 $primary-invert: $loop-white;
@@ -164,8 +138,11 @@ h6 {
 }
 
 /** Navbar stuff **/
-.navbar {
-  background: $loop-white;
+.navbar-menu {
+  background: $loop-red2;
+  @media screen and (max-width: $desktop) {
+    background: $loop-red;
+  }
 }
 .navbar-dropdown h5.navbar-item {
   @media screen and (max-width: $desktop) {

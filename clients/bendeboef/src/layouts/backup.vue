@@ -1,36 +1,82 @@
 <template>
   <div>
-    <b-navbar :fixed-top="true" type="is-danger" :centered="true">
-      <template #brand>
-        <a href="/" aria-current="page" class="navbar-item"
-          ><img src="/logo.png" alt="Cantastic.nl logo"
-        /></a>
-
-        <div class="navbar-item">
-          <b-icon icon="magnify" size="is-medium"> </b-icon>
+    <ShopNavBar
+      logo="/cantastic_logo.png"
+      logo-alt="Pinelab logo"
+      cart-link="/cart/"
+      :activeOrder="activeOrder"
+    >
+      <template v-for="(collection, index) of collections">
+        <!-- Collections with subCollections -->
+        <div
+          v-if="collection.subCollection"
+          :key="`${collection.slug}-${index}`"
+          class="navbar-item has-dropdown is-hoverable"
+        >
+          <g-link :to="collection.slug" class="navbar-link">
+            {{ collection.name }}
+          </g-link>
+          <div class="navbar-dropdown" style="overflow: hidden">
+            <!-- Multi column drop down -->
+            <div v-if="hasSubSubCollection(collection)">
+              <div class="columns">
+                <div
+                  class="column is-3"
+                  v-for="(subCollection, index) of collection.subCollection"
+                >
+                  <h5 class="navbar-item">{{ subCollection.name }}</h5>
+                  <g-link
+                    class="navbar-item"
+                    v-for="(subsub, index) of subCollection.subCollection"
+                    :to="subsub.slug"
+                    :key="`${subsub.slug}-${index}`"
+                  >
+                    {{ subsub.name }}
+                  </g-link>
+                </div>
+              </div>
+            </div>
+            <!-- Single column for subcollection without sub-sub-->
+            <div v-else>
+              <g-link
+                class="navbar-item"
+                v-for="(subCollection, index) of collection.subCollection"
+                :to="subCollection.slug"
+                :key="`${subCollection.slug}-${index}`"
+              >
+                {{ subCollection.name }}
+              </g-link>
+            </div>
+          </div>
         </div>
-        <div class="navbar-item">
-          <b-icon icon="whatsapp" size="is-medium"> </b-icon>
-        </div>
-        <div class="navbar-item">
-          <b-icon icon="basket" size="is-medium"> </b-icon>
-        </div>
+        <!-- No dropdown, because no subCollections -->
+        <g-link v-else :to="collection.slug" class="navbar-item">
+          {{ collection.name }}
+        </g-link>
       </template>
-      <template #start>
-        <b-navbar-item href="#"> Home </b-navbar-item>
-        <b-navbar-item href="#"> Documentation </b-navbar-item>
-        <b-navbar-dropdown label="Info">
-          <b-navbar-item href="#"> About </b-navbar-item>
-          <b-navbar-item href="#"> Contact </b-navbar-item>
-        </b-navbar-dropdown>
-      </template>
-    </b-navbar>
+    </ShopNavBar>
 
-    <div id="main-content" class="container is-widescreen section">
+    <!--    USP bar   -->
+    <div class="has-text-centered has-background-info has-text-light usp-bar">
+      USPS
+    </div>
+
+    <div class="container is-widescreen section" style="min-height: 90vh">
+      <b-button v-if="$context.showBack" tag="a" @click="$router.go(-1)">
+        <
+      </b-button>
+
       <br />
 
       <slot />
     </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered is-dark">
+        Cantastic •
+        <a href="https://pinelab.studio/" target="_blank">Made by Pinelab 🌲</a>
+      </div>
+    </footer>
   </div>
 </template>
 <script>
@@ -144,23 +190,7 @@ export default {
 };
 </script>
 <style>
-@media screen and (min-width: 1024px) {
-  .navbar-dropdown {
-    width: 100vw;
-    top: 72px;
-    position: fixed;
-  }
-}
-
-#main-content {
-  margin-top: 72px;
-}
-
-.navbar-brand {
-  width: 100%;
-}
-
-.navbar {
-  flex-wrap: wrap;
+.usp-bar {
+  margin-top: 32px;
 }
 </style>

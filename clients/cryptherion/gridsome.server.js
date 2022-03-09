@@ -117,7 +117,7 @@ module.exports = async function (api) {
         // Get child products
         const childProducts =
           productsPerCollection.find(
-            (p) => p.collection.name === childCollection.name
+            (p) => p.collection.id === childCollection.id
           )?.products || [];
         products.push(...childProducts);
       });
