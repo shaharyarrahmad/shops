@@ -32,7 +32,7 @@
               type="is-success"
             >
             </b-icon>
-            <span>Voor 23:00 besteld volgende dag in huis</span>
+            <span>Voor 19:00 besteld dezelfde dag verzonden</span>
           </span>
 
           <span class="line">
