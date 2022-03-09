@@ -5,7 +5,7 @@
 $cr-black: #000000;
 $cr-grey: #3f3f3f;
 $cr-red: #E03616;
-$cr-light-blue: #c7e3ff;
+$cr-light-grey: #efefef;
 $cr-dark-blue: #0496FF;
 $cr-green: #69DC9E;
 $cr-orange: #FAA916;
@@ -128,8 +128,8 @@ h5 {
   @extend .is-size-5;
   @extend .cr-heading;
 }
-.is-light-blue {
-  background: $cr-light-blue;
+.is-light-grey {
+  background: $cr-light-grey;
 }
 .hero-logo {
   @media screen and (min-width: $desktop) {

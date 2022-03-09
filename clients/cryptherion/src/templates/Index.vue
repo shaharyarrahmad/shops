@@ -75,7 +75,7 @@
 
     <section
       v-if="$context.featuredProduct"
-      class="hero is-halfheight main-feature px-5 is-light-blue mb-2"
+      class="hero is-halfheight main-feature px-5 is-light-grey mb-2"
     >
       <div class="columns">
         <div class="column">
@@ -87,7 +87,7 @@
           </p>
           <g-link
             :to="`/product/${$context.featuredProduct.slug}`"
-            class="is-info is-fullwidth button is-large"
+            class="is-primary is-fullwidth button is-large"
             style="padding: 30px"
           >
             <h2>
