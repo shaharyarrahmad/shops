@@ -144,7 +144,6 @@ export default {
     ProductCard,
   },
   async mounted() {
-    console.log(this.$context.featuredText);
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
   },
