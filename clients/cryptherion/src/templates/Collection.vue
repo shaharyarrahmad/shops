@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <section id="category-intro" class="mb-6">
-      <!--      <h1 class="has-text-centered pb-2">{{ $context.collection.name }}</h1>-->
+      <h1 class="has-text-centered pb-2">{{ $context.collection.name }}</h1>
       <img
         v-if="$context.collection.featuredAsset"
         class="collection-banner"
@@ -62,7 +62,7 @@
 <script>
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
 import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/ProductFilter';
-import { hydrate } from 'pinelab-storefront-client';
+import { getMetaInfo, hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
@@ -82,6 +82,10 @@ export default {
     maybe(obj, property) {
       return obj?.[property];
     },
+  },
+  metaInfo() {
+    const url = `${process.env.GRIDSOME_HOST}${this.$route.fullPath}`;
+    return getMetaInfo(this.$context.collection, url);
   },
 };
 </script>

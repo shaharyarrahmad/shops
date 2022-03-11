@@ -58,7 +58,6 @@ module.exports = async function (api) {
       component: './src/templates/Index.vue',
       context: {
         global,
-        products,
         featuredProduct,
         collections,
       },
@@ -165,6 +164,13 @@ module.exports = async function (api) {
         collections,
         back: '/',
       },
+    });
+
+    // ------------------ 404 ---------------
+    createPage({
+      path: '/404',
+      component: './src/templates/404.vue',
+      context: { global, collections },
     });
 
     // ----------------- Static pages ---------------------
