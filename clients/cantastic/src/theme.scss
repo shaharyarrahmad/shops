@@ -32,8 +32,8 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: "Poppins";
-$family-primary: "Poppins";
+$family-primary: "Roboto";
+$family-secondary: "Open Sans";
 
 $control-radius: 6px;
 
@@ -138,12 +138,12 @@ h6 {
 }
 
 /** Navbar stuff **/
-.navbar-menu {
+/*.navbar-menu {
   background: $loop-red2;
   @media screen and (max-width: $desktop) {
     background: $loop-red;
   }
-}
+}*/
 .navbar-dropdown h5.navbar-item {
   @media screen and (max-width: $desktop) {
     display: none;
@@ -152,8 +152,8 @@ h6 {
 }
 .navbar-dropdown {
   @media screen and (min-width: $desktop) {
-    width: 100vw;
-    top: 56px;
+    /*width: 100vw;*/
+    top: 105px;
     position: fixed;
   }
 }

@@ -6,8 +6,8 @@
     "serve:local": "export VENDURE_ENV=local && yarn gridsome develop"
   },
   "dependencies": {
-    "@fontsource/poppins": "^4.5.0",
-    "@fontsource/roboto-mono": "^4.5.0",
+    "@fontsource/open-sans": "^4.5.6",
+    "@fontsource/roboto": "^4.5.3",
     "buefy": "^0.9.7",
     "outfront": "^1.1.1",
     "pinelab-storefront-client": "^0.43.0"

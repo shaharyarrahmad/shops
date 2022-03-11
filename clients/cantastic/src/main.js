@@ -3,7 +3,8 @@ import Buefy from 'buefy';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
 import { configureVue } from 'pinelab-storefront-client';
 import '~/theme.scss';
-import '@fontsource/poppins';
+import '@fontsource/roboto';
+import '@fontsource/open-sans';
 import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
 import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
 
