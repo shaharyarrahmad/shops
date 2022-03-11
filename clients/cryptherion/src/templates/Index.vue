@@ -82,9 +82,7 @@
           <h1 class="title py-6">
             {{ $context.featuredProduct.name }}
           </h1>
-          <p class="subtitle">
-            {{ getMainFeatureText($context.featuredProduct) }}
-          </p>
+          <div class="subtitle" v-html="$context.featuredText"></div>
           <g-link
             :to="`/product/${$context.featuredProduct.slug}`"
             class="is-primary is-fullwidth button is-large"
@@ -145,16 +143,13 @@ export default {
     ProductCard,
   },
   async mounted() {
+    console.log(this.$context.featuredText);
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
   },
   methods: {
     maybe(obj, property) {
       return obj?.[property];
-    },
-    getMainFeatureText(product) {
-      const facet = product.facetValues.find((f) => f.code === 'main-feature');
-      return facet?.name || 'main featured product';
     },
   },
 };

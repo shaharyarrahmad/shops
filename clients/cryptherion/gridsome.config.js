@@ -10,6 +10,7 @@ if (process.env.VENDURE_ENV === 'local') {
 
 module.exports = {
   siteName: 'Cryptherion.io',
+  siteUrl: 'https://cryptherion.io',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link
@@ -35,6 +36,9 @@ module.exports = {
           'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN,
         },
       },
+    },
+    {
+      use: '@gridsome/plugin-sitemap',
     },
   ],
 };

@@ -9,6 +9,7 @@ const GET_CONTENT = gql`
         adres
         algemene_voorwaarden
         privacy_beleid
+        highlighted_product
       }
     }
   }

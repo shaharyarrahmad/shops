@@ -34,6 +34,7 @@ module.exports = async function (api) {
             adres,
             algemene_voorwaarden,
             privacy_beleid,
+            highlighted_product,
           },
         },
       },
@@ -60,6 +61,7 @@ module.exports = async function (api) {
         global,
         featuredProduct,
         collections,
+        featuredText: highlighted_product,
       },
     });
 
