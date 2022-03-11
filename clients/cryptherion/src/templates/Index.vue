@@ -124,6 +124,7 @@
           <g-link :to="`/categorie/${childCollection.slug}`">
             <b-image
               :src="maybe(childCollection.featuredAsset, 'thumbnail')"
+              :alt="childCollection.name"
               ratio="1by1"
             ></b-image>
             {{ childCollection.name }}
