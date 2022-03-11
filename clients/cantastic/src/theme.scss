@@ -138,12 +138,12 @@ h6 {
 }
 
 /** Navbar stuff **/
-/*.navbar-menu {
+.navbar-menu {
   background: $loop-red2;
   @media screen and (max-width: $desktop) {
-    background: $loop-red;
+    background: $loop-white;
   }
-}*/
+}
 .navbar-dropdown h5.navbar-item {
   @media screen and (max-width: $desktop) {
     display: none;
