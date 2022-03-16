@@ -1,4 +1,5 @@
 import {
+  CollectionEvent,
   CollectionModificationEvent,
   DefaultLogger,
   DefaultSearchPlugin,
@@ -121,6 +122,7 @@ export const config: VendureConfig = {
         ProductVariantChannelEvent,
         ProductVariantEvent,
         CollectionModificationEvent,
+        CollectionEvent,
       ],
     }),
     MolliePlugin.init({ vendureHost: process.env.VENDURE_HOST! }),
