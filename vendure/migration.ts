@@ -9,7 +9,7 @@ import program from 'commander';
 import { config } from './src/vendure-config';
 
 console.log(
-  `\x1b[46mMIGRATINg FOR DATABASE ${process.env.DATABASE_NAME} \x1b[0m`
+  `\x1b[46mMIGRATING FOR DATABASE ${process.env.DATABASE_NAME} \x1b[0m`
 );
 
 program

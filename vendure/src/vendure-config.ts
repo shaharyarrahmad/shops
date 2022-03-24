@@ -4,6 +4,7 @@ import {
   DefaultLogger,
   DefaultSearchPlugin,
   defaultShippingEligibilityChecker,
+  LanguageCode,
   LogLevel,
   ProductEvent,
   ProductVariantChannelEvent,
@@ -95,7 +96,22 @@ export const config: VendureConfig = {
   paymentOptions: {
     paymentMethodHandlers: [],
   },
-  customFields: {},
+  customFields: {
+    Product: [
+      {
+        name: 'metaTitle',
+        label: [{ value: 'Meta title', languageCode: LanguageCode.en }],
+        type: 'localeString',
+        ui: { component: 'text-form-input' },
+      },
+      {
+        name: 'metaDescription',
+        label: [{ value: 'Meta description', languageCode: LanguageCode.en }],
+        type: 'localeString',
+        ui: { component: 'textarea-form-input' },
+      },
+    ],
+  },
   plugins: [
     InvoicePlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
