@@ -17,7 +17,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           project_id: pinelab-shops
           service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
