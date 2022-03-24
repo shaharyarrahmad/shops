@@ -19,6 +19,13 @@ import {
   ProductVariant,
 } from '../generated/graphql';
 
+interface SortableCollection {
+  name: string;
+  id: string;
+  parent: SortableCollection;
+  children: SortableCollection[];
+}
+
 /**
  * Generates Gridsome pages based on given PageMap
  */
@@ -104,7 +111,7 @@ export class GridsomeService {
    * This function sets the correct childCollections for each topLevel collection.
    * @param allCollections
    */
-  unflatten(allCollections: Collection[]): Collection[] {
+  unflatten<T extends SortableCollection>(allCollections: T[]): T[] {
     // Get toplevel collections
     let collections = allCollections.filter(
       (col) => col.parent?.name === '__root_collection__'
@@ -118,10 +125,10 @@ export class GridsomeService {
   /**
    * Recursively gets childCollections for given collection
    */
-  private getChildCollection(
-    collection: Collection,
-    allCollections: Collection[]
-  ): Collection {
+  private getChildCollection<T extends SortableCollection>(
+    collection: T,
+    allCollections: T[]
+  ): T {
     const fullChildren = collection.children?.map((originalChild) => {
       let fullChildCollection = allCollections.find(
         (c) => c.id === originalChild.id

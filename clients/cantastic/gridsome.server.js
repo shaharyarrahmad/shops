@@ -12,7 +12,14 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const { products, availableCountries } = await gridsome.getShopData();
+    const {
+      products,
+      availableCountries,
+      collections: allCollections,
+      productsPerCollection,
+    } = await gridsome.getShopData();
+
+    const collections = gridsome.unflatten(allCollections);
 
     // ----------------- ProductOverview ---------------------
     createPage({
