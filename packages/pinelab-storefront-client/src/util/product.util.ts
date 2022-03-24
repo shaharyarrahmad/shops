@@ -1,12 +1,38 @@
-import { Product, ProductVariant } from '../../../common';
-import { CalculatedProduct } from '../vendure/calculated-product';
 import { VendureClient } from '../vendure/vendure.client';
 import { Emitter } from 'mitt';
+import { ProductVariant } from '../generated/graphql';
+
+export interface CalculatedProduct {
+  id: string;
+  name?: string;
+  description?: string;
+  featuredAsset?: { preview: string };
+  slug: string;
+  lowestPrice: number;
+  soldOut: boolean;
+}
+
+interface MinimalProduct {
+  id: string;
+  slug: string;
+  variants: MinimalVariant[];
+}
+
+interface MinimalVariant {
+  stockLevel: string;
+  priceWithTax: number;
+}
+
+interface SlugHolder {
+  slug: string;
+}
 
 /**
  * Set lowest price based on lowest price of variants and set soldout if all are sold out
  */
-export function setCalculatedFields(product: Product): CalculatedProduct {
+export function setCalculatedFields<T extends MinimalProduct>(
+  product: T
+): CalculatedProduct & T {
   const lowesPrice = Math.min(...product.variants.map((v) => v.priceWithTax));
   const available = product.variants.find((v) => !isOutOfStock(v));
   return {
@@ -19,7 +45,7 @@ export function setCalculatedFields(product: Product): CalculatedProduct {
 /**
  * Remove duplicate products from given list of products
  */
-export function deduplicate(products: Product[]): Product[] {
+export function deduplicate<T extends SlugHolder>(products: T[]): T[] {
   const uniq: string[] = [];
   return products.filter((prod) => {
     if (uniq.indexOf(prod.slug) === -1) {
@@ -34,10 +60,10 @@ export function deduplicate(products: Product[]): Product[] {
  * Hydrate products on client side.
  * For now this only updates product.soldOut
  */
-export async function hydrate(
-  products: CalculatedProduct[] | CalculatedProduct,
+export async function hydrate<T extends CalculatedProduct>(
+  products: T[] | T,
   vendure: VendureClient
-): Promise<CalculatedProduct[] | CalculatedProduct | undefined> {
+): Promise<T[] | T | undefined> {
   if (Array.isArray(products)) {
     const updatedProducts = await vendure.getStockForProducts();
     return products.map((p) => {
@@ -57,7 +83,7 @@ export async function hydrate(
   }
 }
 
-export function isOutOfStock(variant: ProductVariant): boolean {
+export function isOutOfStock(variant: { stockLevel: string }): boolean {
   return variant.stockLevel === 'OUT_OF_STOCK';
 }
 

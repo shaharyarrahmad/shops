@@ -1,5 +1,5 @@
-import { CalculatedProduct } from '../../vendure/calculated-product';
-import { Collection, Country } from '../../../../common';
+import { Collection, Country } from '../../generated/graphql';
+import { CalculatedProduct } from '../../util/product.util';
 
 export interface ShopData {
   /**

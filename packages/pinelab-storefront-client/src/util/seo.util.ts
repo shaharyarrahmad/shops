@@ -1,5 +1,5 @@
-import { CalculatedProduct } from '../vendure/calculated-product';
-import { Collection } from '../../../common';
+import { Collection } from '../generated/graphql';
+import { CalculatedProduct } from './product.util';
 /**
  * Removes all HTML tags from a HTML string and truncate to max X characters
  */
@@ -33,7 +33,9 @@ export function getMetaInfo(
   if (!item) {
     return;
   }
-  const seoDescription = getSeoDescription(item.description);
+  const seoDescription = item?.description
+    ? getSeoDescription(item.description)
+    : undefined;
   const image = item.featuredAsset ? item.featuredAsset.preview : undefined;
   let script: any = [];
   if ((item as CalculatedProduct).lowestPrice) {
@@ -56,7 +58,7 @@ export function getMetaInfo(
     ];
   }
   return {
-    title: item.name,
+    title: item?.name || item.slug,
     meta: [
       { key: 'description', name: 'description', content: seoDescription },
       { key: 'og:title', name: 'og:title', content: item.name },

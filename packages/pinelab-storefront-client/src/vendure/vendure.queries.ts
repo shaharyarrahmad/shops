@@ -114,7 +114,7 @@ export const ORDER_FIELDS = gql`
 `;
 
 export const GET_PRICE_AND_STOCKLEVEL = gql`
-  {
+  query products {
     products {
       items {
         id
@@ -163,7 +163,7 @@ export const GET_ACTIVE_ORDER = gql`
 `;
 
 export const GET_ELIGIBLESHIPPINGMETHODS = gql`
-  {
+  query eligibleShippingMethods {
     eligibleShippingMethods {
       id
       price
@@ -235,7 +235,7 @@ export const SET_ORDERSHIPPINGADDRESS = gql`
 `;
 
 export const GET_NEXT_ORDERSTATES = gql`
-  {
+  query nextOrderStates {
     nextOrderStates
   }
 `;
@@ -255,14 +255,13 @@ export const TRANSITION_ORDER_TO_STATE = gql`
   }
 `;
 
-export const ADD_PAYMENT_TO_ORDER = gql`
-  ${ORDER_FIELDS}
-  mutation addPaymentToOrder($input: PaymentInput!) {
-    addPaymentToOrder(input: $input) {
-      ... on Order {
-        ...OrderFields
+export const CREATE_MOLLIE_PAYMENT_INTENT = gql`
+  mutation createMolliePaymentIntent($input: MolliePaymentIntentInput!) {
+    createMolliePaymentIntent(input: $input) {
+      ... on MolliePaymentIntent {
+        url
       }
-      ... on ErrorResult {
+      ... on MolliePaymentIntentError {
         errorCode
         message
       }

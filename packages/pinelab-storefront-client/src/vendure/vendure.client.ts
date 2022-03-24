@@ -2,9 +2,9 @@ import { Store } from './store';
 import { GraphQLClient } from 'graphql-request';
 import {
   ADD_ITEM_TO_ORDER,
-  ADD_PAYMENT_TO_ORDER,
   ADJUST_ORDERLINE,
   APPLY_COUPON_CODE,
+  CREATE_MOLLIE_PAYMENT_INTENT,
   GET_ACTIVE_ORDER,
   GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
@@ -18,21 +18,44 @@ import {
   SET_ORDERSHIPPINGMETHOD,
   TRANSITION_ORDER_TO_STATE,
 } from './vendure.queries';
+import { CalculatedProduct, setCalculatedFields } from '../util/product.util';
 import {
-  Country,
-  CountryList,
+  ActiveOrderQuery,
+  AdditemToOrderMutation,
+  AdditemToOrderMutationVariables,
+  AdjustOrderLineMutation,
+  AdjustOrderLineMutationVariables,
+  ApplyCouponCodeMutation,
+  ApplyCouponCodeMutationVariables,
   CreateAddressInput,
   CreateCustomerInput,
+  CreateMolliePaymentIntentMutation,
+  CreateMolliePaymentIntentMutationVariables,
+  DutchAddressLookupQuery,
+  DutchAddressLookupQueryVariables,
   DutchAddressLookupResult,
   DutchPostalCodeInput,
-  ErrorResult,
+  EligibleShippingMethodsQuery,
+  MolliePaymentIntent,
+  NextOrderStatesQuery,
   Order,
-  PaymentInput,
-  Product,
-  ShippingMethodQuote,
-} from '../../../common';
-import { CalculatedProduct } from './calculated-product';
-import { setCalculatedFields } from '../util/product.util';
+  OrderByCodeQuery,
+  OrderByCodeQueryVariables,
+  OrderFieldsFragment,
+  ProductQuery,
+  ProductQueryVariables,
+  ProductsQuery,
+  RemoveCouponCodeMutation,
+  RemoveCouponCodeMutationVariables,
+  SetCustomerForOrderMutation,
+  SetCustomerForOrderMutationVariables,
+  SetOrderShippingAddressMutation,
+  SetOrderShippingAddressMutationVariables,
+  SetOrderShippingMethodMutation,
+  SetOrderShippingMethodMutationVariables,
+  TransitionOrderToStateMutation,
+  TransitionOrderToStateMutationVariables,
+} from '../generated/graphql';
 
 export class VendureClient {
   client: GraphQLClient;
@@ -45,8 +68,10 @@ export class VendureClient {
     this.getActiveOrder().then((order) => (this.store.activeOrder = order));
   }
 
-  async getActiveOrder(): Promise<Order> {
-    const { activeOrder } = await this.request(GET_ACTIVE_ORDER);
+  async getActiveOrder(): Promise<OrderFieldsFragment | undefined> {
+    const { activeOrder } = await this.request<ActiveOrderQuery>(
+      GET_ACTIVE_ORDER
+    );
     this.store.activeOrder = activeOrder;
     return activeOrder;
   }
@@ -55,27 +80,40 @@ export class VendureClient {
    * Get all products, but only ID, slug and variant price and stockLevel
    */
   async getStockForProducts(): Promise<CalculatedProduct[]> {
-    const { products } = await this.request(GET_PRICE_AND_STOCKLEVEL);
-    return products.items.map((p: Product) => setCalculatedFields(p));
+    const { products } = await this.request<ProductsQuery>(
+      GET_PRICE_AND_STOCKLEVEL
+    );
+    return products.items.map((p) => setCalculatedFields(p));
   }
 
-  async getProduct(slug: string): Promise<CalculatedProduct> {
-    const { product } = await this.request(GET_PRODUCT, { slug });
+  async getProduct(
+    slug: string
+  ): Promise<CalculatedProduct & ProductQuery['product']> {
+    const { product } = await this.request<ProductQuery, ProductQueryVariables>(
+      GET_PRODUCT,
+      { slug }
+    );
+    if (!product) {
+      throw Error(`No product found for slug ${slug}`);
+    }
     return setCalculatedFields(product);
   }
 
   async addProductToCart(
     productVariantId: string,
     quantity: number
-  ): Promise<Order> {
-    const { addItemToOrder: order } = await this.request(ADD_ITEM_TO_ORDER, {
+  ): Promise<OrderFieldsFragment> {
+    const { addItemToOrder } = await this.request<
+      AdditemToOrderMutation,
+      AdditemToOrderMutationVariables
+    >(ADD_ITEM_TO_ORDER, {
       productVariantId,
       quantity,
     });
-    this.validateResult(order);
-    this.store.activeOrder = order;
+    this.validateResult(addItemToOrder);
+    this.store.activeOrder = addItemToOrder as OrderFieldsFragment;
     await this.setLowestShippingMethod();
-    return order;
+    return addItemToOrder as OrderFieldsFragment;
   }
 
   async setLowestShippingMethod() {
@@ -90,116 +128,138 @@ export class VendureClient {
     }
   }
 
-  async getEligibleShippingMethods(): Promise<ShippingMethodQuote[]> {
-    const { eligibleShippingMethods } = await this.request(
-      GET_ELIGIBLESHIPPINGMETHODS
-    );
+  async getEligibleShippingMethods(): Promise<
+    EligibleShippingMethodsQuery['eligibleShippingMethods']
+  > {
+    const { eligibleShippingMethods } =
+      await this.request<EligibleShippingMethodsQuery>(
+        GET_ELIGIBLESHIPPINGMETHODS
+      );
     return eligibleShippingMethods;
   }
 
-  async setOrderShippingMethod(shippingMethodId: string): Promise<Order> {
-    const { setOrderShippingMethod } = await this.request(
-      SET_ORDERSHIPPINGMETHOD,
-      {
-        shippingMethodId,
-      }
-    );
+  async setOrderShippingMethod(
+    shippingMethodId: string
+  ): Promise<OrderFieldsFragment> {
+    const { setOrderShippingMethod } = await this.request<
+      SetOrderShippingMethodMutation,
+      SetOrderShippingMethodMutationVariables
+    >(SET_ORDERSHIPPINGMETHOD, {
+      shippingMethodId,
+    });
     this.validateResult(setOrderShippingMethod);
-    this.store.activeOrder = setOrderShippingMethod;
-    return setOrderShippingMethod;
+    this.store.activeOrder = setOrderShippingMethod as OrderFieldsFragment;
+    return setOrderShippingMethod as OrderFieldsFragment;
   }
 
-  async adjustOrderLine(orderLineId: string, quantity: number): Promise<Order> {
-    const { adjustOrderLine: activeOrder } = await this.request(
-      ADJUST_ORDERLINE,
-      { orderLineId, quantity }
-    );
-    this.validateResult(activeOrder);
-    this.store.activeOrder = activeOrder;
-    return activeOrder;
+  async adjustOrderLine(
+    orderLineId: string,
+    quantity: number
+  ): Promise<OrderFieldsFragment> {
+    const { adjustOrderLine } = await this.request<
+      AdjustOrderLineMutation,
+      AdjustOrderLineMutationVariables
+    >(ADJUST_ORDERLINE, { orderLineId, quantity });
+    this.validateResult(adjustOrderLine);
+    this.store.activeOrder = adjustOrderLine as OrderFieldsFragment;
+    return adjustOrderLine as OrderFieldsFragment;
   }
 
-  async setCustomerForOrder(input: CreateCustomerInput): Promise<Order> {
-    const { setCustomerForOrder: order } = await this.request(
-      SET_CUSTOMER_FOR_ORDER,
-      { input }
-    );
-    this.validateResult(order);
-    this.store.activeOrder = order;
-    return order;
+  async setCustomerForOrder(
+    input: CreateCustomerInput
+  ): Promise<OrderFieldsFragment> {
+    const { setCustomerForOrder } = await this.request<
+      SetCustomerForOrderMutation,
+      SetCustomerForOrderMutationVariables
+    >(SET_CUSTOMER_FOR_ORDER, { input });
+    this.validateResult(setCustomerForOrder);
+    this.store.activeOrder = setCustomerForOrder as OrderFieldsFragment;
+    return setCustomerForOrder as OrderFieldsFragment;
   }
 
-  async setOrderShippingAddress(input: CreateAddressInput): Promise<Order> {
-    if (!input.company || input.company.length === 0) {
-      input.company = '-'; // Dirty fix
-    }
-    if (!input.phoneNumber || input.phoneNumber.length === 0) {
-      input.phoneNumber = '-'; // Dirty fix
-    }
-    const { setOrderShippingAddress: order } = await this.request(
-      SET_ORDERSHIPPINGADDRESS,
-      { input }
-    );
-    this.store.activeOrder = order;
-    return order;
+  async setOrderShippingAddress(
+    input: CreateAddressInput
+  ): Promise<OrderFieldsFragment> {
+    const { setOrderShippingAddress: order } = await this.request<
+      SetOrderShippingAddressMutation,
+      SetOrderShippingAddressMutationVariables
+    >(SET_ORDERSHIPPINGADDRESS, { input });
+    this.store.activeOrder = order as OrderFieldsFragment;
+    return order as OrderFieldsFragment;
   }
 
   async getNextOrderStates(): Promise<string[]> {
-    const { nextOrderStates } = await this.request(GET_NEXT_ORDERSTATES);
+    const { nextOrderStates } = await this.request<NextOrderStatesQuery>(
+      GET_NEXT_ORDERSTATES
+    );
     return nextOrderStates;
   }
 
-  async transitionOrderToState(state: string): Promise<Order> {
-    const { transitionOrderToState } = await this.request(
-      TRANSITION_ORDER_TO_STATE,
-      { state }
-    );
+  async transitionOrderToState(state: string): Promise<OrderFieldsFragment> {
+    const { transitionOrderToState } = await this.request<
+      TransitionOrderToStateMutation,
+      TransitionOrderToStateMutationVariables
+    >(TRANSITION_ORDER_TO_STATE, { state });
     this.validateResult(transitionOrderToState);
-    this.store.activeOrder = transitionOrderToState;
-    return transitionOrderToState;
+    this.store.activeOrder = transitionOrderToState as OrderFieldsFragment;
+    return transitionOrderToState as OrderFieldsFragment;
   }
 
-  async addPaymentToOrder(input: PaymentInput): Promise<Order> {
-    const { addPaymentToOrder } = await this.request(ADD_PAYMENT_TO_ORDER, {
-      input,
+  async createMolliePaymentIntent(code: string): Promise<string> {
+    const { createMolliePaymentIntent } = await this.request<
+      CreateMolliePaymentIntentMutation,
+      CreateMolliePaymentIntentMutationVariables
+    >(CREATE_MOLLIE_PAYMENT_INTENT, {
+      input: { paymentMethodCode: code },
     });
-    this.validateResult(addPaymentToOrder);
-    this.store.activeOrder = addPaymentToOrder;
-    return addPaymentToOrder;
+    this.validateResult(createMolliePaymentIntent);
+    return (createMolliePaymentIntent as MolliePaymentIntent).url;
   }
 
-  async getOrderByCode(code: string): Promise<Order | undefined> {
-    const { orderByCode } = await this.request(GET_ORDER_BY_CODE, { code });
+  async getOrderByCode(code: string): Promise<OrderFieldsFragment | undefined> {
+    const { orderByCode } = await this.request<
+      OrderByCodeQuery,
+      OrderByCodeQueryVariables
+    >(GET_ORDER_BY_CODE, { code });
     return orderByCode;
   }
 
   async getAddress(
     input: DutchPostalCodeInput
-  ): Promise<DutchAddressLookupResult | undefined> {
-    const { dutchAddressLookup } = await this.request(GET_DUTCH_ADDRESS, {
+  ): Promise<DutchAddressLookupQuery['dutchAddressLookup'] | undefined> {
+    const { dutchAddressLookup } = await this.request<
+      DutchAddressLookupQuery,
+      DutchAddressLookupQueryVariables
+    >(GET_DUTCH_ADDRESS, {
       input,
     });
     return dutchAddressLookup;
   }
 
-  async applyCouponCode(couponCode: string): Promise<Order> {
-    const { applyCouponCode: order } = await this.request(APPLY_COUPON_CODE, {
+  async applyCouponCode(couponCode: string): Promise<OrderFieldsFragment> {
+    const { applyCouponCode: order } = await this.request<
+      ApplyCouponCodeMutation,
+      ApplyCouponCodeMutationVariables
+    >(APPLY_COUPON_CODE, {
       couponCode,
     });
     this.validateResult(order);
-    this.store.activeOrder = order;
-    return order;
+    this.store.activeOrder = order as OrderFieldsFragment;
+    return order as OrderFieldsFragment;
   }
 
-  async removeCouponCode(couponCode: string): Promise<Order> {
-    const { removeCouponCode: order } = await this.request(REMOVE_COUPON_CODE, {
+  async removeCouponCode(couponCode: string): Promise<OrderFieldsFragment> {
+    const { removeCouponCode: order } = await this.request<
+      RemoveCouponCodeMutation,
+      RemoveCouponCodeMutationVariables
+    >(REMOVE_COUPON_CODE, {
       couponCode,
     });
-    this.store.activeOrder = order;
-    return order;
+    this.store.activeOrder = order as OrderFieldsFragment;
+    return order as OrderFieldsFragment;
   }
 
-  validateResult<T extends ErrorResult>(result: T): void {
+  validateResult(result: any): void {
     if (result && result.errorCode) {
       if (
         result.errorCode === 'ORDER_MODIFICATION_ERROR' ||
@@ -213,7 +273,10 @@ export class VendureClient {
     }
   }
 
-  async request(document: string, variables?: any): Promise<any> {
+  async request<T = void, I = void>(
+    document: string,
+    variables?: I
+  ): Promise<T> {
     let token = window.localStorage.getItem(this.tokenName);
     if (token) {
       this.client.setHeader('Authorization', `Bearer ${token}`);

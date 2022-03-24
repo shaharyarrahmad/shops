@@ -1,8 +1,11 @@
 overwrite: true
-schema: "https://api.pinelab.studio/shop-api"
+schema: "http://localhost:3000/shop-api"
+documents: src/vendure/**/*.queries.ts
 config:
+  maybeValue: T | undefined
   resolverValidationOptions:
     requireResolversForResolveType: false
+
 
 generates:
   src/generated/graphql.ts:
