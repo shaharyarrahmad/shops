@@ -16,22 +16,10 @@ export default {
   },
   async mounted() {
     try {
-      const states = await this.$vendure.getNextOrderStates();
-      if (states?.indexOf('ArrangingPayment') > -1) {
-        await this.$vendure.transitionOrderToState('ArrangingPayment');
-      }
-      const order = await this.$vendure.addPaymentToOrder({
-        method: `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`,
-        metadata: {},
-      });
-      const latestPayment = order?.payments?.[order?.payments.length - 1];
-      if (latestPayment?.metadata?.public?.redirectLink) {
-        window.location.href = latestPayment.metadata.public.redirectLink;
-      } else {
-        throw new Error(
-          `No redirect link found in order response for order ${order?.code}`
-        );
-      }
+      const redirectUrl = await this.$vendure.createMolliePaymentIntent(
+        `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`
+      );
+      window.location.replace(redirectUrl);
     } catch (e) {
       this.error = e.message;
       throw e;
