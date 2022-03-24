@@ -1,19 +1,23 @@
 import {
+  GET_AVAILABLE_COUNTRIES,
+  GET_COLLECTIONS,
+  GET_PRODUCTS,
+} from './gridsome.queries';
+import {
+  CalculatedProduct,
+  CollectionMap,
+  deduplicate,
+  setCalculatedFields,
+} from '../';
+import { BasicCollection, ShopData } from './types/shop-data';
+import {
   Collection,
   CollectionList,
   Country,
   Product,
   ProductList,
   ProductVariant,
-} from '../../../common';
-import {
-  GET_AVAILABLE_COUNTRIES,
-  GET_COLLECTIONS,
-  GET_PRODUCTS,
-} from './gridsome.queries';
-import { CollectionMap, deduplicate, setCalculatedFields } from '../';
-import { CalculatedProduct } from '../vendure/calculated-product';
-import { BasicCollection, ShopData } from './types/shop-data';
+} from '../generated/graphql';
 
 /**
  * Generates Gridsome pages based on given PageMap

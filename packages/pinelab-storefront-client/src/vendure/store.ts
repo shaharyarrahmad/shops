@@ -1,5 +1,5 @@
-import { Order } from '../../../common';
+import { Order, OrderFieldsFragment } from '../generated/graphql';
 
 export class Store {
-  activeOrder: Order | undefined;
+  activeOrder: OrderFieldsFragment | undefined;
 }
