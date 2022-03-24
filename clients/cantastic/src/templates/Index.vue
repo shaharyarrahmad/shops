@@ -1,19 +1,43 @@
 <template>
   <DefaultLayout>
-    <div class="columns is-multiline is-mobile">
-      <div
-        class="column is-half-mobile is-one-quarter-tablet mb-4"
-        v-for="product of $context.products"
-        :key="product.slug"
-      >
-        <ProductCard
-          :product="product"
-          buy-label="In winkelmand"
-          product-url-prefix="product"
-          soldoutLabel="Uitverkocht"
-        />
-      </div>
-    </div>
+    <template #content>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+    </template>
+
+    <template #fullwidth>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+      <h5>widthh</h5>
+    </template>
+
+    <template #content2>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+      <h5>Content</h5>
+    </template>
   </DefaultLayout>
 </template>
 

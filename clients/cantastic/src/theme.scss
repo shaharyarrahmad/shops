@@ -4,9 +4,8 @@
 // https://bulma.io/documentation/customize/variables/
 
 $loop-dark: #131520;
-$loop-soft-dark: #19180A;
-$loop-soft-dark2: #333232;
-$loop-blue: #003082;
+$loop-soft-dark: #333232;
+$loop-blue: #23395B;
 $loop-red: #DF3837;
 $loop-red2: #E55F5E;
 $loop-grey: #dfdee6;
@@ -14,7 +13,7 @@ $loop-white: #ffffff;
 $loop-green: #0CCE6B;
 $loop-orange: #F7DBA7;
 
-$text: $loop-soft-dark2;
+$text: $loop-soft-dark;
 $primary: $loop-red;
 $link: $loop-blue;
 $info: $loop-blue;
@@ -153,4 +152,8 @@ h6 {
     top: 105px;
     position: fixed;
   }
+}
+.footer a {
+  @extend .has-text-light;
+  @extend .is-family-secondary;
 }

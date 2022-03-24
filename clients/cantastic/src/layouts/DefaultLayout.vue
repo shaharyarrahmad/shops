@@ -99,11 +99,46 @@
     </b-navbar>
 
     <!-------------------- Content ------------------>
-    <div id="main-content" class="container is-widescreen section">
+    <div class="container is-widescreen section">
       <br />
-
-      <slot />
+      <slot name="content" />
     </div>
+    <slot name="fullwidth" />
+
+    <div class="container is-widescreen section">
+      <br />
+      <slot name="content2" />
+    </div>
+
+    <footer class="footer has-background-warning has-text-light"></footer>
+    <footer class="footer has-background-info has-text-light">
+      <div class="columns">
+        <div class="column is-3">
+          <h5 class="has-text-light">Categorieën</h5>
+          <g-link
+            v-for="collection of $context.collections"
+            :key="collection.slug"
+            :to="`/categorie/${collection.slug}`"
+          >
+            {{ collection.name }} <br />
+          </g-link>
+        </div>
+        <div class="column is-3">
+          <h5 class="has-text-light">Service</h5>
+          <g-link to="/over-ons">Bestelling & verzending</g-link><br />
+          <g-link to="/over-ons">Betalen</g-link><br />
+          <g-link to="/over-ons">Klachten</g-link><br />
+          <g-link to="/over-ons">FAQ</g-link><br />
+        </div>
+        <div class="column is-3">
+          <h5 class="has-text-light">Over Cantastic</h5>
+          <g-link to="/over-ons">Over ons</g-link><br />
+          <g-link to="/over-ons">Contact</g-link><br />
+          <g-link to="/over-ons">Algemene voorwaarden</g-link><br />
+          <g-link to="/over-ons">Blog</g-link><br />
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 <script>
