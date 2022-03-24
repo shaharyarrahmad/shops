@@ -102,6 +102,7 @@
             :src="maybe($context.featuredProduct.featuredAsset, 'preview')"
             :alt="$context.featuredProduct.name"
             ratio="1by1"
+            id="featured-image"
           />
         </div>
       </div>
@@ -154,4 +155,11 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+#featured-image > img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+</style>
