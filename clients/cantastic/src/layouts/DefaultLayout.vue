@@ -10,15 +10,8 @@
               /></a>
             </div>
             <div class="column is-hidden-mobile" id="search">
-              <b-field type="is-">
-                <b-autocomplete
-                  :data="['Loop', 'Montana', '400ml']"
-                  icon="magnify"
-                  clearable
-                  @select="(option) => (selected = option)"
-                >
-                  <template #empty>Geen resultaten gevonden</template>
-                </b-autocomplete>
+              <b-field type="">
+                <b-input icon="magnify" clearable> </b-input>
               </b-field>
             </div>
             <div class="column has-text-right" id="basket">
@@ -36,64 +29,76 @@
           </div>
         </div>
       </template>
+      <!-------------------- Nav items ------------------>
       <template #start>
-        <b-navbar-dropdown label="Spraypaint" arrowless hoverable>
-          <div class="columns is-centered my-3">
-            <div class="column is-3">
-              <h5 class="navbar-item">Spraypaint</h5>
-              <g-link to="/" class="navbar-item sub">Loop Colors 400 ml</g-link>
-              <g-link to="/" class="navbar-item sub">Loop Colors 600 ml</g-link>
-              <g-link to="/" class="navbar-item sub"
-                >Montana Black 400ml</g-link
-              >
-              <g-link to="/" class="navbar-item sub">Montana Ultrawide</g-link>
-              <g-link to="/" class="navbar-item sub"
-                >Burner Chrome & Tar</g-link
-              >
-              <g-link to="/" class="navbar-item sub"
-                >Lak en primer spuitbus</g-link
-              >
-              <g-link to="/" class="navbar-item sub"
-                >Water based Spray paint</g-link
-              >
-              <g-link to="/" class="navbar-item sub"
-                >Speciaal Effect Spuitverf</g-link
-              >
-              <g-link to="/" class="navbar-item sub">Cleaner & Eraser</g-link>
-              <g-link to="/" class="navbar-item sub">Voordeelpakketten</g-link>
-            </div>
-            <div class="column is-3">
-              <h5 class="navbar-item">Caps</h5>
-              <g-link to="/" class="navbar-item sub">Skinny Caps</g-link>
-              <g-link to="/" class="navbar-item sub">Soft caps</g-link>
-              <g-link to="/" class="navbar-item sub">Fat caps</g-link>
-              <g-link to="/" class="navbar-item sub">Speciale caps</g-link>
-              <g-link to="/" class="navbar-item sub">Pistol Grip</g-link>
-              <g-link to="/" class="navbar-item sub">Mix zakken</g-link>
-              <g-link to="/" class="navbar-item sub">Voordeel zakken</g-link>
-            </div>
-          </div>
-        </b-navbar-dropdown>
-        <b-navbar-item href="#"> markers</b-navbar-item>
-        <b-navbar-item href="#"> uitrusting</b-navbar-item>
-        <b-navbar-item href="#"> tekenen</b-navbar-item>
-        <b-navbar-item href="#"> stickers</b-navbar-item>
-        <b-navbar-item href="#"> kleding</b-navbar-item>
-        <b-navbar-dropdown label="Boeken & magazines" arrowless hoverable>
-          <div class="columns is-centered is-centered my-3">
-            <div class="column is-3">
-              <h5 class="navbar-item">Boeken & magazines</h5>
-              <g-link to="/" class="navbar-item sub">Magazines</g-link>
-              <g-link to="/" class="navbar-item sub">Boeken</g-link>
-            </div>
-          </div>
-        </b-navbar-dropdown>
-        <b-navbar-item href="#"> prints</b-navbar-item>
-        <b-navbar-item href="#"> deals</b-navbar-item>
-        <b-navbar-item href="#"> merken</b-navbar-item>
+        <template v-for="collection of $context.collections">
+          <template v-if="!hasSub(collection)">
+            <!-------------------- Single collection ------------------>
+            <g-link
+              class="navbar-item is-uppercase"
+              :to="`/categorie/${collection.slug}`"
+            >
+              {{ collection.name }}</g-link
+            >
+          </template>
+          <template v-else>
+            <!-------------------- Collection with children ------------------>
+            <b-navbar-dropdown
+              :label="collection.name"
+              class="is-uppercase"
+              arrowless
+              hoverable
+            >
+              <div class="columns is-centered my-3 is-capitalized">
+                <template
+                  v-for="subCollection of getChildrenWithChildren(
+                    collection.children
+                  )"
+                >
+                  <!-------------------- Children with children ------------------>
+                  <div class="column is-3">
+                    <h5 class="navbar-item is-hidden-mobile">
+                      {{ subCollection.name }}
+                    </h5>
+                    <g-link
+                      v-for="subsub of subCollection.children"
+                      :key="subsub.slug"
+                      :to="`/categorie/${subsub.slug}`"
+                      class="navbar-item sub"
+                    >
+                      {{ subsub.name }}
+                    </g-link>
+                  </div>
+                </template>
+                <!-------------------- Leaf children ------------------>
+                <div class="column is-3">
+                  <h5
+                    class="navbar-item is-hidden-mobile"
+                    v-if="
+                      hasLeafChildren(collection.children) &&
+                      hasChildrenWithChildren(collection.children)
+                    "
+                  >
+                    Overig
+                  </h5>
+                  <template
+                    v-for="subCollection of getLeafChildren(
+                      collection.children
+                    )"
+                  >
+                    <g-link class="navbar-item sub" :to="subCollection.slug">{{
+                      subCollection.name
+                    }}</g-link>
+                  </template>
+                </div>
+              </div>
+            </b-navbar-dropdown>
+          </template>
+        </template>
       </template>
     </b-navbar>
 
+    <!-------------------- Content ------------------>
     <div id="main-content" class="container is-widescreen section">
       <br />
 
@@ -111,11 +116,20 @@ export default {
     Breadcrumb,
   },
   methods: {
-    hasSubSubCollection(collection) {
-      // Check if any of the subCollections has another Subcollection
-      return collection.subCollection.find(
-        (sub) => sub.subCollection && sub.subCollection.length > 0
-      );
+    hasSub(collection) {
+      return collection.children?.length > 0;
+    },
+    getLeafChildren(collections) {
+      return collections.filter((child) => !this.hasSub(child));
+    },
+    hasLeafChildren(collections) {
+      return this.getLeafChildren(collections).length > 0;
+    },
+    getChildrenWithChildren(collections) {
+      return collections.filter((child) => this.hasSub(child));
+    },
+    hasChildrenWithChildren(collections) {
+      return this.getChildrenWithChildren(collections).length > 0;
     },
   },
   computed: {
@@ -126,20 +140,20 @@ export default {
 };
 </script>
 <style>
-/*@media screen and (min-width: 1024px) {
-  .navbar-dropdown {
-    width: 100vw;
-    top: 72px;
-    position: fixed;
+@media screen and (max-width: 1024px) {
+  .navbar-dropdown .columns,
+  .navbar-dropdown .column {
+    padding-top: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
-}*/
+}
 
 #main-content {
   margin-top: 72px;
 }
 
 .navbar-item {
-  text-transform: uppercase;
   font-weight: bold;
 }
 

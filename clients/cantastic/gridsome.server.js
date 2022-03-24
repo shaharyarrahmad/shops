@@ -27,6 +27,7 @@ module.exports = async function (api) {
       component: './src/templates/Index.vue',
       context: {
         products,
+        collections,
       },
     });
 
