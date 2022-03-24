@@ -15,15 +15,15 @@ const address = {
 const prices = {
   itemFE: '67,50',
   shippingOutsideEU: '14,-',
-  totalOutsideEU: '74,75',
+  totalOutsideEU: '74,15',
   shippingFE: '5,-',
-  totalFE: '65,15',
+  totalFE: '65,75',
   itemBE: '67.50',
   itemWithoutTaxBE: '61.93',
   shippingWithoutTaxBE: '4.59',
-  totalBE: '65.15',
-  totalWithoutTaxBE: '59.77',
-  dicountWithTaxBE: '-€7.36',
+  totalBE: '65.75',
+  totalWithoutTaxBE: '60.32',
+  dicountWithTaxBE: '-€6.75',
   tax: '9%',
 };
 
