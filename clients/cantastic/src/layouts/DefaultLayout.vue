@@ -106,7 +106,6 @@
     <slot name="fullwidth" />
 
     <div class="container is-widescreen section">
-      <br />
       <slot name="content2" />
     </div>
 
