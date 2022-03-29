@@ -1,11 +1,15 @@
-import { Collection, Country } from '../../generated/graphql';
+import {
+  Collection,
+  Country,
+  ProductFieldsFragment,
+} from '../../generated/graphql';
 import { CalculatedProduct } from '../../util/product.util';
 
 export interface ShopData {
   /**
    * All products from store
    */
-  products: CalculatedProduct[];
+  products: (CalculatedProduct & ProductFieldsFragment)[];
   /**
    * Products with variants per collection
    */

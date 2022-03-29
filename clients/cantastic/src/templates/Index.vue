@@ -1,8 +1,18 @@
 <template>
   <DefaultLayout>
     <template #content>
-      <div class="">
-        <b-icon icon="crown-circle" size="is-large" type="is-info"> </b-icon>
+      <div class="usps is-flex is-vcentered is-justify-content-space-between">
+        <template v-for="usp of $context.usps">
+          <div class="is-flex">
+            <b-icon
+              icon="crown-circle"
+              size="is-medium"
+              type="is-info"
+              class="is-vcentered"
+            ></b-icon>
+            <div v-html="usp" class="pl-2 pr-4"></div>
+          </div>
+        </template>
       </div>
       <h5>Content</h5>
       <h5>Content</h5>

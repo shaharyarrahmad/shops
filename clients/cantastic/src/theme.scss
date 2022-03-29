@@ -145,6 +145,10 @@ h6 {
   @extend .is-family-secondary;
 }
 
+.usps b{
+  color: $loop-red;
+}
+
 /** Navbar stuff **/
 .navbar-menu {
   background: $loop-red2;

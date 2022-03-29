@@ -21,13 +21,20 @@ module.exports = async function (api) {
 
     const collections = gridsome.unflatten(allCollections);
 
-    // ----------------- ProductOverview ---------------------
+    // ----------------- Index ---------------------
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
       context: {
         products,
         collections,
+        // highlight1: products.find(p => p.fa)
+        usps: [
+          '<p>Vanaf €75 <b>gratis</b> verzending</p>',
+          '<p><b>Achteraf</b> betalen</p>',
+          '<p><b>Exclusieve</b> producten</p>',
+          '<p>Ook wel eens <b>gearresteerd</b></p>',
+        ],
       },
     });
 
