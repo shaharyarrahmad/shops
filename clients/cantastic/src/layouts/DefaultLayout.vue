@@ -81,6 +81,15 @@
                   >
                     Overig
                   </h5>
+                  <h5
+                    v-if="
+                      hasLeafChildren(collection.children) &&
+                      !hasChildrenWithChildren(collection.children)
+                    "
+                    class="navbar-item is-hidden-mobile"
+                  >
+                    {{ collection.name }}
+                  </h5>
                   <template
                     v-for="subCollection of getLeafChildren(
                       collection.children
