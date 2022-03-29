@@ -28,7 +28,15 @@ module.exports = async function (api) {
       context: {
         products,
         collections,
-        // highlight1: products.find(p => p.fa)
+        highlight1: products.find((p) =>
+          p.facetValues.find((f) => f.code === 'highlight1')
+        ),
+        highlight2: products.find((p) =>
+          p.facetValues.find((f) => f.code === 'highlight2')
+        ),
+        highlight3: products.find((p) =>
+          p.facetValues.find((f) => f.code === 'highlight3')
+        ),
         usps: [
           '<p>Vanaf €75 <b>gratis</b> verzending</p>',
           '<p><b>Achteraf</b> betalen</p>',

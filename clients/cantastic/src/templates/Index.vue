@@ -1,7 +1,9 @@
 <template>
   <DefaultLayout>
     <template #content>
-      <div class="usps is-flex is-vcentered is-justify-content-space-between">
+      <div
+        class="usps is-flex-desktop is-vcentered is-justify-content-space-between"
+      >
         <template v-for="usp of $context.usps">
           <div class="is-flex">
             <b-icon
@@ -14,6 +16,25 @@
           </div>
         </template>
       </div>
+
+      <br />
+
+      <div class="columns" id="highlighted">
+        <div class="column">
+          <HighlightCard :product="$context.highlight1" />
+        </div>
+        <div class="column">
+          <div class="columns is-mobile is-multiline">
+            <div class="column is-12-tablet is-6-mobile">
+              <HighlightCard :product="$context.highlight2" />
+            </div>
+            <div class="column is-12-tablet is-6-mobile">
+              <HighlightCard :product="$context.highlight3" />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <h5>Content</h5>
       <h5>Content</h5>
       <h5>Content</h5>
@@ -67,9 +88,11 @@
 import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
 import { hydrate } from 'pinelab-storefront-client';
 import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/ProductFilter';
+import HighlightCard from '../components/HighlightCard';
 
 export default {
   components: {
+    HighlightCard,
     ProductCard,
     ProductFilter,
   },
