@@ -47,7 +47,10 @@ export class GridsomeService {
 
     const productsPerCollection: CollectionMap[] = collectionList.items.map(
       (collection: Collection) => {
-        const products = this.getProductsForCollection(collection);
+        const products = this.getProductsForCollection(
+          collection,
+          productList.items
+        );
         return {
           collection: { ...collection, productVariants: undefined },
           products,
@@ -71,10 +74,15 @@ export class GridsomeService {
   /**
    * Get products of collection based on `collection.variants`
    */
-  getProductsForCollection(collection: Collection): CalculatedProduct[] {
-    let productsPerCollection: Product[] = collection.productVariants.items.map(
-      (variant: ProductVariant) => variant.product
-    );
+  getProductsForCollection(
+    collection: Collection,
+    allProducts: Product[]
+  ): CalculatedProduct[] {
+    let productsPerCollection: Product[] = collection.productVariants.items
+      .map((variant: ProductVariant) =>
+        allProducts.find((product) => product.id === variant.product.id)
+      )
+      .filter((product): product is Product => !!product);
     productsPerCollection = deduplicate(productsPerCollection);
     return productsPerCollection.map((p) => setCalculatedFields(p));
   }

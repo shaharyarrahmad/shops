@@ -6,6 +6,7 @@
 $loop-dark: #131520;
 $loop-soft-dark: #333232;
 $loop-blue: #23395B;
+$loop-blue2: #3b5f98;
 $loop-red: #DF3837;
 $loop-red2: #E55F5E;
 $loop-grey: #dfdee6;
@@ -15,7 +16,7 @@ $loop-orange: #F7DBA7;
 
 $text: $loop-soft-dark;
 $primary: $loop-red;
-$link: $loop-blue;
+$link: $loop-blue2;
 $info: $loop-blue;
 $success: $loop-green;
 $warning: $loop-red2;
@@ -31,8 +32,10 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-primary: "Roboto";
-$family-secondary: "Open Sans";
+$family-primary: "Open Sans", "Segoe UI", "Apple SD Gothic Neo", "Lucida Grande", "Lucida Sans Unicode", "sans‑serif";
+$family-secondary: "Roboto", "-apple-system", "BlinkMacSystemFont", "Tahoma", "sans‑serif";
+
+$body-line-height: 2;
 
 $control-radius: 6px;
 
@@ -111,29 +114,35 @@ $colors: mergeColorMaps(
 h1 {
   @extend .title;
   @extend .is-1;
+  @extend .is-family-secondary;
 }
 
 h2 {
   @extend .title;
   @extend .is-2;
+  @extend .is-family-secondary;
 }
 
 h3 {
   @extend .title;
   @extend .is-3;
+  @extend .is-family-secondary;
 }
 
 h4 {
   @extend .title;
   @extend .is-4;
+  @extend .is-family-secondary;
 }
 h5 {
   @extend .title;
   @extend .is-5;
+  @extend .is-family-secondary;
 }
 h6 {
   @extend .title;
   @extend .is-6;
+  @extend .is-family-secondary;
 }
 
 /** Navbar stuff **/
@@ -155,5 +164,4 @@ h6 {
 }
 .footer a {
   @extend .has-text-light;
-  @extend .is-family-secondary;
 }

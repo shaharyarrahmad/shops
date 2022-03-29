@@ -1,6 +1,9 @@
 <template>
   <DefaultLayout>
     <template #content>
+      <div class="">
+        <b-icon icon="crown-circle" size="is-large" type="is-info"> </b-icon>
+      </div>
       <h5>Content</h5>
       <h5>Content</h5>
       <h5>Content</h5>
@@ -14,17 +17,26 @@
     </template>
 
     <template #fullwidth>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
-      <h5>widthh</h5>
+      <div class="columns is-vcentered">
+        <div class="column">
+          <h2 class="has-text-light">Over Cantastic.nl</h2>
+          <p class="has-text-light">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            finibus, mauris non facilisis lacinia, quam ipsum lobortis quam, eu
+            euismod risus mi ac lorem. Morbi faucibus ex in ex pulvinar sodales.
+            Pellentesque porttitor imperdiet euismod. Quisque at porttitor sem,
+            at congue eros. Suspendisse sollicitudin est vel lorem aliquam
+            lacinia. In efficitur nibh eget rhoncus mollis. Suspendisse cursus
+            convallis dui, vel ullamcorper arcu dictum ut. Nam ac libero est.
+            Nunc nec tincidunt nisl. Donec a posuere enim. Nam vitae luctus
+            nisl. Aliquam ornare, urna quis imperdiet tristique, lorem tellus
+            sagittis ligula, nec mollis lectus mauris quis nisi.
+          </p>
+        </div>
+        <div class="column p-6">
+          <img src="/img/cantastic-white.png" alt="Cantastic logo" />
+        </div>
+      </div>
     </template>
 
     <template #content2>

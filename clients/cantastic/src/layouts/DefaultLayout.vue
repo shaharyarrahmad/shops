@@ -6,12 +6,12 @@
           <div class="columns is-mobile pt-2" style="width: 100%">
             <div class="column">
               <a href="/" aria-current="page"
-                ><img src="/logo.png" alt="Cantastic.nl logo" id="logo"
+                ><img src="/img/logo.png" alt="Cantastic.nl logo" id="logo"
               /></a>
             </div>
             <div class="column is-hidden-mobile" id="search">
               <b-field type="">
-                <b-input icon="magnify" clearable> </b-input>
+                <b-input icon="magnify" clearable></b-input>
               </b-field>
             </div>
             <div class="column has-text-right" id="basket">
@@ -38,8 +38,8 @@
               class="navbar-item is-uppercase"
               :to="`/categorie/${collection.slug}`"
             >
-              {{ collection.name }}</g-link
-            >
+              {{ collection.name }}
+            </g-link>
           </template>
           <template v-else>
             <!-------------------- Collection with children ------------------>
@@ -95,9 +95,9 @@
                       collection.children
                     )"
                   >
-                    <g-link class="navbar-item sub" :to="subCollection.slug">{{
-                      subCollection.name
-                    }}</g-link>
+                    <g-link class="navbar-item sub" :to="subCollection.slug"
+                      >{{ subCollection.name }}
+                    </g-link>
                   </template>
                 </div>
               </div>
@@ -112,17 +112,22 @@
       <br />
       <slot name="content" />
     </div>
-    <slot name="fullwidth" />
+
+    <div class="has-background-info">
+      <div class="container is-widescreen section">
+        <slot name="fullwidth" />
+      </div>
+    </div>
 
     <div class="container is-widescreen section">
       <slot name="content2" />
     </div>
 
-    <footer class="footer has-background-warning has-text-light"></footer>
-    <footer class="footer has-background-info has-text-light">
+    <footer class="footer has-background-warning has-text-white"></footer>
+    <footer class="footer has-background-info has-text-white">
       <div class="columns">
         <div class="column is-3">
-          <h5 class="has-text-light">Categorieën</h5>
+          <h5 class="has-text-white">Categorieën</h5>
           <g-link
             v-for="collection of $context.collections"
             :key="collection.slug"
@@ -132,18 +137,29 @@
           </g-link>
         </div>
         <div class="column is-3">
-          <h5 class="has-text-light">Service</h5>
-          <g-link to="/over-ons">Bestelling & verzending</g-link><br />
-          <g-link to="/over-ons">Betalen</g-link><br />
-          <g-link to="/over-ons">Klachten</g-link><br />
-          <g-link to="/over-ons">FAQ</g-link><br />
+          <h5 class="has-text-white">Service</h5>
+          <g-link to="/over-ons">Bestelling & verzending</g-link>
+          <br />
+          <g-link to="/over-ons">Betalen</g-link>
+          <br />
+          <g-link to="/over-ons">Klachten</g-link>
+          <br />
+          <g-link to="/over-ons">FAQ</g-link>
+          <br />
         </div>
         <div class="column is-3">
-          <h5 class="has-text-light">Over Cantastic</h5>
-          <g-link to="/over-ons">Over ons</g-link><br />
-          <g-link to="/over-ons">Contact</g-link><br />
-          <g-link to="/over-ons">Algemene voorwaarden</g-link><br />
-          <g-link to="/over-ons">Blog</g-link><br />
+          <h5 class="has-text-white">Over Cantastic</h5>
+          <g-link to="/over-ons">Over ons</g-link>
+          <br />
+          <g-link to="/over-ons">Contact</g-link>
+          <br />
+          <g-link to="/over-ons">Algemene voorwaarden</g-link>
+          <br />
+          <g-link to="/over-ons">Blog</g-link>
+          <br />
+        </div>
+        <div class="column is-3">
+          <h3 class="has-text-white">Volg @Cantastic.nl en #TeamJoopie</h3>
         </div>
       </div>
     </footer>

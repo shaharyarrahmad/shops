@@ -61,7 +61,6 @@ export const GET_PRODUCTS = gql`
 `;
 
 export const GET_COLLECTIONS = gql`
-  ${PRODUCT_FIELDS}
   {
     Vendure {
       collections {
@@ -87,7 +86,9 @@ export const GET_COLLECTIONS = gql`
           productVariants {
             items {
               product {
-                ...ProductFields
+                id
+                name
+                slug
               }
             }
           }
