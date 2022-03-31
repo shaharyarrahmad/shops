@@ -38,6 +38,7 @@ import {
   InvoicePlugin,
 } from 'vendure-plugin-invoices';
 import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
+import { CoinbasePlugin } from 'vendure-plugin-coinbase';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -143,6 +144,7 @@ export const config: VendureConfig = {
     }),
     MolliePlugin.init({ vendureHost: process.env.VENDURE_HOST! }),
     GoogleStoragePlugin,
+    CoinbasePlugin,
     MyparcelPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
