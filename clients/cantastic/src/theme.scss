@@ -106,7 +106,6 @@ $colors: mergeColorMaps(
 );
 
 
-
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
@@ -134,11 +133,13 @@ h4 {
   @extend .is-4;
   @extend .is-family-secondary;
 }
+
 h5 {
   @extend .title;
   @extend .is-5;
   @extend .is-family-secondary;
 }
+
 h6 {
   @extend .title;
   @extend .is-6;
@@ -156,9 +157,11 @@ h6 {
     background: $loop-white;
   }
 }
+
 .navbar-dropdown h5.navbar-item {
   margin-bottom: 0;
 }
+
 .navbar-dropdown {
   @media screen and (min-width: $desktop) {
     /*width: 100vw;*/
@@ -166,6 +169,14 @@ h6 {
     position: fixed;
   }
 }
+
 .footer a {
   @extend .has-text-light;
 }
+/*
+
+.container-width {
+  @extend .container;
+  flex-grow: unset;
+  position: unset;
+}*/
