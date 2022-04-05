@@ -41,7 +41,7 @@
     "vendure-plugin-invoices": "^2.5.0",
     "vendure-plugin-myparcel": "2.5.0",
     "vendure-plugin-webhook": "2.6.0",
-    "winston": "^3.6.0"
+    "winston": "^3.7.2"
   },
   "devDependencies": {
     "@types/papaparse": "^5.3.2",
