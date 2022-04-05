@@ -26,7 +26,7 @@ export default {
 </script>
 <style>
 .highlight-card {
-  min-height: 240px;
+  min-height: 200px;
   box-shadow: inset 0 0 0 2000px rgba(35, 57, 91, 0.3);
   background-size: cover;
   height: 100%;

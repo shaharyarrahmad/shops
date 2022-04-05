@@ -12311,10 +12311,10 @@ vendure-plugin-dutch-postalcode@2.5.0:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.5.0.tgz#e10235f589983e2f8bc2bec7722c3d73c0d5c856"
   integrity sha512-H3cBC9VV59fOCE80rhYrwtTvGzmcKVZR8G1+kEfJpoenxfX8y2H7C1KARE/3SIf9pOlHWKmBgq4tZae2IrvWLg==
 
-vendure-plugin-goedgepickt@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-2.5.0.tgz#eccff2a4162b046c8975def6eba9bf2ca1b21106"
-  integrity sha512-ynwepzOkBmJ5NxDXRnp2fqbYm0YkQ3FfEkUSWw/JfNQFcFrlmduISnSbEjkyN5lWyj3Y5yOeTVFzys4hZ3bXtg==
+vendure-plugin-goedgepickt@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-2.6.0.tgz#046987eab432e227d76a5707365b8f866cd3e4c4"
+  integrity sha512-yYZNWjP1jNhomH5XIDpk50xza9zstIVmwHOajz+XLF1tdb4mDwwg+XB8ZzLMCCPy3n3/u0Mwtj8nUq3voe2aTw==
   dependencies:
     node-fetch "2"
 
@@ -12350,10 +12350,10 @@ vendure-plugin-myparcel@2.5.0:
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-webhook@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.5.0.tgz#f0541cd4e8864ba0ecb581448a07d1f3c15eb7a3"
-  integrity sha512-zK8rOtaEvdhHT2cUo0t08jxomJ9B0DfEAPodp0CWZhlBFni3c41g51gMwqgoC5/1mgME0ksJZkta04413huNdg==
+vendure-plugin-webhook@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.6.0.tgz#6fe47c452e24ed5bcadb11a82f642a1b82971afd"
+  integrity sha512-BjdDkepYLs0S1sz5FyhWEo+U74wTbMqTgPnfejgFJI7SBxHWZHjNRAP9qXELX/EYToHFfGuq1vnKNf5w+incfA==
 
 verror@1.10.0:
   version "1.10.0"

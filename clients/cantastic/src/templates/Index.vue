@@ -20,10 +20,10 @@
       <br />
 
       <div class="columns" id="highlighted">
-        <div class="column">
+        <div class="column is-7">
           <HighlightCard :product="$context.highlight1" />
         </div>
-        <div class="column">
+        <div class="column is-5">
           <div class="columns is-mobile is-multiline">
             <div class="column is-12-tablet is-6-mobile">
               <HighlightCard :product="$context.highlight2" />
