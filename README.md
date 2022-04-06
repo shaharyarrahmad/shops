@@ -31,3 +31,13 @@ See [Trello](https://trello.com/c/Ij0bDrCh/362-shop-checklist) for more detail o
 
 1. Setup content via content.pinelab.studio. This is the Directus interface for non-product content.
 2. Add the same Netlify build hook in Directus.
+
+# Pinelab principles
+
+1. One fan a day: Try to do something unexpected every day for 1 customer of Pinelab to create a fanbase.
+2. Keep it simple. You aren't going to need it. Don't implement it now because you assume you will need it later.
+3. Write code for humans, not machines. Minor performance trade-offs are fine when they make your code more readable.
+4. What is the impact of this new feature? Is it easily reverted? Will future code have to deal with it? Every addition takes a toll: be careful what you add, even when a client wants it.
+5. 80/20 rule: If 80% of the clients can use it, implement it in the platform. Otherwise, separate it, charge more for it or just don't do it.
+6. Make a developer happy: document in code (README, JsDoc), no one maintains external docs! You can even add images in Markdown...
+7. Try to keep things stateless: avoid new database entities. Avoid cronjobs where possible
