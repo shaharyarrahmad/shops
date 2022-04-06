@@ -19,8 +19,9 @@
       country-label="Land"
       total-label="Totaal"
       payment-method-label="Hoe wil je betalen?"
-      :payment-methods="['mollie', 'coinbase']"
     >
+      <!-- :payment-methods="['mollie', 'coinbase']" -->
+
       <template #mollie>
         <span class="payment-methods">
           <span>Betalen via Mollie</span>
