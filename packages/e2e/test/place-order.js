@@ -102,7 +102,7 @@ module.exports = {
       .assert.containsText('body', prices.totalFE)
       // Payment
       .click('button[type="button"]')
-      .waitForElementVisible(ideal)
+      .waitForElementVisible(ideal, 10000)
       .click(ideal)
       .waitForElementVisible(ing)
       .click(ing)
