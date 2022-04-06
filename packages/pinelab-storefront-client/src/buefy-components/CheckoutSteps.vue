@@ -428,15 +428,9 @@ export default {
           const redirectUrl = await this.$vendure.createMolliePaymentIntent(
             `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`
           );
-          console.log(redirectUrl);
-          return; // FIXME
-
           window.location.replace(redirectUrl);
         } else if (method === 'coinbase') {
           const redirectUrl = await this.$vendure.createCoinbasePaymentIntent();
-          console.log(redirectUrl);
-          return; // FIXME
-
           window.location.replace(redirectUrl);
         } else {
           console.error(`${method} is not a valid payment method!`);
