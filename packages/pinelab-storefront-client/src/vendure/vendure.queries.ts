@@ -269,6 +269,12 @@ export const CREATE_MOLLIE_PAYMENT_INTENT = gql`
   }
 `;
 
+export const CREATE_COINBASE_PAYMENT_INTENT = gql`
+  mutation createCoinbasePaymentIntent {
+    createCoinbasePaymentIntent
+  }
+`;
+
 export const GET_ORDER_BY_CODE = gql`
   ${ORDER_FIELDS}
   query orderByCode($code: String!) {

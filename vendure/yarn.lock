@@ -12326,10 +12326,10 @@ vendure-plugin-google-cloud-tasks@2.5.0:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
 
-vendure-plugin-google-storage-assets@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.5.0.tgz#e897c6f40c34f2eeef405e1be03e814b1f8a5c65"
-  integrity sha512-CGUsG62ac5NbRabZz7e6cpTdvYBfQvBLxyKPZrlUSZSXMHn6lmQbFpJz2Pl+xmaNctEcEsoR3YQBBC5WYO7Mag==
+vendure-plugin-google-storage-assets@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.6.1.tgz#3fd04f21a821f7f93d8dea158036945dfdf20858"
+  integrity sha512-EsbAmngcbLmCcQ+YYGGi3srg9RKgY/0vgEJCkwfY02FhTWHHlpe6huz3QLqTJ/MeOd4abG/nBObK/dexHOgcjw==
   dependencies:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
