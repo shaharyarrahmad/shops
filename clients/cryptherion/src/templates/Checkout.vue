@@ -18,7 +18,33 @@
       city-label="Plaats"
       country-label="Land"
       total-label="Totaal"
-    />
+      payment-method-label="Hoe wil je betalen?"
+    >
+      <!-- :payment-methods="['mollie', 'coinbase']" -->
+
+      <template #mollie>
+        <span class="payment-methods">
+          <span>Betalen via Mollie</span>
+          <img src="/img/payment/ideal.svg" alt="ideal" />
+          <img src="/img/payment/maestro.svg" alt="maestro" />
+          <img src="/img/payment/mastercard.svg" alt="mastercard" />
+          <img src="/img/payment/visa.svg" alt="visa" />
+          <img src="/img/payment/sofort.svg" alt="sofort" />
+          <img src="/img/payment/bancontact.svg" alt="bancontact" />
+        </span>
+      </template>
+      <template #coinbase>
+        <span class="payment-methods">
+          <span>Betalen via Coinbase</span>
+          <img src="/img/payment/bitcoin.png" alt="bitcoin" />
+          <img src="/img/payment/bitcoincash.svg" alt="bitcoincash" />
+          <img src="/img/payment/dai.svg" alt="dai" />
+          <img src="/img/payment/dogecoin.png" alt="dogecoin" />
+          <img src="/img/payment/ethereum.png" alt="ethereum" />
+          <img src="/img/payment/litecoin.png" alt="litecoin" />
+        </span>
+      </template>
+    </CheckoutSteps>
   </Layout>
 </template>
 <script>
@@ -30,3 +56,14 @@ export default {
   },
 };
 </script>
+<style>
+.payment-methods img {
+  height: 40px;
+  padding-right: 5px;
+}
+
+.payment-methods span {
+  display: block;
+  padding: 5px 0 5px 0;
+}
+</style>

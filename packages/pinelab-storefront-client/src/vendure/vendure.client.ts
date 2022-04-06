@@ -4,6 +4,7 @@ import {
   ADD_ITEM_TO_ORDER,
   ADJUST_ORDERLINE,
   APPLY_COUPON_CODE,
+  CREATE_COINBASE_PAYMENT_INTENT,
   CREATE_MOLLIE_PAYMENT_INTENT,
   GET_ACTIVE_ORDER,
   GET_DUTCH_ADDRESS,
@@ -28,6 +29,7 @@ import {
   ApplyCouponCodeMutation,
   ApplyCouponCodeMutationVariables,
   CreateAddressInput,
+  CreateCoinbasePaymentIntentMutation,
   CreateCustomerInput,
   CreateMolliePaymentIntentMutation,
   CreateMolliePaymentIntentMutationVariables,
@@ -214,6 +216,15 @@ export class VendureClient {
     });
     this.validateResult(createMolliePaymentIntent);
     return (createMolliePaymentIntent as MolliePaymentIntent).url;
+  }
+
+  async createCoinbasePaymentIntent(): Promise<string> {
+    const { createCoinbasePaymentIntent } =
+      await this.request<CreateCoinbasePaymentIntentMutation>(
+        CREATE_COINBASE_PAYMENT_INTENT
+      );
+    this.validateResult(createCoinbasePaymentIntent);
+    return createCoinbasePaymentIntent;
   }
 
   async getOrderByCode(code: string): Promise<OrderFieldsFragment | undefined> {

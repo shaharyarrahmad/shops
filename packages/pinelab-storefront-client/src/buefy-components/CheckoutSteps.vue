@@ -235,7 +235,7 @@
                     type="is-primary"
                     icon-left="currency-eur"
                     :loading="loadingPayment"
-                    @click="goToPayment($event)"
+                    @click="choosePayment($event)"
                   >
                     {{ paymentLabel }}
                   </b-button>
@@ -253,7 +253,54 @@
           :clickable="false"
           disabled
         >
-          You're not supposed to be here...
+          <br />
+          <div class="columns">
+            <div class="column is-offset-one-quarter">
+              <h5>{{ paymentMethodLabel }}</h5>
+              <br />
+              <section>
+                <b-field>
+                  <b-radio
+                    v-model="selectedPaymentMethod"
+                    native-value="mollie"
+                  >
+                    <slot name="mollie">Mollie (iDeal, Creditcard)</slot>
+                  </b-radio>
+                </b-field>
+                <b-field>
+                  <b-radio
+                    v-model="selectedPaymentMethod"
+                    native-value="coinbase"
+                  >
+                    <slot name="coinbase"
+                      >Coinbase (Bitcoin, Ethereum, Litecoin and more)</slot
+                    >
+                  </b-radio>
+                </b-field>
+              </section>
+              <br />
+              <p>
+                {{ totalLabel }}:
+                <strong>{{ activeOrder.totalWithTax | euro }}</strong>
+              </p>
+              <br />
+              <div class="columns is-mobile">
+                <div class="column">
+                  <a @click="goBack()" class="button is-outlined"><</a>
+                </div>
+                <div class="column">
+                  <b-button
+                    type="is-primary"
+                    icon-left="currency-eur"
+                    :loading="loadingPayment"
+                    @click="pay($event, selectedPaymentMethod)"
+                  >
+                    {{ paymentLabel }}
+                  </b-button>
+                </div>
+              </div>
+            </div>
+          </div>
         </b-step-item>
 
         <!--- Order -------------------------------------->
@@ -292,10 +339,21 @@ export default {
     countryLabel: { default: 'Country' },
     totalLabel: { default: 'Total' },
     succesLabel: { default: 'Success!' },
+    paymentMethodLabel: { default: 'How would you like to pay?' },
     availableCountries: {
       type: Array,
       default() {
         return [{ name: 'Nederland', code: 'nl' }];
+      },
+    },
+    paymentMethods: {
+      type: Array,
+      validator(values) {
+        // The values must match one of these strings
+        return values.every((value) => ['mollie', 'coinbase'].includes(value));
+      },
+      default() {
+        return ['mollie'];
       },
     },
   },
@@ -325,6 +383,7 @@ export default {
       },
       shippingMethods: [],
       selectedShippingMethod: undefined,
+      selectedPaymentMethod: 'mollie',
     };
   },
   methods: {
@@ -354,14 +413,29 @@ export default {
       }
       this.activeStep = 1;
     },
-    async goToPayment(e) {
-      e.preventDefault();
-      this.loadingPayment = true;
+    async choosePayment(e) {
+      if (this.paymentMethods.length > 1) {
+        this.activeStep = 2;
+      } else {
+        await this.pay(e, 'mollie');
+      }
+    },
+    async pay(e, method) {
       try {
-        const redirectUrl = await this.$vendure.createMolliePaymentIntent(
-          `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`
-        );
-        window.location.replace(redirectUrl);
+        e.preventDefault();
+        this.loadingPayment = true;
+        if (method === 'mollie') {
+          const redirectUrl = await this.$vendure.createMolliePaymentIntent(
+            `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`
+          );
+          window.location.replace(redirectUrl);
+        } else if (method === 'coinbase') {
+          const redirectUrl = await this.$vendure.createCoinbasePaymentIntent();
+          window.location.replace(redirectUrl);
+        } else {
+          console.error(`${method} is not a valid payment method!`);
+          this.showError();
+        }
       } catch (e) {
         console.error(e);
         this.showError();
