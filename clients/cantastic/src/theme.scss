@@ -9,7 +9,7 @@ $loop-blue: #23395B;
 $loop-blue2: #3b5f98;
 $loop-red: #DF3837;
 $loop-red2: #E55F5E;
-$loop-grey: #dfdee6;
+$loop-grey: #e7e7e7;
 $loop-white: #ffffff;
 $loop-green: #0CCE6B;
 $loop-orange: #F7DBA7;
@@ -24,6 +24,7 @@ $danger: $loop-red;
 $body-background-color: $loop-white;
 $primary-invert: $loop-white;
 $dark: $loop-dark;
+$light: $loop-grey;
 
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
@@ -164,7 +165,7 @@ h6 {
 
 .navbar-dropdown {
   @media screen and (min-width: $desktop) {
-    top: 104px;
+    top: 102px;
     position: fixed;
   }
 }

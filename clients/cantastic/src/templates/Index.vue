@@ -12,7 +12,7 @@
               type="is-info"
               class="is-vcentered"
             ></b-icon>
-            <div v-html="usp" class="pl-2 pr-4"></div>
+            <div v-html="usp" class="pl-2"></div>
           </div>
         </template>
       </div>

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br />
     <b-navbar :fixed-top="true" type="is-danger" centered transparent>
       <template #brand>
         <div class="container is-widescreen section" id="top-navbar">
@@ -37,7 +36,7 @@
             <template v-if="!hasChildren(collection)">
               <!-------------------- Single collection ------------------>
               <g-link
-                class="navbar-item is-uppercase navbar-link is-arrowless"
+                class="navbar-item is-uppercase navbar-link is-arrowless is-family-secondary"
                 :to="`/categorie/${collection.slug}`"
               >
                 {{ collection.name }}
@@ -47,7 +46,7 @@
               <!-------------------- Collection with children ------------------>
               <b-navbar-dropdown
                 :label="collection.name"
-                class="is-uppercase"
+                class="is-uppercase is-family-secondary"
                 arrowless
                 hoverable
               >
@@ -117,10 +116,12 @@
     </b-navbar>
 
     <!-------------------- Content ------------------>
+    <br />
+    <br />
+    <br />
     <div>
       <transition name="fade" appear>
         <div class="container is-widescreen section">
-          <br />
           <slot name="content" />
         </div>
       </transition>
@@ -252,7 +253,7 @@ export default {
 
 .navbar-item {
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .navbar-item.sub {

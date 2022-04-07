@@ -3,7 +3,8 @@
     v-if="isDiv"
     class="button is-danger is-family-secondary has-text-weight-bold"
   >
-    <slot />
+    <span><slot /></span>
+    <span class="icon is-large"><i class="mdi mdi-chevron-right"></i></span>
   </div>
 
   <g-link
@@ -11,7 +12,7 @@
     class="button is-danger is-family-secondary has-text-weight-bold"
     :to="to"
   >
-    <slot />
+    <span><slot /></span>
   </g-link>
 </template>
 <script>

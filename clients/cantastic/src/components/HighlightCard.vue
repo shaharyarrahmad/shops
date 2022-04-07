@@ -5,11 +5,11 @@
       :style="`background-image: url(${image});`"
     >
       <div>
-        <h3 class="has-text-light">{{ product.name }}</h3>
-        <h4 class="subtitle has-text-light">
+        <h3 class="has-text-white">{{ product.name }}</h3>
+        <h4 class="subtitle has-text-white">
           {{ product.lowestPrice | euro }}
         </h4>
-        <CantasticButton is-div="true"> Bekijk deal > </CantasticButton>
+        <CantasticButton is-div="true"> Bekijk deal </CantasticButton>
       </div>
     </div>
   </g-link>
