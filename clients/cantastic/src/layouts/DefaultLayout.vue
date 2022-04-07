@@ -1,5 +1,6 @@
 <template>
   <div>
+    <br />
     <b-navbar :fixed-top="true" type="is-danger" centered transparent>
       <template #brand>
         <div class="container is-widescreen section" id="top-navbar">
@@ -31,98 +32,115 @@
       </template>
       <!-------------------- Nav items ------------------>
       <template #start>
-        <template v-for="collection of $context.collections">
-          <template v-if="!hasSub(collection)">
-            <!-------------------- Single collection ------------------>
-            <g-link
-              class="navbar-item is-uppercase"
-              :to="`/categorie/${collection.slug}`"
-            >
-              {{ collection.name }}
-            </g-link>
-          </template>
-          <template v-else>
-            <!-------------------- Collection with children ------------------>
-            <b-navbar-dropdown
-              :label="collection.name"
-              class="is-uppercase"
-              arrowless
-              hoverable
-            >
-              <div class="columns is-centered my-3 is-capitalized">
-                <template
-                  v-for="subCollection of getChildrenWithChildren(
-                    collection.children
-                  )"
-                >
-                  <!-------------------- Children with children ------------------>
-                  <div class="column is-3">
-                    <h5 class="navbar-item is-hidden-mobile">
-                      {{ subCollection.name }}
-                    </h5>
-                    <g-link
-                      v-for="subsub of subCollection.children"
-                      :key="subsub.slug"
-                      :to="`/categorie/${subsub.slug}`"
-                      class="navbar-item sub"
+        <div class="container is-widescreen section" id="navbar-items-wrapper">
+          <template v-for="(collection, i) of $context.collections">
+            <template v-if="!hasSub(collection)">
+              <!-------------------- Single collection ------------------>
+              <g-link
+                class="navbar-item is-uppercase navbar-link is-arrowless"
+                :to="`/categorie/${collection.slug}`"
+              >
+                {{ collection.name }}
+              </g-link>
+            </template>
+            <template v-else>
+              <!-------------------- Collection with children ------------------>
+              <b-navbar-dropdown
+                :label="collection.name"
+                class="is-uppercase"
+                arrowless
+                hoverable
+              >
+                <div class="container is-widescreen section py-1">
+                  <div class="columns is-capitalized">
+                    <template
+                      v-for="subCollection of getChildrenWithChildren(
+                        collection.children
+                      )"
                     >
-                      {{ subsub.name }}
-                    </g-link>
+                      <!-------------------- Children with children ------------------>
+                      <div
+                        class="column is-3"
+                        v-for="(chunk, i) of getChunks(
+                          subCollection,
+                          collection.children.length
+                        )"
+                      >
+                        <h5 class="navbar-item is-hidden-mobile px-0">
+                          {{ i == 0 ? subCollection.name : '&nbsp;' }}
+                        </h5>
+                        <g-link
+                          v-for="subsub of chunk"
+                          :key="subsub.slug"
+                          :to="`/categorie/${subsub.slug}`"
+                          class="navbar-item sub px-0"
+                        >
+                          {{ subsub.name }}
+                        </g-link>
+                      </div>
+                    </template>
+                    <!-------------------- Leaf children ------------------>
+                    <div class="column is-3">
+                      <h5
+                        class="navbar-item is-hidden-mobile px-0"
+                        v-if="
+                          hasLeafChildren(collection.children) &&
+                          hasChildrenWithChildren(collection.children)
+                        "
+                      >
+                        Overig
+                      </h5>
+                      <h5
+                        v-if="
+                          hasLeafChildren(collection.children) &&
+                          !hasChildrenWithChildren(collection.children)
+                        "
+                        class="navbar-item is-hidden-mobile px-0"
+                      >
+                        {{ collection.name }}
+                      </h5>
+                      <template
+                        v-for="subCollection of getLeafChildren(
+                          collection.children
+                        )"
+                      >
+                        <g-link
+                          class="navbar-item sub px-0"
+                          :to="subCollection.slug"
+                          >{{ subCollection.name }}
+                        </g-link>
+                      </template>
+                    </div>
                   </div>
-                </template>
-                <!-------------------- Leaf children ------------------>
-                <div class="column is-3">
-                  <h5
-                    class="navbar-item is-hidden-mobile"
-                    v-if="
-                      hasLeafChildren(collection.children) &&
-                      hasChildrenWithChildren(collection.children)
-                    "
-                  >
-                    Overig
-                  </h5>
-                  <h5
-                    v-if="
-                      hasLeafChildren(collection.children) &&
-                      !hasChildrenWithChildren(collection.children)
-                    "
-                    class="navbar-item is-hidden-mobile"
-                  >
-                    {{ collection.name }}
-                  </h5>
-                  <template
-                    v-for="subCollection of getLeafChildren(
-                      collection.children
-                    )"
-                  >
-                    <g-link class="navbar-item sub" :to="subCollection.slug"
-                      >{{ subCollection.name }}
-                    </g-link>
-                  </template>
                 </div>
-              </div>
-            </b-navbar-dropdown>
+              </b-navbar-dropdown>
+            </template>
           </template>
-        </template>
+        </div>
       </template>
     </b-navbar>
 
     <!-------------------- Content ------------------>
-    <div class="container is-widescreen section">
-      <br />
-      <slot name="content" />
-    </div>
+    <div>
+      <transition name="fade" appear>
+        <div class="container is-widescreen section">
+          <br />
+          <slot name="content" />
+        </div>
+      </transition>
 
-    <div class="has-background-info">
+      <div class="has-background-info">
+        <div class="container is-widescreen section">
+          <slot name="fullwidth" />
+        </div>
+      </div>
+
       <div class="container is-widescreen section">
-        <slot name="fullwidth" />
+        <slot name="content2" />
       </div>
     </div>
 
-    <div class="container is-widescreen section">
-      <slot name="content2" />
-    </div>
-
+    <!--------------------------------- FOOTER ------------------------------->
     <footer class="footer has-background-warning has-text-white"></footer>
     <footer class="footer has-background-info has-text-white">
       <div class="columns">
@@ -190,6 +208,28 @@ export default {
     hasChildrenWithChildren(collections) {
       return this.getChildrenWithChildren(collections).length > 0;
     },
+    /**
+     * Split children of collection into chunks based on the columns available:
+     * If already 2 columns, only use 2 extra
+     */
+    getChunks(collection, nrOfColumnsTaken) {
+      let chunkSize = 20; // max chunksize
+      if (nrOfColumnsTaken === 1) {
+        // If only 1 column is taken, divide the other items over 3 columns
+        chunkSize = Math.ceil(collection.children.length / 3);
+      } else if (nrOfColumnsTaken === 2) {
+        // if 2 columns taken, divide the other items over 2 columns
+        chunkSize = Math.ceil(collection.children.length / 2);
+      }
+      console.log(
+        `${collection.name} ${nrOfColumnsTaken} columns chunkSize=${chunkSize}`
+      );
+      const chunks = [];
+      for (let i = 0; i < collection.children.length; i += chunkSize) {
+        chunks.push(collection.children.slice(i, i + chunkSize));
+      }
+      return chunks;
+    },
   },
   computed: {
     activeOrder() {
@@ -208,19 +248,17 @@ export default {
   }
 }
 
-#main-content {
-  margin-top: 72px;
-}
-
 .navbar-item {
   font-weight: bold;
+  font-size: 0.95rem;
 }
 
 .navbar-item.sub {
   font-weight: normal;
 }
 
-a.navbar-item:hover {
+a.navbar-item:hover,
+.navbar-item a:hover {
   text-decoration: underline;
 }
 
@@ -238,8 +276,18 @@ a.navbar-item:hover {
 
 .navbar-start {
   width: 100%;
-  margin: 0 !important;
-  justify-content: space-around !important;
+}
+
+.navbar-link {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#navbar-items-wrapper {
+  display: inherit;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 #logo {

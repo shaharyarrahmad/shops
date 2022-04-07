@@ -164,8 +164,7 @@ h6 {
 
 .navbar-dropdown {
   @media screen and (min-width: $desktop) {
-    /*width: 100vw;*/
-    top: 105px;
+    top: 104px;
     position: fixed;
   }
 }
@@ -173,10 +172,3 @@ h6 {
 .footer a {
   @extend .has-text-light;
 }
-/*
-
-.container-width {
-  @extend .container;
-  flex-grow: unset;
-  position: unset;
-}*/

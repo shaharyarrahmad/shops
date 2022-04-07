@@ -20,14 +20,17 @@ module.exports = async function (api) {
     } = await gridsome.getShopData();
 
     const collections = gridsome.unflatten(allCollections);
+    const global = {
+      collections,
+    };
 
     // ----------------- Index ---------------------
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
       context: {
+        ...global,
         products,
-        collections,
         highlight1: products.find((p) =>
           p.facetValues.find((f) => f.code === 'highlight1')
         ),
@@ -52,6 +55,7 @@ module.exports = async function (api) {
         path: `/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
+          ...global,
           product,
           showBack: true,
         },
@@ -63,6 +67,7 @@ module.exports = async function (api) {
       path: '/cart/',
       component: './src/templates/Cart.vue',
       context: {
+        ...global,
         showBack: true,
       },
     });
@@ -71,14 +76,20 @@ module.exports = async function (api) {
     createPage({
       path: '/checkout/',
       component: './src/templates/Checkout.vue',
-      context: { availableCountries },
+      context: {
+        ...global,
+        availableCountries,
+      },
     });
 
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { showBack: true },
+      context: {
+        ...global,
+        showBack: true,
+      },
     });
   });
 };

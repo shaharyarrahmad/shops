@@ -1,5 +1,5 @@
 <template>
-  <DefaultLayout>
+  <DefaultLayout #content>
     <br />
     <h1 class="title">{{ $context.product.name }}</h1>
     <div class="columns">
