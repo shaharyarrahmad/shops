@@ -34,7 +34,7 @@
       <template #start>
         <div class="container is-widescreen section" id="navbar-items-wrapper">
           <template v-for="(collection, i) of $context.collections">
-            <template v-if="!hasSub(collection)">
+            <template v-if="!hasChildren(collection)">
               <!-------------------- Single collection ------------------>
               <g-link
                 class="navbar-item is-uppercase navbar-link is-arrowless"
@@ -55,15 +55,15 @@
                   <div class="columns is-capitalized">
                     <template
                       v-for="subCollection of getChildrenWithChildren(
-                        collection.children
+                        collection
                       )"
                     >
                       <!-------------------- Children with children ------------------>
                       <div
                         class="column is-3"
                         v-for="(chunk, i) of getChunks(
-                          subCollection,
-                          collection.children.length
+                          subCollection.children,
+                          collection
                         )"
                       >
                         <h5 class="navbar-item is-hidden-mobile px-0">
@@ -80,37 +80,33 @@
                       </div>
                     </template>
                     <!-------------------- Leaf children ------------------>
-                    <div class="column is-3">
-                      <h5
-                        class="navbar-item is-hidden-mobile px-0"
-                        v-if="
-                          hasLeafChildren(collection.children) &&
-                          hasChildrenWithChildren(collection.children)
-                        "
-                      >
-                        Overig
-                      </h5>
-                      <h5
-                        v-if="
-                          hasLeafChildren(collection.children) &&
-                          !hasChildrenWithChildren(collection.children)
-                        "
-                        class="navbar-item is-hidden-mobile px-0"
-                      >
-                        {{ collection.name }}
-                      </h5>
-                      <template
-                        v-for="subCollection of getLeafChildren(
-                          collection.children
+                    <template v-if="hasLeafChildren(collection)">
+                      <div
+                        class="column is-3"
+                        v-for="(chunk, i) of getChunks(
+                          getLeafChildren(collection),
+                          collection
                         )"
                       >
-                        <g-link
-                          class="navbar-item sub px-0"
-                          :to="subCollection.slug"
-                          >{{ subCollection.name }}
-                        </g-link>
-                      </template>
-                    </div>
+                        <h5 class="navbar-item is-hidden-mobile px-0">
+                          <template v-if="i == 0">
+                            {{
+                              hasChildrenWithChildren(collection)
+                                ? 'Overig'
+                                : collection.name
+                            }}
+                          </template>
+                          <template v-else> &nbsp; </template>
+                        </h5>
+                        <template v-for="subCollection of chunk">
+                          <g-link
+                            class="navbar-item sub px-0"
+                            :to="subCollection.slug"
+                            >{{ subCollection.name }}
+                          </g-link>
+                        </template>
+                      </div>
+                    </template>
                   </div>
                 </div>
               </b-navbar-dropdown>
@@ -193,40 +189,46 @@ export default {
     Breadcrumb,
   },
   methods: {
-    hasSub(collection) {
+    hasChildren(collection) {
       return collection.children?.length > 0;
     },
-    getLeafChildren(collections) {
-      return collections.filter((child) => !this.hasSub(child));
+    /**
+     * Get child collections that don't have deeper children
+     */
+    getLeafChildren(collection) {
+      return collection.children.filter((child) => !this.hasChildren(child));
     },
-    hasLeafChildren(collections) {
-      return this.getLeafChildren(collections).length > 0;
+    /**
+     * Checks if the collection has children that don't have deeper children
+     */
+    hasLeafChildren(collection) {
+      return collection.children.some((child) => !this.hasChildren(child));
     },
-    getChildrenWithChildren(collections) {
-      return collections.filter((child) => this.hasSub(child));
+    getChildrenWithChildren(collection) {
+      return collection.children.filter((child) => this.hasChildren(child));
     },
-    hasChildrenWithChildren(collections) {
-      return this.getChildrenWithChildren(collections).length > 0;
+    hasChildrenWithChildren(collection) {
+      return collection.children.some((child) => this.hasChildren(child));
     },
     /**
      * Split children of collection into chunks based on the columns available:
      * If already 2 columns, only use 2 extra
      */
-    getChunks(collection, nrOfColumnsTaken) {
+    getChunks(collections, parent) {
+      const nrOfColumnsTaken = this.hasChildrenWithChildren(parent)
+        ? parent.children.length
+        : 1;
       let chunkSize = 20; // max chunksize
       if (nrOfColumnsTaken === 1) {
         // If only 1 column is taken, divide the other items over 3 columns
-        chunkSize = Math.ceil(collection.children.length / 3);
+        chunkSize = Math.ceil(collections.length / 4);
       } else if (nrOfColumnsTaken === 2) {
         // if 2 columns taken, divide the other items over 2 columns
-        chunkSize = Math.ceil(collection.children.length / 2);
+        chunkSize = Math.ceil(collections.length / 2);
       }
-      console.log(
-        `${collection.name} ${nrOfColumnsTaken} columns chunkSize=${chunkSize}`
-      );
       const chunks = [];
-      for (let i = 0; i < collection.children.length; i += chunkSize) {
-        chunks.push(collection.children.slice(i, i + chunkSize));
+      for (let i = 0; i < collections.length; i += chunkSize) {
+        chunks.push(collections.slice(i, i + chunkSize));
       }
       return chunks;
     },
