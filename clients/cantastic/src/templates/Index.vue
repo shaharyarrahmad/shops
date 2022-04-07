@@ -2,7 +2,7 @@
   <DefaultLayout>
     <template #content>
       <div
-        class="usps is-flex-desktop is-vcentered is-justify-content-space-between"
+        class="usps is-flex-desktop is-vcentered is-justify-content-space-between mt-4"
       >
         <template v-for="usp of $context.usps">
           <div class="is-flex">
@@ -35,16 +35,19 @@
         </div>
       </div>
 
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
+      <h3>Populaire categorieën</h3>
+      <div class="columns is-multiline is-mobile">
+        <template v-for="collection of $context.collections.slice(0, 5)">
+          <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
+            <g-link :to="`/categorie/${collection.slug}/`">
+              <CategoryCard
+                :name="collection.name"
+                :image="maybeThumbnail(collection.featuredAsset)"
+              />
+            </g-link>
+          </div>
+        </template>
+      </div>
     </template>
 
     <template #fullwidth>
@@ -89,9 +92,11 @@ import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductC
 import { hydrate } from 'pinelab-storefront-client';
 import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/ProductFilter';
 import HighlightCard from '../components/HighlightCard';
+import CategoryCard from '../components/CategoryCard';
 
 export default {
   components: {
+    CategoryCard,
     HighlightCard,
     ProductCard,
     ProductFilter,
@@ -99,6 +104,11 @@ export default {
   async mounted() {
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.products, this.$vendure);
+  },
+  methods: {
+    maybeThumbnail(asset) {
+      return asset?.thumbnail;
+    },
   },
 };
 </script>

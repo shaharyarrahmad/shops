@@ -37,8 +37,8 @@ $family-primary: "Open Sans", "Segoe UI", "Apple SD Gothic Neo", "Lucida Grande"
 $family-secondary: "Roboto", "-apple-system", "BlinkMacSystemFont", "Tahoma", "sans‑serif";
 
 $body-line-height: 2;
-
 $control-radius: 6px;
+$box-shadow: 0;
 
 // Links
 /*$link: $primary;
@@ -159,6 +159,13 @@ h6 {
   }
 }
 
+.content-container {
+  margin-top: 70px;
+  @media screen and (max-width: $desktop) {
+    margin-top: 30px;
+  }
+}
+
 .navbar-dropdown h5.navbar-item {
   margin-bottom: 0;
 }
@@ -172,4 +179,16 @@ h6 {
 
 .footer a {
   @extend .has-text-light;
+}
+
+.card-background-image {
+  min-height: 150px;
+  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.3);
+  background-size: cover;
+  height: 100%;
+}
+
+.card-background-image:hover,
+.card-background-image:focus {
+  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.2);
 }

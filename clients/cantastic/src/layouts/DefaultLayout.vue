@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar :fixed-top="true" type="is-danger" centered transparent>
+    <b-navbar type="is-danger" centered transparent class="is-fixed-top">
       <template #brand>
         <div class="container is-widescreen section" id="top-navbar">
           <div class="columns is-mobile pt-2" style="width: 100%">
@@ -116,10 +116,7 @@
     </b-navbar>
 
     <!-------------------- Content ------------------>
-    <br />
-    <br />
-    <br />
-    <div>
+    <div class="content-container">
       <transition name="fade" appear>
         <div class="container is-widescreen section">
           <slot name="content" />
