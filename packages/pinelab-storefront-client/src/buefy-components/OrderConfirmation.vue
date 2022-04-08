@@ -26,9 +26,11 @@
       Loading...
     </p>
 
-    <b-notification v-else-if="error" class="is-danger">
-      {{ error }}
-    </b-notification>
+    <slot name="failed" v-else-if="error">
+      <b-notification class="is-danger">
+        {{ error }}
+      </b-notification>
+    </slot>
 
     <div v-else>
       <p v-html="message"></p>
@@ -122,6 +124,7 @@ export default {
       });
     } catch (e) {
       console.error(e);
+      this.$emit('order-confirmation-failed', e);
       this.error = 'Something is wrong, please contact us...';
     }
   },

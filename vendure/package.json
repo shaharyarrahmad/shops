@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@google-cloud/logging-winston": "^4.2.2",
-    "@google-cloud/storage": "^5.18.3",
+    "@google-cloud/storage": "^5.19.0",
     "@mollie/api-client": "3.6.0",
     "@vendure/admin-ui-plugin": "1.5.1",
     "@vendure/asset-server-plugin": "1.5.1",
@@ -33,7 +33,7 @@
     "copyfiles": "^2.4.1",
     "mysql": "^2.18.1",
     "typescript": "4.3.5",
-    "vendure-plugin-coinbase": "^2.5.1",
+    "vendure-plugin-coinbase": "^2.6.2",
     "vendure-plugin-dutch-postalcode": "2.5.0",
     "vendure-plugin-goedgepickt": "2.6.0",
     "vendure-plugin-google-cloud-tasks": "2.5.0",
