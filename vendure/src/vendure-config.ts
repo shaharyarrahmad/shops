@@ -39,6 +39,7 @@ import {
 } from 'vendure-plugin-invoices';
 import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
 import { CoinbasePlugin } from 'vendure-plugin-coinbase';
+import { EBoekhoudenPlugin } from 'vendure-plugin-e-boekhouden';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -114,6 +115,7 @@ export const config: VendureConfig = {
     ],
   },
   plugins: [
+    EBoekhoudenPlugin,
     InvoicePlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       storageStrategy: new GoogleStorageInvoiceStrategy({

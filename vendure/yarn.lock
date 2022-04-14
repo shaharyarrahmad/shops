@@ -1524,10 +1524,10 @@
     stream-events "^1.0.4"
     xdg-basedir "^4.0.0"
 
-"@google-cloud/storage@^5.19.0":
-  version "5.19.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-5.19.0.tgz#ce4fc9487bb27d62a6813be1d17a0aa5dcebefb7"
-  integrity sha512-4gxY7XrCP64UMa7O4rxUR0QXYd4I/IxoAVCDSWcIKx+yuKM8QoiyONqoARiOEIw9tlhkyjnKBdI/IeX23FTaGw==
+"@google-cloud/storage@^5.19.1":
+  version "5.19.1"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-5.19.1.tgz#7252c4eb65e6014bf525a76f3af0774caa3a946d"
+  integrity sha512-bRTf/AD00+lPTamJdpihXC3AFtAnJFWNh/zQAor972VpuATF7u4V1anwWp0V6rKuKE3BwNM+xWxuuW/nAwEgTA==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
     "@google-cloud/projectify" "^2.0.0"
@@ -2768,6 +2768,11 @@
   dependencies:
     tslib "^2.3.0"
 
+"@xmldom/xmldom@^0.7.0":
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.5.tgz#09fa51e356d07d0be200642b0e4f91d8e6dd408d"
+  integrity sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -3354,22 +3359,17 @@ async-retry@^1.2.1, async-retry@^1.3.3:
   dependencies:
     retry "0.13.1"
 
+async@3.2.3, async@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.3.tgz#ac53dafd3f4720ee9e8a160628f18ea91df196c9"
+  integrity sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==
+
 async@^2.6.2:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
   integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
   dependencies:
     lodash "^4.17.14"
-
-async@^3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.3.tgz#ac53dafd3f4720ee9e8a160628f18ea91df196c9"
-  integrity sha512-spZRyzKL5l5BZQrr/6m/SqFdBN0q3OCI0f9rjfBzCMBIP4p75P620rR3gTmaksNOhmzgdxcaxdNfMy6anrbM0g==
-
-async@~0.9.0:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
-  integrity sha1-rqdNXmHB+JlhO/ZL2mbUx48v0X0=
 
 async@~1.0.0:
   version "1.0.0"
@@ -3414,6 +3414,14 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
+axios-ntlm@^1.2.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/axios-ntlm/-/axios-ntlm-1.3.0.tgz#ac318245e40bc3de8c5a7c0dd56d81e410c2cd9b"
+  integrity sha512-NPNsIMO1SGX5scs3ZWJqsV7iRLvET+DlRl94aZ7Sx14zA8RTQh9EDxsJmxB9cKjardKfp2Vge444uYYLfvWC0Q==
+  dependencies:
+    axios "^0.21.3"
+    dev-null "^0.1.1"
+
 axios@0.21.1:
   version "0.21.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
@@ -3421,7 +3429,7 @@ axios@0.21.1:
   dependencies:
     follow-redirects "^1.10.0"
 
-axios@0.21.4:
+axios@0.21.4, axios@^0.21.1, axios@^0.21.3:
   version "0.21.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
@@ -4348,6 +4356,11 @@ content-disposition@0.5.4:
   dependencies:
     safe-buffer "5.2.1"
 
+content-type-parser@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/content-type-parser/-/content-type-parser-1.0.2.tgz#caabe80623e63638b2502fd4c7f12ff4ce2352e7"
+  integrity sha512-lM4l4CnMEwOLHAHr/P6MEZwZFPJFtAAKgL6pogbXmVZggIqXhdB6RbBtPOTsw2FcXwYhehRGERJmRrjOiIB8pQ==
+
 content-type@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
@@ -4776,6 +4789,13 @@ debug@4.3.2:
   dependencies:
     ms "2.1.2"
 
+debug@^4.3.2:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
+  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
+  dependencies:
+    ms "2.1.2"
+
 debug@~3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
@@ -4966,6 +4986,11 @@ detect-node@^2.0.4:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.1.0.tgz#c9c70775a49c3d03bc2c06d9a73be550f978f8b1"
   integrity sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==
+
+dev-null@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/dev-null/-/dev-null-0.1.1.tgz#5a205ce3c2b2ef77b6238d6ba179eb74c6a0e818"
+  integrity sha1-WiBc48Ky73e2I41roXnrdMag6Bg=
 
 dicer@0.2.5:
   version "0.2.5"
@@ -5866,6 +5891,11 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
+formidable@^1.2.2:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.6.tgz#d2a51d60162bbc9b4a055d8457a7c75315d1a168"
+  integrity sha512-KcpbcpuLNOwrEjnbpMC0gS+X8ciDoZE1kkqzat4a8vrprf+s9pKNQ/QIwWfbfs4ltgmFl3MD177SNTkve3BwGQ==
+
 forwarded@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.2.0.tgz#2269936428aad4c15c7ebe9779a84bf0b2a81811"
@@ -6051,7 +6081,7 @@ get-stream@^5.1.0:
   dependencies:
     pump "^3.0.0"
 
-get-stream@^6.0.0:
+get-stream@^6.0.0, get-stream@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-6.0.1.tgz#a262d8eef67aced57c2852ad6167526a43cbf7b7"
   integrity sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==
@@ -10173,13 +10203,13 @@ promise-retry@^2.0.1:
     err-code "^2.0.2"
     retry "^0.12.0"
 
-prompt@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/prompt/-/prompt-1.2.2.tgz#b624fcf53aa6c8c5637e009c193ef69eee45dbe0"
-  integrity sha512-XNXhNv3PUHJDcDkISpCwSJxtw9Bor4FZnlMUDW64N/KCPdxhfVlpD5+YUXI/Z8a9QWmOhs9KSiVtR8nzPS0BYA==
+prompt@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/prompt/-/prompt-1.3.0.tgz#b1f6d47cb1b6beed4f0660b470f5d3ec157ad7ce"
+  integrity sha512-ZkaRWtaLBZl7KKAKndKYUL8WqNT+cQHKRZnT4RYYms48jQkFw3rrBL+/N5K/KtdEveHkxs982MX2BkDKub2ZMg==
   dependencies:
     "@colors/colors" "1.5.0"
-    async "~0.9.0"
+    async "3.2.3"
     read "1.0.x"
     revalidator "0.1.x"
     winston "2.x"
@@ -10940,7 +10970,7 @@ sass@1.36.0:
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
-sax@>=0.6.0, sax@^1.2.4, sax@~1.2.4:
+sax@>=0.6, sax@>=0.6.0, sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
@@ -11257,6 +11287,23 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+soap@^0.43.0:
+  version "0.43.0"
+  resolved "https://registry.yarnpkg.com/soap/-/soap-0.43.0.tgz#3172b7de12011dfc6981db99be9bc1df2a05a94a"
+  integrity sha512-Dgp6TD9f3NXvKhBy95XXphiSlNIU2RSc9PP1NEgBOE1laUWP+bdF+8uT1lf1tFadFEAYurFg6/s2tNil6rlltw==
+  dependencies:
+    axios "^0.21.1"
+    axios-ntlm "^1.2.0"
+    content-type-parser "^1.0.2"
+    debug "^4.3.2"
+    formidable "^1.2.2"
+    get-stream "^6.0.1"
+    lodash "^4.17.21"
+    sax ">=0.6"
+    strip-bom "^3.0.0"
+    uuid "^8.3.2"
+    xml-crypto "^2.1.3"
+
 sockjs-client@^1.5.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/sockjs-client/-/sockjs-client-1.5.2.tgz#4bc48c2da9ce4769f19dc723396b50f5c12330a3"
@@ -11564,6 +11611,11 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
   dependencies:
     ansi-regex "^5.0.1"
+
+strip-bom@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
+  integrity sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=
 
 strip-eof@^1.0.0:
   version "1.0.0"
@@ -12328,61 +12380,68 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vendure-plugin-coinbase@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-2.6.2.tgz#a7271ab44b1cfaee8afa6e13947d349da8acfe0e"
-  integrity sha512-gA+25fR1EaPqDd+wgsWb9Kn0GCenZD/j7PO8hpNmyWK0D0CNIz1kAicDwnGe7mjeK1a4NluXTYNBZsjsR3Roew==
+vendure-plugin-coinbase@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-2.7.0.tgz#1ac981dee9fc2b7d8db518d258123b1cf3467b7c"
+  integrity sha512-PQIQyyy32d+Jlyzuc3ev4sbCZLBprfUtlZbLugOFf2tmskH1qhcWX8THBTZnEXxU7ZIfWhZ20wZgXpxTYrDg2g==
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-dutch-postalcode@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.5.0.tgz#e10235f589983e2f8bc2bec7722c3d73c0d5c856"
-  integrity sha512-H3cBC9VV59fOCE80rhYrwtTvGzmcKVZR8G1+kEfJpoenxfX8y2H7C1KARE/3SIf9pOlHWKmBgq4tZae2IrvWLg==
+vendure-plugin-dutch-postalcode@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.7.0.tgz#b563b93f5c0639058b2788679a478e06d0eae7dc"
+  integrity sha512-IvFHn+08Rxz1nU/50c0pVj3kf+MUytlgP5EAlhcWzefzmShva1S8p0A4aOrBpm7a8lukaPNPGk/ag7v29BNS5w==
 
-vendure-plugin-goedgepickt@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-2.6.0.tgz#046987eab432e227d76a5707365b8f866cd3e4c4"
-  integrity sha512-yYZNWjP1jNhomH5XIDpk50xza9zstIVmwHOajz+XLF1tdb4mDwwg+XB8ZzLMCCPy3n3/u0Mwtj8nUq3voe2aTw==
+vendure-plugin-e-boekhouden@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-2.7.0.tgz#97448e7dc6ec0a3f9cb846fb9a3372152141c087"
+  integrity sha512-cytQ5QkB2yQ1h2rqXmzbXJ83SWs3j93xIaDZVYRuX2Fzc1IwcBNx51tqUOwgqkNSR0PEB9F/ujy4GvhNxQxeOw==
+  dependencies:
+    soap "^0.43.0"
+
+vendure-plugin-goedgepickt@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-2.7.0.tgz#3e60ed16242129cc0a9355a05bdccf0b00a4d0ce"
+  integrity sha512-l4S0roJphuBctVguZSDKwkoUMzytCV3F1UfleMj5iwRc5oqY24usQRq+D5gt8TENchE9HKgMAWJBkglj1zDqlA==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-2.5.0.tgz#5c21ffaed18e977b34f5f09534d554725f5c5652"
-  integrity sha512-Zh4QxZKx6XFd5mb4cuSKrwc+o03ANSIrunlWvtSB6P68wfW2ux7KDqBJI7887aqIpFVqSLxavXsL3pNg0VDB1w==
+vendure-plugin-google-cloud-tasks@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-2.7.0.tgz#80c21145c3bef4f47e5ff53ff12a0d30e4d0e1d3"
+  integrity sha512-jP56ZYpqrLekRVxnwmI8alp16wgIJN0OTwH25AhVJwlsAdV8qhK2qIuutcDTBXOPIBb4eghYcKOl4RrzzL5mYw==
   dependencies:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
 
-vendure-plugin-google-storage-assets@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.6.1.tgz#3fd04f21a821f7f93d8dea158036945dfdf20858"
-  integrity sha512-EsbAmngcbLmCcQ+YYGGi3srg9RKgY/0vgEJCkwfY02FhTWHHlpe6huz3QLqTJ/MeOd4abG/nBObK/dexHOgcjw==
+vendure-plugin-google-storage-assets@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.7.0.tgz#4bcb7c28903e4dfdee237b8dc3cb7ab5d8c26241"
+  integrity sha512-rgTnHtKExkah23XoyMGSMBQ01uLhMf5h+YYw3SA8PQ7nvi5UKBeMyboC9CbeIumRe74oJt84oeQ/mCxAnUvXNw==
   dependencies:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-2.5.0.tgz#0749489e840e1c268252c4154696b0f5b04bba37"
-  integrity sha512-+omxXEjkb0ZNH/t1C7czK5cGuxjgmESPPQ/v2Cl5rcEV3xnqxbR3Bp1qA37YtGt026l1pEN0d0/U1g487ffNNQ==
+vendure-plugin-invoices@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-2.7.0.tgz#c6531241c546d5b9ecf188c2ba0ac30c9dc01c9b"
+  integrity sha512-m7OCiNWRBehaCs+X80g3/NnG3UBt6lPZrepG0TTHu0cdp1Ruhk7IggXSNuJf5A8UzG18kY4h61wgGc6q07HWaA==
   dependencies:
     adm-zip "^0.5.9"
     pdf-creator-node "^2.3.4"
     tmp "^0.2.1"
 
-vendure-plugin-myparcel@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-2.5.0.tgz#4870a0adb0112ea7a7d522b2c0c66fc4a5f6ec3f"
-  integrity sha512-jMSO2j8jEhXDnpiS2y7yGQHsSvtLydwwnyePcd/gP5+jzv32Et2OsCTYFQ5bS71vCOimBloDLDq0N0ZqDJrrXA==
+vendure-plugin-myparcel@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-2.7.0.tgz#1cf9e4f63fd4534e07ecc9853bd7177449a309ca"
+  integrity sha512-vBY8JPXzUjA0jiQpwJIaPNqyyp1CKY3wwAKkX6QosZvT5Z7ItMK4TudHloZaZXsHmC5/L+POKAhgrQhyC7WJng==
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-webhook@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.6.0.tgz#6fe47c452e24ed5bcadb11a82f642a1b82971afd"
-  integrity sha512-BjdDkepYLs0S1sz5FyhWEo+U74wTbMqTgPnfejgFJI7SBxHWZHjNRAP9qXELX/EYToHFfGuq1vnKNf5w+incfA==
+vendure-plugin-webhook@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.7.0.tgz#760a3e50d2f4ac27c500ac9b87596f438cc74171"
+  integrity sha512-NVj5BGqlFIAZn8UNgVWmF1VVbGz3dhXwXAC4OcaH8Yi2wMTo+vYbCpd4i0b9HoTZzFq34ClPErucDgpS/p4CUQ==
 
 verror@1.10.0:
   version "1.10.0"
@@ -12759,6 +12818,14 @@ xdg-basedir@^4.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
   integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
 
+xml-crypto@^2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/xml-crypto/-/xml-crypto-2.1.3.tgz#6a7272b610ea3e4ea7f13e9e4876f1b20cbc32c8"
+  integrity sha512-MpXZwnn9JK0mNPZ5mnFIbNnQa+8lMGK4NtnX2FlJMfMWR60sJdFO9X72yO6ji068pxixzk53O7x0/iSKh6IhyQ==
+  dependencies:
+    "@xmldom/xmldom" "^0.7.0"
+    xpath "0.0.32"
+
 xml2js@^0.4.23:
   version "0.4.23"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.23.tgz#a0c69516752421eb2ac758ee4d4ccf58843eac66"
@@ -12771,6 +12838,11 @@ xmlbuilder@~11.0.0:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
   integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
+
+xpath@0.0.32:
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/xpath/-/xpath-0.0.32.tgz#1b73d3351af736e17ec078d6da4b8175405c48af"
+  integrity sha512-rxMJhSIoiO8vXcWvSifKqhvV96GjiD5wYb8/QHdoRyQvraTpp4IEv944nhGausZZ3u7dhQXteZuZbaqfpB7uYw==
 
 xss@^1.0.8:
   version "1.0.10"
