@@ -1,12 +1,5 @@
 import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
-import {
-  Administrator,
-  ID,
-  Injector,
-  Logger,
-  OrderStateTransitionEvent,
-  TransactionalConnection,
-} from '@vendure/core';
+import { Administrator, ID, Injector, Logger, OrderPlacedEvent, TransactionalConnection } from '@vendure/core';
 import { TaxHelper } from '../tax/tax.helper';
 import { InvoiceService } from 'vendure-plugin-invoices';
 
@@ -20,22 +13,16 @@ const loggerCtx = 'OrderConfirmationHandler';
 /**
  * Send email to customer AND administrators of channel
  */
-export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
+export const orderConfirmationHandler: EmailEventHandler<any, any> =
   new EmailEventListener('order-confirmation')
-    .on(OrderStateTransitionEvent)
-    .filter(
-      (event) =>
-        event.toState === 'PaymentSettled' &&
-        event.fromState !== 'Modifying' &&
-        !!event.order.customer
-    )
+    .on(OrderPlacedEvent)
     .loadData(async ({ event, injector }) => {
       const channel = event.ctx.channel;
       let [admins, invoicesEnabled] = await Promise.all([
         getAdminsForChannel(injector, channel.id),
         injector
           .get(InvoiceService)
-          .isInvoicePluginEnabled(channel.id as string),
+          .isInvoicePluginEnabled(channel.id as string)
       ]);
       const channelName = admins?.[0]?.channel_code;
       admins = admins.filter((admin) => admin.admin_emailAddress.includes('@'));
@@ -70,7 +57,7 @@ export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
       return {
         order: event.order,
         summary: TaxHelper.getTaxSummary(event.order),
-        ...event.data,
+        ...event.data
       };
     });
 
@@ -85,7 +72,7 @@ async function getAdminsForChannel(
     .innerJoin('admin.user', 'user')
     .innerJoin('user.roles', 'role')
     .innerJoinAndSelect('role.channels', 'channel', 'channel.id = :channelId', {
-      channelId,
+      channelId
     })
     .execute();
 }

@@ -53,6 +53,9 @@
                 <b-input
                   type="email"
                   v-model="emailAddress"
+                  id="email"
+                  name="email"
+                  autocomplete="on"
                   expanded
                   required
                 ></b-input>

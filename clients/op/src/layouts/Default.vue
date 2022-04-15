@@ -19,9 +19,9 @@
           </div>
           <div class="column">
             <h2>OP!</h2>
-            <a href="#about">Over het boek</a> <br />
-            <a href="#about">Over Jet</a> <br />
-            <a href="#faq">FAQ</a> <br />
+            <a href="/#about">Over het boek</a> <br />
+            <a href="/#about">Over Jet</a> <br />
+            <a href="/#faq">FAQ</a> <br />
           </div>
           <div class="column">
             <a href="#about">Instagram?</a> <br />
