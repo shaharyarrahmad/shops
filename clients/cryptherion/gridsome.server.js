@@ -187,13 +187,13 @@ module.exports = async function (api) {
       context: { global, collections, content: privacy_beleid },
     });
     createPage({
-      path: '/we-zijn-er-mee-bezig/',
+      path: '/tot-snel/',
       component: './src/templates/UnderConstruction.vue',
       context: {
         global,
         collections,
         content: `
-      <h1>We zijn nog met de site bezig!</h1>
+      <h1>We zijn er even tussen uit. 1 mei zijn we er weer!</h1>
       `,
       },
     });
