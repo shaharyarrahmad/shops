@@ -33,15 +33,12 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', Layout);
   Vue.component('PopupImage', PopupImage);
   configureVue(Vue, { router, head, isClient });
-  // Directus assets, use CMS host for local, otherwise go through netlify
-  const assetHost =
-    process.env.NODE_ENV === 'production'
-      ? ''
-      : process.env.GRIDSOME_DIRECTUS_HOST;
   Vue.mixin({
     methods: {
-      getDefaultImage: (id) => `${assetHost}/assets/${id}?key=default`,
-      getSquareImage: (id) => `${assetHost}/assets/${id}?key=square`,
+      getDefaultImage: (id) =>
+        `${process.env.GRIDSOME_DIRECTUS_HOST}/assets/${id}?key=default`,
+      getSquareImage: (id) =>
+        `${process.env.GRIDSOME_DIRECTUS_HOST}/assets/${id}?key=square`,
     },
   });
 }
