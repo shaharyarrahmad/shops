@@ -1,5 +1,5 @@
 {
-  "name": "cryptherion.io",
+  "name": "ophetboek.nl",
   "private": true,
   "scripts": {
     "serve:static": "yarn nodemon --ext js,vue,html,md --watch src --exec 'yarn gridsome build && yarn http-server ./dist/'",
