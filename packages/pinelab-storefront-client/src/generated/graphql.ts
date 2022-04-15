@@ -2465,6 +2465,8 @@ export enum Permission {
   UpdateZone = 'UpdateZone',
   /** Grants permission to delete Zone */
   DeleteZone = 'DeleteZone',
+  /** Allows enabling e-Boekhouden plugin */
+  EBoekhouden = 'eBoekhouden',
   /** Allow this user to enable invoice generation */
   AllowInvoicesPermission = 'AllowInvoicesPermission',
   /** Allows setting a webhook URL */
@@ -3616,6 +3618,19 @@ export type ApplyCouponCodeMutation = { __typename?: 'Mutation' } & {
       >)
     | ({ __typename?: 'CouponCodeLimitError' } & Pick<
         CouponCodeLimitError,
+        'errorCode' | 'message'
+      >);
+};
+
+export type RemoveAllOrderLinesMutationVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type RemoveAllOrderLinesMutation = { __typename?: 'Mutation' } & {
+  removeAllOrderLines:
+    | ({ __typename?: 'Order' } & OrderFieldsFragment)
+    | ({ __typename?: 'OrderModificationError' } & Pick<
+        OrderModificationError,
         'errorCode' | 'message'
       >);
 };

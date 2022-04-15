@@ -308,6 +308,21 @@ export const APPLY_COUPON_CODE = gql`
   }
 `;
 
+export const REMOVE_ALL_ORDER_LINES = gql`
+  ${ORDER_FIELDS}
+  mutation removeAllOrderLines {
+    removeAllOrderLines {
+      ... on Order {
+        ...OrderFields
+      }
+      ... on ErrorResult {
+        errorCode
+        message
+      }
+    }
+  }
+`;
+
 export const REMOVE_COUPON_CODE = gql`
   ${ORDER_FIELDS}
   mutation removeCouponCode($couponCode: String!) {

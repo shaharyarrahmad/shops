@@ -58,12 +58,12 @@
                 ></b-input>
                 <span class="control">
                   <b-button
-                    tag="input"
+                    tag="button"
                     native-type="submit"
-                    value="Koop het boek"
                     type="is-primary"
                     :loading="loading"
-                  />
+                    >Koop het boek</b-button
+                  >
                 </span>
               </b-field>
               <img
@@ -104,18 +104,32 @@ export default {
     };
   },
   methods: {
-    async buy(event) {
+    async buy(e) {
+      e.preventDefault();
       try {
         this.loading = true;
-        // TODO empty cart
-        // TODO Add 1 to cart
+        if (this.$store?.activeOrder) {
+          await this.$vendure.removeAllOrderLines();
+        }
+        await this.$vendure.addProductToCart(
+          this.$context.product.variants[0].id,
+          1
+        );
         await this.$vendure.setCustomerForOrder({
           firstName: this.emailAddress,
           lastName: 'e-book',
           emailAddress: this.emailAddress,
         });
-        await this.$vendure.setOrderShippingAddress(address);
-        await this.$vendure.setLowestShippingMethod();
+        await this.$vendure.setOrderShippingAddress({
+          fullName: this.emailAddress,
+          streetLine1: 'E-book dummy address',
+          countryCode: 'nl',
+        });
+        const redirect = await this.$vendure.createMolliePaymentIntent(
+          'mollie-payment-op'
+        );
+        this.loading = false;
+        window.location.replace(redirect);
       } catch (e) {
         this.showError(`Er is iets misgegaan, neem contact met ons op...`);
         console.error(e);

@@ -12,9 +12,9 @@
         <div class="columns">
           <div id="contact" class="column">
             <h2>Contact</h2>
-            <a href="mailto:jetvannieuwkerk@gmail.com"
-              >jetvannieuwkerk@gmail.com</a
-            >
+            <a :href="`mailto:${$context.global.email}`">{{
+              $context.global.email
+            }}</a>
             <br />
           </div>
           <div class="column">

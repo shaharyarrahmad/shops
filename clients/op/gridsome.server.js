@@ -6,12 +6,17 @@ module.exports = async function (api) {
 
     const { products } = await gridsome.getShopData();
 
+    const global = {
+      email: 'jetvannieuwkerk@gmail.com',
+    };
+
     // ----------------- Index ---------------------
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
       context: {
         product: products[0],
+        global,
       },
     });
 
@@ -19,7 +24,10 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: {},
+      context: {
+        product: products[0],
+        global,
+      },
     });
   });
 };
