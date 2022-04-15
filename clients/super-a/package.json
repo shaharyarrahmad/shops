@@ -13,7 +13,7 @@
     "buefy": "^0.9.7",
     "concurrently": "^6.1.0",
     "outfront": "^1.1.1",
-    "pinelab-storefront-client": "^0.46.0",
+    "pinelab-storefront-client": "^0.47.0",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
@@ -26,5 +26,5 @@
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
-  "version": "0.46.0"
+  "version": "0.47.0"
 }
