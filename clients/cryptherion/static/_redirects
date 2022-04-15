@@ -1,5 +1,5 @@
+/* /tot-snel/ 200!
+/ /tot-snel/ 200!
 /order/* /order/_code.html 200
 /admin/ https://api.pinelab.studio/admin/ 302
 /cms/ https://content.pinelab.studio/admin/ 302
-/* /tot-snel/ 200
-/ /tot-snel/ 200
