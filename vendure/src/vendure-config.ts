@@ -40,7 +40,7 @@ import {
 import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
 import { CoinbasePlugin } from 'vendure-plugin-coinbase';
 import { EBoekhoudenPlugin } from 'vendure-plugin-e-boekhouden';
-import { ebookEmailHandler } from './e-book/e-book.handler';
+import { EBookPlugin } from './e-book/e-book.plugin';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -117,6 +117,7 @@ export const config: VendureConfig = {
   },
   plugins: [
     EBoekhoudenPlugin,
+    EBookPlugin.init(process.env.VENDURE_HOST!),
     InvoicePlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       storageStrategy: new GoogleStorageInvoiceStrategy({
@@ -178,7 +179,7 @@ export const config: VendureConfig = {
           pass: process.env.ZOHO_PASS!,
         },
       },
-      handlers: [orderConfirmationHandler, ebookEmailHandler],
+      handlers: [orderConfirmationHandler],
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>',

@@ -106,27 +106,29 @@ export default {
       emailAddress: undefined,
     };
   },
+  async mounted() {
+    if (this.$store?.activeOrder) {
+      await this.$vendure.removeAllOrderLines();
+    }
+    await this.$vendure.addProductToCart(
+      this.$context.product.variants[0].id,
+      1
+    );
+    await this.$vendure.setOrderShippingAddress({
+      fullName: this.emailAddress,
+      streetLine1: 'E-book',
+      countryCode: 'nl',
+    });
+  },
   methods: {
     async buy(e) {
       e.preventDefault();
       try {
         this.loading = true;
-        if (this.$store?.activeOrder) {
-          await this.$vendure.removeAllOrderLines();
-        }
-        await this.$vendure.addProductToCart(
-          this.$context.product.variants[0].id,
-          1
-        );
         await this.$vendure.setCustomerForOrder({
           firstName: this.emailAddress,
           lastName: 'e-book',
           emailAddress: this.emailAddress,
-        });
-        await this.$vendure.setOrderShippingAddress({
-          fullName: this.emailAddress,
-          streetLine1: 'E-book dummy address',
-          countryCode: 'nl',
         });
         const redirect = await this.$vendure.createMolliePaymentIntent(
           'mollie-payment-op'

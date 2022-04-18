@@ -1,7 +1,15 @@
 import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
-import { Administrator, ID, Injector, Logger, OrderPlacedEvent, TransactionalConnection } from '@vendure/core';
+import {
+  Administrator,
+  ID,
+  Injector,
+  Logger,
+  OrderPlacedEvent,
+  TransactionalConnection,
+} from '@vendure/core';
 import { TaxHelper } from '../tax/tax.helper';
 import { InvoiceService } from 'vendure-plugin-invoices';
+import { EBookController, EBookPlugin } from '../e-book/e-book.plugin';
 
 interface AdminWithChannel {
   admin_emailAddress: string;
@@ -22,7 +30,7 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
         getAdminsForChannel(injector, channel.id),
         injector
           .get(InvoiceService)
-          .isInvoicePluginEnabled(channel.id as string)
+          .isInvoicePluginEnabled(channel.id as string),
       ]);
       const channelName = admins?.[0]?.channel_code;
       admins = admins.filter((admin) => admin.admin_emailAddress.includes('@'));
@@ -37,11 +45,12 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
       if (invoicesEnabled) {
         invoiceLink = `${process.env.VENDURE_HOST}/invoices/${channel.token}/${event.order.code}?email=${event.order.customer?.emailAddress}`;
       }
+      const ebooks = EBookController.getEbookLinks(event.ctx, event.order);
       Logger.info(
-        `Sending order confirmation email to ${adminRecipients} for channel ${channelName}`,
+        `Sending order confirmation email to ${event.order.customer?.emailAddress} for channel ${channelName}`,
         loggerCtx
       );
-      return { channelName, adminRecipients, invoiceLink };
+      return { channelName, adminRecipients, invoiceLink, ebooks };
     })
     .setRecipient(
       (event) =>
@@ -57,7 +66,7 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
       return {
         order: event.order,
         summary: TaxHelper.getTaxSummary(event.order),
-        ...event.data
+        ...event.data,
       };
     });
 
@@ -72,7 +81,7 @@ async function getAdminsForChannel(
     .innerJoin('admin.user', 'user')
     .innerJoin('user.roles', 'role')
     .innerJoinAndSelect('role.channels', 'channel', 'channel.id = :channelId', {
-      channelId
+      channelId,
     })
     .execute();
 }
