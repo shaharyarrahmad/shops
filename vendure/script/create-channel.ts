@@ -111,6 +111,7 @@ defaultPermissions.push(Permission.ReadZone);
     },
   };
   console.log(`Creating in ${process.env.DATABASE_NAME}`);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   prompt.start();
   const { channelName }: { channelName: string } = await prompt.get(schema);
   // Create channel
