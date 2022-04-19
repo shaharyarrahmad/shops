@@ -116,7 +116,7 @@ export const config: VendureConfig = {
     ],
   },
   plugins: [
-    // EBoekhoudenPlugin, FIXME
+    EBoekhoudenPlugin,
     EBookPlugin.init(process.env.VENDURE_HOST!),
     InvoicePlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
@@ -153,11 +153,10 @@ export const config: VendureConfig = {
       vendureHost: process.env.VENDURE_HOST!,
       syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
     }),
-    // FIXME
-    /*GoedgepicktPlugin.init({
+    GoedgepicktPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
-      setWebhook: process.env.SHOP_ENV === 'test', // Just sync for test now
-    }),*/
+      setWebhook: process.env.SHOP_ENV === 'prod', // Only set webhook for prod
+    }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
