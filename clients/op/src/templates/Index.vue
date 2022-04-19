@@ -107,24 +107,14 @@ export default {
     };
   },
   async mounted() {
-    if (this.$store?.activeOrder) {
-      await this.$vendure.removeAllOrderLines();
-    }
-    await this.$vendure.addProductToCart(
-      this.$context.product.variants[0].id,
-      1
-    );
-    await this.$vendure.setOrderShippingAddress({
-      fullName: this.emailAddress,
-      streetLine1: 'E-book',
-      countryCode: 'nl',
-    });
+    await this.prepareOrder();
   },
   methods: {
     async buy(e) {
       e.preventDefault();
       try {
         this.loading = true;
+        await this.prepareOrder();
         await this.$vendure.setCustomerForOrder({
           firstName: this.emailAddress,
           lastName: 'e-book',
@@ -141,6 +131,36 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    async prepareOrder() {
+      let addToCartPromise;
+      let setAddressPromise;
+      if (this.$store?.activeOrder?.lines?.length > 1) {
+        // If too many items in cart
+        await this.$vendure.removeAllOrderLines();
+        console.log('Removed previous orderlines');
+      }
+      if (
+        !this.$store?.activeOrder ||
+        this.$store?.activeOrder?.lines?.length === 0
+      ) {
+        // If no active order or no items
+        addToCartPromise = this.$vendure.addProductToCart(
+          this.$context.product.variants[0].id,
+          1
+        );
+        console.log('Adding 1 ebook to cart');
+      }
+      if (!this.$store?.activeOrder?.shippingAddress?.streetLine1) {
+        setAddressPromise = this.$vendure.setOrderShippingAddress({
+          fullName: this.emailAddress,
+          streetLine1: 'E-book',
+          countryCode: 'nl',
+        });
+        console.log('Setting address');
+      }
+      await Promise.all([addToCartPromise, setAddressPromise]);
+      console.log('Prepared order');
     },
     showError(message) {
       this.$buefy.snackbar.open({

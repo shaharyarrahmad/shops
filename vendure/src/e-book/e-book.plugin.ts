@@ -97,6 +97,9 @@ export class EBookController {
       await this.configService.assetOptions.assetStorageStrategy.readFileToStream(
         asset.source
       );
+    res.set({
+      'Content-Type': asset.mimeType,
+    });
     Logger.info(`E-book downloaded for order ${orderCode}`, loggerCtx);
     stream.pipe(res);
   }
