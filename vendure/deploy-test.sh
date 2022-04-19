@@ -9,6 +9,7 @@ gcloud run deploy shops-test \
             --memory=1G \
             --project=pinelab-shops \
             --set-env-vars=$ENV_VARS
+            --add-cloudsql-instances="/cloudsql/pinelab-shops:europe-west1:shops-test"
 gcloud run deploy worker-test \
             --quiet \
             --image "eu.gcr.io/pinelab-shops/vendure:latest" \
@@ -18,3 +19,4 @@ gcloud run deploy worker-test \
             --memory=1G \
             --project=pinelab-shops \
             --set-env-vars=$ENV_VARS
+            --add-cloudsql-instances="/cloudsql/pinelab-shops:europe-west1:shops-test"

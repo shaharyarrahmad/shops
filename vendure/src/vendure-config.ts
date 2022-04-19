@@ -79,11 +79,11 @@ export const config: VendureConfig = {
   dbConnectionOptions: {
     type: 'mysql',
     synchronize: false,
-    logging: true,
-    /*    username: process.env.DATABASE_USER!,
+    logging: false,
+    username: process.env.DATABASE_USER!,
     password: process.env.DATABASE_PASSWORD!,
     host: process.env.DATABASE_HOST!,
-    database: process.env.DATABASE_NAME!,*/
+    database: process.env.DATABASE_NAME!,
     migrations: [path.join(__dirname, '../migrations/*.ts')],
     socketPath: runningLocal
       ? undefined
