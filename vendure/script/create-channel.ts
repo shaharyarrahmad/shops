@@ -127,11 +127,11 @@ defaultPermissions.push(Permission.ReadZone);
     apiType: 'admin',
     isAuthorized: true,
   });
-  const europe = (await zoneService.findAll(ctx)).find(
-    (zone) => zone.name === 'EU'
+  const nl = (await zoneService.findAll(ctx)).find(
+    (zone) => zone.name === 'NL'
   );
-  if (!europe) {
-    throw Error(`Unable to find zone EU. Cannot create channel`);
+  if (!nl) {
+    throw Error(`Unable to find zone NL. Cannot create channel`);
   }
   const channel = (await channelResolver.createChannel(ctx, {
     input: {
@@ -139,8 +139,8 @@ defaultPermissions.push(Permission.ReadZone);
       token: channelName,
       currencyCode: CurrencyCode.EUR,
       defaultLanguageCode: LanguageCode.en,
-      defaultShippingZoneId: europe.id,
-      defaultTaxZoneId: europe.id,
+      defaultShippingZoneId: nl.id,
+      defaultTaxZoneId: nl.id,
       pricesIncludeTax: true,
     },
   })) as Channel;
@@ -149,11 +149,10 @@ defaultPermissions.push(Permission.ReadZone);
     throw Error(`Failed to create channel`);
   }
   console.log(`Created channel ${channel.code}`);
-  // Create role
+  // Create role. Hack, because creating roles via code results in forbidden error
   const role = await (roleService as any).createRoleForChannels(
     ctx,
     {
-      // Hack, because creating roles via code results in forbidden error
       code: `${channelName}-admin`,
       description: `${channelName} admin`,
       permissions: defaultPermissions,
@@ -188,7 +187,7 @@ defaultPermissions.push(Permission.ReadZone);
     },
   });
   console.log(`Created Mollie paymentmethod: ${mollie.code}`);
-  const send = await shippingService.create(ctx, {
+  const shippingMethod = await shippingService.create(ctx, {
     code: `${channelName}-verzenden`,
     translations: [{ languageCode: LanguageCode.en, name: 'Verzenden' }],
     calculator: {
@@ -211,7 +210,7 @@ defaultPermissions.push(Permission.ReadZone);
     },
     fulfillmentHandler: 'manual-fulfillment',
   });
-  console.log(`Created default shippingmethod: ${send.code}`);
-  console.log(`All done. Don't forget to create a user via the Admin UI`);
+  console.log(`Created default shippingmethod: ${shippingMethod.code}`);
+  console.log(`🌲 All done. Don't forget to create a user via the Admin UI`);
   process.exit(0);
 })();

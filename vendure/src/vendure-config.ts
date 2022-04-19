@@ -30,7 +30,7 @@ import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.stra
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
-import { adminOrderConfirmationHandler } from './order/order-confirmation.handlers';
+import { orderConfirmationHandler } from './order/order-confirmation.handlers';
 import { PlaceOrderOnSettlementStrategy } from './order/place-order-on-settlement.strategy';
 import { GoedgepicktPlugin } from 'vendure-plugin-goedgepickt';
 import {
@@ -40,6 +40,7 @@ import {
 import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
 import { CoinbasePlugin } from 'vendure-plugin-coinbase';
 import { EBoekhoudenPlugin } from 'vendure-plugin-e-boekhouden';
+import { EBookPlugin } from './e-book/e-book.plugin';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -116,6 +117,7 @@ export const config: VendureConfig = {
   },
   plugins: [
     EBoekhoudenPlugin,
+    EBookPlugin.init(process.env.VENDURE_HOST!),
     InvoicePlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       storageStrategy: new GoogleStorageInvoiceStrategy({
@@ -177,7 +179,7 @@ export const config: VendureConfig = {
           pass: process.env.ZOHO_PASS!,
         },
       },
-      handlers: [adminOrderConfirmationHandler],
+      handlers: [orderConfirmationHandler],
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>',

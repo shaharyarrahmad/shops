@@ -14,10 +14,30 @@
         </mj-text>
         <mj-divider border-color="#343434"></mj-divider>
 
-        <mj-text>Bedankt voor je bestelling bij {{ channelName }}!</mj-text>
+        <mj-text>Bedankt voor je bestelling bij {{ channelName }}</mj-text>
 
       </mj-column>
     </mj-section>
+
+    {{#if ebooks}}
+      <mj-section>
+        <mj-column>
+          <mj-text>
+            <h2>
+              Download hier je e-books.
+            </h2>
+          </mj-text>
+          <mj-divider border-color="#343434"></mj-divider>
+
+          {{#each ebooks}}
+            <mj-button background-color="#3cb371" href="{{ downloadLink }}">
+              {{ title }}
+            </mj-button>
+          {{/each}}
+
+        </mj-column>
+      </mj-section>
+    {{/if}}
 
     <mj-section>
       <mj-column>

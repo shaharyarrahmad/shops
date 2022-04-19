@@ -1,35 +1,28 @@
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
-// Color palette
-$cr-black: #000000;
-$cr-grey: #2c2c2c;
-$cr-red: #E03616;
-$cr-light-grey: #efefef;
-$cr-dark-blue: #0496FF;
-$cr-green: #69DC9E;
-$cr-orange: #FAA916;
-
 // Set your colors
-$text: $cr-grey;
-$primary: $cr-black;
-$link: $cr-dark-blue;
-$info: $cr-dark-blue;
-$success: $cr-green;
-$warning: $cr-orange;
-$danger: $cr-red;
+//https://coolors.co/474448-fdedf2-de369d-8ee3ef-02a9ea
+$background: #FDEDF2;
+$text: #474448;
+$primary: #F45866;
+$info: #8EE3EF;
+$success: #139A43;
+$warning: #E3D26F;
+$danger: #F45866;
 
-$footer-background-color: $primary;
+$link: #02A9EA;
+$link-hover: #028bc0;
+
+$footer-background-color: $text;
 $footer-color: $primary-invert;
 
-// Lists and maps
-$custom-colors: null !default;
-$custom-shades: null !default;
+$family-primary: "Open Sans";
+$family-heading: "Open Sans Condensed";
+$family-secondary: "Lora";
 
-$family-sans-serif: "Titillium Web";
-$family-primary: "Titillium Web";
 
-$control-radius: 2px;
+
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
@@ -90,53 +83,49 @@ $colors: mergeColorMaps(
                 $custom-colors
 );
 
-// Links
-/*$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: $primary;*/
-
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
-.cr-heading {
-  font-weight: bold;
-  font-style: italic;
+html {
+  background: $background;
+}
+p {
+  margin-bottom: 20px;
+}
+img {
+  border-radius: 4px;
+  box-shadow: $shadow;
+}
+.button {
+  box-shadow: $shadow;
+}
+.footer a {
+  color: $primary-invert;
+}
+.footer a:hover {
+  text-decoration: underline;
 }
 
+.heading {
+  font-family: $family-heading;
+  font-weight: 700;
+}
 
 h1 {
-  @extend .is-size-1;
-  @extend .cr-heading;
+  @extend .heading;
+  font-size: 200px;
+  line-height: 250px;
 }
-
 h2 {
   @extend .is-size-2;
-  @extend .cr-heading;
+  @extend .heading;
 }
 h3 {
   @extend .is-size-3;
-  @extend .cr-heading;
+  @extend .heading;
 }
-
 h4 {
   @extend .is-size-4;
-  @extend .cr-heading;
-}
-
-h5 {
-  @extend .is-size-5;
-  @extend .cr-heading;
-}
-.is-light-grey {
-  background: $cr-light-grey;
-}
-.hero-logo {
-  @media screen and (min-width: $desktop) {
-    max-width: 400px;
-  }
-}
-#usps a,
-.category a  {
-  color: $text;
+  @extend .heading;
 }

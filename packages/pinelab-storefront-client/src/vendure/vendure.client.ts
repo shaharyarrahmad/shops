@@ -13,6 +13,7 @@ import {
   GET_ORDER_BY_CODE,
   GET_PRICE_AND_STOCKLEVEL,
   GET_PRODUCT,
+  REMOVE_ALL_ORDER_LINES,
   REMOVE_COUPON_CODE,
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
@@ -39,6 +40,7 @@ import {
   DutchPostalCodeInput,
   EligibleShippingMethodsQuery,
   MolliePaymentIntent,
+  MutationRemoveOrderLineArgs,
   NextOrderStatesQuery,
   Order,
   OrderByCodeQuery,
@@ -47,6 +49,8 @@ import {
   ProductQuery,
   ProductQueryVariables,
   ProductsQuery,
+  RemoveAllOrderLinesMutation,
+  RemoveAllOrderLinesMutationVariables,
   RemoveCouponCodeMutation,
   RemoveCouponCodeMutationVariables,
   SetCustomerForOrderMutation,
@@ -259,13 +263,25 @@ export class VendureClient {
     return order as OrderFieldsFragment;
   }
 
-  async removeCouponCode(couponCode: string): Promise<OrderFieldsFragment> {
+  async removeCouponCode(
+    couponCode: string
+  ): Promise<OrderFieldsFragment | undefined> {
     const { removeCouponCode: order } = await this.request<
       RemoveCouponCodeMutation,
       RemoveCouponCodeMutationVariables
     >(REMOVE_COUPON_CODE, {
       couponCode,
     });
+    if (order) {
+      this.store.activeOrder = order;
+      return order;
+    }
+  }
+
+  async removeAllOrderLines(): Promise<OrderFieldsFragment> {
+    const { removeAllOrderLines: order } =
+      await this.request<RemoveAllOrderLinesMutation>(REMOVE_ALL_ORDER_LINES);
+    this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }

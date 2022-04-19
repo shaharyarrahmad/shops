@@ -1,5 +1,5 @@
 {
-  "name": "cryptherion.io",
+  "name": "ophetboek.nl",
   "private": true,
   "scripts": {
     "serve:static": "yarn nodemon --ext js,vue,html,md --watch src --exec 'yarn gridsome build && yarn http-server ./dist/'",
@@ -9,8 +9,9 @@
     "link-there": "cd ../../packages/pinelab-storefront-client && yarn link"
   },
   "dependencies": {
-    "@fontsource/roboto": "^4.5.3",
-    "@fontsource/titillium-web": "^4.5.1",
+    "@fontsource/lora": "^4.5.6",
+    "@fontsource/open-sans": "^4.5.8",
+    "@fontsource/open-sans-condensed": "^4.5.5",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "buefy": "^0.9.14",
     "pinelab-storefront-client": "^0.47.0",
@@ -19,15 +20,12 @@
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
     "concurrently": "^6.2.0",
-    "graphql-tag": "^2.12.6",
     "gridsome": "^0.7.23",
     "http-server": "^0.12.3",
-    "lodash": "^4.17.21",
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "sass": "^1.32.13",
-    "sass-loader": "^10.1.1",
-    "webpack-bundle-analyzer": "^4.4.1"
+    "sass-loader": "^10.1.1"
   },
   "version": "0.47.0",
   "resolutions": {

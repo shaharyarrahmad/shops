@@ -4,11 +4,12 @@ import {
   ID,
   Injector,
   Logger,
-  OrderStateTransitionEvent,
+  OrderPlacedEvent,
   TransactionalConnection,
 } from '@vendure/core';
 import { TaxHelper } from '../tax/tax.helper';
 import { InvoiceService } from 'vendure-plugin-invoices';
+import { EBookController, EBookPlugin } from '../e-book/e-book.plugin';
 
 interface AdminWithChannel {
   admin_emailAddress: string;
@@ -20,15 +21,9 @@ const loggerCtx = 'OrderConfirmationHandler';
 /**
  * Send email to customer AND administrators of channel
  */
-export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
+export const orderConfirmationHandler: EmailEventHandler<any, any> =
   new EmailEventListener('order-confirmation')
-    .on(OrderStateTransitionEvent)
-    .filter(
-      (event) =>
-        event.toState === 'PaymentSettled' &&
-        event.fromState !== 'Modifying' &&
-        !!event.order.customer
-    )
+    .on(OrderPlacedEvent)
     .loadData(async ({ event, injector }) => {
       const channel = event.ctx.channel;
       let [admins, invoicesEnabled] = await Promise.all([
@@ -50,11 +45,12 @@ export const adminOrderConfirmationHandler: EmailEventHandler<any, any> =
       if (invoicesEnabled) {
         invoiceLink = `${process.env.VENDURE_HOST}/invoices/${channel.token}/${event.order.code}?email=${event.order.customer?.emailAddress}`;
       }
+      const ebooks = EBookController.getEbookLinks(event.ctx, event.order);
       Logger.info(
-        `Sending order confirmation email to ${adminRecipients} for channel ${channelName}`,
+        `Sending order confirmation email to ${event.order.customer?.emailAddress} for channel ${channelName}`,
         loggerCtx
       );
-      return { channelName, adminRecipients, invoiceLink };
+      return { channelName, adminRecipients, invoiceLink, ebooks };
     })
     .setRecipient(
       (event) =>
