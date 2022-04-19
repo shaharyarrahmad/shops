@@ -79,7 +79,7 @@ export const config: VendureConfig = {
   dbConnectionOptions: {
     type: 'mysql',
     synchronize: false,
-    logging: false,
+    logging: true,
     username: process.env.DATABASE_USER!,
     password: process.env.DATABASE_PASSWORD!,
     host: process.env.DATABASE_HOST!,
@@ -116,7 +116,7 @@ export const config: VendureConfig = {
     ],
   },
   plugins: [
-    EBoekhoudenPlugin,
+    // EBoekhoudenPlugin, FIXME
     EBookPlugin.init(process.env.VENDURE_HOST!),
     InvoicePlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
@@ -153,10 +153,11 @@ export const config: VendureConfig = {
       vendureHost: process.env.VENDURE_HOST!,
       syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
     }),
-    GoedgepicktPlugin.init({
+    // FIXME
+    /*GoedgepicktPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       setWebhook: process.env.SHOP_ENV === 'test', // Just sync for test now
-    }),
+    }),*/
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
