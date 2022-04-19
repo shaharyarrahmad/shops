@@ -87,7 +87,7 @@ export const config: VendureConfig = {
     migrations: [path.join(__dirname, '../migrations/*.ts')],
     socketPath: runningLocal
       ? undefined
-      : `/cloudsql/pinelab-shops:europe-west1:${process.env.DATABASE_NAME}`,
+      : `/cloudsql/${process.env.SOCKET_CONNECTION_NAME}`,
   },
   taxOptions: {
     taxZoneStrategy: new ShippingBasedTaxZoneStrategy(),
