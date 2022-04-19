@@ -8,7 +8,7 @@ gcloud run deploy shops-api \
             --allow-unauthenticated \
             --memory=2G \
             --project=pinelab-shops \
-            --set-env-vars=$ENV_VARS
+            --set-env-vars=$ENV_VARS \
             --add-cloudsql-instances="pinelab-shops:europe-west1:shops-prod"
 gcloud run deploy worker \
             --quiet \
@@ -18,5 +18,5 @@ gcloud run deploy worker \
             --allow-unauthenticated \
             --memory=2G \
             --project=pinelab-shops \
-            --set-env-vars=$ENV_VARS
+            --set-env-vars=$ENV_VARS \
             --add-cloudsql-instances="pinelab-shops:europe-west1:shops-prod"
