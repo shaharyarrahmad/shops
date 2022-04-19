@@ -9,12 +9,12 @@
       <mj-column>
         <mj-text>
           <h1>
-            Je bestelling bij {{ channelName }}
+            Je bestelling van {{ channelName }}
           </h1>
         </mj-text>
         <mj-divider border-color="#343434"></mj-divider>
 
-        <mj-text>Bedankt voor je bestelling bij {{ channelName }}</mj-text>
+        <mj-text>Bedankt voor je bestelling van {{ channelName }}</mj-text>
 
       </mj-column>
     </mj-section>
@@ -24,14 +24,14 @@
         <mj-column>
           <mj-text>
             <h2>
-              Download hier je e-books.
+              Download hier je e-book
             </h2>
           </mj-text>
           <mj-divider border-color="#343434"></mj-divider>
 
           {{#each ebooks}}
-            <mj-button background-color="#3cb371" href="{{ downloadLink }}">
-              {{ title }}
+            <mj-button background-color="#3cb371" color="#ffffff" href="{{ downloadLink }}">
+              Download {{ title }}
             </mj-button>
           {{/each}}
 

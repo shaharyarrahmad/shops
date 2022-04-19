@@ -104,17 +104,18 @@ export default {
     return {
       loading: false,
       emailAddress: undefined,
+      orderPreparation: undefined,
     };
   },
   async mounted() {
-    await this.prepareOrder();
+    this.orderPreparation = this.prepareOrder();
   },
   methods: {
     async buy(e) {
       e.preventDefault();
       try {
         this.loading = true;
-        await this.prepareOrder();
+        await this.orderPreparation;
         await this.$vendure.setCustomerForOrder({
           firstName: this.emailAddress,
           lastName: 'e-book',
@@ -133,33 +134,25 @@ export default {
       }
     },
     async prepareOrder() {
-      let addToCartPromise;
-      let setAddressPromise;
-      if (this.$store?.activeOrder?.lines?.length > 1) {
-        // If too many items in cart
+      await this.$vendure.getActiveOrder();
+      if (this.$store?.activeOrder) {
         await this.$vendure.removeAllOrderLines();
         console.log('Removed previous orderlines');
       }
-      if (
-        !this.$store?.activeOrder ||
-        this.$store?.activeOrder?.lines?.length === 0
-      ) {
-        // If no active order or no items
-        addToCartPromise = this.$vendure.addProductToCart(
-          this.$context.product.variants[0].id,
-          1
-        );
-        console.log('Adding 1 ebook to cart');
-      }
+      // If no active order or no items
+      await this.$vendure.addProductToCart(
+        this.$context.product.variants[0].id,
+        1
+      );
+      console.log('Added 1 ebook to cart');
       if (!this.$store?.activeOrder?.shippingAddress?.streetLine1) {
-        setAddressPromise = this.$vendure.setOrderShippingAddress({
+        await this.$vendure.setOrderShippingAddress({
           fullName: this.emailAddress,
           streetLine1: 'E-book',
           countryCode: 'nl',
         });
         console.log('Setting address');
       }
-      await Promise.all([addToCartPromise, setAddressPromise]);
       console.log('Prepared order');
     },
     showError(message) {
