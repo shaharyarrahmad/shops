@@ -156,10 +156,11 @@ export const config: VendureConfig = {
       vendureHost: process.env.VENDURE_HOST!,
       syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
     }),
-    /*    GoedgepicktPlugin.init({
+    GoedgepicktPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
+      endpointSecret: process.env.WEBHOOK_TOKEN!,
       setWebhook: process.env.SHOP_ENV === 'prod', // Only set webhook for prod
-    }),*/
+    }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({

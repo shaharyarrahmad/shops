@@ -12385,68 +12385,68 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vendure-plugin-coinbase@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-2.7.0.tgz#1ac981dee9fc2b7d8db518d258123b1cf3467b7c"
-  integrity sha512-PQIQyyy32d+Jlyzuc3ev4sbCZLBprfUtlZbLugOFf2tmskH1qhcWX8THBTZnEXxU7ZIfWhZ20wZgXpxTYrDg2g==
+vendure-plugin-coinbase@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-3.0.0.tgz#951556d1ddef3c80ae45983f1709d5e0edef040c"
+  integrity sha512-j3E2t2RXN7GwZ5szQdDX42oZA44vs85t+Qwv4TI/qM06hT1AwYSXoc5Ay1yNJGzK+HjN0XSktLG5LS5EqxO+Ig==
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-dutch-postalcode@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-2.7.0.tgz#b563b93f5c0639058b2788679a478e06d0eae7dc"
-  integrity sha512-IvFHn+08Rxz1nU/50c0pVj3kf+MUytlgP5EAlhcWzefzmShva1S8p0A4aOrBpm7a8lukaPNPGk/ag7v29BNS5w==
+vendure-plugin-dutch-postalcode@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-3.0.0.tgz#0d9f6d7d0014917490a7211956d63a8b4b0b4a82"
+  integrity sha512-GlTfCDosy2xS9f3E3Vb8M6qX5ohdn+GxrO8AQ/Gnnt/tfgv6OuF8pH47ItqC8HRD3wLjUyfYAgy5+51UKt1Mgw==
 
-vendure-plugin-e-boekhouden@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-2.7.0.tgz#97448e7dc6ec0a3f9cb846fb9a3372152141c087"
-  integrity sha512-cytQ5QkB2yQ1h2rqXmzbXJ83SWs3j93xIaDZVYRuX2Fzc1IwcBNx51tqUOwgqkNSR0PEB9F/ujy4GvhNxQxeOw==
+vendure-plugin-e-boekhouden@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-3.0.0.tgz#0dc8a795c3724bfa7dc293410369b0065e862c26"
+  integrity sha512-yX3n8mct6Naw2E4LGyexoqutSPSJTjP1WfSCxWtM8lWLJPKdKiEY6iDRrcFvXjIp7018oW4EsgakLpmXqHILag==
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-2.7.0.tgz#3e60ed16242129cc0a9355a05bdccf0b00a4d0ce"
-  integrity sha512-l4S0roJphuBctVguZSDKwkoUMzytCV3F1UfleMj5iwRc5oqY24usQRq+D5gt8TENchE9HKgMAWJBkglj1zDqlA==
+vendure-plugin-goedgepickt@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.0.0.tgz#d05af4dcb456678ccc2cc186c254fcd196877c9b"
+  integrity sha512-ADj8NzyG8c5ONgeSnmMRehUMVdl1MMiaMYwNd4Dsdi6bMLJG/mzmyAUI6OlgIPurtsjpdW+R0P9jEmMbNfeNJQ==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-2.7.0.tgz#80c21145c3bef4f47e5ff53ff12a0d30e4d0e1d3"
-  integrity sha512-jP56ZYpqrLekRVxnwmI8alp16wgIJN0OTwH25AhVJwlsAdV8qhK2qIuutcDTBXOPIBb4eghYcKOl4RrzzL5mYw==
+vendure-plugin-google-cloud-tasks@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.0.0.tgz#7f49ab6f0672bdce8a065db5c9268dc102289fa5"
+  integrity sha512-zG5448RER8QnLjZn2rEKg3ROtL3QnFIcTfyf6/9K2u90jcdNHJ+R2dZgCO4CwohxpUbuT1IPnJrh1s5bQ/ROsQ==
   dependencies:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
 
-vendure-plugin-google-storage-assets@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-2.7.0.tgz#4bcb7c28903e4dfdee237b8dc3cb7ab5d8c26241"
-  integrity sha512-rgTnHtKExkah23XoyMGSMBQ01uLhMf5h+YYw3SA8PQ7nvi5UKBeMyboC9CbeIumRe74oJt84oeQ/mCxAnUvXNw==
+vendure-plugin-google-storage-assets@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-3.0.0.tgz#17acd97c4f743e3ea53830b206c73575101b3447"
+  integrity sha512-LVFkMNQn6N7yglilgNKNoziNlBw1SycBJTRBFOqTOpvWc7MzI0hNf1mb/q1hi/1bpg1LgQnGYywksqX4dMF6Uw==
   dependencies:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-2.7.0.tgz#c6531241c546d5b9ecf188c2ba0ac30c9dc01c9b"
-  integrity sha512-m7OCiNWRBehaCs+X80g3/NnG3UBt6lPZrepG0TTHu0cdp1Ruhk7IggXSNuJf5A8UzG18kY4h61wgGc6q07HWaA==
+vendure-plugin-invoices@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-3.0.0.tgz#6a22b994a23f5d1d9c0fa00a1db99bb07e461533"
+  integrity sha512-8Jw+BcLYBBtmXD054PdZYnvU40Qe/2CVTlTfJgcD5vslP2Ju5eFkHMGCrbIume5Y9atTDKUFApXvVo9+6oHEqw==
   dependencies:
     adm-zip "^0.5.9"
     pdf-creator-node "^2.3.4"
     tmp "^0.2.1"
 
-vendure-plugin-myparcel@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-2.7.0.tgz#1cf9e4f63fd4534e07ecc9853bd7177449a309ca"
-  integrity sha512-vBY8JPXzUjA0jiQpwJIaPNqyyp1CKY3wwAKkX6QosZvT5Z7ItMK4TudHloZaZXsHmC5/L+POKAhgrQhyC7WJng==
+vendure-plugin-myparcel@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-3.0.0.tgz#2ea3bdadb64456ed89e9f75408bc4230c717bb7b"
+  integrity sha512-FhaSId4/9XugVHN+g44fyd+YNg1LvJ4ZKZmygpL7d43uQIGukgVFLhuqskYRgCBxZLl14pNCRXUjWSyAyxivuA==
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-webhook@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-2.7.0.tgz#760a3e50d2f4ac27c500ac9b87596f438cc74171"
-  integrity sha512-NVj5BGqlFIAZn8UNgVWmF1VVbGz3dhXwXAC4OcaH8Yi2wMTo+vYbCpd4i0b9HoTZzFq34ClPErucDgpS/p4CUQ==
+vendure-plugin-webhook@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-3.0.0.tgz#29f90bad70b556d05adbb995126d9e58f021bad7"
+  integrity sha512-BKEFoiFfM4cDyccOMlInBVEadanjD3eK/2lvy6lc1NkAPmpgGGOQaL8BOsbn49kKjHdk7lbIME8V78mHA2TSJA==
 
 verror@1.10.0:
   version "1.10.0"
