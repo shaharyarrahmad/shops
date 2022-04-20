@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - develop
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  test_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Yarn
+        working-directory: ./packages/e2e/
+        run: yarn
+      - name: Run e2e tests
+        working-directory: ./packages/e2e/
+        run: yarn e2e
