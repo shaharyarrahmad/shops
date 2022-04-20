@@ -118,7 +118,7 @@ export class VendureClient {
     });
     this.validateResult(addItemToOrder);
     this.store.activeOrder = addItemToOrder as OrderFieldsFragment;
-    await this.setLowestShippingMethod();
+    this.setLowestShippingMethod().catch((e) => console.error(e)); // async
     return addItemToOrder as OrderFieldsFragment;
   }
 
