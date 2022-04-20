@@ -1524,10 +1524,10 @@
     stream-events "^1.0.4"
     xdg-basedir "^4.0.0"
 
-"@google-cloud/storage@^5.19.1":
-  version "5.19.1"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-5.19.1.tgz#7252c4eb65e6014bf525a76f3af0774caa3a946d"
-  integrity sha512-bRTf/AD00+lPTamJdpihXC3AFtAnJFWNh/zQAor972VpuATF7u4V1anwWp0V6rKuKE3BwNM+xWxuuW/nAwEgTA==
+"@google-cloud/storage@^5.19.2":
+  version "5.19.2"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-5.19.2.tgz#d65ecba0165ee3beca096b24a6058f41fee71e35"
+  integrity sha512-0saiMeQkDALf9pvDD1rDZGV5aktUbnIWjm9jYiFKlxiMROJhODzaaltvyKg5oY6ujHv7Fzc5pzQVFo3R8vENpw==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
     "@google-cloud/projectify" "^2.0.0"
@@ -12404,10 +12404,10 @@ vendure-plugin-e-boekhouden@^3.0.0:
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.0.0.tgz#d05af4dcb456678ccc2cc186c254fcd196877c9b"
-  integrity sha512-ADj8NzyG8c5ONgeSnmMRehUMVdl1MMiaMYwNd4Dsdi6bMLJG/mzmyAUI6OlgIPurtsjpdW+R0P9jEmMbNfeNJQ==
+vendure-plugin-goedgepickt@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.0.1.tgz#9314c1bec7875865caf8bdf2064a3818b2cba1ab"
+  integrity sha512-V2ttVqLaa2R7WjJfF7pzrr/8DmrFvE0uYWWB7JRtmCv/ZlmEiN6Wzbiz5Jg7n/hktCwWnAemJOV+rrH+BlzYUw==
   dependencies:
     node-fetch "2"
 
