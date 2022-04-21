@@ -1,6 +1,6 @@
 {
   "name": "marcdefotograaf",
-  "version": "0.47.1",
+  "version": "0.47.2",
   "private": true,
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
@@ -14,7 +14,7 @@
   "dependencies": {
     "graphql": "^14.7.0",
     "graphql-request": "3.4.0",
-    "pinelab-storefront-client": "^0.47.1",
+    "pinelab-storefront-client": "^0.47.2",
     "rollbar": "^2.21.0"
   },
   "devDependencies": {
