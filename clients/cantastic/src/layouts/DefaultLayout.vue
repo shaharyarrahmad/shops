@@ -135,14 +135,34 @@
     </div>
 
     <!--------------------------------- FOOTER ------------------------------->
-    <footer class="footer has-background-warning has-text-white">
-      <div class="container is-widescreen section"></div>
+    <footer class="footer has-background-warning py-0">
+      <div class="container is-widescreen section">
+        <div class="columns">
+          <div class="column is-7">
+            <h3 class="has-text-white">
+              Exclusieve deals & unieke graffiti content direct in je inbox -
+              helemaal gratis
+            </h3>
+          </div>
+          <div class="column is-5">
+            <b-field
+              message="Geen spam - 1 mail per maand. Je kunt je altijd weer afmelden."
+            >
+              <b-input placeholder="Vul je e-mailadres in" icon="email">
+              </b-input>
+              <p class="control">
+                <b-button type="is-dark" label="Count me in" />
+              </p>
+            </b-field>
+          </div>
+        </div>
+      </div>
     </footer>
-    <footer class="footer has-background-info has-text-white">
+    <footer class="footer has-background-info pb-0">
       <div class="container is-widescreen section">
         <div class="columns">
           <div class="column is-3">
-            <h5 class="has-text-white">Categorieën</h5>
+            <h5 class="has-text-light">Categorieën</h5>
             <g-link
               v-for="collection of $context.collections"
               :key="collection.slug"
@@ -152,7 +172,7 @@
             </g-link>
           </div>
           <div class="column is-3">
-            <h5 class="has-text-white">Service</h5>
+            <h5 class="has-text-light">Service</h5>
             <g-link to="/over-ons">Bestelling & verzending</g-link>
             <br />
             <g-link to="/over-ons">Betalen</g-link>
@@ -163,7 +183,7 @@
             <br />
           </div>
           <div class="column is-3">
-            <h5 class="has-text-white">Over Cantastic</h5>
+            <h5 class="has-text-light">Over Cantastic</h5>
             <g-link to="/over-ons">Over ons</g-link>
             <br />
             <g-link to="/over-ons">Contact</g-link>
@@ -173,9 +193,26 @@
             <g-link to="/over-ons">Blog</g-link>
             <br />
           </div>
-          <div class="column is-3">
-            <h3 class="has-text-white">Volg @Cantastic.nl en #TeamJoopie</h3>
+          <div class="column is-3 pb-4" style="border-bottom: 1px solid">
+            <h3 class="has-text-light">Volg @Cantastic.nl en #TeamJoopie</h3>
+            <a :href="$context.instagram" target="_blank">
+              <b-icon icon="instagram" size="is-large" class="is-light pr-4">
+              </b-icon>
+            </a>
+            <a :href="$context.facebook" target="_blank">
+              <b-icon icon="facebook" size="is-large" class="is-light">
+              </b-icon>
+            </a>
           </div>
+        </div>
+
+        <div class="has-text-right">
+          <a
+            class="has-text-grey"
+            href="https://pinelab.studio/"
+            target="_blank"
+            >Made by Pinelab</a
+          >
         </div>
       </div>
     </footer>

@@ -10,19 +10,39 @@ module.exports = async function (api) {
   });
 */
 
+  const findByFacet = (products, code) =>
+    products.find((p) => p.facetValues.find((f) => f.code === code));
+  const filterByFacet = (products, code) =>
+    products.filter((p) => p.facetValues.find((f) => f.code === code));
+
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
     const {
-      products,
+      products: allProducts,
       availableCountries,
       collections: allCollections,
       productsPerCollection,
     } = await gridsome.getShopData();
 
+    const products = allProducts.map((p) => {
+      const facetValue = p.facetValues.find(
+        (facetValue) => facetValue.facet.code === 'category-3'
+      );
+      p.category = facetValue ? facetValue.name : undefined;
+      return p;
+    });
+
     const collections = gridsome.unflatten(allCollections);
     const global = {
       collections,
+      instagram: 'https://www.instagram.com/cantastic.nl/',
+      facebook: 'https://www.facebook.com/cantastic.nl/',
     };
+
+    const highlight1 = findByFacet(products, 'highlight1');
+    const highlight2 = findByFacet(products, 'highlight2');
+    const highlight3 = findByFacet(products, 'highlight3');
+    const favorites = filterByFacet(products, 'favorite');
 
     // ----------------- Index ---------------------
     createPage({
@@ -31,15 +51,10 @@ module.exports = async function (api) {
       context: {
         ...global,
         products,
-        highlight1: products.find((p) =>
-          p.facetValues.find((f) => f.code === 'highlight1')
-        ),
-        highlight2: products.find((p) =>
-          p.facetValues.find((f) => f.code === 'highlight2')
-        ),
-        highlight3: products.find((p) =>
-          p.facetValues.find((f) => f.code === 'highlight3')
-        ),
+        highlight1,
+        highlight2,
+        highlight3,
+        favorites,
         usps: [
           '<p>Vanaf €75 <b>gratis</b> verzending</p>',
           '<p><b>Achteraf</b> betalen</p>',

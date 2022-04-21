@@ -25,6 +25,7 @@ $body-background-color: $loop-white;
 $primary-invert: $loop-white;
 $dark: $loop-dark;
 $light: $loop-grey;
+$title-color: $loop-soft-dark;
 
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
@@ -111,6 +112,10 @@ $colors: mergeColorMaps(
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
+.title {
+  font-weight: 900;
+}
+
 h1 {
   @extend .title;
   @extend .is-1;
@@ -145,6 +150,10 @@ h6 {
   @extend .title;
   @extend .is-6;
   @extend .is-family-secondary;
+}
+
+section {
+  @extend .mb-6;
 }
 
 .usps b {

@@ -12,6 +12,10 @@ export const PRODUCT_FIELDS = gql`
     facetValues {
       code
       name
+      facet {
+        code
+        name
+      }
     }
     featuredAsset {
       id

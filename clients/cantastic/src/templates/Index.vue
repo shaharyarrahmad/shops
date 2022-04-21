@@ -19,35 +19,56 @@
 
       <br />
 
-      <div class="columns" id="highlighted">
-        <div class="column is-7">
-          <HighlightCard :product="$context.highlight1" />
-        </div>
-        <div class="column is-5">
-          <div class="columns is-mobile is-multiline">
-            <div class="column is-12-tablet is-6-mobile">
-              <HighlightCard :product="$context.highlight2" />
-            </div>
-            <div class="column is-12-tablet is-6-mobile">
-              <HighlightCard :product="$context.highlight3" />
+      <section id="highlighted">
+        <div class="columns">
+          <div class="column is-7">
+            <HighlightCard :product="$context.highlight1" />
+          </div>
+          <div class="column is-5">
+            <div class="columns is-mobile is-multiline">
+              <div class="column is-12-tablet is-6-mobile">
+                <HighlightCard :product="$context.highlight2" />
+              </div>
+              <div class="column is-12-tablet is-6-mobile">
+                <HighlightCard :product="$context.highlight3" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <h3>Populaire categorieën</h3>
-      <div class="columns is-multiline is-mobile">
-        <template v-for="collection of $context.collections.slice(0, 5)">
-          <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
-            <g-link :to="`/categorie/${collection.slug}/`">
-              <CategoryCard
-                :name="collection.name"
-                :image="maybeThumbnail(collection.featuredAsset)"
+      <section id="popular">
+        <h3>Populaire categorieën</h3>
+        <div class="columns is-multiline is-mobile">
+          <template v-for="collection of $context.collections.slice(0, 5)">
+            <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
+              <g-link :to="`/categorie/${collection.slug}/`">
+                <CategoryCard
+                  :name="collection.name"
+                  :image="maybeThumbnail(collection.featuredAsset)"
+                />
+              </g-link>
+            </div>
+          </template>
+        </div>
+      </section>
+
+      <section id="favorite-products">
+        <h3>Onze favorieten</h3>
+        <div class="columns is-6 is-variable is-multiline is-mobile">
+          <template v-for="favorite of $context.favorites">
+            <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
+              <ProductCard
+                :name="favorite.name"
+                :image="maybeThumbnail(favorite.featuredAsset)"
+                :slug="favorite.slug"
+                :price="favorite.lowestPrice"
+                :category="favorite.category"
               />
-            </g-link>
-          </div>
-        </template>
-      </div>
+            </div>
+          </template>
+        </div>
+      </section>
     </template>
 
     <template #fullwidth>
@@ -74,32 +95,26 @@
     </template>
 
     <template #content2>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
-      <h5>Content</h5>
+      <section id="blog">
+        <h3>Blog</h3>
+        <p>TODO</p>
+      </section>
+
+      <section id="brands">
+        <h3>Onze merken</h3>
+        <p>TODO</p>
+      </section>
     </template>
   </DefaultLayout>
 </template>
 
 <script>
-import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
 import { hydrate } from 'pinelab-storefront-client';
-import ProductFilter from 'pinelab-storefront-client/lib/buefy-components/ProductFilter';
 import HighlightCard from '../components/HighlightCard';
-import CategoryCard from '../components/CategoryCard';
 
 export default {
   components: {
-    CategoryCard,
     HighlightCard,
-    ProductCard,
-    ProductFilter,
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
