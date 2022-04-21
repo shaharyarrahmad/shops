@@ -14,24 +14,25 @@
                 <b-input icon="magnify" clearable></b-input>
               </b-field>
             </div>
-            <div class="column has-text-right" id="basket">
+            <div class="column has-text-right" id="icons">
               <span class="is-hidden-tablet"
                 ><b-icon icon="magnify" size="is-medium"></b-icon
               ></span>
               <span class="is-hidden-mobile"
                 ><b-icon icon="whatsapp" size="is-medium"></b-icon
               ></span>
-              <span>
-                <b-icon icon="basket" size="is-medium"></b-icon>
-                <span class="cart-badge">3</span>
-              </span>
+              <Basket />
             </div>
           </div>
         </div>
       </template>
       <!-------------------- Nav items ------------------>
       <template #start>
-        <div class="container is-widescreen section" id="navbar-items-wrapper">
+        <!--------------- Desktop menu -------------------------->
+        <div
+          class="container is-widescreen section is-hidden-mobile"
+          id="navbar-items-wrapper"
+        >
           <template v-for="(collection, i) of $context.collections">
             <template v-if="!hasChildren(collection)">
               <!-------------------- Single collection ------------------>
@@ -46,9 +47,12 @@
               <!-------------------- Collection with children ------------------>
               <b-navbar-dropdown
                 :label="collection.name"
+                tag="g-link"
+                :to="`/categorie/${collection.slug}`"
                 class="is-uppercase is-family-secondary"
                 arrowless
                 hoverable
+                :close-on-click="true"
               >
                 <div class="container is-widescreen section py-1">
                   <div class="columns is-capitalized">
@@ -112,6 +116,29 @@
             </template>
           </template>
         </div>
+
+        <!------------ Mobile menu ------------->
+        <div
+          class="container is-widescreen section py-2 is-hidden-desktop"
+          id="mobile-navigation"
+        >
+          <template v-for="collection of $context.collections">
+            <g-link
+              class="is-uppercase is-family-secondary is-block pb-2"
+              :to="`/categorie/${collection.slug}`"
+            >
+              <b>{{ collection.name }}</b>
+            </g-link>
+            <g-link
+              v-for="subCollection of getChildrenWithChildren(collection)"
+              :key="subCollection.slug"
+              class="pl-3 pb-2 is-block"
+              :to="`/categorie/${subCollection.slug}`"
+            >
+              {{ subCollection.name }}
+            </g-link>
+          </template>
+        </div>
       </template>
     </b-navbar>
 
@@ -119,17 +146,38 @@
     <div class="content-container">
       <transition name="fade" appear>
         <div class="container is-widescreen section">
+          <div
+            class="usps is-flex-desktop is-vcentered is-justify-content-space-between mt-4"
+          >
+            <template v-for="usp of $context.usps">
+              <div class="is-flex">
+                <b-icon
+                  icon="crown-circle"
+                  size="is-medium"
+                  type="is-info"
+                  class="is-vcentered"
+                ></b-icon>
+                <div v-html="usp" class="pl-2"></div>
+              </div>
+            </template>
+          </div>
+          <br />
+          <Breadcrumb
+            v-if="$context.breadcrumb"
+            :crumbs="$context.breadcrumb"
+          />
+
           <slot name="content" />
         </div>
       </transition>
 
-      <div class="has-background-info">
+      <div v-if="$slots.fullwidth" class="has-background-info">
         <div class="container is-widescreen section">
           <slot name="fullwidth" />
         </div>
       </div>
 
-      <div class="container is-widescreen section">
+      <div v-if="$slots.content2" class="container is-widescreen section">
         <slot name="content2" />
       </div>
     </div>
@@ -221,11 +269,13 @@
 <script>
 import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
 import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import Basket from '../components/Basket';
 
 export default {
   components: {
     ShopNavBar,
     Breadcrumb,
+    Basket,
   },
   methods: {
     hasChildren(collection) {
@@ -340,29 +390,25 @@ a.navbar-item:hover,
   padding-top: 16px;
 }
 
-#basket {
-  padding-top: 21px;
-  padding-right: 0;
-  white-space: nowrap;
-  margin-left: -60px;
-}
-
-#basket .icon {
-  padding-left: 60px;
-}
-
 #top-navbar {
   padding-top: 0;
   padding-bottom: 0;
   height: 65px;
 }
 
-/* Notification */
-.cart-badge {
-  background: black;
-  border-radius: 50%;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 12px;
+#icons {
+  padding-top: 21px;
+  padding-right: 0;
+  white-space: nowrap;
+  margin-left: -60px;
+}
+
+#icons .icon {
+  padding-left: 60px;
+}
+
+#breadcrumb {
+  margin-bottom: 0;
+  color: red;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
   <DefaultLayout>
-    <OrderConfirmation />
+    <template #content>
+      <OrderConfirmation />
+    </template>
   </DefaultLayout>
 </template>
 <script>

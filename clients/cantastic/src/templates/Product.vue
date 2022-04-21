@@ -72,3 +72,8 @@ export default {
   },
 };
 </script>
+<style>
+.is-clickable.image {
+  cursor: zoom-in !important;
+}
+</style>

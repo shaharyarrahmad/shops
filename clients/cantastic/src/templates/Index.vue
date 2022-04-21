@@ -1,24 +1,6 @@
 <template>
   <DefaultLayout>
     <template #content>
-      <div
-        class="usps is-flex-desktop is-vcentered is-justify-content-space-between mt-4"
-      >
-        <template v-for="usp of $context.usps">
-          <div class="is-flex">
-            <b-icon
-              icon="crown-circle"
-              size="is-medium"
-              type="is-info"
-              class="is-vcentered"
-            ></b-icon>
-            <div v-html="usp" class="pl-2"></div>
-          </div>
-        </template>
-      </div>
-
-      <br />
-
       <section id="highlighted">
         <div class="columns">
           <div class="column is-7">
@@ -118,7 +100,7 @@ export default {
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
-    await hydrate(this.$context.products, this.$vendure);
+    await hydrate(this.$context.favorites, this.$vendure);
   },
   methods: {
     maybeThumbnail(asset) {

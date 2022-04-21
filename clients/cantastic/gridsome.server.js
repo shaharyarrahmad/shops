@@ -10,10 +10,8 @@ module.exports = async function (api) {
   });
 */
 
-  const findByFacet = (products, code) =>
-    products.find((p) => p.facetValues.find((f) => f.code === code));
-  const filterByFacet = (products, code) =>
-    products.filter((p) => p.facetValues.find((f) => f.code === code));
+  // Breadcrumb pages
+  const Home = '/';
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
@@ -24,6 +22,7 @@ module.exports = async function (api) {
       productsPerCollection,
     } = await gridsome.getShopData();
 
+    // Set category field on products
     const products = allProducts.map((p) => {
       const facetValue = p.facetValues.find(
         (facetValue) => facetValue.facet.code === 'category-3'
@@ -39,10 +38,37 @@ module.exports = async function (api) {
       facebook: 'https://www.facebook.com/cantastic.nl/',
     };
 
-    const highlight1 = findByFacet(products, 'highlight1');
-    const highlight2 = findByFacet(products, 'highlight2');
-    const highlight3 = findByFacet(products, 'highlight3');
-    const favorites = filterByFacet(products, 'favorite');
+    // Helper functions
+    function findByFacet(code) {
+      return products.find((p) => p.facetValues.find((f) => f.code === code));
+    }
+
+    function filterByFacet(code) {
+      return products.filter((p) => p.facetValues.find((f) => f.code === code));
+    }
+
+    function getProductCollection(productId) {
+      const collectionMap = productsPerCollection.find(({ products }) =>
+        products.find((p) => p.id === productId)
+      );
+      if (collectionMap) {
+        return allCollections.find((c) => c.id === collectionMap.collection.id);
+      }
+    }
+
+    function getParentCollection(collectionId) {
+      const collection = allCollections.find((c) => c.id === collectionId);
+      const parent = collection.parent;
+      if (parent.name !== '__root_collection__') {
+        return allCollections.find((c) => c.id === parent.id);
+      }
+    }
+
+    // Product filtering
+    const highlight1 = findByFacet('highlight1');
+    const highlight2 = findByFacet('highlight2');
+    const highlight3 = findByFacet('highlight3');
+    const favorites = filterByFacet('favorite');
 
     // ----------------- Index ---------------------
     createPage({
@@ -66,20 +92,81 @@ module.exports = async function (api) {
 
     // ----------------- ProductDetail ---------------------
     products.forEach((product) => {
+      // Set product in breadcrumb
+      let breadcrumb = { [product.name]: `/product/${product.slug}` }; // Astro cap
+      const productCollection = getProductCollection(product.id);
+      if (productCollection) {
+        // Set direct parent collection (Fat caps)
+        breadcrumb = Object.assign(
+          { [productCollection.name]: `/categorie/${productCollection.slug}/` },
+          breadcrumb
+        );
+        const parentCollection = getParentCollection(productCollection.id);
+        if (parentCollection) {
+          // Set collections parent (Caps)
+          breadcrumb = Object.assign(
+            { [parentCollection.name]: `/categorie/${parentCollection.slug}/` },
+            breadcrumb
+          );
+          const parentsParent = getParentCollection(parentCollection.id);
+          if (parentsParent) {
+            // Set parents parent (Spray paint)
+            breadcrumb = Object.assign(
+              { [parentsParent.name]: `/categorie/${parentsParent.slug}/` },
+              breadcrumb
+            );
+          }
+        }
+      }
+      // Add Home before others
+      breadcrumb = Object.assign({ Home }, breadcrumb);
       createPage({
         path: `/product/${product.slug}`,
         component: './src/templates/Product.vue',
         context: {
           ...global,
+          breadcrumb,
           product,
-          showBack: true,
+        },
+      });
+    });
+
+    // ------------------------- Category pages ----------------------
+    productsPerCollection.forEach(({ products, collection }) => {
+      // Set collection
+      let breadcrumb = { [collection.name]: `/categorie/${collection.slug}/` };
+      const parentCollection = getParentCollection(collection.id);
+      if (parentCollection) {
+        // Set collections parent
+        breadcrumb = Object.assign(
+          { [parentCollection.name]: `/categorie/${parentCollection.slug}/` },
+          breadcrumb
+        );
+        const parentsParent = getParentCollection(parentCollection.id);
+        if (parentsParent) {
+          // Set parents parent
+          breadcrumb = Object.assign(
+            { [parentsParent.name]: `/categorie/${parentsParent.slug}/` },
+            breadcrumb
+          );
+        }
+      }
+
+      createPage({
+        path: `/categorie/${collection.slug}`,
+        component: './src/templates/Category.vue',
+        context: {
+          ...global,
+          breadcrumb,
+          collection,
+          products,
         },
       });
     });
 
     // ----------------- Cart ---------------------
     createPage({
-      path: '/cart/',
+      path: '/winkelmand/',
       component: './src/templates/Cart.vue',
       context: {
         ...global,
