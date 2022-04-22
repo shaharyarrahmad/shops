@@ -78,7 +78,8 @@ export default {
     showError(e) {
       this.$buefy.toast.open({
         message: `Error: ${e?.message}`,
-        type: 'is-danger',
+        duration: 5000,
+        type: 'is-info',
       });
     },
   },

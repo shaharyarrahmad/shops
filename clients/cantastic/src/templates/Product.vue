@@ -2,7 +2,7 @@
   <DefaultLayout #content>
     <br />
     <h1 class="title">{{ $context.product.name }}</h1>
-    <div class="columns">
+    <div class="columns content">
       <div class="column">
         <ProductImages :product="$context.product" :variant="variant" />
       </div>

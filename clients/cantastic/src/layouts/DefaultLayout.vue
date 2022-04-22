@@ -71,9 +71,11 @@
                           collection
                         )"
                       >
-                        <h5 class="navbar-item is-hidden-mobile px-0">
-                          {{ i == 0 ? subCollection.name : '&nbsp;' }}
-                        </h5>
+                        <g-link :to="`/categorie/${subCollection.slug}/`">
+                          <h5 class="navbar-item is-hidden-mobile px-0">
+                            {{ i == 0 ? subCollection.name : '&nbsp;' }}
+                          </h5>
+                        </g-link>
                         <g-link
                           v-for="subsub of chunk"
                           :key="subsub.slug"

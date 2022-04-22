@@ -1,18 +1,19 @@
 <template>
   <div class="product-container mt-5">
-    <g-link :to="`/product/${product.slug}/`" style="margin-bottom: -10px">
+    <g-link :to="`/product/${product.slug}/`" style="margin-bottom: -20px">
       <b-image
         :src="maybeThumbnail(product.featuredAsset)"
         :alt="product.name"
         ratio="1by1"
+        class="contain-image"
       ></b-image>
-      <p class="has-text-">{{ product.category || '&nbsp;' }}</p>
+      <p class="is-size-7">{{ product.category || '&nbsp;' }}</p>
       <h6>{{ product.name }}</h6>
     </g-link>
     <div class="buy-button has-text-right">
-      <h4 class="is-inline-block pt-3 pr-2">
+      <h5 class="is-inline-block pt-3 pr-2">
         {{ product.lowestPrice | euro }}
-      </h4>
+      </h5>
       <b-button
         type="is-info"
         size="is-medium"
@@ -64,5 +65,10 @@ export default {
 }
 .buy-button {
   margin-top: auto;
+  white-space: nowrap;
+  overflow: visible;
+}
+.contain-image img {
+  object-fit: contain;
 }
 </style>

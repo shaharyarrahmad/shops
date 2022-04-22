@@ -70,6 +70,17 @@ module.exports = async function (api) {
       }
     }
 
+    function getChildCollections(collectionId) {
+      const collection = allCollections.find((c) => c.id === collectionId);
+      const children = collection.children;
+      const childCollections = children.map((child) =>
+        allCollections.find((c) => child.id === c.id)
+      );
+      if (childCollections.length > 0) {
+        return childCollections;
+      }
+    }
+
     // Product filtering
     const highlight1 = findByFacet('highlight1');
     const highlight2 = findByFacet('highlight2');
@@ -150,6 +161,7 @@ module.exports = async function (api) {
         }
       }
       breadcrumb = Object.assign({ Home }, breadcrumb);
+      const childCollections = getChildCollections(collection.id);
 
       createPage({
         path: `/categorie/${collection.slug}`,
@@ -158,6 +170,7 @@ module.exports = async function (api) {
           ...global,
           breadcrumb,
           collection,
+          childCollections,
           products,
         },
       });
