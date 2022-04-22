@@ -40,13 +40,7 @@
         <div class="columns is-6 is-variable is-multiline is-mobile">
           <template v-for="favorite of $context.favorites">
             <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
-              <ProductCard
-                :name="favorite.name"
-                :image="maybeThumbnail(favorite.featuredAsset)"
-                :slug="favorite.slug"
-                :price="favorite.lowestPrice"
-                :category="favorite.category"
-              />
+              <ProductCard :product="favorite" />
             </div>
           </template>
         </div>
@@ -101,11 +95,6 @@ export default {
   async mounted() {
     await this.$vendure.getActiveOrder();
     await hydrate(this.$context.favorites, this.$vendure);
-  },
-  methods: {
-    maybeThumbnail(asset) {
-      return asset?.thumbnail;
-    },
   },
 };
 </script>

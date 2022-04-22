@@ -36,6 +36,12 @@ module.exports = async function (api) {
       collections,
       instagram: 'https://www.instagram.com/cantastic.nl/',
       facebook: 'https://www.facebook.com/cantastic.nl/',
+      usps: [
+        '<p>Vanaf €75 <b>gratis</b> verzending</p>',
+        '<p><b>Achteraf</b> betalen</p>',
+        '<p><b>Exclusieve</b> producten</p>',
+        '<p>Ook wel eens <b>gearresteerd</b></p>',
+      ],
     };
 
     // Helper functions
@@ -81,12 +87,6 @@ module.exports = async function (api) {
         highlight2,
         highlight3,
         favorites,
-        usps: [
-          '<p>Vanaf €75 <b>gratis</b> verzending</p>',
-          '<p><b>Achteraf</b> betalen</p>',
-          '<p><b>Exclusieve</b> producten</p>',
-          '<p>Ook wel eens <b>gearresteerd</b></p>',
-        ],
       },
     });
 
@@ -133,24 +133,23 @@ module.exports = async function (api) {
 
     // ------------------------- Category pages ----------------------
     productsPerCollection.forEach(({ products, collection }) => {
-      // Set collection
+      // Create breadcrumb
       let breadcrumb = { [collection.name]: `/categorie/${collection.slug}/` };
       const parentCollection = getParentCollection(collection.id);
       if (parentCollection) {
-        // Set collections parent
         breadcrumb = Object.assign(
           { [parentCollection.name]: `/categorie/${parentCollection.slug}/` },
           breadcrumb
         );
         const parentsParent = getParentCollection(parentCollection.id);
         if (parentsParent) {
-          // Set parents parent
           breadcrumb = Object.assign(
             { [parentsParent.name]: `/categorie/${parentsParent.slug}/` },
             breadcrumb
           );
         }
       }
+      breadcrumb = Object.assign({ Home }, breadcrumb);
 
       createPage({
         path: `/categorie/${collection.slug}`,

@@ -18,9 +18,11 @@
               <span class="is-hidden-tablet"
                 ><b-icon icon="magnify" size="is-medium"></b-icon
               ></span>
-              <span class="is-hidden-mobile"
-                ><b-icon icon="whatsapp" size="is-medium"></b-icon
-              ></span>
+              <a href="/#contact">
+                <span class="is-hidden-mobile"
+                  ><b-icon icon="whatsapp" size="is-medium"></b-icon
+                ></span>
+              </a>
               <Basket />
             </div>
           </div>
@@ -397,7 +399,7 @@ a.navbar-item:hover,
 }
 
 #icons {
-  padding-top: 21px;
+  padding-top: 15px;
   padding-right: 0;
   white-space: nowrap;
   margin-left: -60px;
@@ -406,9 +408,7 @@ a.navbar-item:hover,
 #icons .icon {
   padding-left: 60px;
 }
-
-#breadcrumb {
-  margin-bottom: 0;
-  color: red;
+#icons .icon {
+  color: white !important;
 }
 </style>

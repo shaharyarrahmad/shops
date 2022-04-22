@@ -20,6 +20,13 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('ProductCard', ProductCard);
   Vue.component('CategoryCard', CategoryCard);
   configureVue(Vue, { router, head, isClient });
+  Vue.mixin({
+    methods: {
+      maybeThumbnail(asset) {
+        return asset?.thumbnail;
+      },
+    },
+  });
   if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
     require('outfront').default();
     console.log('OutfrontJS mobile logging enabled');
