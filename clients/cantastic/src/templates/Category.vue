@@ -2,12 +2,11 @@
   <DefaultLayout>
     <template #content>
       <section :id="$context.collection.slug">
-        <h1>{{ $context.collection.name }}</h1>
-
-        <br />
-
         <template v-if="$context.childCollections">
           <!------------------- Subcollections ------------------->
+          <h1>{{ $context.collection.name }}</h1>
+          <br />
+
           <div class="columns is-multiline is-mobile">
             <template v-for="collection of $context.childCollections">
               <div
@@ -26,24 +25,49 @@
         </template>
         <template v-else>
           <!------------------ Product listing ----------------------->
-          <template v-if="$context.collection.description">
+          <div class="columns">
             <div
-              v-html="$context.collection.description"
-              class="collapsed content"
-            ></div>
-            <div class="has-text-right">
-              <a href="#full-description">Lees meer</a>
+              v-if="$context.siblings"
+              class="column is-3 siblings is-hidden-mobile"
+            >
+              <!---- Sibling filter ----->
+              <g-link
+                v-for="sibling of $context.siblings"
+                :to="`/categorie/${sibling.slug}/`"
+                :key="sibling.slug"
+                class="has-text-dark"
+                :class="{ 'is-bold': sibling.id === $context.collection.id }"
+              >
+                {{ sibling.name }}<br />
+              </g-link>
             </div>
-          </template>
+            <div class="column">
+              <!----------------Product list-->
+              <h1>{{ $context.collection.name }}</h1>
 
-          <div class="columns is-6 is-variable is-multiline is-mobile">
-            <template v-for="product of $context.products">
-              <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
-                <ProductCard :product="product" />
+              <template v-if="$context.collection.description">
+                <div
+                  v-html="$context.collection.description"
+                  class="collapsed content mb-0"
+                ></div>
+                <div class="has-text-right">
+                  <a href="#full-description">Lees meer</a>
+                </div>
+              </template>
+
+              <div class="columns is-6 is-variable is-multiline is-mobile">
+                <template v-for="product of $context.products">
+                  <div
+                    class="column is-6-mobile is-4-tablet is-one-fifth-desktop"
+                  >
+                    <ProductCard :product="product" />
+                  </div>
+                </template>
               </div>
-            </template>
+            </div>
           </div>
         </template>
+
         <div
           id="full-description"
           v-if="$context.collection.description"
@@ -85,5 +109,12 @@ export default {
   height: 285px;
   visibility: hidden;
   pointer-events: none;
+}
+.siblings a:hover {
+  text-decoration: underline;
+}
+.is-bold {
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 </style>

@@ -15,7 +15,8 @@ $loop-green: #0CCE6B;
 $loop-orange: #F7DBA7;
 
 $text: $loop-soft-dark;
-$primary: $loop-red;
+/*$primary: $loop-red;*/
+$primary: $loop-dark;
 $link: $loop-blue2;
 $info: $loop-blue;
 $success: $loop-green;
@@ -158,6 +159,11 @@ section {
 
 .usps b {
   color: $loop-red;
+}
+
+/** Make all buttons black **/
+.button .is-primary {
+  @extend .is-dark
 }
 
 /** Navbar stuff **/

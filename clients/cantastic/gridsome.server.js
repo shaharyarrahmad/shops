@@ -80,6 +80,17 @@ module.exports = async function (api) {
         return childCollections;
       }
     }
+    function getSiblings(collectionId) {
+      const parent = getParentCollection(collectionId);
+      if (parent) {
+        const siblings = parent.children.map((child) =>
+          allCollections.find((c) => c.id === child.id)
+        );
+        if (siblings.length > 0) {
+          return siblings;
+        }
+      }
+    }
 
     // Product filtering
     const highlight1 = findByFacet('highlight1');
@@ -161,7 +172,6 @@ module.exports = async function (api) {
         }
       }
       breadcrumb = Object.assign({ Home }, breadcrumb);
-      const childCollections = getChildCollections(collection.id);
 
       createPage({
         path: `/categorie/${collection.slug}`,
@@ -170,7 +180,8 @@ module.exports = async function (api) {
           ...global,
           breadcrumb,
           collection,
-          childCollections,
+          childCollections: getChildCollections(collection.id),
+          siblings: getSiblings(collection.id),
           products,
         },
       });
@@ -182,7 +193,7 @@ module.exports = async function (api) {
       component: './src/templates/Cart.vue',
       context: {
         ...global,
-        showBack: true,
+        hideUsps: true,
       },
     });
 
@@ -193,6 +204,7 @@ module.exports = async function (api) {
       context: {
         ...global,
         availableCountries,
+        hideUsps: true,
       },
     });
 
@@ -202,7 +214,7 @@ module.exports = async function (api) {
       component: './src/templates/Order.vue',
       context: {
         ...global,
-        showBack: true,
+        hideUsps: true,
       },
     });
   });
