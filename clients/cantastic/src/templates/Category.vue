@@ -42,8 +42,19 @@
               </g-link>
             </div>
             <div class="column">
-              <!----------------Product list-->
+              <!----------------Product list------------->
               <h1>{{ $context.collection.name }}</h1>
+              <div class="has-text-right">
+                <b>{{ $context.products.length }}</b> producten |
+                <b-select
+                  placeholder="Sorteer op"
+                  style="display: inline-flex"
+                  @input="sort($event)"
+                >
+                  <option value="price-asc">Prijs: laag - hoog</option>
+                  <option value="price-desc">Prijs: hoog - laag</option>
+                </b-select>
+              </div>
 
               <template v-if="$context.collection.description">
                 <div
@@ -87,6 +98,22 @@ export default {
         return 'is-one-third-desktop';
       } else {
         return 'is-one-fifth-desktop';
+      }
+    },
+    sortDesc(product1, product2) {
+      if (product1.lowestPrice > product2.lowestPrice) {
+        return -1;
+      } else if (product1.lowestPrice < product2.lowestPrice) {
+        return 1;
+      } else {
+        return 2;
+      }
+    },
+    sort(value) {
+      if (value === 'price-desc') {
+        this.$context.products.sort(this.sortDesc);
+      } else {
+        this.$context.products.sort(this.sortDesc).reverse();
       }
     },
   },
