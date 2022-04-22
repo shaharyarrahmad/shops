@@ -68,13 +68,19 @@
                     >Koop het boek</b-button
                   >
                 </span>
+
+                <b-tooltip
+                  label="Je betaalt veilig met iDeal"
+                  position="is-bottom"
+                >
+                  <img
+                    src="/img/ideal.svg"
+                    alt="Veilig betalen met iDeal"
+                    class="is-shadowless"
+                    style="height: 40px; opacity: 0.7"
+                  />
+                </b-tooltip>
               </b-field>
-              <img
-                src="/img/mollie.png"
-                alt="Veilig betalen via Mollie"
-                class="is-shadowless"
-                style="height: 50px; opacity: 0.7"
-              />
             </form>
           </div>
         </div>
@@ -107,20 +113,18 @@ export default {
       orderPreparation: undefined,
     };
   },
-  async mounted() {
-    this.orderPreparation = this.prepareOrder();
-  },
   methods: {
     async buy(e) {
       e.preventDefault();
       try {
         this.loading = true;
-        await this.orderPreparation;
+        await this.prepareOrder();
         await this.$vendure.setCustomerForOrder({
           firstName: this.emailAddress,
           lastName: 'e-book',
           emailAddress: this.emailAddress,
         });
+        console.log(`Added customer`);
         const redirect = await this.$vendure.createMolliePaymentIntent(
           'mollie-payment-op'
         );

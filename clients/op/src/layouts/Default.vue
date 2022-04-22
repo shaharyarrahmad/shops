@@ -36,7 +36,7 @@
             <img
               src="/img/mollie-dark.png"
               alt="Veilig betalen met Mollie"
-              style="height: 60px; opacity: 0.6"
+              style="height: 30px; opacity: 0.6"
             />
           </div>
         </div>
