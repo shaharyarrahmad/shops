@@ -158,13 +158,17 @@ module.exports = async function (api) {
       // Create breadcrumb
       let breadcrumb = { [collection.name]: `/categorie/${collection.slug}/` };
       const parentCollection = getParentCollection(collection.id);
+      let collectionLevel = 1;
       if (parentCollection) {
+        // Level 1 collections don't have parents
+        collectionLevel = 2;
         breadcrumb = Object.assign(
           { [parentCollection.name]: `/categorie/${parentCollection.slug}/` },
           breadcrumb
         );
         const parentsParent = getParentCollection(parentCollection.id);
         if (parentsParent) {
+          collectionLevel = 3;
           breadcrumb = Object.assign(
             { [parentsParent.name]: `/categorie/${parentsParent.slug}/` },
             breadcrumb
@@ -172,15 +176,35 @@ module.exports = async function (api) {
         }
       }
       breadcrumb = Object.assign({ Home }, breadcrumb);
+      const childCollections = getChildCollections(collection.id);
+      let template = 'Category.vue';
+      if (collectionLevel > 1) {
+        template = 'ProductListing.vue';
+      }
+      if (collectionLevel === 2) {
+        // get products of childCollections
+        for (const childCollection of childCollections || []) {
+          products.push(
+            ...productsPerCollection.find(
+              (ppc) => ppc.collection.id === childCollection.id
+            )?.products
+          );
+        }
+        console.log(
+          `${collection.name}: ${
+            products?.length || 0
+          } products. Template ${template}`
+        );
+      }
 
       createPage({
         path: `/categorie/${collection.slug}`,
-        component: './src/templates/Category.vue',
+        component: `./src/templates/${template}`,
         context: {
           ...global,
           breadcrumb,
           collection,
-          childCollections: getChildCollections(collection.id),
+          childCollections,
           siblings: getSiblings(collection.id),
           products,
         },

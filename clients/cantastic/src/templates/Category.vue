@@ -2,83 +2,24 @@
   <DefaultLayout>
     <template #content>
       <section :id="$context.collection.slug">
-        <template v-if="$context.childCollections">
-          <!------------------- Subcollections ------------------->
-          <h1>{{ $context.collection.name }}</h1>
-          <br />
+        <h1>{{ $context.collection.name }}</h1>
+        <br />
 
-          <div class="columns is-multiline is-mobile">
-            <template v-for="collection of $context.childCollections">
-              <div
-                class="column is-6-mobile is-4-tablet"
-                :class="getColumnWidth($context.childCollections)"
-              >
-                <g-link :to="`/categorie/${collection.slug}/`">
-                  <CategoryCard
-                    :name="collection.name"
-                    :image="maybeThumbnail(collection.featuredAsset)"
-                  />
-                </g-link>
-              </div>
-            </template>
-          </div>
-        </template>
-        <template v-else>
-          <!------------------ Product listing ----------------------->
-          <div class="columns">
+        <div class="columns is-multiline is-mobile">
+          <template v-for="collection of $context.childCollections">
             <div
-              v-if="$context.siblings"
-              class="column is-3 siblings is-hidden-mobile"
+              class="column is-6-mobile is-4-tablet"
+              :class="getColumnWidth($context.childCollections)"
             >
-              <!---- Sibling filter ----->
-              <g-link
-                v-for="sibling of $context.siblings"
-                :to="`/categorie/${sibling.slug}/`"
-                :key="sibling.slug"
-                class="has-text-dark"
-                :class="{ 'is-bold': sibling.id === $context.collection.id }"
-              >
-                {{ sibling.name }}<br />
+              <g-link :to="`/categorie/${collection.slug}/`">
+                <CategoryCard
+                  :name="collection.name"
+                  :image="maybeThumbnail(collection.featuredAsset)"
+                />
               </g-link>
             </div>
-            <div class="column">
-              <!----------------Product list------------->
-              <h1>{{ $context.collection.name }}</h1>
-              <div class="has-text-right">
-                <b>{{ $context.products.length }}</b> producten |
-                <b-select
-                  placeholder="Sorteer op"
-                  style="display: inline-flex"
-                  @input="sort($event)"
-                >
-                  <option value="price-asc">Prijs: laag - hoog</option>
-                  <option value="price-desc">Prijs: hoog - laag</option>
-                </b-select>
-              </div>
-
-              <template v-if="$context.collection.description">
-                <div
-                  v-html="$context.collection.description"
-                  class="collapsed content mb-0"
-                ></div>
-                <div class="has-text-right">
-                  <a href="#full-description">Lees meer</a>
-                </div>
-              </template>
-
-              <div class="columns is-6 is-variable is-multiline is-mobile">
-                <template v-for="product of $context.products">
-                  <div
-                    class="column is-6-mobile is-4-tablet is-one-fifth-desktop"
-                  >
-                    <ProductCard :product="product" />
-                  </div>
-                </template>
-              </div>
-            </div>
-          </div>
-        </template>
-
+          </template>
+        </div>
         <div
           id="full-description"
           v-if="$context.collection.description"
@@ -98,22 +39,6 @@ export default {
         return 'is-one-third-desktop';
       } else {
         return 'is-one-fifth-desktop';
-      }
-    },
-    sortDesc(product1, product2) {
-      if (product1.lowestPrice > product2.lowestPrice) {
-        return -1;
-      } else if (product1.lowestPrice < product2.lowestPrice) {
-        return 1;
-      } else {
-        return 2;
-      }
-    },
-    sort(value) {
-      if (value === 'price-desc') {
-        this.$context.products.sort(this.sortDesc);
-      } else {
-        this.$context.products.sort(this.sortDesc).reverse();
       }
     },
   },
@@ -137,9 +62,11 @@ export default {
   visibility: hidden;
   pointer-events: none;
 }
+
 .siblings a:hover {
   text-decoration: underline;
 }
+
 .is-bold {
   font-weight: bold;
   font-size: 1.2rem;

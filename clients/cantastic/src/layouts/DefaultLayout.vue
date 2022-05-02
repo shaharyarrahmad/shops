@@ -152,7 +152,7 @@
         <div class="container is-widescreen section">
           <div
             v-if="!$context.hideUsps"
-            class="usps is-flex-desktop is-vcentered is-justify-content-space-between mt-4"
+            class="usps is-flex-desktop is-vcentered is-justify-content-space-between mt-4 is-hidden-mobile"
           >
             <template v-for="usp of $context.usps">
               <div class="is-flex">
