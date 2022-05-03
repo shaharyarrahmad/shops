@@ -53,9 +53,9 @@ export const PRODUCT_FIELDS = gql`
 
 export const GET_PRODUCTS = gql`
   ${PRODUCT_FIELDS}
-  {
+  query products($options: Vendure_ProductListOptions) {
     Vendure {
-      products {
+      products(options: $options) {
         totalItems
         items {
           ...ProductFields

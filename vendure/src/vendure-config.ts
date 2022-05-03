@@ -68,6 +68,7 @@ export const config: VendureConfig = {
     shopApiPath: 'shop-api',
     shopApiPlayground: {}, // turn this off for production
     shopApiDebug: false, // turn this off for production
+    shopListQueryLimit: 500,
   },
   authOptions: {
     superadminCredentials: {

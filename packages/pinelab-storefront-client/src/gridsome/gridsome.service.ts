@@ -89,18 +89,25 @@ export class GridsomeService {
     return collections;
   }
 
+  /**
+   * Get products in batches of 100
+   */
   async getAllProducts(): Promise<Product[]> {
     const products: Product[] = [];
     let hasMore = true;
+    let page = 1;
+    let skip = 0;
+    const take = 500;
     while (hasMore) {
       const {
         data: {
           Vendure: { products: productList },
         },
-      } = await this.graphqlFn(GET_PRODUCTS);
+      } = await this.graphqlFn(GET_PRODUCTS, { options: { skip, take } });
       products.push(...productList.items);
-      console.log('we have', products.length);
-      console.log('Total is ', productList.totalItems);
+      console.log(productList.items.map((p: any) => p.slug));
+      skip = page * take;
+      page++;
       hasMore = productList.totalItems > products.length;
     }
     return products;
