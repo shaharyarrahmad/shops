@@ -62,13 +62,22 @@
 
             <!----------------Products ------------->
             <div class="columns is-6 is-variable is-multiline is-mobile">
-              <template v-for="product of $context.products">
-                <div
-                  class="column is-6-mobile is-4-tablet is-one-fifth-desktop"
-                >
+              <template v-for="product of products">
+                <div class="column is-6-mobile is-4-tablet is-3-desktop">
                   <ProductCard :product="product" />
                 </div>
               </template>
+            </div>
+
+            <!-------------- Pagination ----------------------->
+            <br />
+            <div v-if="$context.products.length > itemsPerPage" class="columns">
+              <div class="column">
+                <Pagination
+                  :total="$context.products.length"
+                  @change="setPage($event)"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -83,8 +92,28 @@
   </DefaultLayout>
 </template>
 <script>
+import Pagination from '../components/Pagination';
 export default {
+  components: { Pagination },
+  data() {
+    return {
+      current: 1,
+      itemsPerPage: 12,
+      products: [],
+    };
+  },
+  created() {
+    this.loadFirstPage();
+  },
   methods: {
+    setPage({ start, end }) {
+      console.log(`Display products ${start} - ${end}`);
+      this.products = this.$context.products.slice(start, end);
+    },
+    loadFirstPage() {
+      this.current = 1;
+      this.products = this.$context.products.slice(0, this.itemsPerPage);
+    },
     sortDesc(product1, product2) {
       if (product1.lowestPrice > product2.lowestPrice) {
         return -1;
@@ -100,6 +129,7 @@ export default {
       } else {
         this.$context.products.sort(this.sortDesc).reverse();
       }
+      this.loadFirstPage();
     },
   },
 };

@@ -16,11 +16,13 @@
       <template v-for="{ name, quantity } of lines">
         {{ quantity }}x {{ name }} <br />
       </template>
-      <br />
-      <b-button type="is-light" tag="a" href="/winkelmand/">
-        € Nu afrekenen
-      </b-button>
-      <br />
+      <template v-if="lines.length > 0">
+        <br />
+        <b-button type="is-light" tag="a" href="/winkelmand/">
+          € Nu afrekenen
+        </b-button>
+        <br />
+      </template>
       <br />
     </template>
   </b-tooltip>
