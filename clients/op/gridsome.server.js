@@ -8,7 +8,13 @@ module.exports = async function (api) {
 
     const global = {
       email: 'jetvannieuwkerk@gmail.com',
+      instagram: 'https://www.instagram.com/tipvanjet/',
+      facebook: 'https://www.facebook.com/jetvnieuwkerk/',
     };
+
+    if (!products || !products.length) {
+      throw Error(`No products found!`);
+    }
 
     // ----------------- Index ---------------------
     createPage({

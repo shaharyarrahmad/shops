@@ -24,8 +24,13 @@
             <a href="/#faq">FAQ</a> <br />
           </div>
           <div class="column">
-            <a href="#about">Instagram?</a> <br />
-            <a href="#about">facebook?</a> <br />
+            <a :href="$context.instagram" target="_blank" class="pr-4">
+              <b-icon size="is-large" icon="instagram"></b-icon>
+            </a>
+            <a :href="$context.facebook" target="_blank">
+              <b-icon size="is-large" icon="facebook"></b-icon>
+            </a>
+            <br />
             <br />
             <b-button class="is-primary" tag="a" href="#buy"
               >Koop het e-boek voor
