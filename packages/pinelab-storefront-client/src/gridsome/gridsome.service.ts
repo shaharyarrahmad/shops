@@ -105,7 +105,6 @@ export class GridsomeService {
         },
       } = await this.graphqlFn(GET_PRODUCTS, { options: { skip, take } });
       products.push(...productList.items);
-      console.log(productList.items.map((p: any) => p.slug));
       skip = page * take;
       page++;
       hasMore = productList.totalItems > products.length;
