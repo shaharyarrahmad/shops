@@ -56,6 +56,7 @@ export const GET_PRODUCTS = gql`
   {
     Vendure {
       products {
+        totalItems
         items {
           ...ProductFields
         }

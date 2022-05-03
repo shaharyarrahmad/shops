@@ -33,24 +33,17 @@ export class GridsomeService {
   constructor(private graphqlFn: Function) {}
 
   async getShopData(): Promise<ShopData> {
-    const [collectionList, productList, availableCountries] = await Promise.all(
-      [
-        this.getAllCollections(),
-        this.getAllProducts(),
-        this.getAvailableCountries(),
-      ]
-    );
-    const products = productList.items.map((p: Product) =>
-      setCalculatedFields(p)
-    );
+    let [collectionList, allProducts, availableCountries] = await Promise.all([
+      this.getAllCollections(),
+      this.getAllProducts(),
+      this.getAvailableCountries(),
+    ]);
+    const products = allProducts.map((p: Product) => setCalculatedFields(p));
     products.map((p) => (p.soldOut = false));
 
     const productsPerCollection: CollectionMap[] = collectionList.items.map(
       (collection: Collection) => {
-        const products = this.getProductsForCollection(
-          collection,
-          productList.items
-        );
+        const products = this.getProductsForCollection(collection, allProducts);
         return {
           collection: { ...collection, productVariants: undefined },
           products,
@@ -96,12 +89,20 @@ export class GridsomeService {
     return collections;
   }
 
-  async getAllProducts(): Promise<ProductList> {
-    const {
-      data: {
-        Vendure: { products },
-      },
-    } = await this.graphqlFn(GET_PRODUCTS);
+  async getAllProducts(): Promise<Product[]> {
+    const products: Product[] = [];
+    let hasMore = true;
+    while (hasMore) {
+      const {
+        data: {
+          Vendure: { products: productList },
+        },
+      } = await this.graphqlFn(GET_PRODUCTS);
+      products.push(...productList.items);
+      console.log('we have', products.length);
+      console.log('Total is ', productList.totalItems);
+      hasMore = productList.totalItems > products.length;
+    }
     return products;
   }
 

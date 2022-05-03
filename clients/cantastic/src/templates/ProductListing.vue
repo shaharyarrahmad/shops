@@ -7,7 +7,7 @@
             v-if="$context.childCollections || $context.siblings"
             class="column is-3 siblings is-hidden-mobile"
           >
-            <!---- Child or Sibling collection filter ----->
+            <!---- Desktop filter ----->
             <g-link
               v-for="collection of $context.childCollections ||
               $context.siblings"
@@ -20,8 +20,24 @@
             </g-link>
           </div>
           <div class="column">
-            <!----------------Product list------------->
+            <!----------------Title ------------->
             <h1>{{ $context.collection.name }}</h1>
+
+            <!-- Mobile filter --------->
+            <div class="is-hidden-desktop is-hidden-tablet">
+              <g-link
+                v-for="collection of $context.childCollections ||
+                $context.siblings"
+                :to="`/categorie/${collection.slug}/`"
+                :key="collection.slug"
+                class="button is-small mr-2 mb-2"
+                :class="{
+                  'is-primary': collection.id === $context.collection.id,
+                }"
+              >
+                {{ collection.name }}<br />
+              </g-link>
+            </div>
             <template v-if="$context.collection.description">
               <div
                 v-html="$context.collection.description"
@@ -44,6 +60,7 @@
               </b-select>
             </div>
 
+            <!----------------Products ------------->
             <div class="columns is-6 is-variable is-multiline is-mobile">
               <template v-for="product of $context.products">
                 <div
@@ -105,9 +122,11 @@ export default {
   visibility: hidden;
   pointer-events: none;
 }
+
 .siblings a:hover {
   text-decoration: underline;
 }
+
 .is-bold {
   font-weight: bold;
   font-size: 1.2rem;

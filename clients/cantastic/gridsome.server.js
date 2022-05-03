@@ -22,6 +22,8 @@ module.exports = async function (api) {
       productsPerCollection,
     } = await gridsome.getShopData();
 
+    console.log('ALL', allProducts.length);
+
     // Set category field on products
     const products = allProducts.map((p) => {
       const facetValue = p.facetValues.find(
@@ -80,6 +82,7 @@ module.exports = async function (api) {
         return childCollections;
       }
     }
+
     function getSiblings(collectionId) {
       const parent = getParentCollection(collectionId);
       if (parent) {
@@ -190,12 +193,8 @@ module.exports = async function (api) {
             )?.products
           );
         }
-        console.log(
-          `${collection.name}: ${
-            products?.length || 0
-          } products. Template ${template}`
-        );
       }
+      // console.log(`${collection.name}: ${products?.length || 0}`);
 
       createPage({
         path: `/categorie/${collection.slug}`,
