@@ -16,7 +16,7 @@
       </h5>
       <b-button
         type="is-info"
-        size="is-medium"
+        size="default"
         icon-right="basket-plus-outline"
         :loading="isLoading"
         @click="buyOrGoToDetails()"

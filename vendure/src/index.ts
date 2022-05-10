@@ -1,10 +1,11 @@
 require('dotenv').config({ path: process.env.LOCAL_ENV });
 import { bootstrap, JobQueueService, Logger } from '@vendure/core';
-import { config, runningInWorker } from './vendure-config';
+import { config, runningInWorker, runningLocal } from './vendure-config';
 
 bootstrap(config)
   .then(async (app) => {
-    if (runningInWorker) {
+    if (runningInWorker || runningLocal) {
+      // Start worker if running in worker or running locally
       Logger.info(`Started JobQueueService ${process.env.SHOP_ENV}`);
       await app.get(JobQueueService).start();
     }
