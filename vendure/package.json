@@ -1,6 +1,6 @@
 {
   "name": "shops-vendure-backend",
-  "version": "0.47.2",
+  "version": "0.48.0",
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
@@ -30,7 +30,6 @@
     "@vendure/email-plugin": "1.5.2",
     "@vendure/payments-plugin": "1.5.2",
     "@vendure/ui-devkit": "1.5.2",
-    "axios": "^0.27.2",
     "copyfiles": "^2.4.1",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",

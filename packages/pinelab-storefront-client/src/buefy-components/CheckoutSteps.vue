@@ -207,7 +207,7 @@
         >
           <br />
           <div class="columns">
-            <div class="column is-half is-offset-one-quarter">
+            <div class="column is-6">
               <section>
                 <b-field v-for="method of shippingMethods" :key="method.id">
                   <b-radio
@@ -219,8 +219,6 @@
                   </b-radio>
                 </b-field>
               </section>
-              <br />
-
               <p>
                 {{ totalLabel }}:
                 <strong>{{ activeOrder.totalWithTax | euro }}</strong>
@@ -240,6 +238,39 @@
                     {{ paymentLabel }}
                   </b-button>
                 </div>
+              </div>
+            </div>
+            <div class="column is-offset-2 has-text-right">
+              <!------ Cart overview ---->
+              <div v-if="lines.length > 0">
+                {{ cartOverviewLabel }}:
+                <table class="table is-fullwidth is-size-7 has-text-right">
+                  <tbody>
+                    <tr v-for="line of lines">
+                      <td>
+                        {{ line.quantity }}x {{ line.productVariant.name }}
+                      </td>
+                      <td>{{ line.linePriceWithTax | euro }}</td>
+                    </tr>
+                    <tr
+                      class="has-text-success"
+                      v-for="discount of activeOrder.discounts"
+                    >
+                      <td>{{ discount.description }}</td>
+                      <td>{{ discount.amountWithTax | euro }}</td>
+                    </tr>
+                    <tr>
+                      <td>{{ shippingLabel }}</td>
+                      <td>{{ activeOrder.shippingWithTax | euro }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>{{ totalLabel }}:</b>
+                      </td>
+                      <td>{{ activeOrder.totalWithTax | euro }}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -273,8 +304,8 @@
                     native-value="coinbase"
                   >
                     <slot name="coinbase"
-                      >Coinbase (Bitcoin, Ethereum, Litecoin and more)</slot
-                    >
+                      >Coinbase (Bitcoin, Ethereum, Litecoin and more)
+                    </slot>
                   </b-radio>
                 </b-field>
               </section>
@@ -318,10 +349,8 @@
 </template>
 <script>
 import { debounce } from 'debounce';
-import PopupImage from '../../lib/buefy-components/PopupImage';
 
 export default {
-  components: { PopupImage },
   props: {
     previousPage: { required: true },
     customerDetailsLabel: { default: 'Customer details' },
@@ -340,6 +369,7 @@ export default {
     totalLabel: { default: 'Total' },
     succesLabel: { default: 'Success!' },
     paymentMethodLabel: { default: 'How would you like to pay?' },
+    cartOverviewLabel: { default: 'Your order' },
     availableCountries: {
       type: Array,
       default() {
@@ -360,6 +390,9 @@ export default {
   computed: {
     activeOrder() {
       return this.$store?.activeOrder || {};
+    },
+    lines() {
+      return this.$store?.activeOrder?.lines || [];
     },
   },
   data() {

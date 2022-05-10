@@ -22,8 +22,6 @@ module.exports = async function (api) {
       productsPerCollection,
     } = await gridsome.getShopData();
 
-    console.log('ALL', allProducts.length);
-
     // Set category field on products
     const products = allProducts.map((p) => {
       const facetValue = p.facetValues.find(
