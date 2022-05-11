@@ -7,7 +7,7 @@ module.exports = async function (api) {
     const { products } = await gridsome.getShopData();
 
     const global = {
-      email: 'jetvannieuwkerk@gmail.com',
+      email: 'info@ophetboek.nl',
       instagram: 'https://www.instagram.com/tipvanjet/',
       facebook: 'https://www.facebook.com/jetvnieuwkerk/',
     };

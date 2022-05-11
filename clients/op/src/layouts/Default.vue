@@ -2,7 +2,7 @@
   <div>
     <div class="container section mt-20 pt-0">
       <div class="has-text-centered">
-        <h1 class="has-text-primary mt-0">OP!</h1>
+        <g-link to="/"><h1 class="has-text-primary mt-0">OP!</h1></g-link>
       </div>
       <slot />
     </div>
@@ -12,9 +12,7 @@
         <div class="columns">
           <div id="contact" class="column">
             <h2>Contact</h2>
-            <a :href="`mailto:${$context.global.email}`">{{
-              $context.global.email
-            }}</a>
+            <ClickableEmail />
             <br />
           </div>
           <div class="column">

@@ -2,7 +2,7 @@
   <Layout>
     <div style="min-height: 50vh">
       <OrderConfirmation
-        message="Gefeliciteerd met je bestelling. Je ontvangt OP! in je email"
+        message="Wat leuk dat je het boek “Op!” hebt gekocht!"
         item-label="Product"
         quantity-label="Aantal"
         total-label="Totaal"
@@ -15,9 +15,7 @@
         <template #failed>
           <b-notification type="is-info" aria-close-label="Close notification">
             Er is helaas iets mis gegaan. Neem contact op met
-            <a :href="`mailto:${$context.global.email}`">{{
-              $context.global.email
-            }}</a>
+            <ClickableEmail />
           </b-notification>
         </template>
       </OrderConfirmation>

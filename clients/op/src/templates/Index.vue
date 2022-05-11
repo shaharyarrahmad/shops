@@ -11,7 +11,7 @@
     </section>
 
     <section id="about">
-      <h2 class="has-text-centered">{{ $context.product.name }}</h2>
+      <h2 class="has-text-centered">{{ $context.product.variants[0].name }}</h2>
       <br />
       <div class="columns">
         <div class="column">
@@ -88,15 +88,36 @@
     </section>
 
     <section id="faq" class="mt-6">
-      <h2 class="has-text-primary">FAQ / Veelgestelde vragen</h2>
+      <h2 class="has-text-primary">FAQ / Meest gestelde vragen</h2>
       <p>
-        <b>Klopt het dat ... ?</b><br />
-        Nee!
+        <b>Staan er ook vegetarische recepten in het e-book?</b><br />
+        80% procent van de recepten is vegetarisch.
       </p>
       <p>
-        <b>Wat kost het boek?</b><br />
-        Voor {{ $context.product.lowestPrice | euro }} ontvang je de PDF in je
-        mail!
+        <b>Kun je het e-book ook ruilen?</b><br />
+        Nee, dat is niet mogelijk, gekocht is gekocht.
+      </p>
+      <p>
+        <b>Wat als ik het e-book heb gekocht, maar geen e-mail heb ontvangen?</b
+        ><br />
+        Dat zou vervelend zijn. Check ook altijd even je spam en mail anders
+        naar <ClickableEmail />.
+      </p>
+      <p>
+        <b>Is het boek ook in printversie te krijgen?</b><br />
+        Tot nu toe is het boek alleen te downloaden.
+      </p>
+      <p>
+        <b
+          >Ik zie een spelfoutje en ik kan niet slapen voordat ik dat gemeld
+          heb, wat moet ik doen?</b
+        ><br />
+        O jee, dat kan natuurlijk gebeuren. Laat je horen via
+        <ClickableEmail />.
+      </p>
+      <p>
+        <b>Ik heb nog een vraag, maar die staat hier niet tussen.</b><br />
+        Mail dan naar <ClickableEmail />.
       </p>
     </section>
 

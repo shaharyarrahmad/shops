@@ -8,6 +8,7 @@ import VueGtag from 'vue-gtag';
 import '@fontsource/open-sans-condensed/700.css';
 import '@fontsource/open-sans';
 import '@fontsource/lora';
+import ClickableEmail from './components/ClickableEmail';
 
 export default function (Vue, { router, head, isClient }) {
   if (isClient) {
@@ -28,5 +29,6 @@ export default function (Vue, { router, head, isClient }) {
   Vue.use(Buefy);
   Vue.component('Layout', Layout);
   Vue.component('PopupImage', PopupImage);
+  Vue.component('ClickableEmail', ClickableEmail);
   configureVue(Vue, { router, head, isClient });
 }
