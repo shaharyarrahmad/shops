@@ -27,7 +27,11 @@
         cart-overview-label="Jouw bestelling"
         customer-details-label="Gegevens"
         previous-page="/"
-      />
+      >
+        <template #shipping>
+          <div v-if="pickupPointSelected">JAWEL</div>
+        </template>
+      </CheckoutSteps>
     </template>
   </DefaultLayout>
 </template>
@@ -37,6 +41,15 @@ import CheckoutSteps from 'pinelab-storefront-client/lib/buefy-components/Checko
 export default {
   components: {
     CheckoutSteps,
+  },
+  computed: {
+    pickupPointSelected() {
+      return (
+        this.$store.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
+          'pickup-point'
+        ) > -1
+      );
+    },
   },
 };
 </script>
