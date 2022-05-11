@@ -11,7 +11,9 @@
     </section>
 
     <section id="about">
-      <h2 class="has-text-centered">{{ $context.product.variants[0].name }}</h2>
+      <h2 class="has-text-centered is-size-4">
+        {{ $context.product.variants[0].name }}
+      </h2>
       <br />
       <div class="columns">
         <div class="column">
