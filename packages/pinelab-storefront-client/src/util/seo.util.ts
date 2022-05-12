@@ -1,9 +1,9 @@
-import { Collection } from '../generated/graphql';
+import { Collection, ProductFieldsFragment } from '../generated/graphql';
 import { CalculatedProduct } from './product.util';
 /**
  * Removes all HTML tags from a HTML string and truncate to max X characters
  */
-export function getSeoDescription(description: string) {
+export function getSeoDescription(description?: string) {
   const maxlength = 120;
   const minlength = 70;
   if (!description) {
@@ -26,16 +26,18 @@ export function getSeoDescription(description: string) {
 }
 
 export function getMetaInfo(
-  item?: CalculatedProduct | Collection,
+  item?: CalculatedProduct | Collection | ProductFieldsFragment,
   url?: string,
   type: 'product' | 'article' | 'blog' | 'website' = 'product'
 ): MetaInfo | undefined {
   if (!item) {
     return;
   }
-  const seoDescription = item?.description
-    ? getSeoDescription(item.description)
-    : undefined;
+  const seoDescription =
+    (item as ProductFieldsFragment).customFields?.metaDescription ||
+    getSeoDescription(item.description);
+  const title =
+    (item as ProductFieldsFragment).customFields?.metaTitle || item.name;
   const image = item.featuredAsset ? item.featuredAsset.preview : undefined;
   let script: any = [];
   if ((item as CalculatedProduct).lowestPrice) {
@@ -58,10 +60,11 @@ export function getMetaInfo(
     ];
   }
   return {
-    title: item?.name || item.slug,
+    title: title || item.slug,
     meta: [
+      { key: 'title', name: 'title', content: title || item.slug },
       { key: 'description', name: 'description', content: seoDescription },
-      { key: 'og:title', name: 'og:title', content: item.name },
+      { key: 'og:title', name: 'og:title', content: title },
       {
         key: 'og:description',
         name: 'og:description',

@@ -1811,6 +1811,31 @@ export type MutationCreateMolliePaymentIntentArgs = {
   input: MolliePaymentIntentInput;
 };
 
+export type MyparcelDropOffPoint = {
+  __typename?: 'MyparcelDropOffPoint';
+  location_code: Scalars['String'];
+  location_name: Scalars['String'];
+  city: Scalars['String'];
+  postal_code: Scalars['String'];
+  street: Scalars['String'];
+  number: Scalars['String'];
+  number_suffix?: Maybe<Scalars['String']>;
+  phone?: Maybe<Scalars['String']>;
+  reference?: Maybe<Scalars['String']>;
+  longitude?: Maybe<Scalars['String']>;
+  latitude?: Maybe<Scalars['String']>;
+  available_days: Array<Scalars['Int']>;
+  cut_off_time?: Maybe<Scalars['String']>;
+  carrier_id?: Maybe<Scalars['Int']>;
+  distance?: Maybe<Scalars['Int']>;
+};
+
+export type MyparcelDropOffPointInput = {
+  carrierId?: Maybe<Scalars['String']>;
+  countryCode?: Maybe<Scalars['String']>;
+  postalCode: Scalars['String'];
+};
+
 export type NativeAuthInput = {
   username: Scalars['String'];
   password: Scalars['String'];
@@ -2770,6 +2795,7 @@ export type Query = {
   /** Search Products based on the criteria set by the `SearchInput` */
   search: SearchResponse;
   dutchAddressLookup?: Maybe<DutchAddressLookupResult>;
+  myparcelDropOffPoints: Array<MyparcelDropOffPoint>;
 };
 
 export type QueryCollectionsArgs = {
@@ -2812,6 +2838,10 @@ export type QuerySearchArgs = {
 
 export type QueryDutchAddressLookupArgs = {
   input: DutchPostalCodeInput;
+};
+
+export type QueryMyparcelDropOffPointsArgs = {
+  input: MyparcelDropOffPointInput;
 };
 
 export type RefreshCustomerVerificationResult =
@@ -3301,6 +3331,12 @@ export type ProductFieldsFragment = { __typename?: 'Product' } & Pick<
             >
           >;
         }
+    >;
+    customFields?: Maybe<
+      { __typename?: 'ProductCustomFields' } & Pick<
+        ProductCustomFields,
+        'metaTitle' | 'metaDescription'
+      >
     >;
   };
 

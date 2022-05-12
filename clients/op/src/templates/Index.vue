@@ -128,6 +128,8 @@
   </Layout>
 </template>
 <script>
+import { getMetaInfo } from 'pinelab-storefront-client';
+
 export default {
   data() {
     return {
@@ -190,6 +192,9 @@ export default {
         position: 'is-bottom',
       });
     },
+  },
+  metaInfo() {
+    return getMetaInfo(this.$context.product, 'https://ophetboek.nl/');
   },
 };
 </script>

@@ -87,12 +87,6 @@ export default {
       console.log('ga approved');
     },
   },
-  metaInfo() {
-    return {
-      title: 'Op!',
-      meta: [{ name: 'description', content: 'Op! - Het boek' }],
-    };
-  },
 };
 </script>
 <style></style>

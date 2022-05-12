@@ -48,6 +48,10 @@ export const PRODUCT_FIELDS = gql`
         thumbnail
       }
     }
+    customFields {
+      metaTitle
+      metaDescription
+    }
   }
 `;
 
