@@ -106,7 +106,7 @@
                       type="text"
                       required
                       v-model="address.postalCode"
-                      v-on:input="getAddress()"
+                      v-on:input="lookupAddress()"
                     />
                     <span class="icon is-small is-left">
                       <i class="mdi mdi-mailbox"></i>
@@ -122,7 +122,7 @@
                       type="text"
                       required
                       v-model="address.streetLine2"
-                      v-on:input="getAddress()"
+                      v-on:input="lookupAddress()"
                     />
                     <span class="icon is-small is-left">
                       <i class="mdi mdi-home"></i>
@@ -445,6 +445,19 @@ export default {
       } finally {
         this.loadingShipping = false;
       }
+      // Save details in local storage for next time
+      try {
+        window.localStorage.setItem(
+          'vnd_customer',
+          JSON.stringify(this.customer)
+        );
+        window.localStorage.setItem(
+          'vnd_address',
+          JSON.stringify(this.address)
+        );
+      } catch (e) {
+        console.error(e);
+      }
       this.activeStep = 1;
     },
     async choosePayment(e) {
@@ -493,11 +506,11 @@ export default {
     async setShippingMethod(methodId) {
       await this.$vendure.setOrderShippingMethod(methodId);
     },
-    async getAddress() {
+    async lookupAddress() {
       if (this.address?.postalCode?.length < 6 || !this.address?.streetLine2) {
         return;
       }
-      const address = await this.$vendure.getAddress({
+      const address = await this.$vendure.lookupAddress({
         postalCode: this.address.postalCode,
         houseNumber: this.address.streetLine2,
       });
@@ -513,29 +526,37 @@ export default {
     if (!this.$store.activeOrder) {
       await this.$router.push('/');
     }
+    const localStorageCustomer = window.localStorage.getItem('vnd_customer');
+    const localStorageAddress = window.localStorage.getItem('vnd_address');
+    const customer = localStorageCustomer
+      ? JSON.parse(localStorageCustomer)
+      : activeOrder?.customer;
+    const address = localStorageAddress
+      ? JSON.parse(localStorageAddress)
+      : activeOrder?.shippingAddress;
     // Set Customer, if already set on order
-    this.customer.firstName = activeOrder?.customer?.firstName;
-    this.customer.lastName = activeOrder?.customer?.lastName;
-    this.customer.phoneNumber = activeOrder?.customer?.phoneNumber;
-    this.customer.emailAddress = activeOrder?.customer?.emailAddress;
+    this.customer.firstName = customer?.firstName;
+    this.customer.lastName = customer?.lastName;
+    this.customer.phoneNumber = customer?.phoneNumber;
+    this.customer.emailAddress = customer?.emailAddress;
     // Set Address, if already set on order
-    this.address.company = activeOrder?.shippingAddress?.company;
-    this.address.streetLine1 = activeOrder?.shippingAddress?.streetLine1;
-    this.address.streetLine2 = activeOrder?.shippingAddress?.streetLine2;
-    this.address.city = activeOrder?.shippingAddress?.city;
-    this.address.postalCode = activeOrder?.shippingAddress?.postalCode;
+    this.address.company = address?.company;
+    this.address.streetLine1 = address?.streetLine1;
+    this.address.streetLine2 = address?.streetLine2;
+    this.address.city = address?.city;
+    this.address.postalCode = address?.postalCode;
     this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
-    if (activeOrder?.shippingAddress?.country) {
+    if (address?.country) {
       const country = this.availableCountries.find(
-        (c) => c.name === activeOrder.shippingAddress.country
+        (c) => c.name === address.country
       );
       this.address.countryCode = country?.code || 'nl';
     }
     this.selectedShippingMethod =
-      this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
+      activeOrder?.shippingLines?.[0]?.shippingMethod.id;
   },
   async created() {
-    this.getAddress = debounce(this.getAddress, 500);
+    this.lookupAddress = debounce(this.lookupAddress, 500);
   },
 };
 </script>

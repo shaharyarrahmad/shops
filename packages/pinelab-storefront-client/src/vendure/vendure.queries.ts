@@ -337,3 +337,23 @@ export const REMOVE_COUPON_CODE = gql`
     }
   }
 `;
+
+export const GET_DROP_OFF_POINTS = gql`
+  query myparcelDropOffPoints($input: MyparcelDropOffPointInput!) {
+    myparcelDropOffPoints(input: $input) {
+      location_code
+      location_name
+      city
+      postal_code
+      street
+      number
+      number_suffix
+      phone
+      reference
+      available_days
+      cut_off_time
+      distance
+      carrier_id
+    }
+  }
+`;

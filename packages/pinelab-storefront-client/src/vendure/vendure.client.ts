@@ -7,6 +7,7 @@ import {
   CREATE_COINBASE_PAYMENT_INTENT,
   CREATE_MOLLIE_PAYMENT_INTENT,
   GET_ACTIVE_ORDER,
+  GET_DROP_OFF_POINTS,
   GET_DUTCH_ADDRESS,
   GET_ELIGIBLESHIPPINGMETHODS,
   GET_NEXT_ORDERSTATES,
@@ -36,13 +37,14 @@ import {
   CreateMolliePaymentIntentMutationVariables,
   DutchAddressLookupQuery,
   DutchAddressLookupQueryVariables,
-  DutchAddressLookupResult,
   DutchPostalCodeInput,
   EligibleShippingMethodsQuery,
   MolliePaymentIntent,
-  MutationRemoveOrderLineArgs,
+  MyparcelDropOffPoint,
+  MyparcelDropOffPointInput,
+  MyparcelDropOffPointsQuery,
+  MyparcelDropOffPointsQueryVariables,
   NextOrderStatesQuery,
-  Order,
   OrderByCodeQuery,
   OrderByCodeQueryVariables,
   OrderFieldsFragment,
@@ -50,7 +52,6 @@ import {
   ProductQueryVariables,
   ProductsQuery,
   RemoveAllOrderLinesMutation,
-  RemoveAllOrderLinesMutationVariables,
   RemoveCouponCodeMutation,
   RemoveCouponCodeMutationVariables,
   SetCustomerForOrderMutation,
@@ -239,7 +240,7 @@ export class VendureClient {
     return orderByCode;
   }
 
-  async getAddress(
+  async lookupAddress(
     input: DutchPostalCodeInput
   ): Promise<DutchAddressLookupQuery['dutchAddressLookup'] | undefined> {
     const { dutchAddressLookup } = await this.request<
@@ -284,6 +285,16 @@ export class VendureClient {
     this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
+  }
+
+  async getDropOffPoints(
+    input: MyparcelDropOffPointInput
+  ): Promise<MyparcelDropOffPoint[]> {
+    const { myparcelDropOffPoints } = await this.request<
+      MyparcelDropOffPointsQuery,
+      MyparcelDropOffPointsQueryVariables
+    >(GET_DROP_OFF_POINTS, { input });
+    return myparcelDropOffPoints;
   }
 
   validateResult(result: any): void {

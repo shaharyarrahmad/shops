@@ -3678,3 +3678,28 @@ export type RemoveCouponCodeMutationVariables = Exact<{
 export type RemoveCouponCodeMutation = { __typename?: 'Mutation' } & {
   removeCouponCode?: Maybe<{ __typename?: 'Order' } & OrderFieldsFragment>;
 };
+
+export type MyparcelDropOffPointsQueryVariables = Exact<{
+  input: MyparcelDropOffPointInput;
+}>;
+
+export type MyparcelDropOffPointsQuery = { __typename?: 'Query' } & {
+  myparcelDropOffPoints: Array<
+    { __typename?: 'MyparcelDropOffPoint' } & Pick<
+      MyparcelDropOffPoint,
+      | 'location_code'
+      | 'location_name'
+      | 'city'
+      | 'postal_code'
+      | 'street'
+      | 'number'
+      | 'number_suffix'
+      | 'phone'
+      | 'reference'
+      | 'available_days'
+      | 'cut_off_time'
+      | 'distance'
+      | 'carrier_id'
+    >
+  >;
+};

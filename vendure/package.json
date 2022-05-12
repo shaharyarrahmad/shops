@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./dist/index",
     "debug:test": "yarn build && export LOCAL_ENV=.env.test && node --inspect ./dist/index",
-    "serve": "nodemon -e ts --watch '../packages/' --watch './src/' --exec \"yarn build && node ./dist/index\"",
+    "serve": "nodemon -e ts --watch './src/' --exec \"yarn build && node ./dist/index\"",
     "serve:prod": "export LOCAL_ENV=.env && yarn serve",
     "serve:test": "export LOCAL_ENV=.env.test && yarn serve",
     "script:prod": "export LOCAL_ENV=.env && yarn ts-node",
