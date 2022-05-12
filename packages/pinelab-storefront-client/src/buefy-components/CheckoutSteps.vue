@@ -218,6 +218,7 @@
                     {{ method.name }} ({{ method.priceWithTax | euro }})
                   </b-radio>
                 </b-field>
+                <slot name="shipping" />
               </section>
               <p>
                 {{ totalLabel }}:
