@@ -1959,7 +1959,7 @@ export type Order = Node & {
   /** A summary of the taxes being applied to this Order */
   taxSummary: Array<OrderTaxSummary>;
   history: HistoryEntryList;
-  customFields?: Maybe<Scalars['JSON']>;
+  customFields?: Maybe<OrderCustomFields>;
 };
 
 export type OrderHistoryArgs = {
@@ -1981,6 +1981,18 @@ export type OrderAddress = {
   customFields?: Maybe<Scalars['JSON']>;
 };
 
+export type OrderCustomFields = {
+  __typename?: 'OrderCustomFields';
+  pickupLocationNumber?: Maybe<Scalars['String']>;
+  pickupLocationCarrier?: Maybe<Scalars['String']>;
+  pickupLocationName?: Maybe<Scalars['String']>;
+  pickupLocationStreet?: Maybe<Scalars['String']>;
+  pickupLocationHouseNumber?: Maybe<Scalars['String']>;
+  pickupLocationZipcode?: Maybe<Scalars['String']>;
+  pickupLocationCity?: Maybe<Scalars['String']>;
+  pickupLocationCountry?: Maybe<Scalars['String']>;
+};
+
 export type OrderFilterParameter = {
   id?: Maybe<IdOperators>;
   createdAt?: Maybe<DateOperators>;
@@ -1997,6 +2009,14 @@ export type OrderFilterParameter = {
   shippingWithTax?: Maybe<NumberOperators>;
   total?: Maybe<NumberOperators>;
   totalWithTax?: Maybe<NumberOperators>;
+  pickupLocationNumber?: Maybe<StringOperators>;
+  pickupLocationCarrier?: Maybe<StringOperators>;
+  pickupLocationName?: Maybe<StringOperators>;
+  pickupLocationStreet?: Maybe<StringOperators>;
+  pickupLocationHouseNumber?: Maybe<StringOperators>;
+  pickupLocationZipcode?: Maybe<StringOperators>;
+  pickupLocationCity?: Maybe<StringOperators>;
+  pickupLocationCountry?: Maybe<StringOperators>;
 };
 
 export type OrderItem = Node & {
@@ -2152,6 +2172,14 @@ export type OrderSortParameter = {
   shippingWithTax?: Maybe<SortOrder>;
   total?: Maybe<SortOrder>;
   totalWithTax?: Maybe<SortOrder>;
+  pickupLocationNumber?: Maybe<SortOrder>;
+  pickupLocationCarrier?: Maybe<SortOrder>;
+  pickupLocationName?: Maybe<SortOrder>;
+  pickupLocationStreet?: Maybe<SortOrder>;
+  pickupLocationHouseNumber?: Maybe<SortOrder>;
+  pickupLocationZipcode?: Maybe<SortOrder>;
+  pickupLocationCity?: Maybe<SortOrder>;
+  pickupLocationCountry?: Maybe<SortOrder>;
 };
 
 /** Returned if there is an error in transitioning the Order state */
@@ -3229,8 +3257,19 @@ export type UpdateCustomerPasswordResult =
   | PasswordValidationError
   | NativeAuthStrategyError;
 
+export type UpdateOrderCustomFieldsInput = {
+  pickupLocationNumber?: Maybe<Scalars['String']>;
+  pickupLocationCarrier?: Maybe<Scalars['String']>;
+  pickupLocationName?: Maybe<Scalars['String']>;
+  pickupLocationStreet?: Maybe<Scalars['String']>;
+  pickupLocationHouseNumber?: Maybe<Scalars['String']>;
+  pickupLocationZipcode?: Maybe<Scalars['String']>;
+  pickupLocationCity?: Maybe<Scalars['String']>;
+  pickupLocationCountry?: Maybe<Scalars['String']>;
+};
+
 export type UpdateOrderInput = {
-  customFields?: Maybe<Scalars['JSON']>;
+  customFields?: Maybe<UpdateOrderCustomFieldsInput>;
 };
 
 export type UpdateOrderItemsResult =
@@ -3702,4 +3741,17 @@ export type MyparcelDropOffPointsQuery = { __typename?: 'Query' } & {
       | 'carrier_id'
     >
   >;
+};
+
+export type SetOrderCustomFieldsMutationVariables = Exact<{
+  customFields?: Maybe<UpdateOrderCustomFieldsInput>;
+}>;
+
+export type SetOrderCustomFieldsMutation = { __typename?: 'Mutation' } & {
+  setOrderCustomFields:
+    | ({ __typename?: 'Order' } & OrderFieldsFragment)
+    | ({ __typename?: 'NoActiveOrderError' } & Pick<
+        NoActiveOrderError,
+        'errorCode' | 'message'
+      >);
 };

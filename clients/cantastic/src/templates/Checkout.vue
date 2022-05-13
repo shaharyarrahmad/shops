@@ -57,6 +57,7 @@
               >
                 <b-radio
                   v-model="selectedPoint"
+                  @input="selectPickupPoint()"
                   :native-value="point.location_code"
                 >
                   <b>{{ point.location_name }}</b
@@ -109,10 +110,13 @@ export default {
     },
   },
   watch: {
-    pickupPointSelected(newValue) {
+    async pickupPointSelected(newValue) {
       if (newValue) {
         this.postalCode = this.$store.activeOrder?.shippingAddress?.postalCode;
-        this.getDropOffPoints();
+        await this.getDropOffPoints();
+        await this.selectPickupPoint();
+      } else {
+        await this.unsetPickupPoint();
       }
     },
   },
@@ -141,6 +145,40 @@ export default {
       } else {
         this.displayedPoints = this.allPoints.slice(0, 3);
       }
+      this.moveSelectedToTop();
+    },
+    async selectPickupPoint() {
+      if (!this.selectedPoint) {
+        return;
+      }
+      const point = this.allPoints.find(
+        (p) => p.location_code == this.selectedPoint
+      );
+      if (!point) {
+        throw Error(`No pickup point with ${code} exists in the list!`);
+      }
+      await this.$vendure.setPickupLocationOnOrder({
+        pickupLocationNumber: String(point.location_code),
+        pickupLocationCarrier: String(point.carrier_id),
+        pickupLocationName: point.location_name,
+        pickupLocationStreet: point.street,
+        pickupLocationHouseNumber: `${point.number}${
+          point.number_suffix || ''
+        }`,
+        pickupLocationZipcode: point.postal_code,
+        pickupLocationCity: point.city,
+        pickupLocationCountry: 'nl',
+      });
+      this.moveSelectedToTop();
+    },
+    async unsetPickupPoint() {
+      await this.$vendure.unsetPickupLocation();
+      console.log('Removed pickupLocation from order');
+    },
+    moveSelectedToTop() {
+      this.displayedPoints = this.displayedPoints.sort((p) =>
+        p.location_code == this.selectedPoint ? -1 : 0
+      );
     },
   },
 };

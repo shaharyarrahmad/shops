@@ -37,11 +37,11 @@
     "vendure-plugin-coinbase": "^3.0.4",
     "vendure-plugin-dutch-postalcode": "3.0.4",
     "vendure-plugin-e-boekhouden": "^3.0.4",
-    "vendure-plugin-goedgepickt": "3.1.0",
+    "vendure-plugin-goedgepickt": "3.2.0",
     "vendure-plugin-google-cloud-tasks": "3.0.4",
     "vendure-plugin-google-storage-assets": "3.0.4",
     "vendure-plugin-invoices": "^3.0.4",
-    "vendure-plugin-myparcel": "3.1.0",
+    "vendure-plugin-myparcel": "3.1.1",
     "vendure-plugin-webhook": "3.0.4",
     "winston": "^3.7.2"
   },

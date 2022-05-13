@@ -357,3 +357,18 @@ export const GET_DROP_OFF_POINTS = gql`
     }
   }
 `;
+
+export const SET_PICKUP_LOCATION_FOR_ORDER = gql`
+  ${ORDER_FIELDS}
+  mutation setOrderCustomFields($customFields: UpdateOrderCustomFieldsInput) {
+    setOrderCustomFields(input: { customFields: $customFields }) {
+      ... on Order {
+        ...OrderFields
+      }
+      ... on NoActiveOrderError {
+        errorCode
+        message
+      }
+    }
+  }
+`;

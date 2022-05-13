@@ -19,6 +19,7 @@ import {
   SET_CUSTOMER_FOR_ORDER,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
+  SET_PICKUP_LOCATION_FOR_ORDER,
   TRANSITION_ORDER_TO_STATE,
 } from './vendure.queries';
 import { CalculatedProduct, setCalculatedFields } from '../util/product.util';
@@ -56,12 +57,15 @@ import {
   RemoveCouponCodeMutationVariables,
   SetCustomerForOrderMutation,
   SetCustomerForOrderMutationVariables,
+  SetOrderCustomFieldsMutation,
+  SetOrderCustomFieldsMutationVariables,
   SetOrderShippingAddressMutation,
   SetOrderShippingAddressMutationVariables,
   SetOrderShippingMethodMutation,
   SetOrderShippingMethodMutationVariables,
   TransitionOrderToStateMutation,
   TransitionOrderToStateMutationVariables,
+  UpdateOrderCustomFieldsInput,
 } from '../generated/graphql';
 
 export class VendureClient {
@@ -130,6 +134,7 @@ export class VendureClient {
     );
     if (defaultMethod) {
       await this.setOrderShippingMethod(defaultMethod.id);
+      await this.unsetPickupLocation();
     } else {
       console.error(`No default shipping found`);
     }
@@ -295,6 +300,32 @@ export class VendureClient {
       MyparcelDropOffPointsQueryVariables
     >(GET_DROP_OFF_POINTS, { input });
     return myparcelDropOffPoints;
+  }
+  async setPickupLocationOnOrder(
+    customFields: UpdateOrderCustomFieldsInput
+  ): Promise<OrderFieldsFragment> {
+    const { setOrderCustomFields: order } = await this.request<
+      SetOrderCustomFieldsMutation,
+      SetOrderCustomFieldsMutationVariables
+    >(SET_PICKUP_LOCATION_FOR_ORDER, { customFields });
+    this.validateResult(order);
+    this.store.activeOrder = order as OrderFieldsFragment;
+    return order as OrderFieldsFragment;
+  }
+
+  async unsetPickupLocation(): Promise<OrderFieldsFragment> {
+    // null is needed, otherwise it cannot be unset
+    return this.setPickupLocationOnOrder({
+      // @ts-ignore
+      pickupLocationNumber: null, // @ts-ignore
+      pickupLocationCarrier: null, // @ts-ignore
+      pickupLocationName: null, // @ts-ignore
+      pickupLocationStreet: null, // @ts-ignore
+      pickupLocationHouseNumber: null, // @ts-ignore
+      pickupLocationZipcode: null, // @ts-ignore
+      pickupLocationCity: null, // @ts-ignore
+      pickupLocationCountry: null, // @ts-ignore
+    });
   }
 
   validateResult(result: any): void {
