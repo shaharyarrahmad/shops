@@ -103,7 +103,7 @@ export default {
   computed: {
     pickupPointSelected() {
       return (
-        this.$store.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
+        this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
           'pickup-point'
         ) > -1
       );
@@ -112,7 +112,7 @@ export default {
   watch: {
     async pickupPointSelected(newValue) {
       if (newValue) {
-        this.postalCode = this.$store.activeOrder?.shippingAddress?.postalCode;
+        this.postalCode = this.$store?.activeOrder?.shippingAddress?.postalCode;
         await this.getDropOffPoints();
         await this.selectPickupPoint();
       } else {
@@ -133,6 +133,7 @@ export default {
         });
         this.displayedPoints = this.allPoints.slice(0, 3);
         this.loadingDropOffPoints = false;
+        await this.selectPickupPoint();
       } catch (e) {
         console.error(e);
       } finally {
@@ -169,6 +170,7 @@ export default {
         pickupLocationCity: point.city,
         pickupLocationCountry: 'nl',
       });
+      console.log(`Selected ${point.location_name} as pickup point`);
       this.moveSelectedToTop();
     },
     async unsetPickupPoint() {
