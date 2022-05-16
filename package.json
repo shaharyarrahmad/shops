@@ -13,8 +13,35 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^16.3.0",
+    "@commitlint/config-conventional": "^16.2.4",
     "husky": "^7.0.4",
     "lerna": "^4.0.0",
     "prettier": "2.6.2"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "scope-enum": [
+        2,
+        "always",
+        [
+          "vendure",
+          "storefront-client",
+          "all-clients",
+          "bendeboef",
+          "cantastic",
+          "cryptherion",
+          "danielvdhaterd",
+          "lab07",
+          "marcdefotograaf",
+          "minishop",
+          "op",
+          "super-a"
+        ]
+      ]
+    }
   }
 }
