@@ -173,6 +173,7 @@ export const GET_ELIGIBLESHIPPINGMETHODS = gql`
       price
       priceWithTax
       name
+      description
       metadata
     }
   }

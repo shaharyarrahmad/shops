@@ -215,7 +215,16 @@
                     v-model="selectedShippingMethod"
                     v-on:input="setShippingMethod(method.id)"
                   >
-                    {{ method.name }} ({{ method.priceWithTax | euro }})
+                    <b>{{ method.name }} ({{ method.priceWithTax | euro }})</b>
+                    <span
+                      v-if="
+                        method.description &&
+                        method.description.length > 8 &&
+                        selectedShippingMethod == method.id
+                      "
+                      v-html="method.description"
+                      class="has-text-grey"
+                    ></span>
                   </b-radio>
                 </b-field>
                 <slot name="shipping" />
