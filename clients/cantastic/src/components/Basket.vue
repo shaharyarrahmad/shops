@@ -19,7 +19,7 @@
       <template v-if="lines.length > 0">
         <br />
         <b-button type="is-light" tag="a" href="/winkelmand/">
-          € Nu afrekenen
+          € Naar winkelmand
         </b-button>
         <br />
       </template>
@@ -30,12 +30,12 @@
 <script>
 export default {
   async mounted() {
-    this.$emitter.on('productAdded', this.showAddedBar);
+    this.$emitter.on('productAdded', this.showNotificationBar);
     this.$emitter.on('error', this.showError);
     await this.$vendure.getActiveOrder();
   },
   beforeDestroy() {
-    this.$emitter.off('productAdded', this.showAddedBar);
+    this.$emitter.off('productAdded', this.showNotificationBar);
     this.$emitter.off('error', this.showError);
   },
   computed: {
@@ -50,12 +50,17 @@ export default {
       );
     },
     lines() {
-      return (
-        this.$store?.activeOrder?.lines.map((line) => ({
-          name: line.productVariant?.name,
-          quantity: line.quantity,
-        })) || []
-      );
+      const lines = {};
+      this.$store?.activeOrder?.lines.forEach((line) => {
+        const product = line.productVariant.product;
+        const existing = lines[product.name] || 0;
+        lines[product.name] = existing + line.quantity;
+      });
+
+      return Object.entries(lines).map(([name, quantity]) => ({
+        name,
+        quantity,
+      }));
     },
     price() {
       return this.$root.$options.filters.euro(
@@ -64,9 +69,13 @@ export default {
     },
   },
   methods: {
-    showAddedBar(event) {
+    showNotificationBar(event) {
+      const message =
+        event.quantity > 0
+          ? `${event.quantity} toegevoegd aan winkelmand`
+          : `${event.quantity * -1} verwijderd uit winkelmand`;
       this.$buefy.snackbar.open({
-        message: `${event.quantity} toegevoegd aan winkelmand`,
+        message,
         position: 'is-top-right',
         type: 'is-light',
         actionText: 'Naar winkelmand',

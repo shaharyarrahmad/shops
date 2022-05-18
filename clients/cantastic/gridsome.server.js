@@ -1,4 +1,5 @@
 const { GridsomeService } = require('pinelab-storefront-client');
+const { setSwatchColors } = require('./util');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -141,15 +142,25 @@ module.exports = async function (api) {
           }
         }
       }
+      let component = 'Product.vue';
+      const swatchFacet = product.facetValues.find(
+        (f) => f.code.indexOf('swatch') > -1
+      );
+      if (swatchFacet) {
+        component = 'ColorSwatchProduct.vue';
+        setSwatchColors(product, swatchFacet.code, '#000000');
+      }
+
       // Add Home before others
       breadcrumb = Object.assign({ Home }, breadcrumb);
       createPage({
         path: `/product/${product.slug}`,
-        component: './src/templates/Product.vue',
+        component: `./src/templates/${component}`,
         context: {
           ...global,
           breadcrumb,
           product,
+          colorChart: swatchFacet ? swatchFacet.code : undefined,
         },
       });
     });

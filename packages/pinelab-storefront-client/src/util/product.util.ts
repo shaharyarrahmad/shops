@@ -92,11 +92,12 @@ export function isOutOfStock(variant: { stockLevel: string }): boolean {
  */
 export async function buy(
   variant: ProductVariant,
-  ctx: { vendure: VendureClient; emitter: Emitter }
+  ctx: { vendure: VendureClient; emitter: Emitter },
+  quantity = 1
 ): Promise<void> {
   try {
-    await ctx.vendure.addProductToCart(variant.id, 1);
-    ctx.emitter.emit('productAdded', { variantId: variant.id, quantity: 1 });
+    await ctx.vendure.addProductToCart(variant.id, quantity);
+    ctx.emitter.emit('productAdded', { variantId: variant.id, quantity });
   } catch (e) {
     console.error(e);
     ctx.emitter.emit('error', e);

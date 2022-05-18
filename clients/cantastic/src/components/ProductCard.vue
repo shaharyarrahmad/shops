@@ -36,7 +36,6 @@ export default {
   },
   methods: {
     async buyOrGoToDetails() {
-      console.log(this.product.variants.length);
       if (this.product.variants.length === 1) {
         return await this.buy(this.product.variants[0]);
       }
