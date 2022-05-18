@@ -1,6 +1,5 @@
 <template>
   <DefaultLayout #content>
-    <br />
     <div class="columns is-mobile">
       <div class="column is-4-mobile is-2-tablet">
         <img :src="$context.product.featuredAsset.preview" />

@@ -12,7 +12,7 @@
           size="is-small"
           v-on:input="buy()"
           v-model="displayQuantity"
-          :isLoading="isLoading"
+          :loading="isLoading"
           tabindex="0"
         >
         </b-numberinput>

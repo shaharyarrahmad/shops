@@ -53,6 +53,7 @@
               <b-select
                 placeholder="Sorteer op"
                 style="display: inline-flex"
+                v-model="sortedBy"
                 @input="sort($event)"
               >
                 <option value="price-asc">Prijs: laag - hoog</option>
@@ -100,10 +101,12 @@ export default {
       current: 1,
       itemsPerPage: 12,
       products: [],
+      sortedBy: 'price-asc',
     };
   },
   created() {
     this.loadFirstPage();
+    this.sort(this.sortedBy);
   },
   methods: {
     setPage({ start, end }) {
