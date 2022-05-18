@@ -1,7 +1,7 @@
 {
   "name": "danielvdhaterd",
   "private": true,
-  "version": "0.52.0",
+  "version": "0.52.1",
   "scripts": {
     "serve": "yarn gridsome develop",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
@@ -13,7 +13,7 @@
     "@fontsource/roboto-mono": "^4.0.1",
     "graphql": "^14.7.0",
     "graphql-request": "3.4.0",
-    "pinelab-storefront-client": "^0.52.0"
+    "pinelab-storefront-client": "^0.52.1"
   },
   "devDependencies": {
     "@gridsome/cli": "^0.3.4",
