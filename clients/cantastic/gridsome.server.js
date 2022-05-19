@@ -1,7 +1,7 @@
-const { GridsomeService } = require('pinelab-storefront-client');
+const { GridsomeService, SearchUtil } = require('pinelab-storefront-client');
 const { setSwatchColors } = require('./util');
 const fs = require('fs');
-const { createSearchIndex } = require('pinelab-storefront-client');
+const Fuse = require('fuse.js');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -118,24 +118,21 @@ module.exports = async function (api) {
       ...p,
       collections: getProductCollections(p.id) || [],
     }));
-    const indexObject = createSearchIndex(
-      searchProducts,
-      [
-        {
-          name: 'keywords',
-          weight: 3,
-        },
-        {
-          name: 'name',
-          weight: 2,
-        },
-        {
-          name: 'collections',
-          weight: 1,
-        },
-      ],
-      {}
-    );
+    const searchUtil = new SearchUtil(Fuse);
+    const indexObject = searchUtil.createSearchIndex(searchProducts, [
+      {
+        name: 'keywords',
+        weight: 3,
+      },
+      {
+        name: 'name',
+        weight: 2,
+      },
+      {
+        name: 'collections',
+        weight: 1,
+      },
+    ]);
     fs.writeFileSync('./static/_search.json', JSON.stringify(indexObject));
 
     // ----------------- Index ---------------------

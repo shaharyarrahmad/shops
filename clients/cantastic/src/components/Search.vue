@@ -23,9 +23,10 @@
   </b-field>
 </template>
 <script>
-import { createFuse } from 'pinelab-storefront-client';
 import debounce from 'debounce';
 import SearchResult from './SearchResult';
+import { SearchUtil } from 'pinelab-storefront-client';
+import Fuse from 'fuse.js';
 
 export default {
   components: { SearchResult },
@@ -44,7 +45,8 @@ export default {
         throw Error(`Unable to fetch SearchIndex: ${res.statusText}`);
       }
       const searchIndex = await res.json();
-      this.fuse = createFuse(searchIndex, {
+      const searchUtil = new SearchUtil(Fuse);
+      this.fuse = searchUtil.createFuse(searchIndex, {
         threshold: 0.5,
       });
       console.log('Fetched search index JSON and created Fuse');
@@ -66,6 +68,9 @@ export default {
       }
     },
     select(result) {
+      if (!result) {
+        return;
+      }
       this.$router.push(`/product/${result.item.slug}`);
     },
   },

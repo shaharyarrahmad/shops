@@ -1,7 +1,6 @@
 import { CalculatedProduct } from './product.util';
 import { Collection } from '../generated/graphql';
-import Fuse from 'fuse.js';
-import IFuseOptions = Fuse.IFuseOptions;
+import type Fuse from 'fuse.js';
 
 export interface SearchItem {
   name?: string;
@@ -31,53 +30,54 @@ interface SearchableProduct extends CalculatedProduct {
   customFields?: { keywords?: string };
 }
 
-/**
- * Create an pre-compiled index object. Stringify this object
- * and save as publicly available JSON file, so that your
- * Storefront can fetch this object and init a Fuse
- * search engine on the client
- */
-export function createSearchIndex(
-  products: SearchableProduct[],
-  keys: KeyWeight[]
-): SearchIndexObject {
-  const searchItems = createSearchItems(products);
-  const fuseIndex = Fuse.createIndex(keys, searchItems);
-  return {
-    index: fuseIndex.toJSON(),
-    items: searchItems,
-    keys,
-  };
-}
+export class SearchUtil {
+  constructor(private fuse: typeof Fuse) {}
 
-function createSearchItems(products: SearchableProduct[]): SearchItem[] {
-  return products.map((p) => {
-    const keywords = p.customFields?.keywords?.split(',');
-    const collections = p.collections.map((c) => c.name);
+  /**
+   * Create an pre-compiled index object. Stringify this object
+   * and save as publicly available JSON file, so that your
+   * Storefront can fetch this object and init a Fuse
+   * search engine on the client
+   */
+  createSearchIndex(
+    products: SearchableProduct[],
+    keys: KeyWeight[]
+  ): SearchIndexObject {
+    const searchItems = this.createSearchItems(products);
+    const fuseIndex = this.fuse.createIndex(keys, searchItems);
     return {
-      name: p.name,
-      slug: p.slug,
-      price: p.lowestPrice,
-      collections,
-      keywords,
-      thumbnail: p.featuredAsset?.thumbnail,
+      index: fuseIndex.toJSON(),
+      items: searchItems,
+      keys,
     };
-  });
-}
+  }
 
-/**
- * Create Fuse instance based on the given indexObject
- * This instance can be use in your storefront to
- * search through products
- */
-export function createFuse(
-  indexObject: SearchIndexObject,
-  options: IFuseOptions<unknown>
-): Fuse<any> {
-  const parsedIndex = Fuse.parseIndex(indexObject.index);
-  return new Fuse(
-    indexObject.items,
-    { keys: indexObject.keys, ...options },
-    parsedIndex
-  );
+  createSearchItems(products: SearchableProduct[]): SearchItem[] {
+    return products.map((p) => {
+      const keywords = p.customFields?.keywords?.split(',');
+      const collections = p.collections.map((c) => c.name);
+      return {
+        name: p.name,
+        slug: p.slug,
+        price: p.lowestPrice,
+        collections,
+        keywords,
+        thumbnail: p.featuredAsset?.thumbnail,
+      };
+    });
+  }
+
+  /**
+   * Create Fuse instance based on the given indexObject
+   * This instance can be use in your storefront to
+   * search through products
+   */
+  createFuse(indexObject: SearchIndexObject, options: any): Fuse<any> {
+    const parsedIndex = this.fuse.parseIndex(indexObject.index);
+    return new this.fuse(
+      indexObject.items,
+      { keys: indexObject.keys, ...options },
+      parsedIndex
+    );
+  }
 }
