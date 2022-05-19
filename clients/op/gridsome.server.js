@@ -35,5 +35,10 @@ module.exports = async function (api) {
         global,
       },
     });
+
+    createPage({
+      path: '/under-construction/',
+      component: './src/templates/UnderConstruction.vue',
+    });
   });
 };
