@@ -1,5 +1,7 @@
 const { GridsomeService } = require('pinelab-storefront-client');
 const { setSwatchColors } = require('./util');
+const fs = require('fs');
+const { createSearchIndex } = require('pinelab-storefront-client');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -63,6 +65,17 @@ module.exports = async function (api) {
       }
     }
 
+    function getProductCollections(productId) {
+      const collectionMap = productsPerCollection.find(({ products }) =>
+        products.find((p) => p.id === productId)
+      );
+      if (collectionMap) {
+        return allCollections.filter(
+          (c) => c.id === collectionMap.collection.id
+        );
+      }
+    }
+
     function getParentCollection(collectionId) {
       const collection = allCollections.find((c) => c.id === collectionId);
       const parent = collection.parent;
@@ -98,7 +111,32 @@ module.exports = async function (api) {
     const highlight1 = findByFacet('highlight1');
     const highlight2 = findByFacet('highlight2');
     const highlight3 = findByFacet('highlight3');
-    const favorites = filterByFacet('favorite');
+    global.favorites = filterByFacet('favorite');
+
+    // ----------------- Search ---------------------
+    const searchProducts = products.map((p) => ({
+      ...p,
+      collections: getProductCollections(p.id) || [],
+    }));
+    const indexObject = createSearchIndex(
+      searchProducts,
+      [
+        {
+          name: 'keywords',
+          weight: 3,
+        },
+        {
+          name: 'name',
+          weight: 2,
+        },
+        {
+          name: 'collections',
+          weight: 1,
+        },
+      ],
+      {}
+    );
+    fs.writeFileSync('./static/_search.json', JSON.stringify(indexObject));
 
     // ----------------- Index ---------------------
     createPage({
@@ -110,7 +148,6 @@ module.exports = async function (api) {
         highlight1,
         highlight2,
         highlight3,
-        favorites,
       },
     });
 

@@ -4228,6 +4228,11 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
+fuse.js@^6.6.2:
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-6.6.2.tgz#fe463fed4b98c0226ac3da2856a415576dc9a111"
+  integrity sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -6973,10 +6978,10 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pinelab-storefront-client@^0.51.0:
-  version "0.51.0"
-  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.51.0.tgz#36c3e26224bba87b390063e1b283eb41798b7976"
-  integrity sha512-kBJAckSREEI1IzaL6YNm6uBbN6qVOYfZoM6Q+e6aJi2FPauEgYQ2G/Cva1f7gb/WM2bsRjrDb5dWkDfF5X4JNQ==
+pinelab-storefront-client@^0.52.1:
+  version "0.52.1"
+  resolved "https://registry.yarnpkg.com/pinelab-storefront-client/-/pinelab-storefront-client-0.52.1.tgz#d99eb177947a182688098eb23a4d2855046c009a"
+  integrity sha512-HePTab+8AtDRtg9F3KuqeS8GO79H0wLmBeBLz5QUI/UGaRERm5lWqbJnd7gS08paKVkcI/bCZg09cXl1e2P09Q==
   dependencies:
     debounce "^1.2.1"
     graphql "15.3.0"

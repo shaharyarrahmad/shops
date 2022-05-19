@@ -6,7 +6,7 @@ export interface CalculatedProduct {
   id: string;
   name?: string;
   description?: string;
-  featuredAsset?: { preview: string };
+  featuredAsset?: { preview: string; thumbnail: string };
   slug: string;
   lowestPrice: number;
   soldOut: boolean;

@@ -10,9 +10,7 @@
               /></a>
             </div>
             <div class="column is-hidden-mobile" id="search">
-              <b-field type="">
-                <b-input icon="magnify" clearable></b-input>
-              </b-field>
+              <Search />
             </div>
             <div class="column has-text-right" id="icons">
               <span class="is-hidden-tablet"
@@ -275,9 +273,11 @@
 import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
 import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
 import Basket from '../components/Basket';
+import Search from '../components/Search';
 
 export default {
   components: {
+    Search,
     ShopNavBar,
     Breadcrumb,
     Basket,

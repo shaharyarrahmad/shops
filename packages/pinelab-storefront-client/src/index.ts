@@ -5,4 +5,5 @@ export * from './gridsome/types/gridsome-result';
 export * from './util/product.util';
 export * from './util/seo.util';
 export * from './util/vue.util';
+export * from './util/search.util';
 export * from './vendure/vendure.client';
