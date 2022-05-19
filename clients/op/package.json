@@ -14,7 +14,7 @@
     "@fontsource/open-sans-condensed": "^4.5.5",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "buefy": "^0.9.14",
-    "pinelab-storefront-client": "^0.52.1",
+    "pinelab-storefront-client": "^0.53.0",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
@@ -27,7 +27,7 @@
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1"
   },
-  "version": "0.52.1",
+  "version": "0.53.0",
   "resolutions": {
     "graphql": "^14.7.0"
   }

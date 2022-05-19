@@ -15,7 +15,7 @@
     "buefy": "^0.9.14",
     "fuse.js": "^6.6.2",
     "outfront": "^1.1.1",
-    "pinelab-storefront-client": "^0.52.1"
+    "pinelab-storefront-client": "^0.53.0"
   },
   "devDependencies": {
     "@gridsome/source-graphql": "^0.1.0",
@@ -28,7 +28,7 @@
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
-  "version": "0.52.1",
+  "version": "0.53.0",
   "resolutions": {
     "graphql": "^14.7.0"
   }
