@@ -103,7 +103,9 @@
         <b>Wat als ik het e-book heb gekocht, maar geen e-mail heb ontvangen?</b
         ><br />
         Dat zou vervelend zijn. Check ook altijd even je spam en mail anders
-        naar <ClickableEmail />.
+        naar
+        <ClickableEmail />
+        .
       </p>
       <p>
         <b>Is het boek ook in printversie te krijgen?</b><br />
@@ -115,11 +117,28 @@
           heb, wat moet ik doen?</b
         ><br />
         O jee, dat kan natuurlijk gebeuren. Laat je horen via
-        <ClickableEmail />.
+        <ClickableEmail />
+        .
       </p>
       <p>
         <b>Ik heb nog een vraag, maar die staat hier niet tussen.</b><br />
-        Mail dan naar <ClickableEmail />.
+        Mail dan naar
+        <ClickableEmail />
+        .
+      </p>
+      <p>
+        <b>Ik heb nog een vraag, maar die staat hier niet tussen.</b><br />
+        Mail dan naar
+        <ClickableEmail />
+        .
+      </p>
+      <p>
+        <b> Hoe sla ik het boek op?</b>
+        <br />
+        Je kunt het boek op elk apparaat downloaden (telefoon, computer,
+        tablet), maar ik vind het het handigst om het pdf-bestand op te slaan in
+        je ‘Boeken’, dat is een standaard app die op je apparaat staat, zodat je
+        het boek altijd offline kunt lezen en snel kunt terugvinden.
       </p>
     </section>
 
