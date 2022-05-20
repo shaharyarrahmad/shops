@@ -1,7 +1,7 @@
 {
   "name": "ben-de-boef",
   "private": true,
-  "version": "0.53.2",
+  "version": "0.53.3",
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
     "link-here": "yarn link pinelab-storefront-client",
@@ -13,7 +13,7 @@
     "buefy": "^0.9.5",
     "debounce": "^1.2.1",
     "outfront": "^1.1.1",
-    "pinelab-storefront-client": "^0.53.2",
+    "pinelab-storefront-client": "^0.53.3",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
