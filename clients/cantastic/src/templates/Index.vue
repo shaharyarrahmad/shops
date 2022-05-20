@@ -74,6 +74,14 @@
       <section id="blog">
         <h3>Blog</h3>
         <p>TODO</p>
+        <div v-for="blog of $context.blogs">
+          <div
+            class="box card-background-image has-text-centered"
+            :style="`background-image: url(${getSquareImage(
+              blog.featured_image.id
+            )});`"
+          ></div>
+        </div>
       </section>
 
       <section id="brands">

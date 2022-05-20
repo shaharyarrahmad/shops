@@ -2,6 +2,7 @@ const { GridsomeService, SearchUtil } = require('pinelab-storefront-client');
 const { setSwatchColors } = require('./util');
 const fs = require('fs');
 const Fuse = require('fuse.js');
+const { GET_CONTENT } = require('./content.queries');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -18,12 +19,21 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const {
-      products: allProducts,
-      availableCountries,
-      collections: allCollections,
-      productsPerCollection,
-    } = await gridsome.getShopData();
+    const [
+      {
+        // Vendure content
+        products: allProducts,
+        availableCountries,
+        collections: allCollections,
+        productsPerCollection,
+      },
+      {
+        // Directus content
+        data: {
+          Directus: { cantastic_blogs: blogs },
+        },
+      },
+    ] = await Promise.all([gridsome.getShopData(), graphql(GET_CONTENT)]);
 
     // Set category field on products
     const products = allProducts.map((p) => {
@@ -145,6 +155,7 @@ module.exports = async function (api) {
         highlight1,
         highlight2,
         highlight3,
+        blogs: blogs.slice(0, 3),
       },
     });
 
