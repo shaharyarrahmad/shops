@@ -46,3 +46,4 @@ vendure/static/email/test-emails/
 /directus-cms/directus_key.json
 /vendure/key.json
 /vendure/migrations/
+_search.json
