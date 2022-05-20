@@ -51,6 +51,7 @@ export const PRODUCT_FIELDS = gql`
     customFields {
       metaTitle
       metaDescription
+      keywords
     }
   }
 `;

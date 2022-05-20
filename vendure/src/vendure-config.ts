@@ -198,6 +198,10 @@ export const config: VendureConfig = {
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
           bucketName: process.env.BUCKET!,
+          thumbnails: {
+            height: 500,
+            width: 500,
+          },
         }),
       route: 'assets',
       assetUploadDir: '/tmp/vendure/assets',
