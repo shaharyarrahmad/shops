@@ -262,7 +262,7 @@
             class="has-text-grey"
             href="https://pinelab.studio/"
             target="_blank"
-            >Made by Pinelab</a
+            >Met plezier gemaakt door Pinelab</a
           >
         </div>
       </div>

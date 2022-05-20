@@ -116,6 +116,38 @@ export const config: VendureConfig = {
         label: [{ value: 'Meta description', languageCode: LanguageCode.en }],
         type: 'localeString',
         ui: { component: 'textarea-form-input', tab: 'SEO' },
+        validate: (value: string) => {
+          if (value?.length > 255) {
+            return [
+              {
+                value: 'Meta description can be max 255 characters',
+                languageCode: LanguageCode.en,
+              },
+            ];
+          }
+        },
+      },
+      {
+        name: 'keywords',
+        label: [{ value: 'Keywords', languageCode: LanguageCode.en }],
+        description: [
+          {
+            languageCode: LanguageCode.en,
+            value: 'Comma seperated list of keywords',
+          },
+        ],
+        type: 'localeString',
+        ui: { component: 'textarea-form-input', tab: 'Search' },
+        validate: (value: string) => {
+          if (value?.length > 255) {
+            return [
+              {
+                value: 'Keywords can be max 255 characters',
+                languageCode: LanguageCode.en,
+              },
+            ];
+          }
+        },
       },
     ],
   },
