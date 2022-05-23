@@ -1,6 +1,7 @@
+const { setCalculatedFields } = require('pinelab-storefront-client');
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
-    const {
+    let {
       data: {
         Vendure: {
           products: { items: products },
@@ -51,6 +52,10 @@ module.exports = async function (api) {
         }
       }
     `);
+
+    products = products.map(p => setCalculatedFields(p));
+
+    console.log(JSON.stringify(products));
 
     const global = {
       email: 'info@ophetboek.nl',
