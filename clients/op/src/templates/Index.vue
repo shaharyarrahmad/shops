@@ -92,7 +92,7 @@
     </section>
 
     <section id="about" class="mt-6">
-      <!--      <img src="/img/over-jet.png" alt="Over Jet logo" style="width: 200px;"/>
+      <!--            <img src="/img/over-jet.png" alt="Over Jet logo" style="width: 200px;"/>
       <br/>-->
       <h2 class="has-text-primary">Over Jet</h2>
 
