@@ -6,3 +6,5 @@ __admin-ui
 *.min.js
 .temp
 lib/
+commit-msg
+pre-commit
