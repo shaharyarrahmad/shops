@@ -13,7 +13,7 @@
           v-on:input="buy()"
           v-model="displayQuantity"
           :loading="isLoading"
-          tabindex="0"
+          tabindex="1"
         >
         </b-numberinput>
       </div>

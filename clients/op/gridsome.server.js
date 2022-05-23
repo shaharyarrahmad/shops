@@ -1,10 +1,50 @@
-const { GridsomeService } = require('pinelab-storefront-client');
-
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
-    const gridsome = new GridsomeService(graphql);
-
-    const { products } = await gridsome.getShopData();
+    const {
+      data: {
+        Vendure: {
+          products: { items: products },
+        },
+      },
+    } = await graphql(`
+      query products {
+        Vendure {
+          products {
+            totalItems
+            items {
+              id
+              name
+              slug
+              assets {
+                preview
+                thumbnail
+                source
+              }
+              facetValues {
+                code
+                name
+                facet {
+                  code
+                  name
+                }
+              }
+              featuredAsset {
+                id
+                preview
+                thumbnail
+                source
+              }
+              description
+              customFields {
+                metaTitle
+                metaDescription
+                keywords
+              }
+            }
+          }
+        }
+      }
+    `);
 
     const global = {
       email: 'info@ophetboek.nl',
@@ -15,6 +55,10 @@ module.exports = async function (api) {
     if (!products || !products.length) {
       throw Error(`No products found!`);
     }
+
+    products[0].assets = products[0].assets.filter(
+      (asset) => asset.preview !== products[0].featuredAsset.preview
+    );
 
     // ----------------- Index ---------------------
     createPage({

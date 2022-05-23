@@ -2,6 +2,7 @@ const { GridsomeService, SearchUtil } = require('pinelab-storefront-client');
 const { setSwatchColors } = require('./util');
 const fs = require('fs');
 const Fuse = require('fuse.js');
+const { GET_CONTENT } = require('./content.queries');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -18,12 +19,21 @@ module.exports = async function (api) {
 
   api.createPages(async ({ createPage, graphql }) => {
     const gridsome = new GridsomeService(graphql);
-    const {
-      products: allProducts,
-      availableCountries,
-      collections: allCollections,
-      productsPerCollection,
-    } = await gridsome.getShopData();
+    const [
+      {
+        // Vendure content
+        products: allProducts,
+        availableCountries,
+        collections: allCollections,
+        productsPerCollection,
+      },
+      {
+        // Directus content
+        data: {
+          Directus: { cantastic_blogs: blogs },
+        },
+      },
+    ] = await Promise.all([gridsome.getShopData(), graphql(GET_CONTENT)]);
 
     // Set category field on products
     const products = allProducts.map((p) => {
@@ -145,6 +155,7 @@ module.exports = async function (api) {
         highlight1,
         highlight2,
         highlight3,
+        blogs: blogs.slice(0, 3),
       },
     });
 
@@ -237,8 +248,6 @@ module.exports = async function (api) {
           );
         }
       }
-      // console.log(`${collection.name}: ${products?.length || 0}`);
-
       createPage({
         path: `/categorie/${collection.slug}`,
         component: `./src/templates/${template}`,
@@ -249,6 +258,24 @@ module.exports = async function (api) {
           childCollections,
           siblings: getSiblings(collection.id),
           products,
+        },
+      });
+    });
+
+    // ----------------- Blog ------------
+    blogs.forEach((blog) => {
+      createPage({
+        path: `/blog/${blog.slug}`,
+        component: './src/templates/Blog.vue',
+        context: {
+          ...global,
+          blog,
+          relatedBlogs: blogs.slice(0, 3),
+          breadcrumb: {
+            Home: '/',
+            Blogs: '/blogs/',
+            [blog.title]: blog.slug,
+          },
         },
       });
     });
@@ -278,6 +305,16 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
+      context: {
+        ...global,
+        hideUsps: true,
+      },
+    });
+
+    // ----------------- 404 ------------
+    createPage({
+      path: '/404/',
+      component: './src/templates/404.vue',
       context: {
         ...global,
         hideUsps: true,

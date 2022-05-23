@@ -5,9 +5,7 @@ import { configureVue } from 'pinelab-storefront-client';
 import '~/theme.scss';
 import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
 import VueGtag from 'vue-gtag';
-import '@fontsource/open-sans-condensed/700.css';
-import '@fontsource/open-sans';
-import '@fontsource/lora';
+import '@fontsource/playfair-display/800.css';
 import ClickableEmail from './components/ClickableEmail';
 
 export default function (Vue, { router, head, isClient }) {

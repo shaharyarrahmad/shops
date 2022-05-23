@@ -31,4 +31,12 @@ export default function (Vue, { router, head, isClient }) {
     require('outfront').default();
     console.log('OutfrontJS mobile logging enabled');
   }
+  Vue.mixin({
+    methods: {
+      getDefaultImage: (id) =>
+        `${process.env.GRIDSOME_DIRECTUS_HOST}/assets/${id}?key=default`,
+      getSquareImage: (id) =>
+        `${process.env.GRIDSOME_DIRECTUS_HOST}/assets/${id}?key=square`,
+    },
+  });
 }

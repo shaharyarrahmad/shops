@@ -213,3 +213,7 @@ section {
 #mobile-navigation a {
   color: $text;
 }
+
+.rounded {
+  border-radius: $control-radius;
+}

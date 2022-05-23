@@ -3,11 +3,11 @@
 
 // Set your colors
 //https://coolors.co/474448-fdedf2-de369d-8ee3ef-02a9ea
-$background: #FDEDF2;
+$background: #ffffff;
 $text: #474448;
-$primary: #F45866;
+$primary: rgb(247,168,18);
 $info: #8EE3EF;
-$success: #139A43;
+$success: rgb(0, 153, 63);
 $warning: #E3D26F;
 $danger: #F45866;
 
@@ -17,12 +17,8 @@ $link-hover: #028bc0;
 $footer-background-color: $text;
 $footer-color: $primary-invert;
 
-$family-primary: "Open Sans";
-$family-heading: "Open Sans Condensed";
-$family-secondary: "Lora";
-
-
-
+$family-primary: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, "Arial Narrow", Arial, "Lucida Grande", sans-serif;
+$family-heading: "Playfair Display";
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
@@ -93,7 +89,10 @@ html {
 p {
   margin-bottom: 20px;
 }
-img {
+p strong {
+  color: $success;
+}
+#book img {
   border-radius: 4px;
   box-shadow: $shadow;
 }
@@ -110,6 +109,7 @@ img {
 .heading {
   font-family: $family-heading;
   font-weight: 700;
+  text-transform: capitalize;
 }
 
 h1 {
@@ -128,4 +128,8 @@ h3 {
 h4 {
   @extend .is-size-4;
   @extend .heading;
+}
+
+body {
+  font-weight: 300;
 }

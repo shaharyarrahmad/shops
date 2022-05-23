@@ -73,7 +73,13 @@
     <template #content2>
       <section id="blog">
         <h3>Blog</h3>
-        <p>TODO</p>
+        <div class="columns">
+          <template v-for="blog of $context.blogs">
+            <div class="column">
+              <BlogCard :blog="blog" />
+            </div>
+          </template>
+        </div>
       </section>
 
       <section id="brands">
@@ -87,9 +93,11 @@
 <script>
 import { hydrate } from 'pinelab-storefront-client';
 import HighlightCard from '../components/HighlightCard';
+import BlogCard from '../components/BlogCard';
 
 export default {
   components: {
+    BlogCard,
     HighlightCard,
   },
   async mounted() {

@@ -10,17 +10,17 @@
       <br />
     </section>
 
-    <section id="about">
-      <h2 class="has-text-centered is-size-4">
+    <section id="book">
+      <h2 class="has-text-centered is-size-4 has-text-success">
         {{ $context.product.variants[0].name }}
       </h2>
       <br />
       <div class="columns">
-        <div class="column">
+        <div class="column is-6">
           <PopupImage
             :small="$context.product.featuredAsset.preview"
             :alt="$context.product.name"
-            :large="$context.product.featuredAsset.preview"
+            :large="$context.product.featuredAsset.source"
             class="mb-4"
           />
           <div class="columns is-mobile">
@@ -28,26 +28,28 @@
               <PopupImage
                 :small="asset.thumbnail"
                 :alt="$context.product.name"
-                :large="asset.preview"
+                :large="asset.source"
                 class="mb-4"
               />
             </div>
           </div>
         </div>
 
-        <div class="column">
+        <div class="column is-6">
           <div class="description">
-            <div
-              class="is-family-secondary"
-              v-html="$context.product.description"
-            ></div>
+            <div v-html="$context.product.description"></div>
           </div>
-          <br />
-          <br />
+
           <div id="buy">
             <h2 class="has-text-primary">
               Koop het e-boek hier voor
-              {{ $context.product.lowestPrice | euro }}
+              <span class="has-text-success">{{
+                $context.product.lowestPrice | euro
+              }}</span>
+              <img
+                src="/img/wortel.png"
+                style="width: 200px; box-shadow: none; padding-left: 20px"
+              />
             </h2>
             <p>Betaal online en ontvang het boek direct in je email!</p>
             <form v-on:submit="buy($event)">
@@ -87,6 +89,21 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section id="about" class="mt-6">
+      <!--      <img src="/img/over-jet.png" alt="Over Jet logo" style="width: 200px;"/>
+      <br/>-->
+      <h2 class="has-text-primary">Over Jet</h2>
+
+      Jet van Nieuwkerk (1989) is moeder van Frenkie, presentatrice en
+      foodjournalist. Ze schreef drie boeken: Het Boek van Jet, Tips van Jet en
+      Uit huis met Jet. Ze presenteerde de driedelige serie Niet gezond meer
+      voor NPO3, het programma Foodmakers op RTL4, is te zien in Wat eten we
+      vandaag van 24Kitchen en kookte voor het dagelijkse programma Wat Eten We
+      op Net 5. Op haar Instagram TipvanJet en website www.tipvanjet.nl deelt
+      zij tips om het leven leuker en makkelijker te maken, sinds Frenkie is
+      geboren dus ook vaak voor andere ouders.
     </section>
 
     <section id="faq" class="mt-6">
