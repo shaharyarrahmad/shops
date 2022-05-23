@@ -37,6 +37,8 @@ module.exports = async function (api) {
               variants {
                 id
                 name
+                priceWithTax
+                productId
               }
               description
               customFields {
