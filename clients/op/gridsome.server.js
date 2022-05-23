@@ -34,6 +34,10 @@ module.exports = async function (api) {
                 thumbnail
                 source
               }
+              variants {
+                id
+                name
+              }
               description
               customFields {
                 metaTitle
