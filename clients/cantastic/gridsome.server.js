@@ -294,5 +294,15 @@ module.exports = async function (api) {
         hideUsps: true,
       },
     });
+
+    // ----------------- 404 ------------
+    createPage({
+      path: '/404/',
+      component: './src/templates/404.vue',
+      context: {
+        ...global,
+        hideUsps: true,
+      },
+    });
   });
 };
