@@ -248,8 +248,6 @@ module.exports = async function (api) {
           );
         }
       }
-      // console.log(`${collection.name}: ${products?.length || 0}`);
-
       createPage({
         path: `/categorie/${collection.slug}`,
         component: `./src/templates/${template}`,
@@ -260,6 +258,24 @@ module.exports = async function (api) {
           childCollections,
           siblings: getSiblings(collection.id),
           products,
+        },
+      });
+    });
+
+    // ----------------- Blog ------------
+    blogs.forEach((blog) => {
+      createPage({
+        path: `/blog/${blog.slug}`,
+        component: './src/templates/Blog.vue',
+        context: {
+          ...global,
+          blog,
+          relatedBlogs: blogs.slice(0, 3),
+          breadcrumb: {
+            Home: '/',
+            Blogs: '/blogs/',
+            [blog.title]: blog.slug,
+          },
         },
       });
     });
