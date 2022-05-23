@@ -77,6 +77,10 @@ export const config: VendureConfig = {
     },
     tokenMethod: 'bearer',
   },
+  assetOptions: {
+    permittedFileTypes: ['image/*', 'video/*', 'audio/*', '.pdf', '.epub'],
+    uploadMaxFileSize: 31457280,
+  },
   dbConnectionOptions: {
     type: 'mysql',
     synchronize: false,

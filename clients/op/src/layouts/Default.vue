@@ -2,7 +2,11 @@
   <div>
     <div class="container section mt-20 pt-0">
       <div class="has-text-centered">
-        <g-link to="/"><h1 class="has-text-primary mt-0">OP!</h1></g-link>
+        <g-link to="/"
+          ><h1 class="has-text-primary mt-0">
+            OP!
+            <img src="/img/meloen.png" style="width: 50px" /></h1
+        ></g-link>
       </div>
       <slot />
     </div>
@@ -14,6 +18,8 @@
             <h2>Contact</h2>
             <ClickableEmail />
             <br />
+            <br />
+            <img src="/img/groente.png" style="width: 100px" />
           </div>
           <div class="column">
             <h2>OP!</h2>
@@ -53,7 +59,9 @@
             href="https://pinelab.studio/"
             target="_blank"
             class="has-text-grey-light"
-            >Website door Pinelab</a
+            >Website gemaakt met
+            <img src="/img/tomaat.png" style="width: 25px" class="px-1" />
+            door Pinelab</a
           >
         </div>
       </div>
