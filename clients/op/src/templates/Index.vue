@@ -20,7 +20,7 @@
           <PopupImage
             :small="$context.product.featuredAsset.preview"
             :alt="$context.product.name"
-            :large="$context.product.featuredAsset.preview"
+            :large="$context.product.featuredAsset.source"
             class="mb-4"
           />
           <div class="columns is-mobile">
@@ -28,7 +28,7 @@
               <PopupImage
                 :small="asset.thumbnail"
                 :alt="$context.product.name"
-                :large="asset.preview"
+                :large="asset.source"
                 class="mb-4"
               />
             </div>
