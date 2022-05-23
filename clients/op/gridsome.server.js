@@ -55,8 +55,6 @@ module.exports = async function (api) {
 
     products = products.map(p => setCalculatedFields(p));
 
-    console.log(JSON.stringify(products));
-
     const global = {
       email: 'info@ophetboek.nl',
       instagram: 'https://www.instagram.com/tipvanjet/',
