@@ -75,7 +75,7 @@ module.exports = async function (api) {
       component: './src/templates/Index.vue',
       context: {
         product: products[0],
-        global,
+        ...global,
       },
     });
 

@@ -144,12 +144,6 @@
         .
       </p>
       <p>
-        <b>Ik heb nog een vraag, maar die staat hier niet tussen.</b><br />
-        Mail dan naar
-        <ClickableEmail />
-        .
-      </p>
-      <p>
         <b> Hoe sla ik het boek op?</b>
         <br />
         Je kunt het boek op elk apparaat downloaden (telefoon, computer,
@@ -158,9 +152,13 @@
         het boek altijd offline kunt lezen en snel kunt terugvinden.
       </p>
     </section>
-
-    <br />
-    <br />
+    <div class="has-text-centered">
+      <img
+        src="/img/tomaat.png"
+        alt="Een gezonde tomaat!"
+        style="width: 70px"
+      />
+    </div>
   </Layout>
 </template>
 <script>

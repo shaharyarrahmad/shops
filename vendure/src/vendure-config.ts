@@ -79,7 +79,7 @@ export const config: VendureConfig = {
   },
   assetOptions: {
     permittedFileTypes: ['image/*', 'video/*', 'audio/*', '.pdf', '.epub'],
-    uploadMaxFileSize: 31457280,
+    uploadMaxFileSize: 36700160,
   },
   dbConnectionOptions: {
     type: 'mysql',
