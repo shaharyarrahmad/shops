@@ -1,4 +1,4 @@
 <
 <template>
-  <a :href="`mailto:${$context.global.email}`">{{ $context.global.email }}</a>
+  <a :href="`mailto:${$context.email}`">{{ $context.email }}</a>
 </template>

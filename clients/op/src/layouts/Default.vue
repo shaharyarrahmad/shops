@@ -3,9 +3,9 @@
     <div class="container section mt-20 pt-0">
       <div class="has-text-centered">
         <g-link to="/"
-          ><h1 class="has-text-primary mt-0">
+          ><h1 class="has-text-primary mt-4 mb-6">
             OP!
-            <img src="/img/meloen.png" style="width: 50px" /></h1
+            <img src="/img/meloen.png" style="width: 60px" /></h1
         ></g-link>
       </div>
       <slot />
