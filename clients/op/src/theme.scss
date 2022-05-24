@@ -4,7 +4,7 @@
 // Set your colors
 //https://coolors.co/474448-fdedf2-de369d-8ee3ef-02a9ea
 // $background: #E4FDE1;
-$background: rgba(248, 202, 217, 0.25);
+$background: rgba(248, 202, 217, 0.5);
 $text: #474448;
 $primary: rgb(247,168,18);
 $info: #8EE3EF;
@@ -121,6 +121,8 @@ h1 {
 h2 {
   @extend .is-size-2;
   @extend .heading;
+  @extend .has-text-weight-light;
+  @extend .has-text-success;
 }
 h3 {
   @extend .is-size-3;

@@ -43,7 +43,7 @@
           <div id="buy">
             <h2 class="has-text-primary">
               Koop het e-boek hier voor
-              <span class="has-text-success">{{
+              <span class="has-text-success has-text-weight-bold">{{
                 $context.product.lowestPrice | euro
               }}</span>
               <img
@@ -51,7 +51,7 @@
                 style="width: 200px; box-shadow: none; padding-left: 20px"
               />
             </h2>
-            <p>Betaal online en ontvang het boek direct in je email!</p>
+            <p>Betaal online en ontvang het boek direct in je email.</p>
             <form v-on:submit="buy($event)">
               <b-field grouped label="Emailadres" label-position="on-border">
                 <b-input
@@ -125,7 +125,6 @@
         Dat zou vervelend zijn. Check ook altijd even je spam en mail anders
         naar
         <ClickableEmail />
-        .
       </p>
       <p>
         <b>Is het boek ook in printversie te krijgen?</b><br />
@@ -138,20 +137,18 @@
         ><br />
         O jee, dat kan natuurlijk gebeuren. Laat je horen via
         <ClickableEmail />
-        .
       </p>
       <p>
         <b>Ik heb nog een vraag, maar die staat hier niet tussen.</b><br />
         Mail dan naar
         <ClickableEmail />
-        .
       </p>
       <p>
         <b> Hoe sla ik het boek op?</b>
         <br />
         Je kunt het boek op elk apparaat downloaden (telefoon, computer,
-        tablet), maar ik vind het het handigst om het pdf-bestand op te slaan in
-        je ‘Boeken’, dat is een standaard app die op je apparaat staat, zodat je
+        tablet), maar ik vind het het handigst om het bestand op te slaan in je
+        ‘Boeken’, dat is een standaard app die op je apparaat staat, zodat je
         het boek altijd offline kunt lezen en snel kunt terugvinden.
       </p>
     </section>

@@ -3,7 +3,7 @@
     <div class="container section mt-20 pt-0">
       <div class="has-text-centered">
         <g-link to="/"><h1 class="has-text-success my-4">OP!</h1></g-link>
-        <h2 class="has-text-success has-text-weight-light mb-4">
+        <h2 class="has-text-success mb-4">
           30 recepten voor de dreumes
           <span class="is-inline-block"> die (w)eet wat 'ie wil</span>
         </h2>
@@ -15,14 +15,14 @@
       <div class="container section pb-0">
         <div class="columns">
           <div id="contact" class="column">
-            <h2>Contact</h2>
+            <h3>Contact</h3>
             <ClickableEmail />
             <br />
             <br />
             <img src="/img/groente.png" style="width: 100px" />
           </div>
           <div class="column">
-            <h2>OP!</h2>
+            <h3>OP!</h3>
             <a href="/#about">Over het boek</a> <br />
             <a href="/#about">Over Jet</a> <br />
             <a href="/#faq">FAQ</a> <br />
