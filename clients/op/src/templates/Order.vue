@@ -14,8 +14,7 @@
       >
         <template #failed>
           <b-notification type="is-info" aria-close-label="Close notification">
-            Er is helaas iets mis gegaan. Neem contact op met
-            <ClickableEmail />
+            Er is helaas iets mis gegaan. Neem contact op met <ClickableEmail />
           </b-notification>
         </template>
       </OrderConfirmation>
