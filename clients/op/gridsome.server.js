@@ -53,7 +53,7 @@ module.exports = async function (api) {
       }
     `);
 
-    products = products.map(p => setCalculatedFields(p));
+    products = products.map((p) => setCalculatedFields(p));
 
     const global = {
       email: 'info@ophetboek.nl',
@@ -75,7 +75,7 @@ module.exports = async function (api) {
       component: './src/templates/Index.vue',
       context: {
         product: products[0],
-        global,
+        ...global,
       },
     });
 
