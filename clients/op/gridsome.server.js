@@ -85,13 +85,13 @@ module.exports = async function (api) {
       component: './src/templates/Order.vue',
       context: {
         product: products[0],
-        global,
+        ...global,
       },
     });
 
-    createPage({
+    /*    createPage({
       path: '/under-construction/',
       component: './src/templates/UnderConstruction.vue',
-    });
+    });*/
   });
 };
