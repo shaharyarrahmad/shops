@@ -11,9 +11,9 @@
     </section>
 
     <section id="book">
-      <h2 class="has-text-centered is-size-4 has-text-success">
+      <!--      <h2 class="has-text-centered is-size-4 has-text-success">
         {{ $context.product.variants[0].name }}
-      </h2>
+      </h2>-->
       <br />
       <div class="columns">
         <div class="column is-6">
@@ -101,13 +101,16 @@
       Uit huis met Jet. Ze presenteerde de driedelige serie Niet gezond meer
       voor NPO3, het programma Foodmakers op RTL4, is te zien in Wat eten we
       vandaag van 24Kitchen en kookte voor het dagelijkse programma Wat Eten We
-      op Net 5. Op haar Instagram TipvanJet en website www.tipvanjet.nl deelt
+      op Net 5. Op haar Instagram TipvanJet en website
+      <a href="https://tipvanjet.nl" target="_blank">www.tipvanjet.nl</a> deelt
       zij tips om het leven leuker en makkelijker te maken, sinds Frenkie is
       geboren dus ook vaak voor andere ouders.
     </section>
 
     <section id="faq" class="mt-6">
-      <h2 class="has-text-primary">FAQ / Meest gestelde vragen</h2>
+      <h2 class="has-text-primary">
+        Prangende vragen en verlossende antwoorden
+      </h2>
       <p>
         <b>Staan er ook vegetarische recepten in het e-book?</b><br />
         80% procent van de recepten is vegetarisch.

@@ -2,11 +2,11 @@
   <div>
     <div class="container section mt-20 pt-0">
       <div class="has-text-centered">
-        <g-link to="/"
-          ><h1 class="has-text-primary mt-4 mb-6">
-            OP!
-            <img src="/img/meloen.png" style="width: 60px" /></h1
-        ></g-link>
+        <g-link to="/"><h1 class="has-text-success my-4">OP!</h1></g-link>
+        <h2 class="has-text-success has-text-weight-light mb-4">
+          30 recepten voor de dreumes
+          <span class="is-inline-block"> die (w)eet wat 'ie wil</span>
+        </h2>
       </div>
       <slot />
     </div>
