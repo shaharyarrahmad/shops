@@ -2,22 +2,17 @@
   <DefaultLayout>
     <template #content>
       <section id="blog">
-        <h1>{{ $context.blog.title }}</h1>
-        <div class="content" v-html="$context.blog.content"></div>
-      </section>
-
-      <FavoritesSection :favorites="$context.favorites" />
-
-      <section id="related-blogs">
-        <h3>Meer blogs</h3>
+        <h3>Blogs</h3>
         <div class="columns">
-          <template v-for="blog of $context.relatedBlogs">
+          <template v-for="blog of $context.blogs">
             <div class="column">
               <BlogCard :blog="blog" />
             </div>
           </template>
         </div>
       </section>
+
+      <FavoritesSection :favorites="$context.favorites" />
     </template>
   </DefaultLayout>
 </template>
@@ -28,15 +23,9 @@ import FavoritesSection from '../components/FavoritesSection';
 
 export default {
   components: {
-    BlogCard,
     FavoritesSection,
+    BlogCard,
   },
 };
 </script>
-<style>
-#blog img {
-  border-radius: 6px;
-  margin: 1.5rem auto;
-  display: block;
-}
-</style>
+<style></style>

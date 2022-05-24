@@ -7,7 +7,7 @@
         class="rounded blog-card-image"
       />
     </g-link>
-    <h4 class="mb-1">{{ blog.title }}</h4>
+    <h5 class="mb-1">{{ blog.title }}</h5>
     <p>
       {{ blog.description }}
       <br />

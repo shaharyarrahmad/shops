@@ -10,6 +10,7 @@
       icon="magnify"
       clearable
       @select="select"
+      max-height="400px"
     >
       <template #header>
         <span class="has-text-grey"

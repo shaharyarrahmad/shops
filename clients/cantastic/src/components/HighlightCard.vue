@@ -1,7 +1,7 @@
 <template>
   <g-link :to="`/product/${product.slug}/`">
     <div
-      class="box card-background-image is-flex is-align-items-end"
+      class="box card-background-image is-flex is-align-items-end highlight-card"
       :style="`background-image: url(${image});`"
     >
       <div>
@@ -9,7 +9,7 @@
         <h4 class="subtitle has-text-white">
           {{ product.lowestPrice | euro }}
         </h4>
-        <CantasticButton is-div="true"> Bekijk deal </CantasticButton>
+        <CantasticButton is-div="true"> Bekijk deal</CantasticButton>
       </div>
     </div>
   </g-link>
@@ -27,4 +27,10 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.card-background-image.highlight-card {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+</style>
