@@ -1,11 +1,11 @@
 <template>
   <DefaultLayout #content>
     <h1 class="title">{{ $context.product.name }}</h1>
-    <div class="columns content">
+    <div class="columns">
       <div class="column">
         <ProductImages :product="$context.product" :variant="variant" />
       </div>
-      <div class="column">
+      <div class="column content">
         <h5 class="has-text-grey is-size-5">{{ variant.name }}</h5>
         <h5 class="is-size-5 mb-4">{{ variant.priceWithTax | euro }}</h5>
         <VariantSelector

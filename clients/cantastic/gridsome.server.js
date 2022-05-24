@@ -262,6 +262,20 @@ module.exports = async function (api) {
       });
     });
 
+    // ------------------Blog Listing ----------
+    createPage({
+      path: `/blog/`,
+      component: './src/templates/BlogListing.vue',
+      context: {
+        ...global,
+        blogs,
+        breadcrumb: {
+          Home: '/',
+          Blog: '/blog/',
+        },
+      },
+    });
+
     // ----------------- Blog ------------
     blogs.forEach((blog) => {
       createPage({
@@ -273,7 +287,7 @@ module.exports = async function (api) {
           relatedBlogs: blogs.slice(0, 3),
           breadcrumb: {
             Home: '/',
-            Blogs: '/blogs/',
+            Blog: '/blog/',
             [blog.title]: blog.slug,
           },
         },

@@ -35,16 +35,7 @@
         </div>
       </section>
 
-      <section id="favorite-products">
-        <h3>Onze favorieten</h3>
-        <div class="columns is-6 is-variable is-multiline is-mobile">
-          <template v-for="favorite of $context.favorites">
-            <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
-              <ProductCard :product="favorite" />
-            </div>
-          </template>
-        </div>
-      </section>
+      <FavoritesSection :favorites="$context.favorites" />
     </template>
 
     <template #fullwidth>
@@ -72,7 +63,7 @@
 
     <template #content2>
       <section id="blog">
-        <h3>Blog</h3>
+        <h3><g-link to="/blog/" class="has-text-dark">Blog</g-link></h3>
         <div class="columns">
           <template v-for="blog of $context.blogs">
             <div class="column">
@@ -94,15 +85,25 @@
 import { hydrate } from 'pinelab-storefront-client';
 import HighlightCard from '../components/HighlightCard';
 import BlogCard from '../components/BlogCard';
+import FavoritesSection from '../components/FavoritesSection';
 
 export default {
   components: {
     BlogCard,
     HighlightCard,
+    FavoritesSection,
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
-    await hydrate(this.$context.favorites, this.$vendure);
+    await hydrate(
+      [
+        this.$context.highlight1,
+        this.$context.highlight2,
+        this.$context.highlight3,
+        ...this.$context.favorites,
+      ],
+      this.$vendure
+    );
   },
 };
 </script>

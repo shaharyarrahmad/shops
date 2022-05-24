@@ -13,9 +13,14 @@
               <Search />
             </div>
             <div class="column has-text-right" id="icons">
-              <span class="is-hidden-tablet"
-                ><b-icon icon="magnify" size="is-medium"></b-icon
-              ></span>
+              <span class="icon is-medium is-hidden-tablet is-clickable">
+                <i
+                  class="mdi mdi-magnify mdi-36px"
+                  @click="isSearchModalActive = true"
+                  style="z-index: 999"
+                >
+                </i>
+              </span>
               <a href="/#contact">
                 <span class="is-hidden-mobile"
                   ><b-icon icon="whatsapp" size="is-medium"></b-icon
@@ -267,6 +272,22 @@
         </div>
       </div>
     </footer>
+
+    <!-------------- search modal ------------------->
+    <b-modal
+      v-model="isSearchModalActive"
+      has-modal-card
+      trap-focus
+      :destroy-on-hide="false"
+      aria-role="dialog"
+      aria-label="Example Modal"
+      close-button-aria-label="Close"
+      aria-modal
+    >
+      <div class="card" style="margin-top: -200px">
+        <Search />
+      </div>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -326,6 +347,11 @@ export default {
       }
       return chunks;
     },
+  },
+  data() {
+    return {
+      isSearchModalActive: false,
+    };
   },
   computed: {
     activeOrder() {

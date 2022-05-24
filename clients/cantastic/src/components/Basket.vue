@@ -5,12 +5,12 @@
     type="is-info"
     :auto-close="['escape', 'outside']"
   >
-    <g-link to="/winkelmand/">
-      <span>
-        <b-icon icon="basket" size="is-large"></b-icon>
-        <span class="cart-badge">{{ nrOfItems }}</span>
-      </span>
-    </g-link>
+    <span class="icon is-large">
+      <g-link to="/winkelmand/">
+        <i class="mdi mdi-basket mdi-48px has-text-white"></i>
+      </g-link>
+    </span>
+    <span class="cart-badge">{{ nrOfItems }}</span>
     <template v-slot:content>
       <b>Totaal: {{ price }}</b> <br />
       <template v-for="{ name, quantity } of lines">

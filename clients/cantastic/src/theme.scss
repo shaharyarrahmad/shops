@@ -24,7 +24,7 @@ $warning: $loop-red2;
 $danger: $loop-red;
 $body-background-color: $loop-white;
 $primary-invert: $loop-white;
-$dark: $loop-dark;
+$dark: $loop-soft-dark;
 $light: $loop-grey;
 $title-color: $loop-soft-dark;
 
@@ -156,7 +156,7 @@ h6 {
 }
 
 section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .usps b {
@@ -198,10 +198,19 @@ section {
   @extend .has-text-light;
 }
 
+#mobile-navigation a {
+  color: $text;
+}
+
+.rounded {
+  border-radius: $control-radius;
+}
 .card-background-image {
   min-height: 150px;
   box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.3);
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   height: 100%;
 }
 
@@ -210,10 +219,3 @@ section {
   box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.05);
 }
 
-#mobile-navigation a {
-  color: $text;
-}
-
-.rounded {
-  border-radius: $control-radius;
-}
