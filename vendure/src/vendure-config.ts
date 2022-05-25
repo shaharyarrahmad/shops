@@ -191,12 +191,12 @@ export const config: VendureConfig = {
     CoinbasePlugin,
     MyparcelPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
-      syncWebhookOnStartup: process.env.SHOP_ENV === 'prod', // Don't sync for envs except prod
+      syncWebhookOnStartup: process.env.SHOP_ENV === 'prod' && !runningLocal, // Don't sync for envs except prod
     }),
     GoedgepicktPlugin.init({
       vendureHost: process.env.VENDURE_HOST!,
       endpointSecret: process.env.WEBHOOK_TOKEN!,
-      setWebhook: process.env.SHOP_ENV === 'prod', // Only set webhook for prod
+      setWebhook: process.env.SHOP_ENV === 'prod' && !runningLocal, // Only set webhook for prod
     }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
@@ -245,3 +245,9 @@ export const config: VendureConfig = {
     }),
   ],
 };
+
+if (config.dbConnectionOptions.synchronize) {
+  throw Error(
+    "Don't ever synchronize the DB!!! Use 'yarn migration:generate:test' to migrate the database"
+  );
+}
