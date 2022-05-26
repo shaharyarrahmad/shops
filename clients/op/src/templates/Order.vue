@@ -2,7 +2,7 @@
   <Layout>
     <div style="min-height: 50vh">
       <OrderConfirmation
-        message="Wat leuk dat je het boek “Op!” hebt gekocht!"
+        message="Wat leuk dat je het boek “Op!” hebt gekocht. Je ontvangt een downloadlink voor het boek in je e-mail."
         item-label="Product"
         quantity-label="Aantal"
         total-label="Totaal"

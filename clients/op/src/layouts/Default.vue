@@ -26,6 +26,12 @@
             <a href="/#about">Over het boek</a> <br />
             <a href="/#about">Over Jet</a> <br />
             <a href="/#faq">FAQ</a> <br />
+            <img
+              src="/img/tomaat.png"
+              alt="Een gezonde tomaat!"
+              class="pt-2"
+              style="width: 60px"
+            />
           </div>
           <div class="column">
             <a :href="$context.instagram" target="_blank" class="pr-4">
@@ -46,6 +52,13 @@
               src="/img/mollie-dark.png"
               alt="Veilig betalen met Mollie"
               style="height: 30px; opacity: 0.6"
+            />
+            <br />
+            <img
+              src="/img/meloen.png"
+              alt="Watermeloen"
+              class="pt-4 ml-6"
+              style="width: 40px"
             />
           </div>
         </div>
