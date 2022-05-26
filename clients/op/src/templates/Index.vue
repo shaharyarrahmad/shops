@@ -41,14 +41,21 @@
           </div>
 
           <div id="buy">
+            <div class="has-text-centered">
+              <img
+                src="/img/koop.png"
+                style="width: 150px; box-shadow: none; padding-left: 20px"
+              />
+            </div>
             <h2 class="has-text-primary">
               Koop het e-boek hier voor
-              <span class="has-text-success has-text-weight-bold">{{
+              <span class="has-text-danger has-text-weight-bold">{{
                 $context.product.lowestPrice | euro
               }}</span>
               <img
                 src="/img/wortel.png"
-                style="width: 200px; box-shadow: none; padding-left: 20px"
+                alt="Wortel"
+                style="width: 150px; box-shadow: none; padding-left: 20px"
               />
             </h2>
             <p>Betaal online en ontvang het boek direct in je email.</p>
@@ -152,13 +159,6 @@
         het boek altijd offline kunt lezen en snel kunt terugvinden.
       </p>
     </section>
-    <div class="has-text-centered">
-      <img
-        src="/img/tomaat.png"
-        alt="Een gezonde tomaat!"
-        style="width: 70px"
-      />
-    </div>
   </Layout>
 </template>
 <script>
