@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <section class="has-text-centered">
-      <b-button class="is-primary" tag="a" href="#buy"
+      <b-button class="is-danger" tag="a" href="#buy"
         >Koop het e-boek voor
         <b>{{ $context.product.lowestPrice | euro }}</b>
       </b-button>
@@ -11,9 +11,6 @@
     </section>
 
     <section id="book">
-      <!--      <h2 class="has-text-centered is-size-4 has-text-success">
-        {{ $context.product.variants[0].name }}
-      </h2>-->
       <br />
       <div class="columns">
         <div class="column is-6">
@@ -47,11 +44,10 @@
                 style="width: 150px; box-shadow: none; padding-left: 20px"
               />
             </div>
-            <h2 class="has-text-primary">
-              Koop het e-boek hier voor
-              <span class="has-text-danger has-text-weight-bold">{{
+            <h2 class="has-text-danger has-text-weight-bold">
+              {{
                 $context.product.lowestPrice | euro
-              }}</span>
+              }}
               <img
                 src="/img/wortel.png"
                 alt="Wortel"
@@ -74,7 +70,7 @@
                   <b-button
                     tag="button"
                     native-type="submit"
-                    type="is-primary"
+                    type="is-danger"
                     :loading="loading"
                     >Koop het boek</b-button
                   >
@@ -101,21 +97,21 @@
     <section id="about" class="mt-6">
       <!--            <img src="/img/over-jet.png" alt="Over Jet logo" style="width: 200px;"/>
       <br/>-->
-      <h2 class="has-text-primary">Over Jet</h2>
+      <h2 class="has-text-primary is-size-5">Over Jet</h2>
 
       Jet van Nieuwkerk (1989) is moeder van Frenkie, presentatrice en
       foodjournalist. Ze schreef drie boeken: Het Boek van Jet, Tips van Jet en
       Uit huis met Jet. Ze presenteerde de driedelige serie Niet gezond meer
       voor NPO3, het programma Foodmakers op RTL4, is te zien in Wat eten we
       vandaag van 24Kitchen en kookte voor het dagelijkse programma Wat Eten We
-      op Net 5. Op haar Instagram TipvanJet en website
+      op Net 5. Op haar Instagram <a :href="$context.instagram" target="_blank"> TipvanJet</a> en website
       <a href="https://tipvanjet.nl" target="_blank">www.tipvanjet.nl</a> deelt
       zij tips om het leven leuker en makkelijker te maken, sinds Frenkie is
       geboren dus ook vaak voor andere ouders.
     </section>
 
     <section id="faq" class="mt-6">
-      <h2 class="has-text-primary">
+      <h2 class="has-text-primary is-size-5">
         Prangende vragen en verlossende antwoorden
       </h2>
       <p>
