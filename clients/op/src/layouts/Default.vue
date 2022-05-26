@@ -11,7 +11,7 @@
       <slot />
     </div>
 
-    <footer class="footer pb-4 is-danger">
+    <footer class="footer pb-4">
       <div class="container section pb-0">
         <div class="columns">
           <div id="contact" class="column">
