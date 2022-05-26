@@ -39,12 +39,9 @@
 
           <div id="buy">
             <div class="has-text-centered">
-              <img
-                src="/img/koop.png"
-                style="width: 150px; box-shadow: none; padding-left: 20px"
-              />
             </div>
             <h2 class="has-text-danger has-text-weight-bold">
+              Koop Op! hier voor
               {{
                 $context.product.lowestPrice | euro
               }}
@@ -56,38 +53,42 @@
             </h2>
             <p>Betaal online en ontvang het boek direct in je email.</p>
             <form v-on:submit="buy($event)">
-              <b-field grouped label="Emailadres" label-position="on-border">
-                <b-input
-                  type="email"
-                  v-model="emailAddress"
-                  id="email"
-                  name="email"
-                  autocomplete="on"
-                  expanded
-                  required
-                ></b-input>
-                <span class="control">
+
+              <div class="columns">
+                <div class="column">
+                  <b-field grouped label="Emailadres" label-position="on-border">
+                    <b-input
+                      type="email"
+                      v-model="emailAddress"
+                      id="email"
+                      name="email"
+                      autocomplete="on"
+                      expanded
+                      required
+                    ></b-input>
+                  </b-field>
+                </div>
+                <div class="column">
                   <b-button
                     tag="button"
                     native-type="submit"
                     type="is-danger"
                     :loading="loading"
-                    >Koop het boek</b-button
-                  >
-                </span>
+                  >Koop het boek</b-button>
 
-                <b-tooltip
-                  label="Je betaalt veilig met iDeal"
-                  position="is-bottom"
-                >
-                  <img
-                    src="/img/ideal.svg"
-                    alt="Veilig betalen met iDeal"
-                    class="is-shadowless"
-                    style="height: 40px; opacity: 0.7"
-                  />
-                </b-tooltip>
-              </b-field>
+                  <b-tooltip
+                    label="Je betaalt veilig met iDeal"
+                    position="is-bottom"
+                  >
+                    <img
+                      src="/img/ideal.svg"
+                      alt="Veilig betalen met iDeal"
+                      class="is-shadowless ml-4"
+                      style="height: 40px; opacity: 0.5"
+                    />
+                  </b-tooltip>
+                </div>
+              </div>
             </form>
           </div>
         </div>
