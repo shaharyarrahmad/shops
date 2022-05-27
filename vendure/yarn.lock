@@ -12526,17 +12526,17 @@ vendure-plugin-e-boekhouden@^3.3.1:
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.5.0.tgz#9f5c22b0a8bb4cd5e449526c3617813cba3bed7e"
-  integrity sha512-Fl+Frc0qBw4UINJjekvwa8H8xxu4bfTOi5BZk+N334Jo1uDMD4JxAr8UmOrQzlaaHuRM1rnkAUT6cfsJjC+Hhg==
+vendure-plugin-goedgepickt@3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.5.1.tgz#16258b45205323e2842ac8f4424ab25a0b9d666d"
+  integrity sha512-KfvodYxdVcxV6lKrP2tBMuTp4Un46vzsK+lc7RUkc9KUysXaaa83a5CfqExaiYOSeCPI2txWbPyw55D1eJGfKw==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.5.0.tgz#3f38ca2557d78229ed4e3c19a7141e485244277f"
-  integrity sha512-BDaBEqhS8CLbwg9e/0AgxYxsM41146Rrrfd4IsMMX8u6kOXqWl/q8Yf5c83HRjCHeFYUBgX6YUcsfNQOlF8htA==
+vendure-plugin-google-cloud-tasks@3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.5.3.tgz#b958179ba83ce0fe0b84c660f27fdf5611c0f22d"
+  integrity sha512-u+c9LXRKvghYlaXu/0gjc0wnpq//Uv4Vl/xYCVA6Ce3+VMAqa1n8wqriwoyG4mgKrfRZVFpeZfZmkLkdYuyOzw==
   dependencies:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
