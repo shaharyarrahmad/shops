@@ -35,7 +35,7 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
       const channelName = admins?.[0]?.channel_code;
       admins = admins.filter((admin) => admin.admin_emailAddress.includes('@'));
       if (!admins?.[0]?.admin_emailAddress) {
-        Logger.error(
+        Logger.warn(
           `No admin found to send confirmation email for channel with id ${channel.id}`,
           loggerCtx
         );
