@@ -38,13 +38,10 @@
           </div>
 
           <div id="buy">
-            <div class="has-text-centered">
-            </div>
+            <div class="has-text-centered"></div>
             <h2 class="has-text-danger has-text-weight-bold">
               Koop Op! hier voor
-              {{
-                $context.product.lowestPrice | euro
-              }}
+              {{ $context.product.lowestPrice | euro }}
               <img
                 src="/img/wortel.png"
                 alt="Wortel"
@@ -53,10 +50,13 @@
             </h2>
             <p>Betaal online en ontvang het boek direct in je email.</p>
             <form v-on:submit="buy($event)">
-
               <div class="columns">
                 <div class="column">
-                  <b-field grouped label="Emailadres" label-position="on-border">
+                  <b-field
+                    grouped
+                    label="Emailadres"
+                    label-position="on-border"
+                  >
                     <b-input
                       type="email"
                       v-model="emailAddress"
@@ -74,7 +74,8 @@
                     native-type="submit"
                     type="is-danger"
                     :loading="loading"
-                  >Koop het boek</b-button>
+                    >Koop het boek</b-button
+                  >
 
                   <b-tooltip
                     label="Je betaalt veilig met iDeal"
@@ -105,7 +106,8 @@
       Uit huis met Jet. Ze presenteerde de driedelige serie Niet gezond meer
       voor NPO3, het programma Foodmakers op RTL4, is te zien in Wat eten we
       vandaag van 24Kitchen en kookte voor het dagelijkse programma Wat Eten We
-      op Net 5. Op haar Instagram <a :href="$context.instagram" target="_blank"> TipvanJet</a> en website
+      op Net 5. Op haar Instagram
+      <a :href="$context.instagram" target="_blank"> TipvanJet</a> en website
       <a href="https://tipvanjet.nl" target="_blank">www.tipvanjet.nl</a> deelt
       zij tips om het leven leuker en makkelijker te maken, sinds Frenkie is
       geboren dus ook vaak voor andere ouders.
