@@ -9,6 +9,7 @@
         <h5 class="has-text-grey is-size-5">{{ variant.name }}</h5>
         <h5 class="is-size-5 mb-4">{{ variant.priceWithTax | euro }}</h5>
         <VariantSelector
+          v-if="$context.product.variants.length > 1"
           :product="$context.product"
           :variant="variant"
           v-on:select="selectedVariant = $event"
