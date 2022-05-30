@@ -99,7 +99,7 @@ export default {
   data() {
     return {
       current: 1,
-      itemsPerPage: 12,
+      itemsPerPage: 24,
       products: [],
       sortedBy: 'price-asc',
     };
