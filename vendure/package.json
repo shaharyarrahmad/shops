@@ -36,7 +36,7 @@
     "typescript": "4.3.5",
     "vendure-plugin-coinbase": "^3.3.1",
     "vendure-plugin-dutch-postalcode": "3.3.1",
-    "vendure-plugin-e-boekhouden": "^3.3.1",
+    "vendure-plugin-e-boekhouden": "^3.5.4",
     "vendure-plugin-goedgepickt": "3.5.1",
     "vendure-plugin-google-cloud-tasks": "3.5.3",
     "vendure-plugin-google-storage-assets": "3.3.1",
