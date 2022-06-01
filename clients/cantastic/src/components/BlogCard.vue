@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <article>
     <g-link :to="`/blog/${blog.slug}`">
       <img
         :src="getSquareImage(blog.featured_image.id)"
@@ -8,12 +8,16 @@
       />
     </g-link>
     <h5 class="mb-1">{{ blog.title }}</h5>
-    <p>
+    <p class="is-size-7 has-text-grey mb-2">
+      {{ blog.date_created | formatDate }} door
+      {{ blog.user_created.first_name }}
+    </p>
+    <p class="content">
       {{ blog.description }}
       <br />
       <g-link :to="`/blog/${blog.slug}`">Lees meer &nbsp; › </g-link>
     </p>
-  </div>
+  </article>
 </template>
 <script>
 export default {

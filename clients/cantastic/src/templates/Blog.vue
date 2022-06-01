@@ -3,7 +3,30 @@
     <template #content>
       <section id="blog">
         <h1>{{ $context.blog.title }}</h1>
-        <div class="content" v-html="$context.blog.content"></div>
+
+        <article class="media mb-4">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img
+                :src="getSquareImage($context.blog.user_created.avatar.id)"
+                :alt="$context.blog.user_created.first_name"
+                class="is-rounded"
+              />
+            </p>
+          </figure>
+          <div class="media-content">
+            <p class="content has-text-grey">
+              <strong
+                >{{ $context.blog.user_created.first_name }}
+                {{ $context.blog.user_created.last_name }}</strong
+              >
+              <br />
+              <small> {{ $context.blog.date_created | formatDate }}</small>
+            </p>
+          </div>
+        </article>
+
+        <main class="content" v-html="$context.blog.content"></main>
       </section>
 
       <FavoritesSection :favorites="$context.favorites" />
@@ -34,7 +57,7 @@ export default {
 };
 </script>
 <style>
-#blog img {
+.content img {
   border-radius: 6px;
   margin: 1.5rem auto;
   display: block;

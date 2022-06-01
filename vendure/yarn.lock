@@ -12507,6 +12507,11 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
+vendure-plugin-admin-ui-helpers@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-admin-ui-helpers/-/vendure-plugin-admin-ui-helpers-3.6.1.tgz#1bb44a31c1c1f6fb4f824d9324f50b46603b1ec7"
+  integrity sha512-H4B+g6KQpO/xhhFea+MbJw1HPZh75N4T3O+2X842sJB71mnwLpLkKvTtwG8pOFQ5wV3bPYNNWvgoDOzVv/fHFA==
+
 vendure-plugin-coinbase@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-3.3.1.tgz#c92754cdf2da9448e22c1b72e5b0782df3ffa3b9"
