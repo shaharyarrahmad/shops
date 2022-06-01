@@ -39,4 +39,13 @@ export default function (Vue, { router, head, isClient }) {
         `${process.env.GRIDSOME_DIRECTUS_HOST}/assets/${id}?key=square`,
     },
   });
+  Vue.filter('formatDate', function (date) {
+    if (date) {
+      return new Date(date).toLocaleDateString('nl', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+    }
+  });
 }
