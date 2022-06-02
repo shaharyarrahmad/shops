@@ -53,7 +53,7 @@ export default {
               vendure: this.$vendure,
               emitter: this.$emitter,
             },
-            this.newValue
+            this.displayQuantity
           );
         } else {
           // Adjust existing orderline
@@ -75,7 +75,6 @@ export default {
     },
   },
   created() {
-    console.log(`${this.variant.name} = ${this.bgColor}`);
     this.buy = debounce(this.buy, 500);
   },
 };

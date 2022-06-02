@@ -1,12 +1,19 @@
 <template>
   <DefaultLayout #content>
     <div class="columns is-mobile">
-      <div class="column is-4-mobile is-2-tablet">
+      <div class="column is-6-mobile is-3-tablet">
         <img :src="$context.product.featuredAsset.preview" />
       </div>
       <div class="column">
         <h1 class="title">{{ $context.product.name }}</h1>
         <h5 class="is-size-5">{{ $context.product.lowestPrice | euro }}</h5>
+        <template v-if="$context.product.description">
+          <div class="collapsed-3" v-html="$context.product.description"></div>
+          <div class="has-text-right">
+            <a href="#full-description">Lees meer</a>
+          </div>
+          <br />
+        </template>
       </div>
     </div>
     <div class="columns">
@@ -20,6 +27,13 @@
         </template>
       </div>
     </div>
+
+    <h2 class="title">{{ $context.product.name }}</h2>
+    <div
+      id="full-description"
+      v-if="$context.product.description"
+      v-html="$context.product.description"
+    ></div>
   </DefaultLayout>
 </template>
 <script>
