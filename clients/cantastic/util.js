@@ -7,7 +7,16 @@ function setSwatchColors(product, facetCode, defaultColor) {
   try {
     const colorChart = require(`./src/data/${facetCode}.json`);
     product.variants.forEach((variant) => {
-      variant.bgColor = colorChart[variant.options[0].name] || defaultColor;
+      variant.bgColor = Object.entries(colorChart).find(
+        ([key, value]) =>
+          key.toLowerCase() === variant.options[0].name.toLowerCase()
+      )?.[1];
+      if (!variant.bgColor) {
+        console.warn(
+          `No color found for ${variant.options[0].name} (${variant.name}) in ${facetCode}.json, using ${defaultColor}`
+        );
+        variant.bgColor = defaultColor;
+      }
       variant.textColor = getContrastingColor(variant.bgColor);
     });
     product.variants = sortByColorChart(product.variants, colorChart);
@@ -27,10 +36,10 @@ function setSwatchColors(product, facetCode, defaultColor) {
  * Undefined colors are moved to bottom
  */
 function sortByColorChart(variants, colorChart) {
-  const orderedColors = Object.keys(colorChart);
+  const orderedColors = Object.keys(colorChart).map((key) => key.toLowerCase());
   return variants.sort((a, b) => {
-    const posA = orderedColors.indexOf(a.options[0].name);
-    const posB = orderedColors.indexOf(b.options[0].name);
+    const posA = orderedColors.indexOf(a.options[0].name.toLowerCase());
+    const posB = orderedColors.indexOf(b.options[0].name.toLowerCase());
     if (posB === -1) {
       return -1; // If no posB, move A up
     } else if (posA === -1) {

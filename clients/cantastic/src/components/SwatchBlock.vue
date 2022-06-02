@@ -75,7 +75,9 @@ export default {
     },
   },
   created() {
+    console.log(`${this.variant.name} = ${this.bgColor}`);
     this.buy = debounce(this.buy, 500);
   },
 };
 </script>
+<style></style>
