@@ -73,9 +73,6 @@ export interface CantasticRow {
   Productcode: string; // sku
   Attributen: string; // Color: Black / Grey, Maroon Red / Navy Blue|large_number: 8020
   'Vrije voorraad': string;
-  'Totale voorraad': string;
   Verkoopprijs: string;
   Belastingspercentage: string | undefined;
-  Cantastic: '1' | '0';
-  'Cantastic TEST': '1' | '0';
 }
