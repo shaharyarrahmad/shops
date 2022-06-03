@@ -8,52 +8,54 @@
     <span class="cart-badge">{{ nrOfItems }}</span>
 
     <!-------------------------   Sidemenu ----------------------->
-    <b-sidebar
-      type="is-white"
-      :fullheight="true"
-      :fullwidth="false"
-      :overlay="true"
-      :right="true"
-      v-model="sideBasketOpen"
-    >
-      <div class="p-2" id="side-basket">
-        <div class="has-text-centered mb-2">
-          <h3>Winkelmand</h3>
-        </div>
+    <ClientOnly>
+      <b-sidebar
+        type="is-white"
+        :fullheight="true"
+        :fullwidth="false"
+        :overlay="true"
+        :right="true"
+        v-model="sideBasketOpen"
+      >
+        <div class="p-2" id="side-basket">
+          <div class="has-text-centered mb-2">
+            <h3>Winkelmand</h3>
+          </div>
 
-        <div class="is-size-7">
-          <template v-for="line of lines">
-            <img :src="line.featuredAsset.thumbnail" class="is-rounded" />
-            <g-link
-              :to="`/product/${line.productVariant.product.slug}`"
-              class="mb-2"
+          <div class="is-size-7">
+            <template v-for="line of lines">
+              <img :src="line.featuredAsset.thumbnail" class="is-rounded" />
+              <g-link
+                :to="`/product/${line.productVariant.product.slug}`"
+                class="mb-2"
+              >
+                {{ line.quantity }}x {{ line.productVariant.name }} <br />
+              </g-link>
+            </template>
+          </div>
+
+          <br />
+          <template v-if="lines.length > 0">
+            <b-button
+              type="is-primary is-outlined is-fullwidth mb-2"
+              icon-left="basket"
+              tag="a"
+              href="/winkelmand/"
             >
-              {{ line.quantity }}x {{ line.productVariant.name }} <br />
-            </g-link>
+              Naar winkelmand
+            </b-button>
+            <b-button
+              type="is-primary is-fullwidth"
+              icon-left="run-fast"
+              tag="a"
+              href="/checkout/"
+            >
+              Bestellen
+            </b-button>
           </template>
         </div>
-
-        <br />
-        <template v-if="lines.length > 0">
-          <b-button
-            type="is-primary is-outlined is-fullwidth mb-2"
-            icon-left="basket"
-            tag="a"
-            href="/winkelmand/"
-          >
-            Naar winkelmand
-          </b-button>
-          <b-button
-            type="is-primary is-fullwidth"
-            icon-left="run-fast"
-            tag="a"
-            href="/checkout/"
-          >
-            Bestellen
-          </b-button>
-        </template>
-      </div>
-    </b-sidebar>
+      </b-sidebar>
+    </ClientOnly>
   </span>
 </template>
 <script>
