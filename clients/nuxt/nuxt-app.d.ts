@@ -3,18 +3,18 @@ import { Emitter } from 'mitt';
 
 declare module '#app' {
   interface NuxtApp {
-    $vendure: VendureClient,
-    $emitter: Emitter<any>,
-    $store: Store,
+    $vendure: VendureClient;
+    $emitter: Emitter<any>;
+    $store: Store;
   }
 }
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $vendure: VendureClient,
-    $emitter: Emitter<any>,
-    $store: Store,
+    $vendure: VendureClient;
+    $emitter: Emitter<any>;
+    $store: Store;
   }
 }
 
-export { }
+export {};

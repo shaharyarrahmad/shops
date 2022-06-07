@@ -12,7 +12,7 @@ onMounted(async () => {
   const { $vendure } = useNuxtApp() as AppContext;
   console.log(await $vendure.getProduct('new-balance-992'));
   console.log(await $vendure.getActiveOrder());
-})
+});
 const amount = 3345;
 const amount2 = 3300;
 </script>

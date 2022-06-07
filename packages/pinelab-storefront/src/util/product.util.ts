@@ -21,7 +21,9 @@ export function setCalculatedFields<T extends MinimalProduct>(
 /**
  * Remove duplicate products from given list of products
  */
-export function deduplicate(products: ProductFieldsFragment[]): ProductFieldsFragment[] {
+export function deduplicate(
+  products: ProductFieldsFragment[]
+): ProductFieldsFragment[] {
   const uniq: string[] = [];
   return products.filter((prod) => {
     if (uniq.indexOf(prod.slug) === -1) {
@@ -41,8 +43,10 @@ export async function hydrate<T extends MinimalProduct>(
   vendure: VendureClient
 ): Promise<void> {
   if (Array.isArray(products)) {
-    const productIds = products.map(p => p.id);
-    const stockLevels = (await vendure.getStockForProducts(productIds)).map(stockLevel => setCalculatedFields(stockLevel));
+    const productIds = products.map((p) => p.id);
+    const stockLevels = (await vendure.getStockForProducts(productIds)).map(
+      (stockLevel) => setCalculatedFields(stockLevel)
+    );
     products.forEach((p) => {
       const productWithStockLevel = stockLevels.find(
         (productWithStockLevel) => productWithStockLevel.id === p.id
@@ -53,8 +57,9 @@ export async function hydrate<T extends MinimalProduct>(
       return p;
     });
   }
-  if (products) { // Single product
-    const product = products  as CalculatedProduct<T>;
+  if (products) {
+    // Single product
+    const product = products as CalculatedProduct<T>;
     const hydratedProd = await vendure.getProduct(product.slug);
     product.soldOut = hydratedProd.soldOut;
   }

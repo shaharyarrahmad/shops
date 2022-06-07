@@ -1,6 +1,9 @@
 import type Fuse from 'fuse.js';
 import { CalculatedProduct } from '../vendure/types';
-import { CollectionFieldsFragment, ProductFieldsFragment } from '../generated/graphql';
+import {
+  CollectionFieldsFragment,
+  ProductFieldsFragment,
+} from '../generated/graphql';
 
 export interface SearchItem {
   name?: string;
@@ -25,7 +28,7 @@ export interface KeyWeight {
   weight: number;
 }
 
-interface SearchableProduct extends CalculatedProduct<ProductFieldsFragment>{
+interface SearchableProduct extends CalculatedProduct<ProductFieldsFragment> {
   collections: CollectionFieldsFragment[];
   customFields?: { keywords?: string };
 }

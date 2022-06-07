@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       vendureShopApi: process.env?.NUXT_ENV_VENDURE_API,
-      channelToken: process.env?.NUXT_ENV_VENDURE_TOKEN
-    }
-  }
+      channelToken: process.env?.NUXT_ENV_VENDURE_TOKEN,
+    },
+  },
 });

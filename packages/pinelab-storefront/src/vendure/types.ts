@@ -2,7 +2,7 @@ import {
   AvailableCountriesQuery,
   CollectionFieldsFragment,
   OrderFieldsFragment,
-  ProductFieldsFragment
+  ProductFieldsFragment,
 } from '../generated/graphql';
 
 export interface ShopData {
@@ -33,12 +33,12 @@ export interface CollectionMap {
 export type CalculatedProduct<T> = T & {
   lowestPrice: number;
   soldOut: boolean;
-}
+};
 
 export interface MinimalProduct {
   id: string;
   slug: string;
-  variants: { priceWithTax: number, stockLevel: string }[];
+  variants: { priceWithTax: number; stockLevel: string }[];
 }
 
 export type BasicCollection = Omit<CollectionFieldsFragment, 'productVariants'>;

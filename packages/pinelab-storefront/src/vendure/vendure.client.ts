@@ -59,10 +59,12 @@ import {
   SetOrderShippingAddressMutation,
   SetOrderShippingAddressMutationVariables,
   SetOrderShippingMethodMutation,
-  SetOrderShippingMethodMutationVariables, StockLevelProductsQuery, StockLevelProductsQueryVariables,
+  SetOrderShippingMethodMutationVariables,
+  StockLevelProductsQuery,
+  StockLevelProductsQueryVariables,
   TransitionOrderToStateMutation,
   TransitionOrderToStateMutationVariables,
-  UpdateOrderCustomFieldsInput
+  UpdateOrderCustomFieldsInput,
 } from '../generated/graphql';
 import { CalculatedProduct, Store } from './types';
 import { setCalculatedFields } from '../util/product.util';
@@ -71,7 +73,11 @@ export class VendureClient {
   client: GraphQLClient;
   tokenName = 'vendure-auth-token';
 
-  constructor(private store: Store, private url: string, private token: string) {
+  constructor(
+    private store: Store,
+    private url: string,
+    private token: string
+  ) {
     this.client = new GraphQLClient(url, {
       headers: { 'vendure-token': token },
     });
@@ -88,13 +94,17 @@ export class VendureClient {
   /**
    * Get all products, but only ID, slug and variant price and stockLevel
    */
-  async getStockForProducts(productIds: string[]): Promise<StockLevelProductsQuery['products']['items']> {
-    const { products: {items} } = await this.request<StockLevelProductsQuery, StockLevelProductsQueryVariables>(
-      GET_PRICE_AND_STOCKLEVEL,
-      {
-        options: {filter: {id: {in: productIds}}}
-      }
-    );
+  async getStockForProducts(
+    productIds: string[]
+  ): Promise<StockLevelProductsQuery['products']['items']> {
+    const {
+      products: { items },
+    } = await this.request<
+      StockLevelProductsQuery,
+      StockLevelProductsQueryVariables
+    >(GET_PRICE_AND_STOCKLEVEL, {
+      options: { filter: { id: { in: productIds } } },
+    });
     return items;
   }
 

@@ -47,3 +47,5 @@ vendure/static/email/test-emails/
 /vendure/key.json
 /vendure/migrations/
 _search.json
+/clients/nuxt/.output/
+/clients/nuxt/.nuxt/

@@ -1,4 +1,8 @@
-import { GET_AVAILABLE_COUNTRIES, GET_COLLECTIONS, GET_PRODUCTS } from './vendure.queries';
+import {
+  GET_AVAILABLE_COUNTRIES,
+  GET_COLLECTIONS,
+  GET_PRODUCTS,
+} from './vendure.queries';
 import { GraphQLClient } from 'graphql-request';
 import {
   AllProductsQuery,
@@ -7,24 +11,28 @@ import {
   CollectionFieldsFragment,
   CollectionsQuery,
   CollectionsQueryVariables,
-  ProductFieldsFragment
+  ProductFieldsFragment,
 } from '../generated/graphql';
-import { BasicCollection, CalculatedProduct, CollectionMap, ShopData, SortableCollection } from './types';
+import {
+  BasicCollection,
+  CalculatedProduct,
+  CollectionMap,
+  ShopData,
+  SortableCollection,
+} from './types';
 import { deduplicate, setCalculatedFields } from '../util/product.util';
-
 
 /**
  * GraphQL server side client for fetching data from Vendure
  */
 export class VendureServer {
-
   private readonly client: GraphQLClient;
 
   constructor(url: string, channelToken: string) {
     this.client = new GraphQLClient(url, {
       headers: {
-        'vendure-token': channelToken
-      }
+        'vendure-token': channelToken,
+      },
     });
   }
 
@@ -32,7 +40,7 @@ export class VendureServer {
     let [collectionList, allProducts, availableCountries] = await Promise.all([
       this.getAllCollections(),
       this.getAllProducts(),
-      this.getAvailableCountries()
+      this.getAvailableCountries(),
     ]);
     const products = allProducts.map((p) => setCalculatedFields(p));
     products.map((p) => (p.soldOut = false));
@@ -42,21 +50,19 @@ export class VendureServer {
         const products = this.getProductsForCollection(collection, allProducts);
         return {
           collection: { ...collection, productVariants: undefined },
-          products
+          products,
         };
       }
     );
-    const collections: BasicCollection[] = collectionList.map(
-      (c) => ({
-        ...c,
-        productVariants: undefined
-      })
-    );
+    const collections: BasicCollection[] = collectionList.map((c) => ({
+      ...c,
+      productVariants: undefined,
+    }));
     return {
       products,
       productsPerCollection,
       collections,
-      availableCountries
+      availableCountries,
     };
   }
 
@@ -67,17 +73,22 @@ export class VendureServer {
     collection: CollectionFieldsFragment,
     allProducts: ProductFieldsFragment[]
   ): CalculatedProduct<ProductFieldsFragment>[] {
-    let productsPerCollection: ProductFieldsFragment[] = collection.productVariants.items
-      .map((variant) =>
-        allProducts.find((product) => product.id === variant.product.id)
-      )
-      .filter((product): product is ProductFieldsFragment => !!product);
+    let productsPerCollection: ProductFieldsFragment[] =
+      collection.productVariants.items
+        .map((variant) =>
+          allProducts.find((product) => product.id === variant.product.id)
+        )
+        .filter((product): product is ProductFieldsFragment => !!product);
     productsPerCollection = deduplicate(productsPerCollection);
     return productsPerCollection.map((p) => setCalculatedFields(p));
   }
 
   async getAllCollections(): Promise<CollectionFieldsFragment[]> {
-    const { collections: { items } } = await this.client.request<CollectionsQuery, CollectionsQueryVariables>(GET_COLLECTIONS);
+    const {
+      collections: { items },
+    } = await this.client.request<CollectionsQuery, CollectionsQueryVariables>(
+      GET_COLLECTIONS
+    );
     return items;
   }
 
@@ -91,13 +102,14 @@ export class VendureServer {
     let skip = 0;
     const take = 500;
     while (hasMore) {
-      const {
-        products: productList
-      } = await this.client.request<AllProductsQuery, AllProductsQueryVariables>(GET_PRODUCTS, {
+      const { products: productList } = await this.client.request<
+        AllProductsQuery,
+        AllProductsQueryVariables
+      >(GET_PRODUCTS, {
         options: {
           skip,
-          take
-        }
+          take,
+        },
       });
       products.push(...productList.items);
       skip = page * take;
@@ -107,8 +119,13 @@ export class VendureServer {
     return products;
   }
 
-  async getAvailableCountries(): Promise<AvailableCountriesQuery['availableCountries']> {
-    const { availableCountries } = await this.client.request<AvailableCountriesQuery>(GET_AVAILABLE_COUNTRIES);
+  async getAvailableCountries(): Promise<
+    AvailableCountriesQuery['availableCountries']
+  > {
+    const { availableCountries } =
+      await this.client.request<AvailableCountriesQuery>(
+        GET_AVAILABLE_COUNTRIES
+      );
     return availableCountries;
   }
 
@@ -154,7 +171,7 @@ export class VendureServer {
     });
     return {
       ...collection,
-      children: fullChildren
+      children: fullChildren,
     } as SortableCollection;
   }
 }

@@ -26,9 +26,11 @@ export function getSeoDescription(description?: string) {
   }
 }
 
-
 export function getMetaInfo(
-  item?: BasicCollection | ProductFieldsFragment | CalculatedProduct<ProductFieldsFragment>,
+  item?:
+    | BasicCollection
+    | ProductFieldsFragment
+    | CalculatedProduct<ProductFieldsFragment>,
   url?: string,
   type: 'product' | 'article' | 'blog' | 'website' = 'product'
 ): MetaInfo | undefined {
@@ -94,10 +96,11 @@ export const preconnectLinks = [
   {
     rel: 'preconnect',
     href: 'https://storage.googleapis.com',
-    crossorigin: true
-  }, {
+    crossorigin: true,
+  },
+  {
     rel: 'preconnect',
     href: 'https://content.pinelab.studio',
-    crossorigin: true
-  }
+    crossorigin: true,
+  },
 ];
