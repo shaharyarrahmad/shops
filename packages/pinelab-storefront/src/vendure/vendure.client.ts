@@ -71,11 +71,10 @@ export class VendureClient {
   client: GraphQLClient;
   tokenName = 'vendure-auth-token';
 
-  constructor(private store: Store) {
-    this.client = new GraphQLClient(process.env.GRIDSOME_VENDURE_API!, {
-      headers: { 'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN! },
+  constructor(private store: Store, private url: string, private token: string) {
+    this.client = new GraphQLClient(url, {
+      headers: { 'vendure-token': token },
     });
-    this.getActiveOrder().then((order) => (this.store.activeOrder = order));
   }
 
   async getActiveOrder(): Promise<OrderFieldsFragment | undefined> {

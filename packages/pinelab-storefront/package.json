@@ -16,7 +16,7 @@
   "scripts": {
     "build": "rm -rf lib && yarn tsc --build && yarn copyfiles -u 1 'src/buefy-components/**/*' lib",
     "generate": "graphql-codegen",
-    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
+    "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn build'",
     "test": "jest"
   },
   "devDependencies": {
@@ -31,12 +31,15 @@
     "nodemon": "^2.0.7",
     "ts-jest": "^27.1.2",
     "typescript": "^4.2.3",
-    "vue": "^3.2.36"
+    "vue": "^3.2.36",
+    "mitt": "^3.0.0"
   },
   "dependencies": {
     "graphql": "15.3.0",
-    "graphql-request": "^3.4.0",
-    "mitt": "^3.0.0"
+    "graphql-request": "^3.4.0"
+  },
+  "peerDependencies": {
+    "mitt": "3.X"
   },
   "resolutions": {
     "graphql": "15.3.0"
