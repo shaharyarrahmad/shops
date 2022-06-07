@@ -86,7 +86,7 @@ export default {
       );
     },
     lines() {
-      return this.$store?.activeOrder?.lines;
+      return this.$store?.activeOrder?.lines || [];
     },
     price() {
       return this.$root.$options.filters.euro(
