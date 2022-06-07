@@ -6,9 +6,12 @@
   </div>
 </template>
 <script setup lang="ts">
-onMounted(() => {
-  const ding = useNuxtApp();
-  console.log(ding);
+import { AppContext } from '~/plugins/global';
+
+onMounted(async () => {
+  const { $vendure } = useNuxtApp() as AppContext;
+  console.log(await $vendure.getProduct('new-balance-992'));
+  console.log(await $vendure.getActiveOrder());
 })
 const amount = 3345;
 const amount2 = 3300;

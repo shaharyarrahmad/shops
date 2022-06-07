@@ -1,6 +1,12 @@
-import { defineNuxtPlugin } from 'nuxt/app';
+import { defineNuxtPlugin, NuxtApp } from 'nuxt/app';
 import { formatEuro, Store, VendureClient } from 'pinelab-storefront';
-import mitt from 'mitt';
+import mitt, { Emitter } from 'mitt';
+
+export interface AppContext extends NuxtApp {
+  $vendure: VendureClient,
+  $emitter: Emitter<any>,
+  $store: Store,
+}
 
 export default defineNuxtPlugin((nuxtApp) => {
   try {
