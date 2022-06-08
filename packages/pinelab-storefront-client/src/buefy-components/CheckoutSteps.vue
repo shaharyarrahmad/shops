@@ -443,7 +443,7 @@ export default {
       try {
         await this.$vendure.setCustomerForOrder(this.customer);
         await this.$vendure.setOrderShippingAddress(address);
-        await this.$vendure.setLowestShippingMethod();
+        await this.$vendure.setDefaultShippingMethod();
         // Get latest eligible shippingmethods
         this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
         this.selectedShippingMethod =

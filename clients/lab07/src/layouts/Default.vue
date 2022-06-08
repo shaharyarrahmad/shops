@@ -30,6 +30,10 @@
             </a>
             • {{ global.name }} • KVK {{ global.kvk }} • {{ global.email }} •
             <a href="/privacy.pdf" target="_blank">privacy</a> •
+            <a href="/voorwaarden.pdf" target="_blank"
+              >algemene voorwaarden en levering</a
+            >
+            •
             <a href="https://pinelab.studio/" target="_blank"
               >Made with ❤ by pinelab</a
             >
