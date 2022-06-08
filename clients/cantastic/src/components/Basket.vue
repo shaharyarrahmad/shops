@@ -52,23 +52,22 @@
             </table>
           </div>
 
-          <table style="width: 100%">
-            <tr>
-              <td>Verzendkosten</td>
-              <td class="has-text-right">
-                <strong>{{ order.subTotalWithTax | euro }}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td>Totaal</td>
-              <td class="has-text-right">
-                <strong>{{ order.totalWithTax | euro }}</strong>
-              </td>
-            </tr>
-          </table>
-
-          <br />
           <template v-if="lines.length > 0">
+            <table style="width: 100%">
+              <tr>
+                <td>Verzendkosten</td>
+                <td class="has-text-right">
+                  <strong>{{ order.shippingWithTax | euro }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Totaal</td>
+                <td class="has-text-right">
+                  <strong>{{ order.totalWithTax | euro }}</strong>
+                </td>
+              </tr>
+            </table>
+            <br />
             <b-button
               type="is-primary is-outlined is-fullwidth mb-2"
               icon-left="basket"
