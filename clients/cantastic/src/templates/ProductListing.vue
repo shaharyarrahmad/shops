@@ -41,7 +41,7 @@
             <template v-if="$context.collection.description">
               <div
                 v-html="$context.collection.description"
-                class="collapsed content mb-0"
+                class="collapsed-1 content mb-0"
               ></div>
               <div class="has-text-right">
                 <a href="#full-description">Lees meer</a>
@@ -138,24 +138,6 @@ export default {
 };
 </script>
 <style>
-.collapsed {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1; /* number of lines to show */
-  line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-
-#full-description::before {
-  display: block;
-  content: ' ';
-  margin-top: -285px;
-  height: 285px;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .siblings a:hover {
   text-decoration: underline;
 }

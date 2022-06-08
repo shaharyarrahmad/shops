@@ -218,4 +218,30 @@ section {
 .card-background-image:focus {
   box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.05);
 }
+/* Make hastag navigation move to center instead of all the way to the top */
+#full-description::before {
+  display: block;
+  content: ' ';
+  margin-top: -285px;
+  height: 285px;
+  visibility: hidden;
+  pointer-events: none;
+}
 
+.collapsed-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.collapsed-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

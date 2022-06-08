@@ -41,6 +41,7 @@ import { TaxInvoiceStrategy } from './invoice/tax-invoice-strategy';
 import { CoinbasePlugin } from 'vendure-plugin-coinbase';
 import { EBoekhoudenPlugin } from 'vendure-plugin-e-boekhouden';
 import { EBookPlugin } from './e-book/e-book.plugin';
+import { eligibleWithoutAddressChecker } from './shipping/eligible-without-address-checker';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -102,6 +103,7 @@ export const config: VendureConfig = {
     shippingEligibilityCheckers: [
       defaultShippingEligibilityChecker,
       eligibleByZoneChecker,
+      eligibleWithoutAddressChecker,
     ],
   },
   paymentOptions: {

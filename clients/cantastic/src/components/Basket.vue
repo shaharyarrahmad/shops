@@ -1,34 +1,104 @@
 <template>
-  <b-tooltip
-    position="is-bottom"
-    multilined
-    type="is-info"
-    :auto-close="['escape', 'outside']"
-  >
+  <div class="is-inline">
     <span class="icon is-large">
-      <g-link to="/winkelmand/">
+      <a @click="sideBasketOpen = true">
         <i class="mdi mdi-basket mdi-48px has-text-white"></i>
-      </g-link>
+      </a>
     </span>
     <span class="cart-badge">{{ nrOfItems }}</span>
-    <template v-slot:content>
-      <b>Totaal: {{ price }}</b> <br />
-      <template v-for="{ name, quantity } of lines">
-        {{ quantity }}x {{ name }} <br />
-      </template>
-      <template v-if="lines.length > 0">
-        <br />
-        <b-button type="is-light" tag="a" href="/winkelmand/">
-          € Naar winkelmand
-        </b-button>
-        <br />
-      </template>
-      <br />
-    </template>
-  </b-tooltip>
+
+    <!-------------------------   Sidemenu ----------------------->
+    <ClientOnly>
+      <b-sidebar
+        type="is-white"
+        :fullheight="true"
+        :fullwidth="false"
+        :overlay="true"
+        :right="true"
+        v-model="sideBasketOpen"
+      >
+        <div class="p-2" id="side-basket">
+          <div class="has-text-centered mb-2">
+            <h3>Winkelmand</h3>
+          </div>
+
+          <div class="is-size-7">
+            <table class="table">
+              <tbody>
+                <template v-for="line of lines">
+                  <tr>
+                    <td class="px-0">
+                      <img
+                        :src="line.featuredAsset.thumbnail"
+                        class="is-rounded"
+                      />
+                    </td>
+                    <td>
+                      <p class="mb-0">{{ line.productVariant.name }}</p>
+                      {{ line.quantity }} x
+                      {{ line.productVariant.priceWithTax | euro }}
+                    </td>
+                    <td>
+                      <b-icon
+                        class="is-clickable"
+                        size="is-small"
+                        icon="close"
+                        @click.native="$vendure.adjustOrderLine(line.id, 0)"
+                      />
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+
+          <table style="width: 100%">
+            <tr>
+              <td>Verzendkosten</td>
+              <td class="has-text-right">
+                <strong>{{ order.subTotalWithTax | euro }}</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Totaal</td>
+              <td class="has-text-right">
+                <strong>{{ order.totalWithTax | euro }}</strong>
+              </td>
+            </tr>
+          </table>
+
+          <br />
+          <template v-if="lines.length > 0">
+            <b-button
+              type="is-primary is-outlined is-fullwidth mb-2"
+              icon-left="basket"
+              tag="a"
+              href="/winkelmand/"
+            >
+              Naar winkelmand
+            </b-button>
+            <b-button
+              type="is-primary is-fullwidth"
+              icon-left="run-fast"
+              tag="a"
+              href="/checkout/"
+            >
+              Bestellen
+            </b-button>
+          </template>
+          <template v-else> Je winkelmand is leeg... </template>
+        </div>
+      </b-sidebar>
+    </ClientOnly>
+  </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      sideBasketOpen: false,
+    };
+  },
   async mounted() {
     this.$emitter.on('productAdded', this.showNotificationBar);
     this.$emitter.on('error', this.showError);
@@ -50,17 +120,10 @@ export default {
       );
     },
     lines() {
-      const lines = {};
-      this.$store?.activeOrder?.lines.forEach((line) => {
-        const product = line.productVariant.product;
-        const existing = lines[product.name] || 0;
-        lines[product.name] = existing + line.quantity;
-      });
-
-      return Object.entries(lines).map(([name, quantity]) => ({
-        name,
-        quantity,
-      }));
+      return this.$store?.activeOrder?.lines || [];
+    },
+    order() {
+      return this.$store?.activeOrder || {};
     },
     price() {
       return this.$root.$options.filters.euro(
@@ -104,5 +167,11 @@ export default {
   padding-right: 5px;
   font-size: 12px;
   color: white;
+}
+
+#side-basket img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 </style>

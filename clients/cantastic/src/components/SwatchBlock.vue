@@ -4,6 +4,7 @@
       <div
         class="column is-size-7 pl-4 pr-0 pt-1 pb-0"
         :style="`color: ${textColor};`"
+        :class="{ 'disabled-swatch': isOutOfStock }"
       >
         {{ variant.options[0].name }}
       </div>
@@ -14,6 +15,7 @@
           v-model="displayQuantity"
           :loading="isLoading"
           tabindex="1"
+          :disabled="isOutOfStock"
         >
         </b-numberinput>
       </div>
@@ -33,9 +35,15 @@ export default {
       displayQuantity: 0,
     };
   },
+  computed: {
+    isOutOfStock() {
+      return this.variant.stockLevel === 'OUT_OF_STOCK';
+    },
+  },
   watch: {
     '$store.activeOrder': function (order) {
-      this.orderLine = order.lines.find(
+      // Show current amount of cart in swatch blocks
+      this.orderLine = order?.lines.find(
         (line) => line.productVariant.id === this.variant.id
       );
       this.displayQuantity = this.orderLine?.quantity || 0;
@@ -53,7 +61,7 @@ export default {
               vendure: this.$vendure,
               emitter: this.$emitter,
             },
-            this.newValue
+            this.displayQuantity
           );
         } else {
           // Adjust existing orderline
@@ -79,3 +87,9 @@ export default {
   },
 };
 </script>
+<style>
+.disabled-swatch {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+</style>
