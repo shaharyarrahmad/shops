@@ -39,6 +39,7 @@
 <script>
 import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';
 import SwatchBlock from '../components/SwatchBlock';
+import { hydrate } from 'pinelab-storefront-client';
 
 export default {
   components: {
@@ -47,6 +48,9 @@ export default {
   },
   data() {
     return {};
+  },
+  async mounted() {
+    await hydrate(this.$context.product, this.$vendure);
   },
   methods: {
     getChunks(variants) {

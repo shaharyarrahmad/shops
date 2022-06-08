@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <div class="is-inline">
     <span class="icon is-large">
       <a @click="sideBasketOpen = true">
         <i class="mdi mdi-basket mdi-48px has-text-white"></i>
@@ -23,15 +23,33 @@
           </div>
 
           <div class="is-size-7">
-            <template v-for="line of lines">
-              <img :src="line.featuredAsset.thumbnail" class="is-rounded" />
-              <g-link
-                :to="`/product/${line.productVariant.product.slug}`"
-                class="mb-2"
-              >
-                {{ line.quantity }}x {{ line.productVariant.name }} <br />
-              </g-link>
-            </template>
+            <table class="table">
+              <tbody>
+                <template v-for="line of lines">
+                  <tr>
+                    <td class="px-0">
+                      <img
+                        :src="line.featuredAsset.thumbnail"
+                        class="is-rounded"
+                      />
+                    </td>
+                    <td>
+                      <p class="mb-0">{{ line.productVariant.name }}</p>
+                      {{ line.quantity }} x
+                      {{ line.productVariant.priceWithTax | euro }}
+                    </td>
+                    <td>
+                      <b-icon
+                        class="is-clickable"
+                        size="is-small"
+                        icon="close"
+                        @click.native="$vendure.adjustOrderLine(line.id, 0)"
+                      />
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
           </div>
 
           <br />
@@ -56,7 +74,7 @@
         </div>
       </b-sidebar>
     </ClientOnly>
-  </span>
+  </div>
 </template>
 <script>
 export default {
@@ -131,8 +149,10 @@ export default {
   font-size: 12px;
   color: white;
 }
+
 #side-basket img {
   width: 50px;
   height: 50px;
+  object-fit: cover;
 }
 </style>
