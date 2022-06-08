@@ -1,3 +1,7 @@
+import { Store } from '../vendure/types';
+import { reactive } from 'vue';
+import mitt from 'mitt';
+
 /**
  * Format Vendure's integer (1233) to euro format: €12,33
  */
@@ -16,3 +20,9 @@ export function formatEuro(value?: number) {
   }
   return currencyString;
 }
+
+export const store = reactive<Store>({
+  activeOrder: undefined,
+});
+
+export const emitter = mitt();

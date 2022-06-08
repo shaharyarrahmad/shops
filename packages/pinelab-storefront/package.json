@@ -32,13 +32,15 @@
     "ts-jest": "^27.1.2",
     "typescript": "^4.2.3",
     "vue": "^3.2.36",
+    "graphql": "15.3.0",
+    "graphql-request": "^3.4.0",
     "mitt": "^3.0.0"
   },
   "dependencies": {
-    "graphql": "15.3.0",
-    "graphql-request": "^3.4.0"
   },
   "peerDependencies": {
+    "graphql": "15.X",
+    "graphql-request": "3.X",
     "mitt": "3.X"
   },
   "resolutions": {

@@ -5,12 +5,14 @@
     "build": "nuxt build",
     "dev": "nuxt dev --port=8080",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview --port=8080"
   },
   "devDependencies": {
     "nuxt": "3.0.0-rc.3"
   },
   "dependencies": {
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
     "mitt": "^3.0.0"
   }
 }
