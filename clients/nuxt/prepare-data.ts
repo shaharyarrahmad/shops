@@ -1,37 +1,56 @@
-import { ShopData, VendureServer } from 'pinelab-storefront';
-import fs from 'fs';
+import { SortableCollection, VendureServer } from 'pinelab-storefront';
 
-interface PrepareDataInput {
-  dataFilePath: string;
-  vendureShopApi: string;
-  channelToken: string;
+export interface PreparedData {
+  routes: string[];
+  global: GlobalSiteData;
+}
+
+export interface GlobalSiteData {
+  collections: SortableCollection[];
+  instagram: string;
+  facebook: string;
+  usps: string[];
 }
 
 /**
  * Downloads all products, collections etc from Vendure
  * And optionally mutate/prepare the data here
  */
-export async function prepareData({
-  dataFilePath,
+export async function prepareData(
   vendureShopApi,
-  channelToken,
-}: PrepareDataInput): Promise<string[]> {
+  channelToken
+): Promise<PreparedData> {
+  const vendure = new VendureServer(vendureShopApi, channelToken);
+  const {
+    collections: allCollections,
+    availableCountries,
+    productsPerCollection,
+    products,
+  } = await vendure.getShopData();
+  console.log(`Fetched shop data`);
+
+  // ---------------------- Global data
+  const collections = vendure.unflatten(allCollections);
+  const global = {
+    collections,
+    instagram: 'https://www.instagram.com/cantastic.nl/',
+    facebook: 'https://www.facebook.com/cantastic.nl/',
+    usps: [
+      '<p>Vanaf €75 <b>gratis</b> verzending</p>',
+      '<p><b>Achteraf</b> betalen</p>',
+      '<p><b>Exclusieve</b> producten</p>',
+      '<p>Ook wel eens <b>gearresteerd</b></p>',
+    ],
+  };
   const routes: string[] = [];
-  let shopData: ShopData;
-  if (fs.existsSync(dataFilePath)) {
-    shopData = require(dataFilePath);
-    console.warn(`Using cached shop data`);
-  } else {
-    const vendure = new VendureServer(vendureShopApi, channelToken);
-    shopData = await vendure.getShopData();
-    console.log(`Fetched shop data`);
-  }
-
-  // TODO any mutations to shopData go here (like adding colors to Swatchable products)
-
-  fs.writeFileSync(dataFilePath, JSON.stringify(shopData));
-  shopData.products.forEach((product) =>
-    routes.push(`/product/${product.slug}`)
-  );
-  return routes;
+  routes.push(...products.map((p) => `/product/${p.slug}`));
+  console.log('Prepared shop data');
+  return {
+    /*    collections,
+    availableCountries,
+    productsPerCollection,
+    products,*/
+    global,
+    routes,
+  };
 }

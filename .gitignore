@@ -49,4 +49,4 @@ vendure/static/email/test-emails/
 _search.json
 /clients/nuxt/.output/
 /clients/nuxt/.nuxt/
-_shopdata.json
+shop.json

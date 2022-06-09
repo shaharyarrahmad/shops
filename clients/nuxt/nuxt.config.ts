@@ -1,32 +1,43 @@
 import { defineNuxtConfig } from 'nuxt';
-import { prepareData } from './prepare-data';
+import { prepareData, PreparedData } from './prepare-data';
+import fs from 'fs';
 
 const vendureShopApi = process.env?.NUXT_ENV_VENDURE_API;
 const channelToken = process.env?.NUXT_ENV_VENDURE_TOKEN;
-const dataFile = `${__dirname}/server/_shopdata.json`;
-let routes: string[] = [];
+const dataFilePath = `${__dirname}/content/shop.json`;
+const isDuringBuild = process.argv[2] === 'build';
+
+let shopData: PreparedData;
+if (!isDuringBuild) {
+  try {
+    shopData = require(dataFilePath);
+  } catch (e) {
+    throw Error(`${dataFilePath} not found. Run 'yarn build' first.`);
+  }
+}
 
 export default defineNuxtConfig({
   target: 'static',
   typescript: { typeCheck: true },
+  modules: ['@nuxt/content'],
   hooks: {
-    'app:resolve': async () => {
-      routes = await prepareData({
-        dataFilePath: dataFile,
-        channelToken,
-        vendureShopApi,
-      });
-      console.log(routes);
+    'build:error': (e) => console.error(e),
+    'build:before': async () => {
+      if (isDuringBuild) {
+        const shopData = await prepareData(vendureShopApi, channelToken);
+        fs.writeFileSync(dataFilePath, JSON.stringify(shopData));
+      }
     },
   },
   generate: {
-    routes,
+    routes: shopData?.routes,
   },
   runtimeConfig: {
-    dataFile,
+    dataFilePath,
     public: {
       vendureShopApi,
       channelToken,
     },
   },
+  css: ['theme.scss'],
 });
