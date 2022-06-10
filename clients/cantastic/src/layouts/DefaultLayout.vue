@@ -291,15 +291,13 @@
   </div>
 </template>
 <script>
-import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
-import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import Breadcrumb from 'pinelab-storefront/lib/molecules/Breadcrumb';
 import Basket from '../components/Basket';
 import Search from '../components/Search';
 
 export default {
   components: {
     Search,
-    ShopNavBar,
     Breadcrumb,
     Basket,
   },

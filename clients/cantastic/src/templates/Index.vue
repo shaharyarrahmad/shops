@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { hydrate } from 'pinelab-storefront-client';
+import { hydrate } from 'pinelab-storefront';
 import HighlightCard from '../components/HighlightCard';
 import BlogCard from '../components/BlogCard';
 import FavoritesSection from '../components/FavoritesSection';

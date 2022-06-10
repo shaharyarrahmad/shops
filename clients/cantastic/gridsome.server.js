@@ -1,8 +1,9 @@
-const { GridsomeService, SearchUtil } = require('pinelab-storefront-client');
 const { setSwatchColors } = require('./util');
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { GET_CONTENT } = require('./content.queries');
+const { VendureServer, SearchUtil } = require('pinelab-storefront');
+const { GraphQLClient } = require('graphql-request');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
@@ -17,8 +18,14 @@ module.exports = async function (api) {
   // Breadcrumb pages
   const Home = '/';
 
-  api.createPages(async ({ createPage, graphql }) => {
-    const gridsome = new GridsomeService(graphql);
+  api.createPages(async ({ createPage }) => {
+    const vendureServer = new VendureServer(
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
+    const directus = new GraphQLClient(
+      `${process.env.GRIDSOME_DIRECTUS_HOST}/graphql`
+    );
     const [
       {
         // Vendure content
@@ -29,11 +36,12 @@ module.exports = async function (api) {
       },
       {
         // Directus content
-        data: {
-          Directus: { cantastic_blogs: blogs },
-        },
+        cantastic_blogs: blogs,
       },
-    ] = await Promise.all([gridsome.getShopData(), graphql(GET_CONTENT)]);
+    ] = await Promise.all([
+      vendureServer.getShopData(),
+      directus.request(GET_CONTENT),
+    ]);
 
     // Set category field on products
     const products = allProducts.map((p) => {
@@ -44,7 +52,7 @@ module.exports = async function (api) {
       return p;
     });
 
-    const collections = gridsome.unflatten(allCollections);
+    const collections = vendureServer.unflatten(allCollections);
     const global = {
       collections,
       instagram: 'https://www.instagram.com/cantastic.nl/',

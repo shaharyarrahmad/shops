@@ -12,7 +12,7 @@
   </DefaultLayout>
 </template>
 <script>
-import CartOverview from 'pinelab-storefront-client/lib/buefy-components/CartOverview';
+import CartOverview from 'pinelab-storefront/lib/organisms/CartOverview';
 
 export default {
   components: {

@@ -4,6 +4,8 @@ import {
   OrderFieldsFragment,
   ProductFieldsFragment,
 } from '../generated/graphql';
+import { VendureClient } from '../../../pinelab-storefront-client';
+import mitt, { Emitter } from 'mitt';
 
 export interface ShopData {
   /**
@@ -50,4 +52,10 @@ export interface SortableCollection extends BasicCollection {
 
 export class Store {
   activeOrder: OrderFieldsFragment | undefined;
+}
+
+export interface VueContext {
+  $vendure: VendureClient;
+  $store: Store;
+  $emitter: Emitter<any>;
 }

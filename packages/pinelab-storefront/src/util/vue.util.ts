@@ -1,6 +1,7 @@
 import { Store } from '../vendure/types';
-import { reactive } from 'vue';
+import Vue from 'vue';
 import mitt from 'mitt';
+import { VendureClient } from '../../../pinelab-storefront-client';
 
 /**
  * Format Vendure's integer (1233) to euro format: €12,33
@@ -21,8 +22,14 @@ export function formatEuro(value?: number) {
   return currencyString;
 }
 
-export const store = reactive<Store>({
-  activeOrder: undefined,
-});
-
-export const emitter = mitt();
+/**
+ * Set global store, vendure client and event emitter
+ */
+export function setStore(vue: typeof Vue) {
+  const store = vue.observable<Store>({
+    activeOrder: undefined,
+  });
+  vue.prototype.$vendure = new VendureClient(store);
+  vue.prototype.$store = store;
+  vue.prototype.$emitter = mitt();
+}

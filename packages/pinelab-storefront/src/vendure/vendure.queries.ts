@@ -9,6 +9,14 @@ export const PRODUCT_FIELDS = gql`
       preview
       thumbnail
     }
+    facetValues {
+      code
+      name
+      facet {
+        code
+        name
+      }
+    }
     featuredAsset {
       id
       preview
@@ -43,6 +51,7 @@ export const PRODUCT_FIELDS = gql`
     customFields {
       metaTitle
       metaDescription
+      keywords
     }
   }
 `;
@@ -127,6 +136,7 @@ export const ORDER_FIELDS = gql`
         product {
           id
           name
+          slug
         }
       }
     }
