@@ -5,7 +5,7 @@ import {
   ProductFieldsFragment,
 } from '../generated/graphql';
 import { VendureClient } from '../../../pinelab-storefront-client';
-import mitt, { Emitter } from 'mitt';
+import { Emitter } from 'mitt';
 
 export interface ShopData {
   /**
