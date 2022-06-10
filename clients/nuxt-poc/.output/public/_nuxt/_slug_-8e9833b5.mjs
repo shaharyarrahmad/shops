@@ -1,0 +1,1 @@
+import{_ as a,z as r,E as s,G as e,H as n,I as o}from"./entry-9ee8f5dc.mjs";const c={},l=e("h1",null,"producttt",-1);function _(t,u){return r(),s(o,null,[l,e("h1",null,n(t.$route.params.slug),1)],64)}var d=a(c,[["render",_]]);export{d as default};
