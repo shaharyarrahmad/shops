@@ -1,7 +1,7 @@
 import { Store } from '../vendure/types';
 import Vue from 'vue';
 import mitt from 'mitt';
-import { VendureClient } from '../../../pinelab-storefront-client';
+import { VendureClient } from '../vendure/vendure.client';
 
 /**
  * Format Vendure's integer (1233) to euro format: €12,33
