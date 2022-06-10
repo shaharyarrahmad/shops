@@ -11,7 +11,7 @@
   </section>
 </template>
 <script>
-import { hydrate } from 'pinelab-storefront-client';
+import { hydrate } from 'pinelab-storefront';
 
 export default {
   props: ['favorites'],

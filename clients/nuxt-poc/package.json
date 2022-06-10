@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=8080",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prod": "yarn generate && yarn http-server ./dist/"
+  },
+  "devDependencies": {
+    "@nuxt/content": "^2.0.1",
+    "http-server": "^14.1.1",
+    "nuxt": "3.0.0-rc.3",
+    "sass": "^1.52.3",
+    "sass-loader": "10"
+  },
+  "dependencies": {
+    "@fontsource/open-sans": "^4.5.6",
+    "@fontsource/roboto": "^4.5.3",
+    "buefy": "^0.9.14",
+    "fuse.js": "^6.6.2",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
+    "mitt": "^3.0.0",
+    "outfront": "^1.1.1"
+  }
+}

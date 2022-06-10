@@ -6,7 +6,7 @@
   </DefaultLayout>
 </template>
 <script>
-import OrderConfirmation from 'pinelab-storefront-client/lib/buefy-components/OrderConfirmation';
+import OrderConfirmation from 'pinelab-storefront/lib/organisms/OrderConfirmation';
 
 export default {
   components: {

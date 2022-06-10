@@ -84,7 +84,7 @@
   </DefaultLayout>
 </template>
 <script>
-import CheckoutSteps from 'pinelab-storefront-client/lib/buefy-components/CheckoutSteps';
+import CheckoutSteps from 'pinelab-storefront/lib/organisms/CheckoutSteps';
 import { debounce } from 'debounce';
 
 export default {

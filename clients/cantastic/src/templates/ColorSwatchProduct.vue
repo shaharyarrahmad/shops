@@ -37,9 +37,9 @@
   </DefaultLayout>
 </template>
 <script>
-import ProductImages from 'pinelab-storefront-client/lib/buefy-components/ProductImages';
+import ProductImages from 'pinelab-storefront/lib/organisms/ProductImages';
 import SwatchBlock from '../components/SwatchBlock';
-import { hydrate } from 'pinelab-storefront-client';
+import { hydrate } from 'pinelab-storefront';
 
 export default {
   components: {
