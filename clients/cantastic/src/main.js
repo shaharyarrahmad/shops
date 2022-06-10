@@ -22,7 +22,11 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('CategoryCard', CategoryCard);
   if (isClient) {
     // TODO VueGtag
-    setStore(Vue);
+    setStore(
+      Vue,
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
     if (process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
       require('outfront').default();
       console.log('OutfrontJS mobile logging enabled');

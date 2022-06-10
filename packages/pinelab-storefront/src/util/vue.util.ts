@@ -25,11 +25,11 @@ export function formatEuro(value?: number) {
 /**
  * Set global store, vendure client and event emitter
  */
-export function setStore(vue: typeof Vue) {
+export function setStore(vue: typeof Vue, url: string, channelToken: string) {
   const store = vue.observable<Store>({
     activeOrder: undefined,
   });
-  vue.prototype.$vendure = new VendureClient(store);
+  vue.prototype.$vendure = new VendureClient(store, url, channelToken);
   vue.prototype.$store = store;
   vue.prototype.$emitter = mitt();
 }
