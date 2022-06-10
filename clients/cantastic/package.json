@@ -16,7 +16,8 @@
     "debounce": "^1.2.1",
     "fuse.js": "^6.6.2",
     "graphql-request": "^4.3.0",
-    "outfront": "^1.1.1"
+    "outfront": "^1.1.1",
+    "pinelab-storefront": "^0.54.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
