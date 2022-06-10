@@ -7,6 +7,6 @@ export const eligibleWithoutAddressChecker = new ShippingEligibilityChecker({
   ],
   args: {},
   check: (ctx, order, args) => {
-    return !!order.shippingAddress?.countryCode;
+    return !order.shippingAddress?.countryCode;
   },
 });
