@@ -16,7 +16,7 @@
   "scripts": {
     "build": "rm -rf lib && yarn tsc --build && yarn copy",
     "dev-build": "yarn tsc --build && yarn copy",
-    "copy": "copyfiles -u 2 'src/ui/molecules/*' 'src/ui/organisms/*' lib",
+    "copy": "copyfiles -u 1 'src/ui/**/*' lib",
     "generate": "graphql-codegen",
     "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
     "test": "jest"
@@ -33,7 +33,8 @@
     "nodemon": "^2.0.7",
     "ts-jest": "^27.1.2",
     "typescript": "^4.2.3",
-    "vue": "2.6.14"
+    "vue": "2.6.14",
+    "debounce": "^1.2.1"
   },
   "dependencies": {
     "graphql": "15.3.0",

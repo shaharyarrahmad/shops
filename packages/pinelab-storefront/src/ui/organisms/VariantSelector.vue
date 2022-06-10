@@ -21,7 +21,7 @@ import {
   findVariant,
   getAvailableOptions,
   getOptionsFromVariant,
-} from '../util/variant.util';
+} from '../../util/variant.util';
 
 export default {
   props: {

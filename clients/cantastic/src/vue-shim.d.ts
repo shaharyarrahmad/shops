@@ -1,5 +1,7 @@
-declare module '*.vue' {
-  import Vue from 'vue';
-  import { VueContext } from 'pinelab-storefront';
-  export default Vue & VueContext;
+import { VueContext } from 'pinelab-storefront';
+
+declare module 'vue' {
+  export default interface Vue extends VueContext {
+    // Custom declarations here
+  }
 }

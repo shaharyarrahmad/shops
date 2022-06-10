@@ -17,185 +17,16 @@
           :clickable="false"
         >
           <br />
-          <form v-on:submit="setCustomerDetails($event)">
-            <div class="columns">
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="companyLabel"
-                      type="text"
-                      v-model="address.company"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-office-building"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${firstnameLabel}*`"
-                      type="text"
-                      required
-                      v-model="customer.firstName"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-account"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${lastnameLabel}*`"
-                      type="text"
-                      required
-                      v-model="customer.lastName"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-account"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="phoneLabel"
-                      type="text"
-                      v-model="customer.phoneNumber"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-cellphone-basic"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${emailLabel}*`"
-                      type="text"
-                      required
-                      v-model="customer.emailAddress"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-email"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="columns is-mobile">
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${postalCodeLabel}*`"
-                      type="text"
-                      required
-                      v-model="address.postalCode"
-                      v-on:input="lookupAddress()"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-mailbox"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="column is-narrow">
-                <div class="field is-small-field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${houseNumberLabel}*`"
-                      type="text"
-                      required
-                      v-model="address.streetLine2"
-                      v-on:input="lookupAddress()"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-home"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${streetLabel}*`"
-                      type="text"
-                      required
-                      v-model="address.streetLine1"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-home"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="column">
-                <div class="field">
-                  <p class="control is-expanded has-icons-left">
-                    <b-input
-                      :placeholder="`${cityLabel}*`"
-                      type="text"
-                      required
-                      v-model="address.city"
-                    />
-                    <span class="icon is-small is-left">
-                      <i class="mdi mdi-city"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <b-field>
-              <b-select
-                :placeholder="countryLabel"
-                name="country"
-                icon="earth"
-                v-model="address.countryCode"
-              >
-                <option
-                  v-for="country of availableCountries"
-                  :key="country.code"
-                  :value="country.code"
-                >
-                  {{ country.name }}
-                </option>
-              </b-select>
-            </b-field>
-
-            <div class="columns is-mobile">
-              <div class="column">
-                <a @click="goBack()" class="button is-outlined"><</a>
-              </div>
-              <div class="column has-text-right">
-                <button
-                  type="submit"
-                  class="button is-primary"
-                  :disabled="loadingShipping"
-                >
-                  {{ shippingLabel }} >
-                </button>
-              </div>
-            </div>
-          </form>
+          <slot
+            name="customerDetails"
+            :next="
+              () => {
+                activeStep = 1;
+              }
+            "
+            :previous="goBack"
+            :error="showError"
+          />
         </b-step-item>
 
         <!--- SHIPPING -------------------------------------->
@@ -358,9 +189,10 @@
   </section>
 </template>
 <script>
-import { debounce } from 'debounce';
+import CustomerDetailsForm from '../molecules/CustomerDetailsForm';
 
 export default {
+  components: { CustomerDetailsForm },
   props: {
     previousPage: { required: true },
     customerDetailsLabel: { default: 'Customer details' },
@@ -515,20 +347,6 @@ export default {
     async setShippingMethod(methodId) {
       await this.$vendure.setOrderShippingMethod(methodId);
     },
-    async lookupAddress() {
-      if (this.address?.postalCode?.length < 6 || !this.address?.streetLine2) {
-        return;
-      }
-      const address = await this.$vendure.lookupAddress({
-        postalCode: this.address.postalCode,
-        houseNumber: this.address.streetLine2,
-      });
-      if (address && address.street) {
-        this.address.streetLine1 = address.street;
-        this.address.city = address.city;
-        this.address.countryCode = 'nl';
-      }
-    },
   },
   async mounted() {
     const activeOrder = await this.$vendure.getActiveOrder();
@@ -563,9 +381,6 @@ export default {
     }
     this.selectedShippingMethod =
       activeOrder?.shippingLines?.[0]?.shippingMethod.id;
-  },
-  async created() {
-    this.lookupAddress = debounce(this.lookupAddress, 500);
   },
 };
 </script>

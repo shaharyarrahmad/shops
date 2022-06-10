@@ -6,7 +6,7 @@
   </DefaultLayout>
 </template>
 <script>
-import OrderConfirmation from 'pinelab-storefront/lib/organisms/OrderConfirmation';
+import OrderConfirmation from 'pinelab-storefront/lib/ui/organisms/OrderConfirmation';
 
 export default {
   components: {

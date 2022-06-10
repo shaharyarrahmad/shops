@@ -12,7 +12,7 @@
   </DefaultLayout>
 </template>
 <script>
-import CartOverview from 'pinelab-storefront/lib/organisms/CartOverview';
+import CartOverview from 'pinelab-storefront/lib/ui/organisms/CartOverview';
 
 export default {
   components: {

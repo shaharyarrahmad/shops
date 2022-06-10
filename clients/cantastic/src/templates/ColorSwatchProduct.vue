@@ -37,7 +37,7 @@
   </DefaultLayout>
 </template>
 <script>
-import ProductImages from 'pinelab-storefront/lib/organisms/ProductImages';
+import ProductImages from 'pinelab-storefront/lib/ui/organisms/ProductImages';
 import SwatchBlock from '../components/SwatchBlock';
 import { hydrate } from 'pinelab-storefront';
 

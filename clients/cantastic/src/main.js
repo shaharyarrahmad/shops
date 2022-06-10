@@ -9,8 +9,8 @@ import '~/theme.scss';
 import ProductCard from './components/ProductCard';
 import CategoryCard from './components/CategoryCard';
 import { preconnectLinks, setStore } from 'pinelab-storefront';
-import QuantityInput from 'pinelab-storefront/lib/molecules/QuantityInput';
-import PopupImage from 'pinelab-storefront/lib/molecules/PopupImage';
+import QuantityInput from 'pinelab-storefront/lib/ui/molecules/QuantityInput';
+import PopupImage from 'pinelab-storefront/lib/ui/molecules/PopupImage';
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);

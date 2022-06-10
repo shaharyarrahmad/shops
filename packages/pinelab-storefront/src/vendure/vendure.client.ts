@@ -134,21 +134,21 @@ export class VendureClient {
     });
     this.validateResult(addItemToOrder);
     this.store.activeOrder = addItemToOrder as OrderFieldsFragment;
-    this.setLowestShippingMethod().catch((e) => console.error(e)); // async
+    this.setDefaultShippingMethod().catch((e) => console.error(e)); // async
     return addItemToOrder as OrderFieldsFragment;
   }
 
-  async setLowestShippingMethod() {
+  async setDefaultShippingMethod() {
     const methods = await this.getEligibleShippingMethods();
-    const [defaultMethod] = methods.sort(
-      (a, b) => a.priceWithTax - b.priceWithTax
+    let defaultMethod = methods.find(
+      (method) => method.name?.indexOf('default') > -1
     );
-    if (defaultMethod) {
-      await this.setOrderShippingMethod(defaultMethod.id);
-      await this.unsetPickupLocation();
-    } else {
+    if (!defaultMethod) {
+      defaultMethod = methods[0];
       console.error(`No default shipping found`);
     }
+    await this.setOrderShippingMethod(defaultMethod.id);
+    await this.unsetPickupLocation();
   }
 
   async getEligibleShippingMethods(): Promise<

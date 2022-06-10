@@ -1,95 +1,151 @@
 <template>
   <DefaultLayout>
     <template #content>
-      <CheckoutSteps
-        previousPage="/cart/"
-        :availableCountries="$context.availableCountries"
-        total-label="Totaal"
-        payment-method-label="Hoe wil je betalen?"
-        succes-label="Naar de jaap!"
-        payment-label="Betaling"
-        shipping-label="Verzending"
-        house-number-label="Huisnr."
-        country-label="Land"
-        street-label="Straat"
-        postal-code-label="Postcode"
-        email-label="Email"
-        phone-label="Telefoonnr."
-        lastname-label="Achternaam"
-        firstname-label="Voornaam"
-        company-label="Bedrijfsnaam"
-        city-label="Plaats"
-        :available-countries="[
-          { name: 'Nederland', code: 'nl' },
-          { name: 'Germany', code: 'de' },
-          { name: 'België', code: 'be' },
-        ]"
-        cart-overview-label="Jouw bestelling"
-        customer-details-label="Gegevens"
-        previous-page="/"
-      >
-        <template #shipping>
-          <!-------------------- Pickup point selection ------------------>
-          <div v-if="pickupPointSelected" style="margin-left: 31px">
-            <b-field
-              label="Postcode"
-              label-position="on-border"
-              style="width: 200px"
+      <section class="container is-max-desktop">
+        <b-steps
+          v-model="activeStep"
+          :animated="true"
+          :rounded="true"
+          :has-navigation="false"
+          label-position="bottom"
+          mobile-mode="compact"
+        >
+          <!--- CUSTOMER DETAILS -------------------------------------->
+          <b-step-item
+            step="1"
+            label="Gegevens"
+            icon="account"
+            :clickable="false"
+          >
+            <br />
+            <CustomerDetailsForm
+              submit-label="Verzending >"
+              city-label="Plaats"
+              company-label="Bedrijfsnaam"
+              firstname-label="Voornaam"
+              lastname-label="Achternaam"
+              phone-label="Telefoonnr."
+              email-label="Email"
+              postal-code-label="Postcode"
+              country-label="Land"
+              street-label="Straat"
+              house-number-label="Huisnr."
+              :available-countries="[
+                { name: 'Nederland', code: 'nl' },
+                { name: 'België', code: 'be' },
+                { name: 'Duitsland', code: 'de' },
+              ]"
+              :vendure="$vendure"
+              @back="$router.push('/winkelmand/')"
+              @submit="gotToShipping()"
+            ></CustomerDetailsForm>
+          </b-step-item>
+
+          <!--- SHIPPING -------------------------------------->
+          <b-step-item
+            step="2"
+            label="Verzending"
+            icon="truck"
+            :clickable="false"
+          >
+            <br />
+            <SelectShippingForm
+              :vendure="$vendure"
+              :store="$store"
+              :shipping-methods="shippingMethods"
+              :selected-shipping-method="selectedShippingMethod"
+              @back="activeStep = 0"
             >
-              <b-input
-                v-model="postalCode"
-                @input="getDropOffPoints()"
-              ></b-input>
-            </b-field>
-            <p class="mb-3">
-              Afhaalpunten in de buurt van <b>{{ postalCode }}</b
-              >:
-            </p>
-            <template v-if="loadingDropOffPoints">
-              <b-skeleton :animated="true"></b-skeleton>
-              <b-skeleton :animated="true"></b-skeleton>
-              <b-skeleton :animated="true"></b-skeleton>
-            </template>
-            <template v-else>
-              <b-field
-                v-for="point of displayedPoints"
-                :key="point.location_code"
-              >
-                <b-radio
-                  v-model="selectedPoint"
-                  @input="selectPickupPoint()"
-                  :native-value="point.location_code"
-                >
-                  <b>{{ point.location_name }}</b
-                  ><br />
-                  <span class="is-size-7"
-                    >{{ point.street }} {{ point.number
-                    }}{{ point.number_suffix || '' }}, {{ point.postal_code }},
-                    {{ point.city }}</span
+              <template #shipping>
+                <!-------------------- Pickup point selection ------------------>
+                <div v-if="pickupPointSelected" style="margin-left: 31px">
+                  <b-field
+                    label="Postcode"
+                    label-position="on-border"
+                    style="width: 200px"
                   >
-                </b-radio>
-              </b-field>
-              <a href="#" @click="toggleShowAll()">
-                {{
-                  displayedPoints.length < allPoints.length
-                    ? 'Toon meer'
-                    : 'Toon minder'
-                }}
-              </a>
-            </template>
-          </div>
-        </template>
-      </CheckoutSteps>
+                    <b-input
+                      v-model="postalCode"
+                      @input="getDropOffPoints()"
+                    ></b-input>
+                  </b-field>
+                  <p class="mb-3">
+                    Afhaalpunten in de buurt van <b>{{ postalCode }}</b
+                    >:
+                  </p>
+                  <template v-if="loadingDropOffPoints">
+                    <b-skeleton :animated="true"></b-skeleton>
+                    <b-skeleton :animated="true"></b-skeleton>
+                    <b-skeleton :animated="true"></b-skeleton>
+                  </template>
+                  <template v-else>
+                    <b-field
+                      v-for="point of displayedPoints"
+                      :key="point.location_code"
+                    >
+                      <b-radio
+                        v-model="selectedPoint"
+                        @input="selectPickupPoint()"
+                        :native-value="point.location_code"
+                      >
+                        <b>{{ point.location_name }}</b
+                        ><br />
+                        <span class="is-size-7"
+                          >{{ point.street }} {{ point.number
+                          }}{{ point.number_suffix || '' }},
+                          {{ point.postal_code }}, {{ point.city }}</span
+                        >
+                      </b-radio>
+                    </b-field>
+                    <a href="#" @click="toggleShowAll()">
+                      {{
+                        displayedPoints.length < allPoints.length
+                          ? 'Toon meer'
+                          : 'Toon minder'
+                      }}
+                    </a>
+                  </template>
+                </div>
+              </template>
+            </SelectShippingForm>
+          </b-step-item>
+
+          <!--- PAYMENT -------------------------------------->
+          <b-step-item
+            step="3"
+            label="Betaling"
+            icon="currency-eur"
+            :clickable="false"
+            disabled
+          >
+            <br />
+          </b-step-item>
+
+          <!--- Order -------------------------------------->
+          <b-step-item
+            step="4"
+            label="Naar de jaap!"
+            icon="check"
+            :clickable="false"
+            disabled
+          >
+          </b-step-item>
+        </b-steps>
+      </section>
     </template>
   </DefaultLayout>
 </template>
 <script>
-import CheckoutSteps from 'pinelab-storefront/lib/organisms/CheckoutSteps';
+import CheckoutSteps from 'pinelab-storefront/lib/ui/organisms/CheckoutSteps';
+import CustomerDetailsForm from 'pinelab-storefront/lib/ui/organisms/CustomerDetailsForm';
+import SelectShippingForm from 'pinelab-storefront/lib/ui/organisms/SelectShippingForm';
 import { debounce } from 'debounce';
 
 export default {
   components: {
     CheckoutSteps,
+    CustomerDetailsForm,
+    SelectShippingForm,
   },
   data() {
     return {
@@ -98,47 +154,20 @@ export default {
       displayedPoints: undefined,
       selectedPoint: undefined,
       postalCode: undefined,
+      activeStep: 0,
+      shippingMethods: [],
     };
   },
   computed: {
-    pickupPointSelected() {
-      return (
-        this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
-          'pickup-point'
-        ) > -1
-      );
+    selectedShippingMethod() {
+      return this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
     },
   },
-  watch: {
-    async pickupPointSelected(newValue) {
-      if (newValue) {
-        this.postalCode = this.$store?.activeOrder?.shippingAddress?.postalCode;
-        await this.getDropOffPoints();
-        await this.selectPickupPoint();
-      } else {
-        await this.unsetPickupPoint();
-      }
-    },
-  },
-  created() {
-    this.getDropOffPoints = debounce(this.getDropOffPoints, 200);
-  },
+
   methods: {
-    async getDropOffPoints() {
-      try {
-        this.loadingDropOffPoints = true;
-        this.allPoints = await this.$vendure.getDropOffPoints({
-          carrierId: '1',
-          postalCode: this.postalCode,
-        });
-        this.displayedPoints = this.allPoints.slice(0, 3);
-        this.loadingDropOffPoints = false;
-        await this.selectPickupPoint();
-      } catch (e) {
-        console.error(e);
-      } finally {
-        this.loadingDropOffPoints = false;
-      }
+    async gotToShipping() {
+      this.activeStep = 1;
+      this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     },
     toggleShowAll() {
       if (this.displayedPoints.length < this.allPoints.length) {
