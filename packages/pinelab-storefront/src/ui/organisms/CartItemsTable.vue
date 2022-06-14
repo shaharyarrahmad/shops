@@ -68,9 +68,6 @@ export default {
       return asset?.thumbnail;
     },
   },
-  created() {
-    this.applyCouponCode = debounce(this.applyCouponCode, 500);
-  },
   async mounted() {
     this.couponCode = this.activeOrder?.couponCodes?.[0];
   },

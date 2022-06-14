@@ -56,8 +56,7 @@ export async function hydrate<T extends MinimalProduct>(
       }
       return p;
     });
-  }
-  if (products) {
+  } else if (products) {
     // Single product
     const product = products as CalculatedProduct<T>;
     const hydratedProd = await vendure.getProduct(product.slug);

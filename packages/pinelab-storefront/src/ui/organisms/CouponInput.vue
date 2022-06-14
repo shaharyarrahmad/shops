@@ -11,6 +11,7 @@
 </template>
 <script>
 import { VendureClient } from '../../vendure/vendure.client';
+import { debounce } from 'debounce';
 
 export default {
   props: {
@@ -54,6 +55,9 @@ export default {
         this.loading = false;
       }
     },
+  },
+  created() {
+    this.applyCouponCode = debounce(this.applyCouponCode, 500);
   },
 };
 </script>
