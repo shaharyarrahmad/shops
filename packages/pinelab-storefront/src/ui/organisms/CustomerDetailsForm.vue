@@ -1,183 +1,185 @@
 <template>
-  <form v-on:submit="setCustomerDetails($event)">
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="companyLabel"
-              type="text"
-              v-model="address.company"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-office-building"></i>
-            </span>
-          </p>
+  <ClientOnly>
+    <form v-on:submit="setCustomerDetails($event)">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="companyLabel"
+                type="text"
+                v-model="address.company"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-office-building"></i>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${firstnameLabel}*`"
-              type="text"
-              required
-              v-model="customer.firstName"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-account"></i>
-            </span>
-          </p>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${firstnameLabel}*`"
+                type="text"
+                required
+                v-model="customer.firstName"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-account"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${lastnameLabel}*`"
+                type="text"
+                required
+                v-model="customer.lastName"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-account"></i>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${lastnameLabel}*`"
-              type="text"
-              required
-              v-model="customer.lastName"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-account"></i>
-            </span>
-          </p>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="phoneLabel"
+                type="text"
+                v-model="customer.phoneNumber"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-cellphone-basic"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${emailLabel}*`"
+                type="text"
+                required
+                v-model="customer.emailAddress"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-email"></i>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="phoneLabel"
-              type="text"
-              v-model="customer.phoneNumber"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-cellphone-basic"></i>
-            </span>
-          </p>
+      <div class="columns is-mobile">
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${postalCodeLabel}*`"
+                type="text"
+                required
+                v-model="address.postalCode"
+                v-on:input="lookupAddress()"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-mailbox"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="column is-narrow">
+          <div class="field is-small-field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${houseNumberLabel}*`"
+                type="text"
+                required
+                v-model="address.streetLine2"
+                v-on:input="lookupAddress()"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-home"></i>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${emailLabel}*`"
-              type="text"
-              required
-              v-model="customer.emailAddress"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-email"></i>
-            </span>
-          </p>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${streetLabel}*`"
+                type="text"
+                required
+                v-model="address.streetLine1"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-home"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="`${cityLabel}*`"
+                type="text"
+                required
+                v-model="address.city"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-city"></i>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="columns is-mobile">
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${postalCodeLabel}*`"
-              type="text"
-              required
-              v-model="address.postalCode"
-              v-on:input="lookupAddress()"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-mailbox"></i>
-            </span>
-          </p>
-        </div>
-      </div>
-      <div class="column is-narrow">
-        <div class="field is-small-field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${houseNumberLabel}*`"
-              type="text"
-              required
-              v-model="address.streetLine2"
-              v-on:input="lookupAddress()"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-home"></i>
-            </span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${streetLabel}*`"
-              type="text"
-              required
-              v-model="address.streetLine1"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-home"></i>
-            </span>
-          </p>
-        </div>
-      </div>
-      <div class="column">
-        <div class="field">
-          <p class="control is-expanded has-icons-left">
-            <b-input
-              :placeholder="`${cityLabel}*`"
-              type="text"
-              required
-              v-model="address.city"
-            />
-            <span class="icon is-small is-left">
-              <i class="mdi mdi-city"></i>
-            </span>
-          </p>
-        </div>
-      </div>
-    </div>
 
-    <b-field>
-      <b-select
-        :placeholder="countryLabel"
-        name="country"
-        icon="earth"
-        v-model="address.countryCode"
-      >
-        <option
-          v-for="country of availableCountries"
-          :key="country.code"
-          :value="country.code"
+      <b-field>
+        <b-select
+          :placeholder="countryLabel"
+          name="country"
+          icon="earth"
+          v-model="address.countryCode"
         >
-          {{ country.name }}
-        </option>
-      </b-select>
-    </b-field>
+          <option
+            v-for="country of availableCountries"
+            :key="country.code"
+            :value="country.code"
+          >
+            {{ country.name }}
+          </option>
+        </b-select>
+      </b-field>
 
-    <div class="columns is-mobile">
-      <div class="column">
-        <a @click="$emit('back')" class="button is-outlined"><</a>
+      <div class="columns is-mobile">
+        <div class="column">
+          <a @click="$emit('back')" class="button is-outlined"><</a>
+        </div>
+        <div class="column has-text-right">
+          <b-button
+            native-type="submit"
+            class="button"
+            :loading="loadingShipping"
+          >
+            {{ submitLabel }}
+          </b-button>
+        </div>
       </div>
-      <div class="column has-text-right">
-        <button
-          type="submit"
-          class="button is-primary"
-          :disabled="loadingShipping"
-        >
-          {{ submitLabel }}
-        </button>
-      </div>
-    </div>
-  </form>
+    </form>
+  </ClientOnly>
 </template>
 <script>
 import { VendureClient } from '../../vendure/vendure.client';

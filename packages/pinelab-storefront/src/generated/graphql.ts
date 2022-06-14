@@ -3342,6 +3342,11 @@ export type ProductFieldsFragment = { __typename?: 'Product' } & Pick<
     assets: Array<
       { __typename?: 'Asset' } & Pick<Asset, 'preview' | 'thumbnail'>
     >;
+    facetValues: Array<
+      { __typename?: 'FacetValue' } & Pick<FacetValue, 'code' | 'name'> & {
+          facet: { __typename?: 'Facet' } & Pick<Facet, 'code' | 'name'>;
+        }
+    >;
     featuredAsset?: Maybe<
       { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview' | 'thumbnail'>
     >;
@@ -3378,7 +3383,7 @@ export type ProductFieldsFragment = { __typename?: 'Product' } & Pick<
     customFields?: Maybe<
       { __typename?: 'ProductCustomFields' } & Pick<
         ProductCustomFields,
-        'metaTitle' | 'metaDescription'
+        'metaTitle' | 'metaDescription' | 'keywords'
       >
     >;
   };
@@ -3463,7 +3468,7 @@ export type OrderFieldsFragment = { __typename?: 'Order' } & Pick<
           > & {
               product: { __typename?: 'Product' } & Pick<
                 Product,
-                'id' | 'name'
+                'id' | 'name' | 'slug'
               >;
             };
         }
@@ -3557,7 +3562,13 @@ export type EligibleShippingMethodsQuery = { __typename?: 'Query' } & {
   eligibleShippingMethods: Array<
     { __typename?: 'ShippingMethodQuote' } & Pick<
       ShippingMethodQuote,
-      'id' | 'price' | 'priceWithTax' | 'name' | 'description' | 'metadata'
+      | 'id'
+      | 'price'
+      | 'priceWithTax'
+      | 'name'
+      | 'code'
+      | 'description'
+      | 'metadata'
     >
   >;
 };

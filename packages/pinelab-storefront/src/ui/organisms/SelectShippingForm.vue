@@ -1,153 +1,147 @@
 <template>
-  <div class="columns">
-    <div class="column is-6">
-      <section>
-        <b-field v-for="method of shippingMethods" :key="method.id">
-          <b-radio
-            :native-value="method.id"
-            v-model="selectedShippingMethod"
-            v-on:input="setShippingMethod(method.id)"
-          >
-            <b>{{ method.name }} ({{ method.priceWithTax | euro }})</b>
-            <span
-              v-if="
-                method.description &&
-                method.description.length > 8 &&
-                selectedShippingMethod == method.id
-              "
-              v-html="method.description"
-              class="has-text-grey"
-            ></span>
-
-            <div v-if="pickupPointSelected" style="margin-left: 31px">
-              <PickupPointFinder />
-            </div>
-          </b-radio>
-        </b-field>
-      </section>
-      <br />
-      <div class="columns is-mobile">
-        <div class="column">
-          <a @click="$emit('back')" class="button is-outlined"><</a>
-        </div>
-        <div class="column has-text-right">
-          <b-button
-            type="is-primary"
-            icon-left="currency-eur"
-            :loading="loadingPayment"
-            @click="$emit('submit')"
-          >
-            {{ submitLabel }}
-          </b-button>
-        </div>
-      </div>
-    </div>
-    <div class="column is-offset-2 has-text-right">
-      <!------ Cart overview ---->
-      <div v-if="lines.length > 0">
-        {{ cartOverviewLabel }}:
-        <table class="table is-fullwidth is-size-7 has-text-right">
-          <tbody>
-            <tr v-for="line of lines">
-              <td>{{ line.quantity }}x {{ line.productVariant.name }}</td>
-              <td>{{ line.linePriceWithTax | euro }}</td>
-            </tr>
-            <tr
-              class="has-text-success"
-              v-for="discount of activeOrder.discounts"
+  <div>
+    <ClientOnly>
+      <section class="shipping-methods">
+        <template v-for="method of shippingMethods">
+          <b-field :key="method.id">
+            <b-radio
+              :native-value="method.id"
+              v-model="selectedShippingMethod"
+              v-on:input="selectShippingMethod(method.id)"
             >
-              <td>{{ discount.description }}</td>
-              <td>{{ discount.amountWithTax | euro }}</td>
-            </tr>
-            <tr>
-              <td>{{ shippingLabel }}</td>
-              <td>{{ activeOrder.shippingWithTax | euro }}</td>
-            </tr>
-            <tr>
-              <td>
-                <b>{{ totalLabel }}:</b>
-              </td>
-              <td>{{ activeOrder.totalWithTax | euro }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+              <b>{{ method.name }} ({{ method.priceWithTax | euro }})</b>
+              <span
+                v-if="
+                  method.description &&
+                  method.description.length > 8 &&
+                  selectedShippingMethod === method.id
+                "
+                v-html="method.description"
+                class="has-text-grey"
+              ></span>
+            </b-radio>
+          </b-field>
+          <!------------- Pickup points ---------------->
+          <PickupPointFinder
+            v-if="isPickupPointSelected && selectedShippingMethod === method.id"
+            class="mb-4"
+            :pickup-points="pickupPoints"
+            :loading="loadingPickupPoints"
+            :initial-postal-code="postalCode"
+            @postal-code-changed="getPickupPoints($event)"
+            @pickup-point-selected="setPickupLocationOnOrder($event)"
+            style="margin-left: 31px"
+          />
+        </template>
+      </section>
+    </ClientOnly>
   </div>
 </template>
 <script>
 import { VendureClient } from '../../vendure/vendure.client';
 import { Store } from '../../vendure/types';
-import { debounce } from 'debounce';
-import PickupPointFinder from '../../../lib/ui/molecules/PickupPointFinder';
+import PickupPointFinder from '../molecules/PickupPointFinder';
+import debounce from 'debounce';
 
 export default {
   components: { PickupPointFinder },
   props: {
-    shippingLabel: {
-      default: 'Shipping',
-    },
-    totalLabel: {
-      default: 'Total',
-    },
-    cartOverviewLabel: {
-      default: 'Cart',
-    },
     submitLabel: {
       default: 'Payment',
     },
     shippingMethods: Array,
     vendure: VendureClient,
     store: [Store, Object],
+    pickupPointsEnabled: Boolean,
   },
   data() {
     return {
       selectedShippingMethod: undefined,
-      loadingPayment: false,
+      loadingPickupPoints: false,
+      pickupPoints: [],
     };
   },
   computed: {
-    activeOrder() {
-      return this.store?.activeOrder || {};
+    postalCode() {
+      return this.store?.activeOrder?.shippingAddress?.postalCode;
     },
-    lines() {
-      return this.store?.activeOrder?.lines || [];
+    isPickupPointSelected() {
+      return (
+        this.store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
+          'pickup-point'
+        ) > -1
+      );
     },
   },
   watch: {
-    async pickupPointSelected(newValue) {
-      if (newValue) {
-        this.postalCode = this.$store?.activeOrder?.shippingAddress?.postalCode;
-        await this.getDropOffPoints();
-        await this.selectPickupPoint();
-      } else {
-        await this.unsetPickupPoint();
+    isPickupPointSelected(newValue, oldValue) {
+      if (newValue && newValue !== oldValue) {
+        this.loadingPickupPoints = true;
+        this.getPickupPoints();
+      }
+      if (!newValue && newValue !== oldValue) {
+        this.unsetPickupPoint();
       }
     },
-  },
-  created() {
-    this.getDropOffPoints = debounce(this.getDropOffPoints, 200);
+    'store.activeOrder': function () {
+      this.selectedShippingMethod =
+        this.store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
+    },
   },
   methods: {
-    async setShippingMethod(methodId) {
-      await this.$vendure.setOrderShippingMethod(methodId);
+    async selectShippingMethod(methodId) {
+      await this.vendure.setOrderShippingMethod(methodId);
     },
-    async getDropOffPoints() {
+    async unsetPickupPoint() {
+      if (!this.pickupPointsEnabled) {
+        return;
+      }
+      await this.vendure.unsetPickupLocation();
+      console.log('Removed pickupLocation from order');
+    },
+    async getPickupPoints(postalCode) {
+      if (!this.pickupPointsEnabled && (this.postalCode || postalCode)) {
+        return;
+      }
       try {
-        this.loadingDropOffPoints = true;
-        this.allPoints = await this.$vendure.getDropOffPoints({
+        this.loadingPickupPoints = true;
+        this.pickupPoints = await this.vendure.getDropOffPoints({
           carrierId: '1',
-          postalCode: this.postalCode,
+          postalCode: postalCode || this.postalCode,
         });
-        this.displayedPoints = this.allPoints.slice(0, 3);
-        this.loadingDropOffPoints = false;
-        await this.selectPickupPoint();
+        this.loadingPickupPoints = false;
       } catch (e) {
         console.error(e);
       } finally {
-        this.loadingDropOffPoints = false;
+        this.loadingPickupPoints = false;
       }
     },
+    async setPickupLocationOnOrder(point) {
+      await this.vendure.setPickupLocationOnOrder({
+        pickupLocationNumber: String(point.location_code),
+        pickupLocationCarrier: String(point.carrier_id),
+        pickupLocationName: point.location_name,
+        pickupLocationStreet: point.street,
+        pickupLocationHouseNumber: `${point.number}${
+          point.number_suffix || ''
+        }`,
+        pickupLocationZipcode: point.postal_code,
+        pickupLocationCity: point.city,
+        pickupLocationCountry: 'nl', // Only available in NL for now
+      });
+      console.log(`Selected ${point.location_name} as pickup point`);
+    },
+  },
+  mounted() {
+    this.getPickupPoints();
+  },
+  created() {
+    this.getPickupPoints = debounce(this.getPickupPoints, 300);
   },
 };
 </script>
+<style>
+.shipping-methods .b-radio.radio {
+  align-items: start;
+}
+</style>

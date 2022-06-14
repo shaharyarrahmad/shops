@@ -159,6 +159,10 @@ section {
   margin-bottom: 3rem;
 }
 
+.button {
+ @extend .is-info;
+}
+
 .usps b {
   color: $loop-red;
 }

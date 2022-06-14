@@ -215,6 +215,7 @@ export const GET_ELIGIBLESHIPPINGMETHODS = gql`
       price
       priceWithTax
       name
+      code
       description
       metadata
     }

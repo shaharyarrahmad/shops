@@ -1,7 +1,11 @@
 <template>
-  <div>
+  <div class="p-4 pickup-points">
     <b-field label="Postcode" label-position="on-border" style="width: 200px">
-      <b-input v-model="postalCode" @input="getDropOffPoints()"></b-input>
+      <b-input
+        v-model="postalCode"
+        @input="$emit('postal-code-changed', postalCode)"
+        minlength="6"
+      ></b-input>
     </b-field>
     <p class="mb-3">
       Afhaalpunten in de buurt van <b>{{ postalCode }}</b
@@ -16,7 +20,7 @@
       <b-field v-for="point of displayedPoints" :key="point.location_code">
         <b-radio
           v-model="selectedPoint"
-          @input="$emit('select', selectedPoint)"
+          @input="selectPickupPoint()"
           :native-value="point.location_code"
         >
           <b>{{ point.location_name }}</b
@@ -28,9 +32,9 @@
           >
         </b-radio>
       </b-field>
-      <a href="#" @click="toggleShowAll()">
+      <a href="#" @click="showAll = !showAll">
         {{
-          displayedPoints.length < allPoints.length
+          displayedPoints.length < pickupPoints.length
             ? 'Toon meer'
             : 'Toon minder'
         }}
@@ -41,32 +45,47 @@
 <script>
 export default {
   props: {
+    initialPostalCode: String,
     loading: Boolean,
-    allPoints: Array,
-  },
-  computed: {
-    pickupPointSelected() {
-      return (
-        this.store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
-          'pickup-point'
-        ) > -1
-      );
-    },
+    pickupPoints: Array,
   },
   data() {
     return {
       selectedPoint: undefined,
+      postalCode: undefined,
+      showAll: false,
     };
   },
-  methods: {
-    toggleShowAll() {
-      if (this.displayedPoints.length < this.allPoints.length) {
-        this.displayedPoints = this.allPoints;
-      } else {
-        this.displayedPoints = this.allPoints.slice(0, 3);
-      }
-      this.moveSelectedToTop();
+  computed: {
+    displayedPoints() {
+      const sortedPoints = this.pickupPoints?.sort((p) =>
+        p.location_code === this.selectedPoint ? -1 : 0
+      );
+      return (this.showAll ? sortedPoints : sortedPoints?.slice(0, 3)) || [];
     },
+  },
+  methods: {
+    async selectPickupPoint() {
+      if (!this.selectedPoint) {
+        return;
+      }
+      const point = this.pickupPoints.find(
+        (p) => p.location_code === this.selectedPoint
+      );
+      if (!point) {
+        throw Error(`No pickup point with ${code} exists in the list!`);
+      }
+      this.$emit('pickup-point-selected', point);
+    },
+  },
+  mounted() {
+    this.postalCode = this.initialPostalCode;
   },
 };
 </script>
+<style>
+.pickup-points {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+}
+</style>
