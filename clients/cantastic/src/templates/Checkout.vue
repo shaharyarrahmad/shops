@@ -113,14 +113,12 @@
   </DefaultLayout>
 </template>
 <script>
-import CheckoutSteps from 'pinelab-storefront/lib/ui/organisms/CheckoutSteps';
 import CustomerDetailsForm from 'pinelab-storefront/lib/ui/organisms/CustomerDetailsForm';
 import SelectShippingForm from 'pinelab-storefront/lib/ui/organisms/SelectShippingForm';
 import OrderSummary from 'pinelab-storefront/lib/ui/molecules/OrderSummary';
 
 export default {
   components: {
-    CheckoutSteps,
     CustomerDetailsForm,
     SelectShippingForm,
     OrderSummary,
@@ -130,7 +128,7 @@ export default {
       return this.$store?.activeOrder || {};
     },
     hasShippingSelected() {
-      return !!this.$store.activeOrder?.shippingLines?.[0]?.shippingMethod?.id;
+      return !!this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.id;
     },
   },
   data() {

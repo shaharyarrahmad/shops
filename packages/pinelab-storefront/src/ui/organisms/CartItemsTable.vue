@@ -43,7 +43,6 @@
   </ClientOnly>
 </template>
 <script>
-import { debounce } from 'debounce';
 import { Store } from '../../vendure/types';
 import { VendureClient } from '../../vendure/vendure.client';
 

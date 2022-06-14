@@ -31,7 +31,7 @@
 </template>
 <script>
 import ProductImages from 'pinelab-storefront/lib/ui/organisms/ProductImages';
-import VariantSelector from 'pinelab-storefront/lib/ui/organisms/VariantSelector';
+import VariantSelector from 'pinelab-storefront/lib/ui/molecules/VariantSelector';
 import { buy, hydrate, isOutOfStock } from 'pinelab-storefront';
 
 export default {
