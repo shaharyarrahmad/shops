@@ -160,7 +160,8 @@ section {
 }
 
 .button {
- @extend .is-info;
+  @extend .is-primary;
+  @extend .has-text-weight-bold;
 }
 
 .usps b {
@@ -209,6 +210,7 @@ section {
 .rounded {
   border-radius: $control-radius;
 }
+
 .card-background-image {
   min-height: 150px;
   box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.3);
@@ -222,6 +224,7 @@ section {
 .card-background-image:focus {
   box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.05);
 }
+
 /* Make hastag navigation move to center instead of all the way to the top */
 #full-description::before {
   display: block;

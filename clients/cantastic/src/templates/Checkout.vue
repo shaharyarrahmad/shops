@@ -49,6 +49,8 @@
             :clickable="false"
           >
             <br />
+            <h3>Verzendwijze kiezen:</h3>
+            <br />
             <div class="columns">
               <div class="column is-6">
                 <SelectShippingForm
@@ -71,7 +73,6 @@
                   <template #bottom>
                     <br />
                     <b-button
-                      type="is-info"
                       class="is-fullwidth"
                       :disable="hasShippingSelected"
                       @click="activeStep = 2"

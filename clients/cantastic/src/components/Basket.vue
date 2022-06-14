@@ -69,7 +69,7 @@
             </table>
             <br />
             <b-button
-              type="is-primary is-outlined is-fullwidth mb-2"
+              type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
               tag="a"
               href="/winkelmand/"
@@ -77,7 +77,7 @@
               Naar winkelmand
             </b-button>
             <b-button
-              type="is-primary is-fullwidth"
+              type="is-fullwidth"
               icon-left="run-fast"
               tag="a"
               href="/checkout/"
