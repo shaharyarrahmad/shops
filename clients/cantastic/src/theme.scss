@@ -16,7 +16,7 @@ $loop-orange: #F7DBA7;
 
 $text: $loop-soft-dark;
 /*$primary: $loop-red;*/
-$primary: $loop-dark;
+$primary: $loop-soft-dark;
 $link: $loop-blue2;
 $info: $loop-blue;
 $success: $loop-green;
@@ -161,7 +161,7 @@ section {
 
 .button {
   @extend .is-primary;
-  @extend .has-text-weight-bold;
+  font-weight: 700;
 }
 
 .usps b {

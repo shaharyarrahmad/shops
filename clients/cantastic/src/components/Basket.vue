@@ -152,7 +152,8 @@ export default {
       this.$buefy.toast.open({
         message: `Error: ${e?.message}`,
         duration: 5000,
-        type: 'is-info',
+        position: 'is-bottom',
+        type: 'is-danger',
       });
     },
   },

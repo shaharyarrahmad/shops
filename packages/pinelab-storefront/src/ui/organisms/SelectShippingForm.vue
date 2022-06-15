@@ -1,7 +1,7 @@
 <template>
   <div>
     <ClientOnly>
-      <section class="shipping-methods">
+      <div class="shipping-methods">
         <template v-for="method of shippingMethods">
           <b-field :key="method.id">
             <b-radio
@@ -33,7 +33,7 @@
             style="margin-left: 31px"
           />
         </template>
-      </section>
+      </div>
     </ClientOnly>
   </div>
 </template>
@@ -100,7 +100,7 @@ export default {
       console.log('Removed pickupLocation from order');
     },
     async getPickupPoints(postalCode) {
-      if (!this.pickupPointsEnabled && (this.postalCode || postalCode)) {
+      if (!this.pickupPointsEnabled || (!this.postalCode && !postalCode)) {
         return;
       }
       try {

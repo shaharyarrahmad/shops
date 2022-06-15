@@ -308,7 +308,7 @@ module.exports = async function (api) {
       component: './src/templates/Cart.vue',
       context: {
         ...global,
-        hideUsps: true,
+        hideUsps: false,
       },
     });
 
@@ -326,7 +326,7 @@ module.exports = async function (api) {
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
-      component: './src/templates/Order.vue',
+      component: './src/templates/OrderConfirmation.vue',
       context: {
         ...global,
         hideUsps: true,

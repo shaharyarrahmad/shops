@@ -25,10 +25,10 @@
         >
           <b>{{ point.location_name }}</b
           ><br />
-          <span class="is-size-7"
+          <small
             >{{ point.street }} {{ point.number
             }}{{ point.number_suffix || '' }}, {{ point.postal_code }},
-            {{ point.city }}</span
+            {{ point.city }}</small
           >
         </b-radio>
       </b-field>

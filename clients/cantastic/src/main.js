@@ -54,13 +54,13 @@ export default function (Vue, { router, head, isClient }) {
     }
     const currencyString =
       value < 0
-        ? `- ${Math.abs(value / 100)
+        ? `-${Math.abs(value / 100)
             .toFixed(2)
             .replace('.', ',')}`
         : `${(value / 100).toFixed(2).replace('.', ',')}`;
-    if (currencyString.endsWith('00')) {
+    /*    if (currencyString.endsWith('00')) {
       return currencyString.replace(new RegExp('00$'), '-');
-    }
+    }*/
     return currencyString;
   });
   Vue.filter('formatDate', function (date) {

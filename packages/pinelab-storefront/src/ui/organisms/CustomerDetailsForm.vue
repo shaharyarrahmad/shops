@@ -6,22 +6,6 @@
           <div class="field">
             <p class="control is-expanded has-icons-left">
               <b-input
-                :placeholder="companyLabel"
-                type="text"
-                v-model="address.company"
-              />
-              <span class="icon is-small is-left">
-                <i class="mdi mdi-office-building"></i>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <p class="control is-expanded has-icons-left">
-              <b-input
                 :placeholder="`${firstnameLabel}*`"
                 type="text"
                 required
@@ -44,6 +28,22 @@
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-account"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control is-expanded has-icons-left">
+              <b-input
+                :placeholder="companyLabel"
+                type="text"
+                v-model="address.company"
+              />
+              <span class="icon is-small is-left">
+                <i class="mdi mdi-office-building"></i>
               </span>
             </p>
           </div>
@@ -89,7 +89,7 @@
                 type="text"
                 required
                 v-model="address.postalCode"
-                v-on:input="lookupAddress()"
+                v-on:input="lookupShippingAddress()"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-mailbox"></i>
@@ -97,7 +97,7 @@
             </p>
           </div>
         </div>
-        <div class="column is-narrow">
+        <div class="column">
           <div class="field is-small-field">
             <p class="control is-expanded has-icons-left">
               <b-input
@@ -105,7 +105,7 @@
                 type="text"
                 required
                 v-model="address.streetLine2"
-                v-on:input="lookupAddress()"
+                v-on:input="lookupShippingAddress()"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-home"></i>
@@ -146,7 +146,6 @@
           </div>
         </div>
       </div>
-
       <b-field>
         <b-select
           :placeholder="countryLabel"
@@ -164,7 +163,113 @@
         </b-select>
       </b-field>
 
-      <div class="columns is-mobile">
+      <!--------------------- Billing address ----------------------------->
+      <div class="has-text-right has-text-left-mobile my-4">
+        <b-field>
+          <b-checkbox v-model="hasDifferentBillingAddress">
+            {{ differentBillingAddressLabel }}
+          </b-checkbox>
+        </b-field>
+      </div>
+      <div v-if="hasDifferentBillingAddress">
+        <h4>{{ billingAddressLabel }}</h4>
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <b-input
+                  :placeholder="companyLabel"
+                  type="text"
+                  v-model="billingAddress.company"
+                />
+                <span class="icon is-small is-left">
+                  <i class="mdi mdi-office-building"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-mobile">
+          <div class="column">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <b-input
+                  :placeholder="`${postalCodeLabel}`"
+                  type="text"
+                  v-model="billingAddress.postalCode"
+                  v-on:input="lookupBillingAddress()"
+                />
+                <span class="icon is-small is-left">
+                  <i class="mdi mdi-mailbox"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field is-small-field">
+              <p class="control is-expanded has-icons-left">
+                <b-input
+                  :placeholder="`${houseNumberLabel}`"
+                  type="text"
+                  v-model="billingAddress.streetLine2"
+                  v-on:input="lookupBillingAddress()"
+                />
+                <span class="icon is-small is-left">
+                  <i class="mdi mdi-home"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <b-input
+                  :placeholder="`${streetLabel}`"
+                  type="text"
+                  v-model="billingAddress.streetLine1"
+                />
+                <span class="icon is-small is-left">
+                  <i class="mdi mdi-home"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field">
+              <p class="control is-expanded has-icons-left">
+                <b-input
+                  :placeholder="`${cityLabel}`"
+                  type="text"
+                  v-model="billingAddress.city"
+                />
+                <span class="icon is-small is-left">
+                  <i class="mdi mdi-city"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <b-field>
+          <b-select
+            :placeholder="countryLabel"
+            name="country"
+            icon="earth"
+            v-model="billingAddress.countryCode"
+          >
+            <option
+              v-for="country of availableCountries"
+              :key="country.code"
+              :value="country.code"
+            >
+              {{ country.name }}
+            </option>
+          </b-select>
+        </b-field>
+      </div>
+
+      <div class="columns is-mobile mt-2">
         <div class="column">
           <a @click="$emit('back')" class="button is-outlined"><</a>
         </div>
@@ -204,11 +309,14 @@ export default {
         return [{ name: 'Nederland', code: 'nl' }];
       },
     },
+    differentBillingAddressLabel: { default: 'Different billing address' },
+    billingAddressLabel: { default: 'Billing address' },
     vendure: VendureClient,
   },
   data() {
     return {
       loadingShipping: false,
+      hasDifferentBillingAddress: false,
       customer: {
         emailAddress: undefined,
         firstName: undefined,
@@ -223,24 +331,33 @@ export default {
         postalCode: undefined,
         countryCode: 'nl',
       },
+      billingAddress: {
+        company: undefined,
+        city: undefined,
+        streetLine1: undefined,
+        streetLine2: undefined,
+        postalCode: undefined,
+        countryCode: 'nl',
+      },
     };
   },
   async mounted() {
     const activeOrder = await this.vendure.getActiveOrder();
+    this.hasDifferentBillingAddress = !!activeOrder?.billingAddress?.postalCode;
+    // Prepolutate customer
     const localStorageCustomer = window.localStorage.getItem('vnd_customer');
-    const localStorageAddress = window.localStorage.getItem('vnd_address');
     const customer = localStorageCustomer
       ? JSON.parse(localStorageCustomer)
       : activeOrder?.customer;
-    const address = localStorageAddress
-      ? JSON.parse(localStorageAddress)
-      : activeOrder?.shippingAddress;
-    // Set Customer, if already set on order
     this.customer.firstName = customer?.firstName;
     this.customer.lastName = customer?.lastName;
     this.customer.phoneNumber = customer?.phoneNumber;
     this.customer.emailAddress = customer?.emailAddress;
-    // Set Address, if already set on order
+    // Prepolutate address
+    const localStorageAddress = window.localStorage.getItem('vnd_address');
+    const address = localStorageAddress
+      ? JSON.parse(localStorageAddress)
+      : activeOrder?.shippingAddress;
     this.address.company = address?.company;
     this.address.streetLine1 = address?.streetLine1;
     this.address.streetLine2 = address?.streetLine2;
@@ -253,6 +370,25 @@ export default {
       );
       this.address.countryCode = country?.code || 'nl';
     }
+    // Prepolutate billing adress
+    const localStorageBillingAddress = window.localStorage.getItem(
+      'vnd_billing_address'
+    );
+    const billingAddress = localStorageAddress
+      ? JSON.parse(localStorageBillingAddress)
+      : activeOrder?.billingAddress;
+    this.billingAddress.company = billingAddress?.company;
+    this.billingAddress.streetLine1 = billingAddress?.streetLine1;
+    this.billingAddress.streetLine2 = billingAddress?.streetLine2;
+    this.billingAddress.city = billingAddress?.city;
+    this.billingAddress.postalCode = billingAddress?.postalCode;
+    this.shippingMethods = await this.vendure.getEligibleShippingMethods();
+    if (billingAddress?.country) {
+      const country = this.availableCountries.find(
+        (c) => c.name === billingAddress.country
+      );
+      this.billingAddress.countryCode = country?.code || 'nl';
+    }
   },
   methods: {
     setCustomerDetails: async function (e) {
@@ -261,14 +397,30 @@ export default {
       const address = {
         ...this.address,
         fullName: `${this.customer.firstName} ${this.customer.lastName}`,
-        defaultBillingAddress: true,
+        defaultBillingAddress: !this.hasDifferentBillingAddress,
         defaultShippingAddress: true,
         phoneNumber: this.customer.phoneNumber,
       };
       try {
         await this.vendure.setCustomerForOrder(this.customer);
         await this.vendure.setOrderShippingAddress(address);
-        await this.vendure.setDefaultShippingMethod();
+        if (this.hasDifferentBillingAddress) {
+          await this.vendure.setOrderBillingAddress({
+            ...this.billingAddress,
+            defaultBillingAddress: true,
+          });
+        } else {
+          // remove billingAddress
+          await this.vendure.setOrderBillingAddress({
+            countryCode: this.address.countryCode,
+            company: null,
+            streetLine1: '',
+            streetLine2: null,
+            postalCode: null,
+            city: null,
+          });
+        }
+        this.vendure.setDefaultShippingMethod(); // async
       } catch (e) {
         console.error(e);
         this.$emit('error');
@@ -285,23 +437,33 @@ export default {
           'vnd_address',
           JSON.stringify(this.address)
         );
+        window.localStorage.setItem(
+          'vnd_billing_address',
+          JSON.stringify(this.billingAddress)
+        );
       } catch (e) {
         console.error(e);
       }
       this.$emit('submit');
     },
-    async lookupAddress() {
-      if (this.address?.postalCode?.length < 6 || !this.address?.streetLine2) {
+    async lookupShippingAddress() {
+      await this.lookupAddress(this.address);
+    },
+    async lookupBillingAddress() {
+      await this.lookupAddress(this.billingAddress);
+    },
+    async lookupAddress(address) {
+      if (address?.postalCode?.length < 6 || !address?.streetLine2) {
         return;
       }
-      const address = await this.vendure.lookupAddress({
-        postalCode: this.address.postalCode,
-        houseNumber: this.address.streetLine2,
+      const foundAddress = await this.vendure.lookupAddress({
+        postalCode: address.postalCode,
+        houseNumber: address.streetLine2,
       });
-      if (address && address.street) {
-        this.address.streetLine1 = address.street;
-        this.address.city = address.city;
-        this.address.countryCode = 'nl';
+      if (foundAddress && foundAddress.street) {
+        address.streetLine1 = foundAddress.street;
+        address.city = foundAddress.city;
+        address.countryCode = 'nl';
       }
     },
   },

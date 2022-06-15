@@ -16,6 +16,7 @@ import {
   REMOVE_ALL_ORDER_LINES,
   REMOVE_COUPON_CODE,
   SET_CUSTOMER_FOR_ORDER,
+  SET_ORDERBILLINGADDRESS,
   SET_ORDERSHIPPINGADDRESS,
   SET_ORDERSHIPPINGMETHOD,
   SET_PICKUP_LOCATION_FOR_ORDER,
@@ -54,6 +55,8 @@ import {
   RemoveCouponCodeMutationVariables,
   SetCustomerForOrderMutation,
   SetCustomerForOrderMutationVariables,
+  SetOrderBillingAddressMutation,
+  SetOrderBillingAddressMutationVariables,
   SetOrderCustomFieldsMutation,
   SetOrderCustomFieldsMutationVariables,
   SetOrderShippingAddressMutation,
@@ -215,6 +218,19 @@ export class VendureClient {
       SetOrderShippingAddressMutation,
       SetOrderShippingAddressMutationVariables
     >(SET_ORDERSHIPPINGADDRESS, { input });
+    this.validateResult(order);
+    this.store.activeOrder = order as OrderFieldsFragment;
+    return order as OrderFieldsFragment;
+  }
+
+  async setOrderBillingAddress(
+    input: CreateAddressInput
+  ): Promise<OrderFieldsFragment> {
+    const { setOrderBillingAddress: order } = await this.request<
+      SetOrderBillingAddressMutation,
+      SetOrderBillingAddressMutationVariables
+    >(SET_ORDERBILLINGADDRESS, { input });
+    this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }

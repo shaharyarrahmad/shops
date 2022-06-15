@@ -4,7 +4,7 @@
       <div
         v-if="activeOrder && activeOrder.lines && activeOrder.lines.length > 0"
       >
-        <table class="table order-table is-fullwidth is-striped">
+        <table class="table order-table is-fullwidth">
           <tbody>
             <tr v-for="line of activeOrder.lines">
               <td class="image-column is-hidden-mobile">
@@ -15,20 +15,24 @@
                 />
               </td>
               <td>
-                <p class="is-hidden-mobile">
-                  <strong>{{ line.productVariant.product.name }}</strong>
+                <p>
+                  {{ line.productVariant.name }}
                 </p>
-                <p class="has-text-grey">{{ line.productVariant.name }}</p>
               </td>
-              <td class="quantity-column">
+              <td v-if="!disabled" class="quantity-column">
                 <b-field>
                   <QuantityInput :value="line.quantity" :line-id="line.id" />
                 </b-field>
               </td>
+              <td v-else class="pr-6">{{ line.quantity }}</td>
               <td class="has-text-right">
                 <p>{{ line.linePriceWithTax | euro }}</p>
               </td>
-              <td class="has-text-right" style="padding-right: 0">
+              <td
+                v-if="!disabled"
+                class="has-text-right"
+                style="padding-right: 0"
+              >
                 <b-button
                   type="is-outlined is-small"
                   @click="remove(line.id)"
@@ -48,6 +52,7 @@ import { VendureClient } from '../../vendure/vendure.client';
 
 export default {
   props: {
+    disabled: Boolean,
     activeOrder: Store['activeOrder'],
     vendure: VendureClient,
   },
@@ -84,9 +89,5 @@ export default {
 .quantity-column {
   width: 140px;
   min-width: 140px;
-}
-
-.nowrap {
-  white-space: nowrap;
 }
 </style>

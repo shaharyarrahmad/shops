@@ -1,13 +1,26 @@
 <template>
-  <b-field :type="couponClass">
-    <b-input
-      v-on:input="applyCouponCode"
-      :placeholder="couponLabel"
-      icon="check-decagram"
-      :loading="loading"
-      v-model="couponCode"
-    />
-  </b-field>
+  <div>
+    <b-field :type="couponClass">
+      <b-input
+        v-on:input="applyCouponCode"
+        :placeholder="couponLabel"
+        icon="ticket-percent"
+        :loading="loading"
+        v-model="couponCode"
+      />
+    </b-field>
+    <template v-for="coupon of appliedCoupons">
+      <b-button
+        size="is-small"
+        outlined
+        class="mr-1 has-text-weight-normal"
+        icon-right="close-circle"
+        @click="removeCoupon(coupon)"
+      >
+        {{ coupon }}
+      </b-button>
+    </template>
+  </div>
 </template>
 <script>
 import { VendureClient } from '../../vendure/vendure.client';
@@ -40,11 +53,6 @@ export default {
     async applyCouponCode() {
       try {
         this.loading = true;
-        await Promise.all(
-          this.appliedCoupons?.map((code) =>
-            this.vendure.removeCouponCode(code)
-          )
-        );
         await this.vendure.applyCouponCode(this.couponCode);
         this.isInvalid = false;
         this.isApplied = true;
@@ -54,6 +62,9 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    async removeCoupon(coupon) {
+      await this.vendure.removeCouponCode(coupon);
     },
   },
   created() {

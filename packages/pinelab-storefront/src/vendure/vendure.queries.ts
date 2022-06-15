@@ -105,6 +105,16 @@ export const ORDER_FIELDS = gql`
       emailAddress
     }
     shippingAddress {
+      fullName
+      company
+      streetLine1
+      streetLine2
+      city
+      postalCode
+      country
+    }
+    billingAddress {
+      fullName
       company
       streetLine1
       streetLine2
@@ -271,6 +281,21 @@ export const SET_ORDERSHIPPINGADDRESS = gql`
   ${ORDER_FIELDS}
   mutation setOrderShippingAddress($input: CreateAddressInput!) {
     setOrderShippingAddress(input: $input) {
+      ... on Order {
+        ...OrderFields
+      }
+      ... on NoActiveOrderError {
+        errorCode
+        message
+      }
+    }
+  }
+`;
+
+export const SET_ORDERBILLINGADDRESS = gql`
+  ${ORDER_FIELDS}
+  mutation setOrderBillingAddress($input: CreateAddressInput!) {
+    setOrderBillingAddress(input: $input) {
       ... on Order {
         ...OrderFields
       }

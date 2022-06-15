@@ -3435,6 +3435,19 @@ export type OrderFieldsFragment = { __typename?: 'Order' } & Pick<
     shippingAddress?: Maybe<
       { __typename?: 'OrderAddress' } & Pick<
         OrderAddress,
+        | 'fullName'
+        | 'company'
+        | 'streetLine1'
+        | 'streetLine2'
+        | 'city'
+        | 'postalCode'
+        | 'country'
+      >
+    >;
+    billingAddress?: Maybe<
+      { __typename?: 'OrderAddress' } & Pick<
+        OrderAddress,
+        | 'fullName'
         | 'company'
         | 'streetLine1'
         | 'streetLine2'
@@ -3647,6 +3660,19 @@ export type SetOrderShippingAddressMutationVariables = Exact<{
 
 export type SetOrderShippingAddressMutation = { __typename?: 'Mutation' } & {
   setOrderShippingAddress:
+    | ({ __typename?: 'Order' } & OrderFieldsFragment)
+    | ({ __typename?: 'NoActiveOrderError' } & Pick<
+        NoActiveOrderError,
+        'errorCode' | 'message'
+      >);
+};
+
+export type SetOrderBillingAddressMutationVariables = Exact<{
+  input: CreateAddressInput;
+}>;
+
+export type SetOrderBillingAddressMutation = { __typename?: 'Mutation' } & {
+  setOrderBillingAddress:
     | ({ __typename?: 'Order' } & OrderFieldsFragment)
     | ({ __typename?: 'NoActiveOrderError' } & Pick<
         NoActiveOrderError,

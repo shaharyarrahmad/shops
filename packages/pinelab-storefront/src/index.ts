@@ -4,6 +4,8 @@ export * from './util/search.util';
 export * from './util/seo.util';
 export * from './util/variant.util';
 export * from './util/vue.util';
+export * from './util/payment.util';
+export * from './util/order.util';
 export * from './vendure/vendure.client';
 export * from './vendure/vendure.server';
 export * from './vendure/vendure.queries';

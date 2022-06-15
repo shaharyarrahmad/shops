@@ -18,10 +18,10 @@
             <OrderSummary
               class="mb-5"
               shipping-label="Verzendkosten"
-              subtotal-label="Subtotaal"
+              subtotal-label="Subtotaal (incl. korting)"
               total-label="Totaal"
               summary-title="Samenvatting"
-              :active-order="activeOrder"
+              :order="activeOrder"
             >
               <template #middle>
                 <CouponInput
