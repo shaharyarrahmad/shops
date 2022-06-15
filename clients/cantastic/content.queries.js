@@ -21,6 +21,9 @@ const GET_CONTENT = gql`
       }
       content
     }
+    cantastic_algemeen {
+      over_cantastic
+    }
   }
 `;
 

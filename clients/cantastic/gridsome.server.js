@@ -4,17 +4,8 @@ const Fuse = require('fuse.js');
 const { GET_CONTENT } = require('./content.queries');
 const { VendureServer, SearchUtil } = require('pinelab-storefront');
 const { GraphQLClient } = require('graphql-request');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = async function (api) {
-  /*
-  api.chainWebpack(config => {
-    config
-      .plugin('BundleAnalyzerPlugin')
-      .use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
-  });
-*/
-
   // Breadcrumb pages
   const Home = '/';
 
@@ -37,6 +28,7 @@ module.exports = async function (api) {
       {
         // Directus content
         cantastic_blogs: blogs,
+        cantastic_algemeen: { over_cantastic: shortAbout },
       },
     ] = await Promise.all([
       vendureServer.getShopData(),
@@ -52,9 +44,18 @@ module.exports = async function (api) {
       return p;
     });
 
+    const highlight1 = allCollections.find((col) => col.slug === 'highlight1');
+    const highlight2 = allCollections.find((col) => col.slug === 'highlight2');
+    const highlight3 = allCollections.find((col) => col.slug === 'highlight3');
     const collections = vendureServer.unflatten(allCollections);
+    const navbarCollections = collections.filter(
+      (col) => col.name !== 'highlights'
+    );
     const global = {
-      collections,
+      favorites: products.filter((p) =>
+        p.facetValues.find((f) => f.code === 'favorite')
+      ),
+      collections: navbarCollections,
       instagram: 'https://www.instagram.com/cantastic.nl/',
       facebook: 'https://www.facebook.com/cantastic.nl/',
       usps: [
@@ -66,14 +67,6 @@ module.exports = async function (api) {
     };
 
     // Helper functions
-    function findByFacet(code) {
-      return products.find((p) => p.facetValues.find((f) => f.code === code));
-    }
-
-    function filterByFacet(code) {
-      return products.filter((p) => p.facetValues.find((f) => f.code === code));
-    }
-
     function getProductCollection(productId) {
       const collectionMap = productsPerCollection.find(({ products }) =>
         products.find((p) => p.id === productId)
@@ -125,12 +118,6 @@ module.exports = async function (api) {
       }
     }
 
-    // Product filtering
-    const highlight1 = findByFacet('highlight1');
-    const highlight2 = findByFacet('highlight2');
-    const highlight3 = findByFacet('highlight3');
-    global.favorites = filterByFacet('favorite');
-
     // ----------------- Search ---------------------
     const searchProducts = products.map((p) => ({
       ...p,
@@ -154,6 +141,9 @@ module.exports = async function (api) {
     fs.writeFileSync('./static/_search.json', JSON.stringify(indexObject));
 
     // ----------------- Index ---------------------
+    console.log(highlight1);
+    console.log(highlight2);
+    console.log(highlight3);
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
@@ -163,6 +153,7 @@ module.exports = async function (api) {
         highlight1,
         highlight2,
         highlight3,
+        shortAbout,
         blogs: blogs.slice(0, 3),
       },
     });

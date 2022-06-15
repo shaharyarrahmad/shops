@@ -155,6 +155,16 @@ h6 {
   @extend .is-family-secondary;
 }
 
+.has-text-light h1,
+.has-text-light h2,
+.has-text-light h3,
+.has-text-light h4,
+.has-text-light h5,
+.has-text-light h6,
+{
+  color: $loop-grey;
+}
+
 section {
   margin-bottom: 3rem;
 }
