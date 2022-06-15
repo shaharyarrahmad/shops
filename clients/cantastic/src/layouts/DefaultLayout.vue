@@ -214,11 +214,11 @@
         </div>
       </div>
     </footer>
-    <footer class="footer has-background-info pb-0">
+    <footer class="footer has-background-info pb-0 has-text-light">
       <div class="container is-widescreen section">
         <div class="columns">
           <div class="column is-3">
-            <h5 class="has-text-light">Categorieën</h5>
+            <h5>Categorieën</h5>
             <g-link
               v-for="collection of $context.collections"
               :key="collection.slug"
@@ -228,7 +228,7 @@
             </g-link>
           </div>
           <div class="column is-3">
-            <h5 class="has-text-light">Service</h5>
+            <h5>Service</h5>
             <g-link to="/over-ons">Bestelling & verzending</g-link>
             <br />
             <g-link to="/over-ons">Betalen</g-link>
@@ -239,7 +239,7 @@
             <br />
           </div>
           <div class="column is-3">
-            <h5 class="has-text-light">Over Cantastic</h5>
+            <h5>Over Cantastic</h5>
             <g-link to="/over-ons">Over ons</g-link>
             <br />
             <g-link to="/over-ons">Contact</g-link>
@@ -250,7 +250,7 @@
             <br />
           </div>
           <div class="column is-3 pb-4" style="border-bottom: 1px solid">
-            <h3 class="has-text-light">Volg @Cantastic.nl en #TeamJoopie</h3>
+            <h3>Volg @Cantastic.nl en #TeamJoopie</h3>
             <a :href="$context.instagram" target="_blank">
               <b-icon icon="instagram" size="is-large" class="is-light pr-4">
               </b-icon>
@@ -291,15 +291,13 @@
   </div>
 </template>
 <script>
-import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
-import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import Breadcrumb from 'pinelab-storefront/lib/ui/molecules/Breadcrumb';
 import Basket from '../components/Basket';
 import Search from '../components/Search';
 
 export default {
   components: {
     Search,
-    ShopNavBar,
     Breadcrumb,
     Basket,
   },

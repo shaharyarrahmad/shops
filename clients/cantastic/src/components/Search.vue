@@ -26,7 +26,7 @@
 <script>
 import debounce from 'debounce';
 import SearchResult from './SearchResult';
-import { SearchUtil } from 'pinelab-storefront-client';
+import { SearchUtil } from 'pinelab-storefront';
 import Fuse from 'fuse.js';
 
 export default {

@@ -4,15 +4,15 @@
       <section id="highlighted">
         <div class="columns">
           <div class="column is-7">
-            <HighlightCard :product="$context.highlight1" />
+            <HighlightCard :collection="$context.highlight1" />
           </div>
           <div class="column is-5">
             <div class="columns is-mobile is-multiline">
               <div class="column is-12-tablet is-6-mobile">
-                <HighlightCard :product="$context.highlight2" />
+                <HighlightCard :collection="$context.highlight2" />
               </div>
               <div class="column is-12-tablet is-6-mobile">
-                <HighlightCard :product="$context.highlight3" />
+                <HighlightCard :collection="$context.highlight3" />
               </div>
             </div>
           </div>
@@ -41,19 +41,7 @@
     <template #fullwidth>
       <div class="columns is-vcentered">
         <div class="column">
-          <h2 class="has-text-light">Over Cantastic.nl</h2>
-          <p class="has-text-light">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-            finibus, mauris non facilisis lacinia, quam ipsum lobortis quam, eu
-            euismod risus mi ac lorem. Morbi faucibus ex in ex pulvinar sodales.
-            Pellentesque porttitor imperdiet euismod. Quisque at porttitor sem,
-            at congue eros. Suspendisse sollicitudin est vel lorem aliquam
-            lacinia. In efficitur nibh eget rhoncus mollis. Suspendisse cursus
-            convallis dui, vel ullamcorper arcu dictum ut. Nam ac libero est.
-            Nunc nec tincidunt nisl. Donec a posuere enim. Nam vitae luctus
-            nisl. Aliquam ornare, urna quis imperdiet tristique, lorem tellus
-            sagittis ligula, nec mollis lectus mauris quis nisi.
-          </p>
+          <div class="has-text-light" v-html="$context.shortAbout"></div>
         </div>
         <div class="column p-6">
           <img src="/img/cantastic-white.png" alt="Cantastic logo" />
@@ -82,7 +70,7 @@
 </template>
 
 <script>
-import { hydrate } from 'pinelab-storefront-client';
+import { hydrate } from 'pinelab-storefront';
 import HighlightCard from '../components/HighlightCard';
 import BlogCard from '../components/BlogCard';
 import FavoritesSection from '../components/FavoritesSection';

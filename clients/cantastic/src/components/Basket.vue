@@ -52,25 +52,24 @@
             </table>
           </div>
 
-          <table style="width: 100%">
-            <tr>
-              <td>Verzendkosten</td>
-              <td class="has-text-right">
-                <strong>{{ order.subTotalWithTax | euro }}</strong>
-              </td>
-            </tr>
-            <tr>
-              <td>Totaal</td>
-              <td class="has-text-right">
-                <strong>{{ order.totalWithTax | euro }}</strong>
-              </td>
-            </tr>
-          </table>
-
-          <br />
           <template v-if="lines.length > 0">
+            <table style="width: 100%">
+              <tr>
+                <td>Verzendkosten</td>
+                <td class="has-text-right">
+                  <strong>{{ order.shippingWithTax | euro }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Totaal</td>
+                <td class="has-text-right">
+                  <strong>{{ order.totalWithTax | euro }}</strong>
+                </td>
+              </tr>
+            </table>
+            <br />
             <b-button
-              type="is-primary is-outlined is-fullwidth mb-2"
+              type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
               tag="a"
               href="/winkelmand/"
@@ -78,7 +77,7 @@
               Naar winkelmand
             </b-button>
             <b-button
-              type="is-primary is-fullwidth"
+              type="is-fullwidth"
               icon-left="run-fast"
               tag="a"
               href="/checkout/"
@@ -153,7 +152,8 @@ export default {
       this.$buefy.toast.open({
         message: `Error: ${e?.message}`,
         duration: 5000,
-        type: 'is-info',
+        position: 'is-bottom',
+        type: 'is-danger',
       });
     },
   },

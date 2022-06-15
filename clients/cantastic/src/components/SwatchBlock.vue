@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import { buy } from 'pinelab-storefront-client';
+import { buy } from 'pinelab-storefront';
 import debounce from 'debounce';
 
 export default {

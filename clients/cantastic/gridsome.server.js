@@ -1,24 +1,22 @@
-const { GridsomeService, SearchUtil } = require('pinelab-storefront-client');
 const { setSwatchColors } = require('./util');
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { GET_CONTENT } = require('./content.queries');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { VendureServer, SearchUtil } = require('pinelab-storefront');
+const { GraphQLClient } = require('graphql-request');
 
 module.exports = async function (api) {
-  /*
-  api.chainWebpack(config => {
-    config
-      .plugin('BundleAnalyzerPlugin')
-      .use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
-  });
-*/
-
   // Breadcrumb pages
   const Home = '/';
 
-  api.createPages(async ({ createPage, graphql }) => {
-    const gridsome = new GridsomeService(graphql);
+  api.createPages(async ({ createPage }) => {
+    const vendureServer = new VendureServer(
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
+    const directus = new GraphQLClient(
+      `${process.env.GRIDSOME_DIRECTUS_HOST}/graphql`
+    );
     const [
       {
         // Vendure content
@@ -29,11 +27,13 @@ module.exports = async function (api) {
       },
       {
         // Directus content
-        data: {
-          Directus: { cantastic_blogs: blogs },
-        },
+        cantastic_blogs: blogs,
+        cantastic_algemeen: { over_cantastic: shortAbout },
       },
-    ] = await Promise.all([gridsome.getShopData(), graphql(GET_CONTENT)]);
+    ] = await Promise.all([
+      vendureServer.getShopData(),
+      directus.request(GET_CONTENT),
+    ]);
 
     // Set category field on products
     const products = allProducts.map((p) => {
@@ -44,9 +44,18 @@ module.exports = async function (api) {
       return p;
     });
 
-    const collections = gridsome.unflatten(allCollections);
+    const highlight1 = allCollections.find((col) => col.slug === 'highlight1');
+    const highlight2 = allCollections.find((col) => col.slug === 'highlight2');
+    const highlight3 = allCollections.find((col) => col.slug === 'highlight3');
+    const collections = vendureServer.unflatten(allCollections);
+    const navbarCollections = collections.filter(
+      (col) => col.name !== 'highlights'
+    );
     const global = {
-      collections,
+      favorites: products.filter((p) =>
+        p.facetValues.find((f) => f.code === 'favorite')
+      ),
+      collections: navbarCollections,
       instagram: 'https://www.instagram.com/cantastic.nl/',
       facebook: 'https://www.facebook.com/cantastic.nl/',
       usps: [
@@ -58,14 +67,6 @@ module.exports = async function (api) {
     };
 
     // Helper functions
-    function findByFacet(code) {
-      return products.find((p) => p.facetValues.find((f) => f.code === code));
-    }
-
-    function filterByFacet(code) {
-      return products.filter((p) => p.facetValues.find((f) => f.code === code));
-    }
-
     function getProductCollection(productId) {
       const collectionMap = productsPerCollection.find(({ products }) =>
         products.find((p) => p.id === productId)
@@ -117,12 +118,6 @@ module.exports = async function (api) {
       }
     }
 
-    // Product filtering
-    const highlight1 = findByFacet('highlight1');
-    const highlight2 = findByFacet('highlight2');
-    const highlight3 = findByFacet('highlight3');
-    global.favorites = filterByFacet('favorite');
-
     // ----------------- Search ---------------------
     const searchProducts = products.map((p) => ({
       ...p,
@@ -146,6 +141,9 @@ module.exports = async function (api) {
     fs.writeFileSync('./static/_search.json', JSON.stringify(indexObject));
 
     // ----------------- Index ---------------------
+    console.log(highlight1);
+    console.log(highlight2);
+    console.log(highlight3);
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
@@ -155,6 +153,7 @@ module.exports = async function (api) {
         highlight1,
         highlight2,
         highlight3,
+        shortAbout,
         blogs: blogs.slice(0, 3),
       },
     });
@@ -300,7 +299,7 @@ module.exports = async function (api) {
       component: './src/templates/Cart.vue',
       context: {
         ...global,
-        hideUsps: true,
+        hideUsps: false,
       },
     });
 
@@ -318,7 +317,7 @@ module.exports = async function (api) {
     // ----------------- Order confirmation ------------
     createPage({
       path: '/order/:code',
-      component: './src/templates/Order.vue',
+      component: './src/templates/OrderConfirmation.vue',
       context: {
         ...global,
         hideUsps: true,

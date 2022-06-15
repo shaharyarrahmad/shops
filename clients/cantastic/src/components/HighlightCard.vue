@@ -1,14 +1,11 @@
 <template>
-  <g-link :to="`/product/${product.slug}/`">
+  <g-link :to="`/categorie/${collection.slug}/`">
     <div
       class="box card-background-image is-flex is-align-items-end highlight-card"
       :style="`background-image: url(${image});`"
     >
       <div>
-        <h3 class="has-text-white pt-5">{{ product.name }}</h3>
-        <h4 class="subtitle has-text-white">
-          {{ product.lowestPrice | euro }}
-        </h4>
+        <h3 class="has-text-white pt-5">{{ collection.name }}</h3>
         <CantasticButton is-div="true"> Bekijk deal</CantasticButton>
       </div>
     </div>
@@ -19,10 +16,10 @@ import CantasticButton from './CantasticButton';
 
 export default {
   components: { CantasticButton },
-  props: ['product'],
+  props: ['collection'],
   computed: {
     image() {
-      return this.product?.featuredAsset?.preview;
+      return this.collection?.featuredAsset?.preview;
     },
   },
 };
@@ -30,7 +27,7 @@ export default {
 <style>
 .card-background-image.highlight-card {
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
 }
 </style>

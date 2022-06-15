@@ -1,188 +1,235 @@
 <template>
   <DefaultLayout>
     <template #content>
-      <CheckoutSteps
-        previousPage="/cart/"
-        :availableCountries="$context.availableCountries"
-        total-label="Totaal"
-        payment-method-label="Hoe wil je betalen?"
-        succes-label="Naar de jaap!"
-        payment-label="Betaling"
-        shipping-label="Verzending"
-        house-number-label="Huisnr."
-        country-label="Land"
-        street-label="Straat"
-        postal-code-label="Postcode"
-        email-label="Email"
-        phone-label="Telefoonnr."
-        lastname-label="Achternaam"
-        firstname-label="Voornaam"
-        company-label="Bedrijfsnaam"
-        city-label="Plaats"
-        :available-countries="[
-          { name: 'Nederland', code: 'nl' },
-          { name: 'Germany', code: 'de' },
-          { name: 'België', code: 'be' },
-        ]"
-        cart-overview-label="Jouw bestelling"
-        customer-details-label="Gegevens"
-        previous-page="/"
-      >
-        <template #shipping>
-          <!-------------------- Pickup point selection ------------------>
-          <div v-if="pickupPointSelected" style="margin-left: 31px">
-            <b-field
-              label="Postcode"
-              label-position="on-border"
-              style="width: 200px"
+      <ClientOnly>
+        <div class="container is-max-desktop">
+          <b-steps
+            v-model="activeStep"
+            :animated="true"
+            :rounded="true"
+            :has-navigation="false"
+            label-position="bottom"
+            mobile-mode="compact"
+          >
+            <!--- CUSTOMER DETAILS -------------------------------------->
+            <b-step-item
+              step="1"
+              label="Adres"
+              icon="account"
+              :clickable="true"
             >
-              <b-input
-                v-model="postalCode"
-                @input="getDropOffPoints()"
-              ></b-input>
-            </b-field>
-            <p class="mb-3">
-              Afhaalpunten in de buurt van <b>{{ postalCode }}</b
-              >:
-            </p>
-            <template v-if="loadingDropOffPoints">
-              <b-skeleton :animated="true"></b-skeleton>
-              <b-skeleton :animated="true"></b-skeleton>
-              <b-skeleton :animated="true"></b-skeleton>
-            </template>
-            <template v-else>
-              <b-field
-                v-for="point of displayedPoints"
-                :key="point.location_code"
-              >
-                <b-radio
-                  v-model="selectedPoint"
-                  @input="selectPickupPoint()"
-                  :native-value="point.location_code"
-                >
-                  <b>{{ point.location_name }}</b
-                  ><br />
-                  <span class="is-size-7"
-                    >{{ point.street }} {{ point.number
-                    }}{{ point.number_suffix || '' }}, {{ point.postal_code }},
-                    {{ point.city }}</span
+              <br />
+              <CustomerDetailsForm
+                submit-label="Verzending >"
+                city-label="Plaats"
+                company-label="Bedrijfsnaam"
+                firstname-label="Voornaam"
+                lastname-label="Achternaam"
+                phone-label="Telefoonnr."
+                email-label="Email"
+                postal-code-label="Postcode"
+                country-label="Land"
+                street-label="Straat"
+                house-number-label="Huisnr."
+                :available-countries="[
+                  { name: 'Nederland', code: 'nl' },
+                  { name: 'België', code: 'be' },
+                  { name: 'Duitsland', code: 'de' },
+                ]"
+                different-billing-address-label="Ander factuuradres"
+                billing-address-label="Factuuradres"
+                :vendure="$vendure"
+                @back="$router.push('/winkelmand/')"
+                @submit="gotToShipping()"
+              ></CustomerDetailsForm>
+            </b-step-item>
+
+            <!--- SHIPPING -------------------------------------->
+            <b-step-item
+              step="2"
+              label="Verzending"
+              icon="truck"
+              :clickable="false"
+            >
+              <br />
+              <h3>Verzendwijze kiezen:</h3>
+              <div class="columns">
+                <div class="column is-6">
+                  <SelectShippingForm
+                    :vendure="$vendure"
+                    :store="$store"
+                    :shipping-methods="shippingMethods"
+                    :pickup-points-enabled="true"
+                    submit-label="Controleer je bestelling >"
+                  />
+                </div>
+                <div class="column is-offset-1">
+                  <OrderSummary
+                    class="mb-5"
+                    shipping-label="Verzendkosten"
+                    subtotal-label="Subtotaal (incl. korting)"
+                    total-label="Totaal"
+                    summary-title="Samenvatting"
+                    :order="activeOrder"
                   >
-                </b-radio>
-              </b-field>
-              <a href="#" @click="toggleShowAll()">
-                {{
-                  displayedPoints.length < allPoints.length
-                    ? 'Toon meer'
-                    : 'Toon minder'
-                }}
-              </a>
-            </template>
-          </div>
-        </template>
-      </CheckoutSteps>
+                    <template #bottom>
+                      <br />
+                      <b-button
+                        class="is-fullwidth"
+                        :disable="hasShippingSelected"
+                        @click="activeStep = 2"
+                      >
+                        Bestelling controleren
+                      </b-button>
+                    </template>
+                  </OrderSummary>
+                  <h5>Betaalmogelijkheden</h5>
+                  <img src="/img/payments.png" alt="Betaalmogelijkheden" />
+                </div>
+              </div>
+            </b-step-item>
+
+            <!--- CHECKUP -------------------------------------->
+            <b-step-item
+              step="3"
+              label="Controleer je bestelling"
+              icon="playlist-check"
+              :clickable="false"
+              disabled
+            >
+              <br />
+              <div class="columns">
+                <div class="column is-6">
+                  <div class="columns">
+                    <div class="column">
+                      <AddressDisplay
+                        title="Verzendadres"
+                        :address="activeOrder.shippingAddress || {}"
+                        :email="
+                          activeOrder.customer
+                            ? activeOrder.customer.emailAddress
+                            : undefined
+                        "
+                      />
+                    </div>
+                    <div
+                      class="column"
+                      v-if="
+                        activeOrder.billingAddress &&
+                        activeOrder.billingAddress.postalCode
+                      "
+                    >
+                      <AddressDisplay
+                        title="Factuuradres"
+                        :address="activeOrder.billingAddress || {}"
+                      />
+                    </div>
+                  </div>
+
+                  <h4>Producten</h4>
+                  <div class="scrollable-product-overview">
+                    <CartItemsTable disabled :active-order="activeOrder" />
+                  </div>
+                </div>
+                <div class="column is-5 is-offset-1">
+                  <OrderSummary
+                    class="mb-5"
+                    shipping-label="Verzendkosten"
+                    subtotal-label="Subtotaal (incl. korting)"
+                    total-label="Totaal"
+                    summary-title="Samenvatting"
+                    :order="activeOrder"
+                  >
+                    <template #bottom>
+                      <br />
+                      <b-button
+                        class="is-fullwidth"
+                        :disable="hasShippingSelected"
+                        @click="startPayment()"
+                      >
+                        Betalen
+                      </b-button>
+                      <br />
+                      <small
+                        >Door te klikken op "Doorgaan en betalen" ga ik akkoord
+                        met de algemene voorwaarden. Ik heb kennis genomen van
+                        de annuleringsvoorwaarden en de
+                        privacyverklaring.</small
+                      >
+                    </template>
+                  </OrderSummary>
+                  <h5>Betaalmogelijkheden</h5>
+                  <img src="/img/payments.png" alt="Betaalmogelijkheden" />
+                </div>
+              </div>
+            </b-step-item>
+
+            <!--- Order -------------------------------------->
+            <b-step-item
+              step="4"
+              label="Naar de jaap!"
+              icon="check"
+              :clickable="false"
+              disabled
+            >
+            </b-step-item>
+          </b-steps>
+        </div>
+      </ClientOnly>
     </template>
   </DefaultLayout>
 </template>
 <script>
-import CheckoutSteps from 'pinelab-storefront-client/lib/buefy-components/CheckoutSteps';
-import { debounce } from 'debounce';
+import CustomerDetailsForm from 'pinelab-storefront/lib/ui/organisms/CustomerDetailsForm';
+import SelectShippingForm from 'pinelab-storefront/lib/ui/organisms/SelectShippingForm';
+import OrderSummary from 'pinelab-storefront/lib/ui/molecules/OrderSummary';
+import AddressDisplay from 'pinelab-storefront/lib/ui/molecules/AddressDisplay';
+import CartItemsTable from 'pinelab-storefront/lib/ui/organisms/CartItemsTable';
+import { startPayment } from 'pinelab-storefront';
 
 export default {
   components: {
-    CheckoutSteps,
+    CustomerDetailsForm,
+    SelectShippingForm,
+    OrderSummary,
+    AddressDisplay,
+    CartItemsTable,
+  },
+  computed: {
+    activeOrder() {
+      return this.$store?.activeOrder || {};
+    },
+    hasShippingSelected() {
+      return !!this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.id;
+    },
   },
   data() {
     return {
-      loadingDropOffPoints: true,
-      allPoints: undefined,
-      displayedPoints: undefined,
-      selectedPoint: undefined,
-      postalCode: undefined,
+      activeStep: 0,
+      shippingMethods: [],
+      loadingPayment: false,
     };
   },
-  computed: {
-    pickupPointSelected() {
-      return (
-        this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
-          'pickup-point'
-        ) > -1
-      );
-    },
-  },
-  watch: {
-    async pickupPointSelected(newValue) {
-      if (newValue) {
-        this.postalCode = this.$store?.activeOrder?.shippingAddress?.postalCode;
-        await this.getDropOffPoints();
-        await this.selectPickupPoint();
-      } else {
-        await this.unsetPickupPoint();
-      }
-    },
-  },
-  created() {
-    this.getDropOffPoints = debounce(this.getDropOffPoints, 200);
-  },
   methods: {
-    async getDropOffPoints() {
+    async gotToShipping() {
+      this.activeStep = 1;
+      this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
+    },
+    async startPayment() {
+      this.loadingPayment = true;
       try {
-        this.loadingDropOffPoints = true;
-        this.allPoints = await this.$vendure.getDropOffPoints({
-          carrierId: '1',
-          postalCode: this.postalCode,
-        });
-        this.displayedPoints = this.allPoints.slice(0, 3);
-        this.loadingDropOffPoints = false;
-        await this.selectPickupPoint();
-      } catch (e) {
-        console.error(e);
+        await startPayment(this.$vendure, 'mollie');
       } finally {
-        this.loadingDropOffPoints = false;
+        this.loadingPayment = false;
       }
-    },
-    toggleShowAll() {
-      if (this.displayedPoints.length < this.allPoints.length) {
-        this.displayedPoints = this.allPoints;
-      } else {
-        this.displayedPoints = this.allPoints.slice(0, 3);
-      }
-      this.moveSelectedToTop();
-    },
-    async selectPickupPoint() {
-      if (!this.selectedPoint) {
-        return;
-      }
-      const point = this.allPoints.find(
-        (p) => p.location_code == this.selectedPoint
-      );
-      if (!point) {
-        throw Error(`No pickup point with ${code} exists in the list!`);
-      }
-      await this.$vendure.setPickupLocationOnOrder({
-        pickupLocationNumber: String(point.location_code),
-        pickupLocationCarrier: String(point.carrier_id),
-        pickupLocationName: point.location_name,
-        pickupLocationStreet: point.street,
-        pickupLocationHouseNumber: `${point.number}${
-          point.number_suffix || ''
-        }`,
-        pickupLocationZipcode: point.postal_code,
-        pickupLocationCity: point.city,
-        pickupLocationCountry: 'nl',
-      });
-      console.log(`Selected ${point.location_name} as pickup point`);
-      this.moveSelectedToTop();
-    },
-    async unsetPickupPoint() {
-      await this.$vendure.unsetPickupLocation();
-      console.log('Removed pickupLocation from order');
-    },
-    moveSelectedToTop() {
-      this.displayedPoints = this.displayedPoints.sort((p) =>
-        p.location_code == this.selectedPoint ? -1 : 0
-      );
     },
   },
 };
 </script>
-<style></style>
+<style>
+.scrollable-product-overview {
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+</style>
