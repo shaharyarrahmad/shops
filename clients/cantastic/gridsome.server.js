@@ -141,9 +141,6 @@ module.exports = async function (api) {
     fs.writeFileSync('./static/_search.json', JSON.stringify(indexObject));
 
     // ----------------- Index ---------------------
-    console.log(highlight1);
-    console.log(highlight2);
-    console.log(highlight3);
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
