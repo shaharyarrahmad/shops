@@ -172,6 +172,24 @@
                 <div v-html="usp" class="pl-2"></div>
               </div>
             </template>
+            <!-- TrustBox widget - Micro Review Count -->
+            <div
+              id="trustbox"
+              class="trustpilot-widget"
+              data-locale="nl-NL"
+              data-template-id="5419b6a8b0d04a076446a9ad"
+              data-businessunit-id="61e6fa1b81425751f3715d7f"
+              data-style-height="35px"
+              data-style-width="100%"
+              data-theme="light"
+            >
+              <a
+                href="https://nl.trustpilot.com/review/cantastic.nl"
+                target="_blank"
+                rel="noopener"
+                >Trustpilot</a
+              >
+            </div>
           </div>
           <br />
           <Breadcrumb
@@ -351,6 +369,12 @@ export default {
     activeOrder() {
       return this.$store?.activeOrder;
     },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const trustbox = document.getElementById('trustbox');
+      window.Trustpilot.loadFromElement(trustbox);
+    });
   },
 };
 </script>
