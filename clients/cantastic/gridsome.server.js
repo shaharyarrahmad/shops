@@ -28,7 +28,14 @@ module.exports = async function (api) {
       {
         // Directus content
         cantastic_blogs: blogs,
-        cantastic_algemeen: { over_cantastic: shortAbout },
+        cantastic_algemeen: {
+          over_cantastic: shortAbout,
+          telefoon,
+          instagram,
+          facebook,
+          usps,
+        },
+        cantastic_paginas: pages,
       },
     ] = await Promise.all([
       vendureServer.getShopData(),
@@ -51,19 +58,23 @@ module.exports = async function (api) {
     const navbarCollections = collections.filter(
       (col) => col.name !== 'highlights'
     );
+    const aboutPages = pages
+      .filter((p) => p.categorie === 'Over Cantastic')
+      .map((p) => ({ slug: p.slug, title: p.title }));
+    const servicePages = pages
+      .filter((p) => p.categorie === 'Service')
+      .map((p) => ({ slug: p.slug, title: p.title }));
     const global = {
       favorites: products.filter((p) =>
         p.facetValues.find((f) => f.code === 'favorite')
       ),
+      aboutPages,
+      servicePages,
       collections: navbarCollections,
-      instagram: 'https://www.instagram.com/cantastic.nl/',
-      facebook: 'https://www.facebook.com/cantastic.nl/',
-      usps: [
-        '<p>Vanaf €75 <b>gratis</b> verzending</p>',
-        '<p><b>Achteraf</b> betalen</p>',
-        '<p><b>Exclusieve</b> producten</p>',
-        '<p>Ook wel eens <b>gearresteerd</b></p>',
-      ],
+      instagram,
+      facebook,
+      phoneNr: telefoon,
+      usps: usps.split(','),
     };
 
     // Helper functions
@@ -329,6 +340,19 @@ module.exports = async function (api) {
         ...global,
         hideUsps: true,
       },
+    });
+
+    // ----------------- Static pages ------------
+    pages.forEach((page) => {
+      createPage({
+        path: `/${page.slug}/`,
+        component: './src/templates/StaticPage.vue',
+        context: {
+          ...global,
+          hideUsps: false,
+          page,
+        },
+      });
     });
   });
 };

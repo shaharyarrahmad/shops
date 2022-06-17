@@ -21,11 +21,15 @@
                 >
                 </i>
               </span>
-              <a href="/#contact">
-                <span class="is-hidden-mobile"
-                  ><b-icon icon="whatsapp" size="is-medium"></b-icon
-                ></span>
-              </a>
+              <span class="is-hidden-mobile icon is-medium">
+                <a
+                  :href="`https://wa.me/${$context.phoneNr}`"
+                  target="_blank"
+                  style="z-index: 99"
+                >
+                  <i class="has-text-white mdi mdi-whatsapp mdi-36px"></i>
+                </a>
+              </span>
               <Basket />
             </div>
           </div>
@@ -229,25 +233,17 @@
           </div>
           <div class="column is-3">
             <h5>Service</h5>
-            <g-link to="/over-ons">Bestelling & verzending</g-link>
-            <br />
-            <g-link to="/over-ons">Betalen</g-link>
-            <br />
-            <g-link to="/over-ons">Klachten</g-link>
-            <br />
-            <g-link to="/over-ons">FAQ</g-link>
-            <br />
+            <template v-for="page of $context.servicePages">
+              <g-link :to="`/${page.slug}/`">{{ page.title }}</g-link>
+              <br />
+            </template>
           </div>
           <div class="column is-3">
             <h5>Over Cantastic</h5>
-            <g-link to="/over-ons">Over ons</g-link>
-            <br />
-            <g-link to="/over-ons">Contact</g-link>
-            <br />
-            <g-link to="/over-ons">Algemene voorwaarden</g-link>
-            <br />
-            <g-link to="/over-ons">Blog</g-link>
-            <br />
+            <template v-for="page of $context.aboutPages">
+              <g-link :to="`/${page.slug}/`">{{ page.title }}</g-link>
+              <br />
+            </template>
           </div>
           <div class="column is-3 pb-4" style="border-bottom: 1px solid">
             <h3>Volg @Cantastic.nl en #TeamJoopie</h3>

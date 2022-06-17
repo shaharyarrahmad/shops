@@ -23,6 +23,16 @@ const GET_CONTENT = gql`
     }
     cantastic_algemeen {
       over_cantastic
+      telefoon
+      instagram
+      usps
+      facebook
+    }
+    cantastic_paginas {
+      title
+      slug
+      categorie
+      content
     }
   }
 `;
