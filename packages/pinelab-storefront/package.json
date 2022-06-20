@@ -16,7 +16,7 @@
   "scripts": {
     "build": "rm -rf lib && yarn tsc --build && yarn copy",
     "dev-build": "yarn tsc --build && yarn copy",
-    "copy": "copyfiles -u 1 'src/ui/**/*' lib",
+    "copy": "copyfiles -u 1 'src/components/**/*' 'src/pages/**/*' lib",
     "generate": "graphql-codegen",
     "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
     "test": "jest"

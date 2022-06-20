@@ -38,20 +38,26 @@
   </div>
 </template>
 <script>
-import { VendureClient } from '../../vendure/vendure.client';
-import { Store } from '../../vendure/types';
-import PickupPointFinder from '../molecules/PickupPointFinder';
+import { VendureClient } from '../vendure/vendure.client';
+import { Store } from '../vendure/types';
+import PickupPointFinder from './PickupPointFinder';
 import debounce from 'debounce';
 
 export default {
   components: { PickupPointFinder },
   props: {
-    submitLabel: {
-      default: 'Payment',
+    shippingMethods: {
+      type: Array,
+      required: true,
     },
-    shippingMethods: Array,
-    vendure: VendureClient,
-    store: [Store, Object],
+    vendure: {
+      type: VendureClient,
+      required: true,
+    },
+    store: {
+      type: [Store, Object],
+      required: true,
+    },
     pickupPointsEnabled: Boolean,
   },
   data() {

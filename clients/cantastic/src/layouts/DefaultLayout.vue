@@ -305,7 +305,7 @@
   </div>
 </template>
 <script>
-import Breadcrumb from 'pinelab-storefront/lib/ui/molecules/Breadcrumb';
+import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
 import Basket from '../components/Basket';
 import Search from '../components/Search';
 

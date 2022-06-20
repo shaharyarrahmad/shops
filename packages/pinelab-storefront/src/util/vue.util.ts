@@ -7,6 +7,7 @@ import { VendureClient } from '../vendure/vendure.client';
  * Format Vendure's integer (1233) to euro format: €12,33
  */
 export function formatEuro(value?: number) {
+  console.log('formatcalled', value);
   if (!value) {
     value = 0;
   }
@@ -32,4 +33,14 @@ export function setStore(vue: typeof Vue, url: string, channelToken: string) {
   vue.prototype.$vendure = new VendureClient(store, url, channelToken);
   vue.prototype.$store = store;
   vue.prototype.$emitter = mitt();
+}
+
+/**
+ * Adds a global function `$l('your.label')` to the Vue instance to get the displayLabel
+ */
+export function setLabelFunction(vue: typeof Vue, labels: any) {
+  vue.prototype.$l = (key: string) => {
+    const [group, labelKey] = key.split('.');
+    return labels[group]?.[labelKey] || key;
+  };
 }

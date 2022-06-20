@@ -44,8 +44,8 @@
 </template>
 <script>
 import { getOrderByCode } from 'pinelab-storefront';
-import OrderSummary from 'pinelab-storefront/lib/ui/molecules/OrderSummary';
-import CartItemsTable from 'pinelab-storefront/lib/ui/organisms/CartItemsTable';
+import OrderSummary from 'pinelab-storefront/lib/components/OrderSummary';
+import CartItemsTable from 'pinelab-storefront/lib/components/CartItemsTable';
 
 export default {
   components: {

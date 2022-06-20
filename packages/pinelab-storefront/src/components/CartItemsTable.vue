@@ -47,14 +47,20 @@
   </ClientOnly>
 </template>
 <script>
-import { Store } from '../../vendure/types';
-import { VendureClient } from '../../vendure/vendure.client';
+import { Store } from '../vendure/types';
+import { VendureClient } from '../vendure/vendure.client';
 
 export default {
   props: {
     disabled: Boolean,
-    activeOrder: Store['activeOrder'],
-    vendure: VendureClient,
+    activeOrder: {
+      type: Store['activeOrder'],
+      required: true,
+    },
+    vendure: {
+      type: VendureClient,
+      required: false,
+    },
   },
   computed: {},
   data() {

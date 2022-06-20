@@ -1,0 +1,43 @@
+{
+  "customer-details": {
+    "title": "Adres",
+    "firstname": "Voornaam",
+    "lastname": "Achternaam",
+    "company": "Bedrijfsnaam",
+    "phone": "Telefoonnr.",
+    "email": "Email adres",
+    "postalcode": "Postcode",
+    "housenr": "Huisnr.",
+    "street": "Straat",
+    "city": "Plaats",
+    "country": "Land",
+    "different-billing-address": "Ander factuuradres",
+    "billing-address": "Factuuradres",
+    "submit": "Verzending"
+  },
+  "shipping": {
+    "step-title": "Verzending",
+    "page-title": "Verzendwijze kiezen:",
+    "submit": "Controleer je bestelling"
+  },
+  "order-summary": {
+    "title": "Samenvatting",
+    "shipping-cost": "Verzendkosten",
+    "subtotal": "Subtotaal (incl. korting)",
+    "total": "Totaal"
+  },
+  "checkup": {
+    "title": "Controleer je bestelling",
+    "shipping-address": "Verzendadres",
+    "billing-address": "Verzendadres",
+    "items": "Producten",
+    "disclaimer": "Door te klikken op 'Doorgaan en betalen' ga ik akkoord met de algemene voorwaarden. Ik heb kennis genomen van de annuleringsvoorwaarden en de privacyverklaring.",
+    "pay": "Betalen"
+  },
+  "finished": {
+    "title": "Naar de jaap!"
+  },
+  "common": {
+    "couponcode": "Kortingscode"
+  }
+}

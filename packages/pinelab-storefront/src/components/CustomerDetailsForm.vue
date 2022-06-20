@@ -1,80 +1,188 @@
 <template>
-  <ClientOnly>
-    <form v-on:submit="setCustomerDetails($event)">
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <p class="control is-expanded has-icons-left">
-              <b-input
-                :placeholder="`${firstnameLabel}*`"
-                type="text"
-                required
-                v-model="customer.firstName"
-              />
-              <span class="icon is-small is-left">
-                <i class="mdi mdi-account"></i>
-              </span>
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="field">
-            <p class="control is-expanded has-icons-left">
-              <b-input
-                :placeholder="`${lastnameLabel}*`"
-                type="text"
-                required
-                v-model="customer.lastName"
-              />
-              <span class="icon is-small is-left">
-                <i class="mdi mdi-account"></i>
-              </span>
-            </p>
-          </div>
+  <form v-on:submit="setCustomerDetails($event)">
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.firstname')}*`"
+              type="text"
+              required
+              v-model="customer.firstName"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-account"></i>
+            </span>
+          </p>
         </div>
       </div>
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.lastname')}*`"
+              type="text"
+              required
+              v-model="customer.lastName"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-account"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="$l('customer-details.company')"
+              type="text"
+              v-model="address.company"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-office-building"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="$l('customer-details.phone')"
+              type="text"
+              v-model="customer.phoneNumber"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-cellphone-basic"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.email')}*`"
+              type="text"
+              required
+              v-model="customer.emailAddress"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-email"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns is-mobile">
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.postalcode')}*`"
+              type="text"
+              required
+              v-model="address.postalCode"
+              v-on:input="lookupShippingAddress()"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-mailbox"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field is-small-field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.housenr')}*`"
+              type="text"
+              required
+              v-model="address.streetLine2"
+              v-on:input="lookupShippingAddress()"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-home"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.street')}*`"
+              type="text"
+              required
+              v-model="address.streetLine1"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-home"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <p class="control is-expanded has-icons-left">
+            <b-input
+              :placeholder="`${$l('customer-details.city')}*`"
+              type="text"
+              required
+              v-model="address.city"
+            />
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-city"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <b-field>
+      <b-select
+        :placeholder="$l('customer-details.country')"
+        name="country"
+        icon="earth"
+        v-model="address.countryCode"
+      >
+        <option
+          v-for="country of availableCountries"
+          :key="country.code"
+          :value="country.code"
+        >
+          {{ country.name }}
+        </option>
+      </b-select>
+    </b-field>
+
+    <!--------------------- Billing address ----------------------------->
+    <div class="has-text-right has-text-left-mobile my-4">
+      <b-field>
+        <b-checkbox v-model="hasDifferentBillingAddress">
+          {{ $l('customer-details.different-billing-address') }}
+        </b-checkbox>
+      </b-field>
+    </div>
+    <div v-if="hasDifferentBillingAddress">
+      <h4>{{ $l('customer-details.billing-address') }}</h4>
       <div class="columns">
         <div class="column">
           <div class="field">
             <p class="control is-expanded has-icons-left">
               <b-input
-                :placeholder="companyLabel"
+                :placeholder="$l('customer-details.company')"
                 type="text"
-                v-model="address.company"
+                v-model="billingAddress.company"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-office-building"></i>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column">
-          <div class="field">
-            <p class="control is-expanded has-icons-left">
-              <b-input
-                :placeholder="phoneLabel"
-                type="text"
-                v-model="customer.phoneNumber"
-              />
-              <span class="icon is-small is-left">
-                <i class="mdi mdi-cellphone-basic"></i>
-              </span>
-            </p>
-          </div>
-        </div>
-        <div class="column">
-          <div class="field">
-            <p class="control is-expanded has-icons-left">
-              <b-input
-                :placeholder="`${emailLabel}*`"
-                type="text"
-                required
-                v-model="customer.emailAddress"
-              />
-              <span class="icon is-small is-left">
-                <i class="mdi mdi-email"></i>
               </span>
             </p>
           </div>
@@ -85,11 +193,10 @@
           <div class="field">
             <p class="control is-expanded has-icons-left">
               <b-input
-                :placeholder="`${postalCodeLabel}*`"
+                :placeholder="`${$l('customer-details.postalcode')}`"
                 type="text"
-                required
-                v-model="address.postalCode"
-                v-on:input="lookupShippingAddress()"
+                v-model="billingAddress.postalCode"
+                v-on:input="lookupBillingAddress()"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-mailbox"></i>
@@ -101,11 +208,10 @@
           <div class="field is-small-field">
             <p class="control is-expanded has-icons-left">
               <b-input
-                :placeholder="`${houseNumberLabel}*`"
+                :placeholder="`${$l('customer-details.housenr')}`"
                 type="text"
-                required
-                v-model="address.streetLine2"
-                v-on:input="lookupShippingAddress()"
+                v-model="billingAddress.streetLine2"
+                v-on:input="lookupBillingAddress()"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-home"></i>
@@ -119,10 +225,9 @@
           <div class="field">
             <p class="control is-expanded has-icons-left">
               <b-input
-                :placeholder="`${streetLabel}*`"
+                :placeholder="`${$l('customer-details.street')}`"
                 type="text"
-                required
-                v-model="address.streetLine1"
+                v-model="billingAddress.streetLine1"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-home"></i>
@@ -134,10 +239,9 @@
           <div class="field">
             <p class="control is-expanded has-icons-left">
               <b-input
-                :placeholder="`${cityLabel}*`"
+                :placeholder="`${$l('customer-details.city')}`"
                 type="text"
-                required
-                v-model="address.city"
+                v-model="billingAddress.city"
               />
               <span class="icon is-small is-left">
                 <i class="mdi mdi-city"></i>
@@ -148,10 +252,10 @@
       </div>
       <b-field>
         <b-select
-          :placeholder="countryLabel"
+          :placeholder="$l('customer-details.country')"
           name="country"
           icon="earth"
-          v-model="address.countryCode"
+          v-model="billingAddress.countryCode"
         >
           <option
             v-for="country of availableCountries"
@@ -162,156 +266,38 @@
           </option>
         </b-select>
       </b-field>
+    </div>
 
-      <!--------------------- Billing address ----------------------------->
-      <div class="has-text-right has-text-left-mobile my-4">
-        <b-field>
-          <b-checkbox v-model="hasDifferentBillingAddress">
-            {{ differentBillingAddressLabel }}
-          </b-checkbox>
-        </b-field>
+    <div class="columns is-mobile mt-2">
+      <div class="column">
+        <a @click="$emit('back')" class="button is-outlined"><</a>
       </div>
-      <div v-if="hasDifferentBillingAddress">
-        <h4>{{ billingAddressLabel }}</h4>
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <p class="control is-expanded has-icons-left">
-                <b-input
-                  :placeholder="companyLabel"
-                  type="text"
-                  v-model="billingAddress.company"
-                />
-                <span class="icon is-small is-left">
-                  <i class="mdi mdi-office-building"></i>
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="columns is-mobile">
-          <div class="column">
-            <div class="field">
-              <p class="control is-expanded has-icons-left">
-                <b-input
-                  :placeholder="`${postalCodeLabel}`"
-                  type="text"
-                  v-model="billingAddress.postalCode"
-                  v-on:input="lookupBillingAddress()"
-                />
-                <span class="icon is-small is-left">
-                  <i class="mdi mdi-mailbox"></i>
-                </span>
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field is-small-field">
-              <p class="control is-expanded has-icons-left">
-                <b-input
-                  :placeholder="`${houseNumberLabel}`"
-                  type="text"
-                  v-model="billingAddress.streetLine2"
-                  v-on:input="lookupBillingAddress()"
-                />
-                <span class="icon is-small is-left">
-                  <i class="mdi mdi-home"></i>
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <p class="control is-expanded has-icons-left">
-                <b-input
-                  :placeholder="`${streetLabel}`"
-                  type="text"
-                  v-model="billingAddress.streetLine1"
-                />
-                <span class="icon is-small is-left">
-                  <i class="mdi mdi-home"></i>
-                </span>
-              </p>
-            </div>
-          </div>
-          <div class="column">
-            <div class="field">
-              <p class="control is-expanded has-icons-left">
-                <b-input
-                  :placeholder="`${cityLabel}`"
-                  type="text"
-                  v-model="billingAddress.city"
-                />
-                <span class="icon is-small is-left">
-                  <i class="mdi mdi-city"></i>
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <b-field>
-          <b-select
-            :placeholder="countryLabel"
-            name="country"
-            icon="earth"
-            v-model="billingAddress.countryCode"
-          >
-            <option
-              v-for="country of availableCountries"
-              :key="country.code"
-              :value="country.code"
-            >
-              {{ country.name }}
-            </option>
-          </b-select>
-        </b-field>
+      <div class="column has-text-right">
+        <b-button
+          native-type="submit"
+          class="button"
+          :loading="loadingShipping"
+        >
+          {{ $l('customer-details.submit') }}
+        </b-button>
       </div>
-
-      <div class="columns is-mobile mt-2">
-        <div class="column">
-          <a @click="$emit('back')" class="button is-outlined"><</a>
-        </div>
-        <div class="column has-text-right">
-          <b-button
-            native-type="submit"
-            class="button"
-            :loading="loadingShipping"
-          >
-            {{ submitLabel }}
-          </b-button>
-        </div>
-      </div>
-    </form>
-  </ClientOnly>
+    </div>
+  </form>
 </template>
 <script>
-import { VendureClient } from '../../vendure/vendure.client';
+import { VendureClient } from '../vendure/vendure.client';
 import { debounce } from 'debounce';
 
 export default {
   props: {
-    companyLabel: { default: 'Company' },
-    firstnameLabel: { default: 'Firstname' },
-    lastnameLabel: { default: 'Lastname' },
-    phoneLabel: { default: 'Phonenumber' },
-    emailLabel: { default: 'Emailaddress' },
-    cityLabel: { default: 'City' },
-    postalCodeLabel: { default: 'Postalcode' },
-    streetLabel: { default: 'Street' },
-    houseNumberLabel: { default: 'HouseNr' },
-    countryLabel: { default: 'Country' },
-    submitLabel: { default: 'Shipping' },
     availableCountries: {
       type: Array,
-      default() {
-        return [{ name: 'Nederland', code: 'nl' }];
-      },
+      required: true,
     },
-    differentBillingAddressLabel: { default: 'Different billing address' },
-    billingAddressLabel: { default: 'Billing address' },
-    vendure: VendureClient,
+    vendure: {
+      type: VendureClient,
+      required: true,
+    },
   },
   data() {
     return {

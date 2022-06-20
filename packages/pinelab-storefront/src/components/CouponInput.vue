@@ -3,7 +3,7 @@
     <b-field :type="couponClass">
       <b-input
         v-on:input="applyCouponCode"
-        :placeholder="couponLabel"
+        :placeholder="$l('common.couponcode')"
         icon="ticket-percent"
         :loading="loading"
         v-model="couponCode"
@@ -23,14 +23,16 @@
   </div>
 </template>
 <script>
-import { VendureClient } from '../../vendure/vendure.client';
+import { VendureClient } from '../vendure/vendure.client';
 import { debounce } from 'debounce';
 
 export default {
   props: {
-    vendure: VendureClient,
+    vendure: {
+      type: VendureClient,
+      required: true,
+    },
     appliedCoupons: Array,
-    couponLabel: String,
   },
   computed: {
     couponClass() {

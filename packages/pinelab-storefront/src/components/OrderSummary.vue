@@ -2,7 +2,7 @@
   <!------ Cart overview ---->
   <div v-if="order" class="order-summary p-5">
     <ClientOnly>
-      <h4>{{ summaryTitle }}</h4>
+      <h4>{{ $l('order-summary.title') }}</h4>
       <table style="width: 100%">
         <tbody>
           <tr class="has-text-success" v-for="discount of order.discounts">
@@ -10,13 +10,13 @@
             <td class="has-text-right">{{ discount.amountWithTax | euro }}</td>
           </tr>
           <tr>
-            <td>{{ subtotalLabel }}</td>
+            <td>{{ $l('order-summary.subtotal') }}</td>
             <td class="has-text-right">
               {{ order.subTotalWithTax | euro }}
             </td>
           </tr>
           <tr>
-            <td>{{ shippingLabel }}</td>
+            <td>{{ $l('order-summary.shipping-cost') }}</td>
             <td class="has-text-right">
               {{ order.shippingWithTax | euro }}
             </td>
@@ -29,7 +29,7 @@
         <tbody>
           <tr>
             <td>
-              <h5>{{ totalLabel }}:</h5>
+              <h5>{{ $l('order-summary.total') }}:</h5>
             </td>
             <td class="has-text-right">
               <h5>{{ order.totalWithTax | euro }}</h5>
@@ -42,23 +42,14 @@
   </div>
 </template>
 <script>
-import { Store } from '../../vendure/types';
+import { Store } from '../vendure/types';
 
 export default {
   props: {
-    shippingLabel: {
-      default: 'Shipping',
+    order: {
+      type: Store['activeOrder'],
+      required: true,
     },
-    subtotalLabel: {
-      default: 'Subtotal',
-    },
-    totalLabel: {
-      default: 'Total',
-    },
-    summaryTitle: {
-      default: 'Cart',
-    },
-    order: Store['activeOrder'],
   },
 };
 </script>
