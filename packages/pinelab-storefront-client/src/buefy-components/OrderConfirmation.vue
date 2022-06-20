@@ -62,7 +62,7 @@
         </tfoot>
         <tbody>
           <tr v-for="line in order.lines">
-            <td>{{ line.productVariant.product.name }}</td>
+            <td>{{ line.productVariant.name }}</td>
             <td>{{ line.quantity }}</td>
             <td>{{ line.linePriceWithTax | euro }}</td>
           </tr>

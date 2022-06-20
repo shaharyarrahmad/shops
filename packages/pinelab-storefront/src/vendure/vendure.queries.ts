@@ -80,8 +80,6 @@ export const COLLECTION_FIELDS = gql`
       items {
         product {
           id
-          name
-          slug
         }
       }
     }
@@ -143,11 +141,6 @@ export const ORDER_FIELDS = gql`
         sku
         name
         priceWithTax
-        product {
-          id
-          name
-          slug
-        }
       }
     }
     taxSummary {

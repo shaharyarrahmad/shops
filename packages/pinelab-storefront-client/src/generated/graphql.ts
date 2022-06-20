@@ -2567,6 +2567,7 @@ export type ProductCustomFields = {
   __typename?: 'ProductCustomFields';
   metaTitle?: Maybe<Scalars['String']>;
   metaDescription?: Maybe<Scalars['String']>;
+  keywords?: Maybe<Scalars['String']>;
 };
 
 export type ProductFilterParameter = {
@@ -2579,6 +2580,7 @@ export type ProductFilterParameter = {
   description?: Maybe<StringOperators>;
   metaTitle?: Maybe<StringOperators>;
   metaDescription?: Maybe<StringOperators>;
+  keywords?: Maybe<StringOperators>;
 };
 
 export type ProductList = PaginatedList & {
@@ -2654,6 +2656,7 @@ export type ProductSortParameter = {
   description?: Maybe<SortOrder>;
   metaTitle?: Maybe<SortOrder>;
   metaDescription?: Maybe<SortOrder>;
+  keywords?: Maybe<SortOrder>;
 };
 
 export type ProductTranslation = {
@@ -2672,6 +2675,7 @@ export type ProductTranslationCustomFields = {
   __typename?: 'ProductTranslationCustomFields';
   metaTitle?: Maybe<Scalars['String']>;
   metaDescription?: Maybe<Scalars['String']>;
+  keywords?: Maybe<Scalars['String']>;
 };
 
 export type ProductVariant = Node & {
@@ -3429,12 +3433,7 @@ export type OrderFieldsFragment = { __typename?: 'Order' } & Pick<
           productVariant: { __typename?: 'ProductVariant' } & Pick<
             ProductVariant,
             'id' | 'sku' | 'name' | 'priceWithTax'
-          > & {
-              product: { __typename?: 'Product' } & Pick<
-                Product,
-                'id' | 'name'
-              >;
-            };
+          > & { product: { __typename?: 'Product' } & Pick<Product, 'id'> };
         }
     >;
     taxSummary: Array<
@@ -3524,7 +3523,7 @@ export type EligibleShippingMethodsQuery = { __typename?: 'Query' } & {
   eligibleShippingMethods: Array<
     { __typename?: 'ShippingMethodQuote' } & Pick<
       ShippingMethodQuote,
-      'id' | 'price' | 'priceWithTax' | 'name' | 'metadata'
+      'id' | 'price' | 'priceWithTax' | 'name' | 'description' | 'metadata'
     >
   >;
 };
