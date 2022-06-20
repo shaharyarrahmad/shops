@@ -298,7 +298,7 @@
       close-button-aria-label="Close"
       aria-modal
     >
-      <div class="card" style="margin-top: -200px">
+      <div class="card">
         <Search />
       </div>
     </b-modal>
@@ -373,7 +373,9 @@ export default {
   mounted() {
     this.$nextTick(() => {
       const trustbox = document.getElementById('trustbox');
-      window.Trustpilot.loadFromElement(trustbox);
+      if (trustbox) {
+        window.Trustpilot?.loadFromElement(trustbox);
+      }
     });
   },
 };
