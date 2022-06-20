@@ -13,7 +13,7 @@
     "@fontsource/titillium-web": "^4.5.1",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "buefy": "^0.9.14",
-    "pinelab-storefront-client": "^0.54.0",
+    "pinelab-storefront-client": "^0.54.3",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
@@ -29,7 +29,7 @@
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
-  "version": "0.54.0",
+  "version": "0.54.3",
   "resolutions": {
     "graphql": "^14.7.0"
   }
