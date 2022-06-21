@@ -30,7 +30,19 @@
                   <i class="has-text-white mdi mdi-whatsapp mdi-36px"></i>
                 </a>
               </span>
-              <Basket />
+              <Basket
+                :vendure="$vendure"
+                :store="$store"
+                :emitter="$emitter"
+                @cart-button-clicked="
+                  $router.push('/winkelmand/').catch((e) => {})
+                "
+                @checkout-button-clicked="
+                  $router.push('/checkout/').catch((e) => {})
+                "
+              >
+                <i class="mdi mdi-basket mdi-48px has-text-white"></i>
+              </Basket>
             </div>
           </div>
         </div>
@@ -306,7 +318,7 @@
 </template>
 <script>
 import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
-import Basket from '../components/Basket';
+import Basket from 'pinelab-storefront/lib/components/Basket';
 import Search from '../components/Search';
 
 export default {
@@ -370,7 +382,8 @@ export default {
       return this.$store?.activeOrder;
     },
   },
-  mounted() {
+  async mounted() {
+    await this.$vendure.getActiveOrder();
     this.$nextTick(() => {
       const trustbox = document.getElementById('trustbox');
       if (trustbox) {

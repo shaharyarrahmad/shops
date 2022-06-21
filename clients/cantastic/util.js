@@ -5,7 +5,7 @@
  */
 function setSwatchColors(product, facetCode, defaultColor) {
   try {
-    const colorChart = require(`./src/data/${facetCode}.json`);
+    const colorChart = require(`./src/swatch-colors/${facetCode}.json`);
     product.variants.forEach((variant) => {
       variant.bgColor = Object.entries(colorChart).find(
         ([key, value]) =>

@@ -1,4 +1,12 @@
 {
+  "basket": {
+    "title": "Winkelmand",
+    "shipping-cost": "Verzendkosten",
+    "total": "Totaal",
+    "go-to-cart": "Naar winkelmand",
+    "go-to-checkout": "Bestellen",
+    "empty-cart": "Je winkelmand is leeg... "
+  },
   "customer-details": {
     "title": "Adres",
     "firstname": "Voornaam",

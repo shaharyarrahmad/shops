@@ -2,7 +2,7 @@
   <div class="is-inline">
     <span class="icon is-large">
       <a @click="sideBasketOpen = true">
-        <i class="mdi mdi-basket mdi-48px has-text-white"></i>
+        <slot />
       </a>
     </span>
     <span class="cart-badge">{{ nrOfItems }}</span>
@@ -19,7 +19,7 @@
       >
         <div class="p-2" id="side-basket">
           <div class="has-text-centered mb-2">
-            <h3>Winkelmand</h3>
+            <h3>{{ $l('basket.title') }}</h3>
           </div>
 
           <div class="is-size-7">
@@ -43,7 +43,7 @@
                         class="is-clickable"
                         size="is-small"
                         icon="close"
-                        @click.native="$vendure.adjustOrderLine(line.id, 0)"
+                        @click.native="vendure.adjustOrderLine(line.id, 0)"
                       />
                     </td>
                   </tr>
@@ -55,13 +55,13 @@
           <template v-if="lines.length > 0">
             <table style="width: 100%">
               <tr>
-                <td>Verzendkosten</td>
+                <td>{{ $l('basket.shipping-cost') }}</td>
                 <td class="has-text-right">
                   <strong>{{ order.shippingWithTax | euro }}</strong>
                 </td>
               </tr>
               <tr>
-                <td>Totaal</td>
+                <td>{{ $l('basket.total') }}</td>
                 <td class="has-text-right">
                   <strong>{{ order.totalWithTax | euro }}</strong>
                 </td>
@@ -71,63 +71,79 @@
             <b-button
               type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
-              tag="a"
-              href="/winkelmand/"
+              @click="
+                $emit('cart-button-clicked');
+                sideBasketOpen = false;
+              "
             >
-              Naar winkelmand
+              {{ $l('basket.go-to-cart') }}
             </b-button>
             <b-button
               type="is-fullwidth"
               icon-left="run-fast"
-              tag="a"
-              href="/checkout/"
+              @click="
+                $emit('checkout-button-clicked');
+                sideBasketOpen = false;
+              "
             >
-              Bestellen
+              {{ $l('basket.go-to-checkout') }}
             </b-button>
           </template>
-          <template v-else> Je winkelmand is leeg... </template>
+          <template v-else> {{ $l('basket.empty-cart') }}</template>
         </div>
       </b-sidebar>
     </ClientOnly>
   </div>
 </template>
 <script>
+import { VendureClient } from '../vendure/vendure.client';
+import { Store } from '../vendure/types';
+
 export default {
+  emits: ['cart-button-clicked', 'checkout-button-clicked'],
+  props: {
+    emitter: {
+      type: Object,
+      required: true,
+    },
+    vendure: {
+      type: VendureClient,
+      required: true,
+    },
+    store: {
+      type: [Store, Object],
+      required: true,
+    },
+  },
   data() {
     return {
       sideBasketOpen: false,
     };
   },
   async mounted() {
-    this.$emitter.on('productAdded', this.showNotificationBar);
-    this.$emitter.on('error', this.showError);
-    await this.$vendure.getActiveOrder();
+    this.emitter.on('productAdded', this.showNotificationBar);
+    this.emitter.on('error', this.showError);
   },
   beforeDestroy() {
-    this.$emitter.off('productAdded', this.showNotificationBar);
-    this.$emitter.off('error', this.showError);
+    this.emitter.off('productAdded', this.showNotificationBar);
+    this.emitter.off('error', this.showError);
   },
   computed: {
     nrOfItems() {
-      if (this.$store?.activeOrder?.lines?.length === 0) {
+      if (this.store?.activeOrder?.lines?.length === 0) {
         return 0;
       }
       return (
-        this.$store?.activeOrder?.lines
+        this.store?.activeOrder?.lines
           ?.map((l) => l.quantity)
           ?.reduce((quantity1, quantity2) => quantity1 + quantity2) || 0
       );
     },
     lines() {
-      return this.$store?.activeOrder?.lines || [];
+      return this.store?.activeOrder?.lines || [];
     },
     order() {
-      return this.$store?.activeOrder || {};
-    },
-    price() {
-      return this.$root.$options.filters.euro(
-        this.$store?.activeOrder?.totalWithTax
-      );
+      return this.store?.activeOrder || {};
     },
   },
   methods: {
