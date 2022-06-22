@@ -1,0 +1,62 @@
+Intern UUID	Naam	Productcode	Actief	Type	Attributen	Barcode	EAN	ASIN	Tags	Lengte	Breedte	Hoogte	Gewicht	Leverancier	Leverancier productcode	Afbeelding	Extern product	Inkoopbaar	Ongelimiteerde voorraad	Vrije voorraad	Totale voorraad	Gebruik fictieve voorraad	Fictieve voorraad	Gebruik daadwerkelijke voorraad als voorraad onder de volgende drempel komt	Minimale voorraad	Voorraad aanvullen tot	Inkoop veelvoud	Inkoopprijs	Verkoopprijs	Belastingspercentage	Voorraadwaarde	Backorders toestaan	Voorraad bijwerken in verkoopplatformen	Levertijd indien op voorraad	Levertijd indien niet op voorraad	Voorraadlocatie (hoogste prioriteit)	HS-code	Land van oorsprong	Douane - Productbeschrijving (Engels)	Cantastic	Cantastic TEST
+	Dope Classic 400ml	5901687941004	1	Normaal	color: D-001 Fresh Color	5901687941004	5901687941004			6	6	18	385	Rabeko	D-001		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941011	1	Normaal	color: D-002 Ivory Light	5901687941011	5901687941011			6	6	18	385	Rabeko	D-002		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941028	1	Normaal	color: D-010 Lemon Yellow	5901687941028	5901687941028			6	6	18	385	Rabeko	D-010		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941035	1	Normaal	color: D-011 Sunny Yellow	5901687941035	5901687941035			6	6	18	385	Rabeko	D-011		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941042	1	Normaal	color: D-012 Melon Yellow	5901687941042	5901687941042			6	6	18	385	Rabeko	D-012		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941059	1	Normaal	color: D-013 Apricot	5901687941059	5901687941059			6	6	18	385	Rabeko	D-013		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941066	1	Normaal	color: D-014 Fall Leaf	5901687941066	5901687941066			6	6	18	385	Rabeko	D-014		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941073	1	Normaal	color: D-020 Pastel Orange	5901687941073	5901687941073			6	6	18	385	Rabeko	D-020		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941097	1	Normaal	color: D-021 Orangine	5901687941097	5901687941097			6	6	18	385	Rabeko	D-021		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941110	1	Normaal	color: D-023 Pure Orange	5901687941110	5901687941110			6	6	18	385	Rabeko	D-023		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941103	1	Normaal	color: D-022 Reddish	5901687941103	5901687941103			6	6	18	385	Rabeko	D-022		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941127	1	Normaal	color: D-024 Tropical Peach	5901687941127	5901687941127			6	6	18	385	Rabeko	D-024		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941134	1	Normaal	color: D-030 Signal Red	5901687941134	5901687941134			6	6	18	385	Rabeko	D-030		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941141	1	Normaal	color: D-031 Bomba Red	5901687941141	5901687941141			6	6	18	385	Rabeko	D-031		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941158	1	Normaal	color: D-032 Vine	5901687941158	5901687941158			6	6	18	385	Rabeko	D-032		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941165	1	Normaal	color: D-033 Lipstick Red	5901687941165	5901687941165			6	6	18	385	Rabeko	D-033		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941172	1	Normaal	color: D-034 Raspberry	5901687941172	5901687941172			6	6	18	385	Rabeko	D-034		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941189	1	Normaal	color: D-040 Shock Pink	5901687941189	5901687941189			6	6	18	385	Rabeko	D-040		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941196	1	Normaal	color: D-041 Fuchsia	5901687941196	5901687941196			6	6	18	385	Rabeko	D-041		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941202	1	Normaal	color: D-042 Magenta	5901687941202	5901687941202			6	6	18	385	Rabeko	D-042		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941219	1	Normaal	color: D-050 Viola	5901687941219	5901687941219			6	6	18	385	Rabeko	D-050		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941257	1	Normaal	color: D-054 Blue Violett	5901687941257	5901687941257			6	6	18	385	Rabeko	D-054		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941226	1	Normaal	color: D-051 Violett	5901687941226	5901687941226			6	6	18	385	Rabeko	D-051		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941233	1	Normaal	color: D-052 Midnight Violett	5901687941233	5901687941233			6	6	18	385	Rabeko	D-052		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941264	1	Normaal	color: D-055 Cardinal	5901687941264	5901687941264			6	6	18	385	Rabeko	D-055		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941240	1	Normaal	color: D-053 Purple	5901687941240	5901687941240			6	6	18	385	Rabeko	D-053		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941288	1	Normaal	color: D-061 Tahitian Blue	5901687941288	5901687941288			6	6	18	385	Rabeko	D-061		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941271	1	Normaal	color: D-060 Baby Blue	5901687941271	5901687941271			6	6	18	385	Rabeko	D-060		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941295	1	Normaal	color: D-062 Light Blue	5901687941295	5901687941295			6	6	18	385	Rabeko	D-062		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941455	1	Normaal	color: D-084 Deep Green	5901687941455	5901687941455			6	6	18	385	Rabeko	D-084		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941554	1	Normaal	color: D-102 Kupa	5901687941554	5901687941554			6	6	18	385	Rabeko	D-102		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941301	1	Normaal	color: D-063 Sky Blue	5901687941301	5901687941301			6	6	18	385	Rabeko	D-063		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941318	1	Normaal	color: D-064 Royal Blue	5901687941318	5901687941318			6	6	18	385	Rabeko	D-064		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941325	1	Normaal	color: D-065 Saphire Blue	5901687941325	5901687941325			6	6	18	385	Rabeko	D-065		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941332	1	Normaal	color: D-066 Cool Blue	5901687941332	5901687941332			6	6	18	385	Rabeko	D-066		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941349	1	Normaal	color: D-067 Shock Blue	5901687941349	5901687941349			6	6	18	385	Rabeko	D-067		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941370	1	Normaal	color: D-072 Ice Aqua	5901687941370	5901687941370			6	6	18	385	Rabeko	D-072		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941356	1	Normaal	color: D-070 Turquise	5901687941356	5901687941356			6	6	18	385	Rabeko	D-070		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941363	1	Normaal	color: D-071 Ocean	5901687941363	5901687941363			6	6	18	385	Rabeko	D-071		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941387	1	Normaal	color: D-073 Blue Atoll	5901687941387	5901687941387			6	6	18	385	Rabeko	D-073		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941394	1	Normaal	color: D-074 Teal	5901687941394	5901687941394			6	6	18	385	Rabeko	D-074		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941400	1	Normaal	color: D-075 Storm	5901687941400	5901687941400			6	6	18	385	Rabeko	D-075		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941417	1	Normaal	color: D-080 Pistachio	5901687941417	5901687941417			6	6	18	385	Rabeko	D-080		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941424	1	Normaal	color: D-081 Acid Green	5901687941424	5901687941424			6	6	18	385	Rabeko	D-081		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941431	1	Normaal	color: D-082 Grass	5901687941431	5901687941431			6	6	18	385	Rabeko	D-082		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941448	1	Normaal	color: D-083 Forest	5901687941448	5901687941448			6	6	18	385	Rabeko	D-083		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941462	1	Normaal	color: D-085 Mint	5901687941462	5901687941462			6	6	18	385	Rabeko	D-085		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941479	1	Normaal	color: D-086 Frog Green	5901687941479	5901687941479			6	6	18	385	Rabeko	D-086		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941486	1	Normaal	color: D-087 Olive	5901687941486	5901687941486			6	6	18	385	Rabeko	D-087		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941493	1	Normaal	color: D-090 Neutral	5901687941493	5901687941493			6	6	18	385	Rabeko	D-090		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941509	1	Normaal	color: D-091 Mouse	5901687941509	5901687941509			6	6	18	385	Rabeko	D-091		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941516	1	Normaal	color: D-092 Steel	5901687941516	5901687941516			6	6	18	385	Rabeko	D-092		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941523	1	Normaal	color: D-093 Antracite	5901687941523	5901687941523			6	6	18	385	Rabeko	D-093		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941530	1	Normaal	color: D-100 Cocoa	5901687941530	5901687941530			6	6	18	385	Rabeko	D-100		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941578	1	Normaal	color: D-104 Cappuccino	5901687941578	5901687941578			6	6	18	385	Rabeko	D-104		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941547	1	Normaal	color: D-101 Walnut	5901687941547	5901687941547			6	6	18	385	Rabeko	D-101		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941561	1	Normaal	color: D-103 Chocolate	5901687941561	5901687941561			6	6	18	385	Rabeko	D-103		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941585	1	Normaal	color: D-200 White	5901687941585	5901687941585			6	6	18	385	Rabeko	D-200		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941592	1	Normaal	color: D-300 Black	5901687941592	5901687941592			6	6	18	385	Rabeko	D-300		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941608	1	Normaal	color: D-400 Silver Chrome	5901687941608	5901687941608			6	6	18	385	Rabeko	D-400		0	1	0	6	6	0						1.85	3.5	21								PL		1	
+	Dope Classic 400ml	5901687941615	1	Normaal	color: D-500 Gold Chrome	5901687941615	5901687941615			6	6	18	385	Rabeko	D-500		0	1	0	6	6	0						1.85	3.5	21								PL		1
