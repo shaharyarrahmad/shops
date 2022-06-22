@@ -2,22 +2,26 @@
   <Layout>
     <template #hero>
       <!--      https://gist.github.com/leodrummond/bc3fbb44919a1e2d796ff2e4742514d0-->
-      <section class="hero">
-        <div class="hero">
+      <section>
+        <div class="has-text-centered mt-4">
           <ClientOnly>
-            <video id="bgvid" playsinline autoplay muted loop>
+            <video
+              id="bgvid"
+              playsinline
+              autoplay
+              muted
+              loop
+              style="max-width: 1200px; width: 100%"
+            >
               <source :src="videoUrl" type="video/mp4" />
             </video>
           </ClientOnly>
         </div>
       </section>
-
-      <br />
-      <br />
     </template>
 
     <template #content>
-      <section id="bio">
+      <section id="bio mt-0">
         <h1>{{ $context.global.title }}</h1>
         <h4 class="subtitle">{{ $context.home.intro_title }}</h4>
         <div v-html="$context.home.intro_text"></div>

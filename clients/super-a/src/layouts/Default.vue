@@ -36,8 +36,6 @@
     <div class="container is-widescreen section" style="min-height: 90vh">
       <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
 
-      <br />
-
       <slot name="content" />
     </div>
 
