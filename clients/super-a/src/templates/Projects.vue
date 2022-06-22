@@ -50,6 +50,7 @@
         <br />
       </section>
       <b-pagination
+        v-if="items.length > $context.projects.length"
         class="is-primary"
         :total="$context.projects.length"
         v-model="currentPage"
