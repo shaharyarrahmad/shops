@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import { isOutOfStock } from '../../util/product.util';
+import { isOutOfStock } from '../util/product.util';
 
 export default {
   props: {

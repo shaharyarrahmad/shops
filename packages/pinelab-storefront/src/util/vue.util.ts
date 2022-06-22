@@ -7,7 +7,6 @@ import { VendureClient } from '../vendure/vendure.client';
  * Format Vendure's integer (1233) to euro format: €12,33
  */
 export function formatEuro(value?: number) {
-  console.log('formatcalled', value);
   if (!value) {
     value = 0;
   }

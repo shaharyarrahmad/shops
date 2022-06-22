@@ -1,0 +1,43 @@
+{
+  "customer-details": {
+    "title": "Details",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "company": "Company",
+    "phone": "Phonenr.",
+    "email": "Email",
+    "postalcode": "Postalcode",
+    "housenr": "Housenr.",
+    "street": "Street",
+    "city": "City",
+    "country": "Country",
+    "different-billing-address": "Different billing address",
+    "billing-address": "Billing address",
+    "submit": "Select shipping"
+  },
+  "shipping": {
+    "step-title": "Shipping",
+    "page-title": "Pick a shippingmethod",
+    "submit": "Go to confirmation"
+  },
+  "order-summary": {
+    "title": "Summary",
+    "shipping-cost": "Shipping",
+    "subtotal": "Subtotal (incl. discounts)",
+    "total": "Total"
+  },
+  "checkup": {
+    "title": "Confirm your order",
+    "shipping-address": "Shipping address",
+    "billing-address": "Billing address",
+    "items": "Items",
+    "disclaimer": "You can select a payment method in the next step",
+    "pay": "Go to payment"
+  },
+  "finished": {
+    "title": "Success!"
+  },
+  "common": {
+    "couponcode": "Couponcode"
+  }
+}
