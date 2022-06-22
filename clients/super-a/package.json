@@ -26,7 +26,8 @@
     "http-server": "^0.12.3",
     "rimraf": "^3.0.2",
     "sass": "1.32.13",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.1.1",
+    "snapdragon-util": "^5.0.1"
   },
   "version": "0.56.0",
   "resolutions": {
