@@ -44,6 +44,7 @@ const GET_CONTENT = gql`
         }
         categories
         featured
+        datum
       }
       supera_biography {
         id

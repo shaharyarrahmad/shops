@@ -10,6 +10,9 @@
           <div class="column is-4">
             <h2>{{ project.title }}</h2>
             <h4 class="subtitle">{{ project.subtitle }}</h4>
+            <small class="has-text-grey">{{
+              project.datum | formatDate
+            }}</small>
             <div v-html="project.description"></div>
           </div>
           <div class="column is-4">

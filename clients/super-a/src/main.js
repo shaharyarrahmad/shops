@@ -33,6 +33,15 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('Layout', Layout);
   Vue.component('PopupImage', PopupImage);
   configureVue(Vue, { router, head, isClient });
+  Vue.filter('formatDate', function (date) {
+    if (date) {
+      return new Date(date).toLocaleDateString('en', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+    }
+  });
   Vue.mixin({
     methods: {
       getDefaultImage: (id) =>
