@@ -17,7 +17,7 @@
     "fuse.js": "^6.6.2",
     "graphql-request": "^4.3.0",
     "outfront": "^1.1.1",
-    "pinelab-storefront": "^0.55.3"
+    "pinelab-storefront": "^0.56.0"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
@@ -30,7 +30,7 @@
     "sass-loader": "^10.1.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
-  "version": "0.55.3",
+  "version": "0.56.0",
   "resolutions": {
     "graphql": "15.3.0"
   }
