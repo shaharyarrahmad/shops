@@ -4,7 +4,7 @@
       <h1>{{ $context.category }}</h1>
       <br />
 
-      <section :id="project.title" v-for="project of $context.projects">
+      <section :id="project.title" v-for="project of items">
         <hr />
         <div class="columns">
           <div class="column is-4">
@@ -49,15 +49,59 @@
         </div>
         <br />
       </section>
+      <b-pagination
+        class="is-primary"
+        :total="$context.projects.length"
+        v-model="currentPage"
+        range-before="2"
+        range-after="2"
+        order="is-centered"
+        size="default"
+        :simple="false"
+        :rounded="false"
+        :per-page="itemsPerPage"
+        icon-prev="chevron-left"
+        icon-next="chevron-right"
+        aria-next-label="Volgende pagina"
+        aria-previous-label="Vorige pagina"
+        aria-page-label="Pagina"
+        aria-current-label="Huidige pagina"
+        :page-input="false"
+        page-input-position="is-input-right"
+        debounce-page-input="100"
+        @change="setPage()"
+      >
+      </b-pagination>
     </template>
   </Layout>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      currentPage: 1,
+      itemsPerPage: 6,
+      items: [],
+    };
+  },
+  created() {
+    this.items = this.$context.projects.slice(0, this.itemsPerPage);
+  },
+  methods: {
+    setPage() {
+      const start = this.itemsPerPage * (this.currentPage - 1);
+      const end = start + this.itemsPerPage;
+      this.items = this.$context.projects.slice(start, end);
+    },
+  },
+};
 </script>
 <style>
 .portfolio-iframe {
   height: 100%;
   min-height: 300px;
+}
+.pagination-link:focus {
+  border-color: transparent;
 }
 </style>
