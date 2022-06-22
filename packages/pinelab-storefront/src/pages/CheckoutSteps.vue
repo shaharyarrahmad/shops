@@ -1,139 +1,137 @@
 <template>
   <ClientOnly>
-    <div class="container is-max-desktop">
-      <b-steps
-        v-model="activeStep"
-        :animated="true"
-        :rounded="true"
-        :has-navigation="false"
-        label-position="bottom"
-        mobile-mode="compact"
+    <b-steps
+      v-model="activeStep"
+      :animated="true"
+      :rounded="true"
+      :has-navigation="false"
+      label-position="bottom"
+      mobile-mode="compact"
+    >
+      <!--- CUSTOMER DETAILS -------------------------------------->
+      <b-step-item
+        step="1"
+        :label="$l('customer-details.title')"
+        icon="account"
+        :clickable="true"
       >
-        <!--- CUSTOMER DETAILS -------------------------------------->
-        <b-step-item
-          step="1"
-          :label="$l('customer-details.title')"
-          icon="account"
-          :clickable="true"
-        >
-          <br />
-          <CustomerDetailsForm
-            :available-countries="availableCountries"
-            :vendure="vendure"
-            @back="history.back()"
-            @submit="gotToShipping()"
-          ></CustomerDetailsForm>
-        </b-step-item>
+        <br />
+        <CustomerDetailsForm
+          :available-countries="availableCountries"
+          :vendure="vendure"
+          @back="history.back()"
+          @submit="gotToShipping()"
+        ></CustomerDetailsForm>
+      </b-step-item>
 
-        <!--- SHIPPING -------------------------------------->
-        <b-step-item
-          step="2"
-          :label="$l('shipping.step-title')"
-          icon="truck"
-          :clickable="false"
-        >
-          <br />
-          <h3>{{ $l('shipping.page-title') }}</h3>
-          <div class="columns">
-            <div class="column is-6">
-              <SelectShippingForm
-                :vendure="vendure"
-                :store="store"
-                :shipping-methods="shippingMethods"
-                :pickup-points-enabled="true"
-              />
-            </div>
-            <div class="column is-offset-1">
-              <OrderSummary class="mb-5" :order="activeOrder">
-                <template #bottom>
-                  <br />
-                  <b-button
-                    class="is-fullwidth"
-                    :disable="hasShippingSelected"
-                    @click="activeStep = 2"
-                  >
-                    {{ $l('shipping.submit') }}
-                  </b-button>
-                </template>
-              </OrderSummary>
-              <slot name="orderSummaryFooter" />
-            </div>
+      <!--- SHIPPING -------------------------------------->
+      <b-step-item
+        step="2"
+        :label="$l('shipping.step-title')"
+        icon="truck"
+        :clickable="false"
+      >
+        <br />
+        <h3>{{ $l('shipping.page-title') }}</h3>
+        <div class="columns">
+          <div class="column is-6">
+            <SelectShippingForm
+              :vendure="vendure"
+              :store="store"
+              :shipping-methods="shippingMethods"
+              :pickup-points-enabled="true"
+            />
           </div>
-        </b-step-item>
-
-        <!--- CHECKUP -------------------------------------->
-        <b-step-item
-          step="3"
-          :label="$l('checkup.title')"
-          icon="playlist-check"
-          :clickable="false"
-          disabled
-        >
-          <br />
-          <div class="columns">
-            <div class="column is-6">
-              <div class="columns">
-                <div class="column">
-                  <AddressDisplay
-                    :title="$l('checkup.shipping-address')"
-                    :address="activeOrder.shippingAddress || {}"
-                    :email="
-                      activeOrder.customer
-                        ? activeOrder.customer.emailAddress
-                        : undefined
-                    "
-                  />
-                </div>
-                <div
-                  class="column"
-                  v-if="
-                    activeOrder.billingAddress &&
-                    activeOrder.billingAddress.postalCode
-                  "
+          <div class="column is-offset-1">
+            <OrderSummary class="mb-5" :order="activeOrder">
+              <template #bottom>
+                <br />
+                <b-button
+                  class="is-fullwidth"
+                  :disable="hasShippingSelected"
+                  @click="activeStep = 2"
                 >
-                  <AddressDisplay
-                    :title="$l('checkup.billingAddress')"
-                    :address="activeOrder.billingAddress || {}"
-                  />
-                </div>
-              </div>
+                  {{ $l('shipping.submit') }}
+                </b-button>
+              </template>
+            </OrderSummary>
+            <slot name="orderSummaryFooter" />
+          </div>
+        </div>
+      </b-step-item>
 
-              <h4>$l('checkup.items')</h4>
-              <div class="scrollable-product-overview">
-                <CartItemsTable disabled :active-order="activeOrder" />
+      <!--- CHECKUP -------------------------------------->
+      <b-step-item
+        step="3"
+        :label="$l('checkup.title')"
+        icon="playlist-check"
+        :clickable="false"
+        disabled
+      >
+        <br />
+        <div class="columns">
+          <div class="column is-6">
+            <div class="columns">
+              <div class="column is-6">
+                <AddressDisplay
+                  :title="$l('checkup.shipping-address')"
+                  :address="activeOrder.shippingAddress || {}"
+                  :email="
+                    activeOrder.customer
+                      ? activeOrder.customer.emailAddress
+                      : undefined
+                  "
+                />
+              </div>
+              <div
+                class="column is-6"
+                v-if="
+                  activeOrder.billingAddress &&
+                  activeOrder.billingAddress.postalCode
+                "
+              >
+                <AddressDisplay
+                  :title="$l('checkup.billing-address')"
+                  :address="activeOrder.billingAddress || {}"
+                />
               </div>
             </div>
-            <div class="column is-5 is-offset-1">
-              <OrderSummary class="mb-5" :order="activeOrder">
-                <template #bottom>
-                  <br />
-                  <b-button
-                    class="is-fullwidth"
-                    :disable="hasShippingSelected"
-                    @click="startPayment()"
-                  >
-                    {{ $l('checkup.pay') }}
-                  </b-button>
-                  <br />
-                  <small>{{ $l('checkup.disclaimer') }}</small>
-                </template>
-              </OrderSummary>
-              <slot name="orderSummaryFooter" />
+
+            <h4>{{ $l('checkup.items') }}</h4>
+            <div class="scrollable-product-overview">
+              <CartItemsTable disabled :active-order="activeOrder" />
             </div>
           </div>
-        </b-step-item>
+          <div class="column is-6">
+            <OrderSummary class="mb-5" :order="activeOrder">
+              <template #bottom>
+                <br />
+                <b-button
+                  class="is-fullwidth"
+                  :disable="hasShippingSelected"
+                  @click="startPayment()"
+                >
+                  {{ $l('checkup.pay') }}
+                </b-button>
+                <br />
+                <small>{{ $l('checkup.disclaimer') }}</small>
+              </template>
+            </OrderSummary>
+            <slot name="orderSummaryFooter" />
+          </div>
+        </div>
+      </b-step-item>
 
-        <!--- Order -------------------------------------->
-        <b-step-item
-          step="4"
-          :label="$l('finished.title')"
-          icon="check"
-          :clickable="false"
-          disabled
-        >
-        </b-step-item>
-      </b-steps>
-    </div>
+      <!--- Order -------------------------------------->
+      <b-step-item
+        step="4"
+        :label="$l('finished.title')"
+        icon="check"
+        :clickable="false"
+        disabled
+      >
+      </b-step-item>
+    </b-steps>
   </ClientOnly>
 </template>
 <script>

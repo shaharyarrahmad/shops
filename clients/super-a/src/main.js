@@ -3,17 +3,27 @@ import 'buefy/dist/buefy.css';
 import Layout from '~/layouts/Default.vue';
 import '~/theme.scss';
 import '@fontsource/montserrat';
-import { configureVue } from 'pinelab-storefront-client';
-import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
-import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
 import VueGtag from 'vue-gtag';
+import { setLabelFunction, setStore } from 'pinelab-storefront';
+import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
+import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
+import { preconnectLinks } from 'pinelab-storefront';
+import { formatEuro } from 'pinelab-storefront';
 
 export default function (Vue, { router, head, isClient }) {
-  if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
-    require('outfront').default();
-    console.log('OutfrontJS mobile logging enabled');
-  }
+  head.link.push(...preconnectLinks);
+  setLabelFunction(Vue, require('../labels.json'));
+  Vue.filter('euro', formatEuro);
+  Vue.use(Buefy);
+  Vue.component('QuantityInput', QuantityInput);
+  Vue.component('Layout', Layout);
+  Vue.component('PopupImage', PopupImage);
   if (isClient) {
+    setStore(
+      Vue,
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
     Vue.use(
       VueGtag,
       {
@@ -28,11 +38,7 @@ export default function (Vue, { router, head, isClient }) {
       router
     );
   }
-  Vue.use(Buefy);
-  Vue.component('QuantityInput', QuantityInput);
-  Vue.component('Layout', Layout);
-  Vue.component('PopupImage', PopupImage);
-  configureVue(Vue, { router, head, isClient });
+  // ------------------ Client specific ---------------
   Vue.filter('formatDate', function (date) {
     if (date) {
       return new Date(date).toLocaleDateString('en', {

@@ -98,6 +98,10 @@ $link-focus-border: $primary;*/
   margin-top: 2rem;
 }
 
+.button {
+  @extend .is-primary;
+}
+
 h1 {
   @extend .title;
   @extend .is-2;

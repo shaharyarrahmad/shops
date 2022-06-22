@@ -74,8 +74,8 @@
   </div>
 </template>
 <script>
-import ShopNavBar from 'pinelab-storefront-client/lib/buefy-components/ShopNavbar';
-import Breadcrumb from 'pinelab-storefront-client/lib/buefy-components/Breadcrumb';
+import ShopNavBar from 'pinelab-storefront/lib/components/ShopNavbar';
+import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
 import Newsletter from '../components/Newsletter';
 import Consent from '../templates/Consent';
 import { bootstrap } from 'vue-gtag';
@@ -141,7 +141,9 @@ export default {
       console.log('ga approved');
     },
   },
-  mounted() {},
+  async mounted() {
+    await this.$vendure.getActiveOrder();
+  },
 };
 </script>
 <style>

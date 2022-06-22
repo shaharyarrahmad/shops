@@ -1,13 +1,15 @@
 <template>
   <Layout #content>
     <CheckoutSteps
-      previousPage="/cart/"
-      :availableCountries="$context.availableCountries"
-    />
+      :vendure="$vendure"
+      :store="$store"
+      :available-countries="$context.availableCountries"
+    >
+    </CheckoutSteps>
   </Layout>
 </template>
 <script>
-import CheckoutSteps from 'pinelab-storefront-client/lib/buefy-components/CheckoutSteps';
+import CheckoutSteps from 'pinelab-storefront/lib/pages/CheckoutSteps';
 
 export default {
   components: {

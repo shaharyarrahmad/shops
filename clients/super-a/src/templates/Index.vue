@@ -85,8 +85,8 @@
 </template>
 
 <script>
-import ProductCard from 'pinelab-storefront-client/lib/buefy-components/ProductCard';
-import { hydrate } from 'pinelab-storefront-client';
+import ProductCard from 'pinelab-storefront/lib/components/ProductCard';
+import { hydrate } from 'pinelab-storefront';
 
 export default {
   components: {

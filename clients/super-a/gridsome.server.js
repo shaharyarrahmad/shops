@@ -1,32 +1,31 @@
-const { GridsomeService } = require('pinelab-storefront-client');
 const { GET_CONTENT } = require('./content.queries');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { VendureServer } = require('pinelab-storefront');
+const { GraphQLClient } = require('graphql-request');
 
 module.exports = async function (api) {
-  /*  api.chainWebpack(config => {
-    config.plugin('BundleAnalyzerPlugin').use(BundleAnalyzerPlugin, [{ analyzerMode: 'static' }]);
-  });*/
-
   api.createPages(async ({ createPage, graphql }) => {
-    const gridsome = new GridsomeService(graphql);
-    const [shopData, content] = await Promise.all([
-      gridsome.getShopData(),
-      graphql(GET_CONTENT),
-    ]);
-    const { products, collections, productsPerCollection, availableCountries } =
-      shopData;
-    const {
-      data: {
-        Directus: {
-          supera_algemeen: global,
-          supera_home: home,
-          supera_news: news,
-          supera_projects: projects,
-          supera_biography: bio,
-          supera_terms_conditions: terms,
-        },
+    const vendureServer = new VendureServer(
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
+    const directus = new GraphQLClient(
+      `${process.env.GRIDSOME_DIRECTUS_HOST}/graphql`
+    );
+
+    const [
+      { products, collections, productsPerCollection, availableCountries },
+      {
+        supera_algemeen: global,
+        supera_home: home,
+        supera_news: news,
+        supera_projects: projects,
+        supera_biography: bio,
+        supera_terms_conditions: terms,
       },
-    } = content;
+    ] = await Promise.all([
+      vendureServer.getShopData(),
+      directus.request(GET_CONTENT),
+    ]);
 
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
