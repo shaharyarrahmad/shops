@@ -27,26 +27,6 @@ module.exports = async function (api) {
       directus.request(GET_CONTENT),
     ]);
 
-    /*    const gridsome = new GridsomeService(graphql);
-    const [shopData, content] = await Promise.all([
-      gridsome.getShopData(),
-      graphql(GET_CONTENT)
-    ]);*/
-    /*    const { products, collections, productsPerCollection, availableCountries } =
-      shopData;
-    const {
-      data: {
-        Directus: {
-          supera_algemeen: global,
-          supera_home: home,
-          supera_news: news,
-          supera_projects: projects,
-          supera_biography: bio,
-          supera_terms_conditions: terms
-        }
-      }
-    } = content;*/
-
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
     );
