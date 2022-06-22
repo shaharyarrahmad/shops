@@ -15,7 +15,6 @@ const products = {
   // 'loop-colors-400ml': 396,
   // 'loop-colors-maxi-600ml': 513,
   'loop-colors-asphalt-400ml': 407,
-  'loop-colors-asphalt-600ml': 513,
   'loop-colors-fluorescent-400ml': 418,
   'loop-colors-metallic-400ml': 407,
   'loop-colors-transparent-400ml': 396,

@@ -39,6 +39,9 @@ export default function (Vue, { router, head, isClient }) {
       maybeThumbnail(asset) {
         return asset?.thumbnail;
       },
+      maybePreview(asset) {
+        return asset?.preview;
+      },
     },
   });
   // Get image by ID from directus

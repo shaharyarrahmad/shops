@@ -2,7 +2,7 @@
   <DefaultLayout #content>
     <div class="columns is-mobile">
       <div class="column is-6-mobile is-3-tablet">
-        <img :src="$context.product.featuredAsset.preview" />
+        <img :src="maybePreview($context.product.featuredAsset)" />
       </div>
       <div class="column">
         <h1 class="title">{{ $context.product.name }}</h1>
