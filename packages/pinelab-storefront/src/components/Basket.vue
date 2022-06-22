@@ -1,0 +1,193 @@
+<template>
+  <div class="is-inline">
+    <span class="icon is-large">
+      <a @click="sideBasketOpen = true">
+        <slot />
+      </a>
+    </span>
+    <span class="cart-badge">{{ nrOfItems }}</span>
+
+    <!-------------------------   Sidemenu ----------------------->
+    <ClientOnly>
+      <b-sidebar
+        type="is-white"
+        :fullheight="true"
+        :fullwidth="false"
+        :overlay="true"
+        :right="true"
+        v-model="sideBasketOpen"
+      >
+        <div class="p-2" id="side-basket">
+          <div class="has-text-centered mb-2">
+            <h3>{{ $l('basket.title') }}</h3>
+          </div>
+
+          <div class="is-size-7">
+            <table class="table">
+              <tbody>
+                <template v-for="line of lines">
+                  <tr>
+                    <td class="px-0">
+                      <img
+                        :src="line.featuredAsset.thumbnail"
+                        class="is-rounded"
+                      />
+                    </td>
+                    <td>
+                      <p class="mb-0">{{ line.productVariant.name }}</p>
+                      {{ line.quantity }} x
+                      {{ line.productVariant.priceWithTax | euro }}
+                    </td>
+                    <td>
+                      <b-icon
+                        class="is-clickable"
+                        size="is-small"
+                        icon="close"
+                        @click.native="vendure.adjustOrderLine(line.id, 0)"
+                      />
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+
+          <template v-if="lines.length > 0">
+            <table style="width: 100%">
+              <tr>
+                <td>{{ $l('basket.shipping-cost') }}</td>
+                <td class="has-text-right">
+                  <strong>{{ order.shippingWithTax | euro }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ $l('basket.total') }}</td>
+                <td class="has-text-right">
+                  <strong>{{ order.totalWithTax | euro }}</strong>
+                </td>
+              </tr>
+            </table>
+            <br />
+            <b-button
+              type="is-outlined is-fullwidth mb-2"
+              icon-left="basket"
+              @click="
+                $emit('cart-button-clicked');
+                sideBasketOpen = false;
+              "
+            >
+              {{ $l('basket.go-to-cart') }}
+            </b-button>
+            <b-button
+              type="is-fullwidth"
+              icon-left="run-fast"
+              @click="
+                $emit('checkout-button-clicked');
+                sideBasketOpen = false;
+              "
+            >
+              {{ $l('basket.go-to-checkout') }}
+            </b-button>
+          </template>
+          <template v-else> {{ $l('basket.empty-cart') }}</template>
+        </div>
+      </b-sidebar>
+    </ClientOnly>
+  </div>
+</template>
+<script>
+import { VendureClient } from '../vendure/vendure.client';
+import { Store } from '../vendure/types';
+
+export default {
+  emits: ['cart-button-clicked', 'checkout-button-clicked'],
+  props: {
+    emitter: {
+      type: Object,
+      required: true,
+    },
+    vendure: {
+      type: VendureClient,
+      required: true,
+    },
+    store: {
+      type: [Store, Object],
+      required: true,
+    },
+  },
+  data() {
+    return {
+      sideBasketOpen: false,
+    };
+  },
+  async mounted() {
+    this.emitter.on('productAdded', this.showNotificationBar);
+    this.emitter.on('error', this.showError);
+  },
+  beforeDestroy() {
+    this.emitter.off('productAdded', this.showNotificationBar);
+    this.emitter.off('error', this.showError);
+  },
+  computed: {
+    nrOfItems() {
+      if (this.store?.activeOrder?.lines?.length === 0) {
+        return 0;
+      }
+      return (
+        this.store?.activeOrder?.lines
+          ?.map((l) => l.quantity)
+          ?.reduce((quantity1, quantity2) => quantity1 + quantity2) || 0
+      );
+    },
+    lines() {
+      return this.store?.activeOrder?.lines || [];
+    },
+    order() {
+      return this.store?.activeOrder || {};
+    },
+  },
+  methods: {
+    showNotificationBar(event) {
+      const message =
+        event.quantity > 0
+          ? `${event.quantity} toegevoegd aan winkelmand`
+          : `${event.quantity * -1} verwijderd uit winkelmand`;
+      this.$buefy.snackbar.open({
+        message,
+        position: 'is-top-right',
+        type: 'is-light',
+        actionText: 'Naar winkelmand',
+        pauseOnHover: true,
+        duration: 5000,
+        onAction: () => {
+          this.$router.push('/winkelmand/');
+        },
+      });
+    },
+    showError(e) {
+      this.$buefy.toast.open({
+        message: `Error: ${e?.message}`,
+        duration: 5000,
+        position: 'is-bottom',
+        type: 'is-danger',
+      });
+    },
+  },
+};
+</script>
+<style>
+.cart-badge {
+  background: black;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 12px;
+  color: white;
+}
+
+#side-basket img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+</style>

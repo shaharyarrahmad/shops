@@ -97,8 +97,6 @@ export const GET_COLLECTIONS = gql`
             items {
               product {
                 id
-                name
-                slug
               }
             }
           }

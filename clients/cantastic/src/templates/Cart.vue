@@ -15,18 +15,10 @@
             <CartItemsTable :active-order="activeOrder" :vendure="$vendure" />
           </div>
           <div class="column is-4">
-            <OrderSummary
-              class="mb-5"
-              shipping-label="Verzendkosten"
-              subtotal-label="Subtotaal (incl. korting)"
-              total-label="Totaal"
-              summary-title="Samenvatting"
-              :order="activeOrder"
-            >
+            <OrderSummary class="mb-5" :order="activeOrder">
               <template #middle>
                 <CouponInput
                   class="pt-2"
-                  coupon-label="Kortingscode"
                   :vendure="$vendure"
                   :applied-coupons="activeOrder.couponCodes"
                 />
@@ -53,9 +45,9 @@
   </DefaultLayout>
 </template>
 <script>
-import CartItemsTable from 'pinelab-storefront/lib/ui/organisms/CartItemsTable';
-import OrderSummary from 'pinelab-storefront/lib/ui/molecules/OrderSummary';
-import CouponInput from 'pinelab-storefront/lib/ui/organisms/CouponInput';
+import CartItemsTable from 'pinelab-storefront/lib/components/CartItemsTable';
+import OrderSummary from 'pinelab-storefront/lib/components/OrderSummary';
+import CouponInput from 'pinelab-storefront/lib/components/CouponInput';
 
 export default {
   components: {

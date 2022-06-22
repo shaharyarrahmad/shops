@@ -21,12 +21,28 @@
                 >
                 </i>
               </span>
-              <a href="/#contact">
-                <span class="is-hidden-mobile"
-                  ><b-icon icon="whatsapp" size="is-medium"></b-icon
-                ></span>
-              </a>
-              <Basket />
+              <span class="is-hidden-mobile icon is-medium">
+                <a
+                  :href="`https://wa.me/${$context.phoneNr}`"
+                  target="_blank"
+                  style="z-index: 99"
+                >
+                  <i class="has-text-white mdi mdi-whatsapp mdi-36px"></i>
+                </a>
+              </span>
+              <Basket
+                :vendure="$vendure"
+                :store="$store"
+                :emitter="$emitter"
+                @cart-button-clicked="
+                  $router.push('/winkelmand/').catch((e) => {})
+                "
+                @checkout-button-clicked="
+                  $router.push('/checkout/').catch((e) => {})
+                "
+              >
+                <i class="mdi mdi-basket mdi-48px has-text-white"></i>
+              </Basket>
             </div>
           </div>
         </div>
@@ -168,6 +184,24 @@
                 <div v-html="usp" class="pl-2"></div>
               </div>
             </template>
+            <!-- TrustBox widget - Micro Review Count -->
+            <div
+              id="trustbox"
+              class="trustpilot-widget"
+              data-locale="nl-NL"
+              data-template-id="5419b6a8b0d04a076446a9ad"
+              data-businessunit-id="61e6fa1b81425751f3715d7f"
+              data-style-height="35px"
+              data-style-width="100%"
+              data-theme="light"
+            >
+              <a
+                href="https://nl.trustpilot.com/review/cantastic.nl"
+                target="_blank"
+                rel="noopener"
+                >Trustpilot</a
+              >
+            </div>
           </div>
           <br />
           <Breadcrumb
@@ -229,25 +263,17 @@
           </div>
           <div class="column is-3">
             <h5>Service</h5>
-            <g-link to="/over-ons">Bestelling & verzending</g-link>
-            <br />
-            <g-link to="/over-ons">Betalen</g-link>
-            <br />
-            <g-link to="/over-ons">Klachten</g-link>
-            <br />
-            <g-link to="/over-ons">FAQ</g-link>
-            <br />
+            <template v-for="page of $context.servicePages">
+              <g-link :to="`/${page.slug}/`">{{ page.title }}</g-link>
+              <br />
+            </template>
           </div>
           <div class="column is-3">
             <h5>Over Cantastic</h5>
-            <g-link to="/over-ons">Over ons</g-link>
-            <br />
-            <g-link to="/over-ons">Contact</g-link>
-            <br />
-            <g-link to="/over-ons">Algemene voorwaarden</g-link>
-            <br />
-            <g-link to="/over-ons">Blog</g-link>
-            <br />
+            <template v-for="page of $context.aboutPages">
+              <g-link :to="`/${page.slug}/`">{{ page.title }}</g-link>
+              <br />
+            </template>
           </div>
           <div class="column is-3 pb-4" style="border-bottom: 1px solid">
             <h3>Volg @Cantastic.nl en #TeamJoopie</h3>
@@ -284,15 +310,15 @@
       close-button-aria-label="Close"
       aria-modal
     >
-      <div class="card" style="margin-top: -200px">
+      <div class="card">
         <Search />
       </div>
     </b-modal>
   </div>
 </template>
 <script>
-import Breadcrumb from 'pinelab-storefront/lib/ui/molecules/Breadcrumb';
-import Basket from '../components/Basket';
+import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
+import Basket from 'pinelab-storefront/lib/components/Basket';
 import Search from '../components/Search';
 
 export default {
@@ -355,6 +381,15 @@ export default {
     activeOrder() {
       return this.$store?.activeOrder;
     },
+  },
+  async mounted() {
+    await this.$vendure.getActiveOrder();
+    this.$nextTick(() => {
+      const trustbox = document.getElementById('trustbox');
+      if (trustbox) {
+        window.Trustpilot?.loadFromElement(trustbox);
+      }
+    });
   },
 };
 </script>

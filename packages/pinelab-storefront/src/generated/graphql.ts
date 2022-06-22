@@ -3406,10 +3406,7 @@ export type CollectionFieldsFragment = { __typename?: 'Collection' } & Pick<
     productVariants: { __typename?: 'ProductVariantList' } & {
       items: Array<
         { __typename?: 'ProductVariant' } & {
-          product: { __typename?: 'Product' } & Pick<
-            Product,
-            'id' | 'name' | 'slug'
-          >;
+          product: { __typename?: 'Product' } & Pick<Product, 'id'>;
         }
       >;
     };
@@ -3478,12 +3475,7 @@ export type OrderFieldsFragment = { __typename?: 'Order' } & Pick<
           productVariant: { __typename?: 'ProductVariant' } & Pick<
             ProductVariant,
             'id' | 'sku' | 'name' | 'priceWithTax'
-          > & {
-              product: { __typename?: 'Product' } & Pick<
-                Product,
-                'id' | 'name' | 'slug'
-              >;
-            };
+          > & { product: { __typename?: 'Product' } & Pick<Product, 'id'> };
         }
     >;
     taxSummary: Array<

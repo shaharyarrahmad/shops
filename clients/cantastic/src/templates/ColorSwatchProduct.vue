@@ -37,7 +37,7 @@
   </DefaultLayout>
 </template>
 <script>
-import ProductImages from 'pinelab-storefront/lib/ui/organisms/ProductImages';
+import ProductImages from 'pinelab-storefront/lib/components/ProductImages';
 import SwatchBlock from '../components/SwatchBlock';
 import { hydrate } from 'pinelab-storefront';
 
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     getChunks(variants) {
-      const chunkSize = Math.ceil(variants.length / 4);
+      const chunkSize = Math.ceil(variants.length / 3);
       const chunks = [];
       for (let i = 0; i < variants.length; i += chunkSize) {
         chunks.push(variants.slice(i, i + chunkSize));

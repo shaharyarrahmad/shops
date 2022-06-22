@@ -94,8 +94,6 @@ export const ORDER_FIELDS = gql`
         priceWithTax
         product {
           id
-          slug
-          name
         }
       }
     }

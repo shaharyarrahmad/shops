@@ -9,8 +9,9 @@ import '~/theme.scss';
 import ProductCard from './components/ProductCard';
 import CategoryCard from './components/CategoryCard';
 import { preconnectLinks, setStore } from 'pinelab-storefront';
-import QuantityInput from 'pinelab-storefront/lib/ui/molecules/QuantityInput';
-import PopupImage from 'pinelab-storefront/lib/ui/molecules/PopupImage';
+import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
+import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
+import { setLabelFunction } from 'pinelab-storefront';
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);
@@ -32,6 +33,7 @@ export default function (Vue, { router, head, isClient }) {
       console.log('OutfrontJS mobile logging enabled');
     }
   }
+  setLabelFunction(Vue, require('../labels.json'));
   Vue.mixin({
     methods: {
       maybeThumbnail(asset) {

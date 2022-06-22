@@ -9,24 +9,17 @@
         <br />
       </section>
 
-      <section id="favorite-products">
-        <p>Bekijk anders een van onze favorieten:</p>
-        <div class="columns is-6 is-variable is-multiline is-mobile">
-          <template v-for="favorite of $context.favorites">
-            <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
-              <ProductCard :product="favorite" />
-            </div>
-          </template>
-        </div>
-      </section>
+      <FavoritesSection :favorites="$context.favorites" />
     </template>
   </DefaultLayout>
 </template>
 
 <script>
 import { hydrate } from 'pinelab-storefront';
+import FavoritesSection from '../components/FavoritesSection';
 
 export default {
+  components: { FavoritesSection },
   async mounted() {
     await hydrate(this.$context.favorites, this.$vendure);
   },

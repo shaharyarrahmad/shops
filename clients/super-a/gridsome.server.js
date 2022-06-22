@@ -32,6 +32,12 @@ module.exports = async function (api) {
       p.facetValues.find((value) => value.code === 'featured')
     );
 
+    projects.sort((p1, p2) => {
+      p1.datum = p1.datum ? new Date(p1.datum) : undefined;
+      p2.datum = p2.datum ? new Date(p2.datum) : undefined;
+      return p1.datum - p2.datum;
+    });
+
     // Breadcrumb pages
     const Home = '/';
     const Shop = '/shop/';
