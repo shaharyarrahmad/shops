@@ -163,6 +163,8 @@ module.exports = async function (api) {
         highlight3,
         shortAbout,
         blogs: blogs.slice(0, 3),
+        brands: collections.find((collection) => collection.slug === 'merken')
+          .children,
       },
     });
 

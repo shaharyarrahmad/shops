@@ -43,12 +43,12 @@
                 v-html="$context.collection.description"
                 class="collapsed-1 content mb-0"
               ></div>
-              <div class="has-text-right">
+              <div v-if="isDescriptionLongEnough" class="has-text-right">
                 <a href="#full-description">Lees meer</a>
               </div>
               <br />
             </template>
-            <div class="has-text-right">
+            <div v-if="totalProducts > 5" class="has-text-right">
               <b>{{ $context.products.length }}</b> producten |
               <b-select
                 placeholder="Sorteer op"
@@ -72,7 +72,7 @@
 
             <!-------------- Pagination ----------------------->
             <br />
-            <div v-if="$context.products.length > itemsPerPage" class="columns">
+            <div v-if="totalProducts > itemsPerPage" class="columns">
               <div class="column">
                 <Pagination
                   :total="$context.products.length"
@@ -85,7 +85,7 @@
 
         <div
           id="full-description"
-          v-if="$context.collection.description"
+          v-if="isDescriptionLongEnough"
           v-html="$context.collection.description"
         ></div>
       </section>
@@ -102,11 +102,18 @@ export default {
       itemsPerPage: 24,
       products: [],
       sortedBy: 'price-asc',
+      totalProducts: 0,
     };
   },
   created() {
     this.loadFirstPage();
     this.sort(this.sortedBy);
+    this.totalProducts = this.$context.products?.length;
+  },
+  computed: {
+    isDescriptionLongEnough() {
+      return this.$context.collection?.description?.length > 100;
+    },
   },
   methods: {
     setPage({ start, end }) {
