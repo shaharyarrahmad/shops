@@ -6,8 +6,13 @@
         <ProductImages :product="$context.product" :variant="variant" />
       </div>
       <div class="column content">
-        <h5 class="has-text-grey is-size-5">{{ variant.name }}</h5>
-        <h5 class="is-size-5 mb-4">{{ variant.priceWithTax | euro }}</h5>
+        <h5
+          v-if="$context.product.variants.length > 1"
+          class="has-text-grey is-size-5"
+        >
+          {{ variant.name }}
+        </h5>
+        <h2 class="is-size-2 mb-4">{{ variant.priceWithTax | euro }}</h2>
         <VariantSelector
           v-if="$context.product.variants.length > 1"
           :product="$context.product"
@@ -15,14 +20,23 @@
           v-on:select="selectedVariant = $event"
         />
         <br />
-        <b-button
-          class="is-primary is-fullwidth"
-          :loading="isLoading"
-          :disabled="isSoldOut"
-          aria-label="In winkelmand"
-          v-on:click="buy()"
-          >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
-        </b-button>
+        <div class="columns is-mobile">
+          <div class="column is-4">
+            <b-numberinput v-model="quantity" :disabled="isSoldOut">
+            </b-numberinput>
+          </div>
+          <div class="column is-8">
+            <b-button
+              icon-left="basket-plus"
+              class="is-primary is-fullwidth"
+              :loading="isLoading"
+              :disabled="isSoldOut"
+              aria-label="In winkelmand"
+              v-on:click="buy()"
+              >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
+            </b-button>
+          </div>
+        </div>
         <br />
         <div v-html="$context.product.description"></div>
       </div>
@@ -55,6 +69,7 @@ export default {
     return {
       selectedVariant: undefined,
       isLoading: false,
+      quantity: 1,
     };
   },
   async mounted() {
