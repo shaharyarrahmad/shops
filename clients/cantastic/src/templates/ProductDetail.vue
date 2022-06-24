@@ -76,4 +76,8 @@ export default {
 .is-clickable.image {
   cursor: zoom-in !important;
 }
+.carousel-arrow .icon {
+  border: 1px solid #333232;
+  opacity: 1;
+}
 </style>

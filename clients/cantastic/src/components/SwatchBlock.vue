@@ -8,7 +8,7 @@
       >
         {{ variant.options[0].name }}
       </div>
-      <div class="column p-0">
+      <div class="column p-0 swatch">
         <b-numberinput
           size="is-small"
           v-on:input="buy()"
@@ -91,5 +91,16 @@ export default {
 .disabled-swatch {
   text-decoration: line-through;
   opacity: 0.5;
+}
+.swatch .button {
+  background-color: var(--loop-soft-dark);
+}
+.swatch .button:active,
+.swatch .button:hover {
+  background-color: var(--loop-soft-dark);
+  opacity: 0.9;
+}
+.swatch .button[disabled] {
+  background-color: var(--loop-soft-dark);
 }
 </style>

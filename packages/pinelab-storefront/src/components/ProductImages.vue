@@ -1,10 +1,28 @@
 <template>
   <div>
+    <b-carousel
+      v-if="assets.length > 1"
+      :arrow="true"
+      :repeat="false"
+      :arrow-hover="false"
+      icon-pack="mdi"
+      :autoplay="false"
+    >
+      <b-carousel-item v-for="(asset, i) in assets" :key="i">
+        <PopupImage
+          :small="getPreview(asset)"
+          :alt="product.name"
+          :large="getPreview(asset)"
+          :assets="assetPreviews"
+        />
+      </b-carousel-item>
+    </b-carousel>
     <PopupImage
-      :small="getPreview(asset)"
+      v-else
+      :small="getPreview(featuredAsset)"
       :alt="product.name"
-      :large="getPreview(asset)"
-      class="mb-4"
+      :large="getPreview(featuredAsset)"
+      :assets="assetPreviews"
     />
     <div class="columns mt-2 is-5 is-mobile is-multiline">
       <div
@@ -12,14 +30,12 @@
         v-if="assets.length > 1"
         v-for="asset of assets"
       >
-        <div @click="selectedAsset = asset">
-          <b-image
-            :src="getThumbnail(asset)"
-            :alt="product.name"
-            ratio="1by1"
-            class="is-clickable"
-          />
-        </div>
+        <PopupImage
+          :small="getThumbnail(asset)"
+          :alt="product.name"
+          :large="getPreview(asset)"
+          :assets="assetPreviews"
+        />
       </div>
     </div>
   </div>
@@ -31,31 +47,25 @@ export default {
       required: true,
     },
     variant: {
-      required: true,
-    },
-  },
-  watch: {
-    variant() {
-      this.selectedAsset = undefined;
+      required: false,
     },
   },
   data() {
-    return {
-      selectedAsset: undefined,
-    };
+    return {};
   },
   computed: {
-    asset() {
-      return (
-        this.selectedAsset ||
-        this.variant?.featuredAsset ||
-        this.product?.featuredAsset
-      );
+    featuredAsset() {
+      return this.variant?.featuredAsset || this.product?.featuredAsset;
+    },
+    assetPreviews() {
+      return this.assets.map((a) => a?.preview);
     },
     assets() {
-      return this.variant?.assets?.length > 0
-        ? this.variant?.assets
-        : this.product?.assets || [];
+      return this.sortByFeaturedAssetFirst(
+        this.variant?.assets?.length > 0
+          ? this.variant?.assets
+          : this.product?.assets || []
+      );
     },
   },
   methods: {
@@ -64,6 +74,16 @@ export default {
     },
     getThumbnail(asset) {
       return asset?.thumbnail;
+    },
+    sortByFeaturedAssetFirst(assets) {
+      // Set featuredAsset as first in array
+      return assets.sort((a1, a2) =>
+        a1.id === this.featuredAsset.id
+          ? -1
+          : a2.id === this.featuredAsset.id
+          ? 1
+          : 0
+      );
     },
   },
 };

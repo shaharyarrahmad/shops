@@ -196,7 +196,7 @@ module.exports = async function (api) {
           }
         }
       }
-      let component = 'Product.vue';
+      let component = 'ProductDetail.vue';
       const swatchFacet = product.facetValues.find(
         (f) => f.code.indexOf('swatch') > -1
       );

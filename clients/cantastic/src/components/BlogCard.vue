@@ -30,4 +30,8 @@ export default {
   width: 100%;
   object-fit: cover;
 }
+.blog-card-image:hover,
+.blog-card-image:focus {
+  opacity: 0.9;
+}
 </style>

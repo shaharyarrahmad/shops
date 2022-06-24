@@ -13,10 +13,13 @@ $loop-grey: #e7e7e7;
 $loop-white: #ffffff;
 $loop-green: #0CCE6B;
 $loop-orange: #F7DBA7;
+:root {
+  --loop-soft-dark: #333232;
+}
 
 $text: $loop-soft-dark;
 /*$primary: $loop-red;*/
-$primary: $loop-soft-dark;
+$primary: $loop-blue;
 $link: $loop-blue2;
 $info: $loop-blue;
 $success: $loop-green;

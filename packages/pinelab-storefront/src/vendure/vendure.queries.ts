@@ -6,6 +6,7 @@ export const PRODUCT_FIELDS = gql`
     name
     slug
     assets {
+      id
       preview
       thumbnail
     }
