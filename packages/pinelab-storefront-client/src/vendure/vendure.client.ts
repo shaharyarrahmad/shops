@@ -123,7 +123,7 @@ export class VendureClient {
     });
     this.validateResult(addItemToOrder);
     this.store.activeOrder = addItemToOrder as OrderFieldsFragment;
-    this.setDefaultShippingMethod().catch((e) => console.error(e)); // async
+    await this.setDefaultShippingMethod();
     return addItemToOrder as OrderFieldsFragment;
   }
 

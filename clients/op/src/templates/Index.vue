@@ -74,8 +74,8 @@
                     native-type="submit"
                     type="is-danger"
                     :loading="loading"
-                    >Koop het boek</b-button
-                  >
+                    >Koop het boek
+                  </b-button>
 
                   <b-tooltip
                     label="Je betaalt veilig met iDeal"
@@ -177,12 +177,6 @@ export default {
       try {
         this.loading = true;
         await this.prepareOrder();
-        await this.$vendure.setCustomerForOrder({
-          firstName: this.emailAddress,
-          lastName: 'e-book',
-          emailAddress: this.emailAddress,
-        });
-        console.log(`Added customer`);
         const redirect = await this.$vendure.createMolliePaymentIntent(
           'mollie-payment-op'
         );
@@ -207,15 +201,18 @@ export default {
         1
       );
       console.log('Added 1 ebook to cart');
-      if (!this.$store?.activeOrder?.shippingAddress?.streetLine1) {
-        await this.$vendure.setOrderShippingAddress({
-          fullName: this.emailAddress,
-          streetLine1: 'E-book',
-          countryCode: 'nl',
-        });
-        console.log('Setting address');
-      }
-      console.log('Prepared order');
+      await this.$vendure.setCustomerForOrder({
+        firstName: this.emailAddress,
+        lastName: 'e-book',
+        emailAddress: this.emailAddress,
+      });
+      console.log(`Added customer`);
+      await this.$vendure.setOrderShippingAddress({
+        fullName: this.emailAddress,
+        streetLine1: 'E-book',
+        countryCode: 'nl',
+      });
+      console.log('Added address');
     },
     showError(message) {
       this.$buefy.snackbar.open({
