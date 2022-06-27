@@ -63,7 +63,19 @@
 
       <section id="brands">
         <h3>Onze merken</h3>
-        <p>TODO</p>
+        <div class="columns is-multiline is-mobile">
+          <template v-for="collection of $context.brands">
+            <div class="column is-4-mobile is-3-tablet is-2-desktop">
+              <g-link :to="`/categorie/${collection.slug}/`">
+                <LogoCard
+                  :logo="maybeThumbnail(collection.featuredAsset)"
+                  :name="collection.name"
+                >
+                </LogoCard>
+              </g-link>
+            </div>
+          </template>
+        </div>
       </section>
     </template>
   </DefaultLayout>
@@ -74,12 +86,14 @@ import { hydrate } from 'pinelab-storefront';
 import HighlightCard from '../components/HighlightCard';
 import BlogCard from '../components/BlogCard';
 import FavoritesSection from '../components/FavoritesSection';
+import LogoCard from '../components/LogoCard';
 
 export default {
   components: {
     BlogCard,
     HighlightCard,
     FavoritesSection,
+    LogoCard,
   },
   async mounted() {
     await this.$vendure.getActiveOrder();

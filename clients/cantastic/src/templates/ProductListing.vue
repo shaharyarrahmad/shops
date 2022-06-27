@@ -38,17 +38,12 @@
                 {{ collection.name }}<br />
               </g-link>
             </div>
-            <template v-if="$context.collection.description">
-              <div
-                v-html="$context.collection.description"
-                class="collapsed-1 content mb-0"
-              ></div>
-              <div class="has-text-right">
-                <a href="#full-description">Lees meer</a>
-              </div>
-              <br />
-            </template>
-            <div class="has-text-right">
+            <ReadMoreDescription
+              :description="$context.collection.description"
+              max-length="100"
+              collapse="1"
+            />
+            <div v-if="totalProducts > 5" class="has-text-right">
               <b>{{ $context.products.length }}</b> producten |
               <b-select
                 placeholder="Sorteer op"
@@ -72,7 +67,7 @@
 
             <!-------------- Pagination ----------------------->
             <br />
-            <div v-if="$context.products.length > itemsPerPage" class="columns">
+            <div v-if="totalProducts > itemsPerPage" class="columns">
               <div class="column">
                 <Pagination
                   :total="$context.products.length"
@@ -85,7 +80,6 @@
 
         <div
           id="full-description"
-          v-if="$context.collection.description"
           v-html="$context.collection.description"
         ></div>
       </section>
@@ -94,19 +88,22 @@
 </template>
 <script>
 import Pagination from '../components/Pagination';
+import ReadMoreDescription from '../components/ReadMoreDescription';
 export default {
-  components: { Pagination },
+  components: { ReadMoreDescription, Pagination },
   data() {
     return {
       current: 1,
       itemsPerPage: 24,
       products: [],
       sortedBy: 'price-asc',
+      totalProducts: 0,
     };
   },
   created() {
     this.loadFirstPage();
     this.sort(this.sortedBy);
+    this.totalProducts = this.$context.products?.length;
   },
   methods: {
     setPage({ start, end }) {

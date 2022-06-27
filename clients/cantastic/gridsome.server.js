@@ -34,6 +34,7 @@ module.exports = async function (api) {
           instagram,
           facebook,
           usps,
+          review_rating,
         },
         cantastic_paginas: pages,
       },
@@ -75,6 +76,7 @@ module.exports = async function (api) {
       facebook,
       phoneNr: telefoon,
       usps: usps.split(','),
+      rating: review_rating,
     };
 
     // Helper functions
@@ -163,6 +165,8 @@ module.exports = async function (api) {
         highlight3,
         shortAbout,
         blogs: blogs.slice(0, 3),
+        brands: collections.find((collection) => collection.slug === 'merken')
+          .children,
       },
     });
 
@@ -194,7 +198,7 @@ module.exports = async function (api) {
           }
         }
       }
-      let component = 'Product.vue';
+      let component = 'ProductDetail.vue';
       const swatchFacet = product.facetValues.find(
         (f) => f.code.indexOf('swatch') > -1
       );

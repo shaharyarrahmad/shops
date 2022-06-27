@@ -13,10 +13,13 @@ $loop-grey: #e7e7e7;
 $loop-white: #ffffff;
 $loop-green: #0CCE6B;
 $loop-orange: #F7DBA7;
+:root {
+  --loop-soft-dark: #333232;
+}
 
 $text: $loop-soft-dark;
 /*$primary: $loop-red;*/
-$primary: $loop-soft-dark;
+$primary: $loop-blue;
 $link: $loop-blue2;
 $info: $loop-blue;
 $success: $loop-green;
@@ -30,6 +33,8 @@ $title-color: $loop-soft-dark;
 
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
+
+$rate-color-active: #51B27E;
 
 // Lists and maps
 $custom-colors: null !default;
@@ -233,16 +238,6 @@ section {
 .card-background-image:hover,
 .card-background-image:focus {
   box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.05);
-}
-
-/* Make hastag navigation move to center instead of all the way to the top */
-#full-description::before {
-  display: block;
-  content: ' ';
-  margin-top: -285px;
-  height: 285px;
-  visibility: hidden;
-  pointer-events: none;
 }
 
 .collapsed-1 {

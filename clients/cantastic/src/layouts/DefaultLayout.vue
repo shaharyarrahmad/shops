@@ -184,24 +184,29 @@
                 <div v-html="usp" class="pl-2"></div>
               </div>
             </template>
-            <!-- TrustBox widget - Micro Review Count -->
-            <div
-              id="trustbox"
-              class="trustpilot-widget"
-              data-locale="nl-NL"
-              data-template-id="5419b6a8b0d04a076446a9ad"
-              data-businessunit-id="61e6fa1b81425751f3715d7f"
-              data-style-height="35px"
-              data-style-width="100%"
-              data-theme="light"
+
+            <a
+              href="https://nl.trustpilot.com/review/cantastic.nl"
+              target="_blank"
+              rel="noopener"
             >
-              <a
-                href="https://nl.trustpilot.com/review/cantastic.nl"
-                target="_blank"
-                rel="noopener"
-                >Trustpilot</a
+              <b-rate
+                class="is-inline is-vcentered"
+                v-model="$context.rating"
+                icon="star-box"
+                :max="5"
+                locale="nl-NL"
+                :show-score="false"
+                :disabled="true"
               >
-            </div>
+              </b-rate>
+              <img
+                src="/img/trustpilot.png"
+                :alt="$context.rating"
+                style="height: 22px"
+                class="pl-4"
+              />
+            </a>
           </div>
           <br />
           <Breadcrumb
@@ -384,12 +389,6 @@ export default {
   },
   async mounted() {
     await this.$vendure.getActiveOrder();
-    this.$nextTick(() => {
-      const trustbox = document.getElementById('trustbox');
-      if (trustbox) {
-        window.Trustpilot?.loadFromElement(trustbox);
-      }
-    });
   },
 };
 </script>
@@ -470,6 +469,7 @@ a.navbar-item:hover,
 #icons .icon {
   padding-left: 60px;
 }
+
 #icons .icon {
   color: white !important;
 }

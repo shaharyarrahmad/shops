@@ -12,7 +12,7 @@ function setSwatchColors(product, facetCode, defaultColor) {
           key.toLowerCase() === variant.options[0].name.toLowerCase()
       )?.[1];
       if (!variant.bgColor) {
-        console.warn(
+        console.error(
           `No color found for ${variant.options[0].name} (${variant.name}) in ${facetCode}.json, using ${defaultColor}`
         );
         variant.bgColor = defaultColor;
@@ -43,7 +43,7 @@ function sortByColorChart(variants, colorChart) {
     if (posB === -1) {
       return -1; // If no posB, move A up
     } else if (posA === -1) {
-      return 1; // If no posB, move B up
+      return 1; // If no posA, move B up
     } else {
       return posA - posB;
     }

@@ -27,6 +27,7 @@ const GET_CONTENT = gql`
       instagram
       usps
       facebook
+      review_rating
     }
     cantastic_paginas {
       title

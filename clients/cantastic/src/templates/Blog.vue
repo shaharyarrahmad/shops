@@ -8,7 +8,9 @@
           <figure class="media-left">
             <p class="image is-64x64">
               <img
-                :src="getSquareImage($context.blog.user_created.avatar.id)"
+                :src="
+                  getSquareImage(maybeGetId($context.blog.user_created.avatar))
+                "
                 :alt="$context.blog.user_created.first_name"
                 class="is-rounded"
               />
@@ -53,6 +55,11 @@ export default {
   components: {
     BlogCard,
     FavoritesSection,
+  },
+  methods: {
+    maybeGetId(idHolder) {
+      return idHolder?.id;
+    },
   },
 };
 </script>
