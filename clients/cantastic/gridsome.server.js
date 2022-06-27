@@ -34,6 +34,7 @@ module.exports = async function (api) {
           instagram,
           facebook,
           usps,
+          review_rating,
         },
         cantastic_paginas: pages,
       },
@@ -75,6 +76,7 @@ module.exports = async function (api) {
       facebook,
       phoneNr: telefoon,
       usps: usps.split(','),
+      rating: review_rating,
     };
 
     // Helper functions

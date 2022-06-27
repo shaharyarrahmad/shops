@@ -45,15 +45,6 @@ export default {
 };
 </script>
 <style>
-#full-description::before {
-  display: block;
-  content: ' ';
-  margin-top: -285px;
-  height: 285px;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .siblings a:hover {
   text-decoration: underline;
 }

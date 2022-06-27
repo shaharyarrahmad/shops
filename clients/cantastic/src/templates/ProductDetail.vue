@@ -38,20 +38,40 @@
           </div>
         </div>
         <br />
-        <div v-html="$context.product.description"></div>
+        <ReadMoreDescription
+          :description="$context.product.description"
+          max-length="60"
+          collapse="3"
+        />
+        <br />
+        <template v-for="usp of $context.usps">
+          <div class="is-flex">
+            <b-icon
+              icon="crown-circle"
+              size="is-medium"
+              type="is-info"
+              class="is-vcentered"
+            ></b-icon>
+            <div v-html="usp" class="pl-2 mb-4"></div>
+          </div>
+        </template>
       </div>
     </div>
+    <h2 class="is-size-3">Productbeschrijving</h2>
+    <div id="full-description" v-html="$context.product.description"></div>
   </DefaultLayout>
 </template>
 <script>
 import ProductImages from 'pinelab-storefront/lib/components/ProductImages';
 import VariantSelector from 'pinelab-storefront/lib/components/VariantSelector';
+import ReadMoreDescription from '../components/ReadMoreDescription';
 import { buy, hydrate, isOutOfStock } from 'pinelab-storefront';
 
 export default {
   components: {
     ProductImages,
     VariantSelector,
+    ReadMoreDescription,
   },
   computed: {
     variant() {
@@ -91,6 +111,7 @@ export default {
 .is-clickable.image {
   cursor: zoom-in !important;
 }
+
 .carousel-arrow .icon {
   border: 1px solid #333232;
   opacity: 1;

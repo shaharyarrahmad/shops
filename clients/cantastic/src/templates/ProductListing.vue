@@ -38,16 +38,11 @@
                 {{ collection.name }}<br />
               </g-link>
             </div>
-            <template v-if="$context.collection.description">
-              <div
-                v-html="$context.collection.description"
-                class="collapsed-1 content mb-0"
-              ></div>
-              <div v-if="isDescriptionLongEnough" class="has-text-right">
-                <a href="#full-description">Lees meer</a>
-              </div>
-              <br />
-            </template>
+            <ReadMoreDescription
+              :description="$context.collection.description"
+              max-length="100"
+              collapse="1"
+            />
             <div v-if="totalProducts > 5" class="has-text-right">
               <b>{{ $context.products.length }}</b> producten |
               <b-select
@@ -85,7 +80,6 @@
 
         <div
           id="full-description"
-          v-if="isDescriptionLongEnough"
           v-html="$context.collection.description"
         ></div>
       </section>
@@ -94,8 +88,9 @@
 </template>
 <script>
 import Pagination from '../components/Pagination';
+import ReadMoreDescription from '../components/ReadMoreDescription';
 export default {
-  components: { Pagination },
+  components: { ReadMoreDescription, Pagination },
   data() {
     return {
       current: 1,
@@ -109,11 +104,6 @@ export default {
     this.loadFirstPage();
     this.sort(this.sortedBy);
     this.totalProducts = this.$context.products?.length;
-  },
-  computed: {
-    isDescriptionLongEnough() {
-      return this.$context.collection?.description?.length > 100;
-    },
   },
   methods: {
     setPage({ start, end }) {
