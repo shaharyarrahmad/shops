@@ -1,29 +1,39 @@
-# Pinelab storefront UI components
+# Pinelab storefront
 
-Bulma/buefy components used for the Pinelab storefronts
+This package holds:
+1. Vue components 
 
-## Guidelines
-
-### Components
-
-Components are standalone, they are unaware of any Vue context. They should only use properties that are passed in.
-
-```js
-// Cart organism
-export default {
-  props: {
-    vendure: VendureClient,
-  },
-  methods: {
-    async getActiveOrder() {
-      await this.vendure.getActiveOrder();
-      // This is wrong: this.$context.vendure...
-    }
+## Labels
+```json
+{
+  "basket": {
+    "title": "Winkelmand",
+    "shipping-cost": "Verzendkosten",
+    "total": "Totaal",
+    "go-to-cart": "Naar winkelmand",
+    "go-to-checkout": "Bestellen",
+    "empty-cart": "Je winkelmand is leeg... "
   }
 }
 ```
 
-### Pages
+
+## Components
+
+Components are standalone, they are unaware of any Vue context. The dependencies they use are passed in as Vue properties:
+
+```vue
+<template>
+  <CustomerDetailsForm
+    :available-countries="availableCountries"
+    :vendure="vendure"
+    @back="history.back()"
+    @submit="gotToShipping()"
+  />
+</template>
+```
+
+## Pages
 
 Pages consist of components. Pages can use the global `$l()` function to retrieve labels. See VueUtil.setLabelFunction()
 for more info.
