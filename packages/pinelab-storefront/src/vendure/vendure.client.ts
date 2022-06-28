@@ -124,6 +124,7 @@ export class VendureClient {
     return setCalculatedFields(product);
   }
 
+  @NoConcurrentRequests()
   async addProductToCart(
     productVariantId: string,
     quantity: number
@@ -152,7 +153,7 @@ export class VendureClient {
       return; // Selected is still eligible for this order
     }
     let defaultMethod = methods.find(
-      (method) => method.name?.indexOf('default') > -1
+      (method) => method.code?.indexOf('default') > -1
     );
     if (!defaultMethod) {
       defaultMethod = methods[0];
@@ -186,6 +187,7 @@ export class VendureClient {
     return setOrderShippingMethod as OrderFieldsFragment;
   }
 
+  @NoConcurrentRequests()
   async adjustOrderLine(
     orderLineId: string,
     quantity: number
@@ -336,6 +338,7 @@ export class VendureClient {
     >(GET_DROP_OFF_POINTS, { input });
     return myparcelDropOffPoints;
   }
+
   async setPickupLocationOnOrder(
     customFields: UpdateOrderCustomFieldsInput
   ): Promise<OrderFieldsFragment> {
@@ -392,4 +395,40 @@ export class VendureClient {
     }
     return data;
   }
+}
+
+let locked = false;
+
+/**
+ * Awaits other requests to finish before firing a new request.
+ * Requests are globally locked: if method1 acquired the lock,
+ * method2 will also await the request of method1
+ */
+function NoConcurrentRequests() {
+  return function (
+    target: Object,
+    key: string | symbol,
+    descriptor: PropertyDescriptor
+  ) {
+    const originalFunction = descriptor.value;
+    descriptor.value = async function (...args: any[]) {
+      for (let i = 0; i <= 20; i++) {
+        if (locked) {
+          // locked, we wait
+          await new Promise((resolve) => setTimeout(resolve, 200));
+          console.info(`Another request in flight, waiting ${i}...`);
+        } else {
+          // Not locked, we acquire lock
+          try {
+            locked = true;
+            // @ts-ignore
+            return await originalFunction.apply(this, args);
+          } finally {
+            locked = false;
+          }
+        }
+      }
+    };
+    return descriptor;
+  };
 }
