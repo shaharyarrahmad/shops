@@ -9,7 +9,7 @@
   </Layout>
 </template>
 <script>
-import CheckoutSteps from 'pinelab-storefront/lib/pages/CheckoutSteps';
+import CheckoutSteps from 'pinelab-storefront/lib/components/CheckoutSteps';
 
 export default {
   components: {
