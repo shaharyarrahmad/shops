@@ -22,12 +22,37 @@
             <h3>{{ $l('basket.title') }}</h3>
           </div>
 
+          <div v-if="lines.length > 5">
+            <br />
+            <b-button
+              type="is-outlined is-fullwidth mb-2"
+              icon-left="basket"
+              @click="
+                $emit('cart-button-clicked');
+                sideBasketOpen = false;
+              "
+            >
+              {{ $l('basket.go-to-cart') }}
+            </b-button>
+            <b-button
+              type="is-fullwidth"
+              icon-left="run-fast"
+              @click="
+                $emit('checkout-button-clicked');
+                sideBasketOpen = false;
+              "
+            >
+              {{ $l('basket.go-to-checkout') }}
+            </b-button>
+            <br />
+          </div>
+
           <div class="is-size-7">
             <table class="table">
               <tbody>
                 <template v-for="line of lines">
                   <tr>
-                    <td class="px-0">
+                    <td class="px-0" style="width: 50px">
                       <img
                         :src="line.featuredAsset.thumbnail"
                         class="is-rounded"

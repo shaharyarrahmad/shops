@@ -19,7 +19,7 @@
         <CustomerDetailsForm
           :available-countries="availableCountries"
           :vendure="vendure"
-          @back="history.back()"
+          @back="$router.go(-1)"
           @submit="gotToShipping()"
         ></CustomerDetailsForm>
       </b-step-item>
