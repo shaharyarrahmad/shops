@@ -15,6 +15,8 @@
           v-model="displayQuantity"
           :loading="isLoading"
           tabindex="1"
+          :min="0"
+          :max="999"
           :disabled="isOutOfStock"
         >
         </b-numberinput>
@@ -31,7 +33,6 @@ export default {
   data() {
     return {
       isLoading: false,
-      orderLine: undefined,
       displayQuantity: 0,
     };
   },
@@ -39,22 +40,28 @@ export default {
     isOutOfStock() {
       return this.variant.stockLevel === 'OUT_OF_STOCK';
     },
-  },
-  watch: {
-    '$store.activeOrder': function (order) {
-      // Show current amount of cart in swatch blocks
-      this.orderLine = order?.lines.find(
+    orderLine() {
+      return this.$store?.activeOrder?.lines.find(
         (line) => line.productVariant.id === this.variant.id
       );
+    },
+  },
+  watch: {
+    orderLine(order) {
+      // Show current amount of cart in swatch blocks
       this.displayQuantity = this.orderLine?.quantity || 0;
     },
   },
   methods: {
     async buy() {
       try {
+        if (this.displayQuantity < 0) {
+          return;
+        }
         this.isLoading = true;
-        if (!this.orderLine) {
-          // Buy because no existing orderLine
+        if (!this.orderLine && this.displayQuantity > 0) {
+          // Can only buy when bigger than 0
+          // Add item to cart because no existing orderLine
           await buy(
             this.variant,
             {
@@ -92,14 +99,17 @@ export default {
   text-decoration: line-through;
   opacity: 0.5;
 }
+
 .swatch .button {
   background-color: var(--loop-soft-dark);
 }
+
 .swatch .button:active,
 .swatch .button:hover {
   background-color: var(--loop-soft-dark);
   opacity: 0.9;
 }
+
 .swatch .button[disabled] {
   background-color: var(--loop-soft-dark);
 }
