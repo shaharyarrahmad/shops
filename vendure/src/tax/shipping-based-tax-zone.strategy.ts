@@ -16,13 +16,9 @@ export class ShippingBasedTaxZoneStrategy implements TaxZoneStrategy {
         zone.members?.find((member) => member.code === countryCode)
       );
       if (zone) {
-        Logger.info(
-          `Setting tax-zone ${zone.name} for order ${order.code} with countryCode ${countryCode}`,
-          loggerCtx
-        );
         return zone;
       }
-      Logger.info(
+      Logger.warn(
         `No taxzone found for country ${countryCode}. Setting default ${channel.defaultTaxZone.name} for order ${order.code}`,
         loggerCtx
       );

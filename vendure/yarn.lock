@@ -1534,13 +1534,13 @@
     teeny-request "^7.1.3"
     xdg-basedir "^4.0.0"
 
-"@google-cloud/storage@^6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.1.0.tgz#f882a969c5637ff445764d7b172f68fd0d9e63f8"
-  integrity sha512-zqZwzpRWCJuPne7x9Vc2H79zANl0uh9bNPGis0xAuC88ZEvBXfQqYCAVyiL1YIxi7rf51l8wy9vBr1pONMfxxA==
+"@google-cloud/storage@^6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.2.1.tgz#6f02e44d907e2fcb2b80aeea5cc6e5575dfeefcc"
+  integrity sha512-obLGOFCp25rpRn4CZvZqQkSHhY+dBrK7IjDdFpF5gOXVxE40ilr287uikiGPjflVFbgNwO2qhioJNqMzxoqHZg==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
-    "@google-cloud/projectify" "^2.0.0"
+    "@google-cloud/projectify" "^3.0.0"
     "@google-cloud/promisify" "^3.0.0"
     abort-controller "^3.0.0"
     arrify "^2.0.0"
@@ -7671,7 +7671,7 @@ killable@^1.0.1:
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
   integrity sha512-LzqtLKlUwirEUyl/nicirVmNiPvYs7l5n8wOPP7fyJVpUPkvCnW/vuiXGpylGUlnPDnB7311rARzAt3Mhswpjg==
 
-kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
+kind-of@^3.0.2, kind-of@^3.0.3:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
   integrity sha1-MeohpzS6ubuw8yRm2JOupR5KPGQ=
@@ -11374,13 +11374,6 @@ snapdragon-node@^2.0.1:
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
   integrity sha512-O27l4xaMYt/RSQ5TR3vpWCAB5Kb/czIcqUFOM/C4fYcLnbZUc1PkjTAMjof2pBWaSTwOUd6qUHcFGVGj7aIwnw==
 
-snapdragon-util@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/snapdragon-util/-/snapdragon-util-3.0.1.tgz#f956479486f2acd79700693f6f7b805e45ab56e2"
-  integrity sha512-mbKkMdQKsjX4BAL4bRYTj21edOf8cN7XHdYUJEe+Zn99hVEYcMvKPct1IqNe7+AZPirn8BCDOQBHQZknqmKlZQ==
-  dependencies:
-    kind-of "^3.2.0"
-
 snapdragon@^0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/snapdragon/-/snapdragon-0.8.2.tgz#64922e7c565b0e14204ba1aa7d6964278d25182d"
@@ -12531,10 +12524,10 @@ vendure-plugin-dutch-postalcode@3.7.0:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-3.7.0.tgz#4db367175bbefd17def4113f939b07611dbee38f"
   integrity sha512-rer7aWGp8XeD9TAh3/UQx/+Ddk84ewJ6f12xqEz5X5dZrxblMRVq9vvOh7y9nusGGCdSH6PFQUV+I3bxQALcfA==
 
-vendure-plugin-e-boekhouden@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-3.7.0.tgz#c4c869c0ef9fba6e7abea3707ce01b4685cc4fb9"
-  integrity sha512-FindxABCH8cVWq4XQ10lVIJ8J7nxGSxj9nheJqFsve9j32tBDYmefZciMo169tQyySlvD7WwX2nxXPJQS4JhCg==
+vendure-plugin-e-boekhouden@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-3.8.0.tgz#b13cf0f8c5e6c1c39626e3f8fd875bd44f10c453"
+  integrity sha512-J7fkcDsAgLPdgcbKHVkI2aGXv3Zqywd4NT7fHmX1HsKGWsDXmuHhxE40nOpyuRjsv6LJzqaMgxGMQMdIKomlVg==
   dependencies:
     soap "^0.43.0"
 
@@ -12891,10 +12884,10 @@ winston@2.x:
     isstream "0.1.x"
     stack-trace "0.0.x"
 
-winston@^3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-3.7.2.tgz#95b4eeddbec902b3db1424932ac634f887c400b1"
-  integrity sha512-QziIqtojHBoyzUOdQvQiar1DH0Xp9nF1A1y7NVy2DGEsz82SBDtOalS0ulTRGVT14xPX3WRWkCsdcJKqNflKng==
+winston@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-3.8.0.tgz#4fc8656829dcfdab3c38f558eab785eea38a5328"
+  integrity sha512-Iix1w8rIq2kBDkGvclO0db2CVOHYVamCIkVWcUbs567G9i2pdB+gvqLgDgxx4B4HXHYD6U4Zybh6ojepUOqcFQ==
   dependencies:
     "@dabh/diagnostics" "^2.0.2"
     async "^3.2.3"
