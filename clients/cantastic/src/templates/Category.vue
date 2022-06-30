@@ -30,6 +30,8 @@
   </DefaultLayout>
 </template>
 <script>
+import { getMetaInfo } from 'pinelab-storefront-client';
+
 export default {
   methods: {
     getColumnWidth(collections) {
@@ -41,6 +43,10 @@ export default {
         return 'is-one-fifth-desktop';
       }
     },
+  },
+  metaInfo() {
+    const url = `${process.env.GRIDSOME_HOST}${this.$route.fullPath}`;
+    return getMetaInfo(this.$context.collection, url);
   },
 };
 </script>

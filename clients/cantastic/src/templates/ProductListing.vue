@@ -89,6 +89,7 @@
 <script>
 import Pagination from '../components/Pagination';
 import ReadMoreDescription from '../components/ReadMoreDescription';
+import { getMetaInfo } from 'pinelab-storefront-client';
 export default {
   components: { ReadMoreDescription, Pagination },
   data() {
@@ -131,6 +132,10 @@ export default {
       }
       this.loadFirstPage();
     },
+  },
+  metaInfo() {
+    const url = `${process.env.GRIDSOME_HOST}${this.$route.fullPath}`;
+    return getMetaInfo(this.$context.collection, url);
   },
 };
 </script>

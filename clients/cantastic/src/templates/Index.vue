@@ -63,9 +63,11 @@
 
       <section id="brands">
         <h3>Onze merken</h3>
-        <div class="columns is-multiline is-mobile">
+        <div
+          class="columns is-multiline is-mobile is-justify-content-space-between"
+        >
           <template v-for="collection of $context.brands">
-            <div class="column is-4-mobile is-3-tablet is-2-desktop">
+            <div class="column is-3-mobile is-2-tablet is-1-desktop">
               <g-link :to="`/categorie/${collection.slug}/`">
                 <LogoCard
                   :logo="maybeThumbnail(collection.featuredAsset)"

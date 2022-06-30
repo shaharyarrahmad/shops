@@ -40,6 +40,7 @@
 import ProductImages from 'pinelab-storefront/lib/components/ProductImages';
 import SwatchBlock from '../components/SwatchBlock';
 import { hydrate } from 'pinelab-storefront';
+import { getMetaInfo } from 'pinelab-storefront-client';
 
 export default {
   components: {
@@ -61,6 +62,10 @@ export default {
       }
       return chunks;
     },
+  },
+  metaInfo() {
+    const url = `${process.env.GRIDSOME_HOST}${this.$route.fullPath}`;
+    return getMetaInfo(this.$context.product, url);
   },
 };
 </script>
