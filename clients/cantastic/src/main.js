@@ -8,10 +8,13 @@ import '@fontsource/open-sans';
 import '~/theme.scss';
 import ProductCard from './components/ProductCard';
 import CategoryCard from './components/CategoryCard';
-import { preconnectLinks, setStore } from 'pinelab-storefront';
+import {
+  preconnectLinks,
+  setLabelFunction,
+  setStore,
+} from 'pinelab-storefront';
 import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
 import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
-import { setLabelFunction } from 'pinelab-storefront';
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);
@@ -28,6 +31,13 @@ export default function (Vue, { router, head, isClient }) {
       process.env.GRIDSOME_VENDURE_API,
       process.env.GRIDSOME_VENDURE_TOKEN
     );
+    router.beforeEach((to, from, next) => {
+      Vue.prototype.$emitter.emit('loading');
+      next();
+    });
+    router.afterEach((to, from) => {
+      Vue.prototype.$emitter.emit('finishedLoading');
+    });
     if (process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
       require('outfront').default();
       console.log('OutfrontJS mobile logging enabled');

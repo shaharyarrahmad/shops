@@ -304,20 +304,6 @@
       </div>
     </footer>
 
-    <Consent
-      class="consent pb-6"
-      accept-text="Ja, dat is goed"
-      decline-text="Nee"
-      thank-you-message="Bedankt!"
-      v-on:approved="activateAnalytics()"
-    >
-      <br />
-      <h4>Cookies</h4>
-      Vind je het goed dat we geanonimiseerde data naar Google Analytics sturen,
-      om de website te verbeteren?
-      <br />
-    </Consent>
-
     <!-------------- search modal ------------------->
     <b-modal
       v-model="isSearchModalActive"
@@ -338,7 +324,6 @@
 <script>
 import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
 import Basket from 'pinelab-storefront/lib/components/Basket';
-import Consent from 'pinelab-storefront/lib/components/Consent';
 import Search from '../components/Search';
 
 export default {
@@ -346,7 +331,6 @@ export default {
     Search,
     Breadcrumb,
     Basket,
-    Consent,
   },
   methods: {
     hasChildren(collection) {
@@ -391,9 +375,6 @@ export default {
         chunks.push(collections.slice(i, i + chunkSize));
       }
       return chunks;
-    },
-    activateAnalytics() {
-      console.warn(`TODO: implement analytics activation`);
     },
   },
   data() {
