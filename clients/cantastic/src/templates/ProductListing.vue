@@ -89,7 +89,7 @@
 <script>
 import Pagination from '../components/Pagination';
 import ReadMoreDescription from '../components/ReadMoreDescription';
-import { getMetaInfo } from 'pinelab-storefront-client';
+import { getMetaInfo } from 'pinelab-storefront';
 export default {
   components: { ReadMoreDescription, Pagination },
   data() {

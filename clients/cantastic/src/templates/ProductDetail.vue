@@ -66,7 +66,7 @@ import ProductImages from 'pinelab-storefront/lib/components/ProductImages';
 import VariantSelector from 'pinelab-storefront/lib/components/VariantSelector';
 import ReadMoreDescription from '../components/ReadMoreDescription';
 import { buy, hydrate, isOutOfStock } from 'pinelab-storefront';
-import { getMetaInfo } from 'pinelab-storefront-client';
+import { getMetaInfo } from 'pinelab-storefront';
 
 export default {
   components: {

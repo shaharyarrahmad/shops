@@ -30,7 +30,7 @@
   </DefaultLayout>
 </template>
 <script>
-import { getMetaInfo } from 'pinelab-storefront-client';
+import { getMetaInfo } from 'pinelab-storefront';
 
 export default {
   methods: {

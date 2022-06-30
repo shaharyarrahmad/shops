@@ -40,7 +40,7 @@
 import ProductImages from 'pinelab-storefront/lib/components/ProductImages';
 import SwatchBlock from '../components/SwatchBlock';
 import { hydrate } from 'pinelab-storefront';
-import { getMetaInfo } from 'pinelab-storefront-client';
+import { getMetaInfo } from 'pinelab-storefront';
 
 export default {
   components: {

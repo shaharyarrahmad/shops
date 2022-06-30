@@ -57,7 +57,6 @@
 <script>
 import BlogCard from '../components/BlogCard';
 import FavoritesSection from '../components/FavoritesSection';
-import { getMetaInfo } from 'pinelab-storefront-client';
 
 export default {
   components: {
