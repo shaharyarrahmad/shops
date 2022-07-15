@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div v-if="$context.global.banner">
+      <p class="banner has-text-centered has-background-success has-text-white">
+        {{ $context.global.banner }}
+      </p>
+      <br />
+      <div class="is-hidden-desktop">
+        <br />
+      </div>
+    </div>
+
     <ShopNavBar
       logo="/img/cryptherion-logo-black.svg"
       logo-alt="Cryptherion logo"
@@ -208,5 +218,13 @@ export default {
 
 span.line {
   display: inline-block;
+}
+
+.banner {
+  width: 100%;
+  margin-top: 56px;
+  position: fixed;
+  z-index: 2;
+  font-weight: bold;
 }
 </style>

@@ -10,6 +10,7 @@ const GET_CONTENT = gql`
         algemene_voorwaarden
         privacy_beleid
         highlighted_product
+        banner
       }
     }
   }
