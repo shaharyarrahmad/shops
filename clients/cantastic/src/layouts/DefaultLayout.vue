@@ -127,7 +127,7 @@
                         <template v-for="subCollection of chunk">
                           <g-link
                             class="navbar-item sub px-0"
-                            :to="subCollection.slug"
+                            :to="`/categorie/${subCollection.slug}/`"
                             >{{ subCollection.name }}
                           </g-link>
                         </template>
@@ -153,7 +153,7 @@
               <b>{{ collection.name }}</b>
             </g-link>
             <g-link
-              v-for="subCollection of getChildrenWithChildren(collection)"
+              v-for="subCollection of collection.children"
               :key="subCollection.slug"
               class="pl-3 pb-2 is-block"
               :to="`/categorie/${subCollection.slug}`"
