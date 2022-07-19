@@ -27,6 +27,7 @@
         size="default"
         icon-right="basket-plus-outline"
         :loading="isLoading"
+        :disabled="product.soldOut"
         @click="buyOrGoToDetails()"
       />
     </div>

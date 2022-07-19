@@ -35,11 +35,12 @@ module.exports = async function (api) {
             algemene_voorwaarden,
             privacy_beleid,
             highlighted_product,
+            banner,
           },
         },
       },
     } = content;
-    const global = { telefoon, adres, email };
+    const global = { telefoon, adres, email, banner };
 
     const featuredProduct = products.find((p) =>
       p.facetValues.find((value) => value.code === 'main-feature')
