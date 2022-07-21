@@ -9,11 +9,12 @@ function setSwatchColors(product, facetCode, defaultColor) {
     product.variants.forEach((variant) => {
       variant.bgColor = Object.entries(colorChart).find(
         ([key, value]) =>
-          key.toLowerCase() === variant.options[0].name.toLowerCase()
+          key.toLowerCase() === variant.options?.[0]?.name.toLowerCase()
       )?.[1];
       if (!variant.bgColor) {
+        // const colorName = variant.options[0] ? variant.options[0]
         console.error(
-          `No color found for ${variant.options[0].name} (${variant.name}) in ${facetCode}.json, using ${defaultColor}`
+          `No color found for ${variant.options?.[0]?.name} (${variant.name}) in ${facetCode}.json, using ${defaultColor}`
         );
         variant.bgColor = defaultColor;
       }

@@ -9,10 +9,16 @@
           class="contain-image"
         />
         <div
-          v-if="discount"
-          class="discount-label has-background-danger has-text-white p-2 rounded"
+          v-if="bottomBanner"
+          class="bottom-banner has-background-danger has-text-white p-2 rounded"
         >
-          {{ discount.name }}
+          {{ bottomBanner.name }}
+        </div>
+        <div
+          v-if="topBanner"
+          class="top-banner has-background-info has-text-white is-size-7"
+        >
+          {{ topBanner.name }}
         </div>
       </div>
       <p class="is-size-7">{{ product.category || '&nbsp;' }}</p>
@@ -41,7 +47,8 @@ export default {
   data() {
     return {
       isLoading: false,
-      discount: undefined,
+      bottomBanner: undefined,
+      topBanner: undefined,
     };
   },
   methods: {
@@ -61,8 +68,11 @@ export default {
     },
   },
   created() {
-    this.discount = this.product.facetValues.find(
+    this.bottomBanner = this.product.facetValues.find(
       (f) => f.facet.code === 'banner'
+    );
+    this.topBanner = this.product.facetValues.find(
+      (f) => f.facet.code === 'banner-top'
     );
   },
 };
@@ -89,7 +99,7 @@ export default {
   object-fit: contain;
 }
 
-.discount-label {
+.bottom-banner {
   position: absolute;
   /*top: 0;*/
   bottom: 0;
@@ -97,5 +107,17 @@ export default {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   line-height: 1;
+}
+
+.top-banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  /*background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);*/
 }
 </style>
