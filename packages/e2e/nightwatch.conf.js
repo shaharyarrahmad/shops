@@ -10,7 +10,7 @@ module.exports = {
 
   webdriver: {
     start_process: true,
-    check_process_delay: 3000,
+    //     check_process_delay: 3000,
     port: 4444,
     server_path: require('chromedriver').path,
     cli_args: [
