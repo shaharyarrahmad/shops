@@ -1,0 +1,28 @@
+name: Test live checkout for clients
+on:
+  schedule:
+    - cron:  '0 1 * * *'
+
+jobs:
+  test:
+    name: ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        package:
+          [
+              'cantastic',
+          ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - name: Build
+        run: cd packages/e2e && yarn
+      - name: test
+        run: cd packages/e2e && TESTCASE=${{ matrix.package }} yarn test:checkout

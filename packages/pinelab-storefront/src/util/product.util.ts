@@ -10,11 +10,11 @@ export function setCalculatedFields<T extends MinimalProduct>(
   product: T
 ): CalculatedProduct<T> {
   const lowesPrice = Math.min(...product.variants.map((v) => v.priceWithTax));
-  const available = product.variants.find((v) => !isOutOfStock(v));
+  const hasOutOfStockVariant = product.variants.some((v) => isOutOfStock(v));
   return {
     ...product,
     lowestPrice: lowesPrice,
-    soldOut: !available,
+    soldOut: hasOutOfStockVariant,
   };
 }
 
@@ -60,6 +60,11 @@ export async function hydrate<T extends MinimalProduct>(
     // Single product
     const product = products as CalculatedProduct<T>;
     const hydratedProd = await vendure.getProduct(product.slug);
+    product.variants.forEach((v) => {
+      v.stockLevel =
+        hydratedProd.variants.find((hv) => hv.id === v.id)?.stockLevel ||
+        'IN_STOCK';
+    });
     product.soldOut = hydratedProd.soldOut;
   }
 }

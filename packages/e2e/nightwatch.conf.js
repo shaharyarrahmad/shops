@@ -1,3 +1,8 @@
+require('dotenv').config();
+const args = ['--no-sandbox'];
+if (process.env.HEADLESS !== 'false') {
+  args.push('--headless');
+}
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
@@ -5,11 +10,12 @@ module.exports = {
 
   webdriver: {
     start_process: true,
+    //     check_process_delay: 3000,
     port: 4444,
-    server_path: require('geckodriver').path,
+    server_path: require('chromedriver').path,
     cli_args: [
       // very verbose geckodriver logs
-      // '-vv'
+      '-vv',
     ],
   },
   detailed_output: false,
@@ -17,15 +23,14 @@ module.exports = {
     default: {
       launch_url: 'https://nightwatchjs.org',
       desiredCapabilities: {
-        browserName: 'firefox',
-        alwaysMatch: {
-          // Enable this if you encounter unexpected SSL certificate errors in Firefox
-          // acceptInsecureCerts: true,
-          'moz:firefoxOptions': {
-            args: [
-              // '-headless',
-              // '-verbose'
-            ],
+        browserName: 'chrome',
+        javascriptEnabled: true,
+        acceptSslCerts: true,
+        chromeOptions: {
+          args,
+          prefs: {
+            credentials_enable_service: false,
+            'profile.password_manager_enabled': false,
           },
         },
       },

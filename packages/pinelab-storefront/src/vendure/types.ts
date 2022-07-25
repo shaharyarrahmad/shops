@@ -40,7 +40,7 @@ export type CalculatedProduct<T> = T & {
 export interface MinimalProduct {
   id: string;
   slug: string;
-  variants: { priceWithTax: number; stockLevel: string }[];
+  variants: { priceWithTax: number; stockLevel: string; id: string }[];
 }
 
 export type BasicCollection = Omit<CollectionFieldsFragment, 'productVariants'>;
