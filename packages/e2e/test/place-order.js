@@ -156,7 +156,7 @@ module.exports = {
       .useCss()
       .click('button[type="submit"]')
       .assert.containsText('body', 'Created fulfillment')
-      .pause(2000) // Delay because async job
+      .pause(3000) // Delay because async job
       .click(invoicesTab)
       .assert.containsText('body', orderId)
       .end();
