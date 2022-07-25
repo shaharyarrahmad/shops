@@ -5,12 +5,12 @@ module.exports = {
 
   webdriver: {
     start_process: true,
-    check_process_delay: 10000,
+    check_process_delay: 90000,
     port: 4444,
     server_path: require('geckodriver').path,
     cli_args: [
       // very verbose geckodriver logs
-      // '-vv'
+      '-vv',
     ],
   },
   detailed_output: false,
