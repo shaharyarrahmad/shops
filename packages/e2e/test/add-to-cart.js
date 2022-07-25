@@ -26,7 +26,7 @@ module.exports = {
       .click(
         '//*[@id="app"]/div/div/div/div[3]/div[1]/div[2]/div/div[2]/div/p[2]/button'
       )
-      .pause(1000)
+      .pause(2000)
       .click("//button[contains(text(), 'Naar winkelmand')]")
       .pause(1000)
       .click("//a[contains(text(), 'Nu bestellen')]")
@@ -38,7 +38,7 @@ module.exports = {
       .setValue('input[placeholder="Email adres*"]', address.email)
       .setValue('input[placeholder="Postcode*"]', address.postalCode)
       .setValue('input[placeholder="Huisnr.*"]', address.houseNr)
-      .pause(2000)
+      .pause(4000)
       .click('button[type="submit"]')
       .useXpath()
       .pause(1000)
