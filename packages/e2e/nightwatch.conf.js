@@ -1,3 +1,8 @@
+require('dotenv').config();
+const args = ['--no-sandbox'];
+if (process.env.HEADLESS !== 'false') {
+  args.push('--headless');
+}
 module.exports = {
   // An array of folders (excluding subfolders) where your tests are located;
   // if this is not specified, the test source must be passed as the second argument to the test runner.
@@ -22,7 +27,7 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-          args: ['--no-sandbox'],
+          args,
           prefs: {
             credentials_enable_service: false,
             'profile.password_manager_enabled': false,

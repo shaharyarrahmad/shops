@@ -3,17 +3,13 @@
  * Adds item to cart, adds address, goes to Mollie without actually paying
  * Run specific case with `TESTCASE=cantastic yarn test:add-to-cart`
  */
-let orderId;
 const address = {
-  firstName: 'Martijn',
-  lastName: 'Pinelab',
-  phone: '06 123456788',
+  firstName: 'Test',
+  lastName: 'Test',
+  phone: '06123456788',
   email: 'martijn@pinelab.studio',
-  postalCode: '1013 MM',
-  houseNr: '159',
-  street: 'IJdok',
-  city: 'Amsterdam',
-  country: 'Nederland',
+  postalCode: '8923CP',
+  houseNr: '33',
 };
 
 // Cantastic
@@ -23,13 +19,35 @@ module.exports = {
     browser
       .url('https://cantastic.netlify.app/product/loop-colors-400ml/')
       .useXpath()
+      // Cookies
       .click("//span[contains(text(), 'Nee')]")
+      .pause(2000)
+      // Add 'White' to cart
       .click(
-        '/html/body/div[1]/div/div/div/div[3]/div[1]/div[6]/div/div[2]/div/p[2]/button/span/i'
+        '//*[@id="app"]/div/div/div/div[3]/div[1]/div[2]/div/div[2]/div/p[2]/button'
       )
-      .pause(500)
-      .click('//*[@id="icons"]/div/span[1]/a/i')
-      .pause(500)
+      .pause(1000)
+      .click("//button[contains(text(), 'Naar winkelmand')]")
+      .pause(1000)
+      .click("//a[contains(text(), 'Nu bestellen')]")
+      .pause(1000)
+      .useCss()
+      .setValue('input[placeholder="Voornaam*"]', address.firstName)
+      .setValue('input[placeholder="Achternaam*"]', address.lastName)
+      .setValue('input[placeholder="Telefoonnr."]', address.phone)
+      .setValue('input[placeholder="Email adres*"]', address.email)
+      .setValue('input[placeholder="Postcode*"]', address.postalCode)
+      .setValue('input[placeholder="Huisnr.*"]', address.houseNr)
+      .pause(2000)
+      .click('button[type="submit"]')
+      .useXpath()
+      .pause(1000)
+      .click("//button[./span[contains(text(),'Controleer je bestelling')]]")
+      .pause(1000)
+      .click("//*[contains(text(), 'Betalen')]")
+      .useCss()
+      .pause(1000)
+      .click('button[value="ideal"]')
       .end();
   },
 };
