@@ -26,4 +26,4 @@ jobs:
       - name: Build
         run: cd packages/e2e && yarn
       - name: test
-        run: TESTCASE=${{ matrix.package }} yarn test:add-to-cart
+        run: cd packages/e2e && TESTCASE=${{ matrix.package }} yarn test:add-to-cart
