@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "e2e": "nightwatch --test test/place-order.js",
-    "test:add-to-cart": "nightwatch --test test/add-to-cart.js --testcase $TESTCASE",
+    "test:add-to-cart": "nightwatch --test test/add-to-cart.js --testcase $TESTCASE --verbose",
     "test:admin": "nightwatch --test test/place-order.js --testcase \"Admin order\""
   },
   "devDependencies": {
