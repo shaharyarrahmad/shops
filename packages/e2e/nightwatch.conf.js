@@ -22,7 +22,7 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true,
         chromeOptions: {
-          args: ['--no-sandbox'],
+          args: ['--no-sandbox', '--headless'],
           prefs: {
             credentials_enable_service: false,
             'profile.password_manager_enabled': false,
