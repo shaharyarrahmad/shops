@@ -26,4 +26,5 @@ jobs:
       - name: Build
         run: cd packages/e2e && yarn
       - name: test
+        uses: browser-actions/setup-geckodriver@latest
         run: cd packages/e2e && TESTCASE=${{ matrix.package }} yarn test:add-to-cart
