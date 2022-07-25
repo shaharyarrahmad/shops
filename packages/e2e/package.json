@@ -6,13 +6,11 @@
   "private": true,
   "scripts": {
     "e2e": "nightwatch --test test/place-order.js",
-    "test:add-to-cart": "nightwatch --test test/add-to-cart.js --testcase $TESTCASE --verbose",
-    "test:admin": "nightwatch --test test/place-order.js --testcase \"Admin order\""
+    "test:add-to-cart": "nightwatch --test test/add-to-cart.js --testcase $TESTCASE"
   },
   "devDependencies": {
     "chromedriver": "^103.0.0",
     "dotenv": "^10.0.0",
-    "geckodriver": "^2.0.0",
     "nightwatch": "^1.7.6"
   }
 }

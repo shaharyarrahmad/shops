@@ -118,7 +118,7 @@ module.exports = {
       .assert.containsText('body', prices.totalFE)
       .end();
   },
-  'Admin order': function (browser) {
+  'Vendure backoffice': function (browser) {
     const username = 'input[id="login_username"]';
     const password = 'input[id="login_password"]';
     const orderTab = 'a[href="/admin/orders"]';
@@ -133,6 +133,7 @@ module.exports = {
       .waitForElementVisible(orderTab)
       .click(orderTab)
       .assert.containsText('body', orderId)
+      .pause(500)
       .useXpath()
       .click("//a[text()=' Open ']")
       .useCss()
@@ -151,8 +152,10 @@ module.exports = {
       .assert.containsText('body', prices.totalBE)
       .assert.containsText('body', prices.totalWithoutTaxBE)
       .assert.containsText('body', prices.dicountWithTaxBE)
+      .pause(500)
       .useXpath()
       .click("//button[text()=' Fulfill order ']")
+      .pause(500)
       .useCss()
       .click('button[type="submit"]')
       .assert.containsText('body', 'Created fulfillment')

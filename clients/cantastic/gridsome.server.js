@@ -43,6 +43,12 @@ module.exports = async function (api) {
       directus.request(GET_CONTENT),
     ]);
 
+    // Static pages should never have soldOut products, this is updated when mounted()
+    allProducts.forEach((p) => {
+      p.soldOut = false;
+      p.variants.forEach((v) => (v.stockLevel = 'IN_STOCK'));
+    });
+
     // Set category field on products
     const products = allProducts.map((p) => {
       const facetValue = p.facetValues.find(
