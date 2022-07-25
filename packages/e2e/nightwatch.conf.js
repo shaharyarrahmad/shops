@@ -3,6 +3,9 @@ module.exports = {
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
 
+  selenium: {
+    check_process_delay: 10000,
+  },
   webdriver: {
     start_process: true,
     port: 4444,
