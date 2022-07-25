@@ -9,7 +9,7 @@ module.exports = {
   webdriver: {
     start_process: true,
     port: 4444,
-    server_path: require('geckodriver').path,
+    server_path: require('chromedriver').path,
     cli_args: [
       // very verbose geckodriver logs
       // '-vv'
