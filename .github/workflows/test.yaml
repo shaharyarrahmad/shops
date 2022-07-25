@@ -1,0 +1,29 @@
+name: Deploy Vendure API and worker to prod and dev
+on:
+  push:
+    branches:
+      - feat/periodic-tests
+
+jobs:
+  test:
+    name: ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        package:
+          [
+              'cantastic',
+          ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - name: Build
+        run: cd packages/e2e && yarn
+      - name: test
+        run: TESTCASE=${{ matrix.package }} yarn test:add-to-cart
