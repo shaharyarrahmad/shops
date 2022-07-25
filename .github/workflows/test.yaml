@@ -25,6 +25,7 @@ jobs:
           node-version: '18'
       - name: Setup GeckoDriver
         uses: browser-actions/setup-geckodriver@latest
+      - run: geckodriver --version
       - name: Build
         run: cd packages/e2e && yarn
       - name: test
