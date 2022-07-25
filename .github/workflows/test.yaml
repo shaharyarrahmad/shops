@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     name: ${{ matrix.package }}
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash

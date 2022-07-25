@@ -10,6 +10,7 @@
     "test:admin": "nightwatch --test test/place-order.js --testcase \"Admin order\""
   },
   "devDependencies": {
+    "chromedriver": "^103.0.0",
     "dotenv": "^10.0.0",
     "geckodriver": "^2.0.0",
     "nightwatch": "^1.7.6"
