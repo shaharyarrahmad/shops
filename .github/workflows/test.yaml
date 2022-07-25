@@ -23,9 +23,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18'
-      - name: Build
-        run: cd packages/e2e && yarn
       - name: Setup GeckoDriver
         uses: browser-actions/setup-geckodriver@latest
+      - name: Build
+        run: cd packages/e2e && yarn
       - name: test
         run: cd packages/e2e && TESTCASE=${{ matrix.package }} yarn test:add-to-cart
