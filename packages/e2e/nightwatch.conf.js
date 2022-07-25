@@ -3,13 +3,11 @@ module.exports = {
   // if this is not specified, the test source must be passed as the second argument to the test runner.
   src_folders: ['test'],
 
-  selenium: {
-    check_process_delay: 10000,
-  },
   webdriver: {
     start_process: true,
+    check_process_delay: 10000,
     port: 4444,
-    server_path: require('chromedriver').path,
+    server_path: require('geckodriver').path,
     cli_args: [
       // very verbose geckodriver logs
       // '-vv'
