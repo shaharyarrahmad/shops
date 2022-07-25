@@ -11,9 +11,6 @@ const address = {
   postalCode: '8923CP',
   houseNr: '33',
 };
-
-// Cantastic
-
 module.exports = {
   cantastic: function (browser) {
     browser
@@ -33,10 +30,15 @@ module.exports = {
       .pause(1000)
       .useCss()
       .setValue('input[placeholder="Voornaam*"]', address.firstName)
+      .pause(200)
       .setValue('input[placeholder="Achternaam*"]', address.lastName)
+      .pause(200)
       .setValue('input[placeholder="Telefoonnr."]', address.phone)
+      .pause(200)
       .setValue('input[placeholder="Email adres*"]', address.email)
+      .pause(200)
       .setValue('input[placeholder="Postcode*"]', address.postalCode)
+      .pause(200)
       .setValue('input[placeholder="Huisnr.*"]', address.houseNr)
       .pause(4000)
       .click('button[type="submit"]')
