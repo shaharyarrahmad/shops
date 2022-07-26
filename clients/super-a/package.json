@@ -2,7 +2,6 @@
   "name": "super-a-webshop",
   "private": true,
   "scripts": {
-    "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
     "static": "yarn gridsome build && yarn http-server ./dist/",
     "dev": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront && yarn watch\" \"gridsome develop\"",
     "link-here": "yarn link pinelab-storefront",

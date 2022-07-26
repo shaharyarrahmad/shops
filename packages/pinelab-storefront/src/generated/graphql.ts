@@ -3053,6 +3053,7 @@ export type ShippingMethod = Node & {
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  languageCode: LanguageCode;
   code: Scalars['String'];
   name: Scalars['String'];
   description: Scalars['String'];
@@ -3340,7 +3341,7 @@ export type ProductFieldsFragment = { __typename?: 'Product' } & Pick<
   'id' | 'name' | 'slug' | 'description'
 > & {
     assets: Array<
-      { __typename?: 'Asset' } & Pick<Asset, 'preview' | 'thumbnail'>
+      { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview' | 'thumbnail'>
     >;
     facetValues: Array<
       { __typename?: 'FacetValue' } & Pick<FacetValue, 'code' | 'name'> & {
@@ -3475,7 +3476,7 @@ export type OrderFieldsFragment = { __typename?: 'Order' } & Pick<
           productVariant: { __typename?: 'ProductVariant' } & Pick<
             ProductVariant,
             'id' | 'sku' | 'name' | 'priceWithTax'
-          > & { product: { __typename?: 'Product' } & Pick<Product, 'id'> };
+          >;
         }
     >;
     taxSummary: Array<
@@ -3765,6 +3766,19 @@ export type RemoveAllOrderLinesMutationVariables = Exact<{
 
 export type RemoveAllOrderLinesMutation = { __typename?: 'Mutation' } & {
   removeAllOrderLines:
+    | ({ __typename?: 'Order' } & OrderFieldsFragment)
+    | ({ __typename?: 'OrderModificationError' } & Pick<
+        OrderModificationError,
+        'errorCode' | 'message'
+      >);
+};
+
+export type RemoveOrderLineMutationVariables = Exact<{
+  orderLineId: Scalars['ID'];
+}>;
+
+export type RemoveOrderLineMutation = { __typename?: 'Mutation' } & {
+  removeOrderLine:
     | ({ __typename?: 'Order' } & OrderFieldsFragment)
     | ({ __typename?: 'OrderModificationError' } & Pick<
         OrderModificationError,
