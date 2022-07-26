@@ -43,12 +43,6 @@ module.exports = async function (api) {
       directus.request(GET_CONTENT),
     ]);
 
-    // Static pages should never have soldOut products, this is updated when mounted()
-    allProducts.forEach((p) => {
-      p.soldOut = false;
-      p.variants.forEach((v) => (v.stockLevel = 'IN_STOCK'));
-    });
-
     // Set category field on products
     const products = allProducts.map((p) => {
       const facetValue = p.facetValues.find(
@@ -136,6 +130,18 @@ module.exports = async function (api) {
         }
       }
     }
+
+    function setNotSoldOut(products) {
+      products.forEach((p) => {
+        p.variants.forEach((v) => (v.stockLevel = 'IN_STOCK'));
+        p.soldOut = false;
+      });
+    }
+
+    // Static pages should never have soldOut products, this is updated when mounted()
+    setNotSoldOut(allProducts);
+    setNotSoldOut(products);
+    productsPerCollection.forEach(({ products }) => setNotSoldOut(products));
 
     // ----------------- Search ---------------------
     const searchProducts = products.map((p) => ({
@@ -229,6 +235,7 @@ module.exports = async function (api) {
 
     // ------------------------- Category pages ----------------------
     productsPerCollection.forEach(({ products, collection }) => {
+      products.map((p) => p.soldOut);
       // Create breadcrumb
       let breadcrumb = { [collection.name]: `/categorie/${collection.slug}/` };
       const parentCollection = getParentCollection(collection.id);

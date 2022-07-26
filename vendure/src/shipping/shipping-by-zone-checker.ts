@@ -52,10 +52,6 @@ export const eligibleByZoneChecker = new ShippingEligibilityChecker({
     }
     const orderCountryCode = order.shippingAddress?.countryCode;
     if (!orderCountryCode) {
-      Logger.info(
-        `No shippingAddress set for ${order.code}, not eligible`,
-        loggerCtx
-      );
       return false;
     }
     const orderZones = getZonesForCountryCode(orderCountryCode, allZones);

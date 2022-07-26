@@ -89,7 +89,7 @@
 <script>
 import Pagination from '../components/Pagination';
 import ReadMoreDescription from '../components/ReadMoreDescription';
-import { getMetaInfo } from 'pinelab-storefront';
+import { getMetaInfo, hydrate } from 'pinelab-storefront';
 export default {
   components: { ReadMoreDescription, Pagination },
   data() {
@@ -132,6 +132,9 @@ export default {
       }
       this.loadFirstPage();
     },
+  },
+  async mounted() {
+    await hydrate(this.$context.products, this.$vendure);
   },
   metaInfo() {
     const url = `${process.env.GRIDSOME_HOST}${this.$route.fullPath}`;
