@@ -10,11 +10,11 @@ export function setCalculatedFields<T extends MinimalProduct>(
   product: T
 ): CalculatedProduct<T> {
   const lowesPrice = Math.min(...product.variants.map((v) => v.priceWithTax));
-  const hasOutOfStockVariant = product.variants.some((v) => isOutOfStock(v));
+  const allVariantsOutOfStock = product.variants.every((v) => isOutOfStock(v));
   return {
     ...product,
     lowestPrice: lowesPrice,
-    soldOut: hasOutOfStockVariant,
+    soldOut: allVariantsOutOfStock,
   };
 }
 
