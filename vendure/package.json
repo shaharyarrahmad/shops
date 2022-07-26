@@ -20,6 +20,10 @@
     "migration:run:prod": "export LOCAL_ENV=.env && yarn ts-node migration run",
     "migration:revert:prod": "export LOCAL_ENV=.env && yarn ts-node migration revert"
   },
+  "resolutions": {
+    "@vendure/admin-ui": "1.6.2",
+    "@vendure/common": "1.6.2"
+  },
   "dependencies": {
     "@google-cloud/logging-winston": "^5.1.2",
     "@google-cloud/storage": "^6.2.3",
@@ -34,14 +38,14 @@
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
     "typescript": "4.3.5",
-    "vendure-plugin-admin-ui-helpers": "^3.8.1",
-    "vendure-plugin-coinbase": "^3.8.1",
+    "vendure-plugin-admin-ui-helpers": "3.8.1",
+    "vendure-plugin-coinbase": "3.8.1",
     "vendure-plugin-dutch-postalcode": "3.7.0",
-    "vendure-plugin-e-boekhouden": "^3.8.1",
+    "vendure-plugin-e-boekhouden": "3.8.1",
     "vendure-plugin-goedgepickt": "3.8.1",
     "vendure-plugin-google-cloud-tasks": "3.8.1",
     "vendure-plugin-google-storage-assets": "3.7.0",
-    "vendure-plugin-invoices": "^3.8.1",
+    "vendure-plugin-invoices": "3.8.1",
     "vendure-plugin-myparcel": "3.8.1",
     "vendure-plugin-webhook": "3.8.1",
     "winston": "^3.8.1"

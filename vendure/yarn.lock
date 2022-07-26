@@ -2570,10 +2570,10 @@
   dependencies:
     fs-extra "^10.0.0"
 
-"@vendure/admin-ui@^1.6.2":
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/@vendure/admin-ui/-/admin-ui-1.6.4.tgz#8f48138e003872d71bd76b2377cd0923a640bbe0"
-  integrity sha512-Eh132TmXM49bD1/piUj8J0su43FJQii2hzCXHD/dG3F3x9gk9h5ng61J9i0P4qZm9nMZ/0qbp4/ToLUPnUrCsw==
+"@vendure/admin-ui@1.6.2", "@vendure/admin-ui@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/admin-ui/-/admin-ui-1.6.2.tgz#f084462dff74a4d599019d8b48ab75586145010f"
+  integrity sha512-NswpGScTYtFbk9ojuVhNi16baCvvKyAXAMMf6XLMqpoHJSfFPh823K1MQXLPPY6oN5OsMQi1YvGECxncvOAufQ==
   dependencies:
     "@angular/animations" "12.2.16"
     "@angular/cdk" "12.2.13"
@@ -2594,7 +2594,7 @@
     "@ng-select/ng-select" "^7.2.0"
     "@ngx-translate/core" "^13.0.0"
     "@ngx-translate/http-loader" "^6.0.0"
-    "@vendure/common" "^1.6.4"
+    "@vendure/common" "^1.6.2"
     "@webcomponents/custom-elements" "^1.4.3"
     apollo-angular "^2.6.0"
     apollo-upload-client "^16.0.0"
@@ -2628,10 +2628,10 @@
     fs-extra "^10.0.0"
     sharp "~0.29.0"
 
-"@vendure/common@^1.6.2", "@vendure/common@^1.6.4":
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.6.4.tgz#6388f87dfd1e94c3ccbf27b1e0c5bfff5f5f8f53"
-  integrity sha512-9PX73ZhFpofN0U01Coet6pG+BjPfcFs/bmX/rk0FicCBYXvGylsZsC2fSk/Tm6OebiC64w+PqDKJgXtO9hS83w==
+"@vendure/common@1.6.2", "@vendure/common@^1.6.2":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.6.2.tgz#a6ec21393651028d4208e0c2e2cd56e105794797"
+  integrity sha512-yE/e5BokcVwStXnAHkLDs22mbkyoVJFRQEM8+hX0j44rHUvfl/wTidwaE3tweUvVN3FUD4Ol8iHKD1mriFZI8g==
 
 "@vendure/core@1.6.2":
   version "1.6.2"
@@ -12584,12 +12584,12 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vendure-plugin-admin-ui-helpers@^3.8.1:
+vendure-plugin-admin-ui-helpers@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-admin-ui-helpers/-/vendure-plugin-admin-ui-helpers-3.8.1.tgz#9d31fb17d90023cdd205bde2f4a3cbb0a032a8b5"
   integrity sha512-cEaqjs7XqLQub7fThEVld+hZpid/N3mdk56ScF5lyvbhhyMAp0PmbDn5l9iFZTQ2fcHYt+Q4691ItHmEcaeW2Q==
 
-vendure-plugin-coinbase@^3.8.1:
+vendure-plugin-coinbase@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-3.8.1.tgz#4cd244f507e0a915d9c4c4f33fc15ca62b1dc31f"
   integrity sha512-Z9yp7KTElIicC4ZTyH/KHbWMfRd782glDCBj56TVceR3l6Rxpu5+inB7Jxwpml9gOahms433M8fHDNRdiG84sA==
@@ -12601,7 +12601,7 @@ vendure-plugin-dutch-postalcode@3.7.0:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-3.7.0.tgz#4db367175bbefd17def4113f939b07611dbee38f"
   integrity sha512-rer7aWGp8XeD9TAh3/UQx/+Ddk84ewJ6f12xqEz5X5dZrxblMRVq9vvOh7y9nusGGCdSH6PFQUV+I3bxQALcfA==
 
-vendure-plugin-e-boekhouden@^3.8.1:
+vendure-plugin-e-boekhouden@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-3.8.1.tgz#a9199862328cec8979d67575a95fce1296e64e98"
   integrity sha512-P26zBqS/vipvCg1P9X6R2WGxguQBvsH79K1lyACCHMglcW7+V1o7e4ZRP0nmFWzLllWP8GaiQ3yOx3swwZ+18Q==
@@ -12631,7 +12631,7 @@ vendure-plugin-google-storage-assets@3.7.0:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@^3.8.1:
+vendure-plugin-invoices@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-3.8.1.tgz#53f556304790f5cb9f2db83a207b162b913259ac"
   integrity sha512-oA8T/51Z3kt8PCH8BGhWZ45H8FuI8AWHzIKohFy5qH51WElDYPZAXvtQJVdCKOQoZRNRfoX94iBo5DY5ifRr/Q==
