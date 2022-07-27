@@ -48,4 +48,4 @@ This package also holds the `VendureClient`, which is used to communicate with V
 
 ## Vendure Server
 
-The `VendureServer` is used for fetching data from Vendure during static site generation on the server.
+The `VendureServer` is used for fetching data from Vendure during static site generation on the server. The VendureServer fetches data in bulk and does some preprocessing.
