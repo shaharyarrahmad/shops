@@ -32,6 +32,7 @@
         "always",
         [
           "vendure",
+          "e2e",
           "storefront-client",
           "all-clients",
           "bendeboef",
