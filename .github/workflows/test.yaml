@@ -2,19 +2,22 @@ name: Test live checkout for clients
 on:
   schedule:
     - cron:  '0 1 * * *'
+  push:
+    branches:
+      - feat/test-linkinator
 
 jobs:
   test:
-    name: ${{ matrix.package }}
+    name: ${{ matrix.client[0] }}
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
     strategy:
       matrix:
-        package:
+        client:
           [
-              'cantastic',
+              ['cantastic', 'https://cantastic.netlify.app/' ]
           ]
     steps:
       - name: Checkout code
@@ -24,5 +27,7 @@ jobs:
           node-version: '18'
       - name: Build
         run: cd packages/e2e && yarn
-      - name: test
-        run: cd packages/e2e && TESTCASE=${{ matrix.package }} yarn test:checkout
+      - name: Test checkout
+        run: cd packages/e2e && TESTCASE=${{ matrix.client[0] }} yarn test:checkout
+      - name: Check for 404's
+        run: yarn linkinator ${{ matrix.client[1] }} --skip '^(?!${{ matrix.client[1] }})' --recurse --verbosity 'error'

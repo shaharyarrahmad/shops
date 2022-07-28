@@ -312,7 +312,7 @@ module.exports = async function (api) {
           breadcrumb: {
             Home: '/',
             Blog: '/blog/',
-            [blog.title]: blog.slug,
+            [blog.title]: `/blog/${blog.slug}`,
           },
         },
       });
