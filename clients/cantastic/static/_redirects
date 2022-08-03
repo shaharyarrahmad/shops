@@ -1,3 +1,4 @@
 /order/* /order/_code.html 200
 /admin/ https://test-api.pinelab.studio/admin/ 302
 /shop/*  /categorie/:splat
+/product-categorie/*  /categorie/:splat

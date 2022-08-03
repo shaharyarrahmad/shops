@@ -33,6 +33,7 @@
         [
           "vendure",
           "e2e",
+          "seo",
           "storefront-client",
           "all-clients",
           "bendeboef",

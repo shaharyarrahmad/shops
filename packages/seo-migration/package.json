@@ -1,0 +1,15 @@
+{
+  "name": "seo-migration",
+  "version": "1.0.0",
+  "description": "Migration tool for checking redirect urls between old and new site",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "fetch": "node ./get-old-urls.js",
+    "check-urls": "node ./check-new-urls.js"
+  },
+  "devDependencies": {
+    "simplecrawler": "^1.1.9"
+  }
+}

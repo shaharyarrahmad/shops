@@ -166,9 +166,7 @@ module.exports = async function (api) {
     const highlightsParent = allCollections.find(
       (col) => col.slug === 'highlights'
     );
-    console.log(JSON.stringify(highlightsParent));
     const highlights = getChildCollections(highlightsParent?.id);
-    console.log(JSON.stringify(highlights));
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
