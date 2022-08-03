@@ -10,6 +10,7 @@ if (process.env.VENDURE_ENV === 'local') {
 
 module.exports = {
   siteName: 'Cantastic.nl',
+  siteUrl: process.env.GRIDSOME_HOST,
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link

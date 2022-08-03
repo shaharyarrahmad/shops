@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 
 const site = process.argv[2];
 const urlFile = process.argv[3];
+const excludes = process.argv[4]?.split(',') || [];
 const statusFile = 'data/' + process.argv[3] + '_status.csv';
 
 (async () => {
@@ -12,6 +13,11 @@ const statusFile = 'data/' + process.argv[3] + '_status.csv';
 
   const paths = fs.readFileSync('data/' + urlFile, 'utf8').split('\n');
   for (const path of paths) {
+    const shouldSkip = excludes.some((exclude) => path.indexOf(exclude) > -1);
+    if (shouldSkip) {
+      console.log(`Skipping ${path}`);
+      continue;
+    }
     const url = site + path;
     const res = await fetch(url);
     if (res.ok) {

@@ -21,7 +21,7 @@ const crawler = Crawler(site).on('fetchcomplete', function (item) {
   });
 });
 crawler.addFetchCondition(function (parsedURL) {
-  if (parsedURL.path.match(/\.(css|jpg|jpeg|pdf|docx|js|png|ico)/i)) {
+  if (parsedURL.path.match(/\.(css|jpg|jpeg|pdf|docx|js|png|ico|gif|xml)/i)) {
     return false;
   }
   return true;
