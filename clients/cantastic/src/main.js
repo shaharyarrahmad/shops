@@ -15,6 +15,7 @@ import {
 } from 'pinelab-storefront';
 import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
 import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
+import VueGtag from 'vue-gtag';
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);
@@ -25,7 +26,21 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('ProductCard', ProductCard);
   Vue.component('CategoryCard', CategoryCard);
   if (isClient) {
-    // TODO VueGtag
+    if (isClient) {
+      Vue.use(
+        VueGtag,
+        {
+          config: {
+            id: 'G-HSHBS7YZDM',
+            params: {
+              anonymize_ip: true,
+            },
+          },
+          bootstrap: false,
+        },
+        router
+      );
+    }
     setStore(
       Vue,
       process.env.GRIDSOME_VENDURE_API,

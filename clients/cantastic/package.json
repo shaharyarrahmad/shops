@@ -20,6 +20,7 @@
     "pinelab-storefront": "0.57.9"
   },
   "devDependencies": {
+    "@gridsome/plugin-sitemap": "^0.4.0",
     "concurrently": "^6.2.0",
     "graphql-tag": "^2.12.6",
     "gridsome": "^0.7.23",
@@ -29,6 +30,7 @@
     "sass": "^1.32.13",
     "sass-loader": "^10.1.1",
     "snapdragon-util": "^5.0.1",
+    "vue-gtag": "^2.0.1",
     "webpack-bundle-analyzer": "^4.4.1"
   },
   "version": "0.57.9",

@@ -52,9 +52,6 @@ module.exports = async function (api) {
       return p;
     });
 
-    const highlight1 = allCollections.find((col) => col.slug === 'highlight1');
-    const highlight2 = allCollections.find((col) => col.slug === 'highlight2');
-    const highlight3 = allCollections.find((col) => col.slug === 'highlight3');
     const collections = vendureServer.unflatten(allCollections);
     const navbarCollections = collections.filter(
       (col) => col.name !== 'highlights'
@@ -166,15 +163,21 @@ module.exports = async function (api) {
     fs.writeFileSync('./static/_search.json', JSON.stringify(indexObject));
 
     // ----------------- Index ---------------------
+    const highlightsParent = allCollections.find(
+      (col) => col.slug === 'highlights'
+    );
+    console.log(JSON.stringify(highlightsParent));
+    const highlights = getChildCollections(highlightsParent?.id);
+    console.log(JSON.stringify(highlights));
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
       context: {
         ...global,
         products,
-        highlight1,
-        highlight2,
-        highlight3,
+        highlight1: highlights?.[0],
+        highlight2: highlights?.[1],
+        highlight3: highlights?.[2],
         shortAbout,
         blogs: blogs.slice(0, 3),
         brands: collections.find((collection) => collection.slug === 'merken')

@@ -15,5 +15,9 @@ module.exports = {
       symlinks: false, //npm link
     },
   },
-  plugins: [],
+  plugins: [
+    {
+      use: '@gridsome/plugin-sitemap',
+    },
+  ],
 };

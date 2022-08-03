@@ -4,15 +4,24 @@
       <section id="highlighted">
         <div class="columns">
           <div class="column is-7">
-            <HighlightCard :collection="$context.highlight1" />
+            <HighlightCard
+              v-if="$context.highlight1"
+              :collection="$context.highlight1"
+            />
           </div>
           <div class="column is-5">
             <div class="columns is-mobile is-multiline">
               <div class="column is-12-tablet is-6-mobile">
-                <HighlightCard :collection="$context.highlight2" />
+                <HighlightCard
+                  v-if="$context.highlight2"
+                  :collection="$context.highlight2"
+                />
               </div>
               <div class="column is-12-tablet is-6-mobile">
-                <HighlightCard :collection="$context.highlight3" />
+                <HighlightCard
+                  v-if="$context.highlight3"
+                  :collection="$context.highlight3"
+                />
               </div>
             </div>
           </div>
