@@ -8,7 +8,7 @@
     "empty-cart": "Je winkelmand is leeg... "
   },
   "customer-details": {
-    "title": "Adres",
+    "title": "Gegevens",
     "firstname": "Voornaam",
     "lastname": "Achternaam",
     "company": "Bedrijfsnaam",
@@ -21,12 +21,12 @@
     "country": "Land",
     "different-billing-address": "Ander factuuradres",
     "billing-address": "Factuuradres",
-    "submit": "Verzending"
+    "submit": "Bezorging"
   },
   "shipping": {
-    "step-title": "Verzending",
+    "step-title": "Bezorging",
     "page-title": "Verzendwijze kiezen:",
-    "submit": "Controleer je bestelling"
+    "submit": "Overzicht en bestellen"
   },
   "order-summary": {
     "title": "Samenvatting",
@@ -35,7 +35,7 @@
     "total": "Totaal"
   },
   "checkup": {
-    "title": "Controleer je bestelling",
+    "title": "Overzicht en bestellen",
     "shipping-address": "Verzendadres",
     "billing-address": "Factuuradres",
     "items": "Producten",
@@ -43,7 +43,7 @@
     "pay": "Betalen"
   },
   "finished": {
-    "title": "Naar de jaap!"
+    "title": "Bestelling voltooid"
   },
   "common": {
     "couponcode": "Kortingscode"

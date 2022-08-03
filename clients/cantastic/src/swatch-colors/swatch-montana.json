@@ -1,4 +1,7 @@
 {
+  "BLK9001 Black": "#030506",
+  "BLK9100 Snow White": "#ffffff",
+  "BLK9105 White": "#fbfcf6",
   "BLK1005 Smash 137's Potatos": "#f4e593",
   "BLK1010 Easter Yellow": "#ffe668",
   "BLK1025 Kicking Yellow": "#ffda15",
@@ -160,9 +163,6 @@
   "BLK8240 Falling": "#b94709",
   "BLK8250 Candy Bar": "#5b2607",
   "BLK8260 Mud": "#512320",
-  "BLK9001 Black": "#030506",
-  "BLK9100 Snow White": "#ffffff",
-  "BLK9105 White": "#fbfcf6",
   "BLKTR1000 True Yellow": "#f9e900",
   "BLKTR1010 True Yellow 50%": "#fff562",
   "BLKTR4000 True Magenta": "#e51175",

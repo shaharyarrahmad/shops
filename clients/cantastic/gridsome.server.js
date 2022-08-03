@@ -261,6 +261,11 @@ module.exports = async function (api) {
       const childCollections = getChildCollections(collection.id);
       let template = 'Category.vue';
       if (collectionLevel > 1) {
+        // Any collection deeper then toplevel should be a productListing
+        template = 'ProductListing.vue';
+      }
+      if (!childCollections?.length && products?.length > 0) {
+        // if products but no childcollections, then its a product listing
         template = 'ProductListing.vue';
       }
       if (collectionLevel === 2) {

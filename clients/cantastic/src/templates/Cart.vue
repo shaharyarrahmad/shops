@@ -29,7 +29,7 @@
                   Nu bestellen
                 </g-link>
                 <div class="has-text-centered pt-4">
-                  <g-link @click="$router.go(-1)">Verder winkelen</g-link>
+                  <g-link to="/">Verder winkelen</g-link>
                 </div>
               </template>
             </OrderSummary>

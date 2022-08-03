@@ -234,21 +234,44 @@
       <div class="container is-widescreen section">
         <div class="columns">
           <div class="column is-7">
-            <h3 class="has-text-white">
+            <h4 class="has-text-white">
               Exclusieve deals & unieke graffiti content direct in je inbox -
               helemaal gratis
-            </h3>
+            </h4>
           </div>
           <div class="column is-5">
-            <b-field
-              message="Geen spam - 1 mail per maand. Je kunt je altijd weer afmelden."
+            <form
+              action="https://cantastic.us15.list-manage.com/subscribe/post?u=4e226c3fa7ab1fc8dad78c479&amp;id=73fb352924"
+              method="post"
+              id="mc-embedded-subscribe-form"
+              name="mc-embedded-subscribe-form"
+              class="validate"
+              target="_blank"
+              novalidate
             >
-              <b-input placeholder="Vul je e-mailadres in" icon="email">
-              </b-input>
-              <p class="control">
-                <b-button type="is-dark" label="Count me in" />
-              </p>
-            </b-field>
+              <b-field
+                message="Geen spam - 1 mail per maand. Je kunt je altijd weer afmelden."
+              >
+                <b-input
+                  id="mce-EMAIL"
+                  placeholder="Vul je e-mailadres in"
+                  icon="email"
+                  size="is-small"
+                  type="email"
+                  name="EMAIL"
+                >
+                </b-input>
+                <p class="control">
+                  <b-button
+                    id="mc-embedded-subscribe"
+                    type="is-dark"
+                    native-type="submit"
+                    label="Count me in"
+                    size="is-small"
+                  />
+                </p>
+              </b-field>
+            </form>
           </div>
         </div>
       </div>
@@ -281,13 +304,13 @@
             </template>
           </div>
           <div class="column is-3 pb-4" style="border-bottom: 1px solid">
-            <h3>Volg @Cantastic.nl en #TeamJoopie</h3>
+            <h4>Volg @Cantastic.nl en #TeamJoopie</h4>
             <a :href="$context.instagram" target="_blank">
-              <b-icon icon="instagram" size="is-large" class="is-light pr-4">
+              <b-icon icon="instagram" size="is-medium" class="is-light pr-4">
               </b-icon>
             </a>
             <a :href="$context.facebook" target="_blank">
-              <b-icon icon="facebook" size="is-large" class="is-light">
+              <b-icon icon="facebook" size="is-medium" class="is-light">
               </b-icon>
             </a>
           </div>
@@ -445,8 +468,8 @@ a.navbar-item:hover,
 }
 
 #logo {
-  max-height: 50px;
-  height: 50px;
+  max-height: 45px;
+  height: 45px;
 }
 
 #search {

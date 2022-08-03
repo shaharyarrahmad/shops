@@ -44,6 +44,7 @@ export default {
   metaInfo() {
     return {
       title: this.$static.metadata.siteName,
+      htmlAttrs: { lang: 'nl' },
       meta: [
         {
           key: 'description',

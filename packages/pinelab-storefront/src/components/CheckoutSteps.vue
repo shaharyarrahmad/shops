@@ -31,10 +31,18 @@
         icon="truck"
         :clickable="false"
       >
+        <b-button
+          class="is-outlined"
+          :disable="hasShippingSelected"
+          @click="activeStep = 2"
+        >
+          <
+        </b-button>
         <br />
-        <h3>{{ $l('shipping.page-title') }}</h3>
+        <br />
         <div class="columns">
           <div class="column is-6">
+            <h3>{{ $l('shipping.page-title') }}</h3>
             <SelectShippingForm
               :vendure="vendure"
               :store="store"
@@ -70,7 +78,7 @@
       >
         <br />
         <div class="columns">
-          <div class="column is-6">
+          <div class="column is-8">
             <div class="columns">
               <div class="column is-6">
                 <AddressDisplay
@@ -102,7 +110,7 @@
               <CartItemsTable disabled :active-order="activeOrder" />
             </div>
           </div>
-          <div class="column is-6">
+          <div class="column is-4">
             <OrderSummary class="mb-5" :order="activeOrder">
               <template #bottom>
                 <br />
