@@ -43,6 +43,9 @@ export async function hydrate<T extends MinimalProduct>(
   vendure: VendureClient
 ): Promise<void> {
   if (Array.isArray(products)) {
+    if (products.length === 0) {
+      return;
+    }
     const productIds = products.map((p) => p.id);
     const stockLevels = (await vendure.getStockForProducts(productIds)).map(
       (stockLevel) => setCalculatedFields(stockLevel)
