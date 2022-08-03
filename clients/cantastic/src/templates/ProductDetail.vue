@@ -20,12 +20,17 @@
           v-on:select="selectedVariant = $event"
         />
         <br />
-        <div class="columns is-mobile">
-          <div class="column is-4">
-            <b-numberinput v-model="quantity" :disabled="isSoldOut">
+        <div class="columns">
+          <div class="column is-5">
+            <b-numberinput
+              v-model="quantity"
+              min="1"
+              max="999"
+              :disabled="isSoldOut"
+            >
             </b-numberinput>
           </div>
-          <div class="column is-8">
+          <div class="column is-7">
             <b-button
               icon-left="basket-plus"
               class="is-primary is-fullwidth"
@@ -99,10 +104,14 @@ export default {
   methods: {
     async buy() {
       this.isLoading = true;
-      await buy(this.variant, {
-        vendure: this.$vendure,
-        emitter: this.$emitter,
-      });
+      await buy(
+        this.variant,
+        {
+          vendure: this.$vendure,
+          emitter: this.$emitter,
+        },
+        this.quantity
+      );
       this.isLoading = false;
     },
   },
