@@ -470,6 +470,7 @@ a.navbar-item:hover,
 #logo {
   max-height: 45px;
   height: 45px;
+  padding-top: 5px;
 }
 
 #search {
