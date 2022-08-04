@@ -7,7 +7,7 @@
         class="rounded blog-card-image"
       />
     </g-link>
-    <h5 class="mb-1">{{ blog.title }}</h5>
+    <h5 class="my-1">{{ blog.title }}</h5>
     <p class="is-size-7 has-text-grey mb-2">
       {{ blog.date_created | formatDate }} door
       {{ blog.user_created.first_name }}
@@ -25,10 +25,11 @@ export default {
 };
 </script>
 <style>
-.blog-card-image {
+.blog-card-image img {
   height: 300px;
   width: 100%;
   object-fit: cover;
+  border-radius: 6px;
 }
 .blog-card-image:hover,
 .blog-card-image:focus {

@@ -1,8 +1,6 @@
-import 'buefy/dist/buefy.css';
 import Buefy from 'buefy';
 import DefaultLayout from '~/layouts/DefaultLayout.vue';
 import '@fontsource/roboto/900.css';
-import '@fontsource/roboto/700.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/open-sans';
 import '~/theme.scss';
