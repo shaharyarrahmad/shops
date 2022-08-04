@@ -1,7 +1,7 @@
 <template>
   <article>
     <g-link :to="`/blog/${blog.slug}`">
-      <img
+      <b-image
         :src="getSquareImage(blog.featured_image.id)"
         :alt="`Afbeelding voor ${blog.title}`"
         class="rounded blog-card-image"

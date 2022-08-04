@@ -14,7 +14,7 @@
         <article class="media mb-4">
           <figure class="media-left">
             <p class="image is-64x64">
-              <img
+              <b-image
                 :src="
                   getSquareImage(maybeGetId($context.blog.user_created.avatar))
                 "

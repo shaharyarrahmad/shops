@@ -1,6 +1,6 @@
 <template>
   <div class="rounded logo-card">
-    <img :src="logo" :alt="name" />
+    <b-image :src="logo" :alt="name" />
   </div>
 </template>
 <script>
