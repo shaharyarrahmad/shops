@@ -33,9 +33,6 @@
 import { getMetaInfo } from 'pinelab-storefront';
 
 export default {
-  mounted() {
-    console.log(this.$context.products);
-  },
   methods: {
     getColumnWidth(collections) {
       if (collections.length === 2) {

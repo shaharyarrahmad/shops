@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Multi assets carousel -->
     <b-carousel
       v-if="assets.length > 1"
       :arrow="true"
@@ -17,19 +18,16 @@
         />
       </b-carousel-item>
     </b-carousel>
+    <!-- Single asset -->
     <PopupImage
       v-else
       :small="getPreview(featuredAsset)"
       :alt="product.name"
       :large="getPreview(featuredAsset)"
-      :assets="assetPreviews"
     />
-    <div class="columns mt-2 is-5 is-mobile is-multiline">
-      <div
-        class="column is-one-fifth"
-        v-if="assets.length > 1"
-        v-for="asset of assets"
-      >
+    <!-- Smaller asset previews -->
+    <div v-if="assets.length > 1" class="columns mt-2 is-mobile is-multiline">
+      <div class="column is-one-fifth" v-for="asset of assets">
         <PopupImage
           :small="getThumbnail(asset)"
           :alt="product.name"
@@ -51,24 +49,35 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      assets: [],
+      assetPreviews: [],
+      featuredAsset: undefined,
+    };
   },
-  computed: {
-    featuredAsset() {
-      return this.variant?.featuredAsset || this.product?.featuredAsset;
+  watch: {
+    product() {
+      this.init();
     },
-    assetPreviews() {
-      return this.assets.map((a) => a?.preview);
+    variant() {
+      this.init();
     },
-    assets() {
-      return this.sortByFeaturedAssetFirst(
-        this.variant?.assets?.length > 0
-          ? this.variant?.assets
-          : this.product?.assets || []
-      );
-    },
+  },
+  created() {
+    this.init();
   },
   methods: {
+    init() {
+      // Initialize featuredAsset, sorted assets and assetPreviews
+      this.featuredAsset =
+        this.variant?.featuredAsset || this.product?.featuredAsset;
+      const assets =
+        this.variant?.assets?.length > 0
+          ? this.variant?.assets
+          : this.product?.assets || [];
+      this.assets = this.sortByFeaturedAssetFirst(assets);
+      this.assetPreviews = this.assets.map((a) => a?.preview);
+    },
     getPreview(asset) {
       return asset?.preview;
     },

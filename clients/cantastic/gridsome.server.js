@@ -1,4 +1,10 @@
-const { setSwatchColors } = require('./util');
+const {
+  setSwatchColors,
+  mapToMinimalBlog,
+  mapToMinimalPage,
+  mapToMinimalProduct,
+  mapToMinimalCollection,
+} = require('./util');
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { GET_CONTENT } = require('./content.queries');
@@ -53,19 +59,22 @@ module.exports = async function (api) {
     });
 
     const collections = vendureServer.unflatten(allCollections);
-    const navbarCollections = collections.filter(
-      (col) => col.name !== 'highlights'
-    );
+
+    // ----------------  Global context
+    const navbarCollections = collections
+      .filter((col) => col.name !== 'highlights')
+      .map(mapToMinimalCollection);
     const aboutPages = pages
       .filter((p) => p.categorie === 'Over Cantastic')
-      .map((p) => ({ slug: p.slug, title: p.title }));
+      .map(mapToMinimalPage);
     const servicePages = pages
       .filter((p) => p.categorie === 'Service')
-      .map((p) => ({ slug: p.slug, title: p.title }));
+      .map(mapToMinimalPage);
+    const favorites = products
+      .filter((p) => p.facetValues.find((f) => f.code === 'favorite'))
+      .map(mapToMinimalProduct);
     const global = {
-      favorites: products.filter((p) =>
-        p.facetValues.find((f) => f.code === 'favorite')
-      ),
+      favorites,
       aboutPages,
       servicePages,
       collections: navbarCollections,
@@ -172,12 +181,11 @@ module.exports = async function (api) {
       component: './src/templates/Index.vue',
       context: {
         ...global,
-        products,
         highlight1: highlights?.[0],
         highlight2: highlights?.[1],
         highlight3: highlights?.[2],
         shortAbout,
-        blogs: blogs.slice(0, 3),
+        blogs: blogs.slice(0, 3).map(mapToMinimalBlog),
         brands: collections.find((collection) => collection.slug === 'merken')
           .children,
       },

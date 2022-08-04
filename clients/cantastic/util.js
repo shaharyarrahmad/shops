@@ -52,7 +52,7 @@ function sortByColorChart(variants, colorChart) {
 }
 
 /**
- * Determine black or white contract depending on given background color
+ * Determine black or white contrast depending on given background color
  */
 function getContrastingColor(bgColor) {
   const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
@@ -62,4 +62,73 @@ function getContrastingColor(bgColor) {
   return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? '#000000' : '#ffffff';
 }
 
-module.exports = { setSwatchColors, sortByColorChart, getContrastingColor };
+/**
+ * Optimizes a product for card previews to save KB size
+ */
+function mapToMinimalProduct(product) {
+  const variants = product.variants.map((v) => ({
+    id: v.id,
+    priceWithTax: v.priceWithTax,
+  }));
+  return {
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    variants,
+    featuredAsset: product.featuredAsset,
+    facetValues: product.facetValues,
+    soldOut: product.soldOut,
+    lowestPrice: product.lowestPrice,
+    category: product.category,
+  };
+}
+
+/**
+ * Optimizes a blog for card previews to save KB size
+ */
+function mapToMinimalBlog(blog) {
+  return {
+    id: blog.id,
+    slug: blog.slug,
+    title: blog.title,
+    featured_image: blog.featured_image,
+    date_created: blog.date_created,
+    user_created: blog.user_created,
+    description: blog.description,
+  };
+}
+
+/**
+ * Optimizes a page for card previews to save KB size
+ */
+function mapToMinimalPage(page) {
+  return {
+    slug: page.slug,
+    title: page.title,
+  };
+}
+
+/**
+ * Optimizes a collection for menu display to save KB size
+ */
+function mapToMinimalCollection(col) {
+  return {
+    id: col.id,
+    slug: col.slug,
+    name: col.name,
+    parent: col.parent ? mapToMinimalCollection(col.parent) : undefined,
+    children: col.children
+      ? col.children.map(mapToMinimalCollection)
+      : undefined,
+  };
+}
+
+module.exports = {
+  setSwatchColors,
+  sortByColorChart,
+  getContrastingColor,
+  mapToMinimalProduct,
+  mapToMinimalBlog,
+  mapToMinimalPage,
+  mapToMinimalCollection,
+};
