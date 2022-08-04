@@ -6,11 +6,7 @@
           <div class="columns is-mobile pt-2" style="width: 100%">
             <div class="column">
               <a href="/" aria-current="page">
-                <b-image
-                  src="/img/logo.png"
-                  alt="Cantastic.nl logo"
-                  id="logo"
-                />
+                <img src="/img/logo.png" alt="Cantastic.nl logo" id="logo" />
               </a>
             </div>
             <div class="column is-hidden-mobile" id="search">
