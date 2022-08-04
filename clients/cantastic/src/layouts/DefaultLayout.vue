@@ -204,7 +204,7 @@
                 :disabled="true"
               >
               </b-rate>
-              <b-image
+              <img
                 src="/img/trustpilot.png"
                 :alt="$context.rating"
                 style="height: 22px"
