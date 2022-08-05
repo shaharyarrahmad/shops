@@ -6,6 +6,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.firstname')}*`"
+              aria-label="firstname"
               type="text"
               required
               v-model="customer.firstName"
@@ -21,6 +22,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.lastname')}*`"
+              aria-label="lastname"
               type="text"
               required
               v-model="customer.lastName"
@@ -39,6 +41,7 @@
             <b-input
               :placeholder="$l('customer-details.company')"
               type="text"
+              aria-label="company"
               v-model="address.company"
             />
             <span class="icon is-small is-left">
@@ -55,6 +58,7 @@
             <b-input
               :placeholder="$l('customer-details.phone')"
               type="text"
+              aria-label="phonenumber"
               v-model="customer.phoneNumber"
             />
             <span class="icon is-small is-left">
@@ -68,6 +72,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.email')}*`"
+              aria-label="emailaddress"
               type="text"
               required
               v-model="customer.emailAddress"
@@ -85,6 +90,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.postalcode')}*`"
+              aria-label="postalcode"
               type="text"
               required
               v-model="address.postalCode"
@@ -101,6 +107,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.housenr')}*`"
+              aria-label="housenumber"
               type="text"
               required
               v-model="address.streetLine2"
@@ -119,6 +126,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.street')}*`"
+              aria-label="streetname"
               type="text"
               required
               v-model="address.streetLine1"
@@ -134,6 +142,7 @@
           <p class="control is-expanded has-icons-left">
             <b-input
               :placeholder="`${$l('customer-details.city')}*`"
+              aria-label="city"
               type="text"
               required
               v-model="address.city"
@@ -148,6 +157,7 @@
     <b-field>
       <b-select
         :placeholder="$l('customer-details.country')"
+        aria-label="country"
         name="country"
         icon="earth"
         v-model="address.countryCode"
@@ -165,7 +175,10 @@
     <!--------------------- Billing address ----------------------------->
     <div class="has-text-right has-text-left-mobile my-4">
       <b-field>
-        <b-checkbox v-model="hasDifferentBillingAddress">
+        <b-checkbox
+          v-model="hasDifferentBillingAddress"
+          aria-label="different billingaddress"
+        >
           {{ $l('customer-details.different-billing-address') }}
         </b-checkbox>
       </b-field>
@@ -178,6 +191,7 @@
             <p class="control is-expanded has-icons-left">
               <b-input
                 :placeholder="$l('customer-details.company')"
+                aria-label="billing company"
                 type="text"
                 v-model="billingAddress.company"
               />
@@ -196,6 +210,7 @@
                 :placeholder="`${$l('customer-details.postalcode')}`"
                 type="text"
                 v-model="billingAddress.postalCode"
+                aria-label="billing postalcode"
                 v-on:input="lookupBillingAddress()"
               />
               <span class="icon is-small is-left">
@@ -209,6 +224,7 @@
             <p class="control is-expanded has-icons-left">
               <b-input
                 :placeholder="`${$l('customer-details.housenr')}`"
+                aria-label="billing housenumber"
                 type="text"
                 v-model="billingAddress.streetLine2"
                 v-on:input="lookupBillingAddress()"
@@ -226,6 +242,7 @@
             <p class="control is-expanded has-icons-left">
               <b-input
                 :placeholder="`${$l('customer-details.street')}`"
+                aria-label="billing streetname"
                 type="text"
                 v-model="billingAddress.streetLine1"
               />
@@ -240,6 +257,7 @@
             <p class="control is-expanded has-icons-left">
               <b-input
                 :placeholder="`${$l('customer-details.city')}`"
+                aria-label="billing city"
                 type="text"
                 v-model="billingAddress.city"
               />
@@ -253,6 +271,7 @@
       <b-field>
         <b-select
           :placeholder="$l('customer-details.country')"
+          aria-label="billing country"
           name="country"
           icon="earth"
           v-model="billingAddress.countryCode"
@@ -275,6 +294,7 @@
       <div class="column has-text-right">
         <b-button
           native-type="submit"
+          aria-label="submit form"
           class="button"
           :loading="loadingShipping"
         >

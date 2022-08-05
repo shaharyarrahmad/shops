@@ -44,7 +44,7 @@ module.exports = {
       .click('button[type="submit"]')
       .useXpath()
       .pause(1000)
-      .click("//button[./span[contains(text(),'Controleer je bestelling')]]")
+      .click("//button[./span[contains(text(),'bestellen')]]")
       .pause(1000)
       .click("//*[contains(text(), 'Betalen')]")
       .useCss()

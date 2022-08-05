@@ -2,10 +2,12 @@
   <div>
     <ClientOnly>
       <div class="shipping-methods">
-        <template v-for="method of shippingMethods">
+        <template v-for="(method, index) of shippingMethods">
           <b-field :key="method.id">
             <b-radio
               :native-value="method.id"
+              :aria-label="`shippingmethod ${method.name}`"
+              :id="`shippingmethod ${index}`"
               v-model="selectedShippingMethod"
               v-on:input="selectShippingMethod(method.id)"
             >

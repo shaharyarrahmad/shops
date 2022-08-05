@@ -56,19 +56,26 @@ export async function hydrate<T extends MinimalProduct>(
       );
       if (productWithStockLevel) {
         p.soldOut = productWithStockLevel.soldOut;
+        p.variants.forEach((v) => {
+          v.stockLevel =
+            productWithStockLevel.variants.find((hv) => hv.id === v.id)
+              ?.stockLevel || 'IN_STOCK';
+        });
       }
       return p;
     });
   } else if (products) {
     // Single product
     const product = products as CalculatedProduct<T>;
-    const hydratedProd = await vendure.getProduct(product.slug);
+    const [hydratedProduct] = (
+      await vendure.getStockForProducts([product.id])
+    ).map((stockLevel) => setCalculatedFields(stockLevel));
     product.variants.forEach((v) => {
       v.stockLevel =
-        hydratedProd.variants.find((hv) => hv.id === v.id)?.stockLevel ||
+        hydratedProduct.variants.find((hv) => hv.id === v.id)?.stockLevel ||
         'IN_STOCK';
     });
-    product.soldOut = hydratedProd.soldOut;
+    product.soldOut = hydratedProduct.soldOut;
   }
 }
 

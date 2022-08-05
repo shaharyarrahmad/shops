@@ -10,7 +10,7 @@
     >
       <!--- CUSTOMER DETAILS -------------------------------------->
       <b-step-item
-        step="1"
+        step="0"
         :label="$l('customer-details.title')"
         icon="account"
         :clickable="true"
@@ -26,15 +26,16 @@
 
       <!--- SHIPPING -------------------------------------->
       <b-step-item
-        step="2"
+        step="1"
         :label="$l('shipping.step-title')"
         icon="truck"
         :clickable="false"
       >
         <b-button
           class="is-outlined"
+          aria-label="back to customer details"
           :disable="hasShippingSelected"
-          @click="activeStep = 2"
+          @click="activeStep = 0"
         >
           <
         </b-button>
@@ -56,6 +57,7 @@
                 <br />
                 <b-button
                   class="is-fullwidth"
+                  aria-label="submit shippingmethod"
                   :disable="hasShippingSelected"
                   @click="activeStep = 2"
                 >
@@ -70,17 +72,26 @@
 
       <!--- CHECKUP -------------------------------------->
       <b-step-item
-        step="3"
+        step="2"
         :label="$l('checkup.title')"
         icon="playlist-check"
         :clickable="false"
         disabled
       >
+        <b-button
+          class="is-outlined"
+          aria-label="back to shipping"
+          :disable="hasShippingSelected"
+          @click="activeStep = 1"
+        >
+          <
+        </b-button>
+        <br />
         <br />
         <div class="columns">
           <div class="column is-8">
             <div class="columns">
-              <div class="column is-6">
+              <div class="column">
                 <AddressDisplay
                   :title="$l('checkup.shipping-address')"
                   :address="activeOrder.shippingAddress || {}"
@@ -92,7 +103,7 @@
                 />
               </div>
               <div
-                class="column is-6"
+                class="column"
                 v-if="
                   activeOrder.billingAddress &&
                   activeOrder.billingAddress.postalCode
@@ -116,6 +127,7 @@
                 <br />
                 <b-button
                   class="is-fullwidth"
+                  aria-label="go to payment"
                   :disable="hasShippingSelected"
                   @click="startPayment()"
                 >
