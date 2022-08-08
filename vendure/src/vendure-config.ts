@@ -43,6 +43,7 @@ import { EBoekhoudenPlugin } from 'vendure-plugin-e-boekhouden';
 import { EBookPlugin } from './e-book/e-book.plugin';
 import { eligibleWithoutAddressChecker } from './shipping/eligible-without-address-checker';
 import { OrderExportPlugin } from 'vendure-plugin-order-export';
+import { TaxExportStrategy } from './tax/tax-export-strategy';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -202,7 +203,7 @@ export const config: VendureConfig = {
       setWebhook: process.env.SHOP_ENV === 'prod' && !runningLocal, // Only set webhook for prod
     }),
     OrderExportPlugin.init({
-      exportStrategies: [],
+      exportStrategies: [new TaxExportStrategy()],
     }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
