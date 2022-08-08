@@ -47,6 +47,7 @@
     "vendure-plugin-google-storage-assets": "3.7.0",
     "vendure-plugin-invoices": "3.8.1",
     "vendure-plugin-myparcel": "3.8.1",
+    "vendure-plugin-order-export": "^3.9.0",
     "vendure-plugin-webhook": "3.8.1",
     "winston": "^3.8.1"
   },

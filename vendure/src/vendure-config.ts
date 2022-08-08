@@ -42,6 +42,7 @@ import { CoinbasePlugin } from 'vendure-plugin-coinbase';
 import { EBoekhoudenPlugin } from 'vendure-plugin-e-boekhouden';
 import { EBookPlugin } from './e-book/e-book.plugin';
 import { eligibleWithoutAddressChecker } from './shipping/eligible-without-address-checker';
+import { OrderExportPlugin } from 'vendure-plugin-order-export';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -199,6 +200,9 @@ export const config: VendureConfig = {
       vendureHost: process.env.VENDURE_HOST!,
       endpointSecret: process.env.WEBHOOK_TOKEN!,
       setWebhook: process.env.SHOP_ENV === 'prod' && !runningLocal, // Only set webhook for prod
+    }),
+    OrderExportPlugin.init({
+      exportStrategies: [],
     }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>

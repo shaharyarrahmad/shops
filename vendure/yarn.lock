@@ -4805,6 +4805,11 @@ csv-parse@^4.12.0:
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.16.3.tgz#7ca624d517212ebc520a36873c3478fa66efbaf7"
   integrity sha512-cO1I/zmz4w2dcKHVvpCr7JVRu8/FymG5OEpmvsZYlccYolPBLoVGKUHgNoc4ZGkFeFlWGEDmMyBM+TTqRdW/wg==
 
+csv-writer@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/csv-writer/-/csv-writer-1.6.0.tgz#d0cea44b6b4d7d3baa2ecc6f3f7209233514bcf9"
+  integrity sha512-NOx7YDFWEsM/fTRAJjRpPp8t+MKRVvniAg9wQlUKx20MFrPs73WLJhFf5iteqrxNYnsy924K3Iroh3yNHeYd2g==
+
 cycle@1.0.x:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/cycle/-/cycle-1.0.3.tgz#21e80b2be8580f98b468f379430662b046c34ad2"
@@ -12646,6 +12651,13 @@ vendure-plugin-myparcel@3.8.1:
   integrity sha512-frR4EVcAztDQd0OpbxCAEw/knMAqJPjQ/Urz1OctZW5/UWR7kR6ZJbog4QLTV3mJX4lZTBqGy2MsSb1ju3zkaA==
   dependencies:
     axios "^0.26.1"
+
+vendure-plugin-order-export@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-order-export/-/vendure-plugin-order-export-3.9.0.tgz#b2b8ecbae5264ac51ba62be16ddda3b6e2495a45"
+  integrity sha512-CpYTHkQlObMt6cNz7nBeLuJk3QRSy3mxlD+Z6mhgJ5y9Gs8qSH7W7rfC/UFL0XkMhs02i34sPnLPDW6CxNGhqw==
+  dependencies:
+    csv-writer "^1.6.0"
 
 vendure-plugin-webhook@3.8.1:
   version "3.8.1"

@@ -9,6 +9,7 @@ import {
   cancelOrderButton,
   completeOrderButton,
 } from 'vendure-plugin-admin-ui-helpers';
+import { OrderExportPlugin } from 'vendure-plugin-order-export';
 
 compileUiExtensions({
   outputPath: path.join(__dirname, '__admin-ui'),
@@ -18,6 +19,7 @@ compileUiExtensions({
     MyparcelPlugin.ui,
     GoedgepicktPlugin.ui,
     EBoekhoudenPlugin.ui,
+    OrderExportPlugin.ui,
     cancelOrderButton,
     completeOrderButton,
     setBranding({
