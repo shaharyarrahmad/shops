@@ -6,7 +6,7 @@
           :src="maybeThumbnail(product.featuredAsset)"
           :alt="product.name"
           ratio="1by1"
-          class="contain-image"
+          class="contain-image product-zoom-hover"
         />
         <div
           v-if="bottomBanner"
@@ -124,5 +124,13 @@ export default {
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
   );
+}
+.product-zoom-hover img {
+  transition: transform 0.2s; /* Animation */
+}
+
+.product-zoom-hover img:hover,
+.product-zoom-hover img:focus {
+  transform: scale(1.05);
 }
 </style>
