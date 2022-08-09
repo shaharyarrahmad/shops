@@ -40,7 +40,7 @@
             name="subscribe"
             native-type="submit"
             value="Subscribe"
-            style="width: 150px"
+            style="width: 150px; border: 1px solid #fff"
           />
         </div>
       </div>

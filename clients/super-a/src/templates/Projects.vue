@@ -93,6 +93,9 @@ export default {
       const start = this.itemsPerPage * (this.currentPage - 1);
       const end = start + this.itemsPerPage;
       this.items = this.$context.projects.slice(start, end);
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+      }, 100);
     },
   },
 };
