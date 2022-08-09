@@ -51,9 +51,13 @@ export class TaxExportStrategy implements ExportStrategy {
         loggerCtx
       );
       orders.push(...orderList.items);
-      hasMoreOrders = orderList.totalItems > orderList.items.length;
+      skip += orderList.items.length;
+      hasMoreOrders = orderList.totalItems > skip;
     }
-    Logger.info(`Exporting ${orders.length} orders`, loggerCtx);
+    Logger.info(
+      `Exporting ${orders.length} orders from ${startDate} to ${endDate}`,
+      loggerCtx
+    );
     const uniqueTaxRates = new Set<string>();
     const totalTaxOfAllOrders: Record<string, number> = {};
     const rows: OrderRow[] = orders.map((order) => {
