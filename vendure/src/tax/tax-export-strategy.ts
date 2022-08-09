@@ -11,8 +11,8 @@ const loggerCtx = 'TaxExportStrategy';
 export interface OrderRow {
   code: string;
   date: string;
-  total: string;
-  totalWithTax: string;
+  orderTotal: string;
+  orderTotalWithTax: string;
 
   [key: string]: string;
 }
@@ -55,25 +55,24 @@ export class TaxExportStrategy implements ExportStrategy {
     }
     Logger.info(`Exporting ${orders.length} orders`, loggerCtx);
     const uniqueTaxRates = new Set<string>();
-    const totalPerTaxRate: any = {};
+    const totalTaxOfAllOrders: Record<string, number> = {};
     const rows: OrderRow[] = orders.map((order) => {
       const { taxTotal } = TaxHelper.getTaxSummary(order);
       Object.keys(taxTotal).forEach((taxRate) => uniqueTaxRates.add(taxRate));
       const formattedTaxTotal: any = {};
       Object.entries(taxTotal).forEach(([key, value]) => {
         formattedTaxTotal[key] = this.formatCurrency(value);
-        const existingTotal = totalPerTaxRate[key] || 0;
-        totalPerTaxRate[key] = existingTotal + value;
+        const existingTotal = totalTaxOfAllOrders[key] || 0;
+        totalTaxOfAllOrders[key] = existingTotal + value;
       });
       return {
         code: order.code,
         date: order.orderPlacedAt?.toLocaleDateString('nl-NL') || '',
-        total: this.formatCurrency(order.total),
-        totalWithTax: this.formatCurrency(order.totalWithTax),
+        orderTotal: this.formatCurrency(order.total),
+        orderTotalWithTax: this.formatCurrency(order.totalWithTax),
         ...formattedTaxTotal,
       };
     });
-    console.log(JSON.stringify(totalPerTaxRate));
     // Write to file
     const fileName = `${new Date().getTime()}-${startDate.getTime()}-${endDate.getTime()}.${
       this.fileExtension
@@ -82,10 +81,11 @@ export class TaxExportStrategy implements ExportStrategy {
     const csvWriter = createObjectCsvWriter({
       path: exportFile,
       header: [
+        { id: 'total', title: 'totalen' },
         { id: 'code', title: 'bestelling' },
         { id: 'date', title: 'datum' },
-        { id: 'total', title: 'totaal excl. btw' },
-        { id: 'totalWithTax', title: 'totaal incl. btw' },
+        { id: 'orderTotal', title: 'totaal excl. btw' },
+        { id: 'orderTotalWithTax', title: 'totaal incl. btw' },
         // Taxrate headers, 9% 21% etc
         ...Array.from(uniqueTaxRates).map((rate) => ({
           id: rate,
@@ -93,6 +93,12 @@ export class TaxExportStrategy implements ExportStrategy {
         })),
       ],
     });
+    const totalOfOrdersRecords = Object.entries(totalTaxOfAllOrders).map(
+      ([key, value]) => ({
+        total: `Totaal ${key}% BTW: ${this.formatCurrency(value)}`,
+      })
+    );
+    await csvWriter.writeRecords(totalOfOrdersRecords);
     await csvWriter.writeRecords(rows);
     return exportFile;
   }
