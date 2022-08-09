@@ -116,6 +116,7 @@ function mapToMinimalCollection(col) {
     id: col.id,
     slug: col.slug,
     name: col.name,
+    featuredAsset: col.featuredAsset,
     parent: col.parent ? mapToMinimalCollection(col.parent) : undefined,
     children: col.children
       ? col.children.map(mapToMinimalCollection)

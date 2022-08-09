@@ -1,6 +1,6 @@
 <template>
   <div
-    class="box card-background-image has-text-centered"
+    class="box card-background-image has-text-centered category-card"
     :style="`background-image: url(${image});`"
   >
     <h4 class="has-text-white py-5">{{ name }}</h4>
@@ -11,4 +11,8 @@ export default {
   props: ['image', 'name'],
 };
 </script>
-<style></style>
+<style>
+.category-card {
+  background-size: contain;
+}
+</style>
