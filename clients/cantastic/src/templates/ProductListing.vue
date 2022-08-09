@@ -44,7 +44,7 @@
               collapse="1"
             />
             <div v-if="totalProducts > 5" class="has-text-right">
-              <b>{{ $context.products.length }}</b> producten |
+              <b>{{ $context.products.length }}</b> producten
               <b-select
                 placeholder="Sorteer op"
                 style="display: inline-flex"
@@ -94,7 +94,6 @@ export default {
   components: { ReadMoreDescription, Pagination },
   data() {
     return {
-      current: 1,
       itemsPerPage: 24,
       products: [],
       sortedBy: 'price-asc',
@@ -106,13 +105,20 @@ export default {
     this.sort(this.sortedBy);
     this.totalProducts = this.$context.products?.length;
   },
+  computed: {
+    totalPages() {
+      return Math.floor(this.$context.products?.length / this.itemsPerPage);
+    },
+  },
   methods: {
     setPage({ start, end }) {
       console.log(`Display products ${start} - ${end}`);
       this.products = this.$context.products.slice(start, end);
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+      }, 100);
     },
     loadFirstPage() {
-      this.current = 1;
       this.products = this.$context.products.slice(0, this.itemsPerPage);
     },
     sortDesc(product1, product2) {

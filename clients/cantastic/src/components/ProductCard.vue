@@ -47,8 +47,6 @@ export default {
   data() {
     return {
       isLoading: false,
-      bottomBanner: undefined,
-      topBanner: undefined,
     };
   },
   methods: {
@@ -67,13 +65,15 @@ export default {
       this.isLoading = false;
     },
   },
-  created() {
-    this.bottomBanner = this.product.facetValues.find(
-      (f) => f.facet.code === 'banner'
-    );
-    this.topBanner = this.product.facetValues.find(
-      (f) => f.facet.code === 'banner-top'
-    );
+  computed: {
+    bottomBanner() {
+      return this.product.facetValues.find((f) => f.facet.code === 'banner');
+    },
+    topBanner() {
+      return this.product.facetValues.find(
+        (f) => f.facet.code === 'banner-top'
+      );
+    },
   },
 };
 </script>
