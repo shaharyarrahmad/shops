@@ -95,7 +95,6 @@ export async function buy(
     await ctx.vendure.addProductToCart(variant.id, quantity);
     ctx.emitter.emit('productAdded', { variantId: variant.id, quantity });
   } catch (e) {
-    console.error(e);
     ctx.emitter.emit('error', e);
   }
 }

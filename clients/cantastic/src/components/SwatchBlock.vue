@@ -59,29 +59,14 @@ export default {
           return;
         }
         this.isLoading = true;
-        if (!this.orderLine && this.displayQuantity > 0) {
-          // Can only buy when bigger than 0
-          // Add item to cart because no existing orderLine
-          await buy(
-            this.variant,
-            {
-              vendure: this.$vendure,
-              emitter: this.$emitter,
-            },
-            this.displayQuantity
-          );
-        } else {
-          // Adjust existing orderline
-          const quantityAdded = this.displayQuantity - this.orderLine.quantity;
-          await this.$vendure.adjustOrderLine(
-            this.orderLine.id,
-            this.displayQuantity
-          );
-          this.$emitter.emit('productAdded', {
-            variantId: this.variant.id,
-            quantity: quantityAdded,
-          });
-        }
+        await buy(
+          this.variant,
+          {
+            vendure: this.$vendure,
+            emitter: this.$emitter,
+          },
+          this.displayQuantity
+        );
       } catch (e) {
         console.error(e);
       } finally {

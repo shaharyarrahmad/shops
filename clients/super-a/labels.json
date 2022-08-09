@@ -23,7 +23,7 @@
   "order-summary": {
     "title": "Summary",
     "shipping-cost": "Shipping",
-    "subtotal": "Subtotal (incl. discounts)",
+    "subtotal": "Subtotal",
     "total": "Total"
   },
   "checkup": {
@@ -39,5 +39,8 @@
   },
   "common": {
     "couponcode": "Couponcode"
+  },
+  "error": {
+    "INSUFFICIENT_STOCK_ERROR": "That's all we have!"
   }
 }

@@ -59,3 +59,13 @@ export interface VueContext {
   $store: Store;
   $emitter: Emitter<any>;
 }
+
+export class VendureError extends Error {
+  constructor(
+    public message: string,
+    public orderCode?: string,
+    public errorCode?: string
+  ) {
+    super(message);
+  }
+}

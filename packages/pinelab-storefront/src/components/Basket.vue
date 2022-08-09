@@ -123,6 +123,7 @@
 <script>
 import { VendureClient } from '../vendure/vendure.client';
 import { Store } from '../vendure/types';
+import { ErrorCode } from '../../../pinelab-storefront-client/lib/generated/graphql';
 
 export default {
   emits: ['cart-button-clicked', 'checkout-button-clicked'],
@@ -190,8 +191,10 @@ export default {
       });
     },
     showError(e) {
+      console.error(e);
+      const label = this.$l(`error.${e.errorCode}`);
       this.$buefy.toast.open({
-        message: `Error: ${e?.message}`,
+        message: label || e.message,
         duration: 5000,
         position: 'is-bottom',
         type: 'is-danger',

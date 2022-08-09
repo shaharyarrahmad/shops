@@ -47,5 +47,8 @@
   },
   "common": {
     "couponcode": "Kortingscode"
+  },
+  "error": {
+    "INSUFFICIENT_STOCK_ERROR": "We hebben er niet meer helaas!"
   }
 }

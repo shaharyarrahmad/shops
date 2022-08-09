@@ -69,7 +69,7 @@ import {
   TransitionOrderToStateMutationVariables,
   UpdateOrderCustomFieldsInput,
 } from '../generated/graphql';
-import { CalculatedProduct, Store } from './types';
+import { CalculatedProduct, Store, VendureError } from './types';
 import { setCalculatedFields } from '../util/product.util';
 
 export class VendureClient {
@@ -136,7 +136,7 @@ export class VendureClient {
       productVariantId,
       quantity,
     });
-    this.validateResult(addItemToOrder);
+    await this.validateResult(addItemToOrder);
     this.store.activeOrder = addItemToOrder as OrderFieldsFragment;
     await this.setDefaultShippingMethod();
     return addItemToOrder as OrderFieldsFragment;
@@ -182,7 +182,7 @@ export class VendureClient {
     >(SET_ORDERSHIPPINGMETHOD, {
       shippingMethodId,
     });
-    this.validateResult(setOrderShippingMethod);
+    await this.validateResult(setOrderShippingMethod);
     this.store.activeOrder = setOrderShippingMethod as OrderFieldsFragment;
     return setOrderShippingMethod as OrderFieldsFragment;
   }
@@ -196,7 +196,7 @@ export class VendureClient {
       AdjustOrderLineMutation,
       AdjustOrderLineMutationVariables
     >(ADJUST_ORDERLINE, { orderLineId, quantity });
-    this.validateResult(adjustOrderLine);
+    await this.validateResult(adjustOrderLine);
     this.store.activeOrder = adjustOrderLine as OrderFieldsFragment;
     return adjustOrderLine as OrderFieldsFragment;
   }
@@ -208,7 +208,7 @@ export class VendureClient {
       SetCustomerForOrderMutation,
       SetCustomerForOrderMutationVariables
     >(SET_CUSTOMER_FOR_ORDER, { input });
-    this.validateResult(setCustomerForOrder);
+    await this.validateResult(setCustomerForOrder);
     this.store.activeOrder = setCustomerForOrder as OrderFieldsFragment;
     return setCustomerForOrder as OrderFieldsFragment;
   }
@@ -220,7 +220,7 @@ export class VendureClient {
       SetOrderShippingAddressMutation,
       SetOrderShippingAddressMutationVariables
     >(SET_ORDERSHIPPINGADDRESS, { input });
-    this.validateResult(order);
+    await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }
@@ -232,7 +232,7 @@ export class VendureClient {
       SetOrderBillingAddressMutation,
       SetOrderBillingAddressMutationVariables
     >(SET_ORDERBILLINGADDRESS, { input });
-    this.validateResult(order);
+    await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }
@@ -249,7 +249,7 @@ export class VendureClient {
       TransitionOrderToStateMutation,
       TransitionOrderToStateMutationVariables
     >(TRANSITION_ORDER_TO_STATE, { state });
-    this.validateResult(transitionOrderToState);
+    await this.validateResult(transitionOrderToState);
     this.store.activeOrder = transitionOrderToState as OrderFieldsFragment;
     return transitionOrderToState as OrderFieldsFragment;
   }
@@ -261,7 +261,7 @@ export class VendureClient {
     >(CREATE_MOLLIE_PAYMENT_INTENT, {
       input: { paymentMethodCode: code },
     });
-    this.validateResult(createMolliePaymentIntent);
+    await this.validateResult(createMolliePaymentIntent);
     return (createMolliePaymentIntent as MolliePaymentIntent).url;
   }
 
@@ -270,7 +270,7 @@ export class VendureClient {
       await this.request<CreateCoinbasePaymentIntentMutation>(
         CREATE_COINBASE_PAYMENT_INTENT
       );
-    this.validateResult(createCoinbasePaymentIntent);
+    await this.validateResult(createCoinbasePaymentIntent);
     return createCoinbasePaymentIntent;
   }
 
@@ -301,7 +301,7 @@ export class VendureClient {
     >(APPLY_COUPON_CODE, {
       couponCode,
     });
-    this.validateResult(order);
+    await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }
@@ -324,7 +324,7 @@ export class VendureClient {
   async removeAllOrderLines(): Promise<OrderFieldsFragment> {
     const { removeAllOrderLines: order } =
       await this.request<RemoveAllOrderLinesMutation>(REMOVE_ALL_ORDER_LINES);
-    this.validateResult(order);
+    await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }
@@ -346,7 +346,7 @@ export class VendureClient {
       SetOrderCustomFieldsMutation,
       SetOrderCustomFieldsMutationVariables
     >(SET_PICKUP_LOCATION_FOR_ORDER, { customFields });
-    this.validateResult(order);
+    await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
   }
@@ -366,7 +366,7 @@ export class VendureClient {
     });
   }
 
-  validateResult(result: any): void {
+  async validateResult(result: any): Promise<void> {
     if (result && result.errorCode) {
       if (
         result.errorCode === 'ORDER_MODIFICATION_ERROR' ||
@@ -374,8 +374,14 @@ export class VendureClient {
       ) {
         window.localStorage.removeItem(this.tokenName); // These are unrecoverable states, so remove activeOrder
       }
-      throw Error(
-        `${this.store.activeOrder?.code} - ${result.errorCode} - ${result.message}`
+      if (result.errorCode === 'INSUFFICIENT_STOCK_ERROR') {
+        // Fetch activeOrder to view amount of items added after insufficient stock error
+        await this.getActiveOrder();
+      }
+      throw new VendureError(
+        `${result.errorCode} - ${result.message}`,
+        this.store.activeOrder?.code,
+        result.errorCode
       );
     }
   }
