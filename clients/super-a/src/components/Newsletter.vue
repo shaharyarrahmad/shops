@@ -35,13 +35,14 @@
         </div>
         <div class="column is-narrow">
           <b-button
-            tag="input"
+            type="is-primary"
             id="mc-embedded-subscribe"
             name="subscribe"
             native-type="submit"
             value="Subscribe"
             style="width: 150px; border: 1px solid #fff"
-          />
+            >Subscribe</b-button
+          >
         </div>
       </div>
     </form>
