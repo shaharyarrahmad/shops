@@ -31,7 +31,7 @@
   "order-summary": {
     "title": "Samenvatting",
     "shipping-cost": "Verzendkosten",
-    "subtotal": "Subtotaal (incl. korting)",
+    "subtotal": "Subtotaal",
     "total": "Totaal"
   },
   "checkup": {

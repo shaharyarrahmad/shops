@@ -8,13 +8,13 @@
           <tr>
             <td>{{ $l('order-summary.subtotal') }}</td>
             <td class="has-text-right">
-              {{ order.subTotalWithTax | euro }}
+              {{ subTotalWithTax | euro }}
             </td>
           </tr>
-          <tr>
+          <tr v-for="shippingLine of shippingLines">
             <td>{{ $l('order-summary.shipping-cost') }}</td>
             <td class="has-text-right">
-              {{ order.shippingWithTax | euro }}
+              {{ shippingLine.priceWithTax | euro }}
             </td>
           </tr>
           <tr class="has-text-success" v-for="discount of order.discounts">
@@ -49,6 +49,19 @@ export default {
     order: {
       type: Store['activeOrder'],
       required: true,
+    },
+  },
+  computed: {
+    shippingLines() {
+      return this.order?.shippingLines || [];
+    },
+    subTotalWithTax() {
+      return (
+        this.order?.lines?.reduce(
+          (acc, current) => acc + current.linePriceWithTax,
+          0
+        ) || 0
+      );
     },
   },
 };

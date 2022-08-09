@@ -127,6 +127,7 @@ export const ORDER_FIELDS = gql`
         code
         name
       }
+      priceWithTax
     }
     lines {
       id
