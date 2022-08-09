@@ -1,9 +1,12 @@
 <template>
-  <div
-    class="box card-background-image has-text-centered category-card"
-    :style="`background-image: url(${image});`"
-  >
-    <h4 class="has-text-white py-5">{{ name }}</h4>
+  <div class="">
+    <div
+      class="box category-card mb-1"
+      :style="`background-image: url(${image});`"
+    ></div>
+    <h5 class="has-text-centered" style="z-index: 2">
+      {{ name }}
+    </h5>
   </div>
 </template>
 <script>
@@ -13,6 +16,16 @@ export default {
 </script>
 <style>
 .category-card {
+  min-height: 150px;
+  background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
+  height: 100%;
+  transition: transform 0.2s; /* Animation */
+}
+
+.category-card:focus,
+.category-card:hover {
+  transform: scale(1.1);
 }
 </style>

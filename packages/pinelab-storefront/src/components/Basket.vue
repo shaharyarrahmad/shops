@@ -123,7 +123,6 @@
 <script>
 import { VendureClient } from '../vendure/vendure.client';
 import { Store } from '../vendure/types';
-import { ErrorCode } from '../../../pinelab-storefront-client/lib/generated/graphql';
 
 export default {
   emits: ['cart-button-clicked', 'checkout-button-clicked'],

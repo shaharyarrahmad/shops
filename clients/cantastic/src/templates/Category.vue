@@ -7,14 +7,12 @@
 
         <div class="columns is-multiline is-mobile">
           <template v-for="collection of $context.childCollections">
-            <div
-              class="column is-6-mobile is-4-tablet"
-              :class="getColumnWidth($context.childCollections)"
-            >
+            <div class="column is-6-mobile is-4-tablet is-4-desktop">
               <g-link :to="`/categorie/${collection.slug}/`">
                 <CategoryCard
                   :name="collection.name"
                   :image="maybeThumbnail(collection.featuredAsset)"
+                  :centered="true"
                 />
               </g-link>
             </div>
@@ -33,17 +31,6 @@
 import { getMetaInfo } from 'pinelab-storefront';
 
 export default {
-  methods: {
-    getColumnWidth(collections) {
-      if (collections.length === 2) {
-        return 'is-6-desktop';
-      } else if (collections.length === 3) {
-        return 'is-one-third-desktop';
-      } else {
-        return 'is-one-fifth-desktop';
-      }
-    },
-  },
   metaInfo() {
     const url = `${process.env.GRIDSOME_HOST}${this.$route.fullPath}`;
     return getMetaInfo(this.$context.collection, url);

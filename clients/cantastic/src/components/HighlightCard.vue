@@ -25,9 +25,17 @@ export default {
 };
 </script>
 <style>
-.card-background-image.highlight-card {
+.card-background-image {
+  min-height: 150px;
+  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.3);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  height: 100%;
+}
+
+.card-background-image:hover,
+.card-background-image:focus {
+  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.05);
 }
 </style>
