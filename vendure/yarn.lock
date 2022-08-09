@@ -1552,10 +1552,10 @@
     uuid "^8.0.0"
     xdg-basedir "^4.0.0"
 
-"@google-cloud/storage@^6.2.3":
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.2.3.tgz#e3dae8708488cf2e0e4fbf0488083d9d279ee097"
-  integrity sha512-UJqn3Ln8wFBPLuwBaNu3PlhzQDL3EKKfP1+3mzLRQhcFqgpBSMPLDgAXxc6e9S0l0kqsi4GOuAA7fA+l/VAMjQ==
+"@google-cloud/storage@^6.3.0":
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.3.0.tgz#0a9765416b659f54477da6611d9c12b914c04a61"
+  integrity sha512-Ah4wl9cWUEW+2lAqHsKauaLlPmbtdOdQkvJE6BFwmTSZhywYVtVHLcEpf5F+/GmmNTnirFGNdE7UjgbyOxcnRg==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
     "@google-cloud/projectify" "^3.0.0"
@@ -2467,10 +2467,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/papaparse@^5.3.2":
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/@types/papaparse/-/papaparse-5.3.2.tgz#6ccace6eac8ddb03a6fd06883b84dd6c6561f69f"
-  integrity sha512-BNbCHJkTE4RwmAFkCxEalET4mDvGr/1ld7ZtQ4i/laWI/iiVt+GL07stdvufle4KfywyvloqqpIiJscXNCrKxA==
+"@types/papaparse@^5.3.3":
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/@types/papaparse/-/papaparse-5.3.3.tgz#59c4db7efcb5ecbca18ba0e6f6d62b3949f35ed0"
+  integrity sha512-i7fV8u843vb7nIGpcwdCsG3WjfBONeytRHK1mQL9d5KQAvFeAK2rRisDHicreYpoQ0MXocUDEqunKHTeXdvibg==
   dependencies:
     "@types/node" "*"
 
@@ -12606,10 +12606,10 @@ vendure-plugin-dutch-postalcode@3.7.0:
   resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-3.7.0.tgz#4db367175bbefd17def4113f939b07611dbee38f"
   integrity sha512-rer7aWGp8XeD9TAh3/UQx/+Ddk84ewJ6f12xqEz5X5dZrxblMRVq9vvOh7y9nusGGCdSH6PFQUV+I3bxQALcfA==
 
-vendure-plugin-e-boekhouden@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-3.8.1.tgz#a9199862328cec8979d67575a95fce1296e64e98"
-  integrity sha512-P26zBqS/vipvCg1P9X6R2WGxguQBvsH79K1lyACCHMglcW7+V1o7e4ZRP0nmFWzLllWP8GaiQ3yOx3swwZ+18Q==
+vendure-plugin-e-boekhouden@3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-3.9.0.tgz#d81055a23ee137f59207b79193c09a11e1aae705"
+  integrity sha512-KxnoUx8qB5LzGOSrbfOccxS53OdxDpa8w/7yjt9idtN7VkFSD5vE5JYvOXyipt7bTuHqPZjfhsBC3XsQ/Mrmxw==
   dependencies:
     soap "^0.43.0"
 
@@ -12636,10 +12636,10 @@ vendure-plugin-google-storage-assets@3.7.0:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-3.8.1.tgz#53f556304790f5cb9f2db83a207b162b913259ac"
-  integrity sha512-oA8T/51Z3kt8PCH8BGhWZ45H8FuI8AWHzIKohFy5qH51WElDYPZAXvtQJVdCKOQoZRNRfoX94iBo5DY5ifRr/Q==
+vendure-plugin-invoices@3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-3.9.1.tgz#0c39c474faf24a41d601d4c6536e9cfa652203fb"
+  integrity sha512-eIHjRTgzol5LSrbnlmnRohdmIheRZUQguSPSk6MFoSNULXw/gtWby63Foye4545asyfbkQAqTjkaBLk/cpXUOQ==
   dependencies:
     adm-zip "^0.5.9"
     pdf-creator-node "^2.3.4"

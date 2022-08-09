@@ -5,10 +5,6 @@
       <h4>{{ $l('order-summary.title') }}</h4>
       <table style="width: 100%">
         <tbody>
-          <tr class="has-text-success" v-for="discount of order.discounts">
-            <td>{{ discount.description }}</td>
-            <td class="has-text-right">{{ discount.amountWithTax | euro }}</td>
-          </tr>
           <tr>
             <td>{{ $l('order-summary.subtotal') }}</td>
             <td class="has-text-right">
@@ -20,6 +16,10 @@
             <td class="has-text-right">
               {{ order.shippingWithTax | euro }}
             </td>
+          </tr>
+          <tr class="has-text-success" v-for="discount of order.discounts">
+            <td>{{ discount.description }}</td>
+            <td class="has-text-right">{{ discount.amountWithTax | euro }}</td>
           </tr>
         </tbody>
       </table>
