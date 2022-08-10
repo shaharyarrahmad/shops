@@ -63,7 +63,11 @@
       </div>
     </div>
     <h2 class="is-size-3">Productbeschrijving</h2>
-    <div id="full-description" v-html="$context.product.description"></div>
+    <div
+      id="full-description"
+      class="content"
+      v-html="$context.product.description"
+    ></div>
   </DefaultLayout>
 </template>
 <script>

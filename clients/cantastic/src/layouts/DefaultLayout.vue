@@ -41,7 +41,7 @@
                   $router.push('/checkout/').catch((e) => {})
                 "
               >
-                <i class="mdi mdi-basket mdi-48px has-text-white"></i>
+                <i class="mdi mdi-basket mdi-36px has-text-white"></i>
               </Basket>
             </div>
           </div>

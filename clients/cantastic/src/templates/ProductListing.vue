@@ -80,6 +80,7 @@
 
         <div
           id="full-description"
+          class="content"
           v-html="$context.collection.description"
         ></div>
       </section>

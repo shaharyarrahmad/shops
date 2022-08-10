@@ -31,6 +31,7 @@
     <h2 class="title">{{ $context.product.name }}</h2>
     <div
       id="full-description"
+      class="content"
       v-if="$context.product.description"
       v-html="$context.product.description"
     ></div>
