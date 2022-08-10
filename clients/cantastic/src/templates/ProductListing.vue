@@ -32,10 +32,10 @@
                 :key="collection.slug"
                 class="button is-small mr-2 mb-2"
                 :class="{
-                  'is-primary': collection.id === $context.collection.id,
+                  'is-outlined': collection.id !== $context.collection.id,
                 }"
               >
-                {{ collection.name }}<br />
+                {{ collection.name }}
               </g-link>
             </div>
             <ReadMoreDescription
