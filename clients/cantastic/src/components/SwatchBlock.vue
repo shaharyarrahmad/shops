@@ -55,18 +55,28 @@ export default {
   methods: {
     async buy() {
       try {
-        if (this.displayQuantity < 0) {
-          return;
+        if (!this.orderLine) {
+          // Buy because no existing orderLine
+          await buy(
+            this.variant,
+            {
+              vendure: this.$vendure,
+              emitter: this.$emitter,
+            },
+            this.newValue
+          );
+        } else {
+          // Adjust existing orderline
+          const quantityAdded = this.displayQuantity - this.orderLine.quantity;
+          await this.$vendure.adjustOrderLine(
+            this.orderLine.id,
+            this.displayQuantity
+          );
+          this.$emitter.emit('productAdded', {
+            variantId: this.variant.id,
+            quantity: quantityAdded,
+          });
         }
-        this.isLoading = true;
-        await buy(
-          this.variant,
-          {
-            vendure: this.$vendure,
-            emitter: this.$emitter,
-          },
-          this.displayQuantity
-        );
       } catch (e) {
         console.error(e);
       } finally {
