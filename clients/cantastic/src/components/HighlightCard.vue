@@ -27,7 +27,7 @@ export default {
 <style>
 .card-background-image {
   min-height: 150px;
-  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.3);
+  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.5);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -36,6 +36,6 @@ export default {
 
 .card-background-image:hover,
 .card-background-image:focus {
-  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.05);
+  box-shadow: inset 0 0 0 1000px rgba(35, 57, 91, 0.1);
 }
 </style>
