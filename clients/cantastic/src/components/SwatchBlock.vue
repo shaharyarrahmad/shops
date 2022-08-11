@@ -56,6 +56,7 @@ export default {
     async buy() {
       try {
         if (!this.orderLine) {
+          console.log(this.displayQuantity);
           // Buy because no existing orderLine
           await buy(
             this.variant,
@@ -63,7 +64,7 @@ export default {
               vendure: this.$vendure,
               emitter: this.$emitter,
             },
-            this.newValue
+            this.displayQuantity
           );
         } else {
           // Adjust existing orderline
