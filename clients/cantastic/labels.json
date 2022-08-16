@@ -26,7 +26,7 @@
   "shipping": {
     "step-title": "Bezorging",
     "page-title": "Verzendwijze kiezen:",
-    "submit": "Overzicht en bestellen"
+    "submit": "Bestellen en betalen"
   },
   "order-summary": {
     "title": "Samenvatting",
@@ -35,7 +35,7 @@
     "total": "Totaal"
   },
   "checkup": {
-    "title": "Overzicht en bestellen",
+    "title": "Bestellen en betalen",
     "shipping-address": "Verzendadres",
     "billing-address": "Factuuradres",
     "items": "Producten",

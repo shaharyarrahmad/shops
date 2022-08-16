@@ -6,6 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "fetch:cantastic": "yarn fetch https://cantastic.nl",
+    "check:cantastic": "yarn check-urls https://cantastic.netlify.app cantastic_nl.csv /feed/,/product-tag/",
     "fetch": "node ./get-old-urls.js",
     "check-urls": "node ./check-new-urls.js"
   },
