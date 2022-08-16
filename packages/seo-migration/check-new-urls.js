@@ -15,13 +15,12 @@ const statusFile = 'data/' + process.argv[3] + '_status.csv';
   for (const path of paths) {
     const shouldSkip = excludes.some((exclude) => path.indexOf(exclude) > -1);
     if (shouldSkip) {
-      console.log(`Skipping ${path}`);
       continue;
     }
     const url = site + path;
     const res = await fetch(url);
     if (res.ok) {
-      console.log(res.status, path);
+      // console.log(res.status, path);
     } else {
       console.error(res.status, path);
     }

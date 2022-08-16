@@ -1,6 +1,5 @@
 /order/* /order/_code.html 200
 /admin/ https://test-api.pinelab.studio/admin/ 302
-/shop/*  /categorie/:splat 302
 
 /product-categorie/boeken-magazines/* /categorie/boeken-magazines/ 302
 /product-categorie/cans/ /categorie/spray-paint/ 302
@@ -11,9 +10,14 @@
 /product-categorie/uitrusting/* /categorie/uitrusting/ 302
 /product-categorie/markers/ /categorie/graffiti-markers/ 302
 /product-categorie/markers/* /categorie/graffiti-markers/ 302
+/shop/loop_colors_graffiti_spuitbussen/loop-colors-spuitbussen/ /categorie/loop-colors-2/ 302
+/shop/loop_colors_graffiti_spuitbussen/loop-colors-aanbiedingen-deals/ /categorie/voordeelpakketten/ 302
+/shop/loop_colors_graffiti_spuitbussen/* /categorie/spray-paint/ 302
+
 
 /product/mr-serious* /categorie/mr-serious/ 302
 
+/shop/*  /categorie/:splat 302
 /product-categorie/*  /categorie/:splat 302
 /about/ /over-ons/ 302
 /about/* /over-ons/ 302
