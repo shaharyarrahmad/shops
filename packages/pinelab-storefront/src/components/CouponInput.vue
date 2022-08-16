@@ -55,6 +55,9 @@ export default {
     async applyCouponCode() {
       try {
         this.loading = true;
+        if (!this.couponCode) {
+          return;
+        }
         await this.vendure.applyCouponCode(this.couponCode);
         this.isInvalid = false;
         this.isApplied = true;

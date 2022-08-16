@@ -3,7 +3,10 @@
     <h3>Onze favorieten</h3>
     <div class="columns is-6 is-variable is-multiline is-mobile">
       <template v-for="favorite of $context.favorites">
-        <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
+        <div
+          v-if="!favorite.soldOut"
+          class="column is-6-mobile is-4-tablet is-one-fifth-desktop"
+        >
           <ProductCard :product="favorite" />
         </div>
       </template>

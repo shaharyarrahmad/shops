@@ -26,7 +26,10 @@
     </g-link>
     <div class="buy-button has-text-right">
       <h5 class="is-inline-block pt-3 pr-2">
-        {{ product.lowestPrice | euro }}
+        <template v-if="product.soldOut"
+          ><s>{{ product.lowestPrice | euro }}</s></template
+        >
+        <template v-else>{{ product.lowestPrice | euro }}</template>
       </h5>
       <b-button
         type="is-info"

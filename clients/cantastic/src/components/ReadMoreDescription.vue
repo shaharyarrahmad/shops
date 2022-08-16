@@ -1,6 +1,6 @@
 <template>
   <div v-if="description">
-    <div :class="`collapse-${collapse} mb-0`">{{ plaintext }}</div>
+    <div :class="`collapsed-${collapse} mb-0`">{{ plaintext }}</div>
     <div v-if="isDescriptionLongEnough" class="has-text-right">
       <a href="#full-description">Lees meer</a>
     </div>
@@ -11,16 +11,12 @@ export default {
   props: ['description', 'maxLength', 'collapse'],
   data() {
     return {
-      plaintext: undefined,
+      plaintext: this.description
+        ?.replace(/<[^>]+>/g, ' ')
+        ?.replaceAll('&nbsp;', ' '),
     };
   },
-  created() {
-    this.plaintext = new DOMParser().parseFromString(
-      this.description,
-      'text/html'
-    ).documentElement.textContent;
-    console.log(this.plaintext);
-  },
+
   computed: {
     isDescriptionLongEnough() {
       return this.description?.length > this.maxLength;

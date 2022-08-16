@@ -2,6 +2,7 @@
   <Layout #content>
     <CheckoutSteps
       :vendure="$vendure"
+      :emitter="$emitter"
       :store="$store"
       :available-countries="$context.availableCountries"
     >

@@ -2,7 +2,9 @@
   <DefaultLayout>
     <template #content>
       <CheckoutSteps
+        class="checkout-steps"
         :vendure="$vendure"
+        :emitter="$emitter"
         :store="$store"
         :available-countries="[
           { name: 'Nederland', code: 'nl' },

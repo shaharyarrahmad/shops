@@ -128,36 +128,54 @@ h1 {
   @extend .title;
   @extend .is-1;
   @extend .is-family-secondary;
+  @media screen and (max-width: $desktop) {
+    font-size: 2rem;
+  }
 }
 
 h2 {
   @extend .title;
   @extend .is-2;
   @extend .is-family-secondary;
+  @media screen and (max-width: $desktop) {
+    font-size: 1.6rem;
+  }
 }
 
 h3 {
   @extend .title;
   @extend .is-3;
   @extend .is-family-secondary;
+  @media screen and (max-width: $desktop) {
+    font-size: 1.4rem;
+  }
 }
 
 h4 {
   @extend .title;
   @extend .is-4;
   @extend .is-family-secondary;
+  @media screen and (max-width: $desktop) {
+    font-size: 1.2rem;
+  }
 }
 
 h5 {
   @extend .title;
   @extend .is-5;
   @extend .is-family-secondary;
+  @media screen and (max-width: $desktop) {
+    font-size: 1.1rem;
+  }
 }
 
 h6 {
   @extend .title;
   @extend .is-6;
   @extend .is-family-secondary;
+  @media screen and (max-width: $desktop) {
+    font-size: 0.9rem;
+  }
 }
 
 .has-text-light h1,
@@ -175,17 +193,25 @@ section {
 }
 
 .button {
-  @extend .is-primary;
   font-weight: 700;
-}
-
-.usps b {
-  color: $loop-red;
+  @media screen and (max-width: $desktop) {
+    font-size: 0.9rem;
+  }
 }
 
 /** Make all buttons black **/
 .button .is-primary {
   @extend .is-dark
+}
+
+#side-basket button,
+.checkout-steps a,
+.checkout-steps button {
+  @extend .is-primary;
+}
+
+.usps b {
+  color: $loop-red;
 }
 
 /** Navbar stuff **/

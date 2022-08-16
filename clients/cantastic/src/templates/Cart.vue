@@ -2,6 +2,7 @@
   <DefaultLayout>
     <template #content>
       <div
+        class="checkout-steps"
         v-if="activeOrder && activeOrder.lines && activeOrder.lines.length > 0"
       >
         <div class="columns">

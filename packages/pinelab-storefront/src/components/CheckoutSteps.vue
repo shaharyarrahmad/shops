@@ -53,6 +53,13 @@
           </div>
           <div class="column is-offset-1">
             <OrderSummary class="mb-5" :order="activeOrder">
+              <template #middle>
+                <CouponInput
+                  class="pt-2"
+                  :vendure="vendure"
+                  :applied-coupons="activeOrder.couponCodes"
+                />
+              </template>
               <template #bottom>
                 <br />
                 <b-button
@@ -157,6 +164,7 @@
 <script>
 import CustomerDetailsForm from '../components/CustomerDetailsForm';
 import SelectShippingForm from '../components/SelectShippingForm';
+import CouponInput from '../components/CouponInput';
 import OrderSummary from '../components/OrderSummary';
 import AddressDisplay from '../components/AddressDisplay';
 import CartItemsTable from '../components/CartItemsTable';
@@ -168,6 +176,10 @@ export default {
   props: {
     vendure: {
       type: VendureClient,
+      required: true,
+    },
+    emitter: {
+      type: Object,
       required: true,
     },
     store: {
@@ -185,6 +197,7 @@ export default {
     OrderSummary,
     AddressDisplay,
     CartItemsTable,
+    CouponInput,
   },
   computed: {
     activeOrder() {
@@ -210,6 +223,8 @@ export default {
       this.loadingPayment = true;
       try {
         await startPayment(this.vendure, 'mollie');
+      } catch (e) {
+        this.emitter.emit('error', e);
       } finally {
         this.loadingPayment = false;
       }
