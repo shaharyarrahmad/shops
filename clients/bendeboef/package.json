@@ -1,7 +1,7 @@
 {
   "name": "ben-de-boef",
   "private": true,
-  "version": "0.58.0",
+  "version": "0.58.5",
   "scripts": {
     "serve": "yarn link-there && yarn link-here && concurrently \"cd ../../packages/pinelab-storefront-client && yarn watch\" \"gridsome develop\"",
     "link-here": "yarn link pinelab-storefront-client",
