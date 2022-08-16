@@ -1,9 +1,6 @@
 <template>
   <div v-if="description">
-    <div
-      v-html="description"
-      :class="`collapsed-${collapse} content mb-0`"
-    ></div>
+    <div :class="`collapse-${collapse} mb-0`">{{ plaintext }}</div>
     <div v-if="isDescriptionLongEnough" class="has-text-right">
       <a href="#full-description">Lees meer</a>
     </div>
@@ -12,6 +9,18 @@
 <script>
 export default {
   props: ['description', 'maxLength', 'collapse'],
+  data() {
+    return {
+      plaintext: undefined,
+    };
+  },
+  created() {
+    this.plaintext = new DOMParser().parseFromString(
+      this.description,
+      'text/html'
+    ).documentElement.textContent;
+    console.log(this.plaintext);
+  },
   computed: {
     isDescriptionLongEnough() {
       return this.description?.length > this.maxLength;
@@ -20,7 +29,6 @@ export default {
 };
 </script>
 <style>
-/* Make hastag navigation move to center instead of all the way to the top */
 #full-description::before {
   display: block;
   content: ' ';

@@ -1,6 +1,11 @@
 require('dotenv').config();
+const isLocal = process.env.TESTENV === 'local';
 let orderId;
-const demoSite = 'https://minishop.studio';
+const site = isLocal ? 'http://localhost:8080' : 'https://minishop.studio';
+const vendure = isLocal
+  ? 'http://localhost:3000/admin/'
+  : 'https://test-api.pinelab.studio/admin/';
+console.log(`Running test against ${site} and ${vendure}`);
 const address = {
   firstName: 'Martijn',
   lastName: 'Pinelab',
@@ -53,7 +58,7 @@ module.exports = {
     const continueBtn = 'button[class="button form__button"]';
     const success = 'table[class="table is-fullwidth"]';
     browser
-      .url(demoSite)
+      .url(site)
       .waitForElementVisible(theJaunt)
       .click(theJaunt)
       .waitForElementVisible(edition)
@@ -77,10 +82,14 @@ module.exports = {
       .setValue(customerForm.email, address.email)
       .setValue(customerForm.postalCode, address.postalCode)
       .setValue(customerForm.houseNr, address.houseNr)
+      .pause(200)
       .assert.value(customerForm.city, address.city)
       .assert.value(customerForm.street, address.street)
+      .pause(200)
       .click('select[name="country"] option[value="AT"]')
+      .pause(200)
       .click(customerForm.submit)
+      .pause(200)
       // Shipping
       .pause(500)
       .assert.containsText('body', 'Payment')
@@ -93,6 +102,7 @@ module.exports = {
       .waitForElementVisible(customerForm.firstname)
       .pause(500)
       .click('select[name="country"] option[value="nl"]')
+      .pause(200)
       .click(customerForm.submit)
       .pause(1000)
       // Shipping
@@ -111,7 +121,7 @@ module.exports = {
       .click(continueBtn)
       .waitForElementVisible(success)
       .url(({ value }) => {
-        orderId = value.replace(`${demoSite}/order/`, '');
+        orderId = value.replace(`https://minishop.studio/order/`, '');
       })
       .assert.containsText('body', prices.itemFE)
       .assert.containsText('body', prices.shippingFE)
@@ -125,7 +135,7 @@ module.exports = {
     const submit = 'button[type="submit"]';
     const invoicesTab = 'a[href="/admin/extensions/invoices"]';
     browser
-      .url('https://test-api.pinelab.studio/admin/')
+      .url(vendure)
       .waitForElementVisible(username)
       .setValue(username, process.env.VENDURE_USERNAME)
       .setValue(password, process.env.VENDURE_PASSWORD)

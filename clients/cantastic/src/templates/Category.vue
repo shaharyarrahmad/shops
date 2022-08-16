@@ -20,6 +20,7 @@
         </div>
         <div
           id="full-description"
+          class="content"
           v-if="$context.collection.description"
           v-html="$context.collection.description"
         ></div>

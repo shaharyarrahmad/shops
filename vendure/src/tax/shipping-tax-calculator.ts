@@ -18,7 +18,12 @@ export const cartTaxShippingCalculator = new ShippingCalculator({
     },
   },
   calculate: (ctx, order, args) => {
-    const maxTax = Math.max(...order.lines.map((line) => line.taxRate));
+    let maxTax;
+    if (order.lines?.length > 0) {
+      maxTax = Math.max(...(order.lines.map((line) => line.taxRate) || 0));
+    } else {
+      maxTax = order.taxSummary?.[0]?.taxRate || 0;
+    }
     return {
       price: args.rate,
       taxRate: maxTax,

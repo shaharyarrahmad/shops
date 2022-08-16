@@ -5,7 +5,9 @@
         <slot />
       </a>
     </span>
-    <span class="cart-badge">{{ nrOfItems }}</span>
+    <a @click="sideBasketOpen = true">
+      <span class="cart-badge">{{ nrOfItems }}</span>
+    </a>
 
     <!-------------------------   Sidemenu ----------------------->
     <ClientOnly>

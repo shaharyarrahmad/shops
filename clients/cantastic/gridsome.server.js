@@ -8,7 +8,11 @@ const {
 const fs = require('fs');
 const Fuse = require('fuse.js');
 const { GET_CONTENT } = require('./content.queries');
-const { VendureServer, SearchUtil } = require('pinelab-storefront');
+const {
+  VendureServer,
+  SearchUtil,
+  deduplicate,
+} = require('pinelab-storefront');
 const { GraphQLClient } = require('graphql-request');
 
 module.exports = async function (api) {
@@ -295,7 +299,7 @@ module.exports = async function (api) {
           collection,
           childCollections,
           siblings: getSiblings(collection.id),
-          products,
+          products: deduplicate(products),
         },
       });
     });

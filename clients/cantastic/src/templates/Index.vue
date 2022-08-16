@@ -48,7 +48,7 @@
     </template>
 
     <template #fullwidth>
-      <div class="columns is-vcentered">
+      <div class="columns is-vcentered content">
         <div class="column">
           <div class="has-text-light" v-html="$context.shortAbout"></div>
         </div>
