@@ -45,8 +45,8 @@
         <br />
         <ReadMoreDescription
           :description="$context.product.description"
-          max-length="60"
-          collapse="3"
+          :max-length="60"
+          :collapse="3"
         />
         <br />
         <template v-for="usp of $context.usps">

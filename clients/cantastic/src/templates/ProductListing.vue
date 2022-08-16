@@ -40,8 +40,8 @@
             </div>
             <ReadMoreDescription
               :description="$context.collection.description"
-              max-length="100"
-              collapse="1"
+              :max-length="100"
+              :collapse="1"
             />
             <div v-if="totalProducts > 5" class="has-text-right">
               <b>{{ $context.products.length }}</b> producten

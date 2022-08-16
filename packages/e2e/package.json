@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "e2e": "nightwatch --test test/place-order.js",
+    "e2e:local": "TESTENV=local nightwatch --test test/place-order.js",
     "test:checkout": "nightwatch --test test/checkout.js --testcase $TESTCASE"
   },
   "devDependencies": {
