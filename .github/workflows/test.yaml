@@ -29,6 +29,10 @@ jobs:
       - name: Build
         run: yarn
       - name: Test checkout
-        run: TESTCASE=${{ matrix.client[0] }} yarn test:checkout
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 2
+          command: TESTCASE=${{ matrix.client[0] }} yarn test:checkout
       - name: Check for 404's on ${{ matrix.client[1] }}
         run: yarn linkinator ${{ matrix.client[1] }} --skip '^(?!${{ matrix.client[1] }})' --recurse --verbosity 'error'
