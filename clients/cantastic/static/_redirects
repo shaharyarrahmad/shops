@@ -5,6 +5,14 @@
 /product/loop-colors-600ml/ /product/loop-colors-maxi-600ml/ 302
 /product/loop-colors-tech-400ml/ /product/loop-colors-eraser-400ml/ 302
 /product/black-and-white-deal/ /product/loop-colors-black-and-white-deal/ 302
+/product/adgo-betonschaar-12-heavy-duty/ /product/adgo-betonschaar-12-heavy-duty-2/ 302
+/product/adgo-betonschaar-14-heavy-duty-kopie/ /product/benson-betonschaar-14-heavy-duty/ 302
+/product/orange-fat-cap-kopie/ /product/orange-fat-cap/ 302
+/product/super-booster/ /product/super-booster-cap/ 302
+/product/whitebook-a4-landscape/ /product/loop-colors-whitebook-a4-landscape/ 302
+/product/on-the-run-otr-006s-steelball-empty-squeeze-marker-5mm-kopie/ /product/on-the-run-otr006s-steelball-empty-squeeze-marker-5mm/ 302
+/product/5-panel-zip-cap-camouflage/ /product/5-panel-looper-cap/ 302
+
 
 /product-categorie/boeken-magazines/* /categorie/boeken-magazines/ 302
 
@@ -16,6 +24,8 @@
 /product-categorie/spray-paint-caps/* /categorie/caps/ 302
 
 /product-categorie/trains-of-fame/ /categorie/treinen-metros/ 302
+
+/product-categorie/tekenen-stickers/stickers/ /categorie/sticker-sets/ 302
 
 /product-categorie/deals/* /categorie/deals/ 302
 
@@ -33,20 +43,26 @@
 
 /shop/prints/ /categorie/prints-3/ 302
 /product-categorie/prints/ /categorie/prints-3/ 302
+/product-categorie/prints/* /categorie/prints-3/ 302
 
 /shop/gear/ /categorie/uitrusting/ 302
 /product-categorie/gear/ /categorie/uitrusting/ 302
+/product-categorie/gear/loop* /categorie/loop-colors/ 302
+/product-categorie/gear/* /categorie/uitrusting/ 302
 /shop/wear/ /categorie/kleding-2/ 302
 /product-categorie/wear/ /categorie/kleding-2/ 302
+/product-categorie/wear/* /categorie/kleding-2/ 302
 
 /shop/loop_colors_graffiti_spuitbussen/loop-colors-spuitbussen/ /categorie/loop-colors-2/ 302
 /shop/loop_colors_graffiti_spuitbussen/loop-colors-aanbiedingen-deals/ /categorie/voordeelpakketten/ 302
 /shop/loop_colors_graffiti_spuitbussen/* /categorie/spray-paint/ 302
 /spray-paint-caps/spray-paint/ /categorie/spray-paint/ 302
+/spray-paint-caps/spray-paint/* /categorie/spray-paint/ 302
 
 /product/montana-* /categorie/montana-cans-2/ 302
 /product/mr-serious* /categorie/mr-serious/ 302
 /product/hmx-* /categorie/solid-paint-markers/ 302
+/product/hmx/ /categorie/solid-paint-markers/ 302
 /product/flux-* /categorie/lege-markers/ 302
 /product/grog* /categorie/grog/ 302
 /product/loop* /categorie/loop-colors/ 302
