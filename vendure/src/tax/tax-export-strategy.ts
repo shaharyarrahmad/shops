@@ -82,8 +82,10 @@ export class TaxExportStrategy implements ExportStrategy {
       this.fileExtension
     }`;
     const exportFile = path.join(os.tmpdir(), fileName);
+    await fs.writeFile(exportFile, 'sep=,\n'); // Fix for excel
     const csvWriter = createObjectCsvWriter({
       path: exportFile,
+      append: true,
       header: [
         { id: 'total', title: 'totalen' },
         { id: 'code', title: 'bestelling' },
