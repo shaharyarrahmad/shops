@@ -1,21 +1,58 @@
 /order/* /order/_code.html 200
 /admin/ https://test-api.pinelab.studio/admin/ 302
 
+/product/loop-colors-asphalt/ /product/loop-colors-asphalt-400ml/ 302
+/product/loop-colors-600ml/ /product/loop-colors-maxi-600ml/ 302
+/product/loop-colors-tech-400ml/ /product/loop-colors-eraser-400ml/ 302
+/product/black-and-white-deal/ /product/loop-colors-black-and-white-deal/ 302
+
 /product-categorie/boeken-magazines/* /categorie/boeken-magazines/ 302
+
 /product-categorie/cans/ /categorie/spray-paint/ 302
 /product-categorie/cans/* /categorie/spray-paint/ 302
+
 /product-categorie/cap-bags/ /categorie/voordeel-zakken/ 302
+/product-categorie/spray-paint-caps/ /categorie/caps/ 302
+/product-categorie/spray-paint-caps/* /categorie/caps/ 302
+
+/product-categorie/trains-of-fame/ /categorie/treinen-metros/ 302
+
 /product-categorie/deals/* /categorie/deals/ 302
+
 /product-categorie/uitrusting/ /categorie/uitrusting/ 302
 /product-categorie/uitrusting/* /categorie/uitrusting/ 302
+
+/product-categorie/gear/mr-serious* /categorie/mr-serious/ 302
+
 /product-categorie/markers/ /categorie/graffiti-markers/ 302
 /product-categorie/markers/* /categorie/graffiti-markers/ 302
+
+/shop/markers/hand-mixed-solid-markers/ /categorie/solid-paint-markers/ 302
+/shop/markers/grog* /categorie/grog/ 302
+/shop/markers/* /categorie/graffiti-markers/ 302
+
+/shop/prints/ /categorie/prints-3/ 302
+/product-categorie/prints/ /categorie/prints-3/ 302
+
+/shop/gear/ /categorie/uitrusting/ 302
+/product-categorie/gear/ /categorie/uitrusting/ 302
+/shop/wear/ /categorie/kleding-2/ 302
+/product-categorie/wear/ /categorie/kleding-2/ 302
+
 /shop/loop_colors_graffiti_spuitbussen/loop-colors-spuitbussen/ /categorie/loop-colors-2/ 302
 /shop/loop_colors_graffiti_spuitbussen/loop-colors-aanbiedingen-deals/ /categorie/voordeelpakketten/ 302
 /shop/loop_colors_graffiti_spuitbussen/* /categorie/spray-paint/ 302
+/spray-paint-caps/spray-paint/ /categorie/spray-paint/ 302
 
-
+/product/montana-* /categorie/montana-cans-2/ 302
 /product/mr-serious* /categorie/mr-serious/ 302
+/product/hmx-* /categorie/solid-paint-markers/ 302
+/product/flux-* /categorie/lege-markers/ 302
+/product/grog* /categorie/grog/ 302
+/product/loop* /categorie/loop-colors/ 302
+/product/empty* /categorie/graffiti-markers/ 302
+/product/otr* /categorie/graffiti-markers/ 302
+/product/hello* /categorie/sticker-sets/ 302
 
 /shop/*  /categorie/:splat 302
 /product-categorie/*  /categorie/:splat 302
