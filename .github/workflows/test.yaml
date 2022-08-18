@@ -28,6 +28,12 @@ jobs:
           node-version: '16'
       - name: Build
         run: yarn
+      - name: Test PWD
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 2
+          command: pwd
       - name: Test checkout
         uses: nick-fields/retry@v2
         with:
