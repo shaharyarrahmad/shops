@@ -12634,19 +12634,19 @@ vendure-plugin-google-storage-assets@3.7.0:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@3.9.1:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-3.9.1.tgz#0c39c474faf24a41d601d4c6536e9cfa652203fb"
-  integrity sha512-eIHjRTgzol5LSrbnlmnRohdmIheRZUQguSPSk6MFoSNULXw/gtWby63Foye4545asyfbkQAqTjkaBLk/cpXUOQ==
+vendure-plugin-invoices@3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-3.11.1.tgz#15600ff0a59b4d3c765959f8f26c16ca2265c1ff"
+  integrity sha512-0ldjh4QA0SiVxjqg9MSHYXvF1NEKK6EOKIcf/YAAhacTScNRK8C0MB61FaENK0wbXTs5gMNUuQSTvJf4JCkZSQ==
   dependencies:
     adm-zip "^0.5.9"
     pdf-creator-node "^2.3.4"
     tmp "^0.2.1"
 
-vendure-plugin-myparcel@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-3.8.1.tgz#4f247475b7aa4032d88eff776a20f4b1b387c880"
-  integrity sha512-frR4EVcAztDQd0OpbxCAEw/knMAqJPjQ/Urz1OctZW5/UWR7kR6ZJbog4QLTV3mJX4lZTBqGy2MsSb1ju3zkaA==
+vendure-plugin-myparcel@3.11.1:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-3.11.1.tgz#6726c868514d7d6cde0ce2107b12bbcf2e1fa44e"
+  integrity sha512-J2GQGaXF4BLknLX7FblJci7KNyxc9piR21bwIKhOAWNk9ChtKxyPW/GpO61fmjRbuAlDqNB0Fb95gRvGlUMC1g==
   dependencies:
     axios "^0.26.1"
 
