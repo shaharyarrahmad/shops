@@ -6,7 +6,7 @@
     >
       <div>
         <h3 class="has-text-white pt-5">{{ collection.name }}</h3>
-        <CantasticButton is-div="true"> Bekijk deal</CantasticButton>
+        <CantasticButton is-div="true"> Bekijk product</CantasticButton>
       </div>
     </div>
   </g-link>
