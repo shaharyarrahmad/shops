@@ -80,6 +80,7 @@ export default {
         }
       } catch (e) {
         console.error(e);
+        this.$emitter.emit('error', e);
       } finally {
         this.isLoading = false;
       }
