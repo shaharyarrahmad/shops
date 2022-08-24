@@ -2465,10 +2465,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/papaparse@^5.3.3":
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/@types/papaparse/-/papaparse-5.3.3.tgz#59c4db7efcb5ecbca18ba0e6f6d62b3949f35ed0"
-  integrity sha512-i7fV8u843vb7nIGpcwdCsG3WjfBONeytRHK1mQL9d5KQAvFeAK2rRisDHicreYpoQ0MXocUDEqunKHTeXdvibg==
+"@types/papaparse@^5.3.4":
+  version "5.3.4"
+  resolved "https://registry.yarnpkg.com/@types/papaparse/-/papaparse-5.3.4.tgz#57f7366540a349675c4fa57ef01e5c8775aced2b"
+  integrity sha512-61/jki1Ri+v1/Fobrf4rlIo6ExNM8P0CHYwId8wkrC2WiKfDwiRtn/hiAa6jXj8vPa4oFZ14uFKME547V4VGyQ==
   dependencies:
     "@types/node" "*"
 
@@ -12611,17 +12611,17 @@ vendure-plugin-e-boekhouden@3.9.0:
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@3.11.3:
-  version "3.11.3"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.11.3.tgz#ebbba1531092850ac8ee7c30b8f28175f7521c4d"
-  integrity sha512-zTaXhF3idlJzyybbMVRe33Wll2bqZTsF8IJ6r2zXitxmCJXci506Tjykir2MGEPngvXEP5ErX6eSP+5QQvmMog==
+vendure-plugin-goedgepickt@3.11.4:
+  version "3.11.4"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.11.4.tgz#279d9d5aac4c449c2224a1e690a0f5ce30252a54"
+  integrity sha512-8vdfr7uxIMOZTOWDz7wDQcJpuoLKFu3GuAvSVXveMQDNSyDBU5JFYAxRLtB/wBPrzCeyrCRbXsD4voK1T6epZA==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.8.1.tgz#f8dd85adad917d22226dca4d4cca05edcd637de9"
-  integrity sha512-EPy+UVZaooAhjVtNAisXCIVgiPzx1yzJRhlgfmx/jtGrMexYvFLvfevEx0Vf+kkq//pa9+GotAWejYHun/9flA==
+vendure-plugin-google-cloud-tasks@3.11.4:
+  version "3.11.4"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.11.4.tgz#3c1a85065328d9b28eb72dd9774dbe85992757c0"
+  integrity sha512-O09CTXGXynnxEQ3wXGp/ECijze+q1Cq+qOso7DR+rjnTZ0WEmMZ0TVh8Dsj3Bh9RBS0UM6w5sNs3YRimLNmTtg==
   dependencies:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
