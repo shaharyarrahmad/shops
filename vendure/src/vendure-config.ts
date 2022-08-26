@@ -30,7 +30,6 @@ import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.stra
 import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
-import { orderConfirmationHandler } from './order/order-confirmation.handlers';
 import { PlaceOrderOnSettlementStrategy } from './order/place-order-on-settlement.strategy';
 import { GoedgepicktPlugin } from 'vendure-plugin-goedgepickt';
 import {
@@ -44,6 +43,7 @@ import { EBookPlugin } from './e-book/e-book.plugin';
 import { eligibleWithoutAddressChecker } from './shipping/eligible-without-address-checker';
 import { OrderExportPlugin } from 'vendure-plugin-order-export';
 import { TaxExportStrategy } from './tax/tax-export-strategy';
+import { orderConfirmationHandler } from './email/order-confirmation.handlers';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -225,7 +225,7 @@ export const config: VendureConfig = {
         port: 587,
         secure: false,
         logging: false,
-        debug: false,
+        debug: true,
         auth: {
           user: 'noreply@pinelab.studio',
           pass: process.env.ZOHO_PASS!,
