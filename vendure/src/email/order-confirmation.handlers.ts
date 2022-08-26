@@ -1,15 +1,20 @@
-import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
+import {
+  EmailEventHandler,
+  EmailEventListener,
+  EmailTemplateConfig,
+} from '@vendure/email-plugin';
 import {
   Administrator,
   ID,
   Injector,
+  LanguageCode,
   Logger,
   OrderPlacedEvent,
   TransactionalConnection,
 } from '@vendure/core';
 import { TaxHelper } from '../tax/tax.helper';
 import { InvoiceService } from 'vendure-plugin-invoices';
-import { EBookController, EBookPlugin } from '../e-book/e-book.plugin';
+import { EBookController } from '../e-book/e-book.plugin';
 
 interface AdminWithChannel {
   admin_emailAddress: string;
@@ -68,6 +73,19 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
         summary: TaxHelper.getTaxSummary(event.order),
         ...event.data,
       };
+    })
+    .addTemplate({
+      languageCode: 'default',
+      channelCode: 'Pinelab Demo',
+      subject:
+        'Bedankt voor de Test bestelling {{ order.code }} bij de Pinelab demo shop ',
+      templateFile: 'body.hbs',
+    })
+    .addTemplate({
+      languageCode: 'default',
+      channelCode: 'Op!',
+      subject: 'Je e-boek Op! van Jet van Nieuwkerk',
+      templateFile: 'body.hbs',
     });
 
 async function getAdminsForChannel(
