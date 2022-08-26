@@ -1,13 +1,8 @@
-import {
-  EmailEventHandler,
-  EmailEventListener,
-  EmailTemplateConfig,
-} from '@vendure/email-plugin';
+import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
 import {
   Administrator,
   ID,
   Injector,
-  LanguageCode,
   Logger,
   OrderPlacedEvent,
   TransactionalConnection,
