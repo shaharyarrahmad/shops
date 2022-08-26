@@ -1,4 +1,8 @@
-import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
+import {
+  EmailEventHandler,
+  EmailEventListener,
+  EmailTemplateConfig,
+} from '@vendure/email-plugin';
 import {
   Administrator,
   ID,
@@ -73,8 +77,15 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
     .addTemplate({
       languageCode: 'default',
       channelCode: 'Pinelab Demo',
-      subject: 'Test subject {{ order.code }} ',
-      templateFile: 'op.body.hbs',
+      subject:
+        'Bedankt voor de Test bestelling {{ order.code }} bij de Pinelab demo shop ',
+      templateFile: 'body.hbs',
+    })
+    .addTemplate({
+      languageCode: 'default',
+      channelCode: 'Op!',
+      subject: 'Je e-boek Op! van Jet van Nieuwkerk',
+      templateFile: 'body.hbs',
     });
 
 async function getAdminsForChannel(
