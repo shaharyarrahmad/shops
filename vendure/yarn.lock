@@ -2448,6 +2448,14 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
+"@types/node-fetch@^2.5.4":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.6.2.tgz#d1a9c5fd049d9415dce61571557104dec3ec81da"
+  integrity sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==
+  dependencies:
+    "@types/node" "*"
+    form-data "^3.0.0"
+
 "@types/node@*", "@types/node@>=12.12.47", "@types/node@>=13.7.0":
   version "18.6.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.6.1.tgz#828e4785ccca13f44e2fb6852ae0ef11e3e20ba5"
@@ -2631,6 +2639,11 @@
   resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.6.5.tgz#8eb3a1ff69ef6df2f676b60a51fd0ccdd81eeceb"
   integrity sha512-KhZzRiOlneQfkKJPoNriKMRtd06+twq8ricsCfuQNcHvB7Pkh/4YW5YdeZ4OJSUs0WeEfsABSOWVYAxn8lGIvA==
 
+"@vendure/common@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.7.0.tgz#4fe80be9a10839ed1b31d1f6547bce54274fdc12"
+  integrity sha512-OgNopHfN+3xAwN6PafW1ffumuvEa5LZsA52uSW8oh9kTI+ctFA9c/ObhcwYPU8Px0zuONOHnwhGyXgdchMIJSQ==
+
 "@vendure/core@1.6.5":
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/@vendure/core/-/core-1.6.5.tgz#71088eba8da5fd4ba5b1d6e725e6de6df903eac2"
@@ -2691,6 +2704,20 @@
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/@vendure/payments-plugin/-/payments-plugin-1.6.5.tgz#b9256529490479ece4dabbfc14da3ec1dd4098d8"
   integrity sha512-+NfvNbwQSAYrOizVkC1LXTpgwzAiHWyWqjML+E7GM2WatwH3lsMNxcd1Ji63s4mCoSty6StcB3Ukil/muE7W8A==
+
+"@vendure/testing@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@vendure/testing/-/testing-1.7.0.tgz#1d6118e19beac0124c7604f9d53cfd6449ab8d49"
+  integrity sha512-G+wZNawI4oVmdY1mvP9CkNWy9GsJAL8HscTDNdw0xGIlIaYsFmLKMnnFjaRuu4c7R5MT0VqPXYehcU+RUQh+cg==
+  dependencies:
+    "@types/node-fetch" "^2.5.4"
+    "@vendure/common" "^1.7.0"
+    faker "^4.1.0"
+    form-data "^3.0.0"
+    graphql "15.5.1"
+    graphql-tag "^2.10.1"
+    node-fetch "^2.6.0"
+    sql.js "1.3.2"
 
 "@vendure/ui-devkit@1.6.5":
   version "1.6.5"
@@ -5796,6 +5823,11 @@ eyes@0.1.x:
   resolved "https://registry.yarnpkg.com/eyes/-/eyes-0.1.8.tgz#62cf120234c683785d902348a800ef3e0cc20bc0"
   integrity sha512-GipyPsXO1anza0AOZdy69Im7hGFCNB7Y/NGjDlZGJ3GJJLtwNSb2vrzYrTYJRrRloVx7pl+bhUaTB8yiccPvFQ==
 
+faker@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
+  integrity sha512-ILKg69P6y/D8/wSmDXw35Ly0re8QzQ8pMfBCflsGiZG2ZjMUNLYNexA6lz5pkmJlepVdsiDFUxYAzPQ9/+iGLA==
+
 fast-deep-equal@^3.1.1:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
@@ -6455,7 +6487,7 @@ graphql-subscriptions@^1.0.0:
   dependencies:
     iterall "^1.3.0"
 
-graphql-tag@^2.11.0, graphql-tag@^2.12.4, graphql-tag@^2.12.6:
+graphql-tag@^2.10.1, graphql-tag@^2.11.0, graphql-tag@^2.12.4, graphql-tag@^2.12.6:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.6.tgz#d441a569c1d2537ef10ca3d1633b48725329b5f1"
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
@@ -11624,6 +11656,11 @@ split-string@^3.0.1, split-string@^3.0.2:
   integrity sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==
   dependencies:
     extend-shallow "^3.0.0"
+
+sql.js@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/sql.js/-/sql.js-1.3.2.tgz#ce0c7b9d884a7f50476e4c2fb29093e10a83ab09"
+  integrity sha512-vRdzoj4TCrCX8yI2mv0OVVEuOOz2IlhEfw1x1Q65BhpmLep46iu+M04zxln4u2mHRk+wj7avFq2L3/1gQS1orQ==
 
 sqlstring@2.3.1:
   version "2.3.1"
