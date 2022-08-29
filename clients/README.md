@@ -1,6 +1,6 @@
 # Pinelab Storefronts
 
-Each subfolder of `clients` hold the storefront of one of Pinelab's clients.
+Each subfolder of `clients` holds the storefront of one of Pinelab's clients.
 
 ## Prerequisites
 
@@ -13,9 +13,10 @@ Before you get started, you should have these things installed:
 ## Running an existing shop
 
 1. Go into the directory of a storefront with the command `cd cantastic`
-2. Tell NVM that we use Node v16 by executing the command `nvm use 16`
+2. Tell NVM that we use Node v16 by with the command `nvm use 16`
 3. Run `yarn` to install all dependencies
 4. Run `yarn gridsome develop` to run the project locally
+5. You can now see the storefront on `localhost:8080`
 
 ## Pushing changes
 
