@@ -1,0 +1,26 @@
+name: Test on PR
+on:
+  pull_request
+
+jobs:
+  test:
+    name: Test Pinelab-stoprefront <> Vendure communication
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/e2e
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Build Vendure
+        run: cd ../../vendure/ && yarn
+      - name: Build Pinelab-storefront
+        run: cd ../pinelab-storefront && yarn
+      - name: Build e2e
+        run: yarn
+      - name: Test
+        run: yarn jest:e2e

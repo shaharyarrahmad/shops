@@ -5,14 +5,19 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "e2e": "nightwatch --test test/place-order.js",
-    "e2e:local": "TESTENV=local nightwatch --test test/place-order.js",
-    "test:checkout": "nightwatch --test test/checkout.js --testcase $TESTCASE"
+    "nightwatch:e2e": "nightwatch --test test/place-order.js",
+    "nightwatch:e2e:local": "TESTENV=local nightwatch --test test/place-order.js",
+    "nightwatch:test:checkout": "nightwatch --test test/checkout.js --testcase $TESTCASE",
+    "jest:e2e": "jest --forceExit"
   },
   "devDependencies": {
+    "@types/jest": "^27.4.0",
     "chromedriver": "^103.0.0",
     "dotenv": "^10.0.0",
+    "jest": "^27.4.6",
     "linkinator": "^4.0.2",
-    "nightwatch": "^1.7.6"
+    "nightwatch": "^1.7.6",
+    "ts-jest": "^28.0.8",
+    "typescript": "4.3.5"
   }
 }
