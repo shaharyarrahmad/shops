@@ -30,7 +30,7 @@ describe('Test pinelab-storefront to Vendure communication', () => {
     global.window = {
       localStorage: new LocalStorageMock(),
     } as any;
-  }, 20000);
+  }, 60000);
 
   afterAll(async () => {
     await server.destroy();
