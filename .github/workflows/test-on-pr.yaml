@@ -1,0 +1,22 @@
+name: Test live checkout for clients
+on:
+  pull_request
+
+jobs:
+  test:
+    name: Test pinelab-storefront with Vendure server
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/e2e
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Build
+        run: yarn
+      - name: Test
+        run: yarn jest:e2e

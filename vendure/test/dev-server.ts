@@ -1,8 +1,10 @@
 import {
   createTestEnvironment,
   registerInitializer,
+  SimpleGraphQLClient,
   SqljsInitializer,
   testConfig,
+  TestServer,
 } from '@vendure/testing';
 import {
   ChannelService,
@@ -16,6 +18,7 @@ import {
   mergeConfig,
   PaymentMethodHandler,
   RequestContext,
+  ShippingMethodService,
 } from '@vendure/core';
 import { AllocateStockOnSettlementStrategy } from '../src/stock-allocation/allocate-stock-on-settlement.strategy';
 import { PlaceOrderOnSettlementStrategy } from '../src/order/place-order-on-settlement.strategy';
@@ -27,7 +30,8 @@ import { EmailPlugin } from '@vendure/email-plugin';
 import { orderConfirmationHandler } from '../src/email/order-confirmation.handlers';
 import path from 'path';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
-import { ChannelResolver } from '@vendure/core/dist/api/resolvers/admin/channel.resolver';
+import { GoogleStoragePlugin } from 'vendure-plugin-google-storage-assets/dist/google-storage-plugin';
+import { GoedgepicktPlugin } from 'vendure-plugin-goedgepickt';
 
 const testPaymentMethod = new PaymentMethodHandler({
   code: 'test-payment-method',
@@ -50,15 +54,15 @@ const testPaymentMethod = new PaymentMethodHandler({
 
 const initialData: InitialData = {
   defaultLanguage: LanguageCode.en,
-  defaultZone: 'Europe',
+  defaultZone: 'NL',
   taxRates: [
     { name: 'Standard Tax', percentage: 21 },
     { name: 'Reduced Tax', percentage: 9 },
     { name: 'Zero Tax', percentage: 0 },
   ],
   shippingMethods: [
-    { name: 'Standard Shipping', price: 500 },
-    { name: 'Express Shipping', price: 1000 },
+    { name: 'default shipping', price: 500 },
+    { name: 'shipping by zone', price: 600 },
   ],
   paymentMethods: [
     {
@@ -66,7 +70,7 @@ const initialData: InitialData = {
       handler: { code: testPaymentMethod.code, arguments: [] },
     },
   ],
-  countries: [{ name: 'Nederland', code: 'NL', zone: 'Europe' }],
+  countries: [{ name: 'Nederland', code: 'NL', zone: 'NL' }],
   collections: [
     {
       name: 'Electronics',
@@ -80,7 +84,12 @@ const initialData: InitialData = {
   ],
 };
 
-export async function startDevServer() {
+export type TestEnv = {
+  adminClient: SimpleGraphQLClient;
+  shopClient: SimpleGraphQLClient;
+  server: TestServer;
+};
+export async function startDevServer(): Promise<TestEnv> {
   registerInitializer(
     'sqljs',
     new SqljsInitializer(path.join(__dirname, '__data__'))
@@ -117,9 +126,15 @@ export async function startDevServer() {
         storageStrategy: new LocalFileStrategy(),
         dataStrategy: new TaxInvoiceStrategy(),
       }),
+      GoedgepicktPlugin.init({
+        vendureHost: 'localhost:3000',
+        endpointSecret: 'secret',
+        setWebhook: false,
+      }),
       OrderExportPlugin.init({
         exportStrategies: [new TaxExportStrategy()],
       }),
+      GoogleStoragePlugin,
       DefaultSearchPlugin,
       EmailPlugin.init({
         devMode: true,
@@ -152,6 +167,7 @@ export async function startDevServer() {
   });
   await adminClient.asSuperAdmin();
   const channelService = server.app.get(ChannelService);
+  const shippingMethodService = server.app.get(ShippingMethodService);
   const defaultChannel = await channelService.getDefaultChannel();
   const ctx = new RequestContext({
     isAuthorized: true,
@@ -161,6 +177,30 @@ export async function startDevServer() {
   });
   await channelService.update(ctx, {
     id: defaultChannel.id,
+    token: 'default-channel',
+    pricesIncludeTax: true,
     currencyCode: CurrencyCode.EUR,
   });
+  await shippingMethodService.update(ctx, {
+    id: 1,
+    checker: { code: 'eligible-without-address', arguments: [] },
+    calculator: {
+      code: 'tax-based-calculator',
+      arguments: [{ name: 'rate', value: '500' }],
+    },
+    translations: [],
+  });
+  await shippingMethodService.update(ctx, {
+    id: 2,
+    checker: {
+      code: 'eligible-by-zone',
+      arguments: [{ name: 'zones', value: '["NL"]' }],
+    },
+    calculator: {
+      code: 'tax-based-calculator',
+      arguments: [{ name: 'rate', value: '600' }],
+    },
+    translations: [],
+  });
+  return { adminClient, shopClient, server };
 }

@@ -27,7 +27,7 @@ import { CloudTasksPlugin } from 'vendure-plugin-google-cloud-tasks';
 import { cloudLogger } from './logger';
 import { MyparcelPlugin } from 'vendure-plugin-myparcel/dist/myparcel.plugin';
 import { ShippingBasedTaxZoneStrategy } from './tax/shipping-based-tax-zone.strategy';
-import { cartTaxShippingCalculator } from './tax/shipping-tax-calculator';
+import { cartTaxShippingCalculator } from './shipping/shipping-tax-calculator';
 import { eligibleByZoneChecker } from './shipping/shipping-by-zone-checker';
 import { MolliePlugin } from '@vendure/payments-plugin/package/mollie';
 import { PlaceOrderOnSettlementStrategy } from './order/place-order-on-settlement.strategy';
