@@ -17,11 +17,9 @@ jobs:
           node-version: '16'
       - name: Build Vendure
         run: cd ../../vendure/ && yarn
-      - name: PWD
-        run: pwd
       - name: Build Pinelab-storefront
-        run: cd ../e2e/pinelab-storefront && yarn
+        run: cd ../pinelab-storefront && yarn
       - name: Build e2e
         run: yarn
       - name: Test
-        run: cd ../e2e && yarn jest:e2e
+        run: yarn jest:e2e
