@@ -15,6 +15,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - name: Build Vendure
+        run: cd ../../vendure/ && yarn
+      - name: Build Pinelab-storefront
+        run: cd ../../packages/e2e/pinelab-storefront && yarn
       - name: Build
         run: yarn
       - name: Test
