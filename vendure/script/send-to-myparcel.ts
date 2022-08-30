@@ -1,4 +1,5 @@
 require('dotenv').config({ path: process.env.LOCAL_ENV });
+import { MyparcelService } from 'vendure-plugin-myparcel/dist/api/myparcel.service';
 import {
   bootstrap,
   ChannelService,
@@ -6,14 +7,15 @@ import {
   RequestContext,
 } from '@vendure/core';
 import { config } from '../src/vendure-config';
-import { MyparcelService } from 'vendure-plugin-myparcel/dist/myparcel.service';
 
 // Use like yarn script:prod script/send-to-myparcel.ts bendeboef 6ENWC7GRJWYCAQXN
 (async () => {
   const app = await bootstrap(config);
   const channelToken = process.argv[2];
   const orderCode = process.argv[3];
-  const channel = app.get(ChannelService).getChannelFromToken(channelToken);
+  const channel = await app
+    .get(ChannelService)
+    .getChannelFromToken(channelToken);
   const ctx = new RequestContext({
     apiType: 'admin',
     isAuthorized: true,
