@@ -1,9 +1,10 @@
-name: Test pinelab-storefront with Vendure server
+name: Test on PR
 on:
   pull_request
 
 jobs:
   test:
+    name: Test Pinelab-stoprefront <> Vendure communication
     runs-on: ubuntu-latest
     defaults:
       run:
