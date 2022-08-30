@@ -44,6 +44,7 @@ import { eligibleWithoutAddressChecker } from './shipping/eligible-without-addre
 import { OrderExportPlugin } from 'vendure-plugin-order-export';
 import { TaxExportStrategy } from './tax/tax-export-strategy';
 import { orderConfirmationHandler } from './email/order-confirmation.handlers';
+import { json } from 'body-parser';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -72,6 +73,12 @@ export const config: VendureConfig = {
     shopApiPlayground: {}, // turn this off for production
     shopApiDebug: false, // turn this off for production
     shopListQueryLimit: 500,
+    middleware: [
+      {
+        route: `/`,
+        handler: json({ limit: '1mb' }),
+      },
+    ],
   },
   authOptions: {
     superadminCredentials: {
