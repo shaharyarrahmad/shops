@@ -20,9 +20,6 @@
     "migration:run:prod": "export LOCAL_ENV=.env && yarn ts-node migration run",
     "migration:revert:prod": "export LOCAL_ENV=.env && yarn ts-node migration revert"
   },
-  "resolutions": {
-    "body-parser": "1.20"
-  },
   "dependencies": {
     "@google-cloud/logging-winston": "^5.1.4",
     "@google-cloud/storage": "^6.4.1",
@@ -41,7 +38,7 @@
     "vendure-plugin-coinbase": "3.8.1",
     "vendure-plugin-dutch-postalcode": "3.7.0",
     "vendure-plugin-e-boekhouden": "3.9.0",
-    "vendure-plugin-goedgepickt": "3.11.5",
+    "vendure-plugin-goedgepickt": "3.11.6",
     "vendure-plugin-google-cloud-tasks": "3.11.5",
     "vendure-plugin-google-storage-assets": "3.7.0",
     "vendure-plugin-invoices": "3.11.1",
