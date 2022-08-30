@@ -18,8 +18,8 @@ jobs:
       - name: Build Vendure
         run: cd ../../vendure/ && yarn
       - name: Build Pinelab-storefront
-        run: cd ../../packages/e2e/pinelab-storefront && yarn
-      - name: Build
+        run: cd ../packages/e2e/pinelab-storefront && yarn
+      - name: Build e2e
         run: yarn
       - name: Test
         run: yarn jest:e2e
