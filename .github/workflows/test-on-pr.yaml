@@ -1,10 +1,9 @@
-name: Test live checkout for clients
+name: Test pinelab-storefront with Vendure server
 on:
   pull_request
 
 jobs:
   test:
-    name: Test pinelab-storefront with Vendure server
     runs-on: ubuntu-latest
     defaults:
       run:
