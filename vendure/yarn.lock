@@ -12611,10 +12611,10 @@ vendure-plugin-e-boekhouden@3.9.0:
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@3.11.5:
-  version "3.11.5"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.11.5.tgz#fd667e25295d6a2ebdcccc656d18527839252cb4"
-  integrity sha512-SBKM1udvtygjOnBHNgGvzGj2CZhLWciRdoZ/p16DCZnbyDzilUQVXfB4jBKlV5dy88afiXaYovDgmnwiw3QKLQ==
+vendure-plugin-goedgepickt@3.11.6:
+  version "3.11.6"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.11.6.tgz#faf1a6c61397edd426dc5b6b1af898f57a9ab3c2"
+  integrity sha512-H1JcoDGyKtx0J/EKrbeBEgXIp9kuRiwuUaFfaVFxVHqQyHBUsjaQBhXSzS79YXuPyFKfo4c+AykChvJsyZj9qA==
   dependencies:
     node-fetch "2"
 
