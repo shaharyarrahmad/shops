@@ -9,6 +9,8 @@ module.exports = async function (api) {
     const { products, availableCountries, collections, productsPerCollection } =
       await vendureServer.getShopData();
 
+    console.log(JSON.stringify(products));
+
     createPage({
       path: '/',
       component: './src/templates/Index.vue',
