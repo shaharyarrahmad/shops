@@ -159,7 +159,6 @@ module.exports = async function (api) {
       context: {
         global,
         collections,
-        back: '/',
       },
     });
 
