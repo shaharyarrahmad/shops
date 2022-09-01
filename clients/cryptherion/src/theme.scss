@@ -104,6 +104,9 @@ $link-focus-border: $primary;*/
   font-style: italic;
 }
 
+.button {
+  @extend .is-primary;
+}
 
 h1 {
   @extend .is-size-1;

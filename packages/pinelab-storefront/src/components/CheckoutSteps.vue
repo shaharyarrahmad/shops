@@ -136,7 +136,7 @@
                   class="is-fullwidth"
                   aria-label="go to payment"
                   :disable="hasShippingSelected"
-                  @click="startPayment()"
+                  @click="choosePayment()"
                 >
                   {{ $l('checkup.pay') }}
                 </b-button>
@@ -145,6 +145,62 @@
               </template>
             </OrderSummary>
             <slot name="orderSummaryFooter" />
+          </div>
+        </div>
+      </b-step-item>
+
+      <!-------------------- PAYMENT ---------------------------->
+      <b-step-item
+        v-if="paymentMethods.length > 1"
+        step="3"
+        :label="$l('payment.title')"
+        icon="currency-eur"
+        :clickable="false"
+        disabled
+      >
+        <div class="columns">
+          <div class="column is-offset-one-quarter">
+            <br />
+            <h5>{{ $l('payment.choose') }}</h5>
+            <br />
+            <section>
+              <b-field>
+                <b-radio v-model="selectedPaymentMethod" native-value="mollie">
+                  <slot name="mollie">Mollie (iDeal, Creditcard)</slot>
+                </b-radio>
+              </b-field>
+              <b-field>
+                <b-radio
+                  v-model="selectedPaymentMethod"
+                  native-value="coinbase"
+                >
+                  <slot name="coinbase"
+                    >Coinbase (Bitcoin, Ethereum, Litecoin and more)
+                  </slot>
+                </b-radio>
+              </b-field>
+            </section>
+            <br />
+            <p>
+              {{ $l('order-summary.total') }}:
+              <strong>{{ activeOrder.totalWithTax | euro }}</strong>
+            </p>
+            <br />
+            <div class="columns is-mobile">
+              <div class="column">
+                <a @click="activeStep = 2" class="button is-outlined"><</a>
+              </div>
+              <div class="column">
+                <b-button
+                  type="is-primary"
+                  icon-left="currency-eur"
+                  :loading="loadingPayment"
+                  @click="startPayment()"
+                >
+                  {{ $l('checkup.pay') }}
+                </b-button>
+              </div>
+            </div>
           </div>
         </div>
       </b-step-item>
@@ -190,6 +246,16 @@ export default {
       type: Array,
       required: true,
     },
+    paymentMethods: {
+      type: Array,
+      validator(values) {
+        // The values must match one of these strings
+        return values.every((value) => ['mollie', 'coinbase'].includes(value));
+      },
+      default() {
+        return ['mollie'];
+      },
+    },
   },
   components: {
     CustomerDetailsForm,
@@ -212,6 +278,7 @@ export default {
       activeStep: 0,
       shippingMethods: [],
       loadingPayment: false,
+      selectedPaymentMethod: this.paymentMethods[0],
     };
   },
   methods: {
@@ -219,10 +286,17 @@ export default {
       this.activeStep = 1;
       this.shippingMethods = await this.vendure.getEligibleShippingMethods();
     },
+    async choosePayment() {
+      if (this.paymentMethods.length > 1) {
+        this.activeStep = 3;
+      } else {
+        await this.startPayment();
+      }
+    },
     async startPayment() {
       this.loadingPayment = true;
       try {
-        await startPayment(this.vendure, 'mollie');
+        await startPayment(this.vendure, this.selectedPaymentMethod);
       } catch (e) {
         this.emitter.emit('error', e);
       } finally {

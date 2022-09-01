@@ -34,6 +34,7 @@
                 :vendure="$vendure"
                 :store="$store"
                 :emitter="$emitter"
+                cartUrl="/winkelmand/"
                 @cart-button-clicked="
                   $router.push('/winkelmand/').catch((e) => {})
                 "
