@@ -50,7 +50,13 @@ export const orderConfirmationHandler: EmailEventHandler<any, any> =
         `Sending order confirmation email to ${event.order.customer?.emailAddress} for channel ${channelName}`,
         loggerCtx
       );
-      return { channelName, adminRecipients, invoiceLink, ebooks };
+      return {
+        channelName,
+        adminRecipients,
+        invoiceLink,
+        ebooks,
+        fromAddress: '"Martinho" <martinho@minishop.studio>',
+      };
     })
     .setRecipient(
       (event) =>

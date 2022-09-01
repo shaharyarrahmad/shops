@@ -228,21 +228,21 @@ export const config: VendureConfig = {
     EmailPlugin.init({
       transport: {
         type: 'smtp',
-        host: 'smtp.zoho.eu',
+        host: 'smtp.zeptomail.eu',
         port: 587,
         secure: false,
         logging: false,
         debug: true,
         auth: {
-          user: 'noreply@pinelab.studio',
-          pass: process.env.ZOHO_PASS!,
+          user: 'emailapikey',
+          pass: 'yA6KbHtfuFrzymtSSRFs1ZWO+4swpaowgSW24XrrLJQiIoXnjqE310U9IIa8cjbT2tfY46JQb4gVIdu8ttoLfpg8Y99We5TGTuv4P2uV48xh8ciEYNYhhZqoB7cWGqZOdxsnAykzRPAmWA==',
         },
       },
       handlers: [orderConfirmationHandler],
       templatePath: path.join(__dirname, '../static/email/templates'),
-      globalTemplateVars: {
+      /*      globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>',
-      },
+      },*/
     }),
     // Production ready, precompiled admin UI
     AdminUiPlugin.init({
