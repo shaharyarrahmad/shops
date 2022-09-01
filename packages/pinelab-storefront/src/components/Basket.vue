@@ -141,6 +141,10 @@ export default {
       type: [Store, Object],
       required: true,
     },
+    cartUrl: {
+      type: [String],
+      required: true,
+    },
   },
   data() {
     return {
@@ -177,17 +181,17 @@ export default {
     showNotificationBar(event) {
       const message =
         event.quantity > 0
-          ? `${event.quantity} toegevoegd aan winkelmand`
-          : `${event.quantity * -1} verwijderd uit winkelmand`;
+          ? `${event.quantity} ${this.$l(`basket.added`)}`
+          : `${event.quantity * -1} ${this.$l(`basket.removed`)}`;
       this.$buefy.snackbar.open({
         message,
         position: 'is-top-right',
         type: 'is-light',
-        actionText: 'Naar winkelmand',
+        actionText: this.$l(`basket.to-cart`),
         pauseOnHover: true,
         duration: 5000,
         onAction: () => {
-          this.$router.push('/winkelmand/');
+          this.$router.push(this.cartUrl);
         },
       });
     },

@@ -11,12 +11,12 @@
     "to-cart": "Naar winkelmand"
   },
   "customer-details": {
-    "title": "Gegevens",
+    "title": "Adres",
     "firstname": "Voornaam",
     "lastname": "Achternaam",
     "company": "Bedrijfsnaam",
     "phone": "Telefoonnr.",
-    "email": "Email adres",
+    "email": "Email",
     "postalcode": "Postcode",
     "housenr": "Huisnr.",
     "street": "Straat",
@@ -24,34 +24,38 @@
     "country": "Land",
     "different-billing-address": "Ander factuuradres",
     "billing-address": "Factuuradres",
-    "submit": "Bezorging"
+    "submit": "Kies verzendwijze"
   },
   "shipping": {
-    "step-title": "Bezorging",
-    "page-title": "Verzendwijze kiezen:",
-    "submit": "Bestellen en betalen"
+    "step-title": "Verzending",
+    "page-title": "Kies verzendwijze",
+    "submit": "Controleer je bestelling"
   },
   "order-summary": {
     "title": "Samenvatting",
-    "shipping-cost": "Verzendkosten",
+    "shipping-cost": "Verzending",
     "subtotal": "Subtotaal",
     "total": "Totaal"
   },
+  "payment": {
+    "title": "Betaalwijze",
+    "choose": "Kies je betaalwijze"
+  },
   "checkup": {
-    "title": "Bestellen en betalen",
-    "shipping-address": "Verzendadres",
+    "title": "Controleer je bestelling",
+    "shipping-address": "Bezorgadres",
     "billing-address": "Factuuradres",
     "items": "Producten",
-    "disclaimer": "Door te klikken op 'Doorgaan en betalen' ga ik akkoord met de algemene voorwaarden. Ik heb kennis genomen van de annuleringsvoorwaarden en de privacyverklaring.",
-    "pay": "Betalen"
+    "disclaimer": "Je kan in de volgende stap een betaalwijze kiezen",
+    "pay": "Afrekenen"
   },
   "finished": {
-    "title": "Bestelling voltooid"
+    "title": "Gelukt!"
   },
   "common": {
     "couponcode": "Kortingscode"
   },
   "error": {
-    "INSUFFICIENT_STOCK_ERROR": "We hebben er niet meer helaas!"
+    "INSUFFICIENT_STOCK_ERROR": "We hebben er niet meer!"
   }
 }
