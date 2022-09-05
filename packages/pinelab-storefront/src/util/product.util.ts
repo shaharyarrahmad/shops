@@ -11,7 +11,6 @@ export function setCalculatedFields<T extends MinimalProduct>(
 ): CalculatedProduct<T> {
   const lowestPrice = Math.min(...product.variants.map((v) => v.priceWithTax));
   const highestPrice = Math.max(...product.variants.map((v) => v.priceWithTax));
-  console.log(highestPrice);
   const allVariantsOutOfStock = product.variants.every((v) => isOutOfStock(v));
   return {
     ...product,
