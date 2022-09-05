@@ -6,13 +6,12 @@
   "private": true,
   "scripts": {
     "nightwatch:e2e": "nightwatch --test nightwatch/place-order.js",
-    "nightwatch:e2e:local": "TESTENV=local nightwatch --test nightwatch/place-order.js",
     "nightwatch:checkout": "nightwatch --test nightwatch/checkout.js --testcase $TESTCASE",
     "jest:e2e": "jest --forceExit"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
-    "chromedriver": "105.0.0",
+    "chromedriver": "104.0.0",
     "dotenv": "^10.0.0",
     "jest": "^27.4.6",
     "linkinator": "^4.0.2",
