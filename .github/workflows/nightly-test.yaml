@@ -28,7 +28,7 @@ jobs:
         with:
           chrome-version: stable
       - run: chrome --version
-      - run: google-chrome --version
+      - run: which chrome
       - name: Build
         run: yarn
       - name: Test checkout
