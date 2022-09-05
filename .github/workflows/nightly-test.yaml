@@ -2,9 +2,7 @@ name: Test live checkout for clients
 on:
   schedule:
     - cron:  '0 1 * * *'
-  push:
-    branches:
-      - feat/test-linkinator
+  workflow_dispatch
 
 jobs:
   nightly-test:
@@ -26,6 +24,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - uses: browser-actions/setup-chrome@latest
+        with:
+          chrome-version: stable
+      - run: chrome --version
       - name: Build
         run: yarn
       - name: Test checkout
