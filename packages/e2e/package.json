@@ -6,7 +6,6 @@
   "private": true,
   "scripts": {
     "nightwatch:e2e": "nightwatch --test nightwatch/place-order.js",
-    "nightwatch:e2e:local": "TESTENV=local nightwatch --test nightwatch/place-order.js",
     "nightwatch:checkout": "nightwatch --test nightwatch/checkout.js --testcase $TESTCASE",
     "jest:e2e": "jest --forceExit"
   },
