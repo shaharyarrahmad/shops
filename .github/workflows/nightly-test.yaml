@@ -2,7 +2,7 @@ name: Test live checkout for clients
 on:
   schedule:
     - cron:  '0 1 * * *'
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   nightly-test:
