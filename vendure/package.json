@@ -22,7 +22,7 @@
     "migration:revert:prod": "export LOCAL_ENV=.env && yarn ts-node migration revert"
   },
   "dependencies": {
-    "@google-cloud/logging-winston": "4.2.3",
+    "@google-cloud/logging-winston": "5.1.5",
     "@google-cloud/storage": "^6.4.2",
     "@mollie/api-client": "3.6.0",
     "@vendure/admin-ui-plugin": "1.7.1",
