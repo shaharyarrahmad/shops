@@ -6,7 +6,10 @@
       </div>
       <div class="column">
         <h1 class="title">{{ $context.product.name }}</h1>
-        <h5 class="is-size-5">{{ $context.product.lowestPrice | euro }}</h5>
+        <h5 class="is-size-5">
+          {{ $context.product.lowestPrice | euro }} -
+          {{ $context.product.highestPrice | euro }}
+        </h5>
         <template v-if="$context.product.description">
           <ReadMoreDescription
             :description="$context.product.description"
