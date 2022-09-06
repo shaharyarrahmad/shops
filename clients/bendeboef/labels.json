@@ -1,4 +1,15 @@
 {
+  "basket": {
+    "title": "Cart",
+    "shipping-cost": "Shipping",
+    "total": "Total",
+    "go-to-cart": "View cart",
+    "go-to-checkout": "Order now",
+    "empty-cart": "No items in cart... ",
+    "added": "added to cart",
+    "removed": "removed from cart",
+    "to-cart": "View cart"
+  },
   "customer-details": {
     "title": "Details",
     "firstname": "Firstname",
@@ -17,7 +28,7 @@
   },
   "shipping": {
     "step-title": "Shipping",
-    "page-title": "Pick a shippingmethod",
+    "page-title": "Select shippingmethod",
     "submit": "Review order"
   },
   "order-summary": {

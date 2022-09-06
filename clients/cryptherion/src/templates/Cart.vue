@@ -4,9 +4,9 @@
       <div
         v-if="activeOrder && activeOrder.lines && activeOrder.lines.length > 0"
       >
-        <div class="columns">
-          <div class="column is-mobile"><h3>Winkelmand</h3></div>
-          <div class="column is-mobile has-text-right">
+        <div class="columns is-mobile">
+          <div class="column"><h3>Winkelmand</h3></div>
+          <div class="column has-text-right">
             <g-link to="/checkout/" class="button"> Bestellen</g-link>
           </div>
         </div>
