@@ -1,6 +1,8 @@
 require('dotenv').config();
 module.exports = {
-  DB_SOCKET_PATH: '/cloudsql/pinelab-shops:europe-west1:shops-prod',
+  DB_SOCKET_PATH: process.env.K_SERVICE
+    ? '/cloudsql/pinelab-shops:europe-west1:shops-prod'
+    : undefined,
   DB_HOST: process.env.DB_HOST,
   DB_DATABASE: process.env.DB_DATABASE,
   DB_USER: process.env.DB_USER,
@@ -28,4 +30,7 @@ module.exports = {
   EMAIL_SENDMAIL_NEW_LINE: 'unix',
   EMAIL_SENDMAIL_PATH: '/usr/sbin/sendmail',
   ASSETS_TRANSFORM_IMAGE_MAX_DIMENSION: '10000',
+  GRAPHQL_INTROSPECTION: true,
+  CORS_METHODS: 'GET,POST,PATCH,DELETE,OPTIONS',
+  CORS_ENABLED: true,
 };
