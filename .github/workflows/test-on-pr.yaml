@@ -4,7 +4,7 @@ on:
 
 jobs:
   test:
-    name: Test Pinelab-stoprefront <> Vendure communication
+    name: Test Pinelab-storefront x Vendure
     runs-on: ubuntu-latest
     defaults:
       run:
