@@ -19,19 +19,23 @@ import {
   Table,
   Tooltip,
 } from 'buefy';
+import {
+  formatEuro,
+  preconnectLinks,
+  setLabelFunction,
+  setStore,
+} from 'pinelab-storefront';
 import Layout from '~/layouts/Default.vue';
-import { configureVue } from 'pinelab-storefront-client';
 import '~/theme.scss';
 import '@fontsource/work-sans';
-import QuantityInput from 'pinelab-storefront-client/lib/buefy-components/QuantityInput';
-import PopupImage from 'pinelab-storefront-client/lib/buefy-components/PopupImage';
+import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
+import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
 import VueGtag from 'vue-gtag';
 
 export default function (Vue, { router, head, isClient }) {
-  if (isClient && process.env.GRIDSOME_ENABLE_MOBILE_CONSOLE) {
-    require('outfront').default();
-    console.log('OutfrontJS mobile logging enabled');
-  }
+  head.link.push(...preconnectLinks);
+  setLabelFunction(Vue, require('../labels.json'));
+  Vue.filter('euro', formatEuro);
   [
     Button,
     Checkbox,
@@ -53,6 +57,11 @@ export default function (Vue, { router, head, isClient }) {
     Tooltip,
   ].forEach((component) => Vue.use(component));
   if (isClient) {
+    setStore(
+      Vue,
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
     Vue.use(
       VueGtag,
       {
@@ -69,7 +78,6 @@ export default function (Vue, { router, head, isClient }) {
   Vue.component('QuantityInput', QuantityInput);
   Vue.component('Layout', Layout);
   Vue.component('PopupImage', PopupImage);
-  configureVue(Vue, { router, head, isClient });
 
   // Directus assets, use CMS host for local, otherwise go through netlify
   const assetHost =

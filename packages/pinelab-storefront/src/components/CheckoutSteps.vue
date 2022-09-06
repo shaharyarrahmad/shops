@@ -31,16 +31,27 @@
         icon="truck"
         :clickable="false"
       >
-        <b-button
-          class="is-outlined"
-          aria-label="back to customer details"
-          :disable="hasShippingSelected"
-          @click="activeStep = 0"
-        >
-          <
-        </b-button>
-        <br />
-        <br />
+        <div class="columns is-mobile">
+          <div class="column">
+            <b-button
+              class="is-outlined"
+              aria-label="back to customer details"
+              :disable="hasShippingSelected"
+              @click="goToStep(0)"
+            >
+              <
+            </b-button>
+          </div>
+          <div class="column has-text-right">
+            <b-button
+              aria-label="submit shippingmethod"
+              :disable="hasShippingSelected"
+              @click="goToStep(2)"
+            >
+              {{ $l('shipping.submit') }}
+            </b-button>
+          </div>
+        </div>
         <div class="columns">
           <div class="column is-6">
             <h3>{{ $l('shipping.page-title') }}</h3>
@@ -66,7 +77,7 @@
                   class="is-fullwidth"
                   aria-label="submit shippingmethod"
                   :disable="hasShippingSelected"
-                  @click="activeStep = 2"
+                  @click="goToStep(2)"
                 >
                   {{ $l('shipping.submit') }}
                 </b-button>
@@ -85,16 +96,27 @@
         :clickable="false"
         disabled
       >
-        <b-button
-          class="is-outlined"
-          aria-label="back to shipping"
-          :disable="hasShippingSelected"
-          @click="activeStep = 1"
-        >
-          <
-        </b-button>
-        <br />
-        <br />
+        <div class="columns is-mobile">
+          <div class="column">
+            <b-button
+              class="is-outlined"
+              aria-label="back to shipping"
+              :disable="hasShippingSelected"
+              @click="goToStep(1)"
+            >
+              <
+            </b-button>
+          </div>
+          <div class="column has-text-right">
+            <b-button
+              aria-label="go to payment"
+              :disable="hasShippingSelected"
+              @click="choosePayment()"
+            >
+              {{ $l('checkup.pay') }}
+            </b-button>
+          </div>
+        </div>
         <div class="columns">
           <div class="column is-8">
             <div class="columns">
@@ -188,7 +210,7 @@
             <br />
             <div class="columns is-mobile">
               <div class="column">
-                <a @click="activeStep = 2" class="button is-outlined"><</a>
+                <a @click="goToStep(2)" class="button is-outlined"><</a>
               </div>
               <div class="column">
                 <b-button
@@ -282,13 +304,22 @@ export default {
     };
   },
   methods: {
+    scrollToTop() {
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+      }, 100);
+    },
+    goToStep(step) {
+      this.activeStep = step;
+      this.scrollToTop();
+    },
     async gotToShipping() {
-      this.activeStep = 1;
+      this.goToStep(1);
       this.shippingMethods = await this.vendure.getEligibleShippingMethods();
     },
     async choosePayment() {
       if (this.paymentMethods.length > 1) {
-        this.activeStep = 3;
+        this.goToStep(3);
       } else {
         await this.startPayment();
       }
