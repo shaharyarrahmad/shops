@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "yarn directus start"
+    "start": "CONFIG_PATH=config.js yarn directus start"
   },
   "keywords": [],
   "author": "",
