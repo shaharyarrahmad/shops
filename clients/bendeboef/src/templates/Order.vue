@@ -1,7 +1,7 @@
 <template>
   <Layout #content>
     <div class="columns">
-      <div class="column">
+      <div class="column is-8">
         <template v-if="loading">
           <b-skeleton :animated="true"></b-skeleton>
           <b-skeleton :animated="true"></b-skeleton>
@@ -19,14 +19,7 @@
           </b-notification>
         </template>
         <template v-if="order">
-          <OrderSummary
-            class="mb-5"
-            shipping-label="Verzendkosten"
-            subtotal-label="Subtotaal (incl. korting)"
-            total-label="Totaal"
-            summary-title="Samenvatting"
-            :order="order"
-          />
+          <OrderSummary class="mb-5" :order="order" />
           <h4>This is what you ordered:</h4>
           <CartItemsTable disabled :active-order="order" />
         </template>
