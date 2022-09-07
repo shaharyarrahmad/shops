@@ -1,0 +1,78 @@
+/order/* /order/_code.html 200
+/admin/ https://api.pinelab.studio/admin/ 301
+
+/product/loop-colors-asphalt/ /product/loop-colors-asphalt-400ml/ 301
+/product/loop-colors-600ml/ /product/loop-colors-maxi-600ml/ 301
+/product/loop-colors-tech-400ml/ /product/loop-colors-eraser-400ml/ 301
+/product/black-and-white-deal/ /product/loop-colors-black-and-white-deal/ 301
+/product/adgo-betonschaar-12-heavy-duty/ /product/adgo-betonschaar-12-heavy-duty-2/ 301
+/product/adgo-betonschaar-14-heavy-duty-kopie/ /product/benson-betonschaar-14-heavy-duty/ 301
+/product/orange-fat-cap-kopie/ /product/orange-fat-cap/ 301
+/product/super-booster/ /product/super-booster-cap/ 301
+/product/whitebook-a4-landscape/ /product/loop-colors-whitebook-a4-landscape/ 301
+/product/on-the-run-otr-006s-steelball-empty-squeeze-marker-5mm-kopie/ /product/on-the-run-otr006s-steelball-empty-squeeze-marker-5mm/ 301
+/product/5-panel-zip-cap-camouflage/ /product/5-panel-looper-cap/ 301
+
+
+/product-categorie/boeken-magazines/* /categorie/boeken-magazines/ 301
+
+/product-categorie/cans/ /categorie/spray-paint/ 301
+/product-categorie/cans/* /categorie/spray-paint/ 301
+
+/product-categorie/cap-bags/ /categorie/voordeel-zakken/ 301
+/product-categorie/spray-paint-caps/ /categorie/caps/ 301
+/product-categorie/spray-paint-caps/* /categorie/caps/ 301
+
+/product-categorie/trains-of-fame/ /categorie/treinen-metros/ 301
+
+/product-categorie/tekenen-stickers/stickers/ /categorie/sticker-sets/ 301
+
+/product-categorie/deals/* /categorie/deals/ 301
+
+/product-categorie/uitrusting/ /categorie/uitrusting/ 301
+/product-categorie/uitrusting/* /categorie/uitrusting/ 301
+
+/product-categorie/gear/mr-serious* /categorie/mr-serious/ 301
+
+/product-categorie/markers/ /categorie/graffiti-markers/ 301
+/product-categorie/markers/* /categorie/graffiti-markers/ 301
+
+/shop/markers/hand-mixed-solid-markers/ /categorie/solid-paint-markers/ 301
+/shop/markers/grog* /categorie/grog/ 301
+/shop/markers/* /categorie/graffiti-markers/ 301
+
+/shop/prints/ /categorie/prints-3/ 301
+/product-categorie/prints/ /categorie/prints-3/ 301
+/product-categorie/prints/* /categorie/prints-3/ 301
+
+/shop/gear/ /categorie/uitrusting/ 301
+/product-categorie/gear/ /categorie/uitrusting/ 301
+/product-categorie/gear/loop* /categorie/loop-colors/ 301
+/product-categorie/gear/* /categorie/uitrusting/ 301
+/shop/wear/ /categorie/kleding-2/ 301
+/product-categorie/wear/ /categorie/kleding-2/ 301
+/product-categorie/wear/* /categorie/kleding-2/ 301
+
+/shop/loop_colors_graffiti_spuitbussen/loop-colors-spuitbussen/ /categorie/loop-colors-2/ 301
+/shop/loop_colors_graffiti_spuitbussen/loop-colors-aanbiedingen-deals/ /categorie/voordeelpakketten/ 301
+/shop/loop_colors_graffiti_spuitbussen/* /categorie/spray-paint/ 301
+/spray-paint-caps/spray-paint/ /categorie/spray-paint/ 301
+/spray-paint-caps/spray-paint/* /categorie/spray-paint/ 301
+
+/product/montana-* /categorie/montana-cans-2/ 301
+/product/mr-serious* /categorie/mr-serious/ 301
+/product/hmx-* /categorie/solid-paint-markers/ 301
+/product/hmx/ /categorie/solid-paint-markers/ 301
+/product/flux-* /categorie/lege-markers/ 301
+/product/grog* /categorie/grog/ 301
+/product/loop* /categorie/loop-colors/ 301
+/product/empty* /categorie/graffiti-markers/ 301
+/product/otr* /categorie/graffiti-markers/ 301
+/product/hello* /categorie/sticker-sets/ 301
+
+/shop/*  /categorie/:splat 301
+/product-categorie/*  /categorie/:splat 301
+/about/ /over-ons/ 301
+/about/* /over-ons/ 301
+/category/* / 301
+/home/* / 301
