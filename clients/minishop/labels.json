@@ -42,7 +42,7 @@
     "shipping-address": "Verzendadres",
     "billing-address": "Factuuradres",
     "items": "Producten",
-    "disclaimer": "Door te klikken op 'Doorgaan en betalen' ga ik akkoord met de algemene voorwaarden. Ik heb kennis genomen van de annuleringsvoorwaarden en de privacyverklaring.",
+    "disclaimer": "",
     "pay": "Betalen"
   },
   "finished": {
