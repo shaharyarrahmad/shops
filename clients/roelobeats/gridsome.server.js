@@ -18,5 +18,13 @@ module.exports = async function (api) {
         products,
       },
     });
+
+    createPage({
+      path: '/cart',
+      component: './src/templates/Index.vue',
+      context: {
+        products,
+      },
+    });
   });
 };

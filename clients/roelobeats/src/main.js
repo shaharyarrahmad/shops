@@ -3,6 +3,7 @@ import '~/theme.scss';
 import { formatEuro, preconnectLinks, setStore } from 'pinelab-storefront';
 import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
 import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
+import "@fontsource/poppins"; 
 
 export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);

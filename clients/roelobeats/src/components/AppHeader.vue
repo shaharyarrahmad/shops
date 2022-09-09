@@ -3,11 +3,11 @@
   <nav
     role="navigation"
     aria-label="main navigation"
-    class="navbar-expand-lg is-fixed-top sticky-top has-navbar-centered"
-    style="background-color: #966fa4"
+    class="navbar-expanded is-fixed-top sticky-top has-navbar-centered" 
+    style=""
   >
     <div class="navbar-brand">
-      <div id="top-navbar" class="container is-widescreen section">
+      <div id="top-navbar" class="container is-widescreen section p-5">
         <div class="columns is-mobile is-centered" style="width: 100%">
           <div id="main-logo" class="column">
             <a href="/" aria-current="page">
@@ -25,51 +25,116 @@
 
           <div id="search" class="column is-hidden-mobile">
             <div class="field">
-              <div class="autocomplete control has-icons-right is-clearfix">
-                <input
-                  type="text"
-                  class="input is-rounded is-black is-outlined cursor"
-                  style="width: 400px"
-                  placeholder="Search for kits..."
-                />
-
-                <div class="cursor">
-                  <span class="icon cursor is-right">
-                    <i
-                      class="mdi mdi-arrow-right-circle mdi-48px has-text-black cursor"
-                    ></i>
+              <div class="autocomplete control">
+                <div class="control has-icons-right  is-clearfix">
+                  <input type="text" autocomplete="off" aria-autocomplete="list" placeholder="Search for kits..." class="input is-rounded is-black">
+                  <span class="icon is-right">
+                    <i class="mdi mdi-magnify mdi-24px has-text-black"></i>
                   </span>
                 </div>
               </div>
             </div>
-            <span class="icon is-medium is-hidden-tablet is-clickable">
-              <button class="has-text-black mdi mdi-magnify mdi-36px"></button>
-            </span>
           </div>
 
-          <!--CART/FAVOURITE ICONS -->
+          <!--SEARCH(PHONE) / CART / FAVOURITE ICONS -->
 
           <div id="icons" class="column has-text-right">
+
+            <span class="icon is-large is-hidden-tablet is-clickable">
+                <i class="mdi mdi-magnify mdi-36px has-text-black" style="z-index:999;"></i>
+              </span>
+
             <span class="icon is-large">
               <a href="" target="_blank">
                 <i
-                  class="mdi mdi-heart-outline mdi-36px has-text-black cursor"
+                  class="mdi mdi-heart-outline mdi-36px has-text-black"
                 ></i>
               </a>
             </span>
 
             <span class="icon is-large">
-              <a href="" target="_blank">
+              <a href="/cart" target="_blank">
                 <i
-                  class="mdi mdi-basket-outline mdi-36px has-text-black cursor"
+                  class="mdi mdi-basket-outline mdi-36px has-text-black"
                 ></i>
               </a>
             </span>
             <a>
-              <span class="cart-badge">0</span>
+              <span class="cart-badge">2</span>
             </a>
+            
+            <span class="icon is-large is-hidden-desktop is-clickable">
+                <i class="mdi mdi-menu mdi-36px has-text-black"></i>
+            </span>
+
           </div>
         </div>
+      </div>
+    </div>
+    <div class="center">
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div id="navbar-items-wrapper" class="container is-widescreen section is-hidden-mobile">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Pop</a>
+              <div class="navbar-dropdown">
+                <div class="container section py-1">
+                  <div class="columns is-capitalized">
+                    <div class="column is-3">
+                      <a href="" class="navbar-item is-hidden-mobile px-0">
+                        Indie pop
+                      </a>
+                      <a href="" class="navbar-item sub px-0">
+                        Indie pop
+                      </a>
+                      <a href="" class="navbar-item sub px-0">
+                        Indie pop
+                      </a>
+                      <a href="" class="navbar-item sub px-0">
+                        Indie pop
+                      </a>
+                      <a href="" class="navbar-item sub px-0">
+                        Indie pop
+                      </a>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Hip Hop</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">House</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Techno</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Jazz</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">EDM</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Drum and Bass</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Cinematic</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">World</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">Free</a>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a href="" aria-haspopup="true" tabindex="0" class="navbar-link is-arrowless">SALE</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div clas="navbar-end">
       </div>
     </div>
   </nav>
