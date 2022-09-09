@@ -3,7 +3,3 @@ Disallow: /cart/
 Disallow: /customer-details/
 Disallow: /shipping/
 Disallow: /order/
-
-roelobeats.com/
-
-img/plaatje.png
