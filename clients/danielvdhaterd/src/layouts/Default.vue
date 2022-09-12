@@ -67,13 +67,7 @@
       </div>
     </div>
     <div class="has-text-centered">
-      <p
-        style="
-          color: gray;
-          font-size: 0.7rem;
-          font-family: 'Roboto mono', monospace;
-        "
-      >
+      <p style="color: gray; font-size: 0.7rem">
         <a href="https://www.instagram.com/dvandehaterd/" target="_blank"
           ><i class="mdi mdi-instagram mdi-24px"></i
         ></a>
