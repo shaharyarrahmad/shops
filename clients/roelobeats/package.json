@@ -9,6 +9,7 @@
     "link-there": "cd ../../packages/pinelab-storefront-client && yarn link"
   },
   "dependencies": {
+    "@fontsource/poppins": "^4.5.9",
     "buefy": "^0.9.7",
     "debounce": "^1.2.1",
     "pinelab-storefront": "0.58.5"

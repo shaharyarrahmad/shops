@@ -15,6 +15,8 @@ $body-background-color: white;
 $primary-invert: white;
 $dark: grey;
 $light: grey;
+$purple: #966FA4;
+$light-purple: #B093BB;
 $title-color: $text;
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
@@ -23,8 +25,7 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-primary: "Open Sans", "Segoe UI", "Apple SD Gothic Neo", "Lucida Grande", "Lucida Sans Unicode", "sans‑serif";
-$family-secondary: "Roboto", "-apple-system", "BlinkMacSystemFont", "Tahoma", "sans‑serif";
+$family-primary: "Poppins";
 
 // Links
 /*$link: $primary;
@@ -89,10 +90,127 @@ $colors: mergeColorMaps(
                                 $danger-dark,
                         ),
                 ),
-                $custom-colors
+        $custom-colors: ()
 );
 
 
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+
+.title {
+  font-weight: 900;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/** Navbar stuff **/
+.navbar-menu {
+  background: $light-purple;
+  @media screen and (max-width: $desktop) {
+    background: $light-purple;
+  }
+  justify-content: center;
+}
+
+.navbar-brand {
+  align-items: stretch;
+  display: block;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 3.25rem;
+  background-color: #966FA4;
+}
+
+#navbar-items-wrapper {
+  display: inherit;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+
+}
+
+.navbar-start {
+  justify-content: center;
+  margin-left: auto;
+  width: 100%;
+}
+
+.navbar-item a:hover {
+  text-decoration: underline;
+  font-weight: 800;
+  color: #000000;
+  background-color: transparent !important;
+}
+
+.navbar-item a:focus {
+  text-decoration: underline;
+  font-weight: 800;
+  color: #000000;
+  background-color: transparent !important;
+}
+
+.navbar-link:focus {
+  text-decoration: underline;
+  font-weight: 800;
+  color: #000000;
+  background-color: transparent !important;
+}
+
+.navbar-dropdown h5.navbar-item {
+  margin-bottom: 0;
+  top: 135px;
+}
+
+.navbar-dropdown {
+  @media screen and (min-width: $desktop) {
+    border-top: 0px transparent;
+  }
+}
+
+.navbar-dropdown a:hover {
+  background-color: transparent !important;
+}
+
+.container a:focus-within {
+  background-color: transparent !important;
+}
+
+/* AMOUNT IN CART */
+
+.cart-badge {
+  background: white;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 10px;
+  color: black;
+  margin-left: -20px;
+}
+
+.input {
+  color: #000000;
+  border: solid 2px #000000;
+  background-color: transparent;
+  box-shadow: none !important;
+}
+
+
+/* CUSTOM CURSOR */
+
+.cursor {
+  cursor: crosshair !important;
+}
+
+/* WAVKITS LOGO */
+
+#logo {
+  margin-left: 30px;
+}
+
+
+
+

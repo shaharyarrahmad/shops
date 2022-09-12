@@ -1,16 +1,13 @@
 <template>
-  <div>
-    <h1 class="is-size-1">Roelobeats</h1>
-    <h2>products</h2>
-    <img :src="$context.products[0].featuredAsset.thumbnail" />
-
-    <br />
-    {{ $context.products }}
-  </div>
+  <AppHeader />
 </template>
+
 <script>
+import AppHeader from '@/components/AppHeader.vue';
+
 export default {
-  async mounted() {},
+  components: {
+    AppHeader,
+  },
 };
 </script>
-<style></style>
