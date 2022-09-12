@@ -18,8 +18,12 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: "Work Sans";
-$family-primary: "Work Sans";
+$family-sans-serif: "Roboto mono";
+$family-primary: "Roboto mono";
+
+$radius: 0;
+$radius-small: 0;
+$radius-large: 0;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
@@ -89,6 +93,10 @@ $link-focus-border: $primary;*/
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
+.button {
+  border-radius: 0;
+}
+
 #side-basket button,
 .checkout-steps a,
 .checkout-steps button {
@@ -112,4 +120,15 @@ h3 {
 h4 {
   @extend .is-size-4;
   @extend .mb-3;
+}
+
+.shop-logo {
+  max-width: 500px;
+  @media screen and (max-width: 768px) {
+    max-width: 200px;
+  }
+}
+
+.navbar-burger {
+  display: none;
 }

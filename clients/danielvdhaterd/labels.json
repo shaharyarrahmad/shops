@@ -3,20 +3,20 @@
     "title": "Winkelmand",
     "shipping-cost": "Verzendkosten",
     "total": "Totaal",
-    "go-to-cart": "Naar winkelmand",
-    "go-to-checkout": "Bestellen",
-    "empty-cart": "Je winkelmand is leeg... ",
-    "added": "toegevoegd aan winkelmand",
-    "removed": "verwijderd uit winkelmand",
-    "to-cart": "Naar winkelmand"
+    "go-to-cart": "Winkelmand",
+    "go-to-checkout": "bestellen",
+    "empty-cart": "Je hebt nog geen producten in je mand... ",
+    "added": "toegevoegd",
+    "removed": "verwijderd",
+    "to-cart": "Winkelmand"
   },
   "customer-details": {
-    "title": "Gegevens",
+    "title": "Adres",
     "firstname": "Voornaam",
     "lastname": "Achternaam",
     "company": "Bedrijfsnaam",
     "phone": "Telefoonnr.",
-    "email": "Email adres",
+    "email": "Emailadres",
     "postalcode": "Postcode",
     "housenr": "Huisnr.",
     "street": "Straat",
@@ -24,12 +24,12 @@
     "country": "Land",
     "different-billing-address": "Ander factuuradres",
     "billing-address": "Factuuradres",
-    "submit": "Bezorging"
+    "submit": "Kies verzendwijze"
   },
   "shipping": {
-    "step-title": "Bezorging",
-    "page-title": "Verzendwijze kiezen:",
-    "submit": "Bestellen en betalen"
+    "step-title": "Verzending",
+    "page-title": "Selecteer een verzendmwijze",
+    "submit": "Controleer je bestelling"
   },
   "order-summary": {
     "title": "Samenvatting",
@@ -38,20 +38,20 @@
     "total": "Totaal"
   },
   "checkup": {
-    "title": "Controleer",
-    "shipping-address": "Verzendadres",
+    "title": "Controleren",
+    "shipping-address": "Bezorgadres",
     "billing-address": "Factuuradres",
     "items": "Producten",
     "disclaimer": " ",
-    "pay": "Betalen"
+    "pay": "€ Betalen"
   },
   "finished": {
-    "title": "Besteld!"
+    "title": "Gelukt!"
   },
   "common": {
     "couponcode": "Kortingscode"
   },
   "error": {
-    "INSUFFICIENT_STOCK_ERROR": "We hebben er niet meer helaas!"
+    "INSUFFICIENT_STOCK_ERROR": "We hebben er niet meer"
   }
 }
