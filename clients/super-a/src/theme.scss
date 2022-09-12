@@ -98,7 +98,9 @@ $link-focus-border: $primary;*/
   margin-top: 2rem;
 }
 
-.button {
+#side-basket button,
+.checkout-steps a,
+.checkout-steps button {
   @extend .is-primary;
 }
 

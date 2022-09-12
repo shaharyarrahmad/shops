@@ -6,6 +6,7 @@
 
 module.exports = {
   siteName: "Ben de Boef Tattoo's",
+  siteUrl: 'https://bendeboef.com',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link

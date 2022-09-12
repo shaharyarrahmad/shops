@@ -6,6 +6,7 @@
 
 module.exports = {
   siteName: 'Daniël van de Haterd',
+  siteUrl: 'https://dvandehaterd.nl',
   siteDescription:
     'Artist Daniël van de Haterd. Art adventures. Abstract artist with a graffiti background.',
   configureWebpack: {
