@@ -94,8 +94,13 @@ $link-focus-border: $primary;*/
 @import "~buefy/src/scss/buefy";
 
 .button {
-  @extend .is-primary;
   border-radius: 0;
+}
+
+#side-basket button,
+.checkout-steps a,
+.checkout-steps button {
+  @extend .is-primary;
 }
 
 h1 {

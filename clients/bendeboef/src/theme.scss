@@ -89,7 +89,9 @@ $link-focus-border: $primary;*/
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
-.button {
+#side-basket button,
+.checkout-steps a,
+.checkout-steps button {
   @extend .is-primary;
 }
 
