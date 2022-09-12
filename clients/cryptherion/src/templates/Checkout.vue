@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <CheckoutSteps
+      class="checkout-steps"
       :vendure="$vendure"
       :emitter="$emitter"
       :store="$store"
