@@ -7,7 +7,7 @@
         <div class="columns is-mobile">
           <div class="column"></div>
           <div class="column has-text-right">
-            <g-link to="/checkout/" class="button">Bestellen</g-link>
+            <g-link to="/checkout/" class="button is-primary">Bestellen</g-link>
           </div>
         </div>
         <div class="columns">
@@ -25,7 +25,7 @@
               </template>
               <template #bottom>
                 <br />
-                <g-link to="/checkout/" class="button is-fullwidth">
+                <g-link to="/checkout/" class="button is-fullwidth is-primary">
                   Bestellen
                 </g-link>
                 <div class="has-text-centered pt-4">

@@ -28,7 +28,7 @@
   },
   "shipping": {
     "step-title": "Shipping",
-    "page-title": "Select shippingmethod",
+    "page-title": "Select shipping",
     "submit": "Review order"
   },
   "order-summary": {
