@@ -90,7 +90,7 @@ $colors: mergeColorMaps(
                                 $danger-dark,
                         ),
                 ),
-        $custom-colors: ("purple": #966FA4, "light-purple": #B093BB)
+        $custom-colors: ()
 );
 
 
@@ -103,88 +103,8 @@ $colors: mergeColorMaps(
   font-weight: 900;
 }
 
-h1 {
-  @extend .title;
-  @extend .is-1;
-  @extend .is-family-secondary;
-  @media screen and (max-width: $desktop) {
-    font-size: 2rem;
-  }
-}
-
-h2 {
-  @extend .title;
-  @extend .is-2;
-  @extend .is-family-secondary;
-  @media screen and (max-width: $desktop) {
-    font-size: 1.6rem;
-  }
-}
-
-h3 {
-  @extend .title;
-  @extend .is-3;
-  @extend .is-family-secondary;
-  @media screen and (max-width: $desktop) {
-    font-size: 1.4rem;
-  }
-}
-
-h4 {
-  @extend .title;
-  @extend .is-4;
-  @extend .is-family-secondary;
-  @media screen and (max-width: $desktop) {
-    font-size: 1.2rem;
-  }
-}
-
-h5 {
-  @extend .title;
-  @extend .is-5;
-  @extend .is-family-secondary;
-  @media screen and (max-width: $desktop) {
-    font-size: 1.1rem;
-  }
-}
-
-h6 {
-  @extend .title;
-  @extend .is-6;
-  @extend .is-family-secondary;
-  @media screen and (max-width: $desktop) {
-    font-size: 0.9rem;
-  }
-}
-
-.has-text-light h1,
-.has-text-light h2,
-.has-text-light h3,
-.has-text-light h4,
-.has-text-light h5,
-.has-text-light h6,
-{
-  color: #966FA4;
-}
-
 section {
   margin-bottom: 3rem;
-}
-
-
-/** Make all buttons black **/
-.button .is-primary {
-  @extend .is-dark
-}
-
-#side-basket button,
-.checkout-steps a,
-.checkout-steps button {
-  @extend .is-primary;
-}
-
-.usps b {
-  color: $purple;
 }
 
 /** Navbar stuff **/
@@ -205,17 +125,44 @@ section {
   background-color: #966FA4;
 }
 
-.content-container {
-  margin-top: 70px;
-  @media screen and (max-width: $desktop) {
-    margin-top: 30px;
-  }
+#navbar-items-wrapper {
+  display: inherit;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+
+}
+
+.navbar-start {
+  justify-content: center;
+  margin-left: auto;
+  width: 100%;
+}
+
+.navbar-item a:hover {
+  text-decoration: underline;
+  font-weight: 800;
+  color: #000000;
+  background-color: transparent !important;
+}
+
+.navbar-item a:focus {
+  text-decoration: underline;
+  font-weight: 800;
+  color: #000000;
+  background-color: transparent !important;
+}
+
+.navbar-link:focus {
+  text-decoration: underline;
+  font-weight: 800;
+  color: #000000;
+  background-color: transparent !important;
 }
 
 .navbar-dropdown h5.navbar-item {
   margin-bottom: 0;
   top: 135px;
-  background-color: transparent !important;
 }
 
 .navbar-dropdown {
@@ -228,35 +175,11 @@ section {
   background-color: transparent !important;
 }
 
-.footer a {
-  @extend .has-text-light;
+.container a:focus-within {
+  background-color: transparent !important;
 }
 
-#mobile-navigation a {
-  color: $text;
-}
-
-.rounded {
-  border-radius: $control-radius;
-}
-
-.collapsed-1 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1; /* number of lines to show */
-  line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
-
-.collapsed-3 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3; /* number of lines to show */
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
+/* AMOUNT IN CART */
 
 .cart-badge {
   background: white;
@@ -275,38 +198,19 @@ section {
   box-shadow: none !important;
 }
 
+
+/* CUSTOM CURSOR */
+
 .cursor {
   cursor: crosshair !important;
 }
 
-#navbar-items-wrapper {
-  display: inherit;
-  justify-content: space-between;
-  padding-top: 0;
-  padding-bottom: 0;
-
-}
-
-.navbar-start {
-  justify-content: center;
-  margin-left: auto;
-  width: 100%;
-}
+/* WAVKITS LOGO */
 
 #logo {
   margin-left: 30px;
 }
 
-.navbar-item a:hover {
-  text-decoration: underline;
-  font-weight: 800;
-  color: #000000;
-  background-color: transparent !important;
-}
 
-.navbar-link:focus:focus-within {
-  text-decoration: underline;
-  font-weight: 800;
-  color: #000000;
-  background-color: transparent !important;
-}
+
+

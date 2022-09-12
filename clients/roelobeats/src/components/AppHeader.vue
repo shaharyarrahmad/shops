@@ -91,15 +91,13 @@
               >
               <div class="navbar-dropdown">
                 <div class="container section py-1">
-                  <div class="columns is-capitalized">
-                    <div class="column is-3">
-                      <a href="" class="navbar-item is-hidden-mobile px-0">
-                        Indie pop
-                      </a>
-                      <a href="" class="navbar-item sub px-0"> Indie pop </a>
-                      <a href="" class="navbar-item sub px-0"> Indie pop </a>
-                      <a href="" class="navbar-item sub px-0"> Indie pop </a>
-                      <a href="" class="navbar-item sub px-0"> Indie pop </a>
+                  <div class="columns">
+                    <div class="column">
+                      <a href="" class="navbar-item px-0">  Indie pop </a>
+                      <a href="" class="navbar-item px-0"> Indie pop </a>
+                      <a href="" class="navbar-item px-0"> Indie pop </a>
+                      <a href="" class="navbar-item px-0"> Indie pop </a>
+                      <a href="" class="navbar-item px-0"> Indie pop </a>
                     </div>
                   </div>
                 </div>
