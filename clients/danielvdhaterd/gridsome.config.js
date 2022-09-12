@@ -15,14 +15,7 @@ module.exports = {
   },
   plugins: [
     {
-      use: '@gridsome/source-graphql',
-      options: {
-        url: process.env.GRIDSOME_VENDURE_API,
-        fieldName: 'Vendure',
-        headers: {
-          'vendure-token': process.env.GRIDSOME_VENDURE_TOKEN,
-        },
-      },
+      use: '@gridsome/plugin-sitemap',
     },
   ],
 };
