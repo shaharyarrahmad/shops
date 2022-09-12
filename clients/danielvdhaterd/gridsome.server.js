@@ -71,7 +71,7 @@ module.exports = async function (api) {
     createPage({
       path: '/order/:code',
       component: './src/templates/Order.vue',
-      context: { global },
+      context: {},
     });
   });
 };
