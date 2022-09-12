@@ -42,7 +42,7 @@
     "shipping-address": "Verzendadres",
     "billing-address": "Factuuradres",
     "items": "Producten",
-    "disclaimer": "",
+    "disclaimer": " ",
     "pay": "Betalen"
   },
   "finished": {

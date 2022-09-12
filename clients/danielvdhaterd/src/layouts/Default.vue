@@ -9,13 +9,14 @@
     >
     </ShopNavBar>
 
-    <div class="container is-widescreen section" style="min-height: 90vh">
+    <div class="container is-widescreen section" style="min-height: 70vh">
       <br />
 
       <slot />
+    </div>
 
-      <br />
-      <br />
+    <!----- footer ----------->
+    <div class="container is-widescreen section">
       <!--------- Newsletter signup ---------------------->
       <div class="columns is-centered">
         <div class="column is-6">
@@ -65,8 +66,6 @@
         </div>
       </div>
     </div>
-
-    <!----- footer ----------->
     <div class="has-text-centered">
       <p
         style="

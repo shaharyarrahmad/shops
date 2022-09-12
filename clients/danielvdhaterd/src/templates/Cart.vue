@@ -1,5 +1,5 @@
 <template>
-  <Layout #content>
+  <Layout>
     <div>
       <div
         v-if="activeOrder && activeOrder.lines && activeOrder.lines.length > 0"
@@ -7,7 +7,7 @@
         <div class="columns is-mobile">
           <div class="column"></div>
           <div class="column has-text-right">
-            <g-link to="/checkout/" class="button">Order now</g-link>
+            <g-link to="/checkout/" class="button">Bestellen</g-link>
           </div>
         </div>
         <div class="columns">
@@ -26,17 +26,17 @@
               <template #bottom>
                 <br />
                 <g-link to="/checkout/" class="button is-fullwidth">
-                  Order now
+                  Bestellen
                 </g-link>
                 <div class="has-text-centered pt-4">
-                  <g-link to="/">Continue shopping</g-link>
+                  <g-link to="/">Verder winkelen</g-link>
                 </div>
               </template>
             </OrderSummary>
           </div>
         </div>
       </div>
-      <div v-else style="height: 50vh">No items in cart...</div>
+      <div v-else style="height: 50vh">Geen producten in winkelmand...</div>
     </div>
   </Layout>
 </template>

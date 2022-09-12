@@ -1,5 +1,5 @@
 <template>
-  <Layout #content>
+  <Layout>
     <div class="columns">
       <div class="column is-8">
         <template v-if="loading">
@@ -14,13 +14,14 @@
             type="is-danger"
             aria-close-label="Close notification"
           >
-            Something went wrong, please contact us and mention this number:
+            Er is iets misgegaan. Neem contact met ons op en vermeld het
+            volgende nummer:
             {{ $route.params.code }}
           </b-notification>
         </template>
         <template v-if="order">
           <OrderSummary class="mb-5" :order="order" />
-          <h4>This is what you ordered:</h4>
+          <h4>Dit heb je besteld:</h4>
           <CartItemsTable disabled :active-order="order" />
         </template>
       </div>

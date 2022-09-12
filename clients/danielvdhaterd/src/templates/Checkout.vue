@@ -1,5 +1,5 @@
 <template>
-  <Layout #content>
+  <Layout>
     <CheckoutSteps
       :vendure="$vendure"
       :emitter="$emitter"
