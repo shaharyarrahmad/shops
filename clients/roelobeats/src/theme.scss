@@ -21,6 +21,9 @@ $title-color: $text;
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
 
+$navbar-item-hover-background-color: $light-purple;
+$navbar-item-active-background-color: $light-purple;
+
 // Lists and maps
 $custom-colors: null !default;
 $custom-shades: null !default;
@@ -139,49 +142,37 @@ section {
   width: 100%;
 }
 
-.navbar-item a:hover {
+.navbar-item a:hover, .navbar-item a:focus {
   text-decoration: underline;
   font-weight: 800;
   color: #000000;
   background-color: transparent !important;
 }
-
-.navbar-item a:focus {
-  text-decoration: underline;
-  font-weight: 800;
-  color: #000000;
-  background-color: transparent !important;
-}
-
-.navbar-link:focus {
-  text-decoration: underline;
-  font-weight: 800;
-  color: #000000;
-  background-color: transparent !important;
-}
-
-.navbar-dropdown h5.navbar-item {
-  margin-bottom: 0;
-  top: 135px;
-}
-
-.navbar-dropdown {
-  @media screen and (min-width: $desktop) {
-    border-top: 0px transparent;
-  }
-}
-
-.navbar-dropdown a:hover {
-  background-color: transparent !important;
-}
-
-.container a:focus-within {
-  background-color: transparent !important;
-}
-
 /* AMOUNT IN CART */
 
-.cart-badge {
+
+
+.input {
+  color: #000000;
+  border: solid 2px #000000;
+  background-color: $purple;
+  box-shadow: none !important;
+}
+
+
+/* CUSTOM CURSOR */
+
+.cursor {
+  cursor: crosshair;
+}
+
+/* WAVKITS LOGO */
+
+#logo {
+  margin-left: 30px;
+}
+
+.wk-basket .cart-badge {
   background: white;
   border-radius: 50%;
   padding-left: 5px;
@@ -191,26 +182,12 @@ section {
   margin-left: -20px;
 }
 
-.input {
-  color: #000000;
-  border: solid 2px #000000;
-  background-color: transparent;
-  box-shadow: none !important;
+.wk-favourites .cart-badge {
+  background: white;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 10px;
+  color: black;
+  margin-left: -20px;
 }
-
-
-/* CUSTOM CURSOR */
-
-.cursor {
-  cursor: crosshair !important;
-}
-
-/* WAVKITS LOGO */
-
-#logo {
-  margin-left: 30px;
-}
-
-
-
-
