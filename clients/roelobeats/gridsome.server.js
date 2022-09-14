@@ -6,8 +6,9 @@ module.exports = async function (api) {
       process.env.GRIDSOME_VENDURE_API,
       process.env.GRIDSOME_VENDURE_TOKEN
     );
-    const { products, availableCountries, collections, productsPerCollection } =
+    let { products, availableCountries, collections, productsPerCollection } =
       await vendureServer.getShopData();
+      collections = vendureServer.unflatten(collections);
 
     console.log(JSON.stringify(products));
 
@@ -15,15 +16,8 @@ module.exports = async function (api) {
       path: '/',
       component: './src/templates/Index.vue',
       context: {
-        products,
-      },
-    });
-
-    createPage({
-      path: '/cart',
-      component: './src/templates/Index.vue',
-      context: {
-        products,
+        products, 
+        categories: collections,
       },
     });
   });

@@ -1,71 +1,64 @@
 <template>
   <!--NAVBAR-->
-  <nav
-    role="navigation"
-    aria-label="main navigation"
-    class="navbar-expanded is-fixed-top sticky-top has-navbar-centered"
-    style=""
-  >
+  <nav role="navigation" aria-label="main navigation"
+    class="navbar-expanded is-fixed-top sticky-top has-navbar-centered" style="">
     <div class="navbar-brand">
       <div id="top-navbar" class="container is-widescreen section p-5">
         <div class="columns is-mobile is-centered" style="width: 100%">
           <div id="main-logo" class="column">
-            <a href="/" aria-current="page">
-              <img
-                src="/img/wavkits-black.png"
-                width="130px"
-                alt="wavkits.com logo"
-                id="logo"
-                class="cursor"
-              />
+            <a href="/">
+              <img src="/img/wavkits-black.png" width="130px" alt="wavkits.com logo" id="logo" class="cursor" />
             </a>
           </div>
 
           <!--SEARCHBAR-->
 
           <div id="search" class="column is-hidden-mobile">
-            <div class="field">
-              <div class="autocomplete control">
-                <div class="control has-icons-right is-clearfix">
-                  <input
-                    type="text"
-                    autocomplete="off"
-                    aria-autocomplete="list"
-                    placeholder="Search for kits..."
-                    class="input is-rounded is-black"
-                  />
-                  <span class="icon is-right">
-                    <i class="mdi mdi-magnify mdi-24px has-text-black"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <b-field class="">
+              <b-autocomplete custom-class="input"
+                  rounded
+                  :data="[]"
+                  placeholder="Search for kits..."
+                  icon="magnify"
+                  clearable>
+                  <template #empty>No results found</template>
+              </b-autocomplete>
+            </b-field>
           </div>
 
-          <!--SEARCH(PHONE) / CART / FAVOURITE ICONS -->
+          <!--SEARCH(MOBILE) / CART / FAVOURITE ICONS -->
 
           <div id="icons" class="column has-text-right">
             <span class="icon is-large is-hidden-tablet is-clickable">
-              <i
-                class="mdi mdi-magnify mdi-36px has-text-black"
-                style="z-index: 999"
-              ></i>
+              <i class="mdi mdi-magnify mdi-36px has-text-black"
+                style="z-index: 999">
+              </i>
             </span>
 
-            <span class="icon is-large">
-              <a href="" target="_blank">
-                <i class="mdi mdi-heart-outline mdi-36px has-text-black"></i>
-              </a>
-            </span>
+            <Basket class="wk-favourites"
+              :vendure="$vendure" 
+              :store="$store" 
+              :emitter="$emitter" 
+              
+              @favourites-button-clicked="
+              $router.push('/favourites/').catch((e) => {})"
+              >
 
-            <span class="icon is-large">
-              <a href="/cart" target="_blank">
-                <i class="mdi mdi-basket-outline mdi-36px has-text-black"></i>
-              </a>
-            </span>
-            <a>
-              <span class="cart-badge">2</span>
-            </a>
+              <i class="mdi mdi-heart-outline mdi-36px has-text-black"></i>
+            </Basket>
+
+            <Basket class="wk-basket" 
+              :vendure="$vendure" 
+              :store="$store" 
+              :emitter="$emitter" 
+
+              @cart-button-clicked="
+              $router.push('/cart/').catch((e) => {})
+            " @checkout-button-clicked="
+              $router.push('/checkout/').catch((e) => {})
+            ">
+              <i class="mdi mdi-basket-outline mdi-36px has-text-black"></i>
+            </Basket>
 
             <span class="icon is-large is-hidden-desktop is-clickable">
               <i class="mdi mdi-menu mdi-36px has-text-black"></i>
@@ -74,131 +67,43 @@
         </div>
       </div>
     </div>
-    <div class="center">
+
+    <!-- NAVBAR VARIABLES -->
+
+    <div class="center ">
       <div class="navbar-menu">
         <div class="navbar-start">
-          <div
-            id="navbar-items-wrapper"
-            class="container is-widescreen section is-hidden-mobile"
-          >
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Pop</a
-              >
-              <div class="navbar-dropdown">
-                <div class="container section py-1">
-                  <div class="columns">
-                    <div class="column">
-                      <a href="" class="navbar-item px-0">  Indie pop </a>
-                      <a href="" class="navbar-item px-0"> Indie pop </a>
-                      <a href="" class="navbar-item px-0"> Indie pop </a>
-                      <a href="" class="navbar-item px-0"> Indie pop </a>
-                      <a href="" class="navbar-item px-0"> Indie pop </a>
+          <div id="navbar-items-wrapper" class="container is-widescreen section is-hidden-mobile">
+            <template v-for="category in $context.categories">
+              <div class="navbar-item has-dropdown is-hoverable">
+                <g-link :to="`/category/${category.slug}`" class="navbar-link is-arrowless"> {{category.name }}
+                </g-link>
+                <div class="navbar-dropdown">
+                  <div class="container section py-1">
+                    <div class="columns">
+                      <div class="column">
+                        <template v-for="subcategory in category.children">
+                          <g-link :to="`/category/${category.slug}/${subcategory.slug}`" class="navbar-item px-0"> {{ subcategory.name }} </g-link>
+                        </template>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Hip Hop</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >House</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Techno</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Jazz</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >EDM</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Drum and Bass</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Cinematic</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >World</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >Free</a
-              >
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a
-                href=""
-                aria-haspopup="true"
-                tabindex="0"
-                class="navbar-link is-arrowless"
-                >SALE</a
-              >
-            </div>
+            </template>
           </div>
         </div>
       </div>
-      <div clas="navbar-end"></div>
+    </div>
+    <div clas="navbar-end"></div>
     </div>
   </nav>
 </template>
+
+<script>
+  export default {
+  props: ['item'],
+};
+</script>
 
 <style lang="scss"></style>
