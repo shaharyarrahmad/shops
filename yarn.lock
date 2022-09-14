@@ -4634,11 +4634,6 @@ validate-npm-package-name@^3.0.0:
   dependencies:
     builtins "^1.0.3"
 
-vendure-plugin-shipping-by-weight-and-country@^3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-3.15.0.tgz#249d615a0447726a79933944448b9e2d1424450d"
-  integrity sha512-gPViWVvyUQm54bRr99Fp05vdmS8nVmuwB4H37WwLX7vR2Z3dfmaPhoIERfNIQSiqFtYfUxwIQoBHPoPf9SpV4w==
-
 verror@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/verror/-/verror-1.10.0.tgz#3a105ca17053af55d6e270c1f8288682e18da400"
