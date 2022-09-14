@@ -45,6 +45,7 @@ import { OrderExportPlugin } from 'vendure-plugin-order-export';
 import { TaxExportStrategy } from './tax/tax-export-strategy';
 import { orderConfirmationHandler } from './email/order-confirmation.handlers';
 import { json } from 'body-parser';
+import { ShippingByWeightAndCountryPlugin } from 'vendure-plugin-shipping-by-weight-and-country';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -211,6 +212,10 @@ export const config: VendureConfig = {
     }),
     OrderExportPlugin.init({
       exportStrategies: [new TaxExportStrategy()],
+    }),
+    ShippingByWeightAndCountryPlugin.init({
+      customFieldsTab: 'Physical properties',
+      weightUnit: 'grams',
     }),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>

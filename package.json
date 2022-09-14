@@ -49,5 +49,8 @@
         ]
       ]
     }
+  },
+  "dependencies": {
+    "vendure-plugin-shipping-by-weight-and-country": "^3.15.0"
   }
 }

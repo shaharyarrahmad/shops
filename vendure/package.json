@@ -30,7 +30,7 @@
     "@vendure/core": "1.7.1",
     "@vendure/email-plugin": "1.7.1",
     "@vendure/payments-plugin": "1.7.1",
-    "@vendure/ui-devkit": "1.7.1",
+    "@vendure/ui-devkit": "^1.7.1",
     "copyfiles": "^2.4.1",
     "mysql": "^2.18.1",
     "tmp": "^0.2.1",
@@ -45,6 +45,7 @@
     "vendure-plugin-invoices": "3.13.0",
     "vendure-plugin-myparcel": "3.13.0",
     "vendure-plugin-order-export": "^3.13.0",
+    "vendure-plugin-shipping-by-weight-and-country": "^3.15.0",
     "vendure-plugin-webhook": "3.13.0",
     "winston": "^3.8.1"
   },
