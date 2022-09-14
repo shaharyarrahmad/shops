@@ -14,26 +14,16 @@
           <!--SEARCHBAR-->
 
           <div id="search" class="column is-hidden-mobile">
-            <div class="field">
-              <div class="autocomplete control">
-                <div class="control has-icons-right is-clearfix">
-                  <input type="text" autocomplete="off" aria-autocomplete="list" placeholder="Search for kits..."
-                    class="input is-rounded is-black" />
-                  <span class="icon is-right">
-                    <i class="mdi mdi-magnify mdi-24px has-text-black"></i>
-                  </span>
-                </div>
-                <!--
-                <div class="dropdown-menu">
-                  <div class="dropdown-content">
-                    <div role="button" tab-index="0" class="dropdown-item dropdown-header">
-                      <span class="has-text-grey">0 Products found</span>
-                    </div>
-                  </div>
-                </div>
-                -->
-              </div>
-            </div>
+            <b-field class="">
+              <b-autocomplete custom-class="input"
+                  rounded
+                  :data="[]"
+                  placeholder="Search for kits..."
+                  icon="magnify"
+                  clearable>
+                  <template #empty>No results found</template>
+              </b-autocomplete>
+            </b-field>
           </div>
 
           <!--SEARCH(MOBILE) / CART / FAVOURITE ICONS -->
@@ -107,14 +97,13 @@
     </div>
     <div clas="navbar-end"></div>
     </div>
-
-
   </nav>
 </template>
 
 <script>
+  export default {
+  props: ['item'],
+};
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
