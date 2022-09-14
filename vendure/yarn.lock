@@ -2729,7 +2729,7 @@
     node-fetch "^2.6.0"
     sql.js "1.3.2"
 
-"@vendure/ui-devkit@^1.7.1":
+"@vendure/ui-devkit@1.7.1":
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/@vendure/ui-devkit/-/ui-devkit-1.7.1.tgz#2e348c5e46a5ca78d00a32313ff7fd2b8d958b2a"
   integrity sha512-LJ9o7rjAG8Zfyp63xTDF0UjNZ4illyTVmZdW0o6bW+yeG375ll/Ry3zzVArcErpKUloxkF1Cf4M06DRtJIouKA==
@@ -12664,7 +12664,7 @@ vendure-plugin-e-boekhouden@3.13.0:
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@3.14.1:
+vendure-plugin-goedgepickt@3.15.0:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.14.1.tgz#663bcf5bfbecf944b834db2747be58efbadf0ad8"
   integrity sha512-/x9VmXaW6VD3jr66rdOeUosMfupzaEBCzGyKdl0BmJk/9WNEedIWI7wfGHNX/yIkFto+6Q9duSsK4HOkN0XGxg==
@@ -12703,14 +12703,14 @@ vendure-plugin-myparcel@3.13.0:
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-order-export@^3.13.0:
+vendure-plugin-order-export@3.13.0:
   version "3.13.0"
   resolved "https://registry.yarnpkg.com/vendure-plugin-order-export/-/vendure-plugin-order-export-3.13.0.tgz#d7550b29800b02a972fddcde109ea694f5a12269"
   integrity sha512-uHIXOx4IaNzGPk/RizOzz6Uj4SRMm/MaQ0qUcj6vMhblDd78h/6pJZGtHR2P1OGzYOgnYWZGAHcNXPxbAVJsyA==
   dependencies:
     csv-writer "^1.6.0"
 
-vendure-plugin-shipping-by-weight-and-country@^3.15.0:
+vendure-plugin-shipping-by-weight-and-country@3.15.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-3.15.0.tgz#249d615a0447726a79933944448b9e2d1424450d"
   integrity sha512-gPViWVvyUQm54bRr99Fp05vdmS8nVmuwB4H37WwLX7vR2Z3dfmaPhoIERfNIQSiqFtYfUxwIQoBHPoPf9SpV4w==
@@ -13008,12 +13008,11 @@ winston@2.x:
     isstream "0.1.x"
     stack-trace "0.0.x"
 
-winston@^3.8.1:
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-3.8.2.tgz#56e16b34022eb4cff2638196d9646d7430fdad50"
-  integrity sha512-MsE1gRx1m5jdTTO9Ld/vND4krP2To+lgDoMEHGGa4HIlAUyXJtfc7CxQcGXVyz2IBpw5hbFkj2b/AtUdQwyRew==
+winston@3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-3.8.1.tgz#76f15b3478cde170b780234e0c4cf805c5a7fb57"
+  integrity sha512-r+6YAiCR4uI3N8eQNOg8k3P3PqwAm20cLKlzVD9E66Ch39+LZC+VH1UKf9JemQj2B3QoUHfKD7Poewn0Pr3Y1w==
   dependencies:
-    "@colors/colors" "1.5.0"
     "@dabh/diagnostics" "^2.0.2"
     async "^3.2.3"
     is-stream "^2.0.0"
