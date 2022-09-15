@@ -6,11 +6,6 @@ import {
   TransactionalConnection,
 } from '@vendure/core';
 
-export interface AdminWithChannel {
-  admin_emailAddress: string;
-  channel_code: string;
-}
-
 export class EmailUtil {
   static async getAdminEmailsForChannel(
     injector: Injector,
