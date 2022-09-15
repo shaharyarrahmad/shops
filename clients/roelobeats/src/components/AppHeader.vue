@@ -4,7 +4,7 @@
     class="navbar-expanded is-fixed-top sticky-top has-navbar-centered" style="">
     <div class="navbar-brand">
       <div id="top-navbar" class="container is-widescreen section p-5">
-        <div class="columns is-mobile is-centered" style="width: 100%">
+        <div class="columns is-mobile is-centered">
           <div id="main-logo" class="column">
             <a href="/">
               <img src="/img/wavkits-black.png" width="130px" alt="wavkits.com logo" id="logo" class="cursor" />

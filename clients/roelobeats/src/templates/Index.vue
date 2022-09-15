@@ -1,6 +1,9 @@
 <template>
-  <AppFooter />
-</template>
+  <div>
+   <AppHeader />
+   <AppFooter />
+  </div>
+ </template>
 
 
 <script>
