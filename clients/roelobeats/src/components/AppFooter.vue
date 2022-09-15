@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="has-text-right">
-        <g-link to="https://pinelab.studio/" class="has-text-black">Made with passion by <bold>@roelobeats</bold></g-link>
+        <g-link to="https://instagram.com/roelobeats/" class="has-text-black">Made with passion by @roelobeats</g-link>
       </div>
       <div class="has-text-left">
         <i class="mdi mdi-facebook mdi-24px has-text-black"></i>
