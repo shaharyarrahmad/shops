@@ -1,5 +1,5 @@
 module.exports = {
-  siteName: 'Roelobeats',
+  siteName: 'Wavkits',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link
