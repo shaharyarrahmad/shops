@@ -12,12 +12,6 @@ export function createLowStockHandler(
     .on(OrderPlacedEvent)
     .filter(
       (event) =>
-        event.toState === 'PaymentSettled' &&
-        event.fromState !== 'Modifying' &&
-        !!event.order.customer
-    )
-    .filter(
-      (event) =>
         !!event.order.lines.find((line) => isBelowTreshold(treshold, line))
     )
     .loadData(async ({ event, injector }) => {
