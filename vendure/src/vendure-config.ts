@@ -46,6 +46,7 @@ import { TaxExportStrategy } from './tax/tax-export-strategy';
 import { orderConfirmationHandler } from './email/order-confirmation.handlers';
 import { json } from 'body-parser';
 import { ShippingByWeightAndCountryPlugin } from 'vendure-plugin-shipping-by-weight-and-country';
+import { createLowStockHandler } from './email/low-stock.email-handler';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -243,7 +244,7 @@ export const config: VendureConfig = {
           pass: process.env.ZOHO_PASS!,
         },
       },
-      handlers: [orderConfirmationHandler],
+      handlers: [orderConfirmationHandler, createLowStockHandler(10)],
       templatePath: path.join(__dirname, '../static/email/templates'),
       globalTemplateVars: {
         fromAddress: '"Webshop" <noreply@pinelab.studio>',
