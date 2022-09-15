@@ -1,8 +1,10 @@
 import { EmailEventHandler, EmailEventListener } from '@vendure/email-plugin';
 import { OrderLine, OrderPlacedEvent } from '@vendure/core';
 import { EmailUtil } from './email.util';
-import { InvoiceService } from 'vendure-plugin-invoices';
 
+/**
+ * Send an email after order placement when the stock of a variant is below a certain treshold
+ */
 export function createLowStockHandler(
   treshold: number
 ): EmailEventHandler<any, any> {
