@@ -23,6 +23,7 @@ $footer-color: $primary-invert;
 
 $navbar-item-hover-background-color: $light-purple;
 $navbar-item-active-background-color: $light-purple;
+$footer-background-color: $purple;
 
 // Lists and maps
 $custom-colors: null !default;
@@ -102,6 +103,11 @@ $colors: mergeColorMaps(
 @import "~buefy/src/scss/buefy";
 
 
+h4 {
+  font-size: large;
+  font-weight: 800;
+}
+
 .title {
   font-weight: 900;
 }
@@ -170,12 +176,6 @@ section {
   cursor: crosshair;
 }
 
-/* WAVKITS LOGO */
-
-#logo {
-  margin-left: 30px;
-}
-
 /* AMOUNT IN CART */
 
 .wk-basket .cart-badge {
@@ -198,4 +198,11 @@ section {
   font-size: 10px;
   color: $black;
   margin-left: -20px;
+}
+
+/* FOOTER */
+
+a.navbar-item:focus, a.navbar-item:hover {
+  font-weight: 800;
+  color: $black;
 }
