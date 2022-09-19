@@ -10,6 +10,7 @@ import {
   completeOrderButton,
 } from 'vendure-plugin-admin-ui-helpers';
 import { OrderExportPlugin } from 'vendure-plugin-order-export';
+import { StockMonitoringPlugin } from 'vendure-plugin-stock-monitoring';
 
 compileUiExtensions({
   outputPath: path.join(__dirname, '__admin-ui'),
@@ -22,6 +23,7 @@ compileUiExtensions({
     OrderExportPlugin.ui,
     cancelOrderButton,
     completeOrderButton,
+    StockMonitoringPlugin.ui,
     setBranding({
       // The small logo appears in the top left of the screen
       smallLogoPath: path.join(__dirname, 'admin-branding/favicon.png'),

@@ -1559,10 +1559,10 @@
     uuid "^8.0.0"
     xdg-basedir "^4.0.0"
 
-"@google-cloud/storage@^6.4.2":
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.4.2.tgz#e81bfdda64e88d7b06668287d31119804cad988a"
-  integrity sha512-rnwx++XIxy63t1CREGlY2+H+tvuvYmkiIqJdq0IRzGaah9bDetV+qJVl5Mvi5aPhgoqn3UNnKGv9SPcETimFgw==
+"@google-cloud/storage@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.5.0.tgz#2e1ff633a0d960374730dcc56a1a601e5b7f776d"
+  integrity sha512-fAWk+NxsgII769YMfq/dDf3vaCuRWkp8aKmBZfi8NPTkKOm24tv8wqb4MQ0XL/I09oLiNqUZZe4q6hqzzQbryA==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
     "@google-cloud/projectify" "^3.0.0"
@@ -8393,7 +8393,7 @@ minimatch@3.0.4:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^3.0.3, minimatch@^3.0.4, minimatch@^3.1.1:
+minimatch@^3.0.3, minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
@@ -9063,15 +9063,15 @@ nodemailer@^6.4.13:
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.8.tgz#9f1af9911314960c0b889079e1754e8d9e3f740a"
   integrity sha512-2zaTFGqZixVmTxpJRCFC+Vk5eGRd/fYtvIR+dl5u9QXLTQWGIf48x/JXvo58g9sa0bU6To04XUv554Paykum3g==
 
-nodemon@^2.0.19:
-  version "2.0.19"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-2.0.19.tgz#cac175f74b9cb8b57e770d47841995eebe4488bd"
-  integrity sha512-4pv1f2bMDj0Eeg/MhGqxrtveeQ5/G/UVe9iO6uTZzjnRluSA4PVWf8CW99LUPwGB3eNIA7zUFoP77YuI7hOc0A==
+nodemon@^2.0.20:
+  version "2.0.20"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-2.0.20.tgz#e3537de768a492e8d74da5c5813cb0c7486fc701"
+  integrity sha512-Km2mWHKKY5GzRg6i1j5OxOHQtuvVsgskLfigG25yTtbyfRGn/GNvIbRyOf1PSCKJ2aT/58TiuUsuOU5UToVViw==
   dependencies:
     chokidar "^3.5.2"
     debug "^3.2.7"
     ignore-by-default "^1.0.1"
-    minimatch "^3.0.4"
+    minimatch "^3.1.2"
     pstree.remy "^1.1.8"
     semver "^5.7.1"
     simple-update-notifier "^1.0.7"
@@ -12664,17 +12664,17 @@ vendure-plugin-e-boekhouden@3.13.0:
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@3.15.0:
+vendure-plugin-goedgepickt@3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-3.14.1.tgz#663bcf5bfbecf944b834db2747be58efbadf0ad8"
   integrity sha512-/x9VmXaW6VD3jr66rdOeUosMfupzaEBCzGyKdl0BmJk/9WNEedIWI7wfGHNX/yIkFto+6Q9duSsK4HOkN0XGxg==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@3.13.0:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.13.0.tgz#cb63a18c5f0fabb100ea63e8c662f97719672521"
-  integrity sha512-O2QOjRIAxRgKLHdJMlxZoIRnQIeajoqImEX0dAHBT4J1+qrsT1b76/NCPekDjkyaCOWN0mzaEEm7zBKCGGQpmA==
+vendure-plugin-google-cloud-tasks@3.16.1:
+  version "3.16.1"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-3.16.1.tgz#3849ca9ff23293a8b1f77094abdaaab4b7a9bf4e"
+  integrity sha512-88j4SzqVjIkjaUfQHAQvu1UfMbf9q5GG2ApK0fYb0bBvyNcLQuVs8J4yw6Bt27qweu1ZzUiyBy8zr6hXq7IkZA==
   dependencies:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
@@ -12710,10 +12710,15 @@ vendure-plugin-order-export@3.13.0:
   dependencies:
     csv-writer "^1.6.0"
 
-vendure-plugin-shipping-by-weight-and-country@3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-3.15.0.tgz#249d615a0447726a79933944448b9e2d1424450d"
-  integrity sha512-gPViWVvyUQm54bRr99Fp05vdmS8nVmuwB4H37WwLX7vR2Z3dfmaPhoIERfNIQSiqFtYfUxwIQoBHPoPf9SpV4w==
+vendure-plugin-shipping-by-weight-and-country@3.16.2:
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-3.16.2.tgz#4aaf1b23472dad4ec024358fa607a962b3ff0283"
+  integrity sha512-02+5hQwVSWQv2NjhN8WrYJYjrfqxVPhCdsOGZX0osXEbnzXuQ7KtyQKTV9jfw6XYrec53SoaNQNg0TMUZgwy2Q==
+
+vendure-plugin-stock-monitoring@^3.17.2:
+  version "3.17.2"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-stock-monitoring/-/vendure-plugin-stock-monitoring-3.17.2.tgz#c920582a259af90ace8c030d2bb0332aee6cea62"
+  integrity sha512-apTC+uYXg1t1Cg9COc9p6v0jLHeKEsIMLFFvqbPgSnIS2DpozK7JNToX+4D7NxEAj8u0LjXNkemsK6L2oNq01Q==
 
 vendure-plugin-webhook@3.13.0:
   version "3.13.0"
@@ -13008,11 +13013,12 @@ winston@2.x:
     isstream "0.1.x"
     stack-trace "0.0.x"
 
-winston@3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/winston/-/winston-3.8.1.tgz#76f15b3478cde170b780234e0c4cf805c5a7fb57"
-  integrity sha512-r+6YAiCR4uI3N8eQNOg8k3P3PqwAm20cLKlzVD9E66Ch39+LZC+VH1UKf9JemQj2B3QoUHfKD7Poewn0Pr3Y1w==
+winston@3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/winston/-/winston-3.8.2.tgz#56e16b34022eb4cff2638196d9646d7430fdad50"
+  integrity sha512-MsE1gRx1m5jdTTO9Ld/vND4krP2To+lgDoMEHGGa4HIlAUyXJtfc7CxQcGXVyz2IBpw5hbFkj2b/AtUdQwyRew==
   dependencies:
+    "@colors/colors" "1.5.0"
     "@dabh/diagnostics" "^2.0.2"
     async "^3.2.3"
     is-stream "^2.0.0"
