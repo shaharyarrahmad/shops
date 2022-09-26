@@ -1,24 +1,18 @@
 <template>
   <div>
-   <AppHeader />
-   <Highlighted />
-   <AppFooter />
-
+    <DefaultLayout>
+      <Highlighted />
+    </DefaultLayout>
   </div>
  </template>
 
 
 <script>
-import AppHeader from '@/components/AppHeader.vue';
-import AppFooter from '@/components/AppFooter.vue';
-import Highlighted from '@/components/Highlighted.vue';
+  import Highlighted from '@/components/Highlighted.vue'
 
-
-export default {
-  components: {
-    AppHeader,
-    AppFooter,
-    Highlighted,
-  },
-};
+  export default {
+        components: {
+            Highlighted,
+        },
+  }
 </script>

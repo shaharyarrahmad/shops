@@ -22,21 +22,8 @@ module.exports = async function (api) {
       return p.facetValues.find(f => f.code === 'highlights-3')
     })
 
-    products.forEach(p => {
-      p.shortDescription = p.description.substring(0, 75) + "...";
-    })
 
-    products.forEach(p => {
-      p.mediumDescription = p.description.substring(0, 150) + "...";
-    })
-
-    products.forEach(p => {
-      p.largeDescription = p.description.substring(0, 225) + "...";
-    })
-
-
-
-
+    console.log(highlight1)
     createPage({
       path: '/',
       component: './src/templates/Index.vue',

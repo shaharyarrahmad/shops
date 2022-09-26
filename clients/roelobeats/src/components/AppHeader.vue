@@ -101,9 +101,11 @@
 </template>
 
 <script>
-  export default {
-  props: ['item'],
+export default {
+props: ['item'],
 };
+</script>
+
 </script>
 
 <style lang="scss"></style>
