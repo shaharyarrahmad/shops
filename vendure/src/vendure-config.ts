@@ -50,6 +50,8 @@ import {
   createLowStockEmailHandler,
   StockMonitoringPlugin,
 } from 'vendure-plugin-stock-monitoring';
+import { SendcloudPlugin } from 'vendure-plugin-sendcloud';
+import { sendcloudConfig } from './sendcloud/sendcloud.config';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -169,6 +171,22 @@ export const config: VendureConfig = {
           }
         },
       },
+      {
+        name: 'hsCode',
+        label: [{ value: 'HS code', languageCode: LanguageCode.en }],
+        type: 'string',
+        ui: { component: 'text-form-input', tab: 'Physical properties' },
+      },
+    ],
+    Order: [
+      {
+        name: 'customerNote',
+        label: [{ value: 'Customer note', languageCode: LanguageCode.en }],
+        ui: { component: 'textarea-form-input' },
+        public: true,
+        nullable: true,
+        type: 'string',
+      },
     ],
   },
   plugins: [
@@ -224,6 +242,7 @@ export const config: VendureConfig = {
     StockMonitoringPlugin.init({
       threshold: 5,
     }),
+    SendcloudPlugin.init(sendcloudConfig),
     AssetServerPlugin.init({
       storageStrategyFactory: () =>
         new GoogleStorageStrategy({
