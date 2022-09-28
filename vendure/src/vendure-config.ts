@@ -126,6 +126,14 @@ export const config: VendureConfig = {
     paymentMethodHandlers: [],
   },
   customFields: {
+    Order: [
+      {
+        name: 'customerNote',
+        label: [{ value: 'Customer note', languageCode: LanguageCode.en }],
+        ui: { component: 'textarea-form-input' },
+        type: 'text',
+      },
+    ],
     Product: [
       {
         name: 'metaTitle',
@@ -176,16 +184,6 @@ export const config: VendureConfig = {
         label: [{ value: 'HS code', languageCode: LanguageCode.en }],
         type: 'string',
         ui: { component: 'text-form-input', tab: 'Physical properties' },
-      },
-    ],
-    Order: [
-      {
-        name: 'customerNote',
-        label: [{ value: 'Customer note', languageCode: LanguageCode.en }],
-        ui: { component: 'textarea-form-input' },
-        public: true,
-        nullable: true,
-        type: 'string',
       },
     ],
   },
