@@ -1,5 +1,5 @@
 {
-  "name": "pinelab-minishop",
+  "name": "wormenkwekerij-wasse",
   "private": true,
   "scripts": {
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\"",
@@ -9,7 +9,7 @@
     "link-there": "cd ../../packages/pinelab-storefront && yarn link"
   },
   "dependencies": {
-    "@fontsource/roboto-mono": "^4.5.0",
+    "@gridsome/plugin-sitemap": "^0.4.0",
     "buefy": "^0.9.7",
     "debounce": "^1.2.1",
     "pinelab-storefront": "0.60.1"
@@ -22,8 +22,7 @@
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "sass": "^1.32.13",
-    "sass-loader": "^10.1.1",
-    "webpack-bundle-analyzer": "^4.4.1"
+    "sass-loader": "^10.1.1"
   },
   "version": "0.60.1",
   "resolutions": {
