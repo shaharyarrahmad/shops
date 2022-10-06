@@ -1,6 +1,7 @@
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
+
 // Set your colors
 $text: #3f3f3f;
 $primary: $text;
@@ -19,7 +20,7 @@ $custom-colors: null !default;
 $custom-shades: null !default;
 
 $family-sans-serif: "Roboto Mono";
-$family-primary: "Roboto Mono";
+$family-primary: "Poppins";
 
 $control-radius: 2px;
 
@@ -113,3 +114,65 @@ h4 {
   @extend .is-size-4;
   @extend .mb-3;
 }
+
+// PRODUCT CARD //
+
+.container-overlay {
+position: relative;
+}
+
+/* Make the image to responsive */
+.image {
+width: 100%;
+height: auto;
+}
+
+/* The overlay effect - lays on top of the container and over the image */
+.hover-overlay {
+position: absolute;
+bottom: 0;
+background: rgb(0, 0, 0);
+background: rgba(0, 0, 0, 0.5); /* Black see-through */
+width: 100%;
+height: 100%;
+transition: .3s ease;
+opacity:0;
+}
+
+/* When you mouse over the container, fade in the overlay*/
+.container-overlay:hover .hover-overlay {
+opacity: 0.5;
+}
+
+.overlay {
+position: absolute;
+bottom: 0;
+background: rgb(0, 0, 0);
+background: rgba(0, 0, 0, 0.5); /* Black see-through */
+width: 100%;
+height: 100%;
+transition: .3s ease;
+opacity:0.5;
+}
+
+/* When you mouse over the container, fade in the overlay*/
+.container-overlay:hover .overlay {
+opacity: 1;
+}
+
+.centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+html {
+        font-size: 12px;
+        @include tablet {
+          font-size: 16px;
+        }
+        @include desktop {
+          font-size: 20px;
+        }
+      }

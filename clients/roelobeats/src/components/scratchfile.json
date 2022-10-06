@@ -1,0 +1,110 @@
+[
+    {
+      id: '740',
+      name: 'Samplepack 1',
+      slug: 'samplepack-1',
+      assets: [
+            [Object
+            ]
+        ],
+      facetValues: [],
+      featuredAsset: {
+        id: '1014',
+        preview: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/cd/victrola-record-players-r4rdi0efbws-unsplash__preview.jpg',
+        thumbnail: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/cd/victrola-record-players-r4rdi0efbws-unsplash__preview.jpg_thumbnail.jpg'
+        },
+      description: '<p>Dit is een sample pack, zie je toch.</p>',
+      variants: [
+            [Object
+            ]
+        ],
+      customFields: { metaTitle: null, metaDescription: null, keywords: null
+        },
+      lowestPrice: 5500,
+      soldOut: false
+    },
+    {
+      id: '741',
+      name: "elmo's pack 2",
+      slug: 'elmos-pack-2',
+      assets: [
+            [Object
+            ]
+        ],
+      facetValues: [
+            [Object
+            ]
+        ],
+      featuredAsset: {
+        id: '1015',
+        preview: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/55/afbeelding_2022-09-13_095310101__preview.png',
+        thumbnail: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/55/afbeelding_2022-09-13_095310101__preview.png_thumbnail.jpg'
+        },
+      description: "<p><strong>elmo's pack 2</strong> contains new fresh sounds with a blend of R&amp;B and jazz, with experimental and versatile sounds. Made for music producers who are looking for special sounds to improve your sound selection.</p><p>This sample pack contains:</p><ul><li><p>20 FX's</p></li><li><p>23 Hats (Incl. Cymbals &amp; Rides)</p></li><li><p>7 Kicks</p></li><li><p>5 Midi’s</p></li><li><p>10 Perc Loops</p></li><li><p>11 Percs</p></li><li><p>14 Snares &amp; Claps</p></li></ul><p><em>You will get a ZIP (79MB) file</em></p>",
+      variants: [
+            [Object
+            ]
+        ],
+      customFields: {
+        metaTitle: "elmo's pack 2",
+        metaDescription: "elmo's pack 2 contains new fresh sounds with a blend of R&B and jazz, with experimental and versatile sounds. Made for music producers who are looking for special sounds to improve your sound selection.",
+        keywords: "elmo's pack 2 drumkit elmo sample pack w/ milye khoa anu & Nico Harris"
+        },
+      lowestPrice: 2499,
+      soldOut: false
+    },
+    {
+      id: '742',
+      name: 'Khoa Midi Kit 3',
+      slug: 'khoa-midi-kit-3',
+      assets: [
+            [Object
+            ]
+        ],
+      facetValues: [
+            [Object
+            ]
+        ],
+      featuredAsset: {
+        id: '1016',
+        preview: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/bd/afbeelding_2022-09-19_182113089__preview.png',
+        thumbnail: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/bd/afbeelding_2022-09-19_182113089__preview.png_thumbnail.jpg'
+        },
+      description: "<p>35 Unique soul/jazz midi’s + instrumental demo track!<br><br>These are all midi’s I have made for my own use in music, but decided to share them with you guys. You guys will recognize plenty of these midi’s, but also find gems you haven't heard before!</p>",
+      variants: [
+            [Object
+            ]
+        ],
+      customFields: { metaTitle: null, metaDescription: null, keywords: null
+        },
+      lowestPrice: 1499,
+      soldOut: false
+    },
+    {
+      id: '743',
+      name: 'pandi #batkit',
+      slug: 'pandi-batkit',
+      assets: [
+            [Object
+            ]
+        ],
+      facetValues: [
+            [Object
+            ]
+        ],
+      featuredAsset: {
+        id: '1017',
+        preview: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/1e/afbeelding_2022-09-19_182855475__preview.png',
+        thumbnail: 'https: //storage.googleapis.com/pinelab-shops-test-assets/preview/1e/afbeelding_2022-09-19_182855475__preview.png_thumbnail.jpg'
+        },
+      description: '<p>Some of the best crafted <strong>midi chord progressions, melody loops, best found rare samples, punchy snares</strong> and <strong>more</strong>. I hope you enjoy!&nbsp;<br><br><strong>#batkit features:</strong>&nbsp;<br><br><em>(x24)</em> 808s<br><br><em>(x8)</em> claps<br><br><em>(x14)</em> hihats</p><p>&nbsp;<em>(x19)</em> kicks</p><p>&nbsp;<em>(x29)</em> melody loops</p><p>&nbsp;<em>(x17)</em> percs / fx</p><p>&nbsp;<em>(x51)</em> midis</p><p>&nbsp;<em>(x6)</em> pandi acapellas</p><p>&nbsp;<em>(x43)</em> samples</p><p>&nbsp;<em>(x24)</em> snares</p><p>&nbsp;<em>(x15)</em> vox</p><p><em>`You will receive 1 ZIP  file (793.3MB)</em></p>',
+      variants: [
+            [Object
+            ]
+        ],
+      customFields: { metaTitle: null, metaDescription: null, keywords: null
+        },
+      lowestPrice: 1499,
+      soldOut: false
+    }
+]

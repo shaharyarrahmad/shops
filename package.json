@@ -50,5 +50,8 @@
         ]
       ]
     }
+  },
+  "dependencies": {
+    "@fontsource/poppins": "^4.5.10"
   }
 }

@@ -9,6 +9,7 @@
     "link-there": "cd ../../packages/pinelab-storefront && yarn link"
   },
   "dependencies": {
+    "@fontsource/poppins": "^4.5.10",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "buefy": "^0.9.7",
     "debounce": "^1.2.1",
