@@ -1,14 +1,14 @@
 // Import Bulma's core
-@import "~bulma/sass/utilities/_all";
+@import '~bulma/sass/utilities/_all';
 
 // Set your colors
 $text: #3f3f3f;
 $primary: $text;
-$link: #3F88C5;
+$link: #3f88c5;
 $info: $link;
-$success: #3BCEAC;
-$warning: #FFBA08;
-$danger: #EF6461;
+$success: #3bceac;
+$warning: #ffba08;
+$danger: #ef6461;
 $dark: $text;
 
 $footer-background-color: $primary;
@@ -18,8 +18,8 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: "Roboto mono";
-$family-primary: "Roboto mono";
+$family-sans-serif: 'Roboto mono';
+$family-primary: 'Roboto mono';
 
 $radius: 0;
 $radius-small: 0;
@@ -27,61 +27,61 @@ $radius-large: 0;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
-                (
-                        "white": (
-                                $white,
-                                $black,
-                        ),
-                        "black": (
-                                $black,
-                                $white,
-                        ),
-                        "light": (
-                                $light,
-                                $light-invert,
-                        ),
-                        "dark": (
-                                $dark,
-                                $dark-invert,
-                        ),
-                        "primary": (
-                                $primary,
-                                $primary-invert,
-                                $primary-light,
-                                $primary-dark,
-                        ),
-                        "link": (
-                                $link,
-                                $link-invert,
-                                $link-light,
-                                $link-dark,
-                        ),
-                        "info": (
-                                $info,
-                                $info-invert,
-                                $info-light,
-                                $info-dark,
-                        ),
-                        "success": (
-                                $success,
-                                $success-invert,
-                                $success-light,
-                                $success-dark,
-                        ),
-                        "warning": (
-                                $warning,
-                                $warning-invert,
-                                $warning-light,
-                                $warning-dark,
-                        ),
-                        "danger": (
-                                $danger,
-                                $danger-invert,
-                                $danger-light,
-                                $danger-dark,
-                        ),
-                ),
-                $custom-colors
+  (
+    'white': (
+      $white,
+      $black,
+    ),
+    'black': (
+      $black,
+      $white,
+    ),
+    'light': (
+      $light,
+      $light-invert,
+    ),
+    'dark': (
+      $dark,
+      $dark-invert,
+    ),
+    'primary': (
+      $primary,
+      $primary-invert,
+      $primary-light,
+      $primary-dark,
+    ),
+    'link': (
+      $link,
+      $link-invert,
+      $link-light,
+      $link-dark,
+    ),
+    'info': (
+      $info,
+      $info-invert,
+      $info-light,
+      $info-dark,
+    ),
+    'success': (
+      $success,
+      $success-invert,
+      $success-light,
+      $success-dark,
+    ),
+    'warning': (
+      $warning,
+      $warning-invert,
+      $warning-light,
+      $warning-dark,
+    ),
+    'danger': (
+      $danger,
+      $danger-invert,
+      $danger-light,
+      $danger-dark,
+    ),
+  ),
+  $custom-colors
 );
 
 // Links
@@ -90,8 +90,8 @@ $link-invert: $primary-invert;
 $link-focus-border: $primary;*/
 
 // Import Bulma and Buefy styles
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
 
 .button {
   border-radius: 0;

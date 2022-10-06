@@ -1,25 +1,23 @@
 <template>
   <DefaultLayout>
-    <h1>Welkom bij Wormenkwekerij Wasse</h1>
-
-    <!---- example category cards --->
+    <!---- PRODUCT CARD --->
     <div class="columns">
-      <template v-for="category of 5">
+      <template v-for="product of 5">
         <div class="column">
-          <ExampleComponent :title="`Title ${category}`">
-            <PopupImage
-              small="https://wormenkwekerijwasse.nl/logo-wormenkwekerijwasse.png"
-              large="https://wormenkwekerijwasse.nl/logo-wormenkwekerijwasse.png"
-            />
-          </ExampleComponent>
+          <ProductCard
+            title="Wormenmest verspreider"
+            price="14300"
+            image="https://storage.googleapis.com/wassets/preview/23/wormenmest-verpreider__preview__preview.png"
+          >
+          </ProductCard>
         </div>
       </template>
     </div>
   </DefaultLayout>
 </template>
 <script>
-import ExampleComponent from '../components/ExampleComponent';
+import ProductCard from '../components/ProductCard.vue';
 export default {
-  components: { ExampleComponent },
+  components: { ProductCard },
 };
 </script>
