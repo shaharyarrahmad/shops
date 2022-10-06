@@ -19,7 +19,7 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: "Roboto Mono";
+$family-sans-serif: "Poppins";
 $family-primary: "Poppins";
 
 $control-radius: 2px;
@@ -168,11 +168,11 @@ transform: translate(-50%, -50%);
 }
 
 html {
-        font-size: 12px;
-        @include tablet {
-          font-size: 16px;
-        }
-        @include desktop {
-          font-size: 20px;
-        }
-      }
+font-size: 12px;
+@include tablet {
+        font-size: 16px;
+}
+@include desktop {
+        font-size: 20px;
+}
+}

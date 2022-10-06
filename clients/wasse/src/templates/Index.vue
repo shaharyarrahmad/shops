@@ -10,12 +10,6 @@
             image="https://storage.googleapis.com/wassets/preview/23/wormenmest-verpreider__preview__preview.png"
           >
           </ProductCard>
-          <CategoryCard
-            title="Wormenmest verspreider"
-            price="14300"
-            image="https://storage.googleapis.com/wassets/preview/23/wormenmest-verpreider__preview__preview.png"
-          >
-          </CategoryCard>
         </div>
       </template>
     </div>
@@ -23,8 +17,7 @@
 </template>
 <script>
 import ProductCard from '../components/ProductCard.vue';
-import CategoryCard from '../components/CategoryCard.vue';
 export default {
-  components: { ProductCard, CategoryCard },
+  components: { ProductCard },
 };
 </script>

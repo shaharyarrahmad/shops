@@ -4,6 +4,7 @@ import DefaultLayout from '~/layouts/DefaultLayout.vue';
 import '~/theme.scss';
 import QuantityInput from 'pinelab-storefront/lib/components/QuantityInput';
 import PopupImage from 'pinelab-storefront/lib/components/PopupImage';
+import '@fontsource/poppins';
 import {
   formatEuro,
   preconnectLinks,
