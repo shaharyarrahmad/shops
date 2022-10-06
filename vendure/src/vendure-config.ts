@@ -52,6 +52,7 @@ import {
 } from 'vendure-plugin-stock-monitoring';
 import { SendcloudPlugin } from 'vendure-plugin-sendcloud';
 import { sendcloudConfig } from './sendcloud/sendcloud.config';
+import { ChannelSpecificOrderCodeStrategy } from './order/order-code-strategy';
 
 let logger: VendureLogger;
 export let runningLocal = false;
@@ -70,6 +71,7 @@ export const config: VendureConfig = {
   orderOptions: {
     stockAllocationStrategy: new AllocateStockOnSettlementStrategy(),
     orderPlacedStrategy: new PlaceOrderOnSettlementStrategy(),
+    orderCodeStrategy: new ChannelSpecificOrderCodeStrategy(),
   },
   apiOptions: {
     port: (process.env.PORT! as unknown as number) || 3000,
