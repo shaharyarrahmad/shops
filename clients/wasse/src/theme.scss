@@ -1,23 +1,15 @@
 // Import Bulma's core
 @import '~bulma/sass/utilities/_all';
 
-// Color palette
-$cr-black: #000000;
-$cr-grey: #2c2c2c;
-$cr-red: #e03616;
-$cr-light-grey: #efefef;
-$cr-dark-blue: #0496ff;
-$cr-green: #69dc9e;
-$cr-orange: #faa916;
-
 // Set your colors
-$text: $cr-grey;
-$primary: $cr-black;
-$link: $cr-dark-blue;
-$info: $cr-dark-blue;
-$success: $cr-green;
-$warning: $cr-orange;
-$danger: $cr-red;
+$text: #3f3f3f;
+$primary: $text;
+$link: #3f88c5;
+$info: $link;
+$success: #3bceac;
+$warning: #ffba08;
+$danger: #ef6461;
+$dark: $text;
 
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
@@ -26,8 +18,8 @@ $footer-color: $primary-invert;
 $custom-colors: null !default;
 $custom-shades: null !default;
 
-$family-sans-serif: 'Titillium Web';
-$family-primary: 'Titillium Web';
+$family-sans-serif: 'Poppins';
+$family-primary: 'Poppins';
 
 $control-radius: 2px;
 
@@ -99,47 +91,87 @@ $link-focus-border: $primary;*/
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
 
-.cr-heading {
-  font-weight: bold;
-  font-style: italic;
-}
-
 .button {
   @extend .is-primary;
 }
 
 h1 {
   @extend .is-size-1;
-  @extend .cr-heading;
+  @extend .mb-3;
 }
 
 h2 {
   @extend .is-size-2;
-  @extend .cr-heading;
+  @extend .mb-3;
 }
 h3 {
   @extend .is-size-3;
-  @extend .cr-heading;
+  @extend .mb-3;
 }
 
 h4 {
   @extend .is-size-4;
-  @extend .cr-heading;
+  @extend .mb-3;
 }
 
-h5 {
-  @extend .is-size-5;
-  @extend .cr-heading;
+// PRODUCT CARD //
+
+.container-overlay {
+  position: relative;
 }
-.is-light-grey {
-  background: $cr-light-grey;
+
+/* Make the image to responsive */
+.image {
+  width: 100%;
+  height: auto;
 }
-.hero-logo {
-  @media screen and (min-width: $desktop) {
-    max-width: 400px;
+
+/* The overlay effect - lays on top of the container and over the image */
+.hover-overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  width: 100%;
+  height: 100%;
+  transition: 0.3s ease;
+  opacity: 0;
+}
+
+/* When you mouse over the container, fade in the overlay*/
+.container-overlay:hover .hover-overlay {
+  opacity: 0.5;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  width: 100%;
+  height: 100%;
+  transition: 0.3s ease;
+  opacity: 0.5;
+}
+
+/* When you mouse over the container, fade in the overlay*/
+.container-overlay:hover .overlay {
+  opacity: 1;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+html {
+  font-size: 12px;
+  @include tablet {
+    font-size: 16px;
   }
-}
-#usps a,
-.category a {
-  color: $text;
+  @include desktop {
+    font-size: 20px;
+  }
 }
