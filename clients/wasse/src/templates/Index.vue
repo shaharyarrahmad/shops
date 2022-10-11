@@ -2,28 +2,23 @@
   <DefaultLayout>
     <!---- PRODUCT CARD --->
     <div class="columns">
-      <template v-for="product of 5">
+      <template v-for="product of 2">
         <div class="column">
-          <ProductCard
-            title="Wormenmest verspreider"
-            price="14300"
-            image="https://storage.googleapis.com/wassets/preview/23/wormenmest-verpreider__preview__preview.png"
-          >
-          </ProductCard>
-          <CategoryCard
-            title="Tuinleven"
-            image="https://storage.googleapis.com/wassets/preview/f9/garden__preview.jpg"
-          >
-          </CategoryCard>
+          <BlogCard
+            title="Geen gezonde wormen zonder tuin"
+            title.slug="geen-gezonde-wormen-zonder-tuin"
+            image="https://storage.googleapis.com/wassets/preview/ba/seeds__preview.jpeg"
+          ></BlogCard>
         </div>
       </template>
     </div>
   </DefaultLayout>
 </template>
 <script>
-import ProductCard from '../components/ProductCard.vue';
-import CategoryCard from '../components/CategoryCard.vue';
+import ProductCard from '@/components/ProductCard.vue';
+import CategoryCard from '@/components/CategoryCard.vue';
+import BlogCard from '@/components/BlogCard.vue';
 export default {
-  components: { ProductCard, CategoryCard },
+  components: { ProductCard, CategoryCard, BlogCard },
 };
 </script>
