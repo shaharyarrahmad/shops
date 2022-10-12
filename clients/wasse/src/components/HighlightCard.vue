@@ -1,5 +1,5 @@
 <template>
-  <g-link to="/">
+  <g-link :to="slug">
     <div class="card card-background-image container-overlay">
       <div class="card-image is-fullheight">
         <b-image class="is-fullheight" ratio="2by1" :src="image"></b-image>
@@ -22,14 +22,13 @@
 import HomeButton from '@/components/HomeButton';
 
 export default {
-  props: ['title', 'image'],
+  props: ['title', 'image', 'slug'],
   components: { HomeButton },
 };
 </script>
 <style>
 .card-background-image {
   min-height: 150px;
-  max-height: 470;
   height: 100%;
 }
 

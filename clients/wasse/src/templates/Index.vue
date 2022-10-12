@@ -1,12 +1,13 @@
 <template>
   <DefaultLayout>
-    <!---- PRODUCT CARD --->
+    <!-- PRODUCT CARD -->
     <section id="highlighted">
       <div class="columns">
         <div class="column">
           <HighlightCard
             title="Alle benodigdheden om te starten met kweken"
             image="https://storage.googleapis.com/wassets/preview/ba/seeds__preview.jpeg"
+            slug="alle-benodigdheden-om-te-starten-met-kweken"
           />
         </div>
         <div class="column is-4">
@@ -15,12 +16,14 @@
               <HighlightCard
                 title="Alle potgrond 1+1"
                 image="https://storage.googleapis.com/wassets/preview/ba/seeds__preview.jpeg"
+                slug="alle-potgrond-1+1"
               />
             </div>
             <div class="column is-12-tablet is-6-mobile">
               <HighlightCard
                 title="Nieuw in het assortiment"
                 image="https://storage.googleapis.com/wassets/preview/be/compost-rol-verdeler-2-min-300x300__preview.jpg"
+                slug="nieuw-in-het-assortiment"
               />
             </div>
           </div>

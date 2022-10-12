@@ -1,5 +1,5 @@
 <template>
-  <g-link :to="`/blog/${title.slug}`">
+  <g-link :to="slug">
     <div class="card container-overlay">
       <div class="card-image">
         <figure class="image is-3by2">
@@ -24,7 +24,7 @@
 import HomeButton from '@/components/HomeButton.vue';
 
 export default {
-  props: ['title', 'title.slug', 'image'],
+  props: ['title', 'slug', 'image'],
   components: { HomeButton },
 };
 </script>
