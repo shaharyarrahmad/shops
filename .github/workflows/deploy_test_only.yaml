@@ -14,14 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-
   deploy-main-test:
     needs: [build]
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-        working-directory: vendure
     steps:
       - uses: google-github-actions/auth@v0
         with:
