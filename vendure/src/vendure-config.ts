@@ -198,6 +198,7 @@ export const config: VendureConfig = {
     EBoekhoudenPlugin,
     EBookPlugin.init(process.env.VENDURE_HOST!),
     InvoicePlugin.init({
+      licenseKey: process.env.INVOICE_LICENSE,
       vendureHost: process.env.VENDURE_HOST!,
       storageStrategy: new GoogleStorageInvoiceStrategy({
         bucketName: 'pinelab-invoices',

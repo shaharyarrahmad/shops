@@ -15,13 +15,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v0
+        uses: actions/checkout@v3
+      - name: Authenticate gcloud
+        uses: google-github-actions/auth@v0
         with:
           project_id: pinelab-shops
-          service_account_key: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
-          export_default_credentials: true
+          credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+        with:
+          project_id: pinelab-shops
       - name: Build Docker container
         run: ./build.sh
       - name: Set env vars
