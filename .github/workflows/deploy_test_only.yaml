@@ -1,18 +1,17 @@
-name: Deploy Vendure API and worker to dev only
+name: Deploy Vendure Test envs
 on:
   push:
     branches:
       - develop
 
 jobs:
-  deploy:
-    name: Deploy to CloudRun
+
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: vendure
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -27,6 +26,24 @@ jobs:
           project_id: pinelab-shops
       - name: Build Docker container
         run: ./build.sh
+
+  deploy-main-test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: vendure
+    steps:
+      - name: Authenticate gcloud
+        uses: google-github-actions/auth@v0
+          with:
+            project_id: pinelab-shops
+            credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+          with:
+            project_id: pinelab-shops
       - name: Export MAIN test env vars
         run: 'echo "$SECRET_VARS" > .env'
         env:
@@ -35,11 +52,25 @@ jobs:
         run: ./deploy-test.sh shops-test pinelab2 1G
       - name: Deploy MAIN test worker
         run: ./deploy-test.sh worker-test pinelab2 1G
-      - name: Export WKW env vars
+
+  deploy-wkw-test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate gcloud
+        uses: google-github-actions/auth@v0
+          with:
+            project_id: pinelab-shops
+            credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+          with:
+            project_id: pinelab-shops
+      - name: Export WKW test env vars
         run: 'echo "$SECRET_VARS" > .env'
         env:
           SECRET_VARS: ${{secrets.ENV_WKW_TEST}}
       - name: Deploy WKW test api
         run: ./deploy-test.sh wkw-test-api pinelab2 1G
-      - name: Deploy WKW worker
+      - name: Deploy WKW test worker
         run: ./deploy-test.sh wkw-test-worker pinelab2 1G
