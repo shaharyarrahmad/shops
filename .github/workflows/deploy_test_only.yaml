@@ -5,6 +5,14 @@ on:
       - develop
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: vendure
+    steps:
+      - uses: actions/checkout@v3
 
 
   deploy-main-test:
