@@ -1,4 +1,4 @@
-require('dotenv').config({ path: process.env.LOCAL_ENV || '.env.test' });
+require('dotenv').config({ path: process.env.ENV_FILE || '.env.test' });
 
 import {
   generateMigration,
