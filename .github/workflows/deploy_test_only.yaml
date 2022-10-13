@@ -27,9 +27,11 @@ jobs:
           project_id: pinelab-shops
       - name: Build Docker container
         run: ./build.sh
-      - name: Set env vars
+      - name: Set test env vars
         run: 'echo "$SECRET_VARS" > .env'
         env:
           SECRET_VARS: ${{secrets.ENV_TEST}}
-      - name: Deploy test
-        run: ./deploy-test.sh
+      - name: Deploy test api
+        run: ./deploy-test.sh shops-test pinelab2 1G
+      - name: Deploy test worker
+        run: ./deploy-test.sh worker-test pinelab2 1G
