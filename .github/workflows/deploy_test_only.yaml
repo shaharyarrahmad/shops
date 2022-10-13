@@ -35,3 +35,11 @@ jobs:
         run: ./deploy-test.sh shops-test pinelab2 1G
       - name: Deploy test worker
         run: ./deploy-test.sh worker-test pinelab2 1G
+      - name: Export test env vars
+        run: 'echo "$SECRET_VARS" > .env'
+        env:
+          SECRET_VARS: ${{secrets.ENV_WKW_TEST}}
+      - name: Deploy test api
+        run: ./deploy-test.sh wkw-test-api pinelab2 1G
+      - name: Deploy test worker
+        run: ./deploy-test.sh wkw-test-worker pinelab2 1G
