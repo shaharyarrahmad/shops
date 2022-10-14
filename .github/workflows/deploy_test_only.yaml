@@ -50,7 +50,7 @@ jobs:
           project_id: pinelab-shops
       - run: 'echo "$SECRET_VARS" > .env'
         env:
-          SECRET_VARS: ${{secrets.[matrix.instances.secret]}}
+          SECRET_VARS: ${{secrets[matrix.instances.secret]}}
       - run: ./deploy-test.sh ${{ matrix.instances.name }} ${{ matrix.instances.db }} 1G
 
 
