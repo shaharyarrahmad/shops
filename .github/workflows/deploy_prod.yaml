@@ -1,9 +1,8 @@
-name: Deploy Vendure Production envs
+name: Deploy Vendure Production and Test envs
 on:
   push:
     branches:
       - master
-
 
 jobs:
   build:
@@ -25,14 +24,18 @@ jobs:
         run: ./build-docker.sh
 
   deploy:
+    name: Deploying ${{ matrix.instances.name }} with ${{ matrix.instances.secret }}
+    needs: [ build ]
     strategy:
       matrix:
         instances: [
-          { name: "shops-api", db: "shops-prod", secret: "ENV_PROD"},
-          { name: "worker", db: "shops-prod", secret: "ENV_PROD"},
+          { name: "shops-api", db: "shops-prod", secret: "ENV_PROD", memory: "2G"},
+          { name: "worker", db: "shops-prod", secret: "ENV_PROD", memory: "2G"},
+          { name: "shops-test", db: "pinelab2", secret: "ENV_TEST", memory: "1G"},
+          { name: "worker-test", db: "pinelab2", secret: "ENV_TEST", memory: "1G"},
+          { name: "wkw-test", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G"},
+          { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G"}
         ]
-    name: Deploying ${{ matrix.instances.name }} with ${{ matrix.instances.secret }}
-    needs: [build]
     runs-on: ubuntu-latest
     defaults:
       run:

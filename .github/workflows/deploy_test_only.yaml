@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - develop
-      - master
 
 jobs:
   build:
@@ -25,16 +24,16 @@ jobs:
         run: ./build-docker.sh
 
   deploy:
+    name: Deploying ${{ matrix.instances.name }} with ${{ matrix.instances.secret }}
+    needs: [ build ]
     strategy:
       matrix:
         instances: [
-            { name: "shops-test", db: "pinelab2", secret: "ENV_TEST" },
-            { name: "worker-test", db: "pinelab2", secret: "ENV_TEST" },
-            { name: "wkw-test", db: "pinelab2", secret: "ENV_WKW_TEST" },
-            { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST" }
+          { name: "shops-test", db: "pinelab2", secret: "ENV_TEST", memory: "1G"},
+          { name: "worker-test", db: "pinelab2", secret: "ENV_TEST", memory: "1G"},
+          { name: "wkw-test", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G"},
+          { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G"}
         ]
-    name: Deploying ${{ matrix.instances.name }} with ${{ matrix.instances.secret }}
-    needs: [build]
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -52,4 +51,4 @@ jobs:
       - run: 'echo "$SECRET_VARS" > .env'
         env:
           SECRET_VARS: ${{secrets[matrix.instances.secret]}}
-      - run: ./deploy.sh ${{ matrix.instances.name }} ${{ matrix.instances.db }} 1G
+      - run: ./deploy.sh ${{ matrix.instances.name }} ${{ matrix.instances.db }} ${{ matrix.instances.memory }}
