@@ -30,7 +30,7 @@ jobs:
             { name: "shops-test", db: "pinelab2", secret: "ENV_TEST" },
             { name: "worker-test", db: "pinelab2", secret: "ENV_TEST" },
             { name: "wkw-test", db: "pinelab2", secret: "ENV_WKW_TEST" },
-            { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST" },
+            { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST" }
         ]
     name: Deploying ${{ matrix.instances.name }} with ${{ matrix.instances.secret }}
     needs: [build]
