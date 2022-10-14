@@ -1,41 +1,53 @@
-name: Deploy Vendure API and worker to prod and dev
+name: Deploy Vendure Production envs
 on:
   push:
     branches:
       - master
 
+
 jobs:
-  deploy:
-    name: Deploy to CloudRun (test and prod)
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
         working-directory: vendure
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Authenticate gcloud
-        uses: google-github-actions/auth@v0
+      - uses: actions/checkout@v3
+      - uses: google-github-actions/auth@v0
         with:
           project_id: pinelab-shops
           credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
+      - uses: 'google-github-actions/setup-gcloud@v0'
         with:
           project_id: pinelab-shops
       - name: Build Docker container
-        run: ./build.sh
-      - name: Set env vars
-        run: 'echo "$SECRET_VARS" > .env'
+        run: ./build-docker.sh
+
+  deploy:
+    strategy:
+      matrix:
+        instances: [
+          { name: "shops-api", db: "shops-prod", secret: "ENV_PROD"},
+          { name: "worker", db: "shops-prod", secret: "ENV_PROD"},
+        ]
+    name: Deploying ${{ matrix.instances.name }} with ${{ matrix.instances.secret }}
+    needs: [build]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: vendure
+    steps:
+      - uses: actions/checkout@v3
+      - uses: google-github-actions/auth@v0
+        with:
+          project_id: pinelab-shops
+          credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
+      - uses: 'google-github-actions/setup-gcloud@v0'
+        with:
+          project_id: pinelab-shops
+      - run: 'echo "$SECRET_VARS" > .env'
         env:
-          SECRET_VARS: ${{secrets.ENV_PROD}}
-      - name: Deploy prod
-        run: ./deploy-prod.sh
-      - name: Set env vars
-        run: 'echo "$SECRET_VARS" > .env'
-        env:
-          SECRET_VARS: ${{secrets.ENV_TEST}}
-      - name: Deploy test
-        run: ./deploy-test.sh
+          SECRET_VARS: ${{secrets[matrix.instances.secret]}}
+      - run: ./deploy.sh ${{ matrix.instances.name }} ${{ matrix.instances.db }} ${{ matrix.instances.memory }}

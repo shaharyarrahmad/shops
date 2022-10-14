@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - develop
+      - master
 
 jobs:
   build:
@@ -13,15 +14,15 @@ jobs:
         working-directory: vendure
     steps:
       - uses: actions/checkout@v3
-#      - uses: google-github-actions/auth@v0
-#        with:
-#          project_id: pinelab-shops
-#          credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
-#      - uses: 'google-github-actions/setup-gcloud@v0'
-#        with:
-#          project_id: pinelab-shops
-#      - name: Build Docker container
-#        run: ./build-docker.sh
+      - uses: google-github-actions/auth@v0
+        with:
+          project_id: pinelab-shops
+          credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
+      - uses: 'google-github-actions/setup-gcloud@v0'
+        with:
+          project_id: pinelab-shops
+      - name: Build Docker container
+        run: ./build-docker.sh
 
   deploy:
     strategy:
@@ -51,30 +52,4 @@ jobs:
       - run: 'echo "$SECRET_VARS" > .env'
         env:
           SECRET_VARS: ${{secrets[matrix.instances.secret]}}
-      - run: ./deploy-test.sh ${{ matrix.instances.name }} ${{ matrix.instances.db }} 1G
-
-
-#  deploy-wkw-test:
-#    needs: [build]
-#    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        shell: bash
-#        working-directory: vendure
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: google-github-actions/auth@v0
-#        with:
-#          project_id: pinelab-shops
-#          credentials_json: ${{ secrets.PINELAB_SHOPS_GCLOUD_KEY }}
-#      - uses: 'google-github-actions/setup-gcloud@v0'
-#        with:
-#          project_id: pinelab-shops
-#      - name: Export WKW test env vars
-#        run: 'echo "$SECRET_VARS" > .env'
-#        env:
-#          SECRET_VARS: ${{secrets.ENV_WKW_TEST}}
-#      - name: Deploy WKW test api
-#        run: ./deploy-test.sh wkw-test-api pinelab2 1G
-#      - name: Deploy WKW test worker
-#        run: ./deploy-test.sh wkw-test-worker pinelab2 1G
+      - run: ./deploy.sh ${{ matrix.instances.name }} ${{ matrix.instances.db }} 1G
