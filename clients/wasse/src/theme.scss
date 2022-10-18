@@ -8,6 +8,7 @@ $link: #3f88c5;
 $info: $link;
 $success: #4c8a45af;
 $dark-green: #365433;
+$dark-green-invert: findColorInvert($orange);
 $warning: #ffba08;
 $danger: #ef6461;
 $dark: $text;
@@ -88,6 +89,7 @@ $colors: mergeColorMaps(
   $custom-colors: (
     'dark-green': (
       $dark-green,
+      $dark-green-invert,
     ),
   )
 );
@@ -114,6 +116,7 @@ h2 {
   @extend .is-size-2;
   @extend .mb-3;
 }
+
 h3 {
   @extend .is-size-3;
   @extend .mb-3;
