@@ -2,7 +2,12 @@
   <div>
     <AppHeader />
     <div class="container is-widescreen section p-2 pt-5">
-      <slot />
+      <slot name="content" />
+    </div>
+    <div v-if="$slots.fullwidth" class="has-background-primary">
+      <div class="container is-widescreen section">
+        <slot name="fullwidth" />
+      </div>
     </div>
   </div>
 </template>
