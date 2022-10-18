@@ -53,21 +53,38 @@
           id="navbar-items-wrapper"
           class="container is-widescreen section is-hidden-mobile p-0"
         >
-          <template v-for="index in 8">
-            <div class="navbar-item has-dropdown is-hoverable shadow">
-              <g-link to="/" class="navbar-link is-arrowless"> Wormen </g-link>
-              <div class="navbar-dropdown">
-                <div class="container section py-1">
-                  <div class="columns has-text-left">
-                    <div class="column">
-                      <template v-for="index in 5">
-                        <g-link to="/" class="navbar-item px-0"> TEST </g-link>
-                      </template>
+          <template v-for="collection in collections">
+            <template
+              v-if="collection.children && collection.children.length > 0"
+            >
+              <div class="navbar-item has-dropdown is-hoverable shadow">
+                <g-link :to="collection.slug" class="navbar-link is-arrowless">
+                  {{ collection.name }}
+                </g-link>
+                <div class="navbar-dropdown">
+                  <div class="container section py-1">
+                    <div class="columns has-text-left">
+                      <div class="column">
+                        <template
+                          v-for="childCollection in collection.children"
+                        >
+                          <g-link to="/" class="navbar-item px-0">
+                            {{ childCollection.name }}
+                          </g-link>
+                        </template>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </template>
+            <template v-else>
+              <div class="navbar-item is-hoverable shadow">
+                <g-link :to="collection.slug" class="navbar-link is-arrowless">
+                  {{ collection.name }}
+                </g-link>
+              </div>
+            </template>
           </template>
         </div>
       </div>
@@ -78,7 +95,7 @@
 
 <script>
 export default {
-  props: [],
+  props: ['collections'],
   components: {},
 };
 </script>
