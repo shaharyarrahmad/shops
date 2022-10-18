@@ -12,7 +12,6 @@ import {
   setStore,
 } from 'pinelab-storefront';
 
-
 export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);
   setLabelFunction(Vue, require('../labels.json'));

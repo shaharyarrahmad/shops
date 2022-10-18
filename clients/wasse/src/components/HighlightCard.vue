@@ -26,7 +26,7 @@ export default {
   components: { HomeButton },
 };
 </script>
-<style> 
+<style>
 .card-background-image {
   min-height: 150px;
   height: 100%;
