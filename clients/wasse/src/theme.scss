@@ -3,7 +3,7 @@
 
 // Set your colors
 $text: #3f3f3f;
-$primary: #4c8a45;;
+$primary: #4c8a45;
 $link: #3f88c5;
 $info: $link;
 $success: #4c8a45af;
@@ -85,8 +85,11 @@ $colors: mergeColorMaps(
       $danger-dark,
     ),
   ),
-  $custom-colors: ("dark-green": ($dark-green))
-  
+  $custom-colors: (
+    'dark-green': (
+      $dark-green,
+    ),
+  )
 );
 
 // Links
@@ -189,29 +192,29 @@ html {
 
 .input:active,
 .input:focus {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    border-color: gray;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border-color: gray;
 }
 
 .mdi-26px {
-    font-size: 26px;
+  font-size: 26px;
 }
 
 .cart-badge {
-    background: black;
-    border-radius: 50%;
-    padding-left: 6px;
-    padding-right: 6px;
-    font-size: 12px;
-    color: white;
-    margin-left: -10px;
-    bottom: 15px;
-    position: relative;
+  background: black;
+  border-radius: 50%;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 12px;
+  color: white;
+  margin-left: -10px;
+  bottom: 15px;
+  position: relative;
 }
 
 img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .navbar-menu {
@@ -235,7 +238,6 @@ img {
   justify-content: space-between;
   padding-top: 0;
   padding-bottom: 0;
-
 }
 
 .navbar-start {
@@ -244,7 +246,7 @@ img {
   width: 100%;
 }
 
-.navbar-item a:hover, 
+.navbar-item a:hover,
 .navbar-item a:focus {
   text-decoration: underline;
   color: $white;
