@@ -1,24 +1,5 @@
 import 'buefy/dist/buefy.css';
-import {
-  Button,
-  Checkbox,
-  Dropdown,
-  Field,
-  Icon,
-  Image,
-  Input,
-  Loading,
-  Menu,
-  Modal,
-  Navbar,
-  Numberinput,
-  Radio,
-  Select,
-  Snackbar,
-  Steps,
-  Table,
-  Tooltip,
-} from 'buefy';
+import Buefy from 'buefy';
 import {
   formatEuro,
   preconnectLinks,
@@ -36,26 +17,7 @@ export default function (Vue, { router, head, isClient }) {
   head.link.push(...preconnectLinks);
   setLabelFunction(Vue, require('../labels.json'));
   Vue.filter('euro', formatEuro);
-  [
-    Button,
-    Checkbox,
-    Dropdown,
-    Field,
-    Icon,
-    Image,
-    Input,
-    Loading,
-    Menu,
-    Modal,
-    Navbar,
-    Numberinput,
-    Radio,
-    Select,
-    Snackbar,
-    Steps,
-    Table,
-    Tooltip,
-  ].forEach((component) => Vue.use(component));
+  Vue.use(Buefy);
   if (isClient) {
     setStore(
       Vue,

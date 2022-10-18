@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
-    "chromedriver": "104.0.0",
+    "chromedriver": "106.0.0",
     "dotenv": "^10.0.0",
     "jest": "^27.4.6",
     "linkinator": "^4.0.2",

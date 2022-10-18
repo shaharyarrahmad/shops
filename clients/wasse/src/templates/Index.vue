@@ -1,5 +1,5 @@
 <template>
-  <DefaultLayout>
+    <DefaultLayout>
     <!-- PRODUCT CARD -->
     <section id="highlighted">
       <div class="columns">
