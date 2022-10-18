@@ -1,5 +1,5 @@
 <template>
-  <g-link to="/">
+  <g-link :to="slug">
     <div class="card container-overlay">
       <div class="card-image">
         <figure class="image is-1by1">
@@ -8,7 +8,7 @@
         <div class="overlay"></div>
         <div class="centered">
           <p
-            class="title has-text-weight-bold has-text-white has-text-centered is-4"
+            class="title has-text-weight-bold has-text-white has-text-centered is-5"
           >
             {{ title }}
           </p>
@@ -19,6 +19,6 @@
 </template>
 <script>
 export default {
-  props: ['title', 'image'],
+  props: ['title', 'image', 'slug'],
 };
 </script>

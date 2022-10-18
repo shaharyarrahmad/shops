@@ -7,7 +7,7 @@
         </figure>
         <div class="overlay"></div>
       </div>
-      <div class="card-content has-background-success">
+      <div class="card-content-no-show has-background-success p-5">
         <div class="media">
           <div class="media-content">
             <p class="title has-text-white has-text-weight-bold is-5">
@@ -29,7 +29,7 @@ export default {
 };
 </script>
 <style>
-.card-content {
+.card-content-no-show {
   bottom: 0;
   z-index: 1;
   position: absolute;
