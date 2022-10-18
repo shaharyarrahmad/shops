@@ -3,7 +3,7 @@ import { config } from '../src/vendure-config';
 import { EBoekhoudenService } from 'vendure-plugin-e-boekhouden/dist/api/e-boekhouden.service';
 
 (async () => {
-  require('dotenv').config({ path: process.env.LOCAL_ENV });
+  require('dotenv').config({ path: process.env.ENV_FILE });
   const { config } = require('../src/vendure-config');
   const app = await bootstrap(config);
 

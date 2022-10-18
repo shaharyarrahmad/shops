@@ -10,6 +10,7 @@ if (process.env.VENDURE_ENV === 'local') {
 
 module.exports = {
   siteName: 'Wormenkwekerij Wasse',
+  siteUrl: 'https://wormenkwekerijwasse.nl',
   configureWebpack: {
     resolve: {
       symlinks: false, //npm link

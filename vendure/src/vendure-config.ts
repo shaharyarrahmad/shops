@@ -108,6 +108,7 @@ export const config: VendureConfig = {
     type: 'mysql',
     synchronize: false,
     logging: false,
+    // logging: 'all',
     username: process.env.DATABASE_USER!,
     password: process.env.DATABASE_PASSWORD!,
     host: process.env.DATABASE_HOST!,
@@ -197,6 +198,7 @@ export const config: VendureConfig = {
     EBoekhoudenPlugin,
     EBookPlugin.init(process.env.VENDURE_HOST!),
     InvoicePlugin.init({
+      licenseKey: process.env.INVOICE_LICENSE,
       vendureHost: process.env.VENDURE_HOST!,
       storageStrategy: new GoogleStorageInvoiceStrategy({
         bucketName: 'pinelab-invoices',
