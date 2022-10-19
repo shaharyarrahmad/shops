@@ -105,6 +105,7 @@
               </div>
             </div>
           </div>
+          <!-- Non-collection navigation items -->
           <div class="navbar-item has-dropdown is-hoverable shadow">
             <a class="navbar-link"> Informatie </a>
             <div class="navbar-dropdown">
