@@ -70,23 +70,31 @@
       <div class="columns is-centered content">
         <div class="column p-4">
           <div class="has-text-white">
-            Wormenkwekerij Wasse is de expert op het gebied van compostwormen,
-            viswormen en alles wat daar bij komt kijken. Bekijk anders hiernaast
-            onze video! <br />
-            In samenwerking met Franky's Flora kunnen we het alternatief bieden
-            voor kunstmest. Met onze natuurlijke en biologische producten krijgt
-            u elk grasveldje groen en kweekt u de lekkerste vruchten. Wij helpen
-            u graag met veel passie bij het nieuwe tuinieren van de toekomst. Op
-            naar meer biodiversiteit!
+            <h2 class="has-text-white">Over Wormenkwekerij Wasse</h2>
+            <p>
+              Wormenkwekerij Wasse is de expert op het gebied van compostwormen,
+              viswormen en alles wat daar bij komt kijken. Bekijk anders
+              hiernaast onze video!
+            </p>
+            <p>
+              In samenwerking met Franky's Flora kunnen we het alternatief
+              bieden voor kunstmest. Met onze natuurlijke en biologische
+              producten krijgt u elk grasveldje groen en kweekt u de lekkerste
+              vruchten.
+            </p>
+            <p>
+              Wij helpen u graag met veel passie bij het nieuwe tuinieren van de
+              toekomst. Op naar meer biodiversiteit!
+            </p>
           </div>
         </div>
         <div class="column p-4">
-          <div class="iframe-container">
-            <iframe
-              loading="lazy"
-              src="https://www.youtube.com/embed/cLblUjpFdfU"
-            ></iframe>
-          </div>
+          <iframe
+            loading="lazy"
+            src="https://www.youtube.com/embed/cLblUjpFdfU"
+            width="100%"
+            height="100%"
+          ></iframe>
         </div>
       </div>
     </template>
@@ -102,16 +110,7 @@ export default {
 };
 </script>
 <style>
-iframe-container {
-  position: relative;
-  overflow: hidden;
-  padding-top: 56.25%;
-}
-
-.column.iframe-container iframe {
-  position: absolute;
-  padding: 1rem;
-  height: 100%;
-  width: 100%;
+iframe {
+  min-height: 200px;
 }
 </style>
