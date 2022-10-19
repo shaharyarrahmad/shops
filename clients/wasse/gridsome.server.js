@@ -24,7 +24,6 @@ module.exports = async function (api) {
     // TODO for every collection set prefix
 
     const collections = vendureServer.unflatten(allCollections);
-    console.log(collections);
     const navbarCollections = collections
       .filter((col) => col.name !== 'highlights')
       .map(mapToMinimalCollection);

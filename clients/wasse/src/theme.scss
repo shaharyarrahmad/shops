@@ -29,6 +29,7 @@ $notification-radius: 0px;
 
 $navbar-item-hover-background-color: $primary;
 $navbar-dropdown-item-hover-color: $white;
+$navbar-dropdown-arrow: $white;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
@@ -102,6 +103,16 @@ $link-focus-border: $primary;*/
 // Import Bulma and Buefy styles
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
+
+html {
+  font-size: 12px;
+  @include tablet {
+    font-size: 16px;
+  }
+  @include desktop {
+    font-size: 14px;
+  }
+}
 
 .button {
   @extend .is-primary;
@@ -177,16 +188,6 @@ h4 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-html {
-  font-size: 12px;
-  @include tablet {
-    font-size: 16px;
-  }
-  @include desktop {
-    font-size: 20px;
-  }
 }
 
 #banner {
@@ -266,4 +267,11 @@ img {
   background-color: $primary;
   border-top: 0px;
   color: $white;
+  font-size: 12px;
+  @include tablet {
+    font-size: 16px;
+  }
+  @include desktop {
+    font-size: 14px;
+  }
 }
