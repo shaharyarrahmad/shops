@@ -21,16 +21,27 @@ module.exports = async function (api) {
       productsPerCollection,
     } = await vendureServer.getShopData();
 
-    // TODO for every collection set prefix
+    // Set absolute path for product.url and collection.url: product.url = '/product/lavameel/'
+    const categoryPrefix = 'product-categorie';
+    const productPrefix = 'product';
+    allCollections.forEach(
+      (colllection) =>
+        (colllection.url = `/${categoryPrefix}/${colllection.slug}/`)
+    );
+    allProducts.forEach(
+      (product) => (product.url = `/${productPrefix}/${product.slug}/`)
+    );
+    productsPerCollection.forEach((collectionMap) => {
+      collectionMap.products.forEach(
+        (product) => (product.url = `/${productPrefix}/${product.slug}/`)
+      );
+    });
 
     const collections = vendureServer.unflatten(allCollections);
-    const navbarCollections = collections
-      .filter((col) => col.name !== 'highlights')
-      .map(mapToMinimalCollection);
+    const navbarCollections = collections.map(mapToMinimalCollection);
 
     const global = {
       navbarCollections,
-      categorySlugPrefix: 'product-categorie',
     };
 
     // -------------------- Home -----------------------------------
@@ -40,6 +51,18 @@ module.exports = async function (api) {
       context: {
         ...global,
       },
+    });
+
+    // -------------------- ProductDetail -----------------------------------
+    allProducts.forEach((product) => {
+      createPage({
+        path: product.url,
+        component: './src/templates/ProductDetail.vue',
+        context: {
+          ...global,
+          product,
+        },
+      });
     });
   });
 };
