@@ -67,25 +67,26 @@
     </template>
 
     <template #fullwidth>
-      <div class="columns is-vcentered content">
-        <div class="column">
+      <div class="columns is-centered content">
+        <div class="column p-4">
           <div class="has-text-white">
             Wormenkwekerij Wasse is de expert op het gebied van compostwormen,
-            viswormen en alles wat daar bij komt kijken. Bekijk hiernaast anders
-            onze video! In samenwerking met Franky's Flora kunnen we het
-            alternatief bieden voor kunstmest. Met onze natuurlijke en
-            biologische producten krijgt u elk grasveldje groen en kweekt u de
-            lekkerste vruchten. Wij helpen u graag met veel passie bij het
-            nieuwe tuinieren van de toekomst. Op naar meer biodiversiteit!
+            viswormen en alles wat daar bij komt kijken. Bekijk anders hiernaast
+            onze video! <br />
+            In samenwerking met Franky's Flora kunnen we het alternatief bieden
+            voor kunstmest. Met onze natuurlijke en biologische producten krijgt
+            u elk grasveldje groen en kweekt u de lekkerste vruchten. Wij helpen
+            u graag met veel passie bij het nieuwe tuinieren van de toekomst. Op
+            naar meer biodiversiteit!
           </div>
         </div>
-        <div class="column p-6">
-          <iframe
-            width="420"
-            height="345"
-            src="https://www.youtube.com/watch?v=cLblUjpFdfU&ab_channel=NieuweOogst"
-          >
-          </iframe>
+        <div class="column p-4">
+          <div class="iframe-container">
+            <iframe
+              loading="lazy"
+              src="https://www.youtube.com/embed/cLblUjpFdfU"
+            ></iframe>
+          </div>
         </div>
       </div>
     </template>
@@ -100,4 +101,17 @@ export default {
   components: { ProductCard, CategoryCard, BlogCard, HighlightCard },
 };
 </script>
-<style></style>
+<style>
+iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.column.iframe-container iframe {
+  position: absolute;
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
+}
+</style>
