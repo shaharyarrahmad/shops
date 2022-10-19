@@ -13,6 +13,7 @@
     "@gridsome/plugin-sitemap": "^0.4.0",
     "buefy": "^0.9.7",
     "debounce": "^1.2.1",
+    "fuse.js": "^6.6.2",
     "pinelab-storefront": "0.60.1"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader :collections="$context.navbarCollections" />
     <div class="container is-widescreen section p-2 pt-5">
       <slot />
     </div>

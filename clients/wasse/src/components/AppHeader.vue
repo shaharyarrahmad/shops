@@ -53,22 +53,77 @@
           id="navbar-items-wrapper"
           class="container is-widescreen section is-hidden-mobile p-0"
         >
-          <template v-for="index in 8">
-            <div class="navbar-item has-dropdown is-hoverable shadow">
-              <g-link to="/" class="navbar-link is-arrowless"> Wormen </g-link>
-              <div class="navbar-dropdown">
-                <div class="container section py-1">
-                  <div class="columns has-text-left">
-                    <div class="column">
-                      <template v-for="index in 5">
-                        <g-link to="/" class="navbar-item px-0"> TEST </g-link>
-                      </template>
+          <template v-for="collection in collections.slice(0, 4)">
+            <template
+              v-if="collection.children && collection.children.length > 0"
+            >
+              <!-- Collection with child collections -->
+              <div class="navbar-item has-dropdown is-hoverable shadow">
+                <g-link :to="collection.slug" class="navbar-link">
+                  {{ collection.name }}
+                </g-link>
+                <div class="navbar-dropdown">
+                  <div class="container section py-1">
+                    <div class="columns has-text-left">
+                      <div class="column">
+                        <template
+                          v-for="childCollection in collection.children"
+                        >
+                          <g-link to="/" class="navbar-item px-0">
+                            {{ childCollection.name }}
+                          </g-link>
+                        </template>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </template>
+            <template v-else>
+              <!-- Collection without child collections -->
+              <div class="navbar-item is-hoverable shadow">
+                <g-link :to="collection.slug" class="navbar-link is-arrowless">
+                  {{ collection.name }}
+                </g-link>
+              </div>
+            </template>
           </template>
+          <!-- Overflow collections -->
+          <div class="navbar-item has-dropdown is-hoverable shadow">
+            <a class="navbar-link"> Meer </a>
+            <div class="navbar-dropdown">
+              <div class="container section py-1">
+                <div class="columns has-text-left">
+                  <div class="column">
+                    <template v-for="collection in collections.slice(4, 20)">
+                      <g-link to="/" class="navbar-item px-0">
+                        {{ collection.name }}
+                      </g-link>
+                    </template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Non-collection navigation items -->
+          <div class="navbar-item has-dropdown is-hoverable shadow">
+            <a class="navbar-link"> Informatie </a>
+            <div class="navbar-dropdown">
+              <div class="container section py-1">
+                <div class="columns has-text-left">
+                  <div class="column">
+                    <g-link to="/" class="navbar-item px-0">
+                      Advies en informatie
+                    </g-link>
+                    <g-link to="/" class="navbar-item px-0"> FAQ </g-link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="navbar-item is-hoverable shadow">
+            <g-link to="/" class="navbar-link is-arrowless"> Contact </g-link>
+          </div>
         </div>
       </div>
     </div>
@@ -78,7 +133,7 @@
 
 <script>
 export default {
-  props: [],
+  props: ['collections'],
   components: {},
 };
 </script>
