@@ -52,12 +52,6 @@
                   $router.push('/checkout/').catch((e) => {})
                 "
               >
-                <!--                <b-button
-                  type="is-shadowless is-hovered"
-                  style="margin-top: 20px"
-                >
-                  <i class="mdi mdi-cart-outline mdi-26px has-text-white"></i>
-                </b-button>-->
                 <i class="mdi mdi-basket mdi-36px has-text-primary"></i>
               </Basket>
             </div>
@@ -65,7 +59,7 @@
         </div>
       </template>
       <template #start>
-        <!--------------- Desktop menu -------------------------->
+        <!-- Desktop menu -->
         <div id="navbar-items-wrapper" class="container is-widescreen section">
           <template v-for="collection in collections.slice(0, 4)">
             <template
@@ -143,7 +137,7 @@
           </div>
         </div>
 
-        <!------------ Mobile menu ------------->
+        <!-- Mobile menu -->
       </template>
     </b-navbar>
   </div>
