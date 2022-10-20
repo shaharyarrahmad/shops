@@ -185,5 +185,11 @@ module.exports = async function (api) {
       component: './src/templates/Order.vue',
       context: { global },
     });
+
+    // Under construction
+    createPage({
+      path: '/under-construction/',
+      component: './src/templates/UnderConstruction.vue',
+    });
   });
 };
