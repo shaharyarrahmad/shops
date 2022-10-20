@@ -1,5 +1,7 @@
+https://super-a.nl /under-construction/ 302!
 https://super-a.nl* /under-construction/ 302!
-http://super-a.nl* /under-construction/ 302!
+https://super-a.nl/* /under-construction/ 302!
+
 
 /order/* /order/_code.html 200
 /admin/ https://api.pinelab.studio/admin/ 302
