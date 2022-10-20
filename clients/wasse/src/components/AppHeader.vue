@@ -1,11 +1,11 @@
 <template>
   <b-navbar type="" centered transparent class="is-fixed-top">
     <template #brand>
-      <!--      <div id="banner" class="notification is-dark-green p-1 has-text-centered">
-              <p class="mdi mdi-truck-outline has-text-white">
-                Vanaf €50,- gratis verzenden binnen NL
-              </p>
-            </div>-->
+      <div id="banner" class="notification is-dark-green p-1 has-text-centered">
+        <p class="mdi mdi-truck-outline has-text-white">
+          Vanaf €50,- gratis verzenden binnen NL
+        </p>
+      </div>
       <div class="container is-widescreen section" id="top-navbar">
         <div class="columns is-mobile pt-2" style="width: 100%">
           <div class="column">
@@ -48,7 +48,13 @@
                 $router.push('/checkout/').catch((e) => {})
               "
             >
-              <i class="mdi mdi-basket mdi-36px has-text-white"></i>
+              <!--              <i class="mdi mdi-basket mdi-36px has-text-primary"></i>-->
+              <b-button
+                type="is-shadowless is-hovered"
+                style="margin-top: 20px"
+              >
+                <i class="mdi mdi-cart-outline mdi-26px has-text-white"></i>
+              </b-button>
             </Basket>
           </div>
         </div>
@@ -57,16 +63,78 @@
     <template #start>
       <!--------------- Desktop menu -------------------------->
       <div
-        class="container is-widescreen section is-hidden-mobile"
         id="navbar-items-wrapper"
+        class="container is-widescreen section is-hidden-mobile p-0"
       >
-        <!-------------------- Single collection ------------------>
-        <g-link
-          class="navbar-item is-uppercase navbar-link is-arrowless is-family-secondary"
-          to="/"
-        >
-          TEST
-        </g-link>
+        <template v-for="collection in collections.slice(0, 4)">
+          <template
+            v-if="collection.children && collection.children.length > 0"
+          >
+            <!-- Collection with child collections -->
+            <div class="navbar-item has-dropdown is-hoverable shadow">
+              <g-link :to="collection.slug" class="navbar-link">
+                {{ collection.name }}
+              </g-link>
+              <div class="navbar-dropdown">
+                <div class="container section py-1">
+                  <div class="columns has-text-left">
+                    <div class="column">
+                      <template v-for="childCollection in collection.children">
+                        <g-link to="/" class="navbar-item px-0">
+                          {{ childCollection.name }}
+                        </g-link>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <!-- Collection without child collections -->
+            <div class="navbar-item is-hoverable shadow">
+              <g-link :to="collection.slug" class="navbar-link is-arrowless">
+                {{ collection.name }}
+              </g-link>
+            </div>
+          </template>
+        </template>
+        <!-- Overflow collections -->
+        <div class="navbar-item has-dropdown is-hoverable shadow">
+          <a class="navbar-link"> Meer </a>
+          <div class="navbar-dropdown">
+            <div class="container section py-1">
+              <div class="columns has-text-left">
+                <div class="column">
+                  <template v-for="collection in collections.slice(4, 20)">
+                    <g-link to="/" class="navbar-item px-0">
+                      {{ collection.name }}
+                    </g-link>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Non-collection navigation items -->
+        <div class="navbar-item has-dropdown is-hoverable shadow">
+          <a class="navbar-link"> Informatie </a>
+          <div class="navbar-dropdown">
+            <div class="container section py-1">
+              <div class="columns has-text-left">
+                <div class="column">
+                  <g-link to="/" class="navbar-item px-0">
+                    Advies en informatie
+                  </g-link>
+                  <g-link to="/" class="navbar-item px-0"> FAQ </g-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-item is-hoverable shadow">
+          <g-link to="/" class="navbar-link is-arrowless"> Contact </g-link>
+        </div>
       </div>
 
       <!------------ Mobile menu ------------->
@@ -118,5 +186,32 @@ export default {
 
 .navbar-start {
   width: 100%;
+}
+
+#navbar-items-wrapper {
+  display: inherit;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#logo {
+  height: 75px;
+  padding: 0 0 5px 0;
+  object-fit: contain;
+  margin-left: -4px;
+}
+
+#top-navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 95px;
+}
+
+#search {
+  padding-top: 28px;
+}
+.cart-badge {
+  bottom: -8px !important;
 }
 </style>

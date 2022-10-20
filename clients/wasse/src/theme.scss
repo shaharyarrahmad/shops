@@ -204,6 +204,8 @@ h4 {
 .mdi-26px {
   font-size: 26px;
 }
+.mdi-basket {
+}
 
 .cart-badge {
   background: black;
@@ -235,13 +237,6 @@ img {
   justify-content: center;
   flex-shrink: 0;
   min-height: 3.25rem;
-}
-
-#navbar-items-wrapper {
-  display: inherit;
-  justify-content: space-between;
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .navbar-start {
