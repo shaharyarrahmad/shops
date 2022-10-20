@@ -1,10 +1,8 @@
 <template>
   <g-link :to="slug">
-    <div class="card container-overlay">
-      <div class="card-image">
-        <figure class="image is-3by2">
-          <img :src="image" />
-        </figure>
+    <div class="card card-background-image container-overlay">
+      <div class="card-image is-fullheight">
+        <b-image class="is-fullheight" ratio="2by1" :src="image"></b-image>
         <div class="overlay"></div>
       </div>
       <div class="card-content-no-show has-background-success p-5">
@@ -21,18 +19,28 @@
   </g-link>
 </template>
 <script>
-import HomeButton from '@/components/HomeButton.vue';
+import HomeButton from '@/components/HomeButton';
 
 export default {
-  props: ['title', 'slug', 'image'],
+  props: ['title', 'image', 'slug'],
   components: { HomeButton },
 };
 </script>
 <style>
+.card-background-image {
+  min-height: 150px;
+  height: 100%;
+}
+
 .card-content-no-show {
   bottom: 0;
   z-index: 1;
   position: absolute;
   width: 100%;
+}
+
+.is-fullheight,
+.is-fullheight img {
+  height: 100%;
 }
 </style>
