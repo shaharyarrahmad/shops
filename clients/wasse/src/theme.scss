@@ -28,6 +28,11 @@ $control-radius: 2px;
 $notification-radius: 0px;
 
 $navbar-item-hover-background-color: $primary;
+$navbar-item-active-background-color: $primary;
+$navbar-tab-hover-background-color: $primary;
+$navbar-tab-active-background-color: $primary;
+$navbar-dropdown-background-color: $primary;
+$navbar-background-color: #primary;
 $navbar-dropdown-item-hover-color: $white;
 $navbar-dropdown-arrow: $white;
 
@@ -190,10 +195,6 @@ h4 {
   transform: translate(-50%, -50%);
 }
 
-#banner {
-  margin: 0;
-}
-
 .input:active,
 .input:focus {
   box-shadow: none;
@@ -204,58 +205,9 @@ h4 {
 .mdi-26px {
   font-size: 26px;
 }
-.mdi-basket {
-}
-
-.cart-badge {
-  background: black;
-  border-radius: 50%;
-  padding-left: 6px;
-  padding-right: 6px;
-  font-size: 12px;
-  color: white;
-  margin-left: -10px;
-  bottom: 15px;
-  position: relative;
-}
 
 img {
   vertical-align: middle;
-}
-
-.navbar-menu {
-  background: $primary;
-  @media screen and (max-width: $desktop) {
-    background: $primary;
-  }
-  justify-content: center;
-}
-
-.navbar-brand {
-  align-items: stretch;
-  display: block;
-  justify-content: center;
-  flex-shrink: 0;
-  min-height: 3.25rem;
-}
-
-.navbar-start {
-  justify-content: center;
-  margin-left: auto;
-  width: 100%;
-}
-
-.navbar-item a:hover,
-.navbar-item a:focus {
-  text-decoration: underline;
-  color: $white;
-  background-color: $primary !important;
-}
-
-.navbar-item,
-.navbar-link {
-  color: $white;
-  background-color: $primary;
 }
 
 .navbar-dropdown {
@@ -268,5 +220,14 @@ img {
   }
   @include desktop {
     font-size: 14px;
+  }
+}
+.navbar-brand {
+  background-color: $white;
+  @include mobile {
+    border-bottom: 1px solid #d0d0d0;
+  }
+  @include tablet {
+    border-bottom: 1px solid #d0d0d0;
   }
 }
