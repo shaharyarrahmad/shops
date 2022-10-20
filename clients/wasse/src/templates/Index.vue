@@ -98,6 +98,30 @@
         </div>
       </div>
     </template>
+
+    <template #content2>
+      <section id="highlighted">
+        <h4 class="title has-text-black has-text-weight-bold is-5 pt-5">
+          Blog
+        </h4>
+        <div class="columns">
+          <div class="column">
+            <BlogCard
+              title="Geen gezonde bodem zonder wormen"
+              image="https://storage.googleapis.com/wassets/preview/ba/seeds__preview.jpeg"
+              slug="geen-gezonde-bodem-zonder-wormen"
+            />
+          </div>
+          <div class="column">
+            <BlogCard
+              title="Help mijn wormen ontsnappen"
+              image="https://storage.googleapis.com/wassets/preview/ba/seeds__preview.jpeg"
+              slug="help-mijn-wormen-ontsnappen"
+            />
+          </div>
+        </div>
+      </section>
+    </template>
   </DefaultLayout>
 </template>
 <script>
