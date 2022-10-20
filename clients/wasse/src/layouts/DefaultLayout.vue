@@ -9,6 +9,9 @@
         <slot name="fullwidth" />
       </div>
     </div>
+    <div class="container is-widescreen section p-2 pt-5 pb-6">
+      <slot name="content2" />
+    </div>
   </div>
 </template>
 
