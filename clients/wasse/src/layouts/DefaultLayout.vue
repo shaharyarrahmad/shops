@@ -13,7 +13,7 @@
       <slot name="content2" />
     </div>
     <div v-if="$slots.fullwidth" class="has-background-primary">
-      <div class="container is-widescreen section">
+      <div class="container is-widescreen section p-5">
         <slot name="newsletter" />
       </div>
     </div>

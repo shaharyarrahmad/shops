@@ -124,20 +124,24 @@
     </template>
 
     <template #newsletter>
-      <div class="columns is-centered content">
-        <div class="column is-expanded">
-          <h3 class="has-text-white">Meld je aan voor de wormen courant</h3>
+      <div class="">
+        <div class="has-text-centered">
+          <h3 class="has-text-white has-text-weight-bold">
+            Meld je aan voor de wormen courant
+          </h3>
+          <p class="has-text-white has">
+            Aanbiedingen, tips and tricks voor compostering en bodemverbetering
+          </p>
         </div>
         <div class="column">
-          <b-field>
-            <b-input
-              placeholder="Vul je e-mailadres in"
-              type="email"
-              icon="email-outline"
-            >
-            </b-input>
+          <b-field position="is-centered" grouped group-multiline>
+            <b-input placeholder="Naam" type="fname"> </b-input>
+            <b-input placeholder="E-mailadres" type="email"> </b-input>
             <p class="control">
-              <b-button type="is-dark-green" label="Aanmelden" />
+              <b-button
+                type="is-dark-green is-shadowless is-hovered"
+                label="Aanmelden"
+              />
             </p>
           </b-field>
         </div>
