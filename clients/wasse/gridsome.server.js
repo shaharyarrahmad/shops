@@ -43,7 +43,6 @@ module.exports = async function (api) {
     const global = {
       navbarCollections,
     };
-    console.log(navbarCollections);
 
     // -------------------- Home -----------------------------------
     createPage({
