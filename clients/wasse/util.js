@@ -6,6 +6,7 @@ module.exports = {
     return {
       id: col.id,
       slug: col.slug,
+      url: col.url,
       name: col.name,
       featuredAsset: col.featuredAsset,
       parent: col.parent ? mapToMinimalCollection(col.parent) : undefined,
