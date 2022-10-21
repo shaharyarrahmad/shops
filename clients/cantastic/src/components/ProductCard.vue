@@ -35,10 +35,10 @@
         <b-button
           type="is-info"
           size="default"
-          icon-right="chevron-right"
           :disabled="product.soldOut"
-          @click="$router.push(`/product/${this.product.slug}/`)"
-        />
+          @click="$router.push(`/product/${product.slug}/`)"
+          >Bekijken</b-button
+        >
       </template>
       <template v-else>
         <!-- quantity -->
