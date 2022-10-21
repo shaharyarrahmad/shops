@@ -122,6 +122,27 @@
         </div>
       </section>
     </template>
+
+    <template #newsletter>
+      <div class="columns is-centered content">
+        <div class="column is-expanded">
+          <h3 class="has-text-white">Meld je aan voor de wormen courant</h3>
+        </div>
+        <div class="column">
+          <b-field>
+            <b-input
+              placeholder="Vul je e-mailadres in"
+              type="email"
+              icon="email-outline"
+            >
+            </b-input>
+            <p class="control">
+              <b-button type="is-dark-green" label="Aanmelden" />
+            </p>
+          </b-field>
+        </div>
+      </div>
+    </template>
   </DefaultLayout>
 </template>
 <script>
