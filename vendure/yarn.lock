@@ -1559,10 +1559,10 @@
     uuid "^8.0.0"
     xdg-basedir "^4.0.0"
 
-"@google-cloud/storage@^6.5.4":
-  version "6.5.4"
-  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.5.4.tgz#c43742ac12787df39c07725f131f199bb80e0b58"
-  integrity sha512-7ntxYkceJo0FzKvHZU988Vy+PFRErSiqEIgcErJ+Hg8vU+nCw0dhg2K0uJJSnUJoEPJLz4DFAMqYCme0WhD2uA==
+"@google-cloud/storage@^6.6.0":
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/@google-cloud/storage/-/storage-6.6.0.tgz#01f64bf706acc98dc2787e490afe878ad9f64250"
+  integrity sha512-z1rj7ft15TZd7hzPVsqTZPduLPR+ZMOnwUME9d1yynJvHm5bWkyV3d3eigZ+v2Zirl7rjk8UZTdzRSYr1MvgRQ==
   dependencies:
     "@google-cloud/paginator" "^3.0.7"
     "@google-cloud/projectify" "^3.0.0"
@@ -12695,10 +12695,10 @@ vendure-plugin-invoices@4.1.0:
     pdf-creator-node "^2.3.4"
     tmp "^0.2.1"
 
-vendure-plugin-myparcel@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-4.1.0.tgz#c49f23fe585391775e73597bdcefff311a0f11c0"
-  integrity sha512-C/YS4sW4pMUqLxguiAJcrqM1gYNOpblOeoa6cI1SunokIPyM50zUoqyNnodT3vvQhy+oCO0GIscJf1VbhlKWMA==
+vendure-plugin-myparcel@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-4.1.2.tgz#4c8fdc8710a0d2083bddb5819da99278c1674038"
+  integrity sha512-EfAMujJ09Y9LXKngJ7X27jDEjaIdOOSB9KKoc2873avqcrz26HRIH/zloiveUYugM00VUYBplFUI2/81aEbtsQ==
   dependencies:
     axios "^0.26.1"
 
