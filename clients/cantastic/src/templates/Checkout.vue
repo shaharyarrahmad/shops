@@ -9,7 +9,8 @@
         :available-countries="[
           { name: 'Nederland', code: 'nl' },
           { name: 'België', code: 'be' },
-          { name: 'Duitsland', code: 'de' },
+          { name: 'Deutschland', code: 'de' },
+          { name: 'France', code: 'FR' },
         ]"
       >
         <template #orderSummaryFooter>
