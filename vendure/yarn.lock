@@ -12705,10 +12705,10 @@ vendure-plugin-invoices@4.1.0:
     pdf-creator-node "^2.3.4"
     tmp "^0.2.1"
 
-vendure-plugin-metrics@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-metrics/-/vendure-plugin-metrics-4.2.0.tgz#a6903855d63bcbfaa7195f9c30d9913215340f9e"
-  integrity sha512-wCwR3knhKz3zXIK6WogqIZb6xgOL9LpNbwoDVC+CvpsofSq7JMgXKon/MJnOZDQdD6PUDiwYMdR+g54B4c2mjA==
+vendure-plugin-metrics@4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-metrics/-/vendure-plugin-metrics-4.2.2.tgz#43979bccc94a5ef960227b9fdaf0fe30ab302c30"
+  integrity sha512-GeiesersTHC2pcEOmzA8tdV2rC86XgRZDSJAK75uX4ozxVNWBaPMh6/qK7/B+hlIArUv+lQobGlA3wNG7tAAWg==
   dependencies:
     chart.js "^3.9.1"
     date-fns "^2.29.3"
@@ -12727,7 +12727,7 @@ vendure-plugin-order-export@4.1.0:
   dependencies:
     csv-writer "^1.6.0"
 
-vendure-plugin-sendcloud@^4.1.0:
+vendure-plugin-sendcloud@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vendure-plugin-sendcloud/-/vendure-plugin-sendcloud-4.1.0.tgz#db56c6858427724b43825c8ad9b8bbb0d4b0fcfd"
   integrity sha512-yK7RBofoQP1edLkMpU5rU/bK6wYVGsasHlwfOR5UiLmosSoR1GMUqUmQyfl1Bjvi6CVX1mysDxUZPL6A9jEKag==
@@ -12737,7 +12737,7 @@ vendure-plugin-shipping-by-weight-and-country@4.1.0:
   resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-4.1.0.tgz#7fc47cc59ac406a212798fab2f4c27df82712af3"
   integrity sha512-dPQHMTHhnYqr70iH629FECnvA145LA1qtX3qV1hTmpxYskusNzSEmKcecyjucLMNP6raIpvwDhuKl0Xdo+63OA==
 
-vendure-plugin-stock-monitoring@^4.1.0:
+vendure-plugin-stock-monitoring@4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vendure-plugin-stock-monitoring/-/vendure-plugin-stock-monitoring-4.1.0.tgz#f4568ee56a9d94c1cd897d47403c8b00ee11ee62"
   integrity sha512-3Wp/rb1BXsvgI6DgfEt7dXX5cm1VdlwIp8FyGTSeAZnnpFDVOdqt3AGgpkOXywb4YFRBevnIrhN3TyS6m+aEcA==
