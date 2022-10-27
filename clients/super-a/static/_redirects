@@ -1,10 +1,10 @@
+/admin/ https://api.pinelab.studio/admin/ 302
+
 https://super-a.nl /under-construction/ 302!
 https://super-a.nl* /under-construction/ 302!
 https://super-a.nl/* /under-construction/ 302!
 
-
 /order/* /order/_code.html 200
-/admin/ https://api.pinelab.studio/admin/ 302
 /cms/ https://content.pinelab.studio/ 302
 /assets/* https://content.pinelab.studio/assets/:splat 200
 /portfolio/* /portfolio/ 301
