@@ -12,10 +12,12 @@ import {
 import { OrderExportPlugin } from 'vendure-plugin-order-export';
 import { StockMonitoringPlugin } from 'vendure-plugin-stock-monitoring';
 import { SendcloudPlugin } from 'vendure-plugin-sendcloud';
+import { MetricsPlugin } from 'vendure-plugin-metrics';
 
 compileUiExtensions({
   outputPath: path.join(__dirname, '__admin-ui'),
   extensions: [
+    MetricsPlugin.ui,
     InvoicePlugin.ui,
     WebhookPlugin.ui,
     MyparcelPlugin.ui,
