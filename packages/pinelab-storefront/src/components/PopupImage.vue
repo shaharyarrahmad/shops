@@ -39,7 +39,7 @@
           :src="large"
           :alt="alt"
           :placeholder="placeholder"
-          class="is-clickable"
+          class="is-clickable max-90-vh"
         />
       </template>
     </b-modal>
@@ -49,7 +49,7 @@
 export default {
   props: ['small', 'alt', 'large', 'placeholder', 'assets'],
   data() {
-    const currentItem = this.assets.findIndex((asset) => asset === this.large);
+    const currentItem = this.assets?.findIndex((asset) => asset === this.large);
     return {
       show: false,
       carouselItem: currentItem || 0,
