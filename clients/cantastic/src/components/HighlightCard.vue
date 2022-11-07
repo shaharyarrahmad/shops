@@ -22,11 +22,6 @@ import CantasticButton from './CantasticButton';
 export default {
   components: { CantasticButton },
   props: ['highlight'],
-  computed: {
-    image() {
-      return this.collection?.featuredAsset?.preview;
-    },
-  },
 };
 </script>
 <style>
