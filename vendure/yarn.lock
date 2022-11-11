@@ -1871,7 +1871,7 @@
   resolved "https://registry.yarnpkg.com/@lit/reactive-element/-/reactive-element-1.4.1.tgz#3f587eec5708692135bc9e94cf396130604979f3"
   integrity sha512-qDv4851VFSaBWzpS02cXHclo40jsbAjRXnebNXpm0uVg32kCneZPo9RYVQtrTNICtZ+1wAYHu1ZtxWSWMbKrBw==
 
-"@mapbox/node-pre-gyp@^1.0.0":
+"@mapbox/node-pre-gyp@^1.0.10":
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.10.tgz#8e6735ccebbb1581e5a7e652244cadc8a844d03c"
   integrity sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==
@@ -2583,17 +2583,17 @@
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.8.3.tgz#781d360c282436494b32fe7d9f7f8e64b3118aa3"
   integrity sha512-fbF6oTd4sGGy0xjHPKAt+eS2CrxJ3+6gQ3FGcBoIJR2TLAyCkCyI8JqZNy+FeON0AhVgNJoUumVoZQjBFUqHkw==
 
-"@vendure/admin-ui-plugin@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/admin-ui-plugin/-/admin-ui-plugin-1.7.4.tgz#e055972779f74affbb40f4e96d3faac74e2247af"
-  integrity sha512-5WuY3Qmup/aEp4PRQXBXGM4VeDQBOIFh7AGQiWQ407XaBJ+2ocws+Ugb0rL9NqjMq9Yz558A60+ewIIHKrc8GA==
+"@vendure/admin-ui-plugin@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/admin-ui-plugin/-/admin-ui-plugin-1.8.3.tgz#37a43293dd03b07082b9516c9b52591897225caa"
+  integrity sha512-lFlsKnje13N8HTt3p23if5a1zC8qP52Lsg+fKLk0p+Luk2dQMNovj65xnEMo/092Zn4q4B8lspnG1bYqkLsgTg==
   dependencies:
     fs-extra "^10.0.0"
 
-"@vendure/admin-ui@^1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/admin-ui/-/admin-ui-1.7.4.tgz#51c1f493474b402cf1a7450161597b4e63e329dd"
-  integrity sha512-3HloQUT5mqavRbfUqx2vAsXo3GdVHQyTR7Fd3K7Xh+9azxFFX33RImzGgy3cUJFfN967ZhAe0L+LWg/T1oR5RQ==
+"@vendure/admin-ui@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/admin-ui/-/admin-ui-1.8.3.tgz#1b21f8d4ae3657512eee4b10d5575507cbcfe1be"
+  integrity sha512-H3lfO/uhFZvoT8gXkueOXUxep8IUu+E9Sg5j3D+mhJ698x2VdEwl2sHTtQ5XVo2N/1yHUr9U3a9uvKoE8xOodA==
   dependencies:
     "@angular/animations" "12.2.16"
     "@angular/cdk" "12.2.13"
@@ -2614,7 +2614,7 @@
     "@ng-select/ng-select" "^7.2.0"
     "@ngx-translate/core" "^13.0.0"
     "@ngx-translate/http-loader" "^6.0.0"
-    "@vendure/common" "^1.7.4"
+    "@vendure/common" "^1.8.3"
     "@webcomponents/custom-elements" "^1.4.3"
     apollo-angular "^2.6.0"
     apollo-upload-client "^16.0.0"
@@ -2625,38 +2625,39 @@
     messageformat "2.3.0"
     ngx-pagination "^5.0.0"
     ngx-translate-messageformat-compiler "^4.8.0"
-    prosemirror-commands "^1.1.7"
-    prosemirror-dropcursor "^1.3.3"
-    prosemirror-gapcursor "^1.1.5"
-    prosemirror-history "^1.1.3"
-    prosemirror-inputrules "^1.1.3"
-    prosemirror-keymap "^1.1.4"
-    prosemirror-menu "^1.1.4"
-    prosemirror-schema-basic "^1.1.2"
-    prosemirror-schema-list "^1.1.4"
-    prosemirror-state "^1.3.4"
+    prosemirror-commands "^1.3.0"
+    prosemirror-dropcursor "^1.6.0"
+    prosemirror-gapcursor "^1.3.1"
+    prosemirror-history "^1.3.0"
+    prosemirror-inputrules "^1.2.0"
+    prosemirror-keymap "^1.2.0"
+    prosemirror-menu "^1.2.1"
+    prosemirror-schema-basic "^1.2.0"
+    prosemirror-schema-list "^1.2.1"
+    prosemirror-state "^1.4.1"
+    prosemirror-tables "^1.2.5"
     rxjs "^6.6.6"
     tslib "^2.1.0"
     zone.js "~0.11.4"
 
-"@vendure/asset-server-plugin@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/asset-server-plugin/-/asset-server-plugin-1.7.4.tgz#8572c365a0c44c0d3cb297a4bb31231800c0d8bb"
-  integrity sha512-JJrblFOlUkWvtfjhKQv6F7yjPc99AkDz47jLY7wkQeBoUafNmqa2VwgrpXX5zpjMsakmIXNXmV4exDO8bdEZnA==
+"@vendure/asset-server-plugin@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/asset-server-plugin/-/asset-server-plugin-1.8.3.tgz#a8c79d712a16e8a7174c07c4333c243f39dc75d4"
+  integrity sha512-OUTYd0RMFyukey41wnxM221qQNoOixtT1yFxBYsJgOTTyIRPE+wIvhtXcmNJsNeJcsHaeBTTb1RxvkTIQK601w==
   dependencies:
     file-type "^16.2.0"
     fs-extra "^10.0.0"
-    sharp "~0.30.7"
+    sharp "~0.31.2"
 
-"@vendure/common@^1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.7.4.tgz#8b31f5dff2db6068f0cc88eb4d0283a071bb88d2"
-  integrity sha512-+BML2376AWvOsTOiE4PkMURqmviMgOsFa7v2Fxsw2DHzOwVD6sJbjeG+m1w/pkQcpORjaAigIlbMQeiuVyTBoA==
+"@vendure/common@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/common/-/common-1.8.3.tgz#10b7b18221451eecf17a6e2ba2008e065003f81f"
+  integrity sha512-PnLuxn2ARqYNeo6eqF00XD2YwNhMG4Ukz6Oto9JxBXgIFaVTtY4n9WKikMjd2Oc2zN5oartUbzW4Q6OkpBfOHg==
 
-"@vendure/core@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/core/-/core-1.7.4.tgz#1d546413345c50d4aa82203fb91b3c92f2db5aa0"
-  integrity sha512-PGbF/86yaC15jc1VPxPNAHHFbp2sXoer6plpa+9/yZDNchM6OJnPGlXFxRqfcNWP3sVu9gMqheyloNWC7592rA==
+"@vendure/core@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/core/-/core-1.8.3.tgz#b128e889684615b39acffa3210bfb0818fadb46b"
+  integrity sha512-FeTSuBQ4JWOpsh4PZd5ozamAsyxAnUYdqkp2R2kgwkjEm0mzkdtSRdzJ1Qu+EYtgLpjtOu08exri8pqityjUMQ==
   dependencies:
     "@graphql-tools/stitch" "^7.5.3"
     "@nestjs/common" "7.6.17"
@@ -2667,9 +2668,9 @@
     "@nestjs/testing" "7.6.17"
     "@nestjs/typeorm" "7.1.5"
     "@types/fs-extra" "^9.0.1"
-    "@vendure/common" "^1.7.4"
+    "@vendure/common" "^1.8.3"
     apollo-server-express "2.24.1"
-    bcrypt "^5.0.0"
+    bcrypt "^5.1.0"
     body-parser "^1.19.0"
     chalk "^4.1.0"
     commander "^7.1.0"
@@ -2696,10 +2697,10 @@
     rxjs "^6.6.3"
     typeorm "0.2.45"
 
-"@vendure/email-plugin@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/email-plugin/-/email-plugin-1.7.4.tgz#a18b811e95b7ce7d8977f308875286aa4addef95"
-  integrity sha512-JB0PBBKUGgSdRHjFetykRPDdSjBZAmmOv/sytt1ooBf+gaRkl/tKhalR+V4PwhpqH5UpHTSvoHCzMMwf8gkKjQ==
+"@vendure/email-plugin@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/email-plugin/-/email-plugin-1.8.3.tgz#caf897758908c368a2066004d987f79815310743"
+  integrity sha512-S4NpF/O9Fvj+qcOriHsXOz5NfO4eEPWL+Bh4zqIcRb5w0QvxOWhfKhQogey8Ir8kHbu4nxSAPV1jqeK3gUKaDw==
   dependencies:
     "@types/nodemailer" "^6.4.0"
     dateformat "^3.0.3"
@@ -2709,18 +2710,18 @@
     mjml "^4.7.1"
     nodemailer "^6.4.13"
 
-"@vendure/payments-plugin@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/payments-plugin/-/payments-plugin-1.7.4.tgz#278a156e36daa11217c9b9695a029e226872c53d"
-  integrity sha512-zPmYPIrpdkXqK224SK5sOTcJX9CF8lVjiq5v1xtxIqWUBvgUYb2amFx49u5N8eSzDCEL4k/Iv4fDX8r4IrqhYw==
+"@vendure/payments-plugin@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/payments-plugin/-/payments-plugin-1.8.3.tgz#87f43ecb894abe67306098444e843b7fa93ad18d"
+  integrity sha512-essRcAXqtn+cC6NFnYVcKThCl2ja6asuWCraChoHMyivaGQ2NuZ7B27sY4KGNk2VM+QGNukUkMLd9mqZjyXclA==
 
-"@vendure/testing@^1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/testing/-/testing-1.7.4.tgz#3f4ad264b8f1a2c30cb650fcc7acb24de8701099"
-  integrity sha512-T7wiVA+3je8dmWlwIrRv7ZDa2w+sPzFPv7i4PikXiiEYvYK5xeqKzOqhmvLNbrycF5XT6HMRDA6B8GvrwxNwBw==
+"@vendure/testing@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/testing/-/testing-1.8.3.tgz#3b8c09fa32de2ebc0e0fc28d1530cb6cf43d5bd4"
+  integrity sha512-XlMR+FvdPzvFbsldNgZMIljjZKBb3hYZprNA+Oo3xRz2sbfp/80X1iE1ro5QclRWm0Cm/oL7yf+2f2NzmFj5KQ==
   dependencies:
     "@types/node-fetch" "^2.5.4"
-    "@vendure/common" "^1.7.4"
+    "@vendure/common" "^1.8.3"
     faker "^4.1.0"
     form-data "^3.0.0"
     graphql "15.5.1"
@@ -2728,17 +2729,17 @@
     node-fetch "^2.6.0"
     sql.js "1.3.2"
 
-"@vendure/ui-devkit@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@vendure/ui-devkit/-/ui-devkit-1.7.4.tgz#ad672f3e3ab1ed01250b317d5f501bdec9f06648"
-  integrity sha512-RGDEWbydTn57s/k/SnC9sHol9F8CzhKHncVfQuM1jw+P1volVFON4Ck1QXnkC5m2c4Sk5sX9j8ljwdRt8rO/oQ==
+"@vendure/ui-devkit@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@vendure/ui-devkit/-/ui-devkit-1.8.3.tgz#f8a3bca17158dc9fba9f44b745af52283b742328"
+  integrity sha512-9CMye47BStxbPv/wNo9gO+8J8iFCv1bAXX3t8KfUU/BJKKf14QECtLjLfxTnJSL0sDHZJFGOgAIB3zo/yKND1w==
   dependencies:
     "@angular-devkit/build-angular" "12.2.16"
     "@angular/cli" "12.2.16"
     "@angular/compiler" "12.2.16"
     "@angular/compiler-cli" "12.2.16"
-    "@vendure/admin-ui" "^1.7.4"
-    "@vendure/common" "^1.7.4"
+    "@vendure/admin-ui" "^1.8.3"
+    "@vendure/common" "^1.8.3"
     chalk "^4.1.0"
     chokidar "^3.5.1"
     fs-extra "^10.0.0"
@@ -3668,13 +3669,13 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bcrypt@^5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-5.0.1.tgz#f1a2c20f208e2ccdceea4433df0c8b2c54ecdf71"
-  integrity sha512-9BTgmrhZM2t1bNuDtrtIMVSmmxZBrJ71n8Wg+YgdjHuIWYF7SjjmCPZFB+/5i/o/PIeRpwVJR3P+NrpIItUjqw==
+bcrypt@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-5.1.0.tgz#bbb27665dbc400480a524d8991ac7434e8529e17"
+  integrity sha512-RHBS7HI5N5tEnGTmtR/pppX0mmDSBpQ4aCBsj7CEQfYXDcO74A8sIBYcJMuCsis2E81zDxeENYhv66oZwLiA+Q==
   dependencies:
-    "@mapbox/node-pre-gyp" "^1.0.0"
-    node-addon-api "^3.1.0"
+    "@mapbox/node-pre-gyp" "^1.0.10"
+    node-addon-api "^5.0.0"
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -9014,7 +9015,7 @@ node-abi@^3.3.0:
   dependencies:
     semver "^7.3.5"
 
-node-addon-api@^3.0.0, node-addon-api@^3.1.0:
+node-addon-api@^3.0.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-3.2.1.tgz#81325e0a2117789c0128dab65e7e38f07ceba161"
   integrity sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==
@@ -10457,7 +10458,7 @@ prop-types@^15.7.2:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-prosemirror-commands@^1.0.0, prosemirror-commands@^1.1.7:
+prosemirror-commands@^1.0.0, prosemirror-commands@^1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.3.1.tgz#926c88801eebaa50363d4658850b41406d375a31"
   integrity sha512-XTporPgoECkOQACVw0JTe3RZGi+fls3/byqt+tXwGTkD7qLuB4KdVrJamDMJf4kfKga3uB8hZ+kUUyZ5oWpnfg==
@@ -10466,16 +10467,16 @@ prosemirror-commands@^1.0.0, prosemirror-commands@^1.1.7:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-dropcursor@^1.3.3:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/prosemirror-dropcursor/-/prosemirror-dropcursor-1.6.0.tgz#35b891224f79319755cadbec0e075bba8e95a0a3"
-  integrity sha512-2vj5tYDXADpd6Acg5iuZV2/3dEBy9s3tRUju6lQPOlKYSvJd7Tsz9c4uLS+L9ZCJndyW0EBrT+PadarHa1G30Q==
+prosemirror-dropcursor@^1.6.0:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/prosemirror-dropcursor/-/prosemirror-dropcursor-1.6.1.tgz#31f696172105f232bd17543ccf305e0f33e59d1d"
+  integrity sha512-LtyqQpkIknaT7NnZl3vDr3TpkNcG4ABvGRXx37XJ8tJNUGtcrZBh40A0344rDwlRTfUEmynQS/grUsoSWz+HgA==
   dependencies:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.1.0"
     prosemirror-view "^1.1.0"
 
-prosemirror-gapcursor@^1.1.5:
+prosemirror-gapcursor@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/prosemirror-gapcursor/-/prosemirror-gapcursor-1.3.1.tgz#8cfd874592e4504d63720e14ed680c7866e64554"
   integrity sha512-GKTeE7ZoMsx5uVfc51/ouwMFPq0o8YrZ7Hx4jTF4EeGbXxBveUV8CGv46mSHuBBeXGmvu50guoV2kSnOeZZnUA==
@@ -10485,7 +10486,7 @@ prosemirror-gapcursor@^1.1.5:
     prosemirror-state "^1.0.0"
     prosemirror-view "^1.0.0"
 
-prosemirror-history@^1.0.0, prosemirror-history@^1.1.3:
+prosemirror-history@^1.0.0, prosemirror-history@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/prosemirror-history/-/prosemirror-history-1.3.0.tgz#bf5a1ff7759aca759ddf0c722c2fa5b14fb0ddc1"
   integrity sha512-qo/9Wn4B/Bq89/YD+eNWFbAytu6dmIM85EhID+fz9Jcl9+DfGEo8TTSrRhP15+fFEoaPqpHSxlvSzSEbmlxlUA==
@@ -10494,7 +10495,7 @@ prosemirror-history@^1.0.0, prosemirror-history@^1.1.3:
     prosemirror-transform "^1.0.0"
     rope-sequence "^1.3.0"
 
-prosemirror-inputrules@^1.1.3:
+prosemirror-inputrules@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/prosemirror-inputrules/-/prosemirror-inputrules-1.2.0.tgz#476dde2dc244050b3aca00cf58a82adfad6749e7"
   integrity sha512-eAW/M/NTSSzpCOxfR8Abw6OagdG0MiDAiWHQMQveIsZtoKVYzm0AflSPq/ymqJd56/Su1YPbwy9lM13wgHOFmQ==
@@ -10502,7 +10503,7 @@ prosemirror-inputrules@^1.1.3:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-keymap@^1.0.0, prosemirror-keymap@^1.1.4:
+prosemirror-keymap@^1.0.0, prosemirror-keymap@^1.1.2, prosemirror-keymap@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/prosemirror-keymap/-/prosemirror-keymap-1.2.0.tgz#d5cc9da9b712020690a994b50b92a0e448a60bf5"
   integrity sha512-TdSfu+YyLDd54ufN/ZeD1VtBRYpgZnTPnnbY+4R08DDgs84KrIPEPbJL8t1Lm2dkljFx6xeBE26YWH3aIzkPKg==
@@ -10510,7 +10511,7 @@ prosemirror-keymap@^1.0.0, prosemirror-keymap@^1.1.4:
     prosemirror-state "^1.0.0"
     w3c-keyname "^2.2.0"
 
-prosemirror-menu@^1.1.4:
+prosemirror-menu@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prosemirror-menu/-/prosemirror-menu-1.2.1.tgz#94d99a8547b7ba5680c20e9c497ce19846ce3b2c"
   integrity sha512-sBirXxVfHalZO4f1ZS63WzewINK4182+7dOmoMeBkqYO8wqMBvBS7wQuwVOHnkMWPEh0+N0LJ856KYUN+vFkmQ==
@@ -10520,21 +10521,21 @@ prosemirror-menu@^1.1.4:
     prosemirror-history "^1.0.0"
     prosemirror-state "^1.0.0"
 
-prosemirror-model@^1.0.0, prosemirror-model@^1.16.0, prosemirror-model@^1.2.0:
+prosemirror-model@^1.0.0, prosemirror-model@^1.16.0, prosemirror-model@^1.2.0, prosemirror-model@^1.8.1:
   version "1.18.1"
   resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.18.1.tgz#1d5d6b6de7b983ee67a479dc607165fdef3935bd"
   integrity sha512-IxSVBKAEMjD7s3n8cgtwMlxAXZrC7Mlag7zYsAKDndAqnDScvSmp/UdnRTV/B33lTCVU3CCm7dyAn/rVVD0mcw==
   dependencies:
     orderedmap "^2.0.0"
 
-prosemirror-schema-basic@^1.1.2:
+prosemirror-schema-basic@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/prosemirror-schema-basic/-/prosemirror-schema-basic-1.2.0.tgz#c33ad74426efae1d41e2260371866f623e8eb10e"
   integrity sha512-JMN/ammP94ObOUS6cpIy121r0MEDN9V95mAxFVALwC4bbmhpWXGjBGHTA5LHPPdbqZKyR6Jar1Akv4Z5k9CNLw==
   dependencies:
     prosemirror-model "^1.2.0"
 
-prosemirror-schema-list@^1.1.4:
+prosemirror-schema-list@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/prosemirror-schema-list/-/prosemirror-schema-list-1.2.2.tgz#bafda37b72367d39accdcaf6ddf8fb654a16e8e5"
   integrity sha512-rd0pqSDp86p0MUMKG903g3I9VmElFkQpkZ2iOd3EOVg1vo5Cst51rAsoE+5IPy0LPXq64eGcCYlW1+JPNxOj2w==
@@ -10543,7 +10544,7 @@ prosemirror-schema-list@^1.1.4:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.4:
+prosemirror-state@^1.0.0, prosemirror-state@^1.2.2:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/prosemirror-state/-/prosemirror-state-1.4.1.tgz#f6e26c7b6a7e11206176689eb6ebbf91870953e1"
   integrity sha512-U/LBDW2gNmVa07sz/D229XigSdDQ5CLFwVB1Vb32MJbAHHhWe/6pOc721faI17tqw4pZ49i1xfY/jEZ9tbIhPg==
@@ -10551,7 +10552,27 @@ prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.4:
     prosemirror-model "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0:
+prosemirror-state@^1.3.1, prosemirror-state@^1.4.1:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/prosemirror-state/-/prosemirror-state-1.4.2.tgz#f93bd8a33a4454efab917ba9b738259d828db7e5"
+  integrity sha512-puuzLD2mz/oTdfgd8msFbe0A42j5eNudKAAPDB0+QJRw8cO1ygjLmhLrg9RvDpf87Dkd6D4t93qdef00KKNacQ==
+  dependencies:
+    prosemirror-model "^1.0.0"
+    prosemirror-transform "^1.0.0"
+    prosemirror-view "^1.27.0"
+
+prosemirror-tables@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/prosemirror-tables/-/prosemirror-tables-1.2.5.tgz#f140d4491acad4f8d9ebbdede65c933fe13f3c51"
+  integrity sha512-UB5XkWQC7YHJ2qubriOnKGxdVe+KujmoSatFyBlV8odVT/G++61XB1JXiU3ZAKJ60lTdq9WsowUhINSFeE7BoA==
+  dependencies:
+    prosemirror-keymap "^1.1.2"
+    prosemirror-model "^1.8.1"
+    prosemirror-state "^1.3.1"
+    prosemirror-transform "^1.2.1"
+    prosemirror-view "^1.13.3"
+
+prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0, prosemirror-transform@^1.2.1:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/prosemirror-transform/-/prosemirror-transform-1.7.0.tgz#a8a0768f3ee6418d26ebef435beda9d43c65e472"
   integrity sha512-O4T697Cqilw06Zvc3Wm+e237R6eZtJL/xGMliCi+Uo8VL6qHk6afz1qq0zNjT3eZMuYwnP8ZS0+YxX/tfcE9TQ==
@@ -10562,6 +10583,15 @@ prosemirror-view@^1.0.0, prosemirror-view@^1.1.0:
   version "1.28.0"
   resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.28.0.tgz#d7ebdda7cf44b2b2c0b795a7546aef0f71b50c76"
   integrity sha512-cmFK9osE7WAQptye6o/I5LjURZkSF4z3H7+LZmQtpJDZ9x4X/Z9v85oOeDvfRiX/J2rsaRYbEkWWbu3l9eBsdQ==
+  dependencies:
+    prosemirror-model "^1.16.0"
+    prosemirror-state "^1.0.0"
+    prosemirror-transform "^1.1.0"
+
+prosemirror-view@^1.13.3, prosemirror-view@^1.27.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.29.0.tgz#5a9baa32a3c520442ad443f4bbf5ec7400e55b4e"
+  integrity sha512-bifVd5aD9uCNtpLL1AyhquG/cVbNZSv+ALBxTEGYv51a6OHDhq+aOuzqq4MermNdeBdT+5uyURXCALgzk0EN5g==
   dependencies:
     prosemirror-model "^1.16.0"
     prosemirror-state "^1.0.0"
@@ -11309,10 +11339,17 @@ semver@^6.0.0, semver@^6.1.1, semver@^6.1.2, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
-semver@^7.0.0, semver@^7.1.1, semver@^7.1.2, semver@^7.3.4, semver@^7.3.5, semver@^7.3.7:
+semver@^7.0.0, semver@^7.1.1, semver@^7.1.2, semver@^7.3.4, semver@^7.3.5:
   version "7.3.7"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.7.tgz#12c5b649afdbf9049707796e22a4028814ce523f"
   integrity sha512-QlYTucUYOews+WeEujDoEGziz4K6c47V/Bd+LjSSYcA94p+DmINdf7ncaUinThfvZyu13lN9OY1XDxt8C0Tw0g==
+  dependencies:
+    lru-cache "^6.0.0"
+
+semver@^7.3.8:
+  version "7.3.8"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.8.tgz#07a78feafb3f7b32347d725e33de7e2a2df67798"
+  integrity sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==
   dependencies:
     lru-cache "^6.0.0"
 
@@ -11444,16 +11481,16 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
-sharp@~0.30.7:
-  version "0.30.7"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.30.7.tgz#7862bda98804fdd1f0d5659c85e3324b90d94c7c"
-  integrity sha512-G+MY2YW33jgflKPTXXptVO28HvNOo9G3j0MybYAHeEmby+QuD2U98dT6ueht9cv/XDqZspSpIhoSW+BAKJ7Hig==
+sharp@~0.31.2:
+  version "0.31.2"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.31.2.tgz#a8411c80512027f5a452b76d599268760c4e5dfa"
+  integrity sha512-DUdNVEXgS5A97cTagSLIIp8dUZ/lZtk78iNVZgHdHbx1qnQR7JAHY0BnXnwwH39Iw+VKhO08CTYhIg0p98vQ5Q==
   dependencies:
     color "^4.2.3"
     detect-libc "^2.0.1"
     node-addon-api "^5.0.0"
     prebuild-install "^7.1.1"
-    semver "^7.3.7"
+    semver "^7.3.8"
     simple-get "^4.0.1"
     tar-fs "^2.1.1"
     tunnel-agent "^0.6.0"
@@ -12667,103 +12704,103 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vendure-plugin-admin-ui-helpers@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-admin-ui-helpers/-/vendure-plugin-admin-ui-helpers-4.1.0.tgz#c26c54621060eaf41ca84fc090032de374025872"
-  integrity sha512-g0khmLcT6MI1/CFzHKHyDBHIqvUFf6gowAdn3Xz8+EfgbUidQoNuLlWWKl0fhKAAVyMgtz0JBdjhDkMPXuoBBg==
+vendure-plugin-admin-ui-helpers@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-admin-ui-helpers/-/vendure-plugin-admin-ui-helpers-4.3.0.tgz#fefb8675e9ddcf617341bb98e188674d22981681"
+  integrity sha512-b2oUgBtXmb8b5TN5G1Dv7JI9n3oXFQb4tDxA3Uy+uIZUyS4YwjXDUEu1/V1XZ4g5kvj72/dYg7BdsruzLdaDSQ==
 
-vendure-plugin-coinbase@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-4.1.0.tgz#4f9de4ef75ac3e73a2f07eda6be17ed0d2cb27d1"
-  integrity sha512-KIlGNfCkMEb97uh783UqkRqLWkHxV8NRZukGn471bu8S9Rw3uutMw/H0VwuX9l9lMK+KfBQujTjjzZASOmk/fA==
+vendure-plugin-coinbase@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-coinbase/-/vendure-plugin-coinbase-4.3.0.tgz#89245a2496aa8e3046775222613b5034d477d268"
+  integrity sha512-CcsWrbAFnXebaeZv4zunt3BOssMr/oNLKVHtDk2shCE2jEY3eWrhl3u847gPmkFeDh3ob/29gu+qMkLkgK5kXA==
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-dutch-postalcode@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-4.1.0.tgz#3f1a70681610283bb703c63acb763fd1f6b89617"
-  integrity sha512-yCz3CWbdS+k76CVtSfMy0neA6pgsM30A5vhkxA4gLlbwEy7eGfhR0t7pyhUFN31KZOYIsZ1Aq9G7daQcqlJm3g==
+vendure-plugin-dutch-postalcode@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-dutch-postalcode/-/vendure-plugin-dutch-postalcode-4.3.0.tgz#efa585f8e7259c596582f6c6c9a2a936ecd2c8bf"
+  integrity sha512-vUmQRbN5EUxXsaXf83CpbQpIFaf//A/Y1dgig/Y1p4YFcRoiWCJ2E2fVdolStA+37FV91GWjKAvQZgIBNsrqpw==
 
-vendure-plugin-e-boekhouden@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-4.1.0.tgz#fecb68d102b96bed9bce1358c28495ad9b118a3d"
-  integrity sha512-K+yKFEsixS3ZgakNayUIf7/QtQT5Aw4TnqAe6GT7OzhttTOatLp8W6ABzAg+mVIgU4ucz18B51imAc15HUJoyA==
+vendure-plugin-e-boekhouden@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-e-boekhouden/-/vendure-plugin-e-boekhouden-4.3.0.tgz#797983254e610265aa00f7cbb1530dbf836d77bc"
+  integrity sha512-5zgKPS+vq1BJoVm5iMO3Wm5OvSYawJJ7P/+ZnbKphD2MTLL/rDAx8MDJQwtXYk43Q5pHJDF7cZc7/2kPif1NUA==
   dependencies:
     soap "^0.43.0"
 
-vendure-plugin-goedgepickt@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-4.2.3.tgz#ac685751a95900805e67c3f366286e91f2a3fd09"
-  integrity sha512-2uvaSxSGdga6R4KvpIa+px0D9lfp2K2c2cX4PxkJUqYnW4syGpOWwjU/rlUzM+brRiktUL5lg5aW+jmhRE/+xw==
+vendure-plugin-goedgepickt@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-goedgepickt/-/vendure-plugin-goedgepickt-4.3.0.tgz#23a92670f1c4ee5527e413612456475cd13cf633"
+  integrity sha512-JCFDPXXf0ruV0PwPuimgLAQQ5NajL3kzNmoQMPcg0Wzj8mQQyz5a1mBMmpd99bbibwn4n441CYQxioTIsH7ufg==
   dependencies:
     node-fetch "2"
 
-vendure-plugin-google-cloud-tasks@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-4.1.0.tgz#41dc17df16e6e2b152bf5150a27f0787f94fee1b"
-  integrity sha512-LOqAnpY/nif8GqHCWIH6EwHg8JamkbWCIG6vZy5MlwsGer0ae3sq7a1xMcCypTwqMHcRzlu9Kvz6bA6OjDXoqw==
+vendure-plugin-google-cloud-tasks@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-cloud-tasks/-/vendure-plugin-google-cloud-tasks-4.3.0.tgz#7970b18ddfc671f23768861d54ffa1fe421b2f78"
+  integrity sha512-tBa+1hTgNC6MWX9wMdPOy4B2hqzCgcyUtvCEBPgWryfQac5Q0q6ncrj8XyKS50vxn229BlNjskdotZGGjaJzxA==
   dependencies:
     "@google-cloud/tasks" "^2.5.0"
     body-parser "^1.19.2"
 
-vendure-plugin-google-storage-assets@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-4.1.0.tgz#c207162447bf99379bc877b047dce57144fe1076"
-  integrity sha512-yGCsEIDuxeF9F/D3XRBIqjv4guzYBDGrnvgIsl/0/HZ4H6I2XvN5GBwQbrBsZnbJUy6FiDynb/oM4HgTchKE/Q==
+vendure-plugin-google-storage-assets@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-google-storage-assets/-/vendure-plugin-google-storage-assets-4.3.0.tgz#94e67993568af0fcbf90557590adc6ecfaeca75f"
+  integrity sha512-bSSri86RhH77M1LsFCFHM+WmadLGqaDYAEnQeoKKve2QgxlS7x6NoK/VhLmiIhTFxGDQE3bWEfi7TrcggA0SMA==
   dependencies:
     "@google-cloud/storage" "^5.18.2"
     tmp "^0.2.1"
 
-vendure-plugin-invoices@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-4.1.0.tgz#fd9a26a95de80ed005a56987fd8b13db13526af4"
-  integrity sha512-wEEGaN9cwwJcXv1gbrn424KaF5TNJVjrnaZP5bjalNrozruBycG1AKFKwvjivSPMz1CZDnejQ+FUnBBHR3w/IQ==
+vendure-plugin-invoices@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-invoices/-/vendure-plugin-invoices-4.3.0.tgz#eb715c62412f33960f04c4b2d2f7a78990ae8a8e"
+  integrity sha512-5P9XJEHGI1IY/Y9n1HFfksqcOgD8TVxkNPLsGW3F1CqkogFzjioWZvsNRXwPTyhNtVM1NZrJieDe1SONkvBdvw==
   dependencies:
     adm-zip "^0.5.9"
     pdf-creator-node "^2.3.4"
     tmp "^0.2.1"
 
-vendure-plugin-metrics@4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-metrics/-/vendure-plugin-metrics-4.2.2.tgz#43979bccc94a5ef960227b9fdaf0fe30ab302c30"
-  integrity sha512-GeiesersTHC2pcEOmzA8tdV2rC86XgRZDSJAK75uX4ozxVNWBaPMh6/qK7/B+hlIArUv+lQobGlA3wNG7tAAWg==
+vendure-plugin-metrics@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-metrics/-/vendure-plugin-metrics-4.3.0.tgz#2c89be29cab903bc821188231cc61243a8592d69"
+  integrity sha512-v8Jzg5rGb5Jb99rknBomHqIqsHdG97Gzs3MtoAemUPdMnUM32yeLcnqbTZHSafc/oMNR95ATAdvdr5k8d1lhpw==
   dependencies:
     chart.js "^3.9.1"
     date-fns "^2.29.3"
 
-vendure-plugin-myparcel@4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-4.1.2.tgz#4c8fdc8710a0d2083bddb5819da99278c1674038"
-  integrity sha512-EfAMujJ09Y9LXKngJ7X27jDEjaIdOOSB9KKoc2873avqcrz26HRIH/zloiveUYugM00VUYBplFUI2/81aEbtsQ==
+vendure-plugin-myparcel@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-4.3.0.tgz#ee9f0b7b852e290d633d17db43336948631b3721"
+  integrity sha512-0Kaw5XKzBRY1oUh5pvKlE8f4iH9fzXIXDlFMD3ZvaDaPxOeDlDRYKC1nsKD+IQbN1jjvQ7Znj/e6rmUG4EXkeg==
   dependencies:
     axios "^0.26.1"
 
-vendure-plugin-order-export@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-order-export/-/vendure-plugin-order-export-4.1.0.tgz#f5b2562e03f5d253c0fe49d488ae11e721d3552f"
-  integrity sha512-320U2yiF+fLhT/vMuqvy9ik0ahl0SPXlIg1NtHQc21wfKtUO7dqLKRecbYZodzmP1lMN24ZKud/jGBl1Eb5Qhw==
+vendure-plugin-order-export@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-order-export/-/vendure-plugin-order-export-4.3.0.tgz#392e3d6abe253a8c579819e5a2d8698d5ef69dfa"
+  integrity sha512-i1Jeq+HLND6PhnmOdMu3RZ/2tchc7tcGLQVvVW83Z8cc4pyOS7TqecssEf+NpJdr8cWqJq1zBSuYrf9u656FiQ==
   dependencies:
     csv-writer "^1.6.0"
 
-vendure-plugin-sendcloud@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-sendcloud/-/vendure-plugin-sendcloud-4.1.0.tgz#db56c6858427724b43825c8ad9b8bbb0d4b0fcfd"
-  integrity sha512-yK7RBofoQP1edLkMpU5rU/bK6wYVGsasHlwfOR5UiLmosSoR1GMUqUmQyfl1Bjvi6CVX1mysDxUZPL6A9jEKag==
+vendure-plugin-sendcloud@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-sendcloud/-/vendure-plugin-sendcloud-4.3.0.tgz#7f8df7562fdd3010df93d6ea67d67472cba9ee3b"
+  integrity sha512-GDzYqQQu46wQD+bTjDtsdTiX3yUkb428T1zl5e3SBfnUMDoXFw0uNZMHId6TH0bwKqGgLuoilg9XhSTG+vMGVA==
 
-vendure-plugin-shipping-by-weight-and-country@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-4.1.0.tgz#7fc47cc59ac406a212798fab2f4c27df82712af3"
-  integrity sha512-dPQHMTHhnYqr70iH629FECnvA145LA1qtX3qV1hTmpxYskusNzSEmKcecyjucLMNP6raIpvwDhuKl0Xdo+63OA==
+vendure-plugin-shipping-by-weight-and-country@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-shipping-by-weight-and-country/-/vendure-plugin-shipping-by-weight-and-country-4.3.0.tgz#7422a88a48eeb7e795408a12f90ed64c496deab6"
+  integrity sha512-zm2GEIJarXALk0Cd9QvXmPPu18Uq6ATnENPsXYBYtDMX23d3jKFZVxVt77yRsYY1OWn1jrZm2c9mYABJdspsMQ==
 
-vendure-plugin-stock-monitoring@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-stock-monitoring/-/vendure-plugin-stock-monitoring-4.1.0.tgz#f4568ee56a9d94c1cd897d47403c8b00ee11ee62"
-  integrity sha512-3Wp/rb1BXsvgI6DgfEt7dXX5cm1VdlwIp8FyGTSeAZnnpFDVOdqt3AGgpkOXywb4YFRBevnIrhN3TyS6m+aEcA==
+vendure-plugin-stock-monitoring@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-stock-monitoring/-/vendure-plugin-stock-monitoring-4.3.0.tgz#fa61d20307e54fa259089e5d2e7b7af68303ae2e"
+  integrity sha512-MDK0Q369sfzDjhKR95sS/ese3+2xPEbz1x2XN+HcOKlEFz5Q5VQw5O++wauZ34vscHE7MOpOYJ015FQw7fUVbQ==
 
-vendure-plugin-webhook@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-4.1.0.tgz#c1f836294084501672ff1189162d28abcaa673f1"
-  integrity sha512-GfUV1siZastNGg99o0ACRq2uvA774bMiTj9Bzz0Im/tptvkip9VDGQrv5vv1lRZyGLzKzlwheuLdV1sLo/iqiQ==
+vendure-plugin-webhook@4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-webhook/-/vendure-plugin-webhook-4.3.0.tgz#dc4c2cbc0473859e6431cf5fdf46be2a1b566da6"
+  integrity sha512-xom6XkH9ENPuOmUGQqv6tsog9W+p4cYd6SVb6k3cb33u7rOzO0RpgcqBwCdI8Vj8Mw7q5ekUk2BUQNVs5TRCpg==
 
 verror@1.10.0:
   version "1.10.0"
