@@ -15,7 +15,7 @@
     "script:test": "export ENV_FILE=.env.test && yarn ts-node",
     "copy": "yarn copyfiles -u 1 'src/__admin-ui/dist/**/*' dist",
     "build": "yarn tsc && yarn copy",
-    "build:admin": "yarn ts-node src/compile-admin-ui.ts",
+    "build:admin": "rimraf src/__admin-ui && yarn ts-node src/compile-admin-ui.ts",
     "generate-migration": "yarn ts-node migration generate",
     "generate-migration:test": "export ENV_FILE=.env.test && yarn generate-migration",
     "generate-migration:prod": "export ENV_FILE=.env && yarn generate-migration",
