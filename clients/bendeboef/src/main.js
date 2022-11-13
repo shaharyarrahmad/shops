@@ -1,4 +1,3 @@
-import 'buefy/dist/buefy.css';
 import Buefy from 'buefy';
 import {
   formatEuro,
