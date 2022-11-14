@@ -157,8 +157,9 @@ export default {
 </script>
 <style>
 #featured-image > img {
+  object-fit: contain;
   width: auto;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
 }
