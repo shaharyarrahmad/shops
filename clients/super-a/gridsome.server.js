@@ -27,6 +27,8 @@ module.exports = async function (api) {
       directus.request(GET_CONTENT),
     ]);
 
+    products.reverse();
+
     const featuredProducts = products.filter((p) =>
       p.facetValues.find((value) => value.code === 'featured')
     );
