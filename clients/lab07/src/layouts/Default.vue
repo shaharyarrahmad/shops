@@ -1,64 +1,48 @@
 <template>
-  <div style="font-family: 'Roboto mono', monospace">
-    <div class="grid-x grid-padding-x">
-      <div class="cell show-for-large large-3"></div>
-      <div class="cell small-12 large-6">
-        <g-link to="/">
-          <img
-            src="/logo.svg"
-            alt="LAB07 logo"
-            style="padding: 20px; width: 100%"
-          />
-        </g-link>
-      </div>
-      <div class="cell show-for-large large-3"></div>
-    </div>
-
-    <div class="grid-x grid-padding-x">
-      <div class="cell show-for-large large-3"></div>
-      <div class="cell small-12 large-6">
-        <div class="container">
-          <NavBar />
-
-          <slot />
-          <br />
-          <br />
-          <br />
-          <div class="text-center footer-text">
-            <a :href="global.instagram" target="_blank">
-              <i class="fi-social-instagram" style="font-size: 1rem"></i>
-            </a>
-            • {{ global.name }} • KVK {{ global.kvk }} • {{ global.email }} •
-            <a href="/privacy.pdf" target="_blank">privacy</a> •
-            <a href="/voorwaarden.pdf" target="_blank"
-              >algemene voorwaarden en levering</a
-            >
-            •
-            <a href="https://pinelab.studio/" target="_blank"
-              >Made with ❤ by pinelab</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="cell show-for-large large-3"></div>
-    </div>
+  <div>
+    <template id="navbar">
+      <b-navbar shadow>
+        <template #brand>
+          <b-navbar-item id="logo" tag="router-link" :to="{ path: '/' }">
+            <img src="logo.svg" />
+          </b-navbar-item>
+        </template>
+        <template #end>
+          <b-navbar-item id="category" class="mx-3"> SHOP </b-navbar-item>
+          <b-navbar-item id="category" class="mx-3"> OVER ONS </b-navbar-item>
+          <b-navbar-item id="category" class="mx-3"> CONTACT </b-navbar-item>
+          <b-navbar-item id="category" class="mx-3">
+            WINKELMAND(1)
+          </b-navbar-item>
+        </template>
+      </b-navbar>
+    </template>
   </div>
 </template>
-<script>
-import { NavBar } from 'pinelab-storefront-client/lib/ministore';
-import global from '../global.json';
 
-export default {
-  components: {
-    NavBar,
-  },
-  data: () => ({ global }),
-};
-</script>
+<script></script>
 <style>
-.footer-text {
-  color: gray;
-  font-size: 0.7rem;
-  font-family: 'Roboto mono', monospace;
+@media only screen and (max-width: 1023px) {
+  .navbar-item,
+  .navbar-link {
+    display: inline !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .navbar-item,
+  .navbar-link {
+    display: table !important;
+  }
+}
+
+a.navbar-item#category {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 20px;
+}
+
+a.navbar-item#category:hover {
+  text-decoration: underline;
 }
 </style>
