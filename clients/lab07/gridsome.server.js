@@ -8,7 +8,7 @@ module.exports = function (api) {
     // ----------------- ProductOverview ---------------------
     createPage({
       path: '/',
-      component: './src/templates/ProductsTemplate.vue',
+      component: './src/templates/Index.vue',
       context: {
         products: data.products,
         collections: data.collections,
