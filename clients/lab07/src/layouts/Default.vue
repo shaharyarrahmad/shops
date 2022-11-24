@@ -9,7 +9,6 @@
         </template>
         <template #end>
           <g-link class="mx-3 navbar-item" to="/shop/">SHOP</g-link>
-          <g-link class="mx-3 navbar-item" to="/">PORTFOLIO</g-link>
           <g-link class="mx-3 navbar-item" to="/over-ons/">OVER ONS</g-link>
           <g-link class="mx-3 navbar-item" to="/contact/">CONTACT</g-link>
           <g-link class="mx-3 navbar-item" to="/winkelmand/"
