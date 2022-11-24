@@ -1,10 +1,10 @@
 <template></template>
 <script>
-import { Product } from 'pinelab-storefront-client/lib/ministore';
+import ProductCard from 'pinelab-storefront/lib/components/ProductCard';
 
 export default {
   components: {
-    Product,
+    ProductCard,
   },
   mounted() {},
 };
