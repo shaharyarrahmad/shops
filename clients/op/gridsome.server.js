@@ -1,7 +1,8 @@
-const { setCalculatedFields } = require('pinelab-storefront-client');
+const { VendureServer } = require('pinelab-storefront');
+
 module.exports = async function (api) {
   api.createPages(async ({ createPage, graphql }) => {
-    let {
+    /*    let {
       data: {
         Vendure: {
           products: { items: products },
@@ -53,7 +54,14 @@ module.exports = async function (api) {
       }
     `);
 
-    products = products.map((p) => setCalculatedFields(p));
+    products = products.map((p) => setCalculatedFields(p));*/
+
+    const vendureServer = new VendureServer(
+      process.env.GRIDSOME_VENDURE_API,
+      process.env.GRIDSOME_VENDURE_TOKEN
+    );
+
+    const { products } = await vendureServer.getShopData();
 
     const global = {
       email: 'info@ophetboek.nl',
