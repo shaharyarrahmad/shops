@@ -14,9 +14,10 @@ module.exports = function (api) {
 
     const [
       { products, collections, productsPerCollection, availableCountries },
+      { lab07_projects: projects },
     ] = await Promise.all([
       vendureServer.getShopData(),
-      // TODO content/portfolio directus.request(GET_CONTENT),
+      directus.request(GET_CONTENT),
     ]);
 
     products.reverse();
@@ -37,6 +38,7 @@ module.exports = function (api) {
       component: './src/templates/Index.vue',
       context: {
         ...global,
+        projects,
       },
     });
 
