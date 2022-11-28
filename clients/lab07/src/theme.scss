@@ -19,11 +19,17 @@ $footer-color: $primary-invert;
 
 $navbar-height: 6rem;
 $navbar-item-img-max-height: 5rem;
-$navbar-box-shadow-color: $black;
+$navbar-box-shadow-color: black;
 $navbar-box-shadow-size: 0px -5px 10px 0px;
 
 $navbar-item-hover-background-color: none;
 $navbar-item-hover-color: none;
+
+$footer-padding: 1.5rem;
+$footer-background-color: none;
+$footer-color: black;
+
+$widescreen-enabled: false;
 
 // Lists and maps
 $custom-colors: null !default;
@@ -96,26 +102,3 @@ $colors: mergeColorMaps(
 // Import Bulma and Buefy styles
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
-
-.button {
-  @extend .is-primary;
-}
-
-h1 {
-  @extend .is-size-1;
-  @extend .mb-3;
-}
-
-h2 {
-  @extend .is-size-2;
-  @extend .mb-3;
-}
-h3 {
-  @extend .is-size-3;
-  @extend .mb-3;
-}
-
-h4 {
-  @extend .is-size-4;
-  @extend .mb-3;
-}
