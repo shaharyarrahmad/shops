@@ -1,5 +1,5 @@
 <template>
-  <div class="is-inline">
+  <span>
     <!-- Simple slot without icon  -->
     <slot
       name="simple"
@@ -134,7 +134,7 @@
         </div>
       </b-sidebar>
     </ClientOnly>
-  </div>
+  </span>
 </template>
 <script>
 import { VendureClient } from '../vendure/vendure.client';
