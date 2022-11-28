@@ -24,15 +24,15 @@ $footer-color: $primary-invert;
 
 $navbar-height: 6rem;
 $navbar-item-img-max-height: 5rem;
-$navbar-box-shadow-color: black;
+$navbar-box-shadow-color: $black;
 $navbar-box-shadow-size: 0px -5px 10px 0px;
 
 $navbar-item-hover-background-color: none;
 $navbar-item-hover-color: none;
 
 $footer-padding: 1.5rem;
-$footer-background-color: none;
-$footer-color: black;
+$footer-background-color: $white;
+$footer-color: $black;
 
 $widescreen-enabled: false;
 

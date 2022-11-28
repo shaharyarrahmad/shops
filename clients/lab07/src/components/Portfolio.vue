@@ -69,6 +69,12 @@ export default {
   box-sizing: border-box;
 }
 
+@media only screen and (max-width: 768px) {
+  .tile {
+    max-width: 400px;
+  }
+}
+
 .carousel-container {
   height: 600px;
   max-height: 600px;

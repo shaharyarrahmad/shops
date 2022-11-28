@@ -1,36 +1,52 @@
 <template>
   <div>
     <template id="navbar">
-      <b-navbar shadow fixed-top>
+      <b-navbar shadow class="is-fixed-top">
         <template #brand>
           <b-navbar-item id="logo" tag="router-link" :to="{ path: '/' }">
-            <img src="logo.svg" />
+            <img src="/logo.svg" />
           </b-navbar-item>
         </template>
         <template #end>
-          <b-navbar-item id="category" class="mx-3"> SHOP </b-navbar-item>
-          <b-navbar-item id="category" class="mx-3"> OVER ONS </b-navbar-item>
-          <b-navbar-item id="category" class="mx-3"> CONTACT </b-navbar-item>
-          <b-navbar-item id="category" class="mx-3">
-            WINKELMAND(1)
-          </b-navbar-item>
-          <!-- <Basket class="wk-basket" 
-              :vendure="$vendure" 
-              :store="$store" 
-              :emitter="$emitter" 
-
-              @cart-button-clicked="
-              $router.push('/cart/').catch((e) => {})
-            " @checkout-button-clicked="
-              $router.push('/checkout/').catch((e) => {})
-            ">
-              <i class="mdi mdi-basket-outline mdi-36px has-text-black"></i>
-            </Basket> -->
+          <g-link class="mx-3 navbar-item" to="/shop/">SHOP</g-link>
+          <g-link class="mx-3 navbar-item" to="/over-ons/">OVER ONS</g-link>
+          <g-link class="mx-3 navbar-item" to="/contact/">CONTACT</g-link>
+          <g-link class="mx-3 navbar-item" to="/winkelmand/"
+            >WINKELMAND ( 1 )</g-link
+          >
         </template>
       </b-navbar>
     </template>
 
-    <slot />
+    <div style="padding-top: 100px">
+      <template v-if="$slots.container">
+        <div class="container is-widescreen section" style="min-height: 90vh">
+          <Breadcrumb
+            v-if="$context.breadcrumb"
+            :crumbs="$context.breadcrumb"
+          />
+
+          <br />
+
+          <slot name="container" />
+        </div>
+      </template>
+
+      <slot name="fullwidth" />
+    </div>
+
+    <Consent
+      accept-text="Ja hoor"
+      decline-text="Nee"
+      thank-you-message="Bedankt!"
+      v-on:approved="activateAnalytics()"
+    >
+      <br />
+      We sturen geanonimiseerde gegevens naar Google analytics om het gebruik
+      van onze site te meten, vind je dat goed?
+      <br />
+      <a href="/privacy.pdf" target="_blank">Lees onze privacy policy</a>
+    </Consent>
 
     <footer class="footer">
       <div class="content has-text-centered">
@@ -55,38 +71,21 @@
         >
       </div>
     </footer>
-
-    <!-- <div class="grid-x grid-padding-x">
-      <div class="cell show-for-large large-3"></div>
-      <div class="cell small-12 large-6">
-        <div class="container">
-          <div class="text-center footer-text">
-            <a :href="global.instagram" target="_blank">
-              <i class="fi-social-instagram" style="font-size: 1rem"></i>
-            </a>
-            • {{ global.name }} • KVK {{ global.kvk }} • {{ global.email }} •
-            <a href="/privacy.pdf" target="_blank">privacy</a> •
-            <a href="/voorwaarden.pdf" target="_blank"
-              >algemene voorwaarden en levering</a
-            >
-            •
-            <a href="https://pinelab.studio/" target="_blank"
-              >Made with ❤ by pinelab</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="cell show-for-large large-3"></div>
-    </div> -->
   </div>
 </template>
 
 <script>
-import Basket from 'pinelab-storefront/lib/components/Basket';
+import { bootstrap } from 'vue-gtag';
+import Consent from 'pinelab-storefront/lib/components/Consent';
+import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
 
 export default {
-  components: {
-    Basket,
+  components: { Consent, Breadcrumb },
+  methods: {
+    async activateAnalytics() {
+      await bootstrap();
+      console.log('ga approved');
+    },
   },
 };
 </script>
@@ -105,36 +104,15 @@ footer {
   z-index: 30;
 }
 
-@media only screen and (max-width: 1023px) {
-  .navbar-item,
-  .navbar-link {
-    display: inline !important;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .navbar-item,
-  .navbar-link {
-    display: table !important;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  a.navbar-item#category {
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    height: 20px;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  a.navbar-item#category {
-    top: 50%;
-    height: 20px;
-  }
-}
-
-a.navbar-item#category:hover {
+a.navbar-item:hover {
   text-decoration: underline;
+}
+
+.icon {
+  display: inline !important;
+}
+
+.navbar-item {
+  height: 100%;
 }
 </style>

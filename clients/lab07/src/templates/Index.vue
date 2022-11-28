@@ -1,14 +1,16 @@
 <template>
   <DefaultLayout>
-    <div class="outer-wrapper">
-      <div class="wrapper">
-        <template v-for="product of 5">
-          <div class="slide">
-            <Portfolio> </Portfolio>
-          </div>
-        </template>
+    <template #fullwidth>
+      <div class="outer-wrapper">
+        <div class="wrapper">
+          <template v-for="product of 5">
+            <div class="slide">
+              <Portfolio> </Portfolio>
+            </div>
+          </template>
+        </div>
       </div>
-    </div>
+    </template>
   </DefaultLayout>
 </template>
 
