@@ -4,13 +4,18 @@
 // https://bulma.io/documentation/customize/variables/
 
 $text: #3f3f3f;
-$primary: $text;
+$primary: black;
 $link: #3f88c5;
 $info: $link;
 $success: #3bceac;
 $warning: #ffba08;
 $danger: #ef6461;
 $dark: $text;
+
+:root {
+  --primary: $primary;
+  --text: $text;
+}
 
 $footer-background-color: $primary;
 $footer-color: $primary-invert;
@@ -37,6 +42,9 @@ $custom-shades: null !default;
 
 $family-primary: 'Raleway';
 $family-secondary: 'Raleway';
+
+$control-radius: 0;
+$radius-small: 0;
 
 // --------------------------------- END OF CUSTOM VARS -----------------------------------------------
 
