@@ -1,5 +1,5 @@
 import Buefy from 'buefy';
-import Layout from '~/layouts/Default.vue';
+import DefaultLayout from '~/layouts/DefaultLayout.vue';
 import '@fontsource/raleway';
 import '~/theme.scss';
 import {
@@ -16,7 +16,7 @@ export default function (Vue, { router, head, isClient }) {
   Vue.use(Buefy);
   Vue.component('QuantityInput', QuantityInput);
   Vue.component('PopupImage', PopupImage);
-  Vue.component('Layout', Layout);
+  Vue.component('DefaultLayout', DefaultLayout);
   head.link.push(...preconnectLinks);
   setLabelFunction(Vue, require('../labels.json'));
   Vue.filter('euro', formatEuro);
