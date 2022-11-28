@@ -1,13 +1,27 @@
 <template>
-  <div class="is-inline">
-    <span class="icon is-large">
+  <div>
+    <!-- Simple slot without icon  -->
+    <slot
+      name="simple"
+      :nrOfItems="nrOfItems"
+      :open="
+        () => {
+          this.sideBasketOpen = true;
+        }
+      "
+    />
+
+    <!-- Default Cart icon slot -->
+    <div v-if="$slots.default" class="is-inline">
+      <span class="icon is-large">
+        <a @click="sideBasketOpen = true">
+          <slot />
+        </a>
+      </span>
       <a @click="sideBasketOpen = true">
-        <slot />
+        <span class="cart-badge">{{ nrOfItems }}</span>
       </a>
-    </span>
-    <a @click="sideBasketOpen = true">
-      <span class="cart-badge">{{ nrOfItems }}</span>
-    </a>
+    </div>
 
     <!-------------------------   Sidemenu ----------------------->
     <ClientOnly>
