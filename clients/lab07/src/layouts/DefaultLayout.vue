@@ -82,13 +82,13 @@
 </template>
 
 <script>
-// import Basket from 'pinelab-storefront/lib/components/Basket';
+import Basket from 'pinelab-storefront/lib/components/Basket';
 
-// export default {
-//   components: {
-//     Basket,
-//   }
-// }
+export default {
+  components: {
+    Basket,
+  },
+};
 </script>
 <style>
 body {
