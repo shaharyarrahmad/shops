@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="is-inline">
     <!-- Simple slot without icon  -->
     <slot
       name="simple"
@@ -12,7 +12,7 @@
     />
 
     <!-- Default Cart icon slot -->
-    <div v-if="$slots.default" class="is-inline">
+    <template v-if="$slots.default">
       <span class="icon is-large">
         <a @click="sideBasketOpen = true">
           <slot />
@@ -21,7 +21,7 @@
       <a @click="sideBasketOpen = true">
         <span class="cart-badge">{{ nrOfItems }}</span>
       </a>
-    </div>
+    </template>
 
     <!-------------------------   Sidemenu ----------------------->
     <ClientOnly>
