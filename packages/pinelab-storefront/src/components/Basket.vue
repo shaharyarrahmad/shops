@@ -2,7 +2,6 @@
   <span>
     <!-- Simple slot without icon  -->
     <slot
-      name="simple"
       :nrOfItems="nrOfItems"
       :open="
         () => {
@@ -11,7 +10,7 @@
       "
     />
 
-    <!-- Default Cart icon slot -->
+    <!--    &lt;!&ndash; Default Cart icon slot &ndash;&gt;
     <template v-if="$slots.default">
       <span class="icon is-large">
         <a @click="sideBasketOpen = true">
@@ -21,7 +20,7 @@
       <a @click="sideBasketOpen = true">
         <span class="cart-badge">{{ nrOfItems }}</span>
       </a>
-    </template>
+    </template>-->
 
     <!-------------------------   Sidemenu ----------------------->
     <ClientOnly>
@@ -44,7 +43,7 @@
               type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
               @click="
-                $emit('cart-button-clicked');
+                $router.push(cartUrl);
                 sideBasketOpen = false;
               "
             >
@@ -54,7 +53,7 @@
               type="is-fullwidth"
               icon-left="run-fast"
               @click="
-                $emit('checkout-button-clicked');
+                $router.push(cartUrl);
                 sideBasketOpen = false;
               "
             >
@@ -113,7 +112,7 @@
               type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
               @click="
-                $emit('cart-button-clicked');
+                $router.push(cartUrl);
                 sideBasketOpen = false;
               "
             >
@@ -123,7 +122,7 @@
               type="is-fullwidth"
               icon-left="run-fast"
               @click="
-                $emit('checkout-button-clicked');
+                $router.push(checkoutUrl);
                 sideBasketOpen = false;
               "
             >
@@ -141,7 +140,6 @@ import { VendureClient } from '../vendure/vendure.client';
 import { Store } from '../vendure/types';
 
 export default {
-  emits: ['cart-button-clicked', 'checkout-button-clicked'],
   props: {
     emitter: {
       type: Object,
@@ -156,6 +154,10 @@ export default {
       required: true,
     },
     cartUrl: {
+      type: [String],
+      required: true,
+    },
+    checkoutUrl: {
       type: [String],
       required: true,
     },
@@ -223,15 +225,6 @@ export default {
 };
 </script>
 <style>
-.cart-badge {
-  background: black;
-  border-radius: 50%;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 12px;
-  color: white;
-}
-
 #side-basket img {
   width: 50px;
   height: 50px;

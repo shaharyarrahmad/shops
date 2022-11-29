@@ -35,14 +35,17 @@
                 :store="$store"
                 :emitter="$emitter"
                 cartUrl="/winkelmand/"
-                @cart-button-clicked="
-                  $router.push('/winkelmand/').catch((e) => {})
-                "
-                @checkout-button-clicked="
-                  $router.push('/checkout/').catch((e) => {})
-                "
+                checkoutUrl="/checkout/"
+                v-slot="{ nrOfItems, open }"
               >
-                <i class="mdi mdi-basket mdi-36px has-text-white"></i>
+                <span class="icon is-large">
+                  <a @click="open()">
+                    <i class="mdi mdi-basket mdi-36px has-text-white"></i>
+                  </a>
+                </span>
+                <a @click="open()">
+                  <span class="cart-badge">{{ nrOfItems }}</span>
+                </a>
               </Basket>
             </div>
           </div>
@@ -469,10 +472,20 @@ a.navbar-item:hover,
 #icons .icon {
   color: white !important;
 }
+
 .consent {
   background-color: var(--loop-soft-dark) !important;
 }
+
 .consent h4 {
+  color: white;
+}
+.cart-badge {
+  background: black;
+  border-radius: 50%;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 12px;
   color: white;
 }
 </style>

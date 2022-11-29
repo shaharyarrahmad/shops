@@ -11,26 +11,19 @@
           <g-link class="mx-3 navbar-item" to="/shop/">SHOP</g-link>
           <g-link class="mx-3 navbar-item" to="/over-ons/">OVER ONS</g-link>
           <g-link class="mx-3 navbar-item" to="/contact/">CONTACT</g-link>
-          <div class="is-flex">
-            <Basket
-              :vendure="$vendure"
-              :store="$store"
-              :emitter="$emitter"
-              cartUrl="/winkelmand/"
-              @cart-button-clicked="
-                $router.push('/winkelmand/').catch((e) => {})
-              "
-              @checkout-button-clicked="
-                $router.push('/checkout/').catch((e) => {})
-              "
+          <Basket
+            class="is-flex"
+            :vendure="$vendure"
+            :store="$store"
+            :emitter="$emitter"
+            cartUrl="/winkelmand/"
+            checkoutUrl="/checkout/"
+            v-slot="{ nrOfItems, open }"
+          >
+            <a class="mx-3 navbar-item" @click="open()"
+              >WINKELMAND ({{ nrOfItems }})</a
             >
-              <template #simple="{ nrOfItems, open }">
-                <a class="mx-3 navbar-item" @click="open()"
-                  >WINKELMAND ({{ nrOfItems }})</a
-                >
-              </template>
-            </Basket>
-          </div>
+          </Basket>
         </template>
       </b-navbar>
     </template>
