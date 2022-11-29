@@ -6,9 +6,8 @@
           <b-carousel
             :repeat="false"
             :arrow-hover="true"
-            :autoplay="autoPlay"
-            :pause-hover="pauseHover"
-            :animated="animated"
+            :autoplay="false"
+            animated="slide"
           >
             <b-carousel-item v-for="(carousel, i) in carousels" :key="i">
               <b-image :src="carousel.url" />
@@ -32,9 +31,6 @@
 export default {
   data() {
     return {
-      animated: 'slide',
-      autoPlay: false,
-      pauseHover: false,
       carousels: [
         { url: require('/static/1.jpg') },
         { url: require('/static/2.jpg') },
