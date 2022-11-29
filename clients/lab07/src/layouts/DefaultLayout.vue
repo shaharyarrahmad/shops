@@ -29,7 +29,7 @@
     </template>
 
     <div style="padding-top: 100px">
-      <template v-if="$slots.container">
+      <template v-if="$slots.default">
         <div class="container is-widescreen section" style="min-height: 90vh">
           <Breadcrumb
             v-if="$context.breadcrumb"
@@ -38,7 +38,7 @@
 
           <br />
 
-          <slot name="container" />
+          <slot />
         </div>
       </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <div>
       <h3>Bedankt voor je bestelling!</h3>
       <div class="columns">
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-  </Layout>
+  </DefaultLayout>
 </template>
 <script>
 import { getOrderByCode } from 'pinelab-storefront';

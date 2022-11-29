@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <b-button tag="a" href="/shop/"> < </b-button>
     <br />
     <br />
@@ -27,7 +27,7 @@
         <div v-html="$context.product.description"></div>
       </div>
     </div>
-  </Layout>
+  </DefaultLayout>
 </template>
 <script>
 import ProductImages from 'pinelab-storefront/lib/components/ProductImages';

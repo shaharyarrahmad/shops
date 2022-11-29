@@ -4,13 +4,8 @@
       <div class="tile is-parent">
         <div class="carousel-container">
           <b-carousel
-            :arrow="arrow"
-            :repeat="arrowBoth"
-            :arrow-hover="arrowHover"
-            :icon-pack="iconPack"
-            :icon-prev="iconPrev"
-            :icon-next="iconNext"
-            :icon-size="iconSize"
+            :repeat="false"
+            :arrow-hover="true"
             :autoplay="autoPlay"
             :pause-hover="pauseHover"
             :animated="animated"

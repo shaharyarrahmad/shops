@@ -1,15 +1,13 @@
 <template>
   <DefaultLayout>
-    <template>
-      <CheckoutSteps
-        class="checkout-steps"
-        :vendure="$vendure"
-        :emitter="$emitter"
-        :store="$store"
-        :available-countries="$context.availableCountries"
-      >
-      </CheckoutSteps>
-    </template>
+    <CheckoutSteps
+      class="checkout-steps"
+      :vendure="$vendure"
+      :emitter="$emitter"
+      :store="$store"
+      :available-countries="$context.availableCountries"
+    >
+    </CheckoutSteps>
   </DefaultLayout>
 </template>
 <script>

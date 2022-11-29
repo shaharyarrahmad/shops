@@ -1,36 +1,34 @@
 <template>
   <DefaultLayout>
-    <template #container>
-      <ProductFilter
-        :collections="$context.collections"
-        no-collection-url="/shop/"
-        :selected-collection="$context.collection"
-      />
+    <ProductFilter
+      :collections="$context.collections"
+      no-collection-url="/shop/"
+      :selected-collection="$context.collection"
+    />
 
-      <br />
-      <div v-if="$context.collection">
-        <h1 class="is-size-1">{{ $context.collection.name }}</h1>
-        <p
-          v-if="$context.collection.description"
-          v-html="$context.collection.description"
-        ></p>
-      </div>
-      <br />
+    <br />
+    <div v-if="$context.collection">
+      <h1 class="is-size-1">{{ $context.collection.name }}</h1>
+      <p
+        v-if="$context.collection.description"
+        v-html="$context.collection.description"
+      ></p>
+    </div>
+    <br />
 
-      <div class="columns is-multiline is-mobile">
-        <div
-          class="column is-half-mobile is-one-quarter-tablet mb-4"
-          v-for="product of $context.products"
-          :key="product.slug"
-        >
-          <ProductCard
-            :product="product"
-            buy-label="In winkelmand"
-            product-url-prefix="/shop/"
-          />
-        </div>
+    <div class="columns is-multiline is-mobile">
+      <div
+        class="column is-half-mobile is-one-quarter-tablet mb-4"
+        v-for="product of $context.products"
+        :key="product.slug"
+      >
+        <ProductCard
+          :product="product"
+          buy-label="In winkelmand"
+          product-url-prefix="/shop/"
+        />
       </div>
-    </template>
+    </div>
   </DefaultLayout>
 </template>
 <script>

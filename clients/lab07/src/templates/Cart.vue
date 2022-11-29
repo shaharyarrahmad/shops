@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <DefaultLayout>
     <div>
       <div
         v-if="activeOrder && activeOrder.lines && activeOrder.lines.length > 0"
@@ -40,7 +40,7 @@
         Je hebt nog niks in je winkelmand...
       </div>
     </div>
-  </Layout>
+  </DefaultLayout>
 </template>
 <script>
 import CartItemsTable from 'pinelab-storefront/lib/components/CartItemsTable';
