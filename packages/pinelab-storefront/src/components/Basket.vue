@@ -1,13 +1,26 @@
 <template>
-  <div class="is-inline">
-    <span class="icon is-large">
+  <span>
+    <!-- Simple slot without icon  -->
+    <slot
+      :nrOfItems="nrOfItems"
+      :open="
+        () => {
+          this.sideBasketOpen = true;
+        }
+      "
+    />
+
+    <!--    &lt;!&ndash; Default Cart icon slot &ndash;&gt;
+    <template v-if="$slots.default">
+      <span class="icon is-large">
+        <a @click="sideBasketOpen = true">
+          <slot />
+        </a>
+      </span>
       <a @click="sideBasketOpen = true">
-        <slot />
+        <span class="cart-badge">{{ nrOfItems }}</span>
       </a>
-    </span>
-    <a @click="sideBasketOpen = true">
-      <span class="cart-badge">{{ nrOfItems }}</span>
-    </a>
+    </template>-->
 
     <!-------------------------   Sidemenu ----------------------->
     <ClientOnly>
@@ -30,7 +43,7 @@
               type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
               @click="
-                $emit('cart-button-clicked');
+                $router.push(cartUrl);
                 sideBasketOpen = false;
               "
             >
@@ -40,7 +53,7 @@
               type="is-fullwidth"
               icon-left="run-fast"
               @click="
-                $emit('checkout-button-clicked');
+                $router.push(cartUrl);
                 sideBasketOpen = false;
               "
             >
@@ -99,7 +112,7 @@
               type="is-outlined is-fullwidth mb-2"
               icon-left="basket"
               @click="
-                $emit('cart-button-clicked');
+                $router.push(cartUrl);
                 sideBasketOpen = false;
               "
             >
@@ -109,7 +122,7 @@
               type="is-fullwidth"
               icon-left="run-fast"
               @click="
-                $emit('checkout-button-clicked');
+                $router.push(checkoutUrl);
                 sideBasketOpen = false;
               "
             >
@@ -120,14 +133,13 @@
         </div>
       </b-sidebar>
     </ClientOnly>
-  </div>
+  </span>
 </template>
 <script>
 import { VendureClient } from '../vendure/vendure.client';
 import { Store } from '../vendure/types';
 
 export default {
-  emits: ['cart-button-clicked', 'checkout-button-clicked'],
   props: {
     emitter: {
       type: Object,
@@ -142,6 +154,10 @@ export default {
       required: true,
     },
     cartUrl: {
+      type: [String],
+      required: true,
+    },
+    checkoutUrl: {
       type: [String],
       required: true,
     },
@@ -209,15 +225,6 @@ export default {
 };
 </script>
 <style>
-.cart-badge {
-  background: black;
-  border-radius: 50%;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 12px;
-  color: white;
-}
-
 #side-basket img {
   width: 50px;
   height: 50px;

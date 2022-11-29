@@ -110,3 +110,7 @@ $colors: mergeColorMaps(
 // Import Bulma and Buefy styles
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
+
+h3 {
+  @extend .is-size-3;
+}

@@ -11,9 +11,19 @@
           <g-link class="mx-3 navbar-item" to="/shop/">SHOP</g-link>
           <g-link class="mx-3 navbar-item" to="/over-ons/">OVER ONS</g-link>
           <g-link class="mx-3 navbar-item" to="/contact/">CONTACT</g-link>
-          <g-link class="mx-3 navbar-item" to="/winkelmand/"
-            >WINKELMAND ( 1 )</g-link
+          <Basket
+            class="is-flex"
+            :vendure="$vendure"
+            :store="$store"
+            :emitter="$emitter"
+            cartUrl="/winkelmand/"
+            checkoutUrl="/checkout/"
+            v-slot="{ nrOfItems, open }"
           >
+            <a class="mx-3 navbar-item" @click="open()"
+              >WINKELMAND ({{ nrOfItems }})</a
+            >
+          </Basket>
         </template>
       </b-navbar>
     </template>
@@ -57,18 +67,18 @@
         </g-link>
         • LAB07 • KVK 01177713 •
         <g-link to="mailto:info@saskiawagenvoortartwork.nl" target="_blank"
-          >info@saskiawagenvoortartwork.nl</g-link
-        >
+          >info@saskiawagenvoortartwork.nl
+        </g-link>
         •
         <g-link to="/privacy.pdf" target="_blank">privacy</g-link>
         •
         <g-link to="/voorwaarden.pdf" target="_blank"
-          >algemene voorwaarden en levering</g-link
-        >
+          >algemene voorwaarden en levering
+        </g-link>
         •
         <g-link to="https://pinelab.studio/" target="_blank"
-          >Made with ❤ by pinelab</g-link
-        >
+          >Made with ❤ by pinelab
+        </g-link>
       </div>
     </footer>
   </div>
@@ -78,14 +88,18 @@
 import { bootstrap } from 'vue-gtag';
 import Consent from 'pinelab-storefront/lib/components/Consent';
 import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
+import Basket from 'pinelab-storefront/lib/components/Basket';
 
 export default {
-  components: { Consent, Breadcrumb },
+  components: { Consent, Breadcrumb, Basket },
   methods: {
     async activateAnalytics() {
       await bootstrap();
       console.log('ga approved');
     },
+  },
+  async mounted() {
+    await this.$vendure.getActiveOrder();
   },
 };
 </script>
@@ -108,11 +122,7 @@ a.navbar-item:hover {
   text-decoration: underline;
 }
 
-.icon {
-  display: inline !important;
-}
-
-.navbar-item {
-  height: 100%;
+#side-basket table {
+  width: 100%;
 }
 </style>
