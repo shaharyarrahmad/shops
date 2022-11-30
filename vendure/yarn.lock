@@ -12750,10 +12750,10 @@ vendure-plugin-metrics@4.3.0:
     chart.js "^3.9.1"
     date-fns "^2.29.3"
 
-vendure-plugin-myparcel@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-4.3.0.tgz#ee9f0b7b852e290d633d17db43336948631b3721"
-  integrity sha512-0Kaw5XKzBRY1oUh5pvKlE8f4iH9fzXIXDlFMD3ZvaDaPxOeDlDRYKC1nsKD+IQbN1jjvQ7Znj/e6rmUG4EXkeg==
+vendure-plugin-myparcel@4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/vendure-plugin-myparcel/-/vendure-plugin-myparcel-4.4.0.tgz#51165c4e074e64e6187f190a3b90e6fedcb18d17"
+  integrity sha512-sTcd4b9V920xgLCEGOYpzO3wNPo/dLaEK3cCZ5OA6ENAJ3lUoSOJsjl3fzw+kh0n1ONETONAjacfLlIUv0uFPQ==
   dependencies:
     axios "^0.26.1"
 
