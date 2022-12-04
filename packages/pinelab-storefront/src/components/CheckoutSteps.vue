@@ -18,7 +18,6 @@
         <br />
         <CustomerDetailsForm
           :available-countries="availableCountries"
-          :vendure="vendure"
           @back="$router.go(-1)"
           @submit="gotToShipping()"
         ></CustomerDetailsForm>
@@ -56,8 +55,6 @@
           <div class="column is-6">
             <h3>{{ $l('shipping.page-title') }}</h3>
             <SelectShippingForm
-              :vendure="vendure"
-              :store="store"
               :shipping-methods="shippingMethods"
               :pickup-points-enabled="true"
             />
@@ -67,7 +64,6 @@
               <template #middle>
                 <CouponInput
                   class="pt-2"
-                  :vendure="vendure"
                   :applied-coupons="activeOrder.couponCodes"
                 />
               </template>
@@ -247,23 +243,8 @@ import OrderSummary from '../components/OrderSummary';
 import AddressDisplay from '../components/AddressDisplay';
 import CartItemsTable from '../components/CartItemsTable';
 import { startPayment } from '../util/payment.util';
-import { VendureClient } from '../vendure/vendure.client';
-import { Store } from '../vendure/types';
-
 export default {
   props: {
-    vendure: {
-      type: VendureClient,
-      required: true,
-    },
-    emitter: {
-      type: Object,
-      required: true,
-    },
-    store: {
-      type: [Store, Object],
-      required: true,
-    },
     availableCountries: {
       type: Array,
       required: true,
@@ -289,10 +270,10 @@ export default {
   },
   computed: {
     activeOrder() {
-      return this.store?.activeOrder || {};
+      return this.$store?.activeOrder || {};
     },
     hasShippingSelected() {
-      return !!this.store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.id;
+      return !!this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.id;
     },
   },
   data() {
@@ -315,7 +296,7 @@ export default {
     },
     async gotToShipping() {
       this.goToStep(1);
-      this.shippingMethods = await this.vendure.getEligibleShippingMethods();
+      this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     },
     async choosePayment() {
       if (this.paymentMethods.length > 1) {
@@ -327,9 +308,9 @@ export default {
     async startPayment() {
       this.loadingPayment = true;
       try {
-        await startPayment(this.vendure, this.selectedPaymentMethod);
+        await startPayment(this.$vendure, this.selectedPaymentMethod);
       } catch (e) {
-        this.emitter.emit('error', e);
+        this.$emitter.emit('error', e);
       } finally {
         this.loadingPayment = false;
       }

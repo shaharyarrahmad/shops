@@ -47,22 +47,15 @@
   </ClientOnly>
 </template>
 <script>
-import { Store } from '../vendure/types';
-import { VendureClient } from '../vendure/vendure.client';
-
 export default {
   props: {
     disabled: Boolean,
-    activeOrder: {
-      type: Store['activeOrder'],
-      required: true,
-    },
-    vendure: {
-      type: VendureClient,
-      required: false,
+  },
+  computed: {
+    activeOrder() {
+      return this.$store?.activeOrder;
     },
   },
-  computed: {},
   data() {
     return {
       couponCode: undefined,
@@ -72,7 +65,7 @@ export default {
   },
   methods: {
     async remove(lineId) {
-      await this.vendure.adjustOrderLine(lineId, 0);
+      await this.$vendure.adjustOrderLine(lineId, 0);
     },
     getThumbnail(asset) {
       return asset?.thumbnail;

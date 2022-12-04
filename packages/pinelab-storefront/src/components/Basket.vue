@@ -10,18 +10,6 @@
       "
     />
 
-    <!--    &lt;!&ndash; Default Cart icon slot &ndash;&gt;
-    <template v-if="$slots.default">
-      <span class="icon is-large">
-        <a @click="sideBasketOpen = true">
-          <slot />
-        </a>
-      </span>
-      <a @click="sideBasketOpen = true">
-        <span class="cart-badge">{{ nrOfItems }}</span>
-      </a>
-    </template>-->
-
     <!-------------------------   Sidemenu ----------------------->
     <ClientOnly>
       <b-sidebar
@@ -83,7 +71,7 @@
                         class="is-clickable"
                         size="is-small"
                         icon="close"
-                        @click.native="vendure.adjustOrderLine(line.id, 0)"
+                        @click.native="$vendure.adjustOrderLine(line.id, 0)"
                       />
                     </td>
                   </tr>
@@ -136,23 +124,8 @@
   </span>
 </template>
 <script>
-import { VendureClient } from '../vendure/vendure.client';
-import { Store } from '../vendure/types';
-
 export default {
   props: {
-    emitter: {
-      type: Object,
-      required: true,
-    },
-    vendure: {
-      type: VendureClient,
-      required: true,
-    },
-    store: {
-      type: [Store, Object],
-      required: true,
-    },
     cartUrl: {
       type: [String],
       required: true,
@@ -168,29 +141,29 @@ export default {
     };
   },
   async mounted() {
-    this.emitter.on('productAdded', this.showNotificationBar);
-    this.emitter.on('error', this.showError);
+    this.$emitter.on('productAdded', this.showNotificationBar);
+    this.$emitter.on('error', this.showError);
   },
   beforeDestroy() {
-    this.emitter.off('productAdded', this.showNotificationBar);
-    this.emitter.off('error', this.showError);
+    this.$emitter.off('productAdded', this.showNotificationBar);
+    this.$emitter.off('error', this.showError);
   },
   computed: {
     nrOfItems() {
-      if (this.store?.activeOrder?.lines?.length === 0) {
+      if (this.$store?.activeOrder?.lines?.length === 0) {
         return 0;
       }
       return (
-        this.store?.activeOrder?.lines
+        this.$store?.activeOrder?.lines
           ?.map((l) => l.quantity)
           ?.reduce((quantity1, quantity2) => quantity1 + quantity2) || 0
       );
     },
     lines() {
-      return this.store?.activeOrder?.lines || [];
+      return this.$store?.activeOrder?.lines || [];
     },
     order() {
-      return this.store?.activeOrder || {};
+      return this.$store?.activeOrder || {};
     },
   },
   methods: {
