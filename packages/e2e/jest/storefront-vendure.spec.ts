@@ -1,23 +1,23 @@
 import {
-  VendureServer,
-  ShopData,
+  VendureServerSideClient,
+  StaticData,
   VendureClient,
 } from '../../pinelab-storefront/src';
 import { startDevServer, TestEnv } from '../../../vendure/test/dev-server';
 import { LocalStorageMock } from './mockWindow';
 
 describe('Test pinelab-storefront to Vendure communication', () => {
-  let vendureServer: VendureServer;
+  let vendureServer: VendureServerSideClient;
   let vendureClient: VendureClient;
   const channelToken = 'default-channel';
-  let shopData: ShopData;
+  let shopData: StaticData;
   let adminClient: TestEnv['adminClient'];
   let shopClient: TestEnv['shopClient'];
   let server: TestEnv['server'];
 
   beforeAll(async () => {
     ({ adminClient, shopClient, server } = await startDevServer());
-    vendureServer = new VendureServer(
+    vendureServer = new VendureServerSideClient(
       'http://localhost:3000/shop-api',
       channelToken
     );

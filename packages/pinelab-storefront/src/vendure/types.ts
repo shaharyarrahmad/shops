@@ -7,11 +7,18 @@ import {
 import { Emitter } from 'mitt';
 import { VendureClient } from './vendure.client';
 
-export interface ShopData {
+/**
+ * Atleast T, but it maybe has more properties.
+ * This allows you to access custom graphql fields
+ * that are passed to the VendureClient or the ServerSideVendureClient
+ */
+type Atleast<T> = T & Partial<any>;
+
+export interface StaticData {
   /**
    * All products from store
    */
-  products: CalculatedProduct<ProductFieldsFragment>[];
+  products: Atleast<CalculatedProduct<ProductFieldsFragment>>[];
   /**
    * Products with variants per collection
    */

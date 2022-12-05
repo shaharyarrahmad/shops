@@ -1,28 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
 import {
-  ADD_ITEM_TO_ORDER,
-  ADJUST_ORDERLINE,
-  APPLY_COUPON_CODE,
-  CREATE_COINBASE_PAYMENT_INTENT,
-  CREATE_MOLLIE_PAYMENT_INTENT,
-  GET_ACTIVE_ORDER,
-  GET_DROP_OFF_POINTS,
-  GET_DUTCH_ADDRESS,
-  GET_ELIGIBLESHIPPINGMETHODS,
-  GET_NEXT_ORDERSTATES,
-  GET_ORDER_BY_CODE,
-  GET_PRICE_AND_STOCKLEVEL,
-  GET_PRODUCT,
-  REMOVE_ALL_ORDER_LINES,
-  REMOVE_COUPON_CODE,
-  SET_CUSTOMER_FOR_ORDER,
-  SET_ORDERBILLINGADDRESS,
-  SET_ORDERSHIPPINGADDRESS,
-  SET_ORDERSHIPPINGMETHOD,
-  SET_PICKUP_LOCATION_FOR_ORDER,
-  TRANSITION_ORDER_TO_STATE,
-} from './vendure.queries';
-import {
   ActiveOrderQuery,
   AdditemToOrderMutation,
   AdditemToOrderMutationVariables,
@@ -69,12 +46,13 @@ import {
   TransitionOrderToStateMutationVariables,
   UpdateOrderCustomFieldsInput,
 } from '../generated/graphql';
-import { CalculatedProduct, Store, VendureError } from './types';
-import { setCalculatedFields } from '../util/product.util';
+import { Store, VendureError } from './types';
+import { getVendureQueries } from './vendure.queries';
 
 export class VendureClient {
   client: GraphQLClient;
   tokenName = 'vendure-auth-token';
+  private queries: ReturnType<typeof getVendureQueries>;
 
   constructor(
     private store: Store,
@@ -84,11 +62,12 @@ export class VendureClient {
     this.client = new GraphQLClient(url, {
       headers: { 'vendure-token': token },
     });
+    this.queries = getVendureQueries();
   }
 
   async getActiveOrder(): Promise<OrderFieldsFragment | undefined> {
     const { activeOrder } = await this.request<ActiveOrderQuery>(
-      GET_ACTIVE_ORDER
+      this.queries.GET_ACTIVE_ORDER
     );
     this.store.activeOrder = activeOrder;
     return activeOrder;
@@ -105,23 +84,10 @@ export class VendureClient {
     } = await this.request<
       StockLevelProductsQuery,
       StockLevelProductsQueryVariables
-    >(GET_PRICE_AND_STOCKLEVEL, {
+    >(this.queries.GET_PRICE_AND_STOCKLEVEL, {
       options: { filter: { id: { in: productIds } } },
     });
     return items;
-  }
-
-  async getProduct(
-    slug: string
-  ): Promise<CalculatedProduct<ProductQuery['product']>> {
-    const { product } = await this.request<ProductQuery, ProductQueryVariables>(
-      GET_PRODUCT,
-      { slug }
-    );
-    if (!product) {
-      throw Error(`No product found for slug ${slug}`);
-    }
-    return setCalculatedFields(product);
   }
 
   @NoConcurrentRequests()
@@ -132,7 +98,7 @@ export class VendureClient {
     const { addItemToOrder } = await this.request<
       AdditemToOrderMutation,
       AdditemToOrderMutationVariables
-    >(ADD_ITEM_TO_ORDER, {
+    >(this.queries.ADD_ITEM_TO_ORDER, {
       productVariantId,
       quantity,
     });
@@ -168,7 +134,7 @@ export class VendureClient {
   > {
     const { eligibleShippingMethods } =
       await this.request<EligibleShippingMethodsQuery>(
-        GET_ELIGIBLESHIPPINGMETHODS
+        this.queries.GET_ELIGIBLESHIPPINGMETHODS
       );
     return eligibleShippingMethods;
   }
@@ -179,7 +145,7 @@ export class VendureClient {
     const { setOrderShippingMethod } = await this.request<
       SetOrderShippingMethodMutation,
       SetOrderShippingMethodMutationVariables
-    >(SET_ORDERSHIPPINGMETHOD, {
+    >(this.queries.SET_ORDERSHIPPINGMETHOD, {
       shippingMethodId,
     });
     await this.validateResult(setOrderShippingMethod);
@@ -195,7 +161,7 @@ export class VendureClient {
     const { adjustOrderLine } = await this.request<
       AdjustOrderLineMutation,
       AdjustOrderLineMutationVariables
-    >(ADJUST_ORDERLINE, { orderLineId, quantity });
+    >(this.queries.ADJUST_ORDERLINE, { orderLineId, quantity });
     await this.validateResult(adjustOrderLine);
     this.store.activeOrder = adjustOrderLine as OrderFieldsFragment;
     return adjustOrderLine as OrderFieldsFragment;
@@ -207,7 +173,7 @@ export class VendureClient {
     const { setCustomerForOrder } = await this.request<
       SetCustomerForOrderMutation,
       SetCustomerForOrderMutationVariables
-    >(SET_CUSTOMER_FOR_ORDER, { input });
+    >(this.queries.SET_CUSTOMER_FOR_ORDER, { input });
     await this.validateResult(setCustomerForOrder);
     this.store.activeOrder = setCustomerForOrder as OrderFieldsFragment;
     return setCustomerForOrder as OrderFieldsFragment;
@@ -219,7 +185,7 @@ export class VendureClient {
     const { setOrderShippingAddress: order } = await this.request<
       SetOrderShippingAddressMutation,
       SetOrderShippingAddressMutationVariables
-    >(SET_ORDERSHIPPINGADDRESS, { input });
+    >(this.queries.SET_ORDERSHIPPINGADDRESS, { input });
     await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
@@ -231,7 +197,7 @@ export class VendureClient {
     const { setOrderBillingAddress: order } = await this.request<
       SetOrderBillingAddressMutation,
       SetOrderBillingAddressMutationVariables
-    >(SET_ORDERBILLINGADDRESS, { input });
+    >(this.queries.SET_ORDERBILLINGADDRESS, { input });
     await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
@@ -239,7 +205,7 @@ export class VendureClient {
 
   async getNextOrderStates(): Promise<string[]> {
     const { nextOrderStates } = await this.request<NextOrderStatesQuery>(
-      GET_NEXT_ORDERSTATES
+      this.queries.GET_NEXT_ORDERSTATES
     );
     return nextOrderStates;
   }
@@ -248,7 +214,7 @@ export class VendureClient {
     const { transitionOrderToState } = await this.request<
       TransitionOrderToStateMutation,
       TransitionOrderToStateMutationVariables
-    >(TRANSITION_ORDER_TO_STATE, { state });
+    >(this.queries.TRANSITION_ORDER_TO_STATE, { state });
     await this.validateResult(transitionOrderToState);
     this.store.activeOrder = transitionOrderToState as OrderFieldsFragment;
     return transitionOrderToState as OrderFieldsFragment;
@@ -258,7 +224,7 @@ export class VendureClient {
     const { createMolliePaymentIntent } = await this.request<
       CreateMolliePaymentIntentMutation,
       CreateMolliePaymentIntentMutationVariables
-    >(CREATE_MOLLIE_PAYMENT_INTENT, {
+    >(this.queries.CREATE_MOLLIE_PAYMENT_INTENT, {
       input: { paymentMethodCode: code },
     });
     await this.validateResult(createMolliePaymentIntent);
@@ -268,7 +234,7 @@ export class VendureClient {
   async createCoinbasePaymentIntent(): Promise<string> {
     const { createCoinbasePaymentIntent } =
       await this.request<CreateCoinbasePaymentIntentMutation>(
-        CREATE_COINBASE_PAYMENT_INTENT
+        this.queries.CREATE_COINBASE_PAYMENT_INTENT
       );
     await this.validateResult(createCoinbasePaymentIntent);
     return createCoinbasePaymentIntent;
@@ -278,7 +244,7 @@ export class VendureClient {
     const { orderByCode } = await this.request<
       OrderByCodeQuery,
       OrderByCodeQueryVariables
-    >(GET_ORDER_BY_CODE, { code });
+    >(this.queries.GET_ORDER_BY_CODE, { code });
     return orderByCode;
   }
 
@@ -288,7 +254,7 @@ export class VendureClient {
     const { dutchAddressLookup } = await this.request<
       DutchAddressLookupQuery,
       DutchAddressLookupQueryVariables
-    >(GET_DUTCH_ADDRESS, {
+    >(this.queries.GET_DUTCH_ADDRESS, {
       input,
     });
     return dutchAddressLookup;
@@ -298,7 +264,7 @@ export class VendureClient {
     const { applyCouponCode: order } = await this.request<
       ApplyCouponCodeMutation,
       ApplyCouponCodeMutationVariables
-    >(APPLY_COUPON_CODE, {
+    >(this.queries.APPLY_COUPON_CODE, {
       couponCode,
     });
     await this.validateResult(order);
@@ -312,7 +278,7 @@ export class VendureClient {
     const { removeCouponCode: order } = await this.request<
       RemoveCouponCodeMutation,
       RemoveCouponCodeMutationVariables
-    >(REMOVE_COUPON_CODE, {
+    >(this.queries.REMOVE_COUPON_CODE, {
       couponCode,
     });
     if (order) {
@@ -323,7 +289,9 @@ export class VendureClient {
 
   async removeAllOrderLines(): Promise<OrderFieldsFragment> {
     const { removeAllOrderLines: order } =
-      await this.request<RemoveAllOrderLinesMutation>(REMOVE_ALL_ORDER_LINES);
+      await this.request<RemoveAllOrderLinesMutation>(
+        this.queries.REMOVE_ALL_ORDER_LINES
+      );
     await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;
@@ -335,7 +303,7 @@ export class VendureClient {
     const { myparcelDropOffPoints } = await this.request<
       MyparcelDropOffPointsQuery,
       MyparcelDropOffPointsQueryVariables
-    >(GET_DROP_OFF_POINTS, { input });
+    >(this.queries.GET_DROP_OFF_POINTS, { input });
     return myparcelDropOffPoints;
   }
 
@@ -345,7 +313,7 @@ export class VendureClient {
     const { setOrderCustomFields: order } = await this.request<
       SetOrderCustomFieldsMutation,
       SetOrderCustomFieldsMutationVariables
-    >(SET_PICKUP_LOCATION_FOR_ORDER, { customFields });
+    >(this.queries.SET_PICKUP_LOCATION_FOR_ORDER, { customFields });
     await this.validateResult(order);
     this.store.activeOrder = order as OrderFieldsFragment;
     return order as OrderFieldsFragment;

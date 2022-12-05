@@ -1,9 +1,4 @@
-import {
-  GET_AVAILABLE_COUNTRIES,
-  GET_COLLECTIONS,
-  GET_PRODUCTS,
-} from './vendure.queries';
-import { GraphQLClient } from 'graphql-request';
+import { gql, GraphQLClient } from 'graphql-request';
 import {
   AllProductsQuery,
   AllProductsQueryVariables,
@@ -17,26 +12,40 @@ import {
   BasicCollection,
   CalculatedProduct,
   CollectionMap,
-  ShopData,
+  StaticData,
   SortableCollection,
 } from './types';
 import { deduplicate, setCalculatedFields } from '../util/product.util';
+import { AdditionalVendureFields, getVendureQueries } from './vendure.queries';
 
 /**
- * GraphQL server side client for fetching data from Vendure
+ * Server side Vendure client for fetching static data like collections and products
+ * This client cannot handle session aware mutations and queries like adding items to cart.
  */
-export class VendureServer {
+export class VendureServerSideClient {
   private readonly client: GraphQLClient;
+  private queries: ReturnType<typeof getVendureQueries>;
 
-  constructor(url: string, channelToken: string) {
+  constructor(
+    url: string,
+    channelToken: string,
+    additionalGraphqlFields: Pick<
+      AdditionalVendureFields,
+      'additionalCollectionFields' | 'additionalProductFields'
+    >
+  ) {
     this.client = new GraphQLClient(url, {
       headers: {
         'vendure-token': channelToken,
       },
     });
+    this.queries = getVendureQueries(additionalGraphqlFields);
   }
 
-  async getShopData(): Promise<ShopData> {
+  /**
+   * Get data like products and collections from Vendure for generating a static storefront
+   */
+  async getStaticData(): Promise<StaticData> {
     let [collectionList, allProducts, availableCountries] = await Promise.all([
       this.getAllCollections(),
       this.getAllProducts(),
@@ -67,7 +76,7 @@ export class VendureServer {
   }
 
   /**
-   * Get products of collection based on `collection.variants`
+   * Find products that belong to the given Collection
    */
   getProductsForCollection(
     collection: CollectionFieldsFragment,
@@ -87,13 +96,13 @@ export class VendureServer {
     const {
       collections: { items },
     } = await this.client.request<CollectionsQuery, CollectionsQueryVariables>(
-      GET_COLLECTIONS
+      this.queries.GET_COLLECTIONS
     );
     return items;
   }
 
   /**
-   * Get products in batches of 100
+   * Get products in batches
    */
   async getAllProducts(): Promise<ProductFieldsFragment[]> {
     const products: ProductFieldsFragment[] = [];
@@ -105,7 +114,7 @@ export class VendureServer {
       const { products: productList } = await this.client.request<
         AllProductsQuery,
         AllProductsQueryVariables
-      >(GET_PRODUCTS, {
+      >(this.queries.GET_PRODUCTS, {
         options: {
           skip,
           take,
@@ -124,7 +133,7 @@ export class VendureServer {
   > {
     const { availableCountries } =
       await this.client.request<AvailableCountriesQuery>(
-        GET_AVAILABLE_COUNTRIES
+        this.queries.GET_AVAILABLE_COUNTRIES
       );
     return availableCountries;
   }

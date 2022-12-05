@@ -23,15 +23,10 @@
   </div>
 </template>
 <script>
-import { VendureClient } from '../vendure/vendure.client';
 import { debounce } from 'debounce';
 
 export default {
   props: {
-    vendure: {
-      type: VendureClient,
-      required: true,
-    },
     appliedCoupons: Array,
   },
   computed: {
@@ -58,7 +53,7 @@ export default {
         if (!this.couponCode) {
           return;
         }
-        await this.vendure.applyCouponCode(this.couponCode);
+        await this.$vendure.applyCouponCode(this.couponCode);
         this.isInvalid = false;
         this.isApplied = true;
       } catch (error) {
@@ -69,7 +64,7 @@ export default {
       }
     },
     async removeCoupon(coupon) {
-      await this.vendure.removeCouponCode(coupon);
+      await this.$vendure.removeCouponCode(coupon);
     },
   },
   created() {
