@@ -1,7 +1,8 @@
 <template>
   <div>
-    <template id="navbar">
-      <b-navbar shadow class="is-fixed-top">
+    <Preloader v-if="showPreloader" />
+    <template>
+      <b-navbar shadow>
         <template #brand>
           <b-navbar-item id="logo" tag="router-link" :to="{ path: '/' }">
             <img src="/logo.svg" />
@@ -28,7 +29,7 @@
       </b-navbar>
     </template>
 
-    <div style="padding-top: 100px">
+    <div>
       <template v-if="$slots.default">
         <div class="container is-widescreen section" style="min-height: 90vh">
           <Breadcrumb
@@ -58,7 +59,7 @@
       <a href="/privacy.pdf" target="_blank">Lees onze privacy policy</a>
     </Consent>
 
-    <footer class="footer">
+    <footer v-if="!hideFooter" class="footer">
       <div class="content has-text-centered">
         <g-link to="https://www.instagram.com/lab_____07/" target="_blank">
           <span class="icon is-small">
@@ -89,9 +90,11 @@ import { bootstrap } from 'vue-gtag';
 import Consent from 'pinelab-storefront/lib/components/Consent';
 import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
 import Basket from 'pinelab-storefront/lib/components/Basket';
+import Preloader from '../components/Preloader.vue';
 
 export default {
-  components: { Consent, Breadcrumb, Basket },
+  props: ['hideFooter', 'showPreloader'],
+  components: { Consent, Breadcrumb, Basket, Preloader },
   methods: {
     async activateAnalytics() {
       await bootstrap();
@@ -104,25 +107,7 @@ export default {
 };
 </script>
 <style>
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-footer {
-  bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 30;
-}
-
 a.navbar-item:hover {
   text-decoration: underline;
-}
-
-#side-basket table {
-  width: 100%;
 }
 </style>

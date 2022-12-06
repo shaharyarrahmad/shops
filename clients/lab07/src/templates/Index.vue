@@ -1,11 +1,15 @@
 <template>
-  <DefaultLayout>
+  <DefaultLayout :hideFooter="true" :showPreloader="true">
     <template #fullwidth>
       <div class="outer-wrapper">
         <div class="wrapper">
-          <template v-for="product of 5">
+          <template v-for="project in $context.projects">
             <div class="slide">
-              <Portfolio> </Portfolio>
+              <Portfolio
+                :title="project.title"
+                :description="project.description"
+                :images="project.images"
+              />
             </div>
           </template>
         </div>
@@ -15,30 +19,36 @@
 </template>
 
 <style>
-.slide {
-  width: 100vw;
-  height: 100vh;
+.outer-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vh;
+  height: 100vw;
+  transform-origin: top left;
+  transform: rotate(-90deg) translateX(-100vh);
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .wrapper {
   display: flex;
   flex-direction: row;
-  width: 1000vh;
-  transform: rotate(90deg) translateY(-100vh);
+  width: fit-content;
+  height: fit-content;
   transform-origin: top left;
+  transform: rotate(90deg) translateY(-100vh);
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
-.outer-wrapper {
-  width: 100vh;
-  height: 100vw;
-  transform: rotate(-90deg) translateX(-100vh);
-  transform-origin: top left;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: absolute;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overflow: scroll;
+.slide {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ::-webkit-scrollbar {
@@ -48,6 +58,7 @@
 
 <script>
 import Portfolio from '../components/Portfolio.vue';
+
 export default {
   components: {
     Portfolio,
