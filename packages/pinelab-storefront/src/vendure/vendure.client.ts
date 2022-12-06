@@ -5,8 +5,14 @@ import {
   AdditemToOrderMutationVariables,
   AdjustOrderLineMutation,
   AdjustOrderLineMutationVariables,
+  AllProductsQuery,
+  AllProductsQueryVariables,
   ApplyCouponCodeMutation,
   ApplyCouponCodeMutationVariables,
+  AvailableCountriesQuery,
+  CollectionFieldsFragment,
+  CollectionsQuery,
+  CollectionsQueryVariables,
   CreateAddressInput,
   CreateCoinbasePaymentIntentMutation,
   CreateCustomerInput,
@@ -25,8 +31,7 @@ import {
   OrderByCodeQuery,
   OrderByCodeQueryVariables,
   OrderFieldsFragment,
-  ProductQuery,
-  ProductQueryVariables,
+  ProductFieldsFragment,
   RemoveAllOrderLinesMutation,
   RemoveCouponCodeMutation,
   RemoveCouponCodeMutationVariables,
@@ -46,23 +51,32 @@ import {
   TransitionOrderToStateMutationVariables,
   UpdateOrderCustomFieldsInput,
 } from '../generated/graphql';
-import { Store, VendureError } from './types';
-import { getVendureQueries } from './vendure.queries';
+import {
+  BasicCollection,
+  CatalogData,
+  CollectionMap,
+  Store,
+  VendureError,
+} from './types';
+import { AdditionalVendureFields, getVendureQueries } from './vendure.queries';
+import { setCalculatedFields } from '../util/product.util';
+import { getProductsForCollection } from '../util/collection.util';
 
 export class VendureClient {
   client: GraphQLClient;
   tokenName = 'vendure-auth-token';
-  private queries: ReturnType<typeof getVendureQueries>;
+  protected queries: ReturnType<typeof getVendureQueries>;
 
   constructor(
-    private store: Store,
-    private url: string,
-    private token: string
+    protected store: Store,
+    protected url: string,
+    protected channelToken: string,
+    additionalGraphqlFields?: AdditionalVendureFields
   ) {
     this.client = new GraphQLClient(url, {
-      headers: { 'vendure-token': token },
+      headers: { 'vendure-token': channelToken },
     });
-    this.queries = getVendureQueries();
+    this.queries = getVendureQueries(additionalGraphqlFields);
   }
 
   async getActiveOrder(): Promise<OrderFieldsFragment | undefined> {
@@ -108,6 +122,10 @@ export class VendureClient {
     return addItemToOrder as OrderFieldsFragment;
   }
 
+  /**
+   * Sets the first eligible shipping method with 'default' in its code
+   * If not found, it sets the first eligible method
+   */
   async setDefaultShippingMethod() {
     const methods = await this.getEligibleShippingMethods();
     const selectedShippingMethodId =
@@ -126,7 +144,6 @@ export class VendureClient {
       console.error(`No default shipping found`);
     }
     await this.setOrderShippingMethod(defaultMethod.id);
-    await this.unsetPickupLocation();
   }
 
   async getEligibleShippingMethods(): Promise<
@@ -220,44 +237,12 @@ export class VendureClient {
     return transitionOrderToState as OrderFieldsFragment;
   }
 
-  async createMolliePaymentIntent(code: string): Promise<string> {
-    const { createMolliePaymentIntent } = await this.request<
-      CreateMolliePaymentIntentMutation,
-      CreateMolliePaymentIntentMutationVariables
-    >(this.queries.CREATE_MOLLIE_PAYMENT_INTENT, {
-      input: { paymentMethodCode: code },
-    });
-    await this.validateResult(createMolliePaymentIntent);
-    return (createMolliePaymentIntent as MolliePaymentIntent).url;
-  }
-
-  async createCoinbasePaymentIntent(): Promise<string> {
-    const { createCoinbasePaymentIntent } =
-      await this.request<CreateCoinbasePaymentIntentMutation>(
-        this.queries.CREATE_COINBASE_PAYMENT_INTENT
-      );
-    await this.validateResult(createCoinbasePaymentIntent);
-    return createCoinbasePaymentIntent;
-  }
-
   async getOrderByCode(code: string): Promise<OrderFieldsFragment | undefined> {
     const { orderByCode } = await this.request<
       OrderByCodeQuery,
       OrderByCodeQueryVariables
     >(this.queries.GET_ORDER_BY_CODE, { code });
     return orderByCode;
-  }
-
-  async lookupAddress(
-    input: DutchPostalCodeInput
-  ): Promise<DutchAddressLookupQuery['dutchAddressLookup'] | undefined> {
-    const { dutchAddressLookup } = await this.request<
-      DutchAddressLookupQuery,
-      DutchAddressLookupQueryVariables
-    >(this.queries.GET_DUTCH_ADDRESS, {
-      input,
-    });
-    return dutchAddressLookup;
   }
 
   async applyCouponCode(couponCode: string): Promise<OrderFieldsFragment> {
@@ -297,41 +282,90 @@ export class VendureClient {
     return order as OrderFieldsFragment;
   }
 
-  async getDropOffPoints(
-    input: MyparcelDropOffPointInput
-  ): Promise<MyparcelDropOffPoint[]> {
-    const { myparcelDropOffPoints } = await this.request<
-      MyparcelDropOffPointsQuery,
-      MyparcelDropOffPointsQueryVariables
-    >(this.queries.GET_DROP_OFF_POINTS, { input });
-    return myparcelDropOffPoints;
+  /**
+   * Resource heavy! Fetches all products and collections from Vendure.
+   * Should only be used for SSG
+   */
+  async getCompleteCatalog(): Promise<CatalogData> {
+    let [collectionList, allProducts] = await Promise.all([
+      this.getAllCollections(),
+      this.getAllProducts(),
+    ]);
+    const products = allProducts.map((p) => setCalculatedFields(p));
+    products.map((p) => (p.soldOut = false));
+
+    const productsPerCollection: CollectionMap[] = collectionList.map(
+      (collection) => {
+        const products = getProductsForCollection(collection, allProducts);
+        return {
+          collection: { ...collection, productVariants: undefined },
+          products,
+        };
+      }
+    );
+    const collections: BasicCollection[] = collectionList.map((c) => ({
+      ...c,
+      productVariants: undefined,
+    }));
+    return {
+      products,
+      productsPerCollection,
+      collections,
+    };
   }
 
-  async setPickupLocationOnOrder(
-    customFields: UpdateOrderCustomFieldsInput
-  ): Promise<OrderFieldsFragment> {
-    const { setOrderCustomFields: order } = await this.request<
-      SetOrderCustomFieldsMutation,
-      SetOrderCustomFieldsMutationVariables
-    >(this.queries.SET_PICKUP_LOCATION_FOR_ORDER, { customFields });
-    await this.validateResult(order);
-    this.store.activeOrder = order as OrderFieldsFragment;
-    return order as OrderFieldsFragment;
+  /**
+   * Resource heavy! Fetches all collections with all childCollections
+   * Should only be used for SSG
+   */
+  async getAllCollections(): Promise<CollectionFieldsFragment[]> {
+    const {
+      collections: { items },
+    } = await this.client.request<CollectionsQuery, CollectionsQueryVariables>(
+      this.queries.GET_COLLECTIONS
+    );
+    return items;
   }
 
-  async unsetPickupLocation(): Promise<OrderFieldsFragment> {
-    // null is needed, otherwise it cannot be unset
-    return this.setPickupLocationOnOrder({
-      // @ts-ignore
-      pickupLocationNumber: null, // @ts-ignore
-      pickupLocationCarrier: null, // @ts-ignore
-      pickupLocationName: null, // @ts-ignore
-      pickupLocationStreet: null, // @ts-ignore
-      pickupLocationHouseNumber: null, // @ts-ignore
-      pickupLocationZipcode: null, // @ts-ignore
-      pickupLocationCity: null, // @ts-ignore
-      pickupLocationCountry: null, // @ts-ignore
-    });
+  /**
+   * Resource heavy! Fetches all products in batches
+   * Should only be used for SSG
+   */
+  async getAllProducts(): Promise<ProductFieldsFragment[]> {
+    const products: ProductFieldsFragment[] = [];
+    let hasMore = true;
+    let page = 1;
+    let skip = 0;
+    const take = 500;
+    while (hasMore) {
+      const { products: productList } = await this.client.request<
+        AllProductsQuery,
+        AllProductsQueryVariables
+      >(this.queries.GET_PRODUCTS, {
+        options: {
+          skip,
+          take,
+        },
+      });
+      products.push(...productList.items);
+      skip = page * take;
+      page++;
+      hasMore = productList.totalItems > products.length;
+    }
+    return products;
+  }
+
+  /**
+   * Get list of available countries
+   */
+  async getAvailableCountries(): Promise<
+    AvailableCountriesQuery['availableCountries']
+  > {
+    const { availableCountries } =
+      await this.client.request<AvailableCountriesQuery>(
+        this.queries.GET_AVAILABLE_COUNTRIES
+      );
+    return availableCountries;
   }
 
   async validateResult(result: any): Promise<void> {
@@ -358,13 +392,17 @@ export class VendureClient {
     document: string,
     variables?: I
   ): Promise<T> {
-    let token = window.localStorage.getItem(this.tokenName);
-    if (token) {
-      this.client.setHeader('Authorization', `Bearer ${token}`);
+    if (window?.localStorage) {
+      // Make sure we send auth token in request
+      const token = window.localStorage.getItem(this.tokenName);
+      if (token) {
+        this.client.setHeader('Authorization', `Bearer ${token}`);
+      }
     }
     const { data, headers } = await this.client.rawRequest(document, variables);
-    token = headers.get(this.tokenName);
-    if (token) {
+    const token = headers.get(this.tokenName);
+    if (token && window?.localStorage) {
+      // Make sure we save received tokens
       window.localStorage.setItem(this.tokenName, token);
     }
     return data;

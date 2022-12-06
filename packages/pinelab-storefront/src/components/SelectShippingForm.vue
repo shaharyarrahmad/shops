@@ -40,8 +40,6 @@
   </div>
 </template>
 <script>
-import { VendureClient } from '../vendure/vendure.client';
-import { Store } from '../vendure/types';
 import PickupPointFinder from './PickupPointFinder';
 import debounce from 'debounce';
 
@@ -50,14 +48,6 @@ export default {
   props: {
     shippingMethods: {
       type: Array,
-      required: true,
-    },
-    vendure: {
-      type: VendureClient,
-      required: true,
-    },
-    store: {
-      type: [Store, Object],
       required: true,
     },
     pickupPointsEnabled: Boolean,
@@ -71,11 +61,11 @@ export default {
   },
   computed: {
     postalCode() {
-      return this.store?.activeOrder?.shippingAddress?.postalCode;
+      return this.$store?.activeOrder?.shippingAddress?.postalCode;
     },
     isPickupPointSelected() {
       return (
-        this.store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
+        this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod?.code?.indexOf(
           'pickup-point'
         ) > -1
       );
@@ -91,20 +81,20 @@ export default {
         this.unsetPickupPoint();
       }
     },
-    'store.activeOrder': function () {
+    '$store.activeOrder': function () {
       this.selectedShippingMethod =
-        this.store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
+        this.$store?.activeOrder?.shippingLines?.[0]?.shippingMethod.id;
     },
   },
   methods: {
     async selectShippingMethod(methodId) {
-      await this.vendure.setOrderShippingMethod(methodId);
+      await this.$vendure.setOrderShippingMethod(methodId);
     },
     async unsetPickupPoint() {
       if (!this.pickupPointsEnabled) {
         return;
       }
-      await this.vendure.unsetPickupLocation();
+      await this.$vendure.unsetPickupLocation();
       console.log('Removed pickupLocation from order');
     },
     async getPickupPoints(postalCode) {
@@ -113,7 +103,7 @@ export default {
       }
       try {
         this.loadingPickupPoints = true;
-        this.pickupPoints = await this.vendure.getDropOffPoints({
+        this.pickupPoints = await this.$vendure.getDropOffPoints({
           carrierId: '1',
           postalCode: postalCode || this.postalCode,
         });
@@ -125,7 +115,7 @@ export default {
       }
     },
     async setPickupLocationOnOrder(point) {
-      await this.vendure.setPickupLocationOnOrder({
+      await this.$vendure.setPickupLocationOnOrder({
         pickupLocationNumber: String(point.location_code),
         pickupLocationCarrier: String(point.carrier_id),
         pickupLocationName: point.location_name,

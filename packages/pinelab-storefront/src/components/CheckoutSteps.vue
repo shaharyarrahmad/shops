@@ -56,7 +56,7 @@
             <h3>{{ $l('shipping.page-title') }}</h3>
             <SelectShippingForm
               :shipping-methods="shippingMethods"
-              :pickup-points-enabled="true"
+              :pickup-points-enabled="pickupPointsEnabled"
             />
           </div>
           <div class="column is-offset-1">
@@ -258,6 +258,10 @@ export default {
       default() {
         return ['mollie'];
       },
+    },
+    pickupPointsEnabled: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {

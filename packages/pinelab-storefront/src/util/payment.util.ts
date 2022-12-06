@@ -1,16 +1,16 @@
-import { VendureClient } from '../vendure/vendure.client';
+import { ShopClient } from '../vendure/shop.client';
 
 export async function startPayment(
-  vendure: VendureClient,
+  client: ShopClient,
   method: 'mollie' | 'coinbase'
 ) {
   if (method === 'mollie') {
-    const redirectUrl = await vendure.createMolliePaymentIntent(
+    const redirectUrl = await client.createMolliePaymentIntent(
       `mollie-payment-${process.env.GRIDSOME_VENDURE_TOKEN}`
     );
     window.location.replace(redirectUrl);
   } else if (method === 'coinbase') {
-    const redirectUrl = await vendure.createCoinbasePaymentIntent();
+    const redirectUrl = await client.createCoinbasePaymentIntent();
     window.location.replace(redirectUrl);
   } else {
     throw Error(`Invalid payment method given: ${method}`);

@@ -26,6 +26,10 @@ export function getSeoDescription(description?: string) {
   }
 }
 
+/**
+ * Return a Vue metaInfo object based on a given collection or product
+ * Uses item.customFields.metaDescription and item.customFields.metaTitle when these fields exist
+ */
 export function getMetaInfo(
   item?:
     | BasicCollection
@@ -38,10 +42,9 @@ export function getMetaInfo(
     return;
   }
   const seoDescription =
-    (item as ProductFieldsFragment).customFields?.metaDescription ||
+    (item as any).customFields?.metaDescription ||
     getSeoDescription(item.description);
-  const title =
-    (item as ProductFieldsFragment).customFields?.metaTitle || item.name;
+  const title = (item as any).customFields?.metaTitle || item.name;
   const image = item.featuredAsset ? item.featuredAsset.preview : undefined;
   let script: any = [];
   const calculatedProduct = item as CalculatedProduct<ProductFieldsFragment>;

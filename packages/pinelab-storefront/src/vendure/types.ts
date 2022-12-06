@@ -1,5 +1,4 @@
 import {
-  AvailableCountriesQuery,
   CollectionFieldsFragment,
   OrderFieldsFragment,
   ProductFieldsFragment,
@@ -7,18 +6,11 @@ import {
 import { Emitter } from 'mitt';
 import { VendureClient } from './vendure.client';
 
-/**
- * Atleast T, but it maybe has more properties.
- * This allows you to access custom graphql fields
- * that are passed to the VendureClient or the ServerSideVendureClient
- */
-type Atleast<T> = T & Partial<any>;
-
-export interface StaticData {
+export interface CatalogData {
   /**
    * All products from store
    */
-  products: Atleast<CalculatedProduct<ProductFieldsFragment>>[];
+  products: CalculatedProduct<ProductFieldsFragment>[];
   /**
    * Products with variants per collection
    */
@@ -28,10 +20,6 @@ export interface StaticData {
    * DOES NOT INCLUDE VARIANTS. Just basic collection info
    */
   collections: BasicCollection[];
-  /**
-   * List of {code,name} countries for shippingAddress. Used by CheckoutComponent
-   */
-  availableCountries: AvailableCountriesQuery['availableCountries'];
 }
 
 export interface CollectionMap {

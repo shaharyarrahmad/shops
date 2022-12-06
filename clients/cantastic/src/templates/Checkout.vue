@@ -7,6 +7,7 @@
         :emitter="$emitter"
         :store="$store"
         :available-countries="$context.availableCountries"
+        :pickupPointsEnabled="true"
       >
         <template #orderSummaryFooter>
           <h5>Betaalmogelijkheden</h5>

@@ -3410,16 +3410,14 @@ export type ProductFieldsFragment = { __typename?: 'Product' } & Pick<
   Product,
   'id' | 'name' | 'slug' | 'description'
 > & {
-    assets: Array<
-      { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview' | 'thumbnail'>
-    >;
+    assets: Array<{ __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview'>>;
     facetValues: Array<
       { __typename?: 'FacetValue' } & Pick<FacetValue, 'code' | 'name'> & {
           facet: { __typename?: 'Facet' } & Pick<Facet, 'code' | 'name'>;
         }
     >;
     featuredAsset?: Maybe<
-      { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview' | 'thumbnail'>
+      { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview'>
     >;
     variants: Array<
       { __typename?: 'ProductVariant' } & Pick<
@@ -3438,24 +3436,12 @@ export type ProductFieldsFragment = { __typename?: 'Product' } & Pick<
               }
           >;
           assets: Array<
-            { __typename?: 'Asset' } & Pick<
-              Asset,
-              'id' | 'preview' | 'thumbnail'
-            >
+            { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview'>
           >;
           featuredAsset?: Maybe<
-            { __typename?: 'Asset' } & Pick<
-              Asset,
-              'id' | 'preview' | 'thumbnail'
-            >
+            { __typename?: 'Asset' } & Pick<Asset, 'id' | 'preview'>
           >;
         }
-    >;
-    customFields?: Maybe<
-      { __typename?: 'ProductCustomFields' } & Pick<
-        ProductCustomFields,
-        'metaTitle' | 'metaDescription' | 'keywords'
-      >
     >;
   } & AdditionalProductFieldsFragment;
 

@@ -1,6 +1,6 @@
 overwrite: true
 schema: "https://test-api.pinelab.studio/shop-api"
-documents: src/**/*.queries2.ts
+documents: src/**/*.queries.ts
 config:
   maybeValue: T | undefined
   resolverValidationOptions:

@@ -1,7 +1,7 @@
 import { Store } from '../vendure/types';
 import Vue from 'vue';
 import mitt from 'mitt';
-import { VendureClient } from '../vendure/vendure.client';
+import { ShopClient } from '../vendure/shop.client';
 
 /**
  * Format Vendure's integer (1233) to euro format: €12,33
@@ -23,13 +23,13 @@ export function formatEuro(value?: number) {
 }
 
 /**
- * Set global store, vendure client and event emitter
+ * Set global store, vendure shopclient and event emitter
  */
 export function setStore(vue: typeof Vue, url: string, channelToken: string) {
   const store = vue.observable<Store>({
     activeOrder: undefined,
   });
-  vue.prototype.$vendure = new VendureClient(store, url, channelToken);
+  vue.prototype.$vendure = new ShopClient(store, url, channelToken);
   vue.prototype.$store = store;
   vue.prototype.$emitter = mitt();
 }

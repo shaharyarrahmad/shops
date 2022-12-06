@@ -2,7 +2,7 @@
 
 This package holds:
 
-1. Reusable Vue components to compose storefronts.
+1. Reusable Buefy Vue components to compose storefronts.
 2. Vendure logic for generating static pages serverside.
 3. VendureClient for use on the client/browser.
 
@@ -15,7 +15,6 @@ You can import reusable Buefy components to build a storefront:
 <template>
   <CustomerDetailsForm
     :available-countries="availableCountries"
-    :vendure="vendure"
     @back="history.back()"
     @submit="gotToShipping()"
   />

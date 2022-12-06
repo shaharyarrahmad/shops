@@ -59,13 +59,15 @@ export class SearchUtil {
     return products.map((p) => {
       const keywords = p.customFields?.keywords?.split(',');
       const collections = p.collections.map((c) => c.name);
+      const thumbnail =
+        (p.featuredAsset as any)?.thumbnail || p.featuredAsset?.preview;
       return {
         name: p.name,
         slug: p.slug,
         price: p.lowestPrice,
         collections,
         keywords,
-        thumbnail: p.featuredAsset?.thumbnail,
+        thumbnail,
       };
     });
   }

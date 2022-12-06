@@ -1,10 +1,11 @@
 const { GET_CONTENT } = require('./content.queries');
 const { GraphQLClient } = require('graphql-request');
-const { ShopServerSideClient } = require('pinelab-storefront');
+const { ShopClient } = require('pinelab-storefront');
 
 module.exports = function (api) {
   api.createPages(async ({ createPage, graphql }) => {
-    const vendureClient = new ShopServerSideClient(
+    const vendureClient = new ShopClient(
+      { activeOrder: undefined },
       process.env.GRIDSOME_VENDURE_API,
       process.env.GRIDSOME_VENDURE_TOKEN
     );
@@ -13,10 +14,12 @@ module.exports = function (api) {
     );
 
     const [
-      { products, collections, productsPerCollection, availableCountries },
+      { products, collections, productsPerCollection },
+      availableCountries,
       { lab07_projects: projects },
     ] = await Promise.all([
-      vendureClient.getStaticData(),
+      vendureClient.getCompleteCatalog(),
+      vendureClient.getAvailableCountries(),
       directus.request(GET_CONTENT),
     ]);
 

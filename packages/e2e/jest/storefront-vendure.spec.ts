@@ -1,6 +1,6 @@
 import {
   VendureServerSideClient,
-  StaticData,
+  CatalogData,
   VendureClient,
 } from '../../pinelab-storefront/src';
 import { startDevServer, TestEnv } from '../../../vendure/test/dev-server';
@@ -10,7 +10,7 @@ describe('Test pinelab-storefront to Vendure communication', () => {
   let vendureServer: VendureServerSideClient;
   let vendureClient: VendureClient;
   const channelToken = 'default-channel';
-  let shopData: StaticData;
+  let shopData: CatalogData;
   let adminClient: TestEnv['adminClient'];
   let shopClient: TestEnv['shopClient'];
   let server: TestEnv['server'];

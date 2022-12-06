@@ -305,17 +305,12 @@
   </form>
 </template>
 <script>
-import { VendureClient } from '../vendure/vendure.client';
 import { debounce } from 'debounce';
 
 export default {
   props: {
     availableCountries: {
       type: Array,
-      required: true,
-    },
-    vendure: {
-      type: VendureClient,
       required: true,
     },
   },
@@ -348,7 +343,7 @@ export default {
     };
   },
   async mounted() {
-    const activeOrder = await this.vendure.getActiveOrder();
+    const activeOrder = await this.$vendure.getActiveOrder();
     this.hasDifferentBillingAddress = !!activeOrder?.billingAddress?.postalCode;
     // Prepolutate customer
     const localStorageCustomer = window.localStorage.getItem('vnd_customer');
@@ -369,7 +364,7 @@ export default {
     this.address.streetLine2 = address?.streetLine2;
     this.address.city = address?.city;
     this.address.postalCode = address?.postalCode;
-    this.shippingMethods = await this.vendure.getEligibleShippingMethods();
+    this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     if (address?.country) {
       const country = this.availableCountries.find(
         (c) => c.name === address.country
@@ -388,7 +383,7 @@ export default {
     this.billingAddress.streetLine2 = billingAddress?.streetLine2;
     this.billingAddress.city = billingAddress?.city;
     this.billingAddress.postalCode = billingAddress?.postalCode;
-    this.shippingMethods = await this.vendure.getEligibleShippingMethods();
+    this.shippingMethods = await this.$vendure.getEligibleShippingMethods();
     if (billingAddress?.country) {
       const country = this.availableCountries.find(
         (c) => c.name === billingAddress.country
@@ -408,16 +403,16 @@ export default {
         phoneNumber: this.customer.phoneNumber,
       };
       try {
-        await this.vendure.setCustomerForOrder(this.customer);
-        await this.vendure.setOrderShippingAddress(address);
+        await this.$vendure.setCustomerForOrder(this.customer);
+        await this.$vendure.setOrderShippingAddress(address);
         if (this.hasDifferentBillingAddress) {
-          await this.vendure.setOrderBillingAddress({
+          await this.$vendure.setOrderBillingAddress({
             ...this.billingAddress,
             defaultBillingAddress: true,
           });
         } else {
           // remove billingAddress
-          await this.vendure.setOrderBillingAddress({
+          await this.$vendure.setOrderBillingAddress({
             countryCode: this.address.countryCode,
             company: null,
             streetLine1: '',
@@ -426,7 +421,7 @@ export default {
             city: null,
           });
         }
-        this.vendure.setDefaultShippingMethod(); // async
+        this.$vendure.setDefaultShippingMethod(); // async
       } catch (e) {
         console.error(e);
         this.$emit('error');
@@ -462,7 +457,7 @@ export default {
       if (address?.postalCode?.length < 6 || !address?.streetLine2) {
         return;
       }
-      const foundAddress = await this.vendure.lookupAddress({
+      const foundAddress = await this.$vendure.lookupAddress({
         postalCode: address.postalCode,
         houseNumber: address.streetLine2,
       });

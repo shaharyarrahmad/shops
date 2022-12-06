@@ -1,5 +1,23 @@
-import { VendureServerSideClient } from './vendure-server-side.client';
 import { gql } from 'graphql-request';
+import { VendureClient } from './vendure.client';
+import {
+  CreateCoinbasePaymentIntentMutation,
+  CreateMolliePaymentIntentMutation,
+  CreateMolliePaymentIntentMutationVariables,
+  DutchAddressLookupQuery,
+  DutchAddressLookupQueryVariables,
+  DutchPostalCodeInput,
+  MolliePaymentIntent,
+  MyparcelDropOffPoint,
+  MyparcelDropOffPointInput,
+  MyparcelDropOffPointsQuery,
+  MyparcelDropOffPointsQueryVariables,
+  OrderFieldsFragment,
+  SetOrderCustomFieldsMutation,
+  SetOrderCustomFieldsMutationVariables,
+  UpdateOrderCustomFieldsInput,
+} from '../generated/graphql';
+import { Store } from './types';
 
 const additionalCollectionFields = gql`
   fragment AdditionalCollectionFields on Collection {
@@ -39,13 +57,88 @@ const additionalOrderFields = gql`
 
 /**
  * A Vendure client tailored to fetch all fields from the Pinelab Shops Vendure instance.
- * For generic projects use VendureClient or VendureServerSideClient
+ * For generic projects use {@link VendureClient}
  */
-export class ShopServerSideClient extends VendureServerSideClient {
-  constructor(url: string, channelToken: string) {
-    super(url, channelToken, {
+export class ShopClient extends VendureClient {
+  constructor(store: Store, url: string, channelToken: string) {
+    super(store, url, channelToken, {
       additionalCollectionFields,
       additionalProductFields,
+      additionalOrderFields,
     });
+  }
+
+  async setDefaultShippingMethod() {
+    await super.setDefaultShippingMethod();
+    await this.unsetPickupLocation();
+  }
+
+  async unsetPickupLocation(): Promise<OrderFieldsFragment> {
+    // null is needed, otherwise it cannot be unset
+    return this.setPickupLocationOnOrder({
+      // @ts-ignore
+      pickupLocationNumber: null, // @ts-ignore
+      pickupLocationCarrier: null, // @ts-ignore
+      pickupLocationName: null, // @ts-ignore
+      pickupLocationStreet: null, // @ts-ignore
+      pickupLocationHouseNumber: null, // @ts-ignore
+      pickupLocationZipcode: null, // @ts-ignore
+      pickupLocationCity: null, // @ts-ignore
+      pickupLocationCountry: null, // @ts-ignore
+    });
+  }
+
+  async getDropOffPoints(
+    input: MyparcelDropOffPointInput
+  ): Promise<MyparcelDropOffPoint[]> {
+    const { myparcelDropOffPoints } = await this.request<
+      MyparcelDropOffPointsQuery,
+      MyparcelDropOffPointsQueryVariables
+    >(this.queries.GET_DROP_OFF_POINTS, { input });
+    return myparcelDropOffPoints;
+  }
+
+  async setPickupLocationOnOrder(
+    customFields: UpdateOrderCustomFieldsInput
+  ): Promise<OrderFieldsFragment> {
+    const { setOrderCustomFields: order } = await this.request<
+      SetOrderCustomFieldsMutation,
+      SetOrderCustomFieldsMutationVariables
+    >(this.queries.SET_PICKUP_LOCATION_FOR_ORDER, { customFields });
+    await this.validateResult(order);
+    this.store.activeOrder = order as OrderFieldsFragment;
+    return order as OrderFieldsFragment;
+  }
+
+  async lookupAddress(
+    input: DutchPostalCodeInput
+  ): Promise<DutchAddressLookupQuery['dutchAddressLookup'] | undefined> {
+    const { dutchAddressLookup } = await this.request<
+      DutchAddressLookupQuery,
+      DutchAddressLookupQueryVariables
+    >(this.queries.GET_DUTCH_ADDRESS, {
+      input,
+    });
+    return dutchAddressLookup;
+  }
+
+  async createMolliePaymentIntent(code: string): Promise<string> {
+    const { createMolliePaymentIntent } = await this.request<
+      CreateMolliePaymentIntentMutation,
+      CreateMolliePaymentIntentMutationVariables
+    >(this.queries.CREATE_MOLLIE_PAYMENT_INTENT, {
+      input: { paymentMethodCode: code },
+    });
+    await this.validateResult(createMolliePaymentIntent);
+    return (createMolliePaymentIntent as MolliePaymentIntent).url;
+  }
+
+  async createCoinbasePaymentIntent(): Promise<string> {
+    const { createCoinbasePaymentIntent } =
+      await this.request<CreateCoinbasePaymentIntentMutation>(
+        this.queries.CREATE_COINBASE_PAYMENT_INTENT
+      );
+    await this.validateResult(createCoinbasePaymentIntent);
+    return createCoinbasePaymentIntent;
   }
 }
