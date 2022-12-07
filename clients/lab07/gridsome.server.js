@@ -76,7 +76,9 @@ module.exports = function (api) {
       context: {
         ...global,
         breadcrumb: { Home, About },
-        content: 'text',
+        aboutPage: general.about_page,
+        aboutImage1: general.about_image1,
+        aboutImage2: general.about_image2,
       },
     });
 
