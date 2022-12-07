@@ -31,7 +31,8 @@ module.exports = function (api) {
     // Breadcrumb pages
     const Home = '/';
     const Shop = '/shop/';
-    const About = '/over-ons';
+    const About = '/over-ons/';
+    const Contact = '/contact/';
     const Winkelmand = '/winkelmand/';
     const Checkout = '/checkout/';
 
@@ -79,6 +80,17 @@ module.exports = function (api) {
         aboutPage: general.about_page,
         aboutImage1: general.about_image1,
         aboutImage2: general.about_image2,
+      },
+    });
+
+    // ----------------- Contact  ---------------------
+    createPage({
+      path: '/contact/',
+      component: './src/templates/Contact.vue',
+      context: {
+        ...global,
+        breadcrumb: { Home, Contact },
+        contactPage: general.contact_page,
       },
     });
 
