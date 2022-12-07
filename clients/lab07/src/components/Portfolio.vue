@@ -26,7 +26,7 @@
           <p class="portfolio-title">{{ title }}</p>
         </article>
         <article class="tile is-child">
-          <div v-html="description" class="portfolio-subtitle"></div>
+          <div v-html="description" class="subtitle"></div>
         </article>
       </div>
     </div>
@@ -37,9 +37,7 @@
 export default {
   props: ['title', 'description', 'images'],
   data() {
-    return {
-      overlayActive: false,
-    };
+    return {};
   },
 };
 </script>
