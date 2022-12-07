@@ -61,14 +61,14 @@
 
     <footer v-if="!hideFooter" class="footer">
       <div class="content has-text-centered">
-        <g-link to="https://www.instagram.com/lab_____07/" target="_blank">
+        <g-link :to="$context.instagramUrl" target="_blank">
           <span class="icon is-small">
             <i class="mdi mdi-instagram"> </i>
           </span>
         </g-link>
-        • LAB07 • KVK 01177713 •
-        <g-link to="mailto:info@saskiawagenvoortartwork.nl" target="_blank"
-          >info@saskiawagenvoortartwork.nl
+        • LAB07 • KVK {{ $context.kvk }} •
+        <g-link :to="`mailto:${$context.emailAddress}`" target="_blank"
+          >{{ $context.emailAddress }}
         </g-link>
         •
         <g-link to="/privacy.pdf" target="_blank">privacy</g-link>
