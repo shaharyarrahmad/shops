@@ -31,6 +31,7 @@ module.exports = function (api) {
     // Breadcrumb pages
     const Home = '/';
     const Shop = '/shop/';
+    const About = '/over-ons';
     const Winkelmand = '/winkelmand/';
     const Checkout = '/checkout/';
 
@@ -65,6 +66,19 @@ module.exports = function (api) {
         products,
         collections,
         breadcrumb: { Home, Shop },
+      },
+    });
+
+    // ----------------- About  ---------------------
+    createPage({
+      path: '/over-ons/',
+      component: './src/templates/About.vue',
+      context: {
+        ...global,
+        breadcrumb: { Home, About },
+        aboutPage: general.about_page,
+        aboutImage1: general.about_image1,
+        aboutImage2: general.about_image2,
       },
     });
 
