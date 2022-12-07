@@ -7,11 +7,12 @@
       <div class="tile is-parent">
         <b-carousel
           :repeat="false"
-          :arrow-hover="true"
+          :arrow="true"
+          :arrow-hover="false"
           :autoplay="false"
           animated="slide"
         >
-          <b-carousel-item v-for="image in images">
+          <b-carousel-item v-for="(image, i) in images" :key="i">
             <PopupImage
               :small="getSquareImage(image.directus_files_id.id)"
               :alt="image.directus_files_id.title"
