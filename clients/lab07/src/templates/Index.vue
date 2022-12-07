@@ -9,7 +9,7 @@
                 :title="project.title"
                 :description="project.description"
                 :images="project.images"
-                @enlargeImage="openImageModal($event)"
+                @imageClick="openImageModal($event)"
               />
             </div>
           </template>

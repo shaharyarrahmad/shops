@@ -15,7 +15,7 @@
           <b-carousel-item v-for="(image, i) in images" :key="i">
             <div
               @click="
-                $emit('enlargeImage', {
+                $emit('imageClick', {
                   imageUrl: getDefaultImage(image.directus_files_id.id),
                 })
               "
@@ -27,11 +27,6 @@
                 class="is-clickable"
               ></b-image>
             </div>
-            <!--            <PopupImage
-                          :small="getSquareImage(image.directus_files_id.id)"
-                          :alt="image.directus_files_id.title"
-                          :large="getDefaultImage(image.directus_files_id.id)"
-                        />-->
           </b-carousel-item>
         </b-carousel>
       </div>
@@ -49,7 +44,7 @@
 
 <script>
 export default {
-  emits: ['enlargeImage'],
+  emits: ['imageClick'],
   props: ['title', 'description', 'images'],
 };
 </script>
