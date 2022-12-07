@@ -79,7 +79,7 @@ export default {
   justify-content: center;
 }
 
-::-webkit-scrollbar {
+.outer-wrapper::-webkit-scrollbar {
   display: none;
 }
 </style>
