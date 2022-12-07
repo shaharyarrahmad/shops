@@ -14,7 +14,7 @@ module.exports = function (api) {
 
     const [
       { products, collections, productsPerCollection, availableCountries },
-      { lab07_projects: projects },
+      { lab07_projects: projects, lab07_general: general },
     ] = await Promise.all([
       vendureServer.getShopData(),
       directus.request(GET_CONTENT),
@@ -23,7 +23,9 @@ module.exports = function (api) {
     products.reverse();
 
     const global = {
-      // TODO add email and stuff
+      kvk: general.kvk,
+      instagramUrl: general.instagram_url,
+      emailAddress: general.email_address,
     };
 
     // Breadcrumb pages

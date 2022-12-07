@@ -9,15 +9,43 @@
                 :title="project.title"
                 :description="project.description"
                 :images="project.images"
+                @imageClick="openImageModal($event)"
               />
             </div>
           </template>
         </div>
       </div>
+      <b-modal v-model="showImageModal" scroll="keep">
+        <b-image :src="modalImage">
+          <template #placeholder>
+            <b-progress size="is-small"></b-progress>
+          </template>
+        </b-image>
+      </b-modal>
     </template>
   </DefaultLayout>
 </template>
+<script>
+import Portfolio from '../components/Portfolio.vue';
 
+export default {
+  components: {
+    Portfolio,
+  },
+  data() {
+    return {
+      showImageModal: false,
+      modalImage: undefined,
+    };
+  },
+  methods: {
+    openImageModal(event) {
+      this.showImageModal = true;
+      this.modalImage = event.imageUrl;
+    },
+  },
+};
+</script>
 <style>
 .outer-wrapper {
   position: fixed;
@@ -51,17 +79,7 @@
   justify-content: center;
 }
 
-::-webkit-scrollbar {
+.outer-wrapper::-webkit-scrollbar {
   display: none;
 }
 </style>
-
-<script>
-import Portfolio from '../components/Portfolio.vue';
-
-export default {
-  components: {
-    Portfolio,
-  },
-};
-</script>
