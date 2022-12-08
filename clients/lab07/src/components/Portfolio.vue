@@ -3,7 +3,7 @@
     class="hero is-justify-content-center is-flex-direction-row"
     style="padding-top: 100px"
   >
-    <div class="tile has-text-centered">
+    <div class="tile has-text-centered" style="max-width: 1000px">
       <div class="tile is-parent">
         <b-carousel
           :repeat="false"
@@ -50,7 +50,6 @@ export default {
 </script>
 <style>
 .tile {
-  max-width: 1000px;
   align-items: center;
 }
 
