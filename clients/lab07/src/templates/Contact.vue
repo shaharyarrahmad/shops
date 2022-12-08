@@ -6,33 +6,13 @@
           <div class="tile is-vertical">
             <div class="tile">
               <div class="tile is-parent">
-                <article class="tile is-child">
+                <article class="tile is-child has-text-centered">
                   <br />
                   <div
-                    v-html="$context.aboutPage"
+                    v-html="$context.contactPage"
                     class="subtitle content"
                   ></div>
                 </article>
-              </div>
-            </div>
-            <div class="tile is-vertical">
-              <br />
-              <div class="tile">
-                <div class="tile is-parent">
-                  <article class="tile is-child">
-                    <figure class="image">
-                      <img :src="getSquareImage($context.aboutImage1.id)" />
-                      <p></p>
-                    </figure>
-                  </article>
-                </div>
-                <div class="tile is-parent">
-                  <article class="tile is-child">
-                    <figure class="image">
-                      <img :src="getSquareImage($context.aboutImage2.id)" />
-                    </figure>
-                  </article>
-                </div>
               </div>
             </div>
           </div>
