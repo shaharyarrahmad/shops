@@ -2,7 +2,7 @@
   <div>
     <Preloader v-if="showPreloader" />
     <template>
-      <b-navbar shadow>
+      <b-navbar shadow class="is-fixed-top">
         <template #brand>
           <b-navbar-item id="logo" tag="router-link" :to="{ path: '/' }">
             <img src="/logo.svg" />
@@ -31,7 +31,10 @@
 
     <div>
       <template v-if="$slots.default">
-        <div class="container is-widescreen section" style="min-height: 90vh">
+        <div
+          class="container is-widescreen section"
+          style="min-height: 90vh; padding-top: 150px"
+        >
           <Breadcrumb
             v-if="$context.breadcrumb"
             :crumbs="$context.breadcrumb"

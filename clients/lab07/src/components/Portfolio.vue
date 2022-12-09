@@ -48,10 +48,10 @@ export default {
   props: ['title', 'description', 'images'],
 };
 </script>
-<style>
+<style scoped>
 .tile {
-  max-width: 1000px;
   align-items: center;
+  max-width: 1000px;
 }
 
 .portfolio-title {
