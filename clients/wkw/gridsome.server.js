@@ -1,16 +1,14 @@
 const {
   VendureServer,
   SearchUtil,
-  deduplicate
+  deduplicate,
 } = require('pinelab-storefront');
 const { GraphQLClient } = require('graphql-request');
 const { mapToMinimalCollection } = require('./util');
 const { GET_CONTENT } = require('./content.queries');
 
-module.exports = async function(api) {
-
+module.exports = async function (api) {
   api.createPages(async ({ createPage }) => {
-
     const vendureNL = new VendureServer(
       `${process.env.GRIDSOME_VENDURE_API}?languageCode=nl`,
       process.env.GRIDSOME_VENDURE_TOKEN
@@ -28,13 +26,13 @@ module.exports = async function(api) {
       products: allProductsNL,
       availableCountries,
       collections: allCollectionsNL,
-      productsPerCollectionNL
+      productsPerCollectionNL,
     } = await vendureNL.getShopData();
 
     let {
       products: allProductsEN,
       collections: allCollectionsEN,
-      productsPerCollectionEN
+      productsPerCollectionEN,
     } = await vendureNL.getShopData();
 
     const {
@@ -43,16 +41,16 @@ module.exports = async function(api) {
           wkw_home: home,
           wkw_algemeen: common,
           wkw_paginas: pages,
-          wkw_blogs: blogs
+          wkw_blogs: blogs,
         },
       },
     } = await directus.request(GET_CONTENT);
 
-    const pages_nl = pages.filter(p => p.language === 'nl');
-    const pages_en = pages.filter(p => p.language === 'en');
+    const pages_nl = pages.filter((p) => p.language === 'nl');
+    const pages_en = pages.filter((p) => p.language === 'en');
 
-    const blogs_nl = blogs.filter(b => b.language === 'nl');
-    const blogs_en = blogs.filter(b => b.language === 'en');
+    const blogs_nl = blogs.filter((b) => b.language === 'nl');
+    const blogs_en = blogs.filter((b) => b.language === 'en');
 
     const languages = [
       {
@@ -64,7 +62,7 @@ module.exports = async function(api) {
         categoryPrefix: 'product-categorie',
         productPrefix: 'product',
         pages: pages_nl,
-        blogs: blogs_nl
+        blogs: blogs_nl,
       },
       {
         lang: 'en',
@@ -75,11 +73,9 @@ module.exports = async function(api) {
         categoryPrefix: 'product-category',
         productPrefix: 'product',
         pages: pages_en,
-        blogs: blogs_en
-      }
-    ]
-
-
+        blogs: blogs_en,
+      },
+    ];
 
     // Set absolute path for product.url and collection.url: product.url = '/product/lavameel/'
     const categoryPrefix = 'product-categorie';
@@ -106,7 +102,7 @@ module.exports = async function(api) {
     const navbarCollections = collections.map(mapToMinimalCollection);
 
     const global = {
-      navbarCollections
+      navbarCollections,
     };
 
     // -------------------- Home -----------------------------------
@@ -114,8 +110,8 @@ module.exports = async function(api) {
       path: '/',
       component: './src/templates/Index.vue',
       context: {
-        ...global
-      }
+        ...global,
+      },
     });
 
     // -------------------- ProductDetail -----------------------------------
@@ -125,8 +121,8 @@ module.exports = async function(api) {
         component: './src/templates/ProductDetail.vue',
         context: {
           ...global,
-          product
-        }
+          product,
+        },
       });
     });
   });
