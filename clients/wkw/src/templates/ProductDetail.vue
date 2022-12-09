@@ -1,5 +1,5 @@
 <template>
-  <DefaultLayout>
+  <DefaultLayout #content>
     {{ $context.product }}
   </DefaultLayout>
 </template>
