@@ -41,18 +41,17 @@
                 </i>
               </span>
               <Basket
+                class="is-flex"
                 :vendure="$vendure"
                 :store="$store"
                 :emitter="$emitter"
                 cartUrl="/winkelmand/"
-                @cart-button-clicked="
-                  $router.push('/winkelmand/').catch((e) => {})
-                "
-                @checkout-button-clicked="
-                  $router.push('/checkout/').catch((e) => {})
-                "
+                checkoutUrl="/checkout/"
+                v-slot="{ nrOfItems, open }"
               >
-                <i class="mdi mdi-basket mdi-36px has-text-primary"></i>
+                <a class="mx-3 navbar-item" @click="open()"
+                  >WINKELMAND ({{ nrOfItems }})</a
+                >
               </Basket>
             </div>
           </div>
