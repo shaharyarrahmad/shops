@@ -3,7 +3,7 @@
     class="hero is-justify-content-center is-flex-direction-row"
     style="padding-top: 100px"
   >
-    <div class="tile has-text-centered" style="max-width: 1000px">
+    <div class="tile has-text-centered">
       <div class="tile is-parent">
         <b-carousel
           :repeat="false"
@@ -48,9 +48,10 @@ export default {
   props: ['title', 'description', 'images'],
 };
 </script>
-<style>
+<style scoped>
 .tile {
   align-items: center;
+  max-width: 1000px;
 }
 
 .portfolio-title {
