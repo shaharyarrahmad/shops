@@ -72,6 +72,7 @@ module.exports = async function (api) {
       },
     ];
 
+    // Create pages for each language
     for (let {
       products,
       collections: allCollections,
@@ -110,6 +111,7 @@ module.exports = async function (api) {
 
       const global = {
         navbarCollections,
+        lang,
       };
 
       // -------------------- Home -----------------------------------
