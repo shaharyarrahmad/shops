@@ -122,29 +122,6 @@
         </div>
       </section>
     </template>
-
-    <template #newsletter>
-      <div class="has-text-centered">
-        <h3 class="has-text-white has-text-weight-bold">
-          Meld je aan voor de wormen courant
-        </h3>
-        <p class="has-text-white has">
-          Aanbiedingen, tips and tricks voor compostering en bodemverbetering
-        </p>
-      </div>
-      <div class="column">
-        <b-field position="is-centered" grouped group-multiline>
-          <b-input placeholder="Naam" type="fname"> </b-input>
-          <b-input placeholder="E-mailadres" type="email"> </b-input>
-          <p class="control">
-            <b-button
-              type="is-dark-green is-shadowless is-hovered"
-              label="Aanmelden"
-            />
-          </p>
-        </b-field>
-      </div>
-    </template>
   </DefaultLayout>
 </template>
 <script>
