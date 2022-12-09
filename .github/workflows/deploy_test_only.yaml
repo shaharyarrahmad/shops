@@ -31,8 +31,8 @@ jobs:
         instances: [
           { name: "shops-test", db: "pinelab2", secret: "ENV_TEST", memory: "1G"},
           { name: "worker-test", db: "pinelab2", secret: "ENV_TEST", memory: "1G"},
-          { name: "wkw-test", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G"},
-          { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G"}
+          { name: "wkw-test-api", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G" },
+          { name: "wkw-test-worker", db: "pinelab2", secret: "ENV_WKW_TEST", memory: "1G" }
         ]
     runs-on: ubuntu-latest
     defaults:

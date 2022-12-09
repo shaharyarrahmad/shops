@@ -97,7 +97,7 @@ export default {
   },
   data: () => ({
     videoUrl: undefined,
-    videos: ['/video/s.mp4', '/video/logo.mp4', '/video/spiral.mp4'],
+    videos: ['/video/square.mp4', '/video/logo.mp4', '/video/spiral.mp4'],
   }),
   async mounted() {
     this.videoUrl = this.videos[Math.floor(Math.random() * this.videos.length)]; // Random video

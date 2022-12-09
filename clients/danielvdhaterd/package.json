@@ -1,7 +1,7 @@
 {
   "name": "danielvdhaterd",
   "private": true,
-  "version": "0.60.1",
+  "version": "0.60.6",
   "scripts": {
     "serve": "yarn gridsome develop",
     "serve:static": "yarn concurrently \"nodemon --ext js,vue --watch '.src/' --exec 'yarn gridsome build && yarn http-server ./dist/'\""
@@ -14,13 +14,13 @@
     "buefy": "^0.9.22",
     "debounce": "^1.2.1",
     "graphql-request": "3.4.0",
-    "pinelab-storefront": "0.60.1",
+    "pinelab-storefront": "0.60.6",
     "vue-gtag": "^1.16.1"
   },
   "devDependencies": {
-    "gridsome": "^0.7.23",
     "@gridsome/plugin-sitemap": "^0.4.0",
     "concurrently": "^5.3.0",
+    "gridsome": "^0.7.23",
     "http-server": "^0.12.3",
     "nodemon": "^2.0.7",
     "sass": "1.32.13",

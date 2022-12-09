@@ -32,7 +32,7 @@
               type="is-success"
             >
             </b-icon>
-            <span>Voor 19:00 besteld dezelfde dag verzonden</span>
+            <span>Voor 17:00 besteld, dezelfde dag verzonden</span>
           </span>
 
           <span class="line">
@@ -157,8 +157,9 @@ export default {
 </script>
 <style>
 #featured-image > img {
+  object-fit: contain;
   width: auto;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
 }
