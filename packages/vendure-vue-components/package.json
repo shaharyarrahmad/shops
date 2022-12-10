@@ -1,7 +1,7 @@
 {
-  "name": "pinelab-storefront",
+  "name": "vendure-vue-components",
   "version": "0.60.6",
-  "description": "Vendure helpers and Vue components for the Pinelab e-commerce storefronts",
+  "description": "Vue components for building ",
   "author": "Martijn van de Brug <martijn@pinelab.studio>",
   "homepage": "https://pinelab.studio",
   "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/",
@@ -16,11 +16,12 @@
   "scripts": {
     "build": "rm -rf lib && yarn tsc --build && yarn copy",
     "dev-build": "yarn tsc --build && yarn copy",
-    "copy": "copyfiles -u 1 'src/components/**/*' 'src/pages/**/*' lib",
+    "copy": "copyfiles -u 1 'src/components/**/*' lib",
     "generate": "graphql-codegen",
     "watch": "nodemon --verbose --ext js,ts,vue --watch ./src --exec 'yarn dev-build'",
     "test": "jest",
-    "generate-docs": "vue-docgen -c docgen.config.js"
+    "generate-docs": "vue-docgen -c vue-docgen.config.js && yarn concat-docs",
+    "concat-docs": "concat-md --toc --tocLevel 2 --decrease-title-levels --file-name-as-title docs > README.md"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.3",
@@ -28,9 +29,8 @@
     "@graphql-codegen/typescript-operations": "1.17.15",
     "@types/jest": "^27.4.0",
     "@types/node": "^15.12.2",
+    "concat-md": "^0.5.0",
     "copyfiles": "^2.4.1",
-    "debounce": "^1.2.1",
-    "fuse.js": "^6.6.2",
     "jest": "^27.4.6",
     "nodemon": "^2.0.7",
     "ts-jest": "^27.1.2",
@@ -42,8 +42,5 @@
     "graphql": "15.3.0",
     "graphql-request": "^3.4.0",
     "mitt": "^3.0.0"
-  },
-  "resolutions": {
-    "graphql": "15.3.0"
   }
 }

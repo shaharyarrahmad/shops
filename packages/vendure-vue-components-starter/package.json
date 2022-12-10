@@ -1,0 +1,23 @@
+{
+  "name": "vendure-vue-components-sample-project",
+  "version": "0.60.6",
+  "description": "Sample usage of the vendure-vue-components package",
+  "author": "Martijn van de Brug <martijn@pinelab.studio>",
+  "homepage": "https://pinelab.studio",
+  "repository": "https://github.com/martijnvdbrug/shops/tree/master/packages/",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "yarn link-there && yarn link-here && concurrently \"cd ../vendure-vue-components && yarn watch\" \"gridsome develop\"",
+    "link-here": "yarn link vendure-vue-components",
+    "link-there": "cd ../vendure-vue-components && yarn link"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "gridsome": "^0.7.23"
+  },
+  "dependencies": {
+    "graphql": "15.3.0",
+    "graphql-request": "^3.4.0"
+  }
+}
