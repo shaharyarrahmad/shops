@@ -37,7 +37,7 @@
         </h4>
         <div class="columns is-multiline is-mobile">
           <template v-for="index in 5">
-            <div class="column is-4-mobile is-one-fifth-desktop">
+            <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
               <CategoryCard
                 title="Boeken worm"
                 image="https://storage.googleapis.com/wassets/preview/36/ebooks__preview.jpeg"
@@ -53,7 +53,7 @@
         </h4>
         <div class="columns is-multiline is-mobile">
           <template v-for="index in 5">
-            <div class="column is-4-mobile is-one-fifth-desktop">
+            <div class="column is-6-mobile is-4-tablet is-one-fifth-desktop">
               <ProductCard
                 title="Wormenkwekerij stickers"
                 image="https://storage.googleapis.com/wassets/preview/36/ebooks__preview.jpeg"
