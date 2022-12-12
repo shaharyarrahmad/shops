@@ -32,9 +32,12 @@ $navbar-item-active-background-color: $primary;
 $navbar-tab-hover-background-color: $primary;
 $navbar-tab-active-background-color: $primary;
 $navbar-dropdown-background-color: $primary;
-$navbar-background-color: #primary;
+$navbar-background-color: $primary;
 $navbar-dropdown-item-hover-color: $white;
 $navbar-dropdown-arrow: $white;
+
+$footer-background-color: $dark-green;
+$footer-padding: 1.5rem;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
