@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="container is-widescreen section pt-5 pb-6">
-      <slot name="content2" />
+      <slot name="blogsection" />
     </div>
     <div v-if="showNewsletter" class="has-background-primary">
       <div class="container is-widescreen section p-5">
