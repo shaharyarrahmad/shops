@@ -29,6 +29,6 @@ This will add the following global properties to your Vue instance:
 
 // TODO 1 example of a component + link to all component docs
 
-# Additional GraphQL fields
+# Extending the defaults
 
-// TODO how to fetch additional GraphQL fields
+// TODO how to fetch additional GraphQL fields, wrap the vendureclient

@@ -29,6 +29,9 @@ export default {
       return this.$store?.activeOrder?.lines || [];
     },
   },
+  async mounted() {
+    await this.$vendure.getActiveOrder();
+  },
   /**
    * @slot default
    * @binding {number} nrOfItems  The total items currently in the active order
@@ -36,7 +39,7 @@ export default {
    * @binding { OrderFieldsFragment} activeOrder The complete activeOrder. Can be undefined
    */
   render() {
-    return this.$scopedSlots.default({
+    return this.$slots.default({
       nrOfItems: this.nrOfItems,
       orderLines: this.lines,
       activerOrder: this.$store?.activeOrder,

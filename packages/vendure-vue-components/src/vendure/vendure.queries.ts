@@ -394,6 +394,16 @@ export function getVendureQueries(
         }
       }
     `,
+    GET_COLLECTIONS: gql`
+      ${COLLECTION_FIELDS}
+      query collections {
+        collections {
+          items {
+            ...CollectionFields
+          }
+        }
+      }
+    `,
     GET_PRODUCTS: gql`
       ${PRODUCT_FIELDS}
       query allProducts($options: ProductListOptions) {
