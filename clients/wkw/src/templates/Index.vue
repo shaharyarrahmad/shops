@@ -99,7 +99,7 @@
       </div>
     </template>
 
-    <template #blogsection>
+    <template #content2>
       <BlogCard />
     </template>
   </DefaultLayout>
