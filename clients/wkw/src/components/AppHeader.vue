@@ -193,7 +193,7 @@ export default {
 }
 
 #banner {
-  z-index: 999;
+  z-index: 31;
   position: fixed;
   top: 0;
   width: 100%;
