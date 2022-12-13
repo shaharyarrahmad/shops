@@ -1,8 +1,13 @@
 <template>
   <div>
     <h4 class="title has-text-black has-text-weight-bold is-5 pt-5">Blog</h4>
-    <div class="columns">
-      <b-carousel-list :data="blogposts" :items-to-show="2" :arrowHover="false">
+    <div class="columns is-mobile">
+      <b-carousel-list
+        :data="blogposts"
+        :items-to-show="itemsToShow"
+        :breakpoints="galleryBreakpoints"
+        :arrowHover="false"
+      >
         <template #item="blogpost">
           <div class="column">
             <g-link :to="`/blog/${blogpost.slug}`">
@@ -35,6 +40,15 @@ export default {
   components: { HomeButton },
   data() {
     return {
+      itemsToShow: 2,
+      galleryBreakpoints: {
+        0: {
+          itemsToShow: 1,
+        },
+        680: {
+          itemsToShow: 2,
+        },
+      },
       blogposts: [
         {
           title: 'Geen gezonde bodem zonder wormen',
