@@ -2,8 +2,8 @@
   <div>
     <AppHeader :collections="$context.navbarCollections" />
     <div class="container is-widescreen section navbar-margin pb-6">
-      <slot name="content" />
       <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
+      <slot name="content" />
     </div>
     <div v-if="$slots.fullwidth" class="has-background-primary">
       <div class="container is-widescreen section">
