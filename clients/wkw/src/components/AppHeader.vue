@@ -57,10 +57,7 @@
               <b-button
                 type="is-shadowless is-hovered is-hidden-tablet is-pulled-right mr-2"
               >
-                <i
-                  class="mdi mdi-magnify mdi-26px has-text-white"
-                  @click="isSearchModalActive = true"
-                ></i>
+                <i class="mdi mdi-magnify mdi-26px has-text-white"></i>
               </b-button>
             </div>
           </div>
