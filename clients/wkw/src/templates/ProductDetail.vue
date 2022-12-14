@@ -1,7 +1,5 @@
 <template>
-  <DefaultLayout #content>
-    {{ $context.product }}
-  </DefaultLayout>
+  <DefaultLayout> </DefaultLayout>
 </template>
 <script>
 export default {

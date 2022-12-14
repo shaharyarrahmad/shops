@@ -109,6 +109,12 @@ module.exports = async function (api) {
       const collections = vendureNL.unflatten(allCollections);
       const navbarCollections = collections.map(mapToMinimalCollection);
 
+      // Breadcrumb pages
+      const Home = '/';
+      const Assortiment = '/assortiment/';
+      const Categorie = '/product-categorie/';
+      const Product = '/product/';
+
       const global = {
         navbarCollections,
         lang,
@@ -131,6 +137,7 @@ module.exports = async function (api) {
           context: {
             ...global,
             product,
+            breadcrumb: { Home, Assortiment, Categorie, Product },
           },
         });
       });

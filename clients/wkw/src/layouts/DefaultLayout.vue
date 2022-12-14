@@ -3,6 +3,7 @@
     <AppHeader :collections="$context.navbarCollections" />
     <div class="container is-widescreen section navbar-margin pb-6">
       <slot name="content" />
+      <Breadcrumb v-if="$context.breadcrumb" :crumbs="$context.breadcrumb" />
     </div>
     <div v-if="$slots.fullwidth" class="has-background-primary">
       <div class="container is-widescreen section">
@@ -43,9 +44,10 @@
 <script>
 import AppHeader from '@/components/AppHeader.vue';
 import AppFooter from '@/components/AppFooter.vue';
+import Breadcrumb from 'pinelab-storefront/lib/components/Breadcrumb';
 
 export default {
-  components: { AppHeader, AppFooter },
+  components: { AppHeader, AppFooter, Breadcrumb },
   props: {
     showNewsletter: {
       default: true,
