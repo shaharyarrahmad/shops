@@ -8,7 +8,7 @@ This repository holds all components needed to run the Pinelab Shops multi-tenan
 * `vendure` the Vendure backend.
 * `clients/*` holds the client specific storefronts
 * `packages/e2e` e2e test to test basic functionality on minishop.studio demo shop
-* `packages/pinelab-storefront-client` Frontend library used in all webshop frontends based on Buefy (Bulma)
+* `packages/pinelab-storefront` Frontend library used in all webshop frontends based on Buefy (Bulma)
 
 
 # Deployments
