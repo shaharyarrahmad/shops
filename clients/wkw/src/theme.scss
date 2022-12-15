@@ -38,6 +38,7 @@ $navbar-dropdown-arrow: $white;
 
 $footer-background-color: $dark-green;
 $footer-padding: 1.5rem;
+$navbar-dropdown-item-hover-background-color: $primary;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: mergeColorMaps(
@@ -120,10 +121,6 @@ html {
   @include desktop {
     font-size: 14px;
   }
-}
-
-.button {
-  @extend .is-primary;
 }
 
 h1 {

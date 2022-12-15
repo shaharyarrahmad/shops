@@ -37,7 +37,7 @@
               <ReadMoreDescription
                 :description="$context.product.description"
                 :max-length="60"
-                :collapse="1"
+                :collapse="3"
               />
             </article>
             <article class="tile is-child">
@@ -47,13 +47,25 @@
                 v-on:select="selectedVariant = $event"
               />
               <br />
-              <b-button
-                class="is-primary is-fullwidth"
-                :loading="isLoading"
-                :disabled="isSoldOut"
-                v-on:click="buy()"
-                >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
-              </b-button>
+              <b-field grouped>
+                <b-numberinput
+                  v-model="quantity"
+                  min="1"
+                  max="999"
+                  placeholder="1"
+                  :disabled="isSoldOut"
+                >
+                </b-numberinput>
+                <b-button
+                  icon-left="basket-plus"
+                  class="is-primary is-fullwidth"
+                  :loading="isLoading"
+                  :disabled="isSoldOut"
+                  aria-label="In winkelmand"
+                  v-on:click="buy()"
+                  >{{ isSoldOut ? 'Uitverkocht' : 'In winkelmand' }}
+                </b-button>
+              </b-field>
             </article>
           </div>
         </div>
@@ -61,38 +73,13 @@
           <article class="tile is-child">
             <p
               id="full-description"
-              class="subtitle content"
+              class="content"
               v-html="$context.product.description"
             ></p>
           </article>
         </div>
       </div>
     </div>
-
-    <!-- <div class="tile is-ancestor">
-      <div class="column">
-        <ProductImages :product="$context.product" :variant="variant" />
-      </div>
-      <div class="column">
-        <div class="has-text-black is-size-1">{{ $context.product.name }}</div>
-        <div class="is-size-5 mb-4">{{ variant.priceWithTax | euro }}</div>
-        <VariantSelector
-          :product="$context.product"
-          :variant="variant"
-          v-on:select="selectedVariant = $event"
-        />
-        <br />
-        <b-button
-          class="is-primary is-fullwidth"
-          :loading="isLoading"
-          :disabled="isSoldOut"
-          @click="buy()"
-          >{{ isSoldOut ? 'Sold out' : 'Buy' }}
-        </b-button>
-        <br />
-        <div v-html="$context.product.description"></div>
-      </div>
-    </div> -->
   </DefaultLayout>
 </template>
 <script>
@@ -119,6 +106,8 @@ export default {
     return {
       selectedVariant: undefined,
       isLoading: false,
+      quantity: 1,
+
       rate: 4,
       maxs: 5,
       sizes: 'default',
@@ -134,9 +123,6 @@ export default {
       locale: undefined, // Browser locale
     };
   },
-  metaInfo() {
-    return getMetaInfo(this.$context.product);
-  },
   async mounted() {
     console.log(this.$context.product);
     await hydrate(this.$context.product, this.$vendure);
@@ -144,13 +130,26 @@ export default {
   methods: {
     async buy() {
       this.isLoading = true;
-      await buy(this.variant, {
-        vendure: this.$vendure,
-        emitter: this.$emitter,
-      });
+      await buy(
+        this.variant,
+        {
+          vendure: this.$vendure,
+          emitter: this.$emitter,
+        },
+        this.quantity
+      );
       this.isLoading = false;
     },
   },
 };
 </script>
-<style></style>
+<style>
+.tile {
+  height: min-content;
+}
+
+.carousel-item {
+  object-fit: cover;
+  height: 500px;
+}
+</style>
