@@ -413,7 +413,6 @@ export class VendureClient {
           error.extensions?.code
         );
       }
-      console.log((e as any).response);
       throw e;
     }
   }
